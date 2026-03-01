@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeffrey Benson | Operator-Architect Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --olive: #3B4B35;
+            --vellum: #F0EAD6;
+            --gold: #BFA36F;
+            --charcoal: #2C2E2F;
+            --clay: #C27B58;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--vellum);
+            color: var(--charcoal);
+            font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            background-color: var(--olive);
+            color: var(--vellum);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        /* Story Sections */
+        section {
+            min-height: 100vh;
+            padding: 100px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-section {
+            background-color: var(--charcoal);
+            color: var(--vellum);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .content h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .metrics {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .metric-card {
+            background: rgba(191, 163, 111, 0.1);
+            padding: 20px;
+            border-left: 4px solid var(--gold);
+            min-width: 150px;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+        }
+
+        .infographic {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 40px;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        /* Lightbox Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            cursor: zoom-out;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: auto;
+            max-width: 90%;
+            max-height: 85vh;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: var(--vellum);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .infographic {
+            cursor: zoom-in; /* Hint to the user that they can click */
+            transition: transform 0.3s ease;
+        }
+
+        .infographic:hover {
+            transform: scale(1.02); /* Subtle lift on hover */
+        }
+
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header
+        style="height: 80vh; background-color: var(--olive); color: var(--vellum); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px;">
+        <img src="img/Gemini_Headshot.png" alt="Jeffrey Benson"
+            style="width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--gold); margin-bottom: 25px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+    
+        <h1 style="font-size: 3.5rem; margin-bottom: 5px; font-weight: 300;">Jeffrey Benson</h1>
+        <div class="subtitle"
+            style="font-size: 1.1rem; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 30px;">
+            Operational Excellence • Data Science • Chief of Staff
+        </div>
+    
+        <p
+            style="max-width: 750px; font-size: 1.25rem; font-style: italic; opacity: 0.95; border-left: 3px solid var(--gold); padding-left: 25px; text-align: left; line-height: 1.5; margin: 0 auto;">
+            "Behind every broken process there is a person <br>carrying weight they shouldn't have to carry. <br>
+            I find the people, fix the processes, <br>and give teams back their confidence."
+        </p>
+    </header>
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="imgFull">
+    </div>
+
+    <section style="background-color: white; padding: 60px 10%;">
+        <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+            <h2 style="color: var(--olive); font-size: 2.2rem; margin-bottom: 25px;">The Operator Who Codes</h2>
+            <p style="font-size: 1.3rem; color: #333; line-height: 1.7; margin-bottom: 40px;">
+                I am a <strong>Lean Six Sigma Black Belt</strong> and data science leader<br>
+                who bridges boardroom strategy with operational truth.<br>
+                I use <strong>Python, SQL, and GenAI</strong> to surface what has become too complex to see,<br>
+                then build the architectures that create visibility and bring strategic clarity.
+            </p>
+    
+            <img src="img/cs_service_pillars.jpg" alt="Cornerstone Service Pillars" class="infographic"
+                style="width: 100%; max-width: 900px; margin-bottom: 60px; cursor: zoom-in;">
+        </div>
+    </section>
+    
+    <section class="dark-section" style="padding: 80px 10%; text-align: center;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h2 style="color: var(--gold); font-size: 2.5rem; margin-bottom: 20px;">The Real ROI is Clarity.</h2>
+    
+            <img src="img/cs_real_roi_is_clarity.png" alt="Operational ROI Graphic" class="infographic"
+                style="width: 100%; max-width: 900px; margin-bottom: 40px; cursor: zoom-in;">
+    
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
+                My approach is built on three foundations:<br>
+                <strong>Diagnose with Empathy</strong> to find the true root cause,<br>
+                <strong>Automate to Elevate</strong> to free humans for higher-value work, and<br>
+                <strong>Model for Reality</strong> to find hidden capacity.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="grid">
+            <div class="content">
+                <h2>Fixing the Hidden Geometry</h2>
+                <p>Operational strain is often a data problem in disguise. In a Global Network Operations role, I
+                    discovered "Zip Code Anarchy"—overlapping work areas that were feeding hallucinations to our
+                    automated dispatch tools.</p>
+                <div class="metrics">
+                    <div class="metric-card"><span class="metric-value">$22M</span>Capacity Unlocked</div>
+                    <div class="metric-card"><span class="metric-value">10%</span>Lift in Auto-<br>Dispatching Success</div>
+                </div>
+            </div>
+            <img src="img/cc_work_area_redesign.png" alt="How Correcting Hidden Geometry Restored Trust and Unlocked Capacity" class="infographic">
+        </div>
+    </section>
+
+    <section class="dark-section">
+        <div class="grid">
+            <img src="img/cs_gno_f2l.png" alt="Force to Load Model" class="infographic"
+                style="transform: translateX(-50px);">
+            <div class="content">
+                <h2>The Mathematics of Morale</h2>
+                <p>Averages hide friction. Building on the redesigned work areas, I replaced blunt headcount models
+                    with a Python-based Force-to-Load (F2L) architecture that calculates supply, demand,
+                    and pricing in minutes, not estimates.</p>
+                <div class="metrics">
+                    <div class="metric-card"><span class="metric-value">25%</span>Model Speedup</div>
+                    <div class="metric-card"><span class="metric-value">1K</span>Workforce Modeled</div>
+                    <div class="metric-card"><span class="metric-value">50</span>New FTEs Approved</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="grid">
+            <div class="content">
+                <h2>Dignity Through Documentation</h2>
+                <p>High turnover isn't a culture problem; it's a clarity problem. By institutionalizing an ISO 9000
+                    Quality Management System, including 143 standardized SOPs and a custom knowledge base, we removed
+                    the weight of ambiguity from the team.</p>
+                <div class="metrics">
+                    <div class="metric-card"><span class="metric-value">50% &rarr; 1%</span>Attrition Drop</div>
+                    <div class="metric-card"><span class="metric-value">86%</span>Error Reduction</div>
+                    <div class="metric-card"><span class="metric-value">80%</span>Outage Reduction</div>
+                </div>
+            </div>
+            <img src="img/cs_quality_management_system.png" alt="ISO 9000 Quality Management System Infographic"
+                class="infographic">
+        </div>
+    </section>
+
+    <section class="dark-section">
+        <div class="grid">
+            <img src="img/cs_from_friction_to_flow.png" alt="33x Peak Velocity Infographic" class="infographic"
+                style="transform: translateX(-50px);">
+            <div class="content">
+                <h2>33x Peak Velocity (21x Sustained)</h2>
+                <p>Faced with a server migration stuck at 15 units per week, the constraint was readiness, not capability.
+                    By building an automated pipeline from 27 sources, we accelerated to a 500+ unit peak,
+                    sustaining a 2,126% increase through the final quarter.</p>
+                <div class="metrics">
+                    <div class="metric-card"><span class="metric-value">15 &rarr; 500+</span>Peak Units/Week</div>
+                    <div class="metric-card"><span class="metric-value">2,126%</span>Sustained Velocity</div>
+                    <div class="metric-card"><span class="metric-value">27</span>Data Sources Integrated</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="text-align: center; background-color: var(--olive); color: white; padding: 100px 10%;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+    
+            <img src="img/cs_services.png" alt="Cornerstone Methodology Bridge" class="infographic"
+                style="width: 100%; max-width: 900px; margin-bottom: 50px; cursor: zoom-in; border: 1px solid rgba(255,255,255,0.2);">
+    
+            <h2 style="font-size: 2.8rem; margin-bottom: 20px; font-weight: 300;">Let’s build something better, together.
+            </h2>
+    
+            <p style="font-size: 1.3rem; opacity: 0.9; max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">
+                I am currently seeking Senior Leadership opportunities in<br>
+                <strong>Operational Excellence</strong>, <strong>Data Strategy</strong>, or <strong>Chief of Staff</strong><br>
+                roles where I can bridge your vision with technical truth.
+            </p>
+    
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="https://www.linkedin.com/in/jeffreytbenson/" class="btn"
+                    style="background: var(--gold); color: white; border-color: var(--gold);">View LinkedIn Profile</a>
+                <a href="https://www.linkedin.com/messaging/thread/new/?recipient=jeffreytbenson" class="btn"
+                    style="border-color: var(--vellum); color: var(--vellum);">Email Jeff</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate Infographics on Scroll
+        gsap.utils.toArray(".infographic").forEach(img => {
+            gsap.to(img, {
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top 80%",
+                },
+                opacity: 1,
+                x: 0,
+                duration: 1.5,
+                ease: "power3.out"
+            });
+        });
+        // Function to enlarge images
+            document.querySelectorAll('.infographic').forEach(image => {
+                image.onclick = function () {
+                    document.getElementById("imageModal").style.display = "block";
+                    document.getElementById("imgFull").src = this.src;
+                }
+            });
+
+            // Function to close the modal
+            function closeModal() {
+                document.getElementById("imageModal").style.display = "none";
+            }
+
+            // Also close if they hit the 'Escape' key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === "Escape") {
+                    closeModal();
+                }
+            });
+    </script>
+</body>
+
+</html>
