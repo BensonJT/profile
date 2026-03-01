@@ -110,6 +110,11 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             opacity: 0;
             transform: translateX(50px);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            /* This line tells iOS "this is a link/button" */
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            touch-action: manipulation;
         }
 
         .btn {
@@ -151,7 +156,7 @@
             max-width: 90%;
             max-height: 85vh;
             border: 2px solid var(--gold);
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
         }
 
         .close-modal {
@@ -165,12 +170,14 @@
         }
 
         .infographic {
-            cursor: zoom-in; /* Hint to the user that they can click */
+            cursor: zoom-in;
+            /* Hint to the user that they can click */
             transition: transform 0.3s ease;
         }
 
         .infographic:hover {
-            transform: scale(1.02); /* Subtle lift on hover */
+            transform: scale(1.02);
+            /* Subtle lift on hover */
         }
 
         @media (max-width: 900px) {
@@ -187,13 +194,13 @@
         style="height: 80vh; background-color: var(--olive); color: var(--vellum); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px;">
         <img src="img/Gemini_Headshot.png" alt="Jeffrey Benson"
             style="width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--gold); margin-bottom: 25px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-    
+
         <h1 style="font-size: 3.5rem; margin-bottom: 5px; font-weight: 300;">Jeffrey Benson</h1>
         <div class="subtitle"
             style="font-size: 1.1rem; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 30px;">
             Operational Excellence • Data Science • Chief of Staff
         </div>
-    
+
         <p
             style="max-width: 750px; font-size: 1.25rem; font-style: italic; opacity: 0.95; border-left: 3px solid var(--gold); padding-left: 25px; text-align: left; line-height: 1.5; margin: 0 auto;">
             "Behind every broken process there is a person <br>carrying weight they shouldn't have to carry. <br>
@@ -215,19 +222,19 @@
                 I use <strong>Python, SQL, and GenAI</strong> to surface what has become too complex to see,<br>
                 then build the architectures that create visibility and bring strategic clarity.
             </p>
-    
+
             <img src="img/cs_service_pillars.jpg" alt="Cornerstone Service Pillars" class="infographic"
                 style="width: 100%; max-width: 900px; margin-bottom: 60px; cursor: zoom-in;">
         </div>
     </section>
-    
+
     <section class="dark-section" style="padding: 80px 10%; text-align: center;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <h2 style="color: var(--gold); font-size: 2.5rem; margin-bottom: 20px;">The Real ROI is Clarity.</h2>
-    
+
             <img src="img/cs_real_roi_is_clarity.png" alt="Operational ROI Graphic" class="infographic"
                 style="width: 100%; max-width: 900px; margin-bottom: 40px; cursor: zoom-in;">
-    
+
             <p style="font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
                 My approach is built on three foundations:<br>
                 <strong>Diagnose with Empathy</strong> to find the true root cause,<br>
@@ -246,10 +253,12 @@
                     automated dispatch tools.</p>
                 <div class="metrics">
                     <div class="metric-card"><span class="metric-value">$22M</span>Capacity Unlocked</div>
-                    <div class="metric-card"><span class="metric-value">10%</span>Lift in Auto-<br>Dispatching Success</div>
+                    <div class="metric-card"><span class="metric-value">10%</span>Lift in Auto-<br>Dispatching Success
+                    </div>
                 </div>
             </div>
-            <img src="img/cc_work_area_redesign.png" alt="How Correcting Hidden Geometry Restored Trust and Unlocked Capacity" class="infographic">
+            <img src="img/cc_work_area_redesign.png"
+                alt="How Correcting Hidden Geometry Restored Trust and Unlocked Capacity" class="infographic">
         </div>
     </section>
 
@@ -295,7 +304,8 @@
                 style="transform: translateX(-50px);">
             <div class="content">
                 <h2>33x Peak Velocity (21x Sustained)</h2>
-                <p>Faced with a server migration stuck at 15 units per week, the constraint was readiness, not capability.
+                <p>Faced with a server migration stuck at 15 units per week, the constraint was readiness, not
+                    capability.
                     By building an automated pipeline from 27 sources, we accelerated to a 500+ unit peak,
                     sustaining a 2,126% increase through the final quarter.</p>
                 <div class="metrics">
@@ -309,19 +319,21 @@
 
     <section style="text-align: center; background-color: var(--olive); color: white; padding: 100px 10%;">
         <div style="max-width: 1000px; margin: 0 auto;">
-    
+
             <img src="img/cs_services.png" alt="Cornerstone Methodology Bridge" class="infographic"
                 style="width: 100%; max-width: 900px; margin-bottom: 50px; cursor: zoom-in; border: 1px solid rgba(255,255,255,0.2);">
-    
-            <h2 style="font-size: 2.8rem; margin-bottom: 20px; font-weight: 300;">Let’s build something better, together.
+
+            <h2 style="font-size: 2.8rem; margin-bottom: 20px; font-weight: 300;">Let’s build something better,
+                together.
             </h2>
-    
+
             <p style="font-size: 1.3rem; opacity: 0.9; max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">
                 I am currently seeking Senior Leadership opportunities in<br>
-                <strong>Operational Excellence</strong>, <strong>Data Strategy</strong>, or <strong>Chief of Staff</strong><br>
+                <strong>Operational Excellence</strong>, <strong>Data Strategy</strong>, or <strong>Chief of
+                    Staff</strong><br>
                 roles where I can bridge your vision with technical truth.
             </p>
-    
+
             <div style="display: flex; gap: 20px; justify-content: center;">
                 <a href="https://www.linkedin.com/in/jeffreytbenson/" class="btn"
                     style="background: var(--gold); color: white; border-color: var(--gold);">View LinkedIn Profile</a>
@@ -348,24 +360,36 @@
             });
         });
         // Function to enlarge images
-            document.querySelectorAll('.infographic').forEach(image => {
-                image.onclick = function () {
-                    document.getElementById("imageModal").style.display = "block";
-                    document.getElementById("imgFull").src = this.src;
-                }
-            });
-
-            // Function to close the modal
-            function closeModal() {
-                document.getElementById("imageModal").style.display = "none";
+        document.querySelectorAll('.infographic').forEach(image => {
+            image.onclick = function () {
+                document.getElementById("imageModal").style.display = "block";
+                document.getElementById("imgFull").src = this.src;
             }
+        });
 
-            // Also close if they hit the 'Escape' key
-            document.addEventListener('keydown', function (e) {
-                if (e.key === "Escape") {
-                    closeModal();
-                }
-            });
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+
+        // Also close if they hit the 'Escape' key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === "Escape") {
+                closeModal();
+            }
+        });
+        // Function to handle the click/tap
+        const openModal = function (e) {
+            e.preventDefault(); // Prevents long-press menus in some cases
+            document.getElementById("imageModal").style.display = "block";
+            document.getElementById("imgFull").src = this.src;
+        };
+
+        // Apply to all infographics for both Click and Touch
+        document.querySelectorAll('.infographic').forEach(image => {
+            image.addEventListener('click', openModal);
+            image.addEventListener('touchend', openModal);
+        });
     </script>
 </body>
 
