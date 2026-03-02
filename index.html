@@ -30,7 +30,6 @@
             overflow-x: hidden;
         }
 
-        /* Hero Section */
         header {
             min-height: 100vh;
             background-color: var(--olive);
@@ -59,7 +58,6 @@
             margin-bottom: 30px;
         }
 
-        /* Section Layouts */
         section {
             min-height: 100vh;
             padding: 100px 10%;
@@ -69,7 +67,18 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .dark-section {
+        /* Pattern Classes */
+        .bg-white {
+            background-color: #ffffff;
+            color: var(--charcoal);
+        }
+
+        .bg-vellum {
+            background-color: var(--vellum);
+            color: var(--charcoal);
+        }
+
+        .bg-charcoal {
             background-color: var(--charcoal);
             color: var(--vellum);
         }
@@ -109,7 +118,6 @@
             display: block;
         }
 
-        /* Infographics & Interaction */
         .infographic {
             width: 100%;
             border-radius: 8px;
@@ -118,15 +126,12 @@
             transform: translateX(50px);
             cursor: zoom-in;
             transition: transform 0.3s ease;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-            touch-action: manipulation;
         }
 
         .infographic:hover {
             transform: scale(1.02);
         }
 
-        /* Testimonials */
         .testimonial {
             margin-top: 40px;
             padding: 25px;
@@ -139,14 +144,7 @@
         .testimonial-body {
             font-size: 1.1rem;
             line-height: 1.5;
-            color: var(--charcoal);
-            margin-bottom: 15px;
-        }
-
-        .testimonial-body-light {
-            font-size: 1.1rem;
-            line-height: 1.5;
-            color: var(--vellum);
+            color: inherit;
             margin-bottom: 15px;
         }
 
@@ -159,7 +157,6 @@
             font-size: 0.9rem;
         }
 
-        /* Modal / Lightbox */
         .modal {
             display: none;
             position: fixed;
@@ -179,7 +176,6 @@
             max-width: 90%;
             max-height: 85vh;
             border: 2px solid var(--gold);
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
         }
 
         .close-modal {
@@ -192,7 +188,6 @@
             cursor: pointer;
         }
 
-        /* Buttons */
         .btn {
             display: inline-block;
             padding: 15px 30px;
@@ -216,186 +211,128 @@
             .grid {
                 grid-template-columns: 1fr;
             }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            header {
-                height: auto;
-            }
         }
     </style>
 </head>
-<div id="imageModal" class="modal" onclick="closeModal()">
-    <span class="close-modal">&times;</span>
-    <img class="modal-content" id="imgFull">
-    <p style="text-align:center; color:var(--vellum); margin-top:15px; font-family:sans-serif;">
-        Click anywhere to close
-    </p>
-</div>
 
 <body>
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="imgFull">
+        <p style="text-align:center; color:var(--vellum); margin-top:15px; font-family:sans-serif;">Click anywhere to
+            close</p>
+    </div>
 
     <header>
         <img src="img/Gemini_Headshot.png" alt="Jeffrey Benson"
-            style="width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--gold); margin-bottom: 25px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+            style="width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--gold); margin-bottom: 25px; object-fit: cover;">
         <h1>Jeffrey Benson</h1>
         <div class="subtitle">Operational Excellence • Data Science • Chief of Staff</div>
         <p
-            style="max-width: 750px; font-size: 1.25rem; font-style: italic; opacity: 0.95; border-left: 3px solid var(--gold); padding-left: 25px; text-align: left; line-height: 1.5; margin: 0 auto 30px;">
-            "Behind every broken process there is a person <br>carrying weight they shouldn't have to carry. <br>
-            I find the people, fix the processes, <br>and give teams back their confidence."
+            style="max-width: 750px; font-size: 1.25rem; font-style: italic; border-left: 3px solid var(--gold); padding-left: 25px; text-align: left; margin: 0 auto 30px;">
+            "Behind every broken process there is a person carrying weight they shouldn't have to carry. I find the
+            people, fix the processes, and give teams back their confidence."
         </p>
         <div class="testimonial" style="max-width: 800px;">
-            <p class="testimonial-body-light">
-                "I referred to Jeff as 'the tide that lifts all ships' due
-                to his investment in our organization’s internal data and processes.
-                He works every problem as if he has a personal stake in the outcome."
-            </p>
+            <p class="testimonial-body" style="color: var(--vellum);">"I referred to Jeff as 'the tide that lifts all
+                ships' due to his investment in our organization’s internal data and processes."</p>
             <p class="testimonial-attribution">— Jeff Parker, Strategy & Innovation Leader</p>
         </div>
     </header>
 
-    <div id="imageModal" class="modal">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="imgFull">
-    </div>
-
-    <section style="background-color: white;">
+    <section class="bg-white">
         <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
             <h2 style="color: var(--olive); font-size: 2.2rem; margin-bottom: 25px;">The Operator Who Codes</h2>
-            <p style="font-size: 1.3rem; color: #333; line-height: 1.7; margin-bottom: 40px;">
-                I am a <strong>Lean Six Sigma Black Belt</strong> and data science leader<br>
-                who bridges boardroom strategy with operational truth.<br>
-                I use <strong>Python, SQL, and GenAI</strong> to <strong>distill</strong> what has become too complex to
-                see,<br>
-                then build the architectures that create visibility and bring strategic clarity.
+            <p style="font-size: 1.3rem; line-height: 1.7; margin-bottom: 40px;">
+                I am a <strong>Lean Six Sigma Black Belt</strong> who bridges boardroom strategy with operational
+                truth<br>
+                using <strong>Python, SQL, and GenAI</strong> to distill complexity into clarity.
             </p>
             <div class="testimonial">
-                <p class="testimonial-body">
-                    "Jeff is an expert at the full data lifecycle... his work on core operational projects has
-                    fundamentally transformed how the organization manages capacity, forecasts, and performance."
-                </p>
-                <p class="testimonial-attribution">— Carlos Orellana & Morad Bosen, Senior Data Engineers</p>
+                <p class="testimonial-body">"Jeff is an expert at the full data lifecycle... his work on core
+                    operational projects has fundamentally transformed how
+                    the organization manages capacity, forecasts, and performance."</p>
+                <p class="testimonial-attribution">— Carlos Orellana & Morad Bosen, Data Engineers</p>
             </div>
-            <img src="img/cs_service_pillars.jpg" alt="Cornerstone Service Pillars" class="infographic"
-                style="width: 100%; max-width: 900px; margin-top: 40px;">
+            <img src="img/cs_service_pillars.jpg" alt="Service Pillars" class="infographic"
+                style="max-width: 900px; margin-top: 40px;">
         </div>
     </section>
 
-    <section class="dark-section" style="text-align: center;">
-        <div style="max-width: 1000px; margin: 0 auto;">
-            <h2 style="color: var(--gold); font-size: 2.5rem; margin-bottom: 20px;">The Real ROI is Clarity.</h2>
-            <img src="img/cs_real_roi_is_clarity.png" alt="Operational ROI Graphic" class="infographic"
-                style="width: 100%; max-width: 900px; margin-bottom: 40px;">
-            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
-                My approach is built on three foundations:<br>
-                <strong>Diagnose with Empathy</strong> to find the true root cause,<br>
-                <strong>Automate to Elevate</strong> to free humans for higher-value work, and<br>
-                <strong>Model for Reality</strong> to find hidden capacity.
-            </p>
-        </div>
-    </section>
-
-    <section>
+    <section class="bg-vellum">
         <div class="grid">
             <div class="content">
                 <h2>Fixing the Hidden Geometry</h2>
-                <p>
-                    Operational strain is often a data problem in disguise. In a Global Network Operations role, I
-                    discovered "Zip Code Anarchy"—overlapping work areas that were feeding hallucinations to our
-                    automated dispatch tools.
-                    <a href="https://www.linkedin.com/pulse/case-study-you-cant-automate-mess-cornerstone-solutions-io-iotae/"
-                        target="_blank" rel="noopener noreferrer"
-                        style="color: var(--gold); text-decoration: underline; font-weight: bold;">
-                        Read the full Case Study on resolving data friction.
-                    </a>
-                </p>
+                <p>Operational strain is often a data problem in disguise. In a Global Network Operations role, I
+                    discovered "Zip Code
+                    Anarchy"—overlapping work areas that were feeding hallucinations to our automated dispatch tools. <a
+                        href="https://www.linkedin.com/pulse/case-study-you-cant-automate-mess-cornerstone-solutions-io-iotae/"
+                        target="_blank" style="color: var(--gold); font-weight: bold;">Read Case Study.</a></p>
                 <div class="metrics">
                     <div class="metric-card"><span class="metric-value">$22M</span>Capacity Unlocked</div>
-                    <div class="metric-card"><span class="metric-value">10%</span>Lift in Auto-Dispatching</div>
+                    <div class="metric-card"><span class="metric-value">10%</span>Lift in Auto-Dispatch</div>
                 </div>
             </div>
             <img src="img/cc_work_area_redesign.png" alt="Work Area Redesign" class="infographic">
         </div>
     </section>
 
-    <section class="dark-section">
+    <section class="bg-charcoal">
         <div class="grid">
-            <img src="img/cs_gno_f2l.png" alt="Force to Load Model" class="infographic"
-                style="transform: translateX(-50px);">
+            <img src="img/cs_gno_f2l.png" alt="F2L Model" class="infographic" style="transform: translateX(-50px);">
             <div class="content">
                 <h2>The Mathematics of Morale</h2>
-                <p>
-                    Averages hide friction. By moving beyond static models, I architected a
-                    Python-driven <strong>Force-to-Load</strong> system that balances operational
-                    requirements with human capacity. We traded "best guesses" for actionable data truth.
-                    <a href="https://www.linkedin.com/pulse/mathematics-morale-calibrating-load-lift-cornerstone-solutions-io-s7mve"
-                        target="_blank" rel="noopener noreferrer"
-                        style="color: var(--gold); text-decoration: underline; font-weight: bold;">
-                        Read the Case Study on workforce analytics and morale.
-                    </a>
-                </p>
+                <p>Averages hide friction. I architected a Python-driven Force-to-Load system that balances requirements
+                    with human capacity. <a
+                        href="https://www.linkedin.com/pulse/mathematics-morale-calibrating-load-lift-cornerstone-solutions-io-s7mve"
+                        target="_blank" style="color: var(--gold); font-weight: bold;">Read Case Study.</a></p>
                 <div class="metrics">
                     <div class="metric-card"><span class="metric-value">25%</span>Model Speedup</div>
                     <div class="metric-card"><span class="metric-value">50</span>New FTEs Approved</div>
                 </div>
                 <div class="testimonial">
-                    <p class="testimonial-body-light">
-                        "Jeff’s model became the backbone for our headcount modeling and reporting... providing the
-                        necessary critical reporting to build robust business cases."
-                    </p>
+                    <p class="testimonial-body" style="color:var(--vellum)">"Jeff’s model became the backbone for our
+                        headcount modeling... building robust business cases."</p>
                     <p class="testimonial-attribution">— Kristine Reelfs, Global Operations</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section>
+    <section class="bg-white">
         <div class="grid">
             <div class="content">
                 <h2>Dignity Through Documentation</h2>
-                <p>
-                    High turnover isn't a culture problem; it's a clarity problem. By institutionalizing 143
-                    standardized SOPs, we removed the weight of ambiguity from the team.
-                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7414652083599069184/" target="_blank"
-                        rel="noopener noreferrer"
-                        style="color: var(--gold); text-decoration: underline; font-weight: bold;">
-                        Read more on how clarity reduces attrition.
-                    </a>
-                </p>
+                <p>High turnover is a clarity problem. By institutionalizing 143 SOPs, we removed ambiguity, increased
+                    morale and quality, and reduced employee attrition. <a
+                        href="https://www.linkedin.com/feed/update/urn:li:activity:7414652083599069184/" target="_blank"
+                        style="color: var(--gold); font-weight: bold;">Read Case Study.</a></p>
                 <div class="metrics">
                     <div class="metric-card"><span class="metric-value">50% &rarr; 1%</span>Attrition Drop</div>
                     <div class="metric-card"><span class="metric-value">86%</span>Error Reduction</div>
                 </div>
                 <div class="testimonial">
-                    <p class="testimonial-body">
-                        "Jeffrey was my 'right hand man'... because of his efforts, attrition went from 50% to 1%
-                        due to major improvement in team morale."
-                    </p>
-                    <p class="testimonial-attribution">— Ellen Behrle, Acting Director of Distributed Ops</p>
+                    <p class="testimonial-body">"Jeff was my 'right hand man'... attrition went from 50% to 1% due to
+                        major improvement in morale."</p>
+                    <p class="testimonial-attribution">— Ellen Behrle, Director of Ops</p>
                 </div>
             </div>
-            <img src="img/cs_quality_management_system.png" alt="QMS Infographic" class="infographic">
+            <img src="img/cs_quality_management_system.png" alt="QMS" class="infographic">
         </div>
     </section>
 
-    <section class="dark-section">
+    <section class="bg-vellum">
         <div class="grid">
-            <img src="img/cs_from_friction_to_flow.png" alt="Velocity Infographic" class="infographic"
+            <img src="img/cs_from_friction_to_flow.png" alt="Velocity" class="infographic"
                 style="transform: translateX(-50px);">
             <div class="content">
                 <h2>33x Peak Velocity</h2>
-                <p>
-                    Faced with a server migration stuck at 15 units per week, the constraint was readiness.
-                    By building an automated pipeline from 27 sources, we accelerated to a 500+ unit peak.
-                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7415376849603862528/" target="_blank"
-                        rel="noopener noreferrer"
-                        style="color: var(--gold); text-decoration: underline; font-weight: bold;">
-                        Read the Case Study on rescuing a stalled migration.
-                    </a>
-                </p>
+                <p>Rescued a stalled migration by building an automated pipeline from 27 sources, and
+                    applying DMAIC to streamline the process, resulting in increasing velocity from 15 migrations per
+                    week to 500+
+                    migrations per week after 9 months. <a
+                        href="https://www.linkedin.com/feed/update/urn:li:activity:7415376849603862528/" target="_blank"
+                        style="color: var(--gold); font-weight: bold;">Read Case Study.</a></p>
                 <div class="metrics">
                     <div class="metric-card"><span class="metric-value">15 &rarr; 500+</span>Units/Week</div>
                     <div class="metric-card"><span class="metric-value">2,126%</span>Sustained Velocity</div>
@@ -404,7 +341,7 @@
         </div>
     </section>
 
-    <section style="background-color: white;">
+    <section class="bg-charcoal">
         <div class="grid">
             <div class="content">
                 <h2>The $40M Rationalization</h2>
@@ -427,35 +364,26 @@
                     <p class="testimonial-attribution">— Jai Padmanabhan, Master Black Belt</p>
                 </div>
             </div>
-            <div class="infographic-placeholder"
-                style="border: 2px dashed var(--gold); padding: 40px; text-align: center; color: var(--gold);">
-                [Visualizing the Server Lifecycle: From 400 Activities to 1 Streamlined Flow]
-            </div>
+            <img src="img/itam_optimization.png" alt="Velocity" class="infographic"
+                style="transform: translateX(-50px);">
         </div>
     </section>
 
-    <section>
+    <section class="bg-white">
         <div class="grid">
-            <img src="img/cs_data_chaos_to_strategic_control.png" alt="Expense Governance Architecture"
-                class="infographic" style="transform: translateX(-50px);">
+            <img src="img/cs_data_chaos_to_strategic_control.png" alt="Governance" class="infographic"
+                style="transform: translateX(-50px);">
             <div class="content">
-                <h2>Architecting Control: $3B+ Cash Flow Governance</h2>
-                <p>
-                    During a merger integration, manual reconciliation was drowning the team, requiring a projected
-                    $4.2M in additional headcount just to stay current. I architected an automated expense governance
-                    system that synchronized actuals with "Best View" forecasts, eliminating spreadsheet heroics.
-                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7415014531325775872/" target="_blank"
-                        rel="noopener noreferrer"
-                        style="color: var(--gold); text-decoration: underline; font-weight: bold;">
-                        Read the Case Study on automating FP&A reconciliation.
-                    </a>
-                </p>
+                <h2>$3B+ Cash Flow Governance</h2>
+                <p>Architected an automated governance system that synchronized actuals with "Best View" forecasts,
+                    avoiding $4.2M in labor costs and enabling the team to deliver $500M in savings. <a
+                        href="https://www.linkedin.com/feed/update/urn:li:activity:7415014531325775872/" target="_blank"
+                        style="color: var(--gold); font-weight: bold;">Read Case Study.</a></p>
                 <div class="metrics">
                     <div class="metric-card"><span class="metric-value">$3B+</span>Capital Governed</div>
                     <div class="metric-card"><span class="metric-value">$4.2M</span>Avoided Labor Cost</div>
                     <div class="metric-card"><span class="metric-value">$500M</span>OPEX Synergy Enabled</div>
-                </div>
-
+                </div>>
                 <div class="testimonial">
                     <p class="testimonial-body">
                         "Jeff translated a very complicated business process into technical language easily understood
@@ -476,13 +404,14 @@
         </div>
     </section>
 
-    <section class="dark-section">
+    <section class="bg-vellum">
         <div class="grid">
             <div class="content">
                 <h2>Forensic Stewardship: Uncovering Phantom Costs</h2>
                 <p>
                     The most expensive line item is often the one you aren't using. During a high-growth product launch,
-                    I moved past top-line spend to isolate "unused cost"—the gap between contractual minimums and actual
+                    I moved past top-line spend to isolate "unused cost", the gap between contractual minimums and
+                    actual
                     volume.
                     By aligning contracts with reality, we unlocked a path to millions in annual savings.
                     <a href="https://www.linkedin.com/feed/update/urn:li:activity:7415739220809551872/" target="_blank"
@@ -509,6 +438,20 @@
         </div>
     </section>
 
+    <section class="bg-charcoal" style="text-align: center;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h2 style="color: var(--gold); font-size: 2.5rem; margin-bottom: 20px;">The Real ROI is Clarity.</h2>
+            <img src="img/cs_real_roi_is_clarity.png" alt="Operational ROI Graphic" class="infographic"
+                style="width: 100%; max-width: 900px; margin-bottom: 40px;">
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto; color: var(--vellum);">
+                My approach is built on three foundations:<br>
+                <strong>Diagnose with Empathy</strong> to find the true root cause,<br>
+                <strong>Automate to Elevate</strong> to free humans for higher-value work, and<br>
+                <strong>Model for Reality</strong> to find hidden capacity.
+            </p>
+        </div>
+    </section>
+
     <section style="text-align: center; background-color: var(--olive); color: white;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <img src="img/cs_services.png" alt="Methodology Bridge" class="infographic"
@@ -525,7 +468,6 @@
                 <a href="mailto:jeffreytbenson@gmail.com" class="btn"
                     style="border-color: var(--vellum); color: var(--vellum);">Contact Jeff</a>
             </div>
-
             <div class="testimonial-grid"
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 60px;">
                 <div class="testimonial"
@@ -544,42 +486,18 @@
             </div>
         </div>
     </section>
+
     <script>
         gsap.registerPlugin(ScrollTrigger);
-
-        // GSAP Animations
         gsap.utils.toArray(".infographic").forEach(img => {
             gsap.to(img, {
-                scrollTrigger: {
-                    trigger: img,
-                    start: "top 85%",
-                },
-                opacity: 1,
-                x: 0,
-                duration: 1.2,
-                ease: "power2.out"
+                scrollTrigger: { trigger: img, start: "top 85%" },
+                opacity: 1, x: 0, duration: 1.2, ease: "power2.out"
             });
         });
-
-        // Lightbox Logic
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("imgFull");
-
-        function openModal(src) {
-            modal.style.display = "block";
-            modalImg.src = src;
-        }
-
-        function closeModal() {
-            modal.style.display = "none";
-        }
-
-        document.querySelectorAll('.infographic').forEach(image => {
-            image.addEventListener('click', () => openModal(image.src));
-        });
-
-        window.onclick = (event) => { if (event.target == modal) closeModal(); }
-        document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
+        function openModal(src) { document.getElementById("imageModal").style.display = "block"; document.getElementById("imgFull").src = src; }
+        function closeModal() { document.getElementById("imageModal").style.display = "none"; }
+        document.querySelectorAll('.infographic').forEach(image => { image.addEventListener('click', () => openModal(image.src)); });
     </script>
 </body>
 
