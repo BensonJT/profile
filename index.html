@@ -27,11 +27,12 @@
             color: var(--charcoal);
             font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Hero Section */
         header {
-            height: 100vh;
+            min-height: 100vh;
             background-color: var(--olive);
             color: var(--vellum);
             display: flex;
@@ -39,24 +40,26 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 60px 20px;
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 300;
             letter-spacing: -2px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             color: var(--gold);
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 30px;
         }
 
-        /* Story Sections */
+        /* Section Layouts */
         section {
             min-height: 100vh;
             padding: 100px 10%;
@@ -86,6 +89,7 @@
 
         .metrics {
             display: flex;
+            flex-wrap: wrap;
             gap: 20px;
             margin-top: 30px;
         }
@@ -95,6 +99,7 @@
             padding: 20px;
             border-left: 4px solid var(--gold);
             min-width: 150px;
+            flex: 1;
         }
 
         .metric-value {
@@ -104,89 +109,31 @@
             display: block;
         }
 
+        /* Infographics & Interaction */
         .infographic {
             width: 100%;
             border-radius: 8px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             opacity: 0;
             transform: translateX(50px);
-            cursor: pointer;
+            cursor: zoom-in;
             transition: transform 0.3s ease;
-            /* This line tells iOS "this is a link/button" */
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             touch-action: manipulation;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: bold;
-            transition: 0.3s;
-            margin-top: 40px;
-        }
-
-        .btn:hover {
-            background: var(--gold);
-            color: white;
-        }
-
-        /* Lightbox Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            padding-top: 50px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            cursor: zoom-out;
-        }
-
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: auto;
-            max-width: 90%;
-            max-height: 85vh;
-            border: 2px solid var(--gold);
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: var(--vellum);
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .infographic {
-            cursor: zoom-in;
-            /* Hint to the user that they can click */
-            transition: transform 0.3s ease;
-        }
-
         .infographic:hover {
             transform: scale(1.02);
-            /* Subtle lift on hover */
         }
 
+        /* Testimonials */
         .testimonial {
             margin-top: 40px;
             padding: 25px;
             border-left: 4px solid var(--gold);
             background: rgba(191, 163, 111, 0.05);
-            /* subtle gold tint */
             font-style: italic;
+            text-align: left;
         }
 
         .testimonial-body {
@@ -212,76 +159,136 @@
             font-size: 0.9rem;
         }
 
+        /* Modal / Lightbox */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            cursor: zoom-out;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: var(--vellum);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: white;
+            transform: scale(1.05);
+        }
+
         @media (max-width: 900px) {
             .grid {
                 grid-template-columns: 1fr;
             }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            header {
+                height: auto;
+            }
         }
     </style>
 </head>
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="imgFull">
+    <p style="text-align:center; color:var(--vellum); margin-top:15px; font-family:sans-serif;">
+        Click anywhere to close
+    </p>
+</div>
 
 <body>
 
-    <header
-        style="height: 80vh; background-color: var(--olive); color: var(--vellum); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px;">
+    <header>
         <img src="img/Gemini_Headshot.png" alt="Jeffrey Benson"
             style="width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--gold); margin-bottom: 25px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-
-        <h1 style="font-size: 3.5rem; margin-bottom: 5px; font-weight: 300;">Jeffrey Benson</h1>
-        <div class="subtitle"
-            style="font-size: 1.1rem; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 30px;">
-            Operational Excellence • Data Science • Chief of Staff
-        </div>
+        <h1>Jeffrey Benson</h1>
+        <div class="subtitle">Operational Excellence • Data Science • Chief of Staff</div>
         <p
-            style="max-width: 750px; font-size: 1.25rem; font-style: italic; opacity: 0.95; border-left: 3px solid var(--gold); padding-left: 25px; text-align: left; line-height: 1.5; margin: 0 auto;">
+            style="max-width: 750px; font-size: 1.25rem; font-style: italic; opacity: 0.95; border-left: 3px solid var(--gold); padding-left: 25px; text-align: left; line-height: 1.5; margin: 0 auto 30px;">
             "Behind every broken process there is a person <br>carrying weight they shouldn't have to carry. <br>
             I find the people, fix the processes, <br>and give teams back their confidence."
         </p>
-        <div class="testimonial">
+        <div class="testimonial" style="max-width: 800px;">
             <p class="testimonial-body-light">
                 "I referred to Jeff as 'the tide that lifts all ships' due
-                to his investment in our organization’s internal data and processes.<br>
+                to his investment in our organization’s internal data and processes.
                 He works every problem as if he has a personal stake in the outcome."
             </p>
             <p class="testimonial-attribution">— Jeff Parker, Strategy & Innovation Leader</p>
         </div>
     </header>
 
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="close-modal">&times;</span>
+    <div id="imageModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
         <img class="modal-content" id="imgFull">
     </div>
 
-    <section style="background-color: white; padding: 60px 10%;">
+    <section style="background-color: white;">
         <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
             <h2 style="color: var(--olive); font-size: 2.2rem; margin-bottom: 25px;">The Operator Who Codes</h2>
             <p style="font-size: 1.3rem; color: #333; line-height: 1.7; margin-bottom: 40px;">
                 I am a <strong>Lean Six Sigma Black Belt</strong> and data science leader<br>
                 who bridges boardroom strategy with operational truth.<br>
-                I use <strong>Python, SQL, and GenAI</strong> to surface what has become too complex to see,<br>
+                I use <strong>Python, SQL, and GenAI</strong> to <strong>distill</strong> what has become too complex to
+                see,<br>
                 then build the architectures that create visibility and bring strategic clarity.
             </p>
             <div class="testimonial">
                 <p class="testimonial-body">
                     "Jeff is an expert at the full data lifecycle... his work on core operational projects has
-                    fundamentally transformed how
-                    the organization manages capacity, forecasts, and performance."
+                    fundamentally transformed how the organization manages capacity, forecasts, and performance."
                 </p>
                 <p class="testimonial-attribution">— Carlos Orellana & Morad Bosen, Senior Data Engineers</p>
             </div>
             <img src="img/cs_service_pillars.jpg" alt="Cornerstone Service Pillars" class="infographic"
-                style="width: 100%; max-width: 900px; margin-bottom: 60px; cursor: zoom-in;">
-
+                style="width: 100%; max-width: 900px; margin-top: 40px;">
         </div>
     </section>
 
-    <section class="dark-section" style="padding: 80px 10%; text-align: center;">
+    <section class="dark-section" style="text-align: center;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <h2 style="color: var(--gold); font-size: 2.5rem; margin-bottom: 20px;">The Real ROI is Clarity.</h2>
-
             <img src="img/cs_real_roi_is_clarity.png" alt="Operational ROI Graphic" class="infographic"
-                style="width: 100%; max-width: 900px; margin-bottom: 40px; cursor: zoom-in;">
-
+                style="width: 100%; max-width: 900px; margin-bottom: 40px;">
             <p style="font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
                 My approach is built on three foundations:<br>
                 <strong>Diagnose with Empathy</strong> to find the true root cause,<br>
@@ -307,12 +314,10 @@
                 </p>
                 <div class="metrics">
                     <div class="metric-card"><span class="metric-value">$22M</span>Capacity Unlocked</div>
-                    <div class="metric-card"><span class="metric-value">10%</span>Lift in Auto-<br>Dispatching Success
-                    </div>
+                    <div class="metric-card"><span class="metric-value">10%</span>Lift in Auto-Dispatching</div>
                 </div>
             </div>
-            <img src="img/cc_work_area_redesign.png"
-                alt="How Correcting Hidden Geometry Restored Trust and Unlocked Capacity" class="infographic">
+            <img src="img/cc_work_area_redesign.png" alt="Work Area Redesign" class="infographic">
         </div>
     </section>
 
@@ -325,8 +330,7 @@
                 <p>
                     Averages hide friction. By moving beyond static models, I architected a
                     Python-driven <strong>Force-to-Load</strong> system that balances operational
-                    requirements with human capacity. We traded "best guesses" for a high-fidelity
-                    analytics engine that calculates real-time supply and demand.
+                    requirements with human capacity. We traded "best guesses" for actionable data truth.
                     <a href="https://www.linkedin.com/pulse/mathematics-morale-calibrating-load-lift-cornerstone-solutions-io-s7mve"
                         target="_blank" rel="noopener noreferrer"
                         style="color: var(--gold); text-decoration: underline; font-weight: bold;">
@@ -335,16 +339,14 @@
                 </p>
                 <div class="metrics">
                     <div class="metric-card"><span class="metric-value">25%</span>Model Speedup</div>
-                    <div class="metric-card"><span class="metric-value">1K</span>Workforce Modeled</div>
                     <div class="metric-card"><span class="metric-value">50</span>New FTEs Approved</div>
                 </div>
                 <div class="testimonial">
                     <p class="testimonial-body-light">
                         "Jeff’s model became the backbone for our headcount modeling and reporting... providing the
-                        necessary critical reporting
-                        to build robust, data-backed business cases for requesting additional headcount."
+                        necessary critical reporting to build robust business cases."
                     </p>
-                    <p class="testimonial-attribution">— Kristine Reelfs, Resource & Compliance Manager</p>
+                    <p class="testimonial-attribution">— Kristine Reelfs, Global Operations</p>
                 </div>
             </div>
         </div>
@@ -355,159 +357,229 @@
             <div class="content">
                 <h2>Dignity Through Documentation</h2>
                 <p>
-                    High turnover isn't a culture problem; it's a clarity problem. By institutionalizing an ISO 9000
-                    Quality Management System, including 143 standardized SOPs and a custom knowledge base, we removed
-                    the weight of ambiguity from the team.
+                    High turnover isn't a culture problem; it's a clarity problem. By institutionalizing 143
+                    standardized SOPs, we removed the weight of ambiguity from the team.
                     <a href="https://www.linkedin.com/feed/update/urn:li:activity:7414652083599069184/" target="_blank"
                         rel="noopener noreferrer"
                         style="color: var(--gold); text-decoration: underline; font-weight: bold;">
-                        Read the LinkedIn post on how clarity reduces attrition and errors.
+                        Read more on how clarity reduces attrition.
                     </a>
                 </p>
-
                 <div class="metrics">
                     <div class="metric-card"><span class="metric-value">50% &rarr; 1%</span>Attrition Drop</div>
                     <div class="metric-card"><span class="metric-value">86%</span>Error Reduction</div>
-                    <div class="metric-card"><span class="metric-value">80%</span>Outage Reduction</div>
                 </div>
-
                 <div class="testimonial">
                     <p class="testimonial-body">
-                        "Jeffrey was my 'right hand man'... because of his efforts there was an <strong>86% decrease in
-                            procedural
-                            errors</strong> and <strong>attrition went from 50% to 1%</strong> due to major improvement
-                        in team morale.
-                        All availability targets were met for the first time in the history of the organization."
+                        "Jeffrey was my 'right hand man'... because of his efforts, attrition went from 50% to 1%
+                        due to major improvement in team morale."
                     </p>
-                    <p class="testimonial-attribution">— Senior Manager & Acting Director of Distributed Operations</p>
+                    <p class="testimonial-attribution">— Ellen Behrle, Acting Director of Distributed Ops</p>
                 </div>
             </div>
-            <img src="img/cs_quality_management_system.png" alt="ISO 9000 Quality Management System Infographic"
-                class="infographic">
+            <img src="img/cs_quality_management_system.png" alt="QMS Infographic" class="infographic">
         </div>
     </section>
 
     <section class="dark-section">
         <div class="grid">
-            <img src="img/cs_from_friction_to_flow.png" alt="33x Peak Velocity Infographic" class="infographic"
+            <img src="img/cs_from_friction_to_flow.png" alt="Velocity Infographic" class="infographic"
                 style="transform: translateX(-50px);">
             <div class="content">
-                <h2>33x Peak Velocity (21x Sustained)</h2>
+                <h2>33x Peak Velocity</h2>
                 <p>
-                    Faced with a server migration stuck at 15 units per week,
-                    the constraint was readiness, not capability.
-                    By building an automated pipeline from 27 sources,
-                    we accelerated to a 500+ unit peak, sustaining a 2,126%
-                    increase through the final quarter.
+                    Faced with a server migration stuck at 15 units per week, the constraint was readiness.
+                    By building an automated pipeline from 27 sources, we accelerated to a 500+ unit peak.
                     <a href="https://www.linkedin.com/feed/update/urn:li:activity:7415376849603862528/" target="_blank"
                         rel="noopener noreferrer"
                         style="color: var(--gold); text-decoration: underline; font-weight: bold;">
-                        Read the Case Study on how Lean Six Sigma rescued a stalled security migration.
+                        Read the Case Study on rescuing a stalled migration.
                     </a>
                 </p>
                 <div class="metrics">
-                    <div class="metric-card"><span class="metric-value">15 &rarr; 500+</span>Peak Units/Week</div>
+                    <div class="metric-card"><span class="metric-value">15 &rarr; 500+</span>Units/Week</div>
                     <div class="metric-card"><span class="metric-value">2,126%</span>Sustained Velocity</div>
-                    <div class="metric-card"><span class="metric-value">27</span>Data Sources Integrated</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="text-align: center; background-color: var(--olive); color: white; padding: 100px 10%;">
-        <div style="max-width: 1000px; margin: 0 auto;">
-
-            <img src="img/cs_services.png" alt="Cornerstone Methodology Bridge" class="infographic"
-                style="width: 100%; max-width: 900px; margin-bottom: 50px; cursor: zoom-in; border: 1px solid rgba(255,255,255,0.2);">
-
-            <h2 style="font-size: 2.8rem; margin-bottom: 20px; font-weight: 300;">Let’s build something better,
-                together.
-            </h2>
-
-            <p style="font-size: 1.3rem; opacity: 0.9; max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">
-                I am currently seeking Senior Leadership opportunities in<br>
-                <strong>Operational Excellence</strong>, <strong>Data Strategy</strong>, or <strong>Chief of
-                    Staff</strong><br>
-                roles where I can bridge your vision with technical truth.
-            </p>
-
-            <div style="display: flex; gap: 20px; justify-content: center;">
-                <a href="https://www.linkedin.com/in/jeffreytbenson/" class="btn"
-                    style="background: var(--gold); color: white; border-color: var(--gold);">View LinkedIn Profile</a>
-                <a href="https://www.linkedin.com/messaging/thread/new/?recipient=jeffreytbenson" class="btn"
-                    style="border-color: var(--vellum); color: var(--vellum);">Email Jeff</a>
+    <section style="background-color: white;">
+        <div class="grid">
+            <div class="content">
+                <h2>The $40M Rationalization</h2>
+                <p>
+                    Server decommissioning was stalled in a 46-day cycle. By decomposing 400 activities and
+                    eliminating 33% of non-value-added work, we unlocked $40M in strategic savings and achieved a 400%
+                    ROI.
+                </p>
+                <div class="metrics">
+                    <div class="metric-card"><span class="metric-value">82%</span>Acquisition Speedup</div>
+                    <div class="metric-card"><span class="metric-value">$40M</span>Strategic Savings</div>
+                    <div class="metric-card"><span class="metric-value">400%</span>Program ROI</div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-body">
+                        "Jeff's perseverance and willingness to work hard made him one of the best Black Belts in my
+                        books.
+                        He was my go-to guy... his high Say/Do ratio set an example for others."
+                    </p>
+                    <p class="testimonial-attribution">— Jai Padmanabhan, Master Black Belt</p>
+                </div>
+            </div>
+            <div class="infographic-placeholder"
+                style="border: 2px dashed var(--gold); padding: 40px; text-align: center; color: var(--gold);">
+                [Visualizing the Server Lifecycle: From 400 Activities to 1 Streamlined Flow]
             </div>
         </div>
     </section>
 
-    <div class="testimonial-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 50px;">
+    <section>
+        <div class="grid">
+            <img src="img/cs_data_chaos_to_strategic_control.png" alt="Expense Governance Architecture"
+                class="infographic" style="transform: translateX(-50px);">
+            <div class="content">
+                <h2>Architecting Control: $3B+ Cash Flow Governance</h2>
+                <p>
+                    During a merger integration, manual reconciliation was drowning the team, requiring a projected
+                    $4.2M in additional headcount just to stay current. I architected an automated expense governance
+                    system that synchronized actuals with "Best View" forecasts, eliminating spreadsheet heroics.
+                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7415014531325775872/" target="_blank"
+                        rel="noopener noreferrer"
+                        style="color: var(--gold); text-decoration: underline; font-weight: bold;">
+                        Read the Case Study on automating FP&A reconciliation.
+                    </a>
+                </p>
+                <div class="metrics">
+                    <div class="metric-card"><span class="metric-value">$3B+</span>Capital Governed</div>
+                    <div class="metric-card"><span class="metric-value">$4.2M</span>Avoided Labor Cost</div>
+                    <div class="metric-card"><span class="metric-value">$500M</span>OPEX Synergy Enabled</div>
+                </div>
 
-        <div class="testimonial-card"
-            style="border-left: 3px solid var(--gold); padding: 15px; background: rgba(255,255,255,0.03);">
-            <p>"Jeff is 'the tide that lifts all ships.' He works every problem as if he has a personal stake in the
-                outcome."</p>
-            <cite style="color: var(--gold); display: block; margin-top: 10px;">— Jeff Parker, Strategy & Innovation
-                Leader</cite>
+                <div class="testimonial">
+                    <p class="testimonial-body">
+                        "Jeff translated a very complicated business process into technical language easily understood
+                        by the programmers... Because Jeff led the project and interfaced with end-users and developers,
+                        the whole project executed smoothly."
+                    </p>
+                    <p class="testimonial-attribution">— Phet Boudsyvongsakd, Systems Developer</p>
+                </div>
+
+                <div class="testimonial" style="margin-top: 15px;">
+                    <p class="testimonial-body">
+                        "Jeff quickly learned technology systems and financial planning concepts... bringing added value
+                        to Verizon's strategic initiatives. I heartily endorse him for any corporate position."
+                    </p>
+                    <p class="testimonial-attribution">— Lary Hershelman, Director of IT Strategy & Planning</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="testimonial-card"
-            style="border-left: 3px solid var(--gold); padding: 15px; background: rgba(255,255,255,0.03);">
-            <p>"His ability to turn complex, disparate data problems into elegant, actionable solutions has been an
-                absolute
-                pleasure."</p>
-            <cite style="color: var(--gold); display: block; margin-top: 10px;">— Kristine Reelfs, Resource
-                Manager</cite>
+    <section class="dark-section">
+        <div class="grid">
+            <div class="content">
+                <h2>Forensic Stewardship: Uncovering Phantom Costs</h2>
+                <p>
+                    The most expensive line item is often the one you aren't using. During a high-growth product launch,
+                    I moved past top-line spend to isolate "unused cost"—the gap between contractual minimums and actual
+                    volume.
+                    By aligning contracts with reality, we unlocked a path to millions in annual savings.
+                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7415739220809551872/" target="_blank"
+                        rel="noopener noreferrer"
+                        style="color: var(--gold); text-decoration: underline; font-weight: bold;">
+                        Read the Case Study on identifying operational waste.
+                    </a>
+                </p>
+                <div class="metrics">
+                    <div class="metric-card"><span class="metric-value">$1M–$2M</span>Immediate Savings</div>
+                    <div class="metric-card"><span class="metric-value">$6M</span>Scalable Opportunity</div>
+                    <div class="metric-card"><span class="metric-value">100%</span>Usage Visibility</div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-body-light">
+                        "Jeff is an architect of data-driven solutions that translate directly into business impact.
+                        His FWA Vendor Performance Report alone is projected to unlock significant operational savings
+                        by identifying and quantifying financial waste."
+                    </p>
+                    <p class="testimonial-attribution">— Morad Bosen, Senior Data Analytics Engineer</p>
+                </div>
+            </div>
+            <img src="img/cs_eliminating_hidden_waste.png" alt="Forensic Stewardship Infographic" class="infographic">
         </div>
+    </section>
 
-    </div>
+    <section style="text-align: center; background-color: var(--olive); color: white;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <img src="img/cs_services.png" alt="Methodology Bridge" class="infographic"
+                style="width: 100%; max-width: 900px; margin-bottom: 50px; opacity: 1; transform: none;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; font-weight: 300;">Let’s build something better,
+                together.
+            </h2>
+            <p style="font-size: 1.3rem; opacity: 0.9; margin-bottom: 40px;">
+                Seeking Senior Leadership opportunities in Operational Excellence or Data Strategy.
+            </p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://www.linkedin.com/in/jeffreytbenson/" class="btn"
+                    style="background: var(--gold); color: white;">LinkedIn Profile</a>
+                <a href="mailto:jeffreytbenson@gmail.com" class="btn"
+                    style="border-color: var(--vellum); color: var(--vellum);">Contact Jeff</a>
+            </div>
 
+            <div class="testimonial-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 60px;">
+                <div class="testimonial"
+                    style="background: rgba(255,255,255,0.05); border-left: 3px solid var(--gold);">
+                    <p class="testimonial-body-light" style="font-size: 0.95rem;">"Jeff is 'the tide that lifts all
+                        ships.'
+                        He works every problem as if he has a personal stake."</p>
+                    <cite class="testimonial-attribution">— Jeff Parker, Verizon Strategy</cite>
+                </div>
+                <div class="testimonial"
+                    style="background: rgba(255,255,255,0.05); border-left: 3px solid var(--gold);">
+                    <p class="testimonial-body-light" style="font-size: 0.95rem;">"His ability to turn complex data into
+                        elegant, actionable solutions is an absolute pleasure."</p>
+                    <cite class="testimonial-attribution">— Kristine Reelfs, Global Ops</cite>
+                </div>
+            </div>
+        </div>
+    </section>
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Animate Infographics on Scroll
+        // GSAP Animations
         gsap.utils.toArray(".infographic").forEach(img => {
             gsap.to(img, {
                 scrollTrigger: {
                     trigger: img,
-                    start: "top 80%",
+                    start: "top 85%",
                 },
                 opacity: 1,
                 x: 0,
-                duration: 1.5,
-                ease: "power3.out"
+                duration: 1.2,
+                ease: "power2.out"
             });
         });
-        // Function to enlarge images
-        document.querySelectorAll('.infographic').forEach(image => {
-            image.onclick = function () {
-                document.getElementById("imageModal").style.display = "block";
-                document.getElementById("imgFull").src = this.src;
-            }
-        });
 
-        // Function to close the modal
-        function closeModal() {
-            document.getElementById("imageModal").style.display = "none";
+        // Lightbox Logic
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("imgFull");
+
+        function openModal(src) {
+            modal.style.display = "block";
+            modalImg.src = src;
         }
 
-        // Also close if they hit the 'Escape' key
-        document.addEventListener('keydown', function (e) {
-            if (e.key === "Escape") {
-                closeModal();
-            }
-        });
-        // Function to handle the click/tap
-        const openModal = function (e) {
-            e.preventDefault(); // Prevents long-press menus in some cases
-            document.getElementById("imageModal").style.display = "block";
-            document.getElementById("imgFull").src = this.src;
-        };
+        function closeModal() {
+            modal.style.display = "none";
+        }
 
-        // Apply to all infographics for both Click and Touch
         document.querySelectorAll('.infographic').forEach(image => {
-            image.addEventListener('click', openModal);
-            image.addEventListener('touchend', openModal);
+            image.addEventListener('click', () => openModal(image.src));
         });
+
+        window.onclick = (event) => { if (event.target == modal) closeModal(); }
+        document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
     </script>
 </body>
 
