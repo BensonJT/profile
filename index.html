@@ -180,6 +180,31 @@
             /* Subtle lift on hover */
         }
 
+        .testimonial {
+            margin-top: 40px;
+            padding: 25px;
+            border-left: 4px solid var(--gold);
+            background: rgba(191, 163, 111, 0.05);
+            /* subtle gold tint */
+            font-style: italic;
+        }
+
+        .testimonial-body {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: var(--vellum);
+            margin-bottom: 15px;
+        }
+
+        .testimonial-attribution {
+            font-style: normal;
+            font-weight: bold;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 900px) {
             .grid {
                 grid-template-columns: 1fr;
@@ -248,9 +273,16 @@
         <div class="grid">
             <div class="content">
                 <h2>Fixing the Hidden Geometry</h2>
-                <p>Operational strain is often a data problem in disguise. In a Global Network Operations role, I
+                <p>
+                    Operational strain is often a data problem in disguise. In a Global Network Operations role, I
                     discovered "Zip Code Anarchy"—overlapping work areas that were feeding hallucinations to our
-                    automated dispatch tools.</p>
+                    automated dispatch tools.
+                    <a href="https://www.linkedin.com/pulse/case-study-you-cant-automate-mess-cornerstone-solutions-io-iotae/"
+                        target="_blank" rel="noopener noreferrer"
+                        style="color: var(--gold); text-decoration: underline; font-weight: bold;">
+                        Read the full Case Study on resolving data friction.
+                    </a>
+                </p>
                 <div class="metrics">
                     <div class="metric-card"><span class="metric-value">$22M</span>Capacity Unlocked</div>
                     <div class="metric-card"><span class="metric-value">10%</span>Lift in Auto-<br>Dispatching Success
@@ -268,9 +300,17 @@
                 style="transform: translateX(-50px);">
             <div class="content">
                 <h2>The Mathematics of Morale</h2>
-                <p>Averages hide friction. Building on the redesigned work areas, I replaced blunt headcount models
-                    with a Python-based Force-to-Load (F2L) architecture that calculates supply, demand,
-                    and pricing in minutes, not estimates.</p>
+                <p>
+                    Averages hide friction. By moving beyond static models, I architected a
+                    Python-driven <strong>Force-to-Load</strong> system that balances operational
+                    requirements with human capacity. We traded "best guesses" for a high-fidelity
+                    analytics engine that calculates real-time supply and demand.
+                    <a href="https://www.linkedin.com/pulse/mathematics-morale-calibrating-load-lift-cornerstone-solutions-io-s7mve"
+                        target="_blank" rel="noopener noreferrer"
+                        style="color: var(--gold); text-decoration: underline; font-weight: bold;">
+                        Read the Case Study on workforce analytics and morale.
+                    </a>
+                </p>
                 <div class="metrics">
                     <div class="metric-card"><span class="metric-value">25%</span>Model Speedup</div>
                     <div class="metric-card"><span class="metric-value">1K</span>Workforce Modeled</div>
@@ -284,13 +324,32 @@
         <div class="grid">
             <div class="content">
                 <h2>Dignity Through Documentation</h2>
-                <p>High turnover isn't a culture problem; it's a clarity problem. By institutionalizing an ISO 9000
+                <p>
+                    High turnover isn't a culture problem; it's a clarity problem. By institutionalizing an ISO 9000
                     Quality Management System, including 143 standardized SOPs and a custom knowledge base, we removed
-                    the weight of ambiguity from the team.</p>
+                    the weight of ambiguity from the team.
+                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7414652083599069184/" target="_blank"
+                        rel="noopener noreferrer"
+                        style="color: var(--gold); text-decoration: underline; font-weight: bold;">
+                        Read the LinkedIn post on how clarity reduces attrition and errors.
+                    </a>
+                </p>
+
                 <div class="metrics">
                     <div class="metric-card"><span class="metric-value">50% &rarr; 1%</span>Attrition Drop</div>
                     <div class="metric-card"><span class="metric-value">86%</span>Error Reduction</div>
                     <div class="metric-card"><span class="metric-value">80%</span>Outage Reduction</div>
+                </div>
+
+                <div class="testimonial">
+                    <p class="testimonial-body">
+                        "Jeffrey was my 'right hand man'... because of his efforts there was an <strong>86% decrease in
+                            procedural
+                            errors</strong> and <strong>attrition went from 50% to 1%</strong> due to major improvement
+                        in team morale.
+                        All availability targets were met for the first time in the history of the organization."
+                    </p>
+                    <p class="testimonial-attribution">— Senior Manager & Acting Director of Distributed Operations</p>
                 </div>
             </div>
             <img src="img/cs_quality_management_system.png" alt="ISO 9000 Quality Management System Infographic"
