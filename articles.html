@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing — Jeffrey Benson</title>
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 52px;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Header ── */
+    .page-header {
+      background: var(--olive);
+      padding: 80px 48px 72px;
+      text-align: center;
+    }
+
+    .page-header .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+      margin-bottom: 18px;
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .page-header .deck {
+      font-size: 1.1rem;
+      color: rgba(240,234,214,0.72);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── Articles Grid ── */
+    .articles-grid {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* ── Article Card ── */
+    .article-card {
+      background: #fff;
+      border-left: 4px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      padding: 36px 40px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      transition: box-shadow 0.25s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .article-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.11);
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .card-date {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .card-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(44,46,47,0.38);
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: rgba(44,46,47,0.62);
+      line-height: 1.65;
+    }
+
+    .card-action {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      padding-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .btn-read {
+      display: inline-block;
+      padding: 10px 22px;
+      background: var(--olive);
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 3px;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-read:hover { background: var(--gold); color: #fff; }
+
+    .btn-linkedin {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid rgba(191,163,111,0.4);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 3px;
+      transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-linkedin:hover { border-color: var(--gold); color: var(--charcoal); }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .page-header { padding: 60px 24px 52px; }
+      .page-header h1 { font-size: 2.1rem; }
+      .articles-grid { padding: 48px 16px 64px; }
+      .article-card {
+        grid-template-columns: 1fr;
+        padding: 28px 24px;
+      }
+      .card-action { flex-direction: row; align-items: center; flex-wrap: wrap; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Writing</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <header class="page-header">
+    <p class="eyebrow">Thought Leadership</p>
+    <h1>Writing</h1>
+    <p class="deck">Operational complexity distilled into frameworks that hold up under pressure.</p>
+  </header>
+
+  <main class="articles-grid">
+
+    <div class="article-card">
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-date">May 2026</span>
+          <span class="card-tag">Leadership &middot; Practice</span>
+        </div>
+        <h2 class="card-title">Servant Leadership Is Not a Philosophy. It's a Practice.</h2>
+        <p class="card-desc">Six operating principles earned across three decades of high-pressure transformation — not from a leadership book, but from the friction, the people, and the results that held under pressure.</p>
+      </div>
+      <div class="card-action">
+        <a href="article-servant-leadership.html" class="btn-read">Read Article</a>
+        <a href="https://www.linkedin.com/pulse/servant-leadership-philosophy-its-practice-jeffrey-benson-h3hue/" target="_blank" rel="noopener noreferrer" class="btn-linkedin">View on LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="article-card">
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-date">2024</span>
+          <span class="card-tag">Operations &middot; Automation</span>
+        </div>
+        <h2 class="card-title">You Can't Automate a Mess.</h2>
+        <p class="card-desc">A case study in why process clarity must come before automation — and what happens when organizations skip the diagnosis and buy the tool instead.</p>
+      </div>
+      <div class="card-action">
+        <a href="https://www.linkedin.com/pulse/case-study-you-cant-automate-mess-cornerstone-solutions-io-iotae/" target="_blank" rel="noopener noreferrer" class="btn-read">Read on LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="article-card">
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-date">2024</span>
+          <span class="card-tag">People &middot; Operations</span>
+        </div>
+        <h2 class="card-title">The Mathematics of Morale.</h2>
+        <p class="card-desc">Calibrating load and lift — how operational leaders can measure the invisible cost of team burnout and build the case for sustainable capacity design.</p>
+      </div>
+      <div class="card-action">
+        <a href="https://www.linkedin.com/pulse/mathematics-morale-calibrating-load-lift-cornerstone-solutions-io-s7mve" target="_blank" rel="noopener noreferrer" class="btn-read">Read on LinkedIn</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">&larr; Back to Profile</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+</body>
+</html>
