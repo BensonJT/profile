@@ -1,0 +1,15 @@
+# Windows metadata
+*Zone.Identifier
+Thumbs.db
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor
+.vscode/
+*.swp
