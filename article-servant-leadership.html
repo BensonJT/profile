@@ -35,7 +35,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 52px;
+      flex-wrap: wrap;
     }
 
     .site-nav a {
@@ -55,6 +55,17 @@
 
     .site-nav a:hover { color: var(--vellum); }
     .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
 
     html { scroll-padding-top: 52px; }
     body { padding-top: 52px; }
@@ -666,6 +677,19 @@
       <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </p>
   </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
 
 </body>
 </html>
