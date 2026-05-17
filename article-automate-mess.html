@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You Can't Automate a Mess — Jeffrey Benson</title>
+  <meta name="description" content="How correcting the hidden geometry of a service map restored field trust and unlocked $22M in capacity — a Cornerstone Solutions case study.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      overflow: hidden;
+    }
+
+    .header-image-wrap {
+      position: relative;
+    }
+
+    .header-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.82;
+    }
+
+    .header-image-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, var(--olive));
+      pointer-events: none;
+    }
+
+    .header-text {
+      padding: 48px 48px 64px;
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── LinkedIn bar ── */
+    .linkedin-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(240,234,214,0.55);
+      letter-spacing: 0.04em;
+    }
+
+    .linkedin-bar a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+
+    .linkedin-bar a:hover { opacity: 0.8; }
+
+    /* ── Article body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    .article-subtitle {
+      font-size: 1.02rem;
+      color: rgba(44,46,47,0.6);
+      line-height: 1.7;
+      margin-bottom: 12px !important;
+    }
+
+    .article-context {
+      font-size: 0.93rem;
+      color: rgba(44,46,47,0.52);
+      font-style: italic;
+      line-height: 1.65;
+      margin-bottom: 40px !important;
+    }
+
+    /* ── Section headers ── */
+    .section-block {
+      margin-bottom: 56px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    /* ── Bullet lists ── */
+    .data-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 24px;
+    }
+
+    .data-list li {
+      font-size: 1rem;
+      color: rgba(44,46,47,0.86);
+      padding: 8px 0 8px 20px;
+      position: relative;
+      line-height: 1.6;
+      border-left: 3px solid rgba(180,60,30,0.3);
+      margin-bottom: 10px;
+    }
+
+    .data-list li strong {
+      color: var(--charcoal);
+    }
+
+    /* ── Numbered fix steps ── */
+    .fix-step {
+      margin-bottom: 28px;
+      padding-left: 20px;
+      border-left: 3px solid var(--gold);
+    }
+
+    .fix-step-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .fix-step-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+
+    .fix-step p {
+      margin-bottom: 0.6em !important;
+    }
+
+    .fix-step ul {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+    }
+
+    .fix-step ul li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.82);
+      padding: 4px 0 4px 18px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .fix-step ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── Outcome list (checkmarks) ── */
+    .outcome-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 24px;
+    }
+
+    .outcome-list li {
+      font-size: 1rem;
+      color: rgba(44,46,47,0.88);
+      padding: 10px 0 10px 28px;
+      position: relative;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(191,163,111,0.15);
+    }
+
+    .outcome-list li:last-child { border-bottom: none; }
+
+    .outcome-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .outcome-list li strong {
+      color: var(--charcoal);
+    }
+
+    /* ── Article images ── */
+    .article-image {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      margin: 40px 0 12px;
+      display: block;
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* ── Cornerstone takeaway block ── */
+    .takeaway-block {
+      background: var(--charcoal);
+      border-radius: 6px;
+      padding: 36px 40px;
+      margin: 48px 0 40px;
+    }
+
+    .takeaway-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .takeaway-headline {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--vellum);
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+
+    .takeaway-block p {
+      font-size: 0.97rem;
+      color: rgba(240,234,214,0.75);
+      line-height: 1.75;
+      margin-bottom: 1em !important;
+    }
+
+    .takeaway-block p:last-child { margin-bottom: 0 !important; }
+
+    /* ── Engagement details ── */
+    .engage-section {
+      margin: 40px 0;
+    }
+
+    .engage-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--olive);
+      margin-bottom: 8px;
+    }
+
+    .engage-section p {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.78);
+      line-height: 1.7;
+      margin-bottom: 0 !important;
+    }
+
+    /* ── Use case list ── */
+    .use-case-list {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+
+    .use-case-list li {
+      font-size: 0.95rem;
+      color: rgba(44,46,47,0.78);
+      padding: 5px 0 5px 18px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .use-case-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── Companion article callout ── */
+    .companion-callout {
+      background: rgba(59,75,53,0.07);
+      border-left: 3px solid var(--olive);
+      border-radius: 0 6px 6px 0;
+      padding: 20px 24px;
+      margin: 40px 0;
+    }
+
+    .companion-callout p {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.8);
+      line-height: 1.7;
+      margin-bottom: 0 !important;
+    }
+
+    .companion-callout a {
+      color: var(--olive);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .companion-callout a:hover { text-decoration: underline; }
+
+    /* ── Closing CTA ── */
+    .closing-cta {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin: 40px 0 32px;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold);
+      line-height: 1.5;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .header-text { padding: 36px 24px 48px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .takeaway-block { padding: 28px 24px; }
+      .takeaway-headline { font-size: 1.15rem; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Writing</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-image-wrap">
+      <img src="img/automate_mess_header.webp"
+           alt="You Can't Automate a Mess — fixing the hidden geometry of field operations">
+    </div>
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Operations &middot; Automation</p>
+      <h1 class="article-title">You Can't Automate a Mess.</h1>
+      <p class="article-byline"><strong>Cornerstone Solutions</strong> &nbsp;&middot;&nbsp; 2024</p>
+    </div>
+  </header>
+
+  <div class="linkedin-bar">
+    Originally published on LinkedIn &mdash;
+    <a href="https://www.linkedin.com/pulse/case-study-you-cant-automate-mess-cornerstone-solutions-io-iotae/" target="_blank" rel="noopener noreferrer">View or comment there &rarr;</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+
+    <p class="article-subtitle"><em>How correcting the "Hidden Geometry" of our service map restored field trust and unlocked $22M in capacity.</em></p>
+
+    <p class="article-context">This case study comes from large-scale field operations, but the same pattern shows up anywhere automation is being asked to compensate for dirty data, weak governance, or broken process design.</p>
+
+    <hr>
+
+    <!-- ── The Smarter Algorithm Trap ── -->
+    <div class="section-block">
+      <h2 class="section-title">The "Smarter Algorithm" Trap</h2>
+
+      <p>In the race to optimize Field Operations, companies often fall into a specific trap: when the automation fails, they try to make the algorithm "smarter." They add more logic layers, more complex rules, and more code.</p>
+
+      <p>In a previous executive role, our Principal <a href="https://www.linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer" style="color: var(--olive); font-weight: 700;">Jeffrey Benson</a> witnessed this dynamic firsthand.</p>
+
+      <p>A Global Network Operations unit was struggling with their automated dispatch tool ("The Autoloader"). For months, the business and IT teams had been trying to improve the tool's performance by adding complex rule sets. Yet, the needle barely moved. In fact, as the rules got more complicated, the Autoloader's success rate often declined.</p>
+
+      <p>The Field didn't trust the tool, IT was frustrated, and Leadership expected results.</p>
+
+      <p>Cornerstone's philosophy is that operational strain is usually a data or process problem in disguise. Jeffrey Benson examined the foundation.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Act I ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Act I</p>
+      <h2 class="section-title">The Governance Vacuum</h2>
+
+      <p>The root cause wasn't the algorithm. It was <strong>"Zip Code Anarchy."</strong></p>
+
+      <p>Because no single team held governance over the map, the definition of a "Work Area" had suffered from years of unchecked drift. Any manager could create a work area or assign a zip code.</p>
+
+      <ul class="data-list">
+        <li><strong>The "Six-Assignment" Error:</strong> Single Zip Codes assigned to six different legacy Work Areas.</li>
+        <li><strong>The "Ghost" Geography:</strong> Because of accidental data entry, some zip codes were assigned to work areas in entirely different states.</li>
+      </ul>
+
+      <p>The Autoloader wasn't broken; it was being fed hallucinations. It was authorized to send a technician hours away because the bad data said the job was "in their territory." IT initially pushed back on the proposal to clean this up, believing the algorithm could handle the noise. As Operators, we knew better.</p>
+    </div>
+
+    <!-- ── The Fix ── -->
+    <div class="section-block">
+      <h2 class="section-title">The Fix: Geometry &amp; Diplomacy</h2>
+
+      <p>We realized we could not build a sophisticated Capacity Model (Force-to-Load) until we fixed the map. This required two things: <strong>Forensic Redesign</strong> and <strong>Field Partnership</strong>.</p>
+
+      <div class="fix-step">
+        <p class="fix-step-label">Step 1</p>
+        <p class="fix-step-title">The "Strawman" Design</p>
+        <p>Our team took the lead. We partnered with the Capacity Management team and led the draft designs for entire states using best practices — accounting for contiguous zip codes, river crossings, bridges, and traffic patterns. We ensured every zip code lived in <em>exactly</em> one home.</p>
+      </div>
+
+      <div class="fix-step">
+        <p class="fix-step-label">Step 2</p>
+        <p class="fix-step-title">The Field Sessions</p>
+        <p>We didn't dictate the map; we co-authored it. We held working sessions with Supervisors and Technicians, walking them through our drafts.</p>
+        <ul>
+          <li><strong>The "Why":</strong> We explained that contiguous areas meant less drive time and fewer "illogical" Autoloader assignments.</li>
+          <li><strong>The "How":</strong> We tweaked the boundaries based on their local knowledge — <em>"That mountain pass is closed in winter; don't group those zips."</em></li>
+        </ul>
+        <p style="margin-top: 12px;">This wasn't just data entry; it was <strong>Change Management</strong>. By the time the map was finalized, the Field had already stamped it with their approval.</p>
+      </div>
+
+      <div class="fix-step">
+        <p class="fix-step-label">Step 3</p>
+        <p class="fix-step-title">The Governance Lock</p>
+        <p>Once the cleanup was complete, we established a new protocol: only the Capacity Management team had the authority to alter Work Areas. The era of "Zip Code Anarchy" was over.</p>
+      </div>
+    </div>
+
+    <!-- ── Micro-Win ── -->
+    <div class="section-block">
+      <h2 class="section-title">The Micro-Win: A 10% Lift</h2>
+
+      <p>The impact of "cleaning the hygiene" was immediate. By simply feeding the Autoloader a rationalized map — no overlaps, logical boundaries — we achieved a <strong>10% Year-Over-Year lift</strong> in Autoloader success.</p>
+
+      <p>After months of failed attempts to code a solution, we proved that better data is necessary for smarter algorithms.</p>
+
+      <img src="img/cs_geospatial_work_area_redesign.webp"
+           alt="Why Your Automation is Technically Right But Operationally Broken — the intervention: aligning physical geography with data"
+           class="article-image">
+      <p class="image-caption">The "Technically Right" Trap: why perfect code fails when the underlying data is flawed.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Act II ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Act II</p>
+      <h2 class="section-title">The Force-to-Load Model (The Big Win)</h2>
+
+      <p>With a clean, rationalized foundation — 521 optimized Work Areas — we earned the right to build the "Ferrari."</p>
+
+      <p>This is where the Cornerstone "Operators who Code" methodology took over. We transitioned from the cleanup phase to the construction of a custom <strong>Force-to-Load (F2L) Capacity Model</strong>.</p>
+
+      <ul class="data-list" style="border-left: none;">
+        <li style="border-left: 3px solid var(--olive);"><strong>The Architecture:</strong> We replaced static spreadsheet models with Python-based scripts that treated the new work areas as geospatial entities.</li>
+        <li style="border-left: 3px solid var(--olive);"><strong>The Speed:</strong> Using Gemini AI to optimize our code, we reduced model runtime by 25%, allowing for rapid "What-If" scenario planning.</li>
+      </ul>
+
+      <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--charcoal); margin: 32px 0 16px;">The Outcome: From "Cleanup" to "Capital"</h3>
+
+      <p>The project began as a way to fix a broken dispatch tool, but because we built a clean data foundation, it ended as a strategic financial victory.</p>
+
+      <ul class="outcome-list">
+        <li><strong>$18M–$22M in Capacity Unlocked:</strong> By overlaying supply and demand data onto our new, clean Work Areas, we identified that "shortages" were often just skill mismatches. We deployed targeted cross-training that unlocked millions in productivity.</li>
+        <li><strong>Secured 50 New FTEs:</strong> We gave leadership the irrefutable data they needed to justify headcount where the demand actually existed.</li>
+        <li><strong>$3M–$4M Reduction in Overtime:</strong> By balancing the load across mathematically balanced areas, and giving them demand by shift for scheduling adjustments, we reduced the burnout spend.</li>
+        <li><strong>$1.5M Operational Savings:</strong> We built this capability in-house, retaining the IP.</li>
+      </ul>
+    </div>
+
+    <img src="img/cs_gno_f2l.webp"
+         alt="The Force-to-Load Model — from dirty legacy data to 521 optimized work areas, Python-based geospatial model, and $18M–$22M capacity unlocked"
+         class="article-image">
+    <p class="image-caption">The ROI of clean geometry: how fixing the map unlocked $22M in capacity.</p>
+
+    <hr>
+
+    <!-- ── Cornerstone Takeaway ── -->
+    <div class="takeaway-block">
+      <p class="takeaway-eyebrow">The Cornerstone Takeaway</p>
+      <p class="takeaway-headline">You cannot build a skyscraper on a swamp.</p>
+      <p>Many organizations try to implement advanced AI or capacity models on top of dirty legacy data. The result is rarely efficiency — it's usually accelerated chaos. At Cornerstone Solutions, we believe you must be an <strong style="color: var(--vellum);">Operator</strong> (who understands the pain of the field) before you can be an <strong style="color: var(--vellum);">Architect</strong> (who builds the model to fix it).</p>
+      <p>Want to go deeper on Force-to-Load? Read the companion piece on the core components of a Force-to-Load architecture.</p>
+    </div>
+
+    <!-- ── How we engage ── -->
+    <div class="engage-section">
+      <p class="engage-title">How we engage</p>
+      <p>Typical starting point: 2–4 weeks diagnostic/onboarding &rarr; 6–12+ weeks foundation cleanup (scope-dependent) &rarr; 8–12 weeks model build and operationalization.</p>
+    </div>
+
+    <div class="engage-section">
+      <p class="engage-title">Service pillars</p>
+      <p>This work is delivered through our five service pillars: <strong>Management Consulting</strong>, <strong>Change Management</strong>, <strong>Business Analytics</strong>, <strong>Data Reporting</strong>, and <strong>Custom Software Development</strong>.</p>
+    </div>
+
+    <div class="engage-section">
+      <p class="engage-title">Where this rigor applies</p>
+      <p>Cornerstone is built for scale moments — when strategy is clear, but execution is constrained by operational friction, misaligned process, or untrusted data.</p>
+      <ul class="use-case-list" style="margin-top: 12px;">
+        <li>Field operations: dispatch/routing, scheduling, overtime, touchless automation.</li>
+        <li>Capacity decisions: demand vs. supply, headcount justification, cross-training strategy.</li>
+        <li>Automation that's amplifying chaos: AI/RPA built on dirty data or weak governance.</li>
+        <li>"Single source of truth" gaps: spreadsheet cycles, conflicting metrics, low dashboard trust.</li>
+        <li>OpEx transformations that must stick: standard work, SOPs, control plans, KPI cadence.</li>
+      </ul>
+    </div>
+
+    <div class="companion-callout">
+      <p>Behind every metric in this case study is a person carrying weight they shouldn't have to carry. If this story felt familiar, the companion article, <a href="https://www.linkedin.com/pulse/mathematics-morale-calibrating-load-lift-cornerstone-solutions-io-s7mve/" target="_blank" rel="noopener noreferrer">"The Mathematics of Morale: Calibrating Load to Lift"</a>, walks through how we used the same model to protect morale, dignity, and trust in the work.</p>
+    </div>
+
+    <p class="closing-cta">Let's build something better, together.</p>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="articles.html">&larr; All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="index.html">Profile</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>
