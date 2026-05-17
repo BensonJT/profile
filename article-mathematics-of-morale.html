@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Mathematics of Morale — Jeffrey Benson</title>
+  <meta name="description" content="Moving beyond averages to find the hidden capacity in your roster — how Force-to-Load replaces guesswork with a shared language for Finance and Operations.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      overflow: hidden;
+    }
+
+    .header-image-wrap {
+      position: relative;
+    }
+
+    .header-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.82;
+    }
+
+    .header-image-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, var(--olive));
+      pointer-events: none;
+    }
+
+    .header-text {
+      padding: 48px 48px 64px;
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── LinkedIn bar ── */
+    .linkedin-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(240,234,214,0.55);
+      letter-spacing: 0.04em;
+    }
+
+    .linkedin-bar a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+
+    .linkedin-bar a:hover { opacity: 0.8; }
+
+    /* ── Article body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    .article-subtitle {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: rgba(44,46,47,0.75);
+      line-height: 1.6;
+      margin-bottom: 10px !important;
+    }
+
+    .article-context {
+      font-size: 0.93rem;
+      color: rgba(44,46,47,0.52);
+      font-style: italic;
+      line-height: 1.65;
+      margin-bottom: 40px !important;
+    }
+
+    /* ── Friction section ── */
+    .friction-header {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(160,50,30,0.75);
+      margin-bottom: 14px;
+    }
+
+    /* ── Article image ── */
+    .article-image {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      margin: 40px 0 12px;
+      display: block;
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* ── Model pillars (I, II, III) ── */
+    .pillar-block {
+      margin-bottom: 48px;
+    }
+
+    .pillar-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .pillar-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    /* ── Supply list (🔹 items) ── */
+    .supply-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 20px;
+    }
+
+    .supply-list li {
+      font-size: 1rem;
+      color: rgba(44,46,47,0.86);
+      padding: 8px 0 8px 20px;
+      position: relative;
+      line-height: 1.6;
+      border-left: 3px solid var(--olive);
+      margin-bottom: 8px;
+    }
+
+    .supply-list li strong {
+      color: var(--charcoal);
+    }
+
+    /* ── Demand list ── */
+    .demand-list {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 16px;
+    }
+
+    .demand-list li {
+      font-size: 1rem;
+      color: rgba(44,46,47,0.86);
+      padding: 6px 0 6px 20px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .demand-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .demand-list li strong { color: var(--charcoal); }
+
+    /* ── Field note callout ── */
+    .field-note {
+      background: rgba(191,163,111,0.08);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      padding: 14px 18px;
+      margin: 16px 0 20px;
+      font-style: italic;
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.72);
+      line-height: 1.65;
+    }
+
+    /* ── PERT formula block ── */
+    .pert-block {
+      background: var(--charcoal);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin: 24px 0;
+      text-align: center;
+    }
+
+    .pert-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .pert-formula {
+      font-size: 1.25rem;
+      font-family: 'Courier New', Courier, monospace;
+      color: var(--vellum);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 0;
+    }
+
+    /* ── Percentile breakdown ── */
+    .percentile-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 16px;
+    }
+
+    .percentile-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.85);
+      padding: 6px 0 6px 20px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .percentile-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.9rem;
+    }
+
+    .percentile-list li strong { color: var(--charcoal); }
+
+    /* ── Outcome items ── */
+    .outcome-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 8px;
+    }
+
+    .outcome-list li {
+      font-size: 1rem;
+      color: rgba(44,46,47,0.88);
+      padding: 10px 0 10px 28px;
+      position: relative;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(191,163,111,0.15);
+    }
+
+    .outcome-list li:last-child { border-bottom: none; }
+
+    .outcome-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .outcome-list li strong { color: var(--charcoal); }
+
+    .outcome-anchor {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 20px 0 24px;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold);
+      line-height: 1.5;
+    }
+
+    /* ── Section title (for IV and From Insight) ── */
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 48px 0 16px;
+      line-height: 1.25;
+    }
+
+    .section-title-sm {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 40px 0 14px;
+      line-height: 1.3;
+    }
+
+    /* ── Takeaway block ── */
+    .takeaway-block {
+      background: var(--charcoal);
+      border-radius: 6px;
+      padding: 36px 40px;
+      margin: 48px 0 40px;
+    }
+
+    .takeaway-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .takeaway-headline {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--vellum);
+      line-height: 1.35;
+      margin-bottom: 20px;
+    }
+
+    .takeaway-block p {
+      font-size: 0.97rem;
+      color: rgba(240,234,214,0.75);
+      line-height: 1.75;
+      margin-bottom: 1em !important;
+    }
+
+    .takeaway-block p:last-child { margin-bottom: 0 !important; }
+
+    /* ── Engage sections ── */
+    .engage-section { margin: 36px 0; }
+
+    .engage-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--olive);
+      margin-bottom: 8px;
+    }
+
+    .engage-section p {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.78);
+      line-height: 1.7;
+      margin-bottom: 0 !important;
+    }
+
+    /* ── Use case list ── */
+    .use-case-list {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+
+    .use-case-list li {
+      font-size: 0.95rem;
+      color: rgba(44,46,47,0.78);
+      padding: 5px 0 5px 18px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .use-case-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── Companion callout ── */
+    .companion-callout {
+      background: rgba(59,75,53,0.07);
+      border-left: 3px solid var(--olive);
+      border-radius: 0 6px 6px 0;
+      padding: 20px 24px;
+      margin: 40px 0;
+    }
+
+    .companion-callout p {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.8);
+      line-height: 1.7;
+      margin-bottom: 0 !important;
+    }
+
+    .companion-callout a {
+      color: var(--olive);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .companion-callout a:hover { text-decoration: underline; }
+
+    /* ── Closing CTA ── */
+    .closing-cta {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin: 40px 0 32px;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold);
+      line-height: 1.5;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .header-text { padding: 36px 24px 48px; }
+      .article-body { padding: 48px 20px 72px; }
+      .pillar-title { font-size: 1.15rem; }
+      .pert-formula { font-size: 1rem; }
+      .takeaway-block { padding: 28px 20px; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Writing</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-image-wrap">
+      <img src="img/mathematics_of_morale_header.webp"
+           alt="The Mathematics of Morale — calibrating load to lift">
+    </div>
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">People &middot; Operations</p>
+      <h1 class="article-title">The Mathematics of Morale: Calibrating Load to Lift</h1>
+      <p class="article-byline"><strong>Cornerstone Solutions</strong> &nbsp;&middot;&nbsp; 2024</p>
+    </div>
+  </header>
+
+  <div class="linkedin-bar">
+    Originally published on LinkedIn &mdash;
+    <a href="https://www.linkedin.com/pulse/mathematics-morale-calibrating-load-lift-cornerstone-solutions-io-s7mve/" target="_blank" rel="noopener noreferrer">View or comment there &rarr;</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+
+    <p class="article-subtitle">Moving beyond averages to find the hidden capacity in your roster.</p>
+
+    <p class="article-context">This builds on the "You Can't Automate a Mess" case study: once the map is trustworthy, Force-to-Load turns it into an execution-ready capacity model.</p>
+
+    <p>One of the loneliest positions for a leader is standing in the gap between a Finance team asking, "Why is this costing so much?" and an Operations team voicing urgent distress: "We are drowning."</p>
+
+    <hr>
+
+    <!-- ── The Friction ── -->
+    <p class="friction-header">The Friction</p>
+
+    <p>Often, the organization lacks a shared language to reconcile these two realities. A company might rely on legacy spreadsheets that average out "headcount" against "ticket volume." But averages obscure the struggle.</p>
+
+    <p>A spreadsheet doesn't know that your technicians in one region are facing a two-hour commute between sites, or that a team is bogged down by "dirty data" from tickets left open over a weekend.</p>
+
+    <p>To move from operational strain to sustainable performance, we must move from broad assumptions to surgical precision. We need to build a <strong>Workforce Capacity Model</strong> — the <strong>Force-to-Load (F2L)</strong>.</p>
+
+    <img src="img/cs_F2L_models.webp"
+         alt="The Mathematics of Morale: Calibrating Load to Lift — the Force-to-Load model bridging Finance and Operations"
+         class="article-image">
+    <p class="image-caption">The F2L Model: Supply, Demand, and Pricing in minutes — a shared language for Finance and Operations.</p>
+
+    <p>When <a href="https://www.linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer" style="color: var(--olive); font-weight: 700;">Jeffrey Benson</a> partners with leaders to architect these systems, we focus on synthesizing three critical components: <strong>The Supply</strong>, <strong>The Demand</strong>, and <strong>The Pricing</strong>.</p>
+
+    <hr>
+
+    <!-- ── I. Supply ── -->
+    <div class="pillar-block">
+      <p class="pillar-label">Pillar I</p>
+      <h2 class="pillar-title">Supply — The Human Reality</h2>
+
+      <p>Supply is often oversimplified as "FTEs." But a generic FTE cannot solve a specific problem. To measure Supply accurately, we honor the reality of the roster by replacing static lists with a <strong>Dynamic Capability Map</strong>:</p>
+
+      <ul class="supply-list">
+        <li><strong>The People:</strong> The actual inventory of human resources.</li>
+        <li><strong>The Skills:</strong> What are they certified to handle? (Distinct from job title.)</li>
+        <li><strong>The Geography:</strong> Where are they dispatched vs. where do they live?</li>
+        <li><strong>The Schedule:</strong> The reality of shifts and availability.</li>
+      </ul>
+
+      <p>By mapping this backward (<em>what did we have?</em>) and forward (<em>what will we have?</em>), we transform "Supply" from a static number into a live view of capability.</p>
+    </div>
+
+    <!-- ── II. Demand ── -->
+    <div class="pillar-block">
+      <p class="pillar-label">Pillar II</p>
+      <h2 class="pillar-title">Demand — The Signal</h2>
+
+      <p>Demand is the work to be done. To model this, we strip the demand signal down to its physics:</p>
+
+      <ul class="demand-list">
+        <li><strong>Skills Required:</strong> Connecting the request to the specific capability needed.</li>
+        <li><strong>Disposition:</strong> Is the work Open, Closed, or Pending?</li>
+        <li><strong>The Time Tax:</strong> Setup times, commute times, and execution time.</li>
+      </ul>
+
+      <div class="field-note">
+        If we ignore the travel or the setup, we aren't modeling the job — we are modeling a fantasy.
+      </div>
+    </div>
+
+    <!-- ── III. Pricing ── -->
+    <div class="pillar-block">
+      <p class="pillar-label">Pillar III</p>
+      <h2 class="pillar-title">Pricing — The Time-Cost</h2>
+
+      <p>This is where the model moves from "reporting" to "intelligence." In this context, Pricing does not mean dollars; it means <strong>Minutes</strong>.</p>
+
+      <p>Standard models often fail here because they rely on simple means (averages), which get skewed by outliers — like a ticket accidentally left open for 400 hours, or one closed with 0 minutes.</p>
+
+      <p>To find the "True Price" of a task and protect the team from skew, we utilize a <strong>Modified PERT Formula</strong> (Program Evaluation Review Technique):</p>
+
+      <div class="pert-block">
+        <p class="pert-label">Modified PERT Formula</p>
+        <p class="pert-formula">Price (min) = (P₂₀ + P₈₀ + 4 &times; P₅₀) &divide; 6</p>
+      </div>
+
+      <ul class="percentile-list">
+        <li><strong>P₂₀ (20th Percentile):</strong> The fast, easy runs.</li>
+        <li><strong>P₈₀ (80th Percentile):</strong> The complex, difficult runs.</li>
+        <li><strong>P₅₀ (Median):</strong> The standard, normal run.</li>
+      </ul>
+
+      <p><strong>Why this matters:</strong> By weighting the median (×4) and capping the extremes, we arrive at a fair, defensible standard. We don't expect teams to perform at the speed of the fastest outlier, nor do we pad the numbers with data errors.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── IV. The Outcome ── -->
+    <h2 class="section-title">IV. The Outcome: Visibility vs. Blindness</h2>
+
+    <p>Once the model calculates in minutes, the translation to dollars is simple algebra. In a recent engagement, this surgical view surfaced significant opportunities:</p>
+
+    <ul class="outcome-list">
+      <li><strong>The Insight:</strong> The model revealed an $18M–$22M capacity variance.</li>
+      <li><strong>The Cause:</strong> This wasn't about "cutting heads" — it was about Skill Mismatch.</li>
+      <li><strong>The Reality:</strong> We were paying for capacity "on the clock" that didn't align with the incoming demand signal.</li>
+    </ul>
+
+    <p class="outcome-anchor">Without the F2L model, that opportunity was invisible — hidden inside the "averages."</p>
+
+    <!-- ── From Insight to Action ── -->
+    <h3 class="section-title-sm">From Insight to Action</h3>
+
+    <p>But identifying the value is only half the job.</p>
+
+    <p>We didn't just hand leadership a $22M valuation and wish them luck. We operationalized the data. We showed them exactly <strong>which technicians</strong> in <strong>which geographies</strong> needed to cross-train in <strong>what specific skills</strong> to close those gaps.</p>
+
+    <p>We moved from a high-level "Eureka" moment to a granular execution plan — converting a theoretical financial opportunity into a tactical roster of names and training requirements. <strong>This is the standard for Actionable Business Intelligence.</strong></p>
+
+    <!-- ── The Dignity Dimension ── -->
+    <h3 class="section-title-sm">Beyond Efficiency: The Dignity Dimension</h3>
+
+    <p>This is about more than just efficiency; it's about <strong>dignity</strong>.</p>
+
+    <p>When a model is accurate, teams feel seen because their actual workload is reflected in the data. When the data is accurate, executives feel confident because they can make decisions based on reality, not guesswork.</p>
+
+    <p>If your current capacity planning feels like a blunt instrument, it might be time to sharpen the tools. Let's look at the data together and see what the math is trying to tell us.</p>
+
+    <hr>
+
+    <!-- ── Cornerstone Takeaway ── -->
+    <div class="takeaway-block">
+      <p class="takeaway-eyebrow">The Cornerstone Takeaway</p>
+      <p class="takeaway-headline">Averages hide friction — and they hide opportunity.</p>
+      <p>When capacity planning is built on blunt "headcount vs. volume" averages, Finance and Operations end up debating two different realities. Force-to-Load replaces guesswork with a shared language: supply, demand, and <strong style="color: var(--vellum);">pricing in minutes</strong> — so decisions are grounded in what the work actually costs the team to perform.</p>
+      <p><strong style="color: var(--vellum);">From insight to action:</strong> Cornerstone doesn't stop at identifying the variance — we operationalize it. The deliverable is an execution-ready plan that shows <strong style="color: var(--vellum);">which skills are missing where</strong>, and translates that into a tactical training plan (often down to specific geographies and, when appropriate, a roster-level plan by name/skill) so leaders can close gaps instead of just discussing them.</p>
+    </div>
+
+    <!-- ── Engagement details ── -->
+    <div class="engage-section">
+      <p class="engage-title">How we engage</p>
+      <p>Typical starting point: 2–4 weeks diagnostic/onboarding &rarr; 6–12+ weeks foundation cleanup (scope-dependent) &rarr; 8–12 weeks model build, validation, and operationalization.</p>
+    </div>
+
+    <div class="engage-section">
+      <p class="engage-title">Service pillars</p>
+      <p>This work is delivered through our five service pillars: <strong>Management Consulting</strong>, <strong>Change Management</strong>, <strong>Business Analytics</strong>, <strong>Data Reporting</strong>, and <strong>Custom Software Development</strong>.</p>
+    </div>
+
+    <div class="engage-section">
+      <p class="engage-title">Where this rigor applies</p>
+      <p>Cornerstone is built for scale moments — when strategy is clear, but execution is constrained by operational friction, misaligned process, or untrusted data.</p>
+      <ul class="use-case-list" style="margin-top: 12px;">
+        <li>Field operations: dispatch/routing, scheduling, overtime, touchless automation.</li>
+        <li>Capacity decisions: demand vs. supply, headcount justification, cross-training strategy.</li>
+        <li>Automation that's amplifying chaos: AI/RPA built on dirty data or weak governance.</li>
+        <li>"Single source of truth" gaps: spreadsheet cycles, conflicting metrics, low dashboard trust.</li>
+        <li>OpEx transformations that must stick: standard work, SOPs, control plans, KPI cadence.</li>
+      </ul>
+      <p style="margin-top: 16px; font-size: 0.97rem; color: rgba(44,46,47,0.78);">If you're leading cost, capacity, or service performance — and your models feel blunt — let's talk. We'll pressure-test the math, surface the real constraints, and map a path from insight to action.</p>
+    </div>
+
+    <div class="companion-callout">
+      <p>If the morale side of this story hit close to home, the first case study, <a href="article-automate-mess.html">"You Can't Automate a Mess"</a>, walks through where this all started: fixing the underlying data and geometry so your people — and your metrics — can finally tell the truth.</p>
+    </div>
+
+    <p class="closing-cta">Let's build something better, together.</p>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="articles.html">&larr; All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="index.html">Profile</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>
