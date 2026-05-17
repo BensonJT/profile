@@ -404,6 +404,44 @@
 
     .series-callout a:hover { text-decoration: underline; }
 
+    /* ── Series nav (two-card prev/next) ── */
+    .series-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 48px 0 32px;
+    }
+
+    .series-nav-card {
+      background: rgba(44,46,47,0.06);
+      border-radius: 6px;
+      padding: 20px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s;
+      display: block;
+    }
+
+    .series-nav-card:hover { background: rgba(44,46,47,0.1); }
+
+    .series-nav-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .series-nav-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.35;
+    }
+
+    @media (max-width: 640px) { .series-nav { grid-template-columns: 1fr; } }
+
     /* ── Footer ── */
     .page-footer {
       background: var(--charcoal);
@@ -656,9 +694,15 @@
     <p>If you found this article informative, please share it with your network. I'd love to hear from you in the comments and address any questions you might have.</p>
 
     <!-- ── Series navigation ── -->
-    <div class="series-callout">
-      <p class="series-eyebrow">Up Next — Part II</p>
-      <p>In <a href="article-forest-and-trees-2.html">Part II</a> we will begin to learn about Activity Node Analysis and the concept of functional decomposition — how to take the Context Diagram and break it into the detail underneath.</p>
+    <div class="series-nav">
+      <a href="articles.html" class="series-nav-card">
+        <p class="series-nav-label">&larr; All Writing</p>
+        <p class="series-nav-title">Back to the full article list</p>
+      </a>
+      <a href="article-forest-and-trees-2.html" class="series-nav-card">
+        <p class="series-nav-label">Part II &rarr;</p>
+        <p class="series-nav-title">Activity Node Analysis &amp; Functional Decomposition</p>
+      </a>
     </div>
 
     <div id="author-card"></div>
