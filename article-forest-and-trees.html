@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to See the Forest and the Trees (Part I) — Jeffrey Benson</title>
+  <meta name="description" content="An introduction to IDEF0 process modeling — learning the Context Diagram and ICOMs so you can see the full picture of any process before you redesign it.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      overflow: hidden;
+    }
+
+    .header-image-wrap {
+      position: relative;
+    }
+
+    .header-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.82;
+    }
+
+    .header-image-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, var(--olive));
+      pointer-events: none;
+    }
+
+    .header-text {
+      padding: 48px 48px 64px;
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.6rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── LinkedIn bar ── */
+    .linkedin-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(240,234,214,0.55);
+      letter-spacing: 0.04em;
+    }
+
+    .linkedin-bar a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+
+    .linkedin-bar a:hover { opacity: 0.8; }
+
+    /* ── Article body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    .article-intro {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: rgba(44,46,47,0.7);
+      line-height: 1.75;
+      margin-bottom: 32px !important;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold);
+    }
+
+    /* ── Section headers ── */
+    .section-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 56px 0 20px;
+      line-height: 1.2;
+    }
+
+    .section-title:first-of-type { margin-top: 0; }
+
+    .subsection-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 40px 0 14px;
+      line-height: 1.25;
+    }
+
+    /* ── Diagram images (IDEF0 boxes — light background, subtle border) ── */
+    .diagram-image {
+      width: 100%;
+      max-width: 560px;
+      display: block;
+      margin: 28px auto;
+      border-radius: 4px;
+      border: 1px solid rgba(191,163,111,0.25);
+      background: #fff;
+      padding: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    }
+
+    /* ── Photo images (brownie etc.) ── */
+    .article-image {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      margin: 32px 0 12px;
+      display: block;
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    /* ── ICOM definition blocks ── */
+    .icom-block {
+      margin-bottom: 40px;
+    }
+
+    .icom-term {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .icom-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+
+    /* ── Brownie example section ── */
+    .brownie-section {
+      background: rgba(59,75,53,0.04);
+      border-radius: 8px;
+      padding: 36px 32px;
+      margin: 48px 0;
+    }
+
+    .brownie-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .brownie-context {
+      font-size: 0.92rem;
+      color: rgba(44,46,47,0.55);
+      margin-bottom: 28px !important;
+      font-style: italic;
+    }
+
+    .brownie-field {
+      margin-bottom: 32px;
+    }
+
+    .brownie-field-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--olive);
+      margin-bottom: 8px;
+    }
+
+    .brownie-field p {
+      font-size: 1rem;
+      color: rgba(44,46,47,0.85);
+      line-height: 1.7;
+      margin-bottom: 0.6em !important;
+    }
+
+    /* ── ICOM boundary sub-sections within brownie ── */
+    .icom-boundary {
+      margin-bottom: 28px;
+    }
+
+    .icom-boundary-head {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--gold);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(191,163,111,0.25);
+    }
+
+    .icom-sub-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.45);
+      margin: 14px 0 6px;
+    }
+
+    .icom-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .icom-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.82);
+      padding: 4px 0 4px 18px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .icom-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .reader-prompt {
+      font-size: 0.93rem;
+      color: rgba(44,46,47,0.5);
+      font-style: italic;
+      margin-top: 10px !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* ── Series navigation ── */
+    .series-callout {
+      background: var(--charcoal);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin: 48px 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .series-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+    }
+
+    .series-callout p {
+      font-size: 0.97rem;
+      color: rgba(240,234,214,0.78);
+      line-height: 1.7;
+      margin-bottom: 0 !important;
+    }
+
+    .series-callout a {
+      color: var(--gold);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .series-callout a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.8rem; }
+      .header-text { padding: 36px 24px 48px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.25rem; }
+      .brownie-section { padding: 24px 18px; }
+      .series-callout { padding: 22px 20px; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Writing</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-image-wrap">
+      <img src="img/forest_cover.webp"
+           alt="Sunlight through a forest canopy — seeing the forest and the trees">
+    </div>
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process &middot; Methodology &middot; Part I</p>
+      <h1 class="article-title">How to See the Forest<br>and the Trees</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2018</p>
+    </div>
+  </header>
+
+  <div class="linkedin-bar">
+    Originally published on LinkedIn &mdash;
+    <a href="https://www.linkedin.com/pulse/how-see-forest-trees-part-i-jeffrey-benson/" target="_blank" rel="noopener noreferrer">View or comment there &rarr;</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+
+    <p class="article-intro">To see the forest and the trees, you develop the capability to step back and see the big picture, while simultaneously being able to zoom in and observe the trees. This series of articles will teach some practical things that will help you to cultivate this skill.</p>
+
+    <p>We begin by looking at some key concepts from IDEF0. This article will not make you an expert on IDEF nor provide you a detailed history of IDEF. (If you want to learn more, you can visit the <a href="https://en.wikipedia.org/wiki/IDEF" target="_blank" rel="noopener noreferrer" style="color: var(--olive); font-weight: 700;">Wikipedia IDEF page</a>.) Rather, we will learn about the Context Diagram and the ICOMs. In future articles we will learn how to decompose the Context Diagram into lower levels of detail.</p>
+
+    <hr>
+
+    <!-- ── Define Your Context ── -->
+    <h2 class="section-title">Define Your Context</h2>
+
+    <h3 class="subsection-title">The Context for the Context</h3>
+
+    <p>When modeling or diagramming any process, the consultant must first define the "Context for the Context." Start by identifying the purpose, viewpoint, and the boundary of the process.</p>
+
+    <p><strong>Purpose</strong> clarifies why you are studying the process, and who the intended stakeholders are. Why are you studying the process? Who is the audience that will benefit from this study? Which audience are you preparing the model for?</p>
+
+    <p>The <strong>viewpoint</strong> defines the lens that will be used to understand the process. From which stakeholder's viewpoint will we look at and understand the process? This becomes important because it influences how the activities of the process are articulated.</p>
+
+    <p>The <strong>boundary</strong> defines the scope of the process. When does the process start? When does it end?</p>
+
+    <h3 class="subsection-title">IDEF0 — The Context Diagram</h3>
+
+    <p>The foundational construct of IDEF0 is the Context Diagram. Very simply, the context diagram provides the context of the process being studied.</p>
+
+    <img src="img/activity.webp"
+         alt="IDEF0 Context Diagram — a single activity box with Activity ID A0"
+         class="diagram-image">
+    <p class="image-caption">The IDEF0 Context Diagram: a single box representing the boundary of the process, labeled A0.</p>
+
+    <p>The context diagram is comprised of a single box which represents the boundary of the process or system being studied. The box is labeled with the name of the process being studied. In the lower right corner is the "Activity ID" — for the context diagram this always starts at A0 ("A" represents Activity and "0" represents level 0, the highest depiction of this process).</p>
+
+    <p>There are four arrows interacting with this box that represent the relevant Inputs, Controls, Outputs, and Mechanisms — these are called <strong>ICOMs</strong>. The ICOMs clarify the boundary of the process, and are discussed next.</p>
+
+    <img src="img/icoms.webp"
+         alt="IDEF0 Context Diagram with ICOMs — Inputs on left, Controls on top, Outputs on right, Mechanisms on bottom"
+         class="diagram-image">
+    <p class="image-caption">The four ICOM arrows define the boundary of any process.</p>
+
+    <hr>
+
+    <!-- ── ICOMs ── -->
+    <h2 class="section-title">ICOMs — Inputs, Controls, Outputs, and Mechanisms</h2>
+
+    <div class="icom-block">
+      <p class="icom-term">Inputs</p>
+      <h3 class="icom-title">What the process transforms or consumes</h3>
+      <p>Inputs are resources that are transformed or consumed by the process to produce the output of the process. These arrows are on the left side and point into the box.</p>
+    </div>
+
+    <div class="icom-block">
+      <p class="icom-term">Outputs</p>
+      <h3 class="icom-title">The results of the process</h3>
+      <p>Outputs are the results of the process. Outputs might be information (data) or material goods (objects) that flow out of the process. These are depicted as arrows coming out of the right side of the box.</p>
+    </div>
+
+    <img src="img/inputs_outputs.webp"
+         alt="IDEF0 diagram showing Inputs on the left and Outputs on the right"
+         class="diagram-image">
+    <p class="image-caption">Inputs enter from the left; Outputs exit from the right.</p>
+
+    <div class="icom-block">
+      <p class="icom-term">Controls</p>
+      <h3 class="icom-title">External factors that constrain or specify conditions</h3>
+      <p>Controls are external factors that constrain the process or specify conditions required to produce the outputs that satisfy requirements. Controls might be plans, customer specifications, legislation, or industry standards. They specify the conditions to produce the correct outputs. Control arrows enter from the top of the box. Think of them as external forces that constrain or limit the process — things that must be satisfied by the process to be successful.</p>
+    </div>
+
+    <img src="img/controls.webp"
+         alt="IDEF0 diagram showing Controls entering from the top of the activity box"
+         class="diagram-image">
+    <p class="image-caption">Controls enter from the top — external forces that constrain or guide the process.</p>
+
+    <div class="icom-block">
+      <p class="icom-term">Mechanisms</p>
+      <h3 class="icom-title">Tools and resources that enable the process</h3>
+      <p>Mechanisms can be tools or the physical resources utilized within the process or activity to transform the inputs into outputs. Mechanisms may include things like specific functions (human resources), machines, or applications. It is helpful to think of mechanisms as things that <em>mechanize</em> the process and support the execution of the activity. These are depicted as arrows flowing up into the bottom of the box — figuratively supporting the process. Unlike inputs, mechanisms are not transformed or consumed as a result of the process.</p>
+    </div>
+
+    <img src="img/mechanisms.webp"
+         alt="IDEF0 diagram showing Mechanisms entering from the bottom of the activity box"
+         class="diagram-image">
+    <p class="image-caption">Mechanisms enter from the bottom — they enable the process without being consumed by it.</p>
+
+    <hr>
+
+    <!-- ── Brownie Application ── -->
+    <h2 class="section-title">Application: Baking Brownies</h2>
+
+    <p>Now that we understand how to define the context of any process or system using the IDEF0 Context Diagram, let's demonstrate how simple it is by defining the context for baking brownies.</p>
+
+    <div class="brownie-section">
+
+      <img src="img/brownie.webp"
+           alt="A pan of freshly baked brownies"
+           class="article-image" style="margin-top: 0; margin-bottom: 20px; border-radius: 4px;">
+
+      <div class="brownie-field">
+        <p class="brownie-field-label">The Process</p>
+        <p>Baking Brownies</p>
+      </div>
+
+      <div class="brownie-field">
+        <p class="brownie-field-label">The Purpose</p>
+        <p>The purpose of this model is to describe the "as is" (current state) Brownie Baking process.</p>
+      </div>
+
+      <div class="brownie-field">
+        <p class="brownie-field-label">The Viewpoint</p>
+        <p>The process will be viewed from the vantage point of the Baker.</p>
+      </div>
+
+      <p style="font-size: 0.95rem; color: rgba(44,46,47,0.7); margin-bottom: 16px;">So far our context diagram looks like the following:</p>
+
+      <img src="img/brownie_context_1.webp"
+           alt="IDEF0 Context Diagram for Baking Brownies — showing the process box from the Baker's viewpoint"
+           class="diagram-image" style="margin-top: 0;">
+      <p class="image-caption" style="margin-bottom: 28px;">Context diagram for Baking Brownies — purpose and viewpoint defined, ICOMs to follow.</p>
+
+      <!-- ── The Boundaries ── -->
+      <p class="brownie-field-label">The Boundaries (ICOMs)</p>
+
+      <div class="icom-boundary">
+        <p class="icom-boundary-head">Outputs</p>
+        <p style="font-size: 0.97rem; color: rgba(44,46,47,0.8); line-height: 1.7; margin-bottom: 10px;">Beginning with the end in mind, let's think about the Outputs of the Baking Brownie process. When we bake brownies what are the outputs of the process?</p>
+        <ul class="icom-list">
+          <li>Delicious Brownies</li>
+          <li>Defective Brownies (burned batch)</li>
+          <li>Trash</li>
+        </ul>
+        <p class="reader-prompt">Can you think of any other outputs?</p>
+      </div>
+
+      <div class="icom-boundary">
+        <p class="icom-boundary-head">Inputs</p>
+        <p style="font-size: 0.97rem; color: rgba(44,46,47,0.8); line-height: 1.7; margin-bottom: 10px;">What are the Inputs that are transformed or consumed in the brownie baking process?</p>
+        <ul class="icom-list">
+          <li>Brownie Mix</li>
+          <li>Eggs</li>
+          <li>Water</li>
+        </ul>
+        <p class="reader-prompt">Can you think of any other inputs?</p>
+      </div>
+
+      <div class="icom-boundary">
+        <p class="icom-boundary-head">Mechanisms</p>
+        <p style="font-size: 0.97rem; color: rgba(44,46,47,0.8); line-height: 1.7; margin-bottom: 10px;">What Mechanisms are used to turn the inputs into the outputs in the brownie baking process?</p>
+        <p class="icom-sub-label">Human Resources</p>
+        <ul class="icom-list">
+          <li>The Baker</li>
+        </ul>
+        <p class="icom-sub-label">Tools &amp; Equipment</p>
+        <ul class="icom-list">
+          <li>Mixing bowl</li>
+          <li>Mixing Spoon</li>
+          <li>Spatula</li>
+          <li>Pan</li>
+          <li>Oven</li>
+          <li>Oven Mitt</li>
+          <li>Cooling Rack</li>
+        </ul>
+        <p class="reader-prompt">Can you think of any other mechanisms?</p>
+      </div>
+
+      <div class="icom-boundary" style="margin-bottom: 0;">
+        <p class="icom-boundary-head">Controls</p>
+        <p style="font-size: 0.97rem; color: rgba(44,46,47,0.8); line-height: 1.7; margin-bottom: 10px;">What Controls might guide or constrain the brownie baking process in some way?</p>
+        <p class="icom-sub-label">Standard Operating Procedures</p>
+        <ul class="icom-list">
+          <li>Recipe</li>
+        </ul>
+        <p class="icom-sub-label">Customer Specifications (Voice of the Customer)</p>
+        <ul class="icom-list">
+          <li>Moist Chocolate Chip Fudge Brownies preferred</li>
+          <li>Don't like dry brownies</li>
+          <li>Nut allergies — no tree nuts or peanuts, and no ingredients from facilities that process nuts</li>
+        </ul>
+        <p class="icom-sub-label">Other Constraints or External Factors</p>
+        <ul class="icom-list">
+          <li>History of oven performance — does the oven run cool or hot? Do you need to adjust baking time or temperature to get optimal results?</li>
+        </ul>
+        <p class="reader-prompt">Can you think of any other controls?</p>
+      </div>
+
+    </div>
+
+    <p>After identifying the ICOMs, our Context Diagram might look like this:</p>
+
+    <img src="img/brownie_context_2.webp"
+         alt="Completed IDEF0 Context Diagram for Baking Brownies — with Inputs, Controls, Outputs, and Mechanisms defined"
+         class="diagram-image">
+    <p class="image-caption">The completed Context Diagram for Baking Brownies — all ICOMs defined, boundary established.</p>
+
+    <p>If you found this article informative, please share it with your network. I'd love to hear from you in the comments and address any questions you might have.</p>
+
+    <!-- ── Series navigation ── -->
+    <div class="series-callout">
+      <p class="series-eyebrow">Up Next — Part II</p>
+      <p>In <a href="https://www.linkedin.com/pulse/how-see-forest-trees-part-ii-jeffrey-benson/" target="_blank" rel="noopener noreferrer">Part II</a> we will begin to learn about Activity Node Analysis and the concept of functional decomposition — how to take the Context Diagram and break it into the detail underneath.</p>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="articles.html">&larr; All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="index.html">Profile</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>
