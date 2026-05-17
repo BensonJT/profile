@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to See the Forest and the Trees (Part II) — Jeffrey Benson</title>
+  <meta name="description" content="Activity Node Analysis and functional decomposition — how to break any process from its highest view (L0) into the structured detail your teams can actually act on.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      overflow: hidden;
+    }
+
+    .header-image-wrap { position: relative; }
+
+    .header-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.82;
+    }
+
+    .header-image-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, var(--olive));
+      pointer-events: none;
+    }
+
+    .header-text {
+      padding: 48px 48px 64px;
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.6rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong { color: rgba(240,234,214,0.85); font-weight: 700; }
+
+    /* ── LinkedIn bar ── */
+    .linkedin-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(240,234,214,0.55);
+      letter-spacing: 0.04em;
+    }
+
+    .linkedin-bar a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+
+    .linkedin-bar a:hover { opacity: 0.8; }
+
+    /* ── Article body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    .article-intro {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: rgba(44,46,47,0.7);
+      line-height: 1.75;
+      margin-bottom: 32px !important;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold);
+    }
+
+    /* ── Section headers ── */
+    .section-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 56px 0 20px;
+      line-height: 1.2;
+    }
+
+    .subsection-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 36px 0 14px;
+      line-height: 1.25;
+    }
+
+    /* ── Key concept callout ── */
+    .concept-callout {
+      background: rgba(191,163,111,0.1);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+
+    .concept-callout p {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.82);
+      line-height: 1.7;
+      margin-bottom: 0 !important;
+    }
+
+    .concept-callout strong { color: var(--charcoal); }
+
+    /* ── Rule blocks ── */
+    .rule-block {
+      background: rgba(59,75,53,0.06);
+      border-left: 3px solid var(--olive);
+      border-radius: 0 4px 4px 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+
+    .rule-block p {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.82);
+      line-height: 1.7;
+      margin-bottom: 0 !important;
+    }
+
+    .rule-block strong { color: var(--charcoal); }
+
+    /* ── Diagram images ── */
+    .diagram-image {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: 28px auto;
+      border-radius: 4px;
+      border: 1px solid rgba(191,163,111,0.25);
+      background: #fff;
+      padding: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    /* ── Numbering scheme explainer ── */
+    .numbering-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 6px 16px;
+      margin: 20px 0 28px;
+      font-size: 0.97rem;
+    }
+
+    .num-code {
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: 700;
+      color: var(--olive);
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
+    .num-desc {
+      color: rgba(44,46,47,0.82);
+      line-height: 1.55;
+    }
+
+    /* ── Brownie application section ── */
+    .brownie-section {
+      background: rgba(59,75,53,0.04);
+      border-radius: 8px;
+      padding: 36px 32px;
+      margin: 48px 0;
+    }
+
+    /* ── Activity tree (L1 / L2 breakdown) ── */
+    .activity-tree {
+      margin: 20px 0 12px;
+      font-size: 0.97rem;
+    }
+
+    .activity-parent {
+      font-weight: 700;
+      color: var(--charcoal);
+      padding: 8px 0 4px;
+      border-bottom: 1px solid rgba(191,163,111,0.2);
+      margin-bottom: 6px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .activity-id {
+      color: var(--gold);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.88rem;
+      min-width: 36px;
+      padding-top: 1px;
+    }
+
+    .activity-children {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 46px;
+    }
+
+    .activity-children li {
+      color: rgba(44,46,47,0.8);
+      padding: 4px 0;
+      line-height: 1.5;
+      display: flex;
+      gap: 10px;
+    }
+
+    .activity-children .activity-id {
+      color: rgba(191,163,111,0.9);
+      min-width: 46px;
+    }
+
+    /* ── Noun-verb formula pill ── */
+    .formula-pill {
+      display: inline-block;
+      background: var(--charcoal);
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin: 0 4px;
+      vertical-align: middle;
+    }
+
+    /* ── Series navigation blocks ── */
+    .series-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 48px 0 32px;
+    }
+
+    .series-nav-card {
+      background: rgba(44,46,47,0.06);
+      border-radius: 6px;
+      padding: 20px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s;
+    }
+
+    .series-nav-card:hover { background: rgba(44,46,47,0.1); }
+
+    .series-nav-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .series-nav-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.35;
+    }
+
+    .series-coming {
+      background: var(--charcoal);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin: 48px 0 32px;
+    }
+
+    .series-coming-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .series-coming p {
+      font-size: 0.97rem;
+      color: rgba(240,234,214,0.78);
+      line-height: 1.7;
+      margin-bottom: 0 !important;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.8rem; }
+      .header-text { padding: 36px 24px 48px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.25rem; }
+      .brownie-section { padding: 24px 18px; }
+      .series-nav { grid-template-columns: 1fr; }
+      .series-coming { padding: 22px 20px; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Writing</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-image-wrap">
+      <img src="img/trees_cover.webp"
+           alt="Individual trees in a forest — seeing both the forest and the trees">
+    </div>
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process &middot; Methodology &middot; Part II</p>
+      <h1 class="article-title">How to See the Forest<br>and the Trees</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2019</p>
+    </div>
+  </header>
+
+  <div class="linkedin-bar">
+    Originally published on LinkedIn &mdash;
+    <a href="https://www.linkedin.com/pulse/how-see-forest-trees-part-ii-jeffrey-benson/" target="_blank" rel="noopener noreferrer">View or comment there &rarr;</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+
+    <p class="article-intro">To see the forest and the trees, you develop the capability to step back and see the big picture, while simultaneously being able to zoom in and observe the trees. This series of articles will teach some practical things that will help you to cultivate this skill.</p>
+
+    <p>In <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a> we introduced the Context Diagram — referred to as the Level 0 diagram, the highest view of the process. The context diagram is the broadest view of the forest. In Part II we will learn how to decompose the forest to begin to see the individual trees and understand how they fit into it. In IDEF0 terms, this is called building an <strong>Activity Node Tree</strong>.</p>
+
+    <hr>
+
+    <!-- ── We have the Context Diagram. What's next? ── -->
+    <h2 class="section-title">We have the Context Diagram (L0). What's next?</h2>
+
+    <p>In IDEF0 we use <strong>Activity Node Analysis</strong> to break down the Context Diagram's process (Level 0) into the activities that make up that process. We systematically decompose each activity <em>until we get the level of understanding required by the process model's purpose and viewpoint</em>.</p>
+
+    <div class="rule-block">
+      <p><strong>The 3–6 Rule:</strong> When decomposing any process into its activities, each level should contain three to no more than six activities. If you identify more than six, roll them up at a higher level and articulate those additional details at a lower level of decomposition.</p>
+    </div>
+
+    <p>Using the paradigm of L0 as the highest level of decomposition: <strong>L1</strong> represents the <em>high level process</em>, and <strong>L2</strong> represents a <em>lower level articulation</em> of each activity. As a general best practice, taking each process down two levels of decomposition (L0 → L1 → L2) is normally sufficient. But sometimes it is necessary to go deeper.</p>
+
+    <p>For example, if the L2 decomposition of a specific activity requires more than six sub-activities, you might summarize it at L2 and decompose that particular activity further to L3. The Activity Node Tree graphic below illustrates this:</p>
+
+    <img src="img/decomposition_concept.webp"
+         alt="Activity Node Tree diagram showing L0 decomposing to L1 (Activities 1, 2, 3), then L2 (sub-activities), and Activity 2.3 decomposing further to L3"
+         class="diagram-image">
+    <p class="image-caption">The Activity Node Tree — how L0 decomposes to L1, L2, and selectively to L3 when needed.</p>
+
+    <p>Once you get beyond L2, it is not necessary to decompose <em>all</em> activities to a deeper level. As shown above, we might only decompose Activity 2.3 more deeply, producing Activities A2.3.1, A2.3.2, and A2.3.3 at L3.</p>
+
+    <p>The <strong>numbering scheme</strong> always references the context:</p>
+
+    <div class="numbering-grid">
+      <span class="num-code">A1, A2, A3</span>
+      <span class="num-desc">High level activities at L1 — direct children of the Context Diagram</span>
+      <span class="num-code">A1.1, A1.2, A1.3</span>
+      <span class="num-desc">L2 decomposition of Activity 1</span>
+      <span class="num-code">A2.1, A2.2, A2.3</span>
+      <span class="num-desc">L2 decomposition of Activity 2</span>
+      <span class="num-code">A2.3.1, A2.3.2, A2.3.3</span>
+      <span class="num-desc">L3 decomposition of Activity 2.3 — only needed when that activity is complex enough to warrant it</span>
+    </div>
+
+    <div class="concept-callout">
+      <p>Remember: only decompose to the level required by your <strong>purpose and viewpoint</strong>. The goal is clarity, not exhaustive documentation.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── When might we go deeper? ── -->
+    <h2 class="section-title">When might we need to go beyond L2?</h2>
+
+    <p>Deeper decomposition becomes necessary when modeling end-to-end or full lifecycle processes. For example, if you are an organizational executive or a business transformation office trying to understand the critical activities associated with how your organization develops and delivers goods and services across several lines of business, starting with the first three levels (L0, L1, L2) is a great first step.</p>
+
+    <p>Then each line-of-business executive may choose to take their activities down to three levels of decomposition, and the functional leaders that report to them may do the same. Following this approach, it is possible to articulate a process through six or more levels of decomposition — with hundreds of activities identified — all of which roll up cleanly to the six to eight activities that make up the high level process at L1.</p>
+
+    <p>That is what it means to simultaneously see the forest <em>and</em> the trees: a complete, navigable view from the highest strategic context down to the operational detail.</p>
+
+    <hr>
+
+    <!-- ── Application: Baking Brownies ── -->
+    <h2 class="section-title">Application: Baking Brownie Process</h2>
+
+    <p>To help crystallize the concepts, let's apply Activity Node Analysis to the Baking Brownie process. In <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a> we built a Level 0 Context Diagram for this process:</p>
+
+    <div class="brownie-section">
+
+      <img src="img/brownie_context_2.webp"
+           alt="Completed IDEF0 Context Diagram for Baking Brownies — the L0 view with all ICOMs defined"
+           class="diagram-image" style="margin-top: 0;">
+      <p class="image-caption" style="margin-bottom: 28px;">The L0 Context Diagram from Part I — our starting point for decomposition.</p>
+
+      <p>We are documenting this process from the viewpoint of the Baker. Now let's decompose the L0 Context Diagram into the high level activities that make up the process — the <strong>L1</strong> level of detail.</p>
+
+      <div class="concept-callout" style="margin: 20px 0;">
+        <p>When identifying activities, best practice is to use the formula <span class="formula-pill">verb + noun</span> and to keep the language as simple as possible.</p>
+      </div>
+
+      <p>At L1, the high level steps are:</p>
+
+      <div class="activity-tree">
+        <div class="activity-parent">
+          <span class="activity-id">A1</span>
+          <span>Preheat Oven</span>
+        </div>
+        <div class="activity-parent">
+          <span class="activity-id">A2</span>
+          <span>Mix Ingredients</span>
+        </div>
+        <div class="activity-parent">
+          <span class="activity-id">A3</span>
+          <span>Bake Brownies</span>
+        </div>
+      </div>
+
+      <img src="img/L0_L1_Brownies.webp"
+           alt="Activity Node Tree showing L0 (Baking Brownies) decomposed to L1: Preheat Oven, Mix Ingredients, Bake Brownies"
+           class="diagram-image">
+      <p class="image-caption" style="margin-bottom: 28px;">L0 → L1: the three high level activities of the Baking Brownies process.</p>
+
+      <p>Next, let's break each L1 activity into its L2 detail. What are the sub-steps within each high level activity?</p>
+
+      <div class="activity-tree">
+        <div class="activity-parent">
+          <span class="activity-id">A1</span>
+          <span>Preheat Oven</span>
+        </div>
+        <ul class="activity-children">
+          <li><span class="activity-id">A1.1</span><span>Check Recipe</span></li>
+          <li><span class="activity-id">A1.2</span><span>Determine Temp (adjust for oven performance)</span></li>
+          <li><span class="activity-id">A1.3</span><span>Ignite Oven</span></li>
+        </ul>
+
+        <div class="activity-parent">
+          <span class="activity-id">A2</span>
+          <span>Mix Ingredients</span>
+        </div>
+        <ul class="activity-children">
+          <li><span class="activity-id">A2.1</span><span>Add Brownie Mix</span></li>
+          <li><span class="activity-id">A2.2</span><span>Add Water</span></li>
+          <li><span class="activity-id">A2.3</span><span>Add Eggs</span></li>
+          <li><span class="activity-id">A2.4</span><span>Mix</span></li>
+          <li><span class="activity-id">A2.5</span><span>Pour</span></li>
+        </ul>
+
+        <div class="activity-parent">
+          <span class="activity-id">A3</span>
+          <span>Bake Brownies</span>
+        </div>
+        <ul class="activity-children">
+          <li><span class="activity-id">A3.1</span><span>Place in Oven</span></li>
+          <li><span class="activity-id">A3.2</span><span>Set Timer</span></li>
+          <li><span class="activity-id">A3.3</span><span>Remove</span></li>
+          <li><span class="activity-id">A3.4</span><span>Cool</span></li>
+        </ul>
+      </div>
+
+      <p>Our Activity Node Tree for the Baking Brownie process now looks like this, decomposed to L2:</p>
+
+      <img src="img/L0_L1_L2_Brownies.webp"
+           alt="Full Activity Node Tree for Baking Brownies — L0 to L1 to L2, showing all sub-activities under Preheat Oven, Mix Ingredients, and Bake Brownies"
+           class="diagram-image">
+      <p class="image-caption" style="margin-bottom: 0;">The complete Activity Node Tree — L0 context, L1 high level activities, L2 sub-activities. The forest and the trees, in one view.</p>
+
+    </div>
+
+    <hr>
+
+    <!-- ── In Summary ── -->
+    <h2 class="section-title">In Summary</h2>
+
+    <p>Once you have identified the context (L0) and decomposed that process into two or more levels of decomposition (L1, L2, …), you are now beginning to see both the forest and the trees. You have a structured, navigable view of any process — from the highest strategic vantage point down to the operational detail that actually drives execution.</p>
+
+    <p>But there is more we can do to fully comprehend the interrelationships between the forest and the trees.</p>
+
+    <p>Do you remember the ICOMs — Inputs, Controls, Outputs, and Mechanisms — discussed in <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a>? In Part III we will start to understand the role of each activity within the process by identifying the critical ICOMs for each activity at each level of decomposition. IDEF0 provides a powerful modeling diagram to illustrate these relationships — and Part III is where the method becomes a diagnostic tool, not just a documentation framework.</p>
+
+    <!-- ── Series navigation ── -->
+    <div class="series-nav">
+      <a href="article-forest-and-trees.html" class="series-nav-card">
+        <p class="series-nav-label">&larr; Part I</p>
+        <p class="series-nav-title">The Context Diagram &amp; ICOMs</p>
+      </a>
+      <div class="series-nav-card" style="opacity: 0.5; cursor: default;">
+        <p class="series-nav-label">Part III &rarr;</p>
+        <p class="series-nav-title">ICOMs at Every Level — Coming Soon</p>
+      </div>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="articles.html">&larr; All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="index.html">Profile</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>
