@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to See the Forest and the Trees (Part V) — Jeffrey Benson</title>
+  <meta name="description" content="The Combination — SIPOC + ICOM at every node. Apply both frameworks to every activity in the decomposition tree and capture the complete model in a single spreadsheet.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      overflow: hidden;
+    }
+
+    .header-image-wrap { position: relative; }
+
+    .header-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.82;
+    }
+
+    .header-image-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, var(--olive));
+      pointer-events: none;
+    }
+
+    .header-text {
+      padding: 48px 48px 64px;
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.6rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong { color: rgba(240,234,214,0.85); font-weight: 700; }
+
+    /* ── LinkedIn bar ── */
+    .linkedin-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(240,234,214,0.55);
+      letter-spacing: 0.04em;
+    }
+
+    .linkedin-bar a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+
+    .linkedin-bar a:hover { opacity: 0.8; }
+
+    /* ── Article body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    .article-intro {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: rgba(44,46,47,0.7);
+      line-height: 1.75;
+      margin-bottom: 32px !important;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold);
+    }
+
+    /* ── Section headers ── */
+    .section-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 56px 0 20px;
+      line-height: 1.2;
+    }
+
+    .subsection-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 36px 0 6px;
+      line-height: 1.25;
+    }
+
+    .guiding-question {
+      font-size: 0.92rem;
+      font-style: italic;
+      color: rgba(44,46,47,0.5);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    /* ── Concept callout ── */
+    .concept-callout {
+      background: rgba(191,163,111,0.1);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+
+    .concept-callout p {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.82);
+      line-height: 1.7;
+      margin-bottom: 0 !important;
+    }
+
+    .concept-callout strong { color: var(--charcoal); }
+
+    /* ── Rule blocks ── */
+    .rule-block {
+      background: rgba(59,75,53,0.06);
+      border-left: 3px solid var(--olive);
+      border-radius: 0 4px 4px 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+
+    .rule-block p {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.82);
+      line-height: 1.7;
+      margin-bottom: 0.6em !important;
+    }
+
+    .rule-block p:last-child { margin-bottom: 0 !important; }
+    .rule-block strong { color: var(--charcoal); }
+
+    /* ── SIPOC list (carried from Part IV) ── */
+    .sipoc-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 28px;
+      border: 1px solid rgba(191,163,111,0.25);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    /* ── Body lists ── */
+    .article-body ul {
+      padding-left: 24px;
+      margin: 12px 0 20px;
+    }
+
+    .article-body ul li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 6px;
+    }
+
+    /* ── Comparison grid (carried from Part IV) ── */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 24px 0;
+    }
+
+    .comparison-card {
+      border-radius: 6px;
+      padding: 18px 18px;
+    }
+
+    .comparison-card.has { background: rgba(59,75,53,0.08); border-top: 3px solid var(--olive); }
+    .comparison-card.has-not { background: rgba(191,163,111,0.08); border-top: 3px solid var(--gold); }
+
+    .comparison-card-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+
+    .comparison-card ul { padding-left: 16px; margin: 0; }
+
+    .comparison-card li {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: rgba(44,46,47,0.78);
+      margin-bottom: 4px;
+    }
+
+    /* ── Activity blocks ── */
+    .activity-block {
+      margin: 24px 0;
+      padding: 20px 24px;
+      background: rgba(59,75,53,0.04);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .activity-block-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 14px;
+    }
+
+    .activity-dl {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 5px 16px;
+    }
+
+    .activity-dl dt {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--olive);
+      padding-top: 2px;
+      align-self: start;
+    }
+
+    .activity-dl dd {
+      font-size: 0.93rem;
+      color: rgba(44,46,47,0.82);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* ── Process table — full-width breakout from article-body ── */
+    .process-table-wrap {
+      overflow-x: auto;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 32px 0;
+      padding: 0 32px;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+      background: rgba(255,255,255,0.5);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    }
+
+    .process-table {
+      width: 100%;
+      min-width: 900px;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+
+    .process-table th {
+      background: var(--olive);
+      color: var(--vellum);
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .process-table th:last-child { border-right: none; }
+
+    .process-table td {
+      padding: 8px 12px;
+      vertical-align: top;
+      line-height: 1.5;
+      border-bottom: 1px solid rgba(191,163,111,0.15);
+      border-right: 1px solid rgba(191,163,111,0.08);
+    }
+
+    .process-table td:last-child { border-right: none; }
+
+    .process-table .l1-row td {
+      background: rgba(59,75,53,0.09);
+      font-weight: 600;
+      color: var(--charcoal);
+      border-bottom: 1px solid rgba(59,75,53,0.2);
+    }
+
+    .process-table .l1-row td:first-child {
+      background: var(--olive);
+      color: var(--vellum);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.88rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .process-table .l2-row td {
+      background: #fff;
+      color: rgba(44,46,47,0.82);
+    }
+
+    .process-table .l2-row td:first-child {
+      background: rgba(59,75,53,0.05);
+      color: var(--olive);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.84rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* ── Reference table ── */
+    .reference-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0 32px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(191,163,111,0.25);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .reference-table th {
+      background: var(--olive);
+      color: var(--vellum);
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .reference-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid rgba(191,163,111,0.15);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+
+    .reference-table tr:last-child td { border-bottom: none; }
+
+    .reference-table tr:nth-child(even) td {
+      background: rgba(191,163,111,0.05);
+    }
+
+    .framework-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .badge-idef0 { background: rgba(59,75,53,0.12); color: var(--olive); }
+    .badge-sipoc { background: rgba(191,163,111,0.22); color: #7a5d28; }
+    .badge-icom { background: rgba(59,75,53,0.09); color: var(--olive); }
+    .badge-icom-refined { background: rgba(59,75,53,0.15); color: var(--olive); }
+    .badge-extension { background: rgba(194,123,88,0.15); color: var(--clay); }
+
+    /* ── Series navigation ── */
+    .series-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 48px 0 32px;
+    }
+
+    .series-nav-card {
+      background: rgba(44,46,47,0.06);
+      border-radius: 6px;
+      padding: 20px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s;
+    }
+
+    .series-nav-card:hover { background: rgba(44,46,47,0.1); }
+
+    .series-nav-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .series-nav-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.35;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.8rem; }
+      .header-text { padding: 36px 24px 48px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.25rem; }
+      .series-nav { grid-template-columns: 1fr; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .activity-dl { grid-template-columns: 90px 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Writing</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-image-wrap">
+      <img src="img/tree_root_tunnel.webp"
+           alt="A tunnel of interwoven tree roots arching overhead with golden light at the far end — two root systems joining into one structure">
+    </div>
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process &middot; Methodology &middot; Part V</p>
+      <h1 class="article-title">How to See the Forest<br>and the Trees</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2025</p>
+    </div>
+  </header>
+
+  <div class="linkedin-bar">
+    Originally published on LinkedIn &mdash;
+    <a href="https://www.linkedin.com/pulse/how-see-forest-trees-part-v-combination-sipoc-icom-every-benson-bopie" target="_blank" rel="noopener noreferrer">View or comment there &rarr;</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+
+    <p class="article-intro">To see the forest and the trees, you develop the capability to step back and see the big picture, while simultaneously being able to zoom in and observe the trees. This series of articles will teach some practical things that will help you to cultivate this skill.</p>
+
+    <p>In <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a> we introduced the Context Diagram and the ICOMs that define any process boundary. In <a href="article-forest-and-trees-2.html" style="color: var(--olive); font-weight: 700;">Part II</a> we decomposed that context into an Activity Node Tree. In <a href="article-forest-and-trees-3.html" style="color: var(--olive); font-weight: 700;">Part III</a> we applied ICOMs to every node in the tree. In <a href="article-forest-and-trees-4.html" style="color: var(--olive); font-weight: 700;">Part IV</a> we added SIPOC &mdash; naming the suppliers and customers at the boundaries of the whole process.</p>
+
+    <p>We now have two frameworks. Each is powerful on its own. Neither is complete on its own.</p>
+
+    <p><strong>ICOM</strong> tells us the structure of each activity: what flows in, what governs it, what produces it, and what enables it. It is a governance and structural framework.</p>
+
+    <p><strong>SIPOC</strong> tells us the accountability at the boundaries: who provides the inputs and who depends on the outputs. It is an accountability framework.</p>
+
+    <p>The question we left open at the end of Part IV was this: what happens when you apply SIPOC not just at the top level &mdash; but at every activity node in the decomposition tree?</p>
+
+    <p>The answer is the model this entire series has been building toward.</p>
+
+    <hr>
+
+    <!-- ── Applying SIPOC at Every Node ── -->
+    <h2 class="section-title">Applying SIPOC at Every Node</h2>
+
+    <p>In <a href="article-forest-and-trees-4.html" style="color: var(--olive); font-weight: 700;">Part IV</a>, we built a single SIPOC for the entire Baking Brownies process. It captured the Grocery Store Clerk and Baker as suppliers, and the Baker's Family and Guests as customers. It was accurate and useful, but it treated the process as a black box. The activities inside had no supplier-customer relationships of their own.</p>
+
+    <p>Now we open the box.</p>
+
+    <p>When we apply SIPOC at every activity node &mdash; the same way we applied ICOMs in <a href="article-forest-and-trees-3.html" style="color: var(--olive); font-weight: 700;">Part III</a> &mdash; we discover that every activity is its own mini-process with its own supplier and its own customer.</p>
+
+    <p>Every Supplier in this model is the <strong>person performing this activity</strong>, supplying their time, skill, and judgment to turn inputs into outputs. That is the service they provide. Materials suppliers (grocery stores, utility companies) appear alongside them because they provide the raw inputs, but the human doing the work is always named first.</p>
+
+    <p>Take A3 (Bake &amp; Serve Brownies). Its Supplier is the <strong>Baker performing A3</strong>, the person executing the baking. The inputs they receive (brownie batter and greased pan) were produced by A2. The mechanism they depend on (a preheated oven) came from A1. Those prior deliveries show up in A3's Inputs and Mechanisms columns. That is where the upstream connections are captured.</p>
+
+    <p>And the Supplier of A2 (Mix Ingredients) is the <strong>Baker performing A2</strong>, the person doing the mixing. Their Customer is the Baker performing A3, who depends on receiving a properly prepared batter. If A2 delivers a poorly mixed batter, the model names exactly where the failure occurred and whose accountability it is.</p>
+
+    <p>In the brownie example, it is the same Baker at every step. In a real business process, those are different people or teams, and each handoff is an explicit accountability boundary. This is what is invisible at the L1 SIPOC level. It only becomes visible when you apply SIPOC at every node.</p>
+
+    <p>One more nuance: when an activity is fully automated &mdash; executed by a script, a programmed workflow, or an AI agent with no human intervention &mdash; the automation itself fills the Supplier role. It is simultaneously the performer and a Mechanism. This is an accommodation the method makes for fully automated steps: the automation is named as Supplier to preserve the accountability structure, even when no person is involved.</p>
+
+    <p>This is what combining SIPOC and ICOM at every node gives you: the ability to trace every input, output, control, and mechanism back to a specific person (or automation) and forward to a specific person, at every level of the process.</p>
+
+    <hr>
+
+    <!-- ── A Refinement When Combining IDEF0 with SIPOC ── -->
+    <h2 class="section-title">A Refinement When Combining IDEF0 with SIPOC</h2>
+
+    <p>When you bring SIPOC and ICOM together at every activity node, something interesting happens to the Mechanisms category.</p>
+
+    <p>In Parts I through III, Mechanisms were defined as they are in standard IDEF0: <strong>the people, tools, and systems that enable an activity to execute</strong>. The baker is a Mechanism. The oven is a Mechanism. The mixing bowl is a Mechanism.</p>
+
+    <p>That definition is correct in a pure IDEF0 context, and Parts I through III were built on that foundation.</p>
+
+    <p>But once SIPOC is in the picture, leaving people in the Mechanisms category creates a conflict. SIPOC already has a specific place for people: <strong>Supplier</strong> (who provides the inputs and performs this activity) and <strong>Customer</strong> (who receives the outputs as well as the final customer this whole process is serving). If the baker appears as a Mechanism, they also implicitly appear as a Supplier and Customer in the SIPOC view. The same person is represented twice, in two different categories, for two different purposes.</p>
+
+    <p>The cleaner design, and the one this method adopts going forward, is this:</p>
+
+    <div class="rule-block">
+      <p><strong>Mechanisms = Tools and Systems only.</strong></p>
+      <p>People move to Supplier (the person or team who provides inputs or performs the activity itself) and Customer (the person or team who receives).</p>
+    </div>
+
+    <p>This is not a correction of Parts I through III. Those articles presented ICOMs faithfully as IDEF0 defines them. This is an intentional refinement that becomes possible and necessary once SIPOC is combined with ICOM. The frameworks reinforce each other, but only if each element has a single home.</p>
+
+    <p>Under this refinement, the baker is not a Mechanism. The baker is:</p>
+
+    <ul>
+      <li>A <strong>Supplier</strong> who provides their skill, time, and attention to the activity</li>
+      <li>A <strong>Customer</strong> who receives the outputs of prior activities and depends on them being right</li>
+    </ul>
+
+    <p>The oven, the mixing bowl, the timer, the cooling rack &mdash; these remain Mechanisms. They enable the activity but neither provide nor receive. They have no stake in the outcome. People do.</p>
+
+    <hr>
+
+    <!-- ── The Combined Model: A2 Mix Ingredients ── -->
+    <h2 class="section-title">The Combined Model: A2 Mix Ingredients</h2>
+
+    <p>Let's apply the full combined model &mdash; SIPOC + ICOM with the Mechanisms refinement &mdash; to A2 (Mix Ingredients). This activity has the richest set of elements in the brownie process, which makes it the clearest illustration of what the combined model reveals.</p>
+
+    <h3 class="subsection-title">Supplier / Role: Baker + Grocery Store / Pantry</h3>
+    <p class="guiding-question">Who is supplying the inputs? Who is performing the activity?</p>
+
+    <p>The Supplier for any activity captures two things: who provides the inputs, and who performs the work.</p>
+
+    <p>The <strong>Grocery Store Clerk and Baker</strong> supply the physical ingredients &mdash; brownie mix, eggs, water, and pan. They deliver the raw materials that A2 will consume. If the grocery store is out of eggs, A2 cannot begin.</p>
+
+    <p>The <strong>Baker</strong> supplies the labor, skill, and judgment required to actually do the mixing. Ingredients alone do not produce batter. Someone has to combine them, in the right proportions, in the right sequence. That person &mdash; the one performing the activity &mdash; is also a Supplier.</p>
+
+    <p>Both are named. One delivers materials; the other delivers the service.</p>
+
+    <h3 class="subsection-title">Inputs: Brownie Mix, Eggs, Water, Pan</h3>
+    <p class="guiding-question">What comes into this activity that is transformed or consumed?</p>
+
+    <p>These are the materials that A2 consumes and transforms. Same as the ICOM definition in <a href="article-forest-and-trees-3.html" style="color: var(--olive); font-weight: 700;">Part III</a>. SIPOC does not change what the inputs are &mdash; it adds who is responsible for delivering them.</p>
+
+    <h3 class="subsection-title">Controls: Recipe, Customer Preference</h3>
+    <p class="guiding-question">What outside force constrains the process?</p>
+
+    <p>The recipe governs how much of each ingredient, in what order, combined in what way. Customer Preference governs variations &mdash; more chocolate, less sugar, brownies vs. blondies. Controls are not consumed; they govern. Neither the grocery store nor the baker's family provides a control arrow &mdash; controls come from standards, preferences, and operating norms.</p>
+
+    <h3 class="subsection-title">Outputs: Brownie Batter, Trash, Greased Pan</h3>
+    <p class="guiding-question">What is the output from this activity? What does the supplier deliver?</p>
+
+    <p>A2 produces three outputs. The brownie batter is the primary output, the transformed result of combining all inputs. Trash (egg shells, packaging) is an incidental output that must be managed. The greased pan is a prepared output that flows directly to A3 alongside the batter. All three are real outputs and all three have a destination.</p>
+
+    <h3 class="subsection-title">Mechanisms: Mixing Bowl &amp; Spoon</h3>
+    <p class="guiding-question">What systems or tools are required to turn the inputs into outputs?</p>
+
+    <p>Under the combined model, only the tools and systems remain in Mechanisms. The mixing bowl and spoon enable the mixing to happen: they are not consumed, they are not the supplier, they are not the customer. The baker who uses them is the Supplier of labor and skill.</p>
+
+    <h3 class="subsection-title">Customer: Baker (performing A3)</h3>
+    <p class="guiding-question">Who is the output delivered to? Who is the activity performed for?</p>
+
+    <p>The immediate customer of A2's output is the <strong>Baker who will execute A3 (Bake &amp; Serve Brownies)</strong>. They depend on A2 delivering a correctly prepared batter: the right consistency, right quantity, in a properly prepared pan. If A2 delivers poorly &mdash; wrong consistency, wrong amount, ungreased pan &mdash; A3 will fail even if everything else is perfect.</p>
+
+    <p>In the brownie example that is the same Baker throughout. In a real business process it is often a different person or team, and naming them makes the handoff explicit. That is an internal supplier-customer accountability that a standard L1 SIPOC cannot see.</p>
+
+    <hr>
+
+    <!-- ── The Full Model Across All Four Activities ── -->
+    <h2 class="section-title">The Full Model Across All Four Activities</h2>
+
+    <p>With A2 fully mapped, here is how the combined SIPOC + ICOM model looks across all four activities:</p>
+
+    <div class="activity-block">
+      <p class="activity-block-title">A1 &mdash; Preheat Oven</p>
+      <dl class="activity-dl">
+        <dt>Supplier</dt>
+        <dd>Oven Operator (performs the activity) + Fuel Provider (provides fuel/electricity)</dd>
+        <dt>Inputs</dt>
+        <dd>Fuel (Electric / Gas)</dd>
+        <dt>Controls</dt>
+        <dd>Recipe, Oven Performance, Safety Regulations</dd>
+        <dt>Outputs</dt>
+        <dd>Preheated Oven</dd>
+        <dt>Mechanisms</dt>
+        <dd>Oven</dd>
+        <dt>Customer</dt>
+        <dd>Baker (performing A3 &mdash; depends on the preheated oven)</dd>
+        <dt>Problems</dt>
+        <dd>Oven runs cool; need to adjust temperature to match expectation</dd>
+      </dl>
+    </div>
+
+    <div class="activity-block">
+      <p class="activity-block-title">A2 &mdash; Mix Ingredients</p>
+      <dl class="activity-dl">
+        <dt>Supplier</dt>
+        <dd>Baker (performs the activity) + Grocery Store Clerk (provides ingredients)</dd>
+        <dt>Inputs</dt>
+        <dd>Brownie Mix, Eggs, Water, Pan</dd>
+        <dt>Controls</dt>
+        <dd>Recipe, Customer Preferences</dd>
+        <dt>Outputs</dt>
+        <dd>Mixed Brownie Batter, Trash, Greased Pan</dd>
+        <dt>Mechanisms</dt>
+        <dd>Mixing Bowl &amp; Spoon, Pan</dd>
+        <dt>Customer</dt>
+        <dd>Baker (performing A3 &mdash; receives batter + greased pan)</dd>
+        <dt>Comments</dt>
+        <dd>Peanut / Nut Allergy Alert &mdash; no ingredient made in a factory with other nuts</dd>
+      </dl>
+    </div>
+
+    <div class="activity-block">
+      <p class="activity-block-title">A3 &mdash; Bake &amp; Serve Brownies</p>
+      <dl class="activity-dl">
+        <dt>Supplier</dt>
+        <dd>Baker + Oven Operator</dd>
+        <dt>Inputs</dt>
+        <dd>Brownie Batter, Greased Pan</dd>
+        <dt>Controls</dt>
+        <dd>Recipe, Customer Preferences, Oven Performance</dd>
+        <dt>Outputs</dt>
+        <dd>Baked Brownies, Dirty Pans &amp; Utensils</dd>
+        <dt>Mechanisms</dt>
+        <dd>Preheated Oven, Timer, Oven Mitt, Cooling Rack</dd>
+        <dt>Customer</dt>
+        <dd>Baker's Family, Guests</dd>
+        <dt>Problems</dt>
+        <dd>Oven runs cool; need to adjust temperature to match expectation</dd>
+      </dl>
+    </div>
+
+    <div class="activity-block">
+      <p class="activity-block-title">A4 &mdash; Cleanup</p>
+      <dl class="activity-dl">
+        <dt>Supplier</dt>
+        <dd>Baker + Oven Operator</dd>
+        <dt>Inputs</dt>
+        <dd>Dirty Pans &amp; Utensils, Dish Washing Detergent, Water</dd>
+        <dt>Controls</dt>
+        <dd>&mdash;</dd>
+        <dt>Outputs</dt>
+        <dd>Clean Pans &amp; Utensils</dd>
+        <dt>Mechanisms</dt>
+        <dd>Towels, Wash Cloths, Sink</dd>
+        <dt>Customer</dt>
+        <dd>Baker</dd>
+      </dl>
+    </div>
+
+    <p>Notice what just happened. Each activity now has a named Supplier (the person performing it), a named Customer (the person depending on its output), and a clear set of inputs, outputs, controls, and mechanisms. A4 (Cleanup) is a good example of something that often goes undocumented &mdash; it has real inputs, real outputs, real people responsible, and a real customer (the Baker who needs clean equipment for the next batch). When you leave activities like this off the model, you also leave off the accountability.</p>
+
+    <p>In this example it is the same Baker throughout &mdash; but the accountability at each handoff is distinct. If you are troubleshooting a bad batch of brownies, you now have a structured accountability map: which Supplier failed to deliver? Which input was wrong? Which control was violated? Which mechanism was unavailable?</p>
+
+    <p>That is diagnostic power. And it comes from combining two frameworks at every node.</p>
+
+    <hr>
+
+    <!-- ── The Spreadsheet: One Row Per Activity ── -->
+    <h2 class="section-title">The Spreadsheet: One Row Per Activity</h2>
+
+    <p>The combined SIPOC + ICOM model is powerful &mdash; but it becomes operational when you put it in a spreadsheet.</p>
+
+    <p>Each row in the spreadsheet represents one activity. Each column captures one element of the model. The result is a single view of the entire process in which every activity, every dependency, and every accountability relationship is visible at once.</p>
+
+    <h3 class="subsection-title">How Deep Do You Go?</h3>
+
+    <p>Every process model should have at minimum three levels of decomposition:</p>
+
+    <ul>
+      <li><strong>L0</strong> &mdash; the Context Diagram: the entire process as a single box, with its external inputs, controls, outputs, and mechanisms</li>
+      <li><strong>L1</strong> &mdash; the major activities inside that box (Preheat Oven, Mix Ingredients, Bake &amp; Serve Brownies, Cleanup)</li>
+      <li><strong>L2</strong> &mdash; the sub-activities within each L1 step (Secure Fuel, Check Oven, Ignite Oven&hellip;)</li>
+    </ul>
+
+    <p>Whether you need L3 or deeper depends entirely on scope. For a discrete, localized process like baking brownies, L2 is sufficient. For end-to-end business processes spanning multiple departments, systems, or organizational handoffs, you will need L3 and sometimes L4 or beyond. The purpose of the model is to decompose down to the level where the work can actually be analyzed, assigned, and improved. That level is where the real problems live.</p>
+
+    <p>The spreadsheet handles this naturally. Activity IDs encode the level: A1 is L1, A1.1 is L2, A1.1.1 would be L3. Every row, at every level, carries the same nine columns. The hierarchy is visible in the ID; the model is consistent throughout.</p>
+
+    <p>The brownie process fully modeled at L1 and L2 looks like this:</p>
+
+    <div class="process-table-wrap">
+      <table class="process-table">
+        <thead>
+          <tr>
+            <th>Activity ID</th>
+            <th>Activity (Verb + Noun)</th>
+            <th>Supplier / Role</th>
+            <th>Inputs</th>
+            <th>Controls</th>
+            <th>Outputs</th>
+            <th>Mechanisms</th>
+            <th>Customer</th>
+            <th>Critical KPIs</th>
+            <th>Problems</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="l1-row">
+            <td>A1</td>
+            <td>Preheat Oven</td>
+            <td>Oven Operator / Fuel Provider</td>
+            <td>Fuel (Electric / Gas)</td>
+            <td>Recipe / Oven Performance / Safety Regulations</td>
+            <td>Preheated Oven</td>
+            <td>Oven</td>
+            <td>Baker / Family / Guests</td>
+            <td></td>
+            <td>Oven runs cool; adjust temp to match expectation</td>
+          </tr>
+          <tr class="l2-row">
+            <td>A1.1</td>
+            <td>&#8627; Secure Fuel</td>
+            <td>Fuel Provider / Oven Operator</td>
+            <td>Fuel Order</td>
+            <td>Fuel Inventory / Budget</td>
+            <td>Delivered Fuel / Paid Invoice</td>
+            <td>Purchase Order / Delivery Truck / Invoice</td>
+            <td>Baker / Family / Guests</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr class="l2-row">
+            <td>A1.2</td>
+            <td>&#8627; Check Oven</td>
+            <td>Oven Operator</td>
+            <td>Delivered Fuel</td>
+            <td>Recipe / Oven Performance / Safety Regulations</td>
+            <td>Checked Oven</td>
+            <td>Oven</td>
+            <td>Baker / Family / Guests</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr class="l2-row">
+            <td>A1.3</td>
+            <td>&#8627; Ignite Oven</td>
+            <td>Oven Operator</td>
+            <td>Checked Oven</td>
+            <td>Recipe / Oven Performance / Safety Regulations</td>
+            <td>Preheated Oven</td>
+            <td>Oven</td>
+            <td>Baker / Family / Guests</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr class="l1-row">
+            <td>A2</td>
+            <td>Mix Ingredients</td>
+            <td>Grocery Store Clerk / Baker</td>
+            <td>Brownie Mix / Eggs / Water / Pan</td>
+            <td>Recipe / Customer Preferences</td>
+            <td>Mixed Brownie Batter / Trash / Greased Pan</td>
+            <td>Mixing Bowl &amp; Spoon / Pan</td>
+            <td>Baker / Family / Guests</td>
+            <td></td>
+            <td>Peanut / Nut Allergy Alert: no ingredient from factory with other nuts</td>
+          </tr>
+          <tr class="l2-row">
+            <td>A2.1</td>
+            <td>&#8627; Secure Ingredients</td>
+            <td>Grocery Store Clerk / Baker</td>
+            <td>Ingredient Order</td>
+            <td>Recipe / Customer Preferences</td>
+            <td>Delivered Ingredients / Paid Invoice</td>
+            <td>Purchase Order / Delivery Truck / Invoice</td>
+            <td>Baker / Family / Guests</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr class="l2-row">
+            <td>A2.2</td>
+            <td>&#8627; Combine Ingredients</td>
+            <td>Baker</td>
+            <td>Delivered Ingredients</td>
+            <td>Recipe / Customer Preferences</td>
+            <td>Combined Ingredients</td>
+            <td>Mixing Bowl</td>
+            <td>Baker / Family / Guests</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr class="l2-row">
+            <td>A2.3</td>
+            <td>&#8627; Mix Ingredients</td>
+            <td>Baker</td>
+            <td>Combined Ingredients / Grease</td>
+            <td>Recipe / Customer Preferences</td>
+            <td>Mixed Brownie Batter / Greased Pan</td>
+            <td>Mixing Bowl / Mixer / Spoon / Pan</td>
+            <td>Baker / Family / Guests</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr class="l2-row">
+            <td>A2.4</td>
+            <td>&#8627; Pour Ingredients</td>
+            <td>Baker</td>
+            <td>Mixed Brownie Batter / Greased Pan</td>
+            <td>Recipe / Customer Preferences</td>
+            <td>Poured Brownie Batter</td>
+            <td>Pan (Greased) / Spoon</td>
+            <td>Oven Operator / Baker / Family / Guests</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr class="l1-row">
+            <td>A3</td>
+            <td>Bake &amp; Serve Brownies</td>
+            <td>Baker / Oven Operator</td>
+            <td>Brownie Batter / Greased Pan</td>
+            <td>Recipe / Customer Preferences / Oven Performance</td>
+            <td>Baked Brownies / Dirty Pans &amp; Utensils</td>
+            <td>Preheated Oven / Timer / Oven Mitt / Cooling Rack</td>
+            <td>Baker / Family / Guests</td>
+            <td></td>
+            <td>Oven runs cool; adjust temp to match expectation</td>
+          </tr>
+          <tr class="l2-row">
+            <td>A3.1</td>
+            <td>&#8627; Bake Brownies</td>
+            <td>Baker / Oven Operator</td>
+            <td>Poured Brownie Batter / Preheated Oven</td>
+            <td>Recipe / Customer Preferences / Oven Performance</td>
+            <td>Baked Brownies / Dirty Pans &amp; Utensils</td>
+            <td>Preheated Oven / Timer / Oven Mitt</td>
+            <td>Baker / Family / Guests</td>
+            <td></td>
+            <td>Oven runs cool; adjust temp to match expectation</td>
+          </tr>
+          <tr class="l2-row">
+            <td>A3.2</td>
+            <td>&#8627; Cool Brownies</td>
+            <td>Baker</td>
+            <td>Baked Brownies</td>
+            <td>Recipe / Customer Preferences / Oven Performance</td>
+            <td>Cooled Brownies / Dirty Pans &amp; Utensils</td>
+            <td>Oven Mitt / Cooling Rack / Spatula</td>
+            <td>Baker / Family / Guests</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr class="l2-row">
+            <td>A3.3</td>
+            <td>&#8627; Serve Brownies</td>
+            <td>Baker</td>
+            <td>Cooled Brownies</td>
+            <td>Recipe / Customer Preferences / Oven Performance</td>
+            <td>Served Brownies / Dirty Pans &amp; Utensils</td>
+            <td>Plates / Spatula</td>
+            <td>Baker / Family / Guests</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr class="l1-row">
+            <td>A4</td>
+            <td>Cleanup</td>
+            <td>Baker / Oven Operator</td>
+            <td>Dirty Pans &amp; Utensils / Dish Washing Detergent / Water</td>
+            <td></td>
+            <td>Clean Pans &amp; Utensils</td>
+            <td>Towels / Wash Cloths / Sink</td>
+            <td>Baker</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The columns map directly to the combined model:</p>
+
+    <table class="reference-table">
+      <thead>
+        <tr>
+          <th>Column</th>
+          <th>Source Framework</th>
+          <th>Guiding Question</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Activity (Verb + Noun)</strong></td>
+          <td><span class="framework-badge badge-idef0">IDEF0</span></td>
+          <td>What activity is performed at this step?</td>
+        </tr>
+        <tr>
+          <td><strong>Supplier / Role</strong></td>
+          <td><span class="framework-badge badge-sipoc">SIPOC</span></td>
+          <td>Who is supplying the inputs? Who is performing the activity?</td>
+        </tr>
+        <tr>
+          <td><strong>Inputs</strong></td>
+          <td><span class="framework-badge badge-icom">ICOM</span></td>
+          <td>What comes into this activity that is transformed or consumed?</td>
+        </tr>
+        <tr>
+          <td><strong>Controls</strong></td>
+          <td><span class="framework-badge badge-icom">ICOM</span></td>
+          <td>What outside force constrains the process?</td>
+        </tr>
+        <tr>
+          <td><strong>Outputs</strong></td>
+          <td><span class="framework-badge badge-icom">ICOM</span></td>
+          <td>What is the output from this activity? What does the supplier deliver?</td>
+        </tr>
+        <tr>
+          <td><strong>Mechanisms</strong></td>
+          <td><span class="framework-badge badge-icom-refined">ICOM (refined)</span></td>
+          <td>What systems or tools are required to turn the inputs into outputs?</td>
+        </tr>
+        <tr>
+          <td><strong>Customer</strong></td>
+          <td><span class="framework-badge badge-sipoc">SIPOC</span></td>
+          <td>Who is the output delivered to? Who is the activity performed for?</td>
+        </tr>
+        <tr>
+          <td><strong>Critical KPIs</strong></td>
+          <td><span class="framework-badge badge-extension">Extension</span></td>
+          <td>What Key Performance Indicators or metrics help us measure this activity?</td>
+        </tr>
+        <tr>
+          <td><strong>Problems / Pain Points</strong></td>
+          <td><span class="framework-badge badge-extension">Extension</span></td>
+          <td>What pain do participants experience? What problems do we need to solve for?</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The KPIs and Problems / Pain Points columns are not part of the original IDEF0 or SIPOC frameworks. They are the natural next step: once you know what each activity produces and who depends on it, you can ask how well it performs and where it fails. Those are the columns that connect the structural model to the operational reality of the business.</p>
+
+    <p>This spreadsheet is not a diagram. It is not a swim lane chart. It is not a value stream map. It is a structured data table &mdash; and that means it can be filtered, sorted, analyzed, and extended. Every row is a work unit (an activity within a process, or a process step, within a particular context). Every column is a dimension of inquiry.</p>
+
+    <p>A process that lives in this spreadsheet can be diagnosed, discussed, and improved by any team, without requiring a Visio license, an IDEF0 tool, or a Lean Six Sigma certification (although, the Lean Six Sigma certification is a PLUS!).</p>
+
+    <hr>
+
+    <!-- ── Why This Matters ── -->
+    <h2 class="section-title">Why This Matters</h2>
+
+    <p>The traditional IDEF0 practitioner applies ICOMs at every node and produces a rich decomposition diagram. The traditional LSS practitioner builds a SIPOC and produces a stakeholder map. Both are useful. Both are incomplete.</p>
+
+    <p>The IDEF0 decomposition has no accountability &mdash; it can tell you that a brownie-mixing activity needs a recipe and a bowl, but it cannot tell you who is responsible for ensuring the recipe is current, or who gets called when the batter is wrong.</p>
+
+    <p>The SIPOC stakeholder map has no structure &mdash; it can tell you that the Grocery Store is a supplier and the Baker's Family is a customer, but it cannot tell you which activities inside the process are failing and why.</p>
+
+    <p>The combined model closes both gaps. Applied at every node, it produces a complete picture of any process: its structure, its governance, its accountability, and its performance potential &mdash; all visible in a single spreadsheet.</p>
+
+    <p>That is the model. In Part VI, we will add the final layer: quantifying it.</p>
+
+    <hr>
+
+    <!-- ── In Summary ── -->
+    <h2 class="section-title">In Summary</h2>
+
+    <p>Applying SIPOC at every activity node, not just at the top level, reveals internal supplier-customer relationships that the traditional L1 SIPOC cannot see. Combining it with ICOM at every node gives each activity a complete analytical profile: who provides, what flows in, what governs it, what produces it, what enables it, and who depends on the output.</p>
+
+    <p>The Mechanisms Redefinition &mdash; placing people in Supplier and Customer, leaving only tools and systems in Mechanisms &mdash; sharpens the model by ensuring every element has exactly one home.</p>
+
+    <p>The spreadsheet is not a visualization tool. It is the operational artifact &mdash; one row per activity at every level of decomposition, all fields in a single view, extensible with Critical KPIs and Problems. L1 gives you the high-level picture. L2 gives you the work. L3 and beyond give you the precision a large end-to-end process requires. It makes the model actionable for any team without requiring specialized software.</p>
+
+    <p>In Part VI, we will add the final dimension: Value Stream Analysis. Each activity can be quantified &mdash; cycle time, value-added time, wait time, defect rate. From those numbers we can calculate two derived metrics that tell you, objectively, how well the whole process performs and where the waste is hiding.</p>
+
+    <p style="font-style: italic; color: rgba(44,46,47,0.58); margin-top: 2em;">If you found this article informative, please like it and share it with your network. I'd like to hear from you in the comments and address any questions you might have.</p>
+
+    <!-- ── Series navigation ── -->
+    <div class="series-nav">
+      <a href="article-forest-and-trees-4.html" class="series-nav-card">
+        <p class="series-nav-label">&larr; Part IV</p>
+        <p class="series-nav-title">SIPOC: Adding Accountability</p>
+      </a>
+      <div class="series-nav-card" style="opacity: 0.5; cursor: default;">
+        <p class="series-nav-label">Part VI &rarr;</p>
+        <p class="series-nav-title">Value Stream Analysis &mdash; Coming Soon</p>
+      </div>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="articles.html">&larr; All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="index.html">Profile</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>
