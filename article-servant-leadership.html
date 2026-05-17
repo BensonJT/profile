@@ -329,49 +329,6 @@
       margin-bottom: 32px;
     }
 
-    /* ── Author card ── */
-    .author-card {
-      background: #fff;
-      border-left: 4px solid var(--gold);
-      border-radius: 0 6px 6px 0;
-      padding: 28px 32px;
-      margin: 48px 0 0;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    }
-
-    .author-headshot {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-      border: 2px solid var(--gold);
-    }
-
-    .author-info h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--charcoal);
-      margin-bottom: 4px;
-    }
-
-    .author-info p {
-      font-size: 0.85rem !important;
-      color: rgba(44,46,47,0.6) !important;
-      margin-bottom: 0 !important;
-      line-height: 1.5 !important;
-    }
-
-    .author-info a {
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .author-info a:hover { text-decoration: underline; }
 
     /* ── Footer ── */
     .page-footer {
@@ -654,15 +611,8 @@
 
     <p class="closing-cta">What's the hardest of these to sustain when the pressure is on? I'm curious what breaks down first — and what's helped you hold it.</p>
 
-    <div class="author-card">
-      <img src="img/Gemini_Headshot.webp" alt="Jeffrey Benson" class="author-headshot">
-      <div class="author-info">
-        <h3>Jeffrey Benson</h3>
-        <p>Principal, Cornerstone Solutions &nbsp;&middot;&nbsp; Lean Six Sigma Black Belt<br>
-          <a href="https://www.linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn &rarr;</a>
-        </p>
-      </div>
-    </div>
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
 
   </article>
 
