@@ -1098,10 +1098,6 @@
             .method-tab-btn { padding: 9px 10px; font-size: 0.62rem; letter-spacing: 1px; }
         }
 
-        @media (max-width: 480px) {
-            .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
-        }
-
         /* ════════════════════════════════════════
            STICKY NAV
            ════════════════════════════════════════ */
@@ -1118,7 +1114,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 52px;
+            flex-wrap: wrap;
         }
 
         .site-nav a {
@@ -1138,6 +1134,18 @@
 
         .site-nav a:hover { color: var(--vellum); }
         .site-nav a.nav-active { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Two-row wrap on phones: 3 items per row × 36px each = 72px nav */
+        @media (max-width: 540px) {
+            .site-nav a {
+                flex: 0 0 33.33%;
+                justify-content: center;
+                height: 36px;
+                padding: 0;
+                font-size: 0.62rem;
+                letter-spacing: 0.08em;
+            }
+        }
 
         body { padding-top: 52px; }
 
@@ -2662,6 +2670,18 @@
 
             window.addEventListener('scroll', updateNav, { passive: true });
             updateNav();
+        })();
+
+        // ── Dynamic nav height (handles two-row wrap on phones) ──
+        (function () {
+            var nav = document.getElementById('site-nav');
+            function applyNavOffset() {
+                var h = nav.offsetHeight;
+                document.documentElement.style.scrollPaddingTop = h + 'px';
+                document.body.style.paddingTop = h + 'px';
+            }
+            applyNavOffset();
+            window.addEventListener('resize', applyNavOffset);
         })();
     </script>
 
