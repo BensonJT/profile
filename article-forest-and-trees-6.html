@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to See the Forest and the Trees (Part VI) — Jeffrey Benson</title>
+  <meta name="description" content="Value Stream Analysis: collect five data points per activity to calculate PCE and RTY — two metrics that reveal exactly where a process is losing time and quality.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      overflow: hidden;
+    }
+
+    .header-image-wrap { position: relative; }
+
+    .header-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.82;
+    }
+
+    .header-image-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, var(--olive));
+      pointer-events: none;
+    }
+
+    .header-text {
+      padding: 48px 48px 64px;
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.6rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong { color: rgba(240,234,214,0.85); font-weight: 700; }
+
+    /* ── LinkedIn bar ── */
+    .linkedin-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(240,234,214,0.55);
+      letter-spacing: 0.04em;
+    }
+
+    .linkedin-bar a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+
+    .linkedin-bar a:hover { opacity: 0.8; }
+
+    /* ── Article body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    .article-intro {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: rgba(44,46,47,0.7);
+      line-height: 1.75;
+      margin-bottom: 32px !important;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold);
+    }
+
+    /* ── Section headers ── */
+    .section-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 56px 0 20px;
+      line-height: 1.2;
+    }
+
+    .subsection-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 36px 0 12px;
+      line-height: 1.25;
+    }
+
+    /* ── Callout blocks ── */
+    .concept-callout {
+      background: rgba(191,163,111,0.1);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+
+    .concept-callout p {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.82);
+      line-height: 1.7;
+      margin-bottom: 0 !important;
+    }
+
+    .concept-callout strong { color: var(--charcoal); }
+
+    .rule-block {
+      background: rgba(59,75,53,0.06);
+      border-left: 3px solid var(--olive);
+      border-radius: 0 4px 4px 0;
+      padding: 18px 22px;
+      margin: 24px 0;
+    }
+
+    .rule-block p {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.82);
+      line-height: 1.7;
+      margin-bottom: 0.5em !important;
+    }
+
+    .rule-block p:last-child { margin-bottom: 0 !important; }
+    .rule-block strong { color: var(--charcoal); }
+
+    /* ── Formula rows ── */
+    .formula-row { margin-bottom: 24px; }
+    .formula-row:last-child { margin-bottom: 0; }
+
+    .formula-expr {
+      display: block;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.0rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 5px;
+    }
+
+    .formula-note {
+      font-size: 0.93rem;
+      color: rgba(44,46,47,0.65);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* ── Body lists ── */
+    .article-body ul, .article-body ol {
+      padding-left: 24px;
+      margin: 12px 0 20px;
+    }
+
+    .article-body ul li, .article-body ol li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 8px;
+    }
+
+    .article-body ol li strong {
+      color: var(--olive);
+    }
+
+    /* ── Process table — full-width breakout ── */
+    .process-table-wrap {
+      overflow-x: auto;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 32px 0;
+      padding: 0 32px;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+      background: rgba(255,255,255,0.5);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    }
+
+    .process-table {
+      width: 100%;
+      min-width: 860px;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+
+    .process-table thead tr.col-group-row th {
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 7px 12px 5px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.15);
+      color: var(--vellum);
+    }
+
+    .process-table thead tr.col-group-row th.id-group {
+      background: var(--olive);
+      border-right: 2px solid rgba(255,255,255,0.2);
+      text-align: left;
+    }
+
+    .process-table thead tr.col-group-row th.collect-group {
+      background: rgba(59,75,53,0.82);
+    }
+
+    .process-table thead tr.col-group-row th.calc-group {
+      background: rgba(191,163,111,0.75);
+      color: var(--charcoal);
+      border-right: none;
+    }
+
+    .process-table th {
+      background: var(--olive);
+      color: var(--vellum);
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      white-space: nowrap;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .process-table th:last-child { border-right: none; }
+
+    .process-table th.calc-th {
+      background: rgba(191,163,111,0.65);
+      color: var(--charcoal);
+    }
+
+    .process-table td {
+      padding: 9px 12px;
+      vertical-align: middle;
+      line-height: 1.45;
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      border-right: 1px solid rgba(191,163,111,0.08);
+    }
+
+    .process-table td:last-child { border-right: none; }
+
+    .process-table .data-row td {
+      background: #fff;
+      color: rgba(44,46,47,0.82);
+    }
+
+    .process-table .data-row td.act-id {
+      background: var(--olive);
+      color: var(--vellum);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.88rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .process-table .data-row td.calc-td {
+      background: rgba(191,163,111,0.08);
+      font-weight: 600;
+      color: var(--charcoal);
+      text-align: center;
+    }
+
+    .process-table .data-row td.num-td {
+      text-align: center;
+    }
+
+    /* ── Summary table ── */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0 32px;
+      font-size: 0.91rem;
+      border: 1px solid rgba(191,163,111,0.3);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .summary-table th {
+      background: var(--olive);
+      color: var(--vellum);
+      padding: 10px 16px;
+      text-align: left;
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .summary-table td {
+      padding: 11px 16px;
+      border-bottom: 1px solid rgba(191,163,111,0.15);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+
+    .summary-table tr:last-child td { border-bottom: none; }
+    .summary-table tr:nth-child(even) td { background: rgba(191,163,111,0.05); }
+
+    .summary-table td.metric-name {
+      font-weight: 700;
+      color: var(--charcoal);
+      white-space: nowrap;
+    }
+
+    .summary-table td.formula-cell {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.87rem;
+      color: rgba(44,46,47,0.75);
+    }
+
+    .summary-table td.value-cell {
+      font-weight: 700;
+      color: var(--olive);
+      white-space: nowrap;
+    }
+
+    /* ── Reference table ── */
+    .reference-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0 32px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(191,163,111,0.25);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .reference-table th {
+      background: var(--olive);
+      color: var(--vellum);
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .reference-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid rgba(191,163,111,0.15);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+
+    .reference-table tr:last-child td { border-bottom: none; }
+    .reference-table tr:nth-child(even) td { background: rgba(191,163,111,0.05); }
+
+    .type-badge {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      white-space: nowrap;
+    }
+
+    .badge-collect { background: rgba(59,75,53,0.12); color: var(--olive); }
+    .badge-calculate { background: rgba(191,163,111,0.28); color: #7a5d28; }
+    .badge-summary { background: rgba(194,123,88,0.18); color: #7a3a1a; }
+
+    /* ── Series navigation ── */
+    .series-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 48px 0 32px;
+    }
+
+    .series-nav-card {
+      background: rgba(44,46,47,0.06);
+      border-radius: 6px;
+      padding: 20px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s;
+    }
+
+    .series-nav-card:hover { background: rgba(44,46,47,0.1); }
+
+    .series-nav-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .series-nav-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.35;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.8rem; }
+      .header-text { padding: 36px 24px 48px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.25rem; }
+      .series-nav { grid-template-columns: 1fr; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Writing</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-image-wrap">
+      <img src="img/stream.webp"
+           alt="A quiet stream winding through a forest — following the flow from source to end">
+    </div>
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process &middot; Methodology &middot; Part VI</p>
+      <h1 class="article-title">How to See the Forest<br>and the Trees</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2025</p>
+    </div>
+  </header>
+
+  <div class="linkedin-bar">
+    Originally published on LinkedIn &mdash;
+    <a href="https://www.linkedin.com/pulse/how-see-forest-trees-part-vi-value-stream-analysis-model-benson-1vk1e/" target="_blank" rel="noopener noreferrer">View or comment there &rarr;</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+
+    <p class="article-intro">To see the forest and the trees, you develop the capability to step back and see the big picture, while simultaneously being able to zoom in and observe the trees. This series of articles will teach some practical things that will help you to cultivate this skill.</p>
+
+    <p>Parts I through V built a process model that is complete in its structure. You know what activities exist. You know what flows between them &mdash; what inputs arrive, what controls govern them, what mechanisms run them, what outputs they produce. You know who supplies each step and who depends on its output.</p>
+
+    <p>What you do not yet have is numbers.</p>
+
+    <p>Value Stream Analysis adds the quantitative layer. It asks five questions of every activity in your model. From those five answers it derives three metrics per activity and two metrics for the process as a whole. Those two process-level metrics &mdash; Process Cycle Efficiency and Rolled Throughput Yield &mdash; give you an objective answer to the two most important operational questions: where is the process losing time, and where is it losing quality.</p>
+
+    <hr>
+
+    <!-- ── What VSA Is ── -->
+    <h2 class="section-title">What Value Stream Analysis Is</h2>
+
+    <p>Value Stream Analysis is not Value Stream Mapping. Value Stream Mapping (VSM) is a visual artifact &mdash; a diagram drawn on a whiteboard or in a tool like Lucidchart, showing the flow of material and information across a process with a time ladder along the bottom. VSM is a useful workshop tool. It produces a deliverable that lives apart from your spreadsheet and requires a separate facilitation exercise to build and maintain.</p>
+
+    <p>VSA is the data collection and calculation layer embedded in the model you already have. It is eight new columns added to the rows from Part V. No new diagram. No new software. No separate exercise. You observe each activity, record five values, and the spreadsheet derives the rest.</p>
+
+    <hr>
+
+    <!-- ── The Five Data Points ── -->
+    <h2 class="section-title">The Five Data Points</h2>
+
+    <p>For each activity in your process model, collect these five values:</p>
+
+    <ol>
+      <li><strong>Cycle Time (CT)</strong> &mdash; Total elapsed time from when the activity starts until it produces its output. This includes every minute the activity is in process &mdash; active work, pauses, and any waits that occur within the step itself.</li>
+      <li><strong>Value-Added Time (VAT)</strong> &mdash; The portion of Cycle Time where the work is directly transforming the input into something the customer cares about. The customer pays for brownies; they do not pay for the baker waiting for the oven to heat. VAT is the time that changes the input in a way the customer would recognize as worth paying for.</li>
+      <li><strong>Wait Time (WT)</strong> &mdash; Idle or queue time <em>before</em> this activity begins &mdash; the gap between the previous step finishing and this one starting. The batter waits in the bowl before the baker carries it to the oven. That wait belongs to the Bake step as WT, not as part of its CT.</li>
+      <li><strong>Defect Rate (DR)</strong> &mdash; The percentage of outputs from this activity that fail to meet requirements on the first attempt. Any unit that exits the activity in a condition requiring correction &mdash; burned, wrong proportion, missing a step &mdash; is a defect.</li>
+      <li><strong>Rework Rate (RR)</strong> &mdash; The subset of defects that can be corrected and continue downstream rather than being scrapped. A batch with too little sugar can be adjusted; a burned batch cannot. DR captures all defects; RR captures only those that are recoverable. The RTY formula uses DR &mdash; because any defect, even a reworked one, represents a quality failure at that step.</li>
+    </ol>
+
+    <div class="concept-callout">
+      <p>Some NVA time is <strong>necessary</strong> &mdash; the oven must heat; the brownie must cool. Some NVA time is <strong>pure waste</strong> &mdash; waiting for an approval that sat unread, a handoff delayed by a scheduling gap. VSA surfaces both. The distinction between necessary and wasteful NVA determines your improvement strategy: necessary NVA points toward process redesign or throughput scaling; wasteful NVA points toward workflow changes and automation.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── The Formulas ── -->
+    <h2 class="section-title">The Formulas</h2>
+
+    <h3 class="subsection-title">Per-Activity Metrics</h3>
+
+    <p>From the five data points above, derive three metrics for each activity:</p>
+
+    <div class="rule-block">
+      <div class="formula-row">
+        <span class="formula-expr">NVA Time = CT &minus; VAT</span>
+        <p class="formula-note">Time in this step that is not adding value. The gap between what the step takes and what it delivers. A necessary preheating wait and a preventable approval delay both show up here &mdash; the number tells you the size of the problem; the root cause tells you which lever to pull.</p>
+      </div>
+      <div class="formula-row">
+        <span class="formula-expr">Activity Efficiency = VAT &divide; CT &times; 100%</span>
+        <p class="formula-note">The percentage of time in this step that creates value. Thirteen percent means 13 seconds of every minute are value-adding; 87 are overhead. One hundred percent means every second transforms the input into something the customer needs.</p>
+      </div>
+      <div class="formula-row">
+        <span class="formula-expr">First Pass Yield (FPY) = 1 &minus; DR</span>
+        <p class="formula-note">Probability a unit completes this step without a defect. FPY of 95% means 5 out of every 100 units will require correction before moving on. Use the decimal form of DR in the calculation (5% DR &rarr; FPY = 1 &minus; 0.05 = 0.95). FPY is the per-activity building block for RTY.</p>
+      </div>
+    </div>
+
+    <h3 class="subsection-title">Cross-Process Metrics</h3>
+
+    <p>Two summary metrics describe performance across all activities in the model:</p>
+
+    <div class="rule-block">
+      <div class="formula-row">
+        <span class="formula-expr">Total Lead Time (TLT) = &Sigma;(CT + WT) across all activities</span>
+        <p class="formula-note">How long the process takes end-to-end &mdash; from the first activity starting to the final output delivered &mdash; including all wait time between steps. This is the denominator for PCE.</p>
+      </div>
+      <div class="formula-row">
+        <span class="formula-expr">Total Value-Added Time (TVAT) = &Sigma;(VAT) across all activities</span>
+        <p class="formula-note">The sum of all value-adding work across the entire process. This is the numerator for PCE.</p>
+      </div>
+      <div class="formula-row">
+        <span class="formula-expr">Process Cycle Efficiency (PCE) = TVAT &divide; TLT &times; 100%</span>
+        <p class="formula-note">The fraction of total lead time that is actually adding value. A PCE of 33% means for every three minutes a unit is in process, one minute creates value and two do not. Most service and knowledge-work processes run 5&ndash;30% PCE. World-class manufacturing targets 25% or higher.</p>
+      </div>
+      <div class="formula-row">
+        <span class="formula-expr">Rolled Throughput Yield (RTY) = FPY&#x2081; &times; FPY&#x2082; &times; &middot;&middot;&middot; &times; FPY&#x2099;</span>
+        <p class="formula-note">Probability a unit passes through the <em>entire process</em> without encountering a single defect at any step. RTY compounds the yield of every activity. A four-step process with each step at 97% FPY produces RTY = 0.97&#x2074; = 88.5% &mdash; more than 1 in 10 units encounters a defect somewhere, even though no single step looks alarming on its own.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ── The Brownie Example ── -->
+    <h2 class="section-title">The Brownie Example</h2>
+
+    <p>Applying VSA to the L1 activities from the brownie process model: the five values in the left columns are collected by direct observation; the three values in the right columns are calculated from them.</p>
+
+    <!-- Full-width table: activity data + calculated metrics -->
+    <div class="process-table-wrap">
+      <table class="process-table">
+        <thead>
+          <tr class="col-group-row">
+            <th class="id-group" colspan="2">&nbsp;</th>
+            <th class="collect-group" colspan="5">Collect</th>
+            <th class="calc-group" colspan="3">Calculate</th>
+          </tr>
+          <tr>
+            <th style="min-width: 72px;">Activity</th>
+            <th style="min-width: 180px;">Activity Name</th>
+            <th>CT (min)</th>
+            <th>VAT (min)</th>
+            <th>WT (min)</th>
+            <th>DR</th>
+            <th>RR</th>
+            <th class="calc-th">NVA (min)</th>
+            <th class="calc-th">Activity Eff %</th>
+            <th class="calc-th">FPY</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="data-row">
+            <td class="act-id">A1</td>
+            <td>Preheat Oven</td>
+            <td class="num-td">15</td>
+            <td class="num-td">2</td>
+            <td class="num-td">0</td>
+            <td class="num-td">2%</td>
+            <td class="num-td">2%</td>
+            <td class="calc-td">13</td>
+            <td class="calc-td">13%</td>
+            <td class="calc-td">98%</td>
+          </tr>
+          <tr class="data-row">
+            <td class="act-id">A2</td>
+            <td>Mix Ingredients</td>
+            <td class="num-td">12</td>
+            <td class="num-td">9</td>
+            <td class="num-td">2</td>
+            <td class="num-td">5%</td>
+            <td class="num-td">3%</td>
+            <td class="calc-td">3</td>
+            <td class="calc-td">75%</td>
+            <td class="calc-td">95%</td>
+          </tr>
+          <tr class="data-row">
+            <td class="act-id">A3</td>
+            <td>Bake &amp; Serve</td>
+            <td class="num-td">42</td>
+            <td class="num-td">7</td>
+            <td class="num-td">1</td>
+            <td class="num-td">3%</td>
+            <td class="num-td">2%</td>
+            <td class="calc-td">35</td>
+            <td class="calc-td">17%</td>
+            <td class="calc-td">97%</td>
+          </tr>
+          <tr class="data-row">
+            <td class="act-id">A4</td>
+            <td>Cleanup</td>
+            <td class="num-td">10</td>
+            <td class="num-td">10</td>
+            <td class="num-td">2</td>
+            <td class="num-td">0%</td>
+            <td class="num-td">0%</td>
+            <td class="calc-td">0</td>
+            <td class="calc-td">100%</td>
+            <td class="calc-td">100%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The cross-process summary derives from those four activity rows:</p>
+
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Formula</th>
+          <th>Brownie Process</th>
+          <th>What It Tells You</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="metric-name">Total Lead Time</td>
+          <td class="formula-cell">&Sigma;(CT + WT)</td>
+          <td class="value-cell">84 min</td>
+          <td>End-to-end clock time for one batch</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Total VA Time</td>
+          <td class="formula-cell">&Sigma;(VAT)</td>
+          <td class="value-cell">28 min</td>
+          <td>Time actually adding value across all steps</td>
+        </tr>
+        <tr>
+          <td class="metric-name">PCE</td>
+          <td class="formula-cell">TVAT &divide; TLT</td>
+          <td class="value-cell">33.3%</td>
+          <td>One-third of total time adds value; two-thirds does not</td>
+        </tr>
+        <tr>
+          <td class="metric-name">RTY</td>
+          <td class="formula-cell">0.98 &times; 0.95 &times; 0.97 &times; 1.00</td>
+          <td class="value-cell">90.3%</td>
+          <td>Roughly 1 in 10 batches encounters a defect somewhere in the process</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="subsection-title">Reading the Numbers</h3>
+
+    <p>The PCE of 33.3% reflects the physics of baking. A3 (Bake &amp; Serve) contributes 35 of the 56 total NVA minutes, and those 35 minutes are oven time and cooling time that cannot be removed without changing the product. In a commercial kitchen, the improvement lever is not speed &mdash; it is batch size. More units per bake cycle amortizes the fixed NVA time across more output, improving throughput without touching the recipe. In a business process, NVA time driven by mandatory system processing or compliance holds points toward automation or workflow redesign, not headcount reduction.</p>
+
+    <p>The RTY of 90.3% means roughly 1 in 10 batches will encounter at least one defect somewhere in the process. The source is clear: A2 (Mix Ingredients) carries the highest defect rate at 5%, driven by the nut allergy risk documented in the Comments column of the Part V spreadsheet. The structural model told you where the risk lived. The VSA confirms it in the yield number. These two artifacts are designed to be read together.</p>
+
+    <p>Taken together, the numbers give you a two-dimensional picture of process health. PCE tells you where time is going. RTY tells you where quality is leaking. Activities with both low Activity Efficiency and high Defect Rate are the highest-priority improvement targets &mdash; they are costing you in both dimensions simultaneously.</p>
+
+    <hr>
+
+    <!-- ── Completing the Spreadsheet ── -->
+    <h2 class="section-title">Completing the Spreadsheet</h2>
+
+    <p>The Part V spreadsheet gains five columns to collect and three columns to calculate. Add them to every row in the model &mdash; at every level of decomposition &mdash; and populate the values for each activity you have direct observation data for.</p>
+
+    <table class="reference-table">
+      <thead>
+        <tr>
+          <th>Column</th>
+          <th>Type</th>
+          <th>Description &amp; Formula</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Cycle Time (CT)</strong></td>
+          <td><span class="type-badge badge-collect">Collect</span></td>
+          <td>Total elapsed time for the activity from start to output. Observe and record in consistent units (minutes).</td>
+        </tr>
+        <tr>
+          <td><strong>Value-Added Time (VAT)</strong></td>
+          <td><span class="type-badge badge-collect">Collect</span></td>
+          <td>The portion of CT that directly transforms input into customer-valued output. Always &le; CT.</td>
+        </tr>
+        <tr>
+          <td><strong>Wait Time (WT)</strong></td>
+          <td><span class="type-badge badge-collect">Collect</span></td>
+          <td>Queue or idle time before this activity begins &mdash; the gap between the prior step and this one.</td>
+        </tr>
+        <tr>
+          <td><strong>Defect Rate (DR)</strong></td>
+          <td><span class="type-badge badge-collect">Collect</span></td>
+          <td>Percentage of outputs requiring any correction on first pass. Enter as decimal (0.05 = 5%) or percent.</td>
+        </tr>
+        <tr>
+          <td><strong>Rework Rate (RR)</strong></td>
+          <td><span class="type-badge badge-collect">Collect</span></td>
+          <td>Subset of DR that is corrected and continues downstream (vs. scrapped). Informs improvement strategy; does not feed PCE or RTY directly.</td>
+        </tr>
+        <tr>
+          <td><strong>NVA Time</strong></td>
+          <td><span class="type-badge badge-calculate">Calculate</span></td>
+          <td><code>= CT &minus; VAT</code> &nbsp; Time in this step not adding value.</td>
+        </tr>
+        <tr>
+          <td><strong>Activity Efficiency %</strong></td>
+          <td><span class="type-badge badge-calculate">Calculate</span></td>
+          <td><code>= VAT / CT</code> &nbsp; Format as percentage. Proportion of the step that adds value.</td>
+        </tr>
+        <tr>
+          <td><strong>First Pass Yield (FPY)</strong></td>
+          <td><span class="type-badge badge-calculate">Calculate</span></td>
+          <td><code>= 1 &minus; DR</code> &nbsp; Probability a unit exits this step without a defect.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Add two process-level summary calculations at the bottom of the spreadsheet (or in a separate summary section), drawing from all activity rows:</p>
+
+    <ul>
+      <li><strong>Process Cycle Efficiency:</strong> <code>= SUM(VAT column) / (SUM(CT column) + SUM(WT column))</code></li>
+      <li><strong>Rolled Throughput Yield:</strong> <code>= PRODUCT(FPY column range)</code></li>
+    </ul>
+
+    <p>The RR column does not flow into PCE or RTY &mdash; it informs the improvement conversation. High DR combined with high RR means defects are expensive but recoverable; high DR combined with low RR means output is being scrapped and the true cost is compounding. Both scenarios demand attention; RR tells you which one you are facing.</p>
+
+    <hr>
+
+    <!-- ── In Summary ── -->
+    <h2 class="section-title">In Summary</h2>
+
+    <p>Parts I through VI have built one complete analytical toolkit for any business process:</p>
+
+    <ul>
+      <li><strong>Part I</strong> &mdash; The Context Diagram and ICOMs: the process boundary and what flows across it</li>
+      <li><strong>Part II</strong> &mdash; Activity Node Analysis and decomposition: the structure and the hierarchy</li>
+      <li><strong>Part III</strong> &mdash; ICOMs at every node: governance applied across the full decomposition tree</li>
+      <li><strong>Part IV</strong> &mdash; SIPOC adding accountability: the humans on both ends of every step</li>
+      <li><strong>Part V</strong> &mdash; The Combination: SIPOC + ICOM at every node in a single spreadsheet</li>
+      <li><strong>Part VI</strong> &mdash; Value Stream Analysis: five inputs per activity, three per-activity metrics, two process-level diagnostics</li>
+    </ul>
+
+    <p>This methodology does not require a certification or a consulting engagement to apply. It requires a spreadsheet, direct observation, and the discipline to ask: what is actually happening here, and how well is it working?</p>
+
+    <p>Take one process. Map the L0 context. Decompose to L1 and L2. Apply ICOMs and SIPOC at every node. Collect the five data points. Let PCE and RTY tell you where to look.</p>
+
+    <p>That is how you see the forest and the trees.</p>
+
+    <p style="font-style: italic; color: rgba(44,46,47,0.58); margin-top: 2em;">If you found this series valuable, please like it and share it with your network. I would love to hear how you are applying these frameworks &mdash; leave a comment and let me know what process you are mapping.</p>
+
+    <!-- ── Series navigation ── -->
+    <div class="series-nav">
+      <a href="article-forest-and-trees-5.html" class="series-nav-card">
+        <p class="series-nav-label">&larr; Part V</p>
+        <p class="series-nav-title">The Combination &mdash; SIPOC + ICOM at Every Node</p>
+      </a>
+      <div class="series-nav-card" style="opacity: 0.42; cursor: default; text-align: right;">
+        <p class="series-nav-label">Series Complete</p>
+        <p class="series-nav-title">Parts I &ndash; VI available in Writing</p>
+      </div>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="articles.html">&larr; All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="index.html">Profile</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>
