@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desire: Resistance Is a Design Problem — Jeffrey Benson</title>
+  <meta name="description" content="Resistance is a signal, not a character flaw. It tells you something specific about where the program's design has failed to address what individuals actually care about. Eight blueprints for engineering Desire.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Three conditions ── */
+    .conditions-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0 36px;
+    }
+
+    .condition-card {
+      background: #fff;
+      border-top: 3px solid var(--gold);
+      border-radius: 0 0 4px 4px;
+      padding: 20px 18px;
+      text-align: center;
+    }
+
+    .condition-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .condition-desc {
+      font-size: 0.9rem;
+      color: rgba(44,46,47,0.75);
+      line-height: 1.55;
+    }
+
+    /* ── Diagnosis box ── */
+    .diagnosis-box {
+      background: rgba(59,75,53,0.05);
+      border-left: 3px solid var(--olive);
+      border-radius: 0 6px 6px 0;
+      padding: 28px 24px;
+      margin: 28px 0;
+    }
+
+    .diagnosis-box-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--olive);
+      margin-bottom: 14px;
+    }
+
+    .diagnosis-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .diagnosis-box ul li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 6px 0 6px 18px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .diagnosis-box ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── Infographic ── */
+    .article-image-portrait {
+      width: 80%;
+      max-width: 580px;
+      margin: 48px auto 12px;
+      display: block;
+      border-radius: 6px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Idea blocks ── */
+    .idea-block { margin-bottom: 48px; }
+
+    .idea-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .idea-num {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--charcoal);
+      color: var(--gold);
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .idea-title-text {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.35;
+      padding-top: 8px;
+    }
+
+    .idea-block p {
+      font-size: 1rem !important;
+      margin-bottom: 1.2em !important;
+    }
+
+    .idea-block p:last-child { margin-bottom: 0 !important; }
+
+    /* ── Champion design list ── */
+    .design-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+    }
+
+    .design-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 8px 0 8px 20px;
+      position: relative;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(191,163,111,0.15);
+    }
+
+    .design-list li:last-child { border-bottom: none; }
+
+    .design-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .design-list li strong { color: var(--charcoal); }
+
+    /* ── Operator lens block ── */
+    .operator-lens {
+      background: rgba(44,46,47,0.04);
+      border-radius: 6px;
+      padding: 32px 28px;
+      margin: 40px 0;
+    }
+
+    .operator-lens-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--clay);
+      margin-bottom: 20px;
+    }
+
+    .operator-lens p {
+      font-size: 1rem !important;
+      margin-bottom: 1.2em !important;
+    }
+
+    .operator-lens p:last-child { margin-bottom: 0 !important; }
+
+    /* ── Mistake blocks ── */
+    .mistake-block { margin-bottom: 28px; }
+
+    .mistake-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    /* ── Principle anchor ── */
+    .principle-anchor {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 32px 0 28px;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold);
+      line-height: 1.5;
+    }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── About section ── */
+    .about-section {
+      background: rgba(44,46,47,0.04);
+      border-radius: 6px;
+      padding: 32px 28px;
+      margin: 48px 0 40px;
+    }
+
+    .about-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .about-section p { margin-bottom: 1em !important; }
+
+    /* ── Closing CTA ── */
+    .closing-quote {
+      background: var(--charcoal);
+      border-radius: 6px;
+      padding: 36px 40px;
+      margin: 48px 0 32px;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--vellum);
+      line-height: 1.75;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .closing-quote { padding: 28px 24px; }
+      .about-section { padding: 24px 18px; }
+      .operator-lens { padding: 24px 18px; }
+      .conditions-row { grid-template-columns: 1fr; }
+      .article-image-portrait { max-width: 100%; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Writing</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Change Management &middot; ADKAR Practitioner Series &middot; Part 2 of 5</p>
+      <h1 class="article-title">Desire: Why Resistance Is a Design Problem, Not a People Problem</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>ADKAR Practitioner Series</strong> &nbsp;&middot;&nbsp;
+    <a href="article-adkar-awareness.html">&larr; Part 1: Awareness</a> &nbsp;|&nbsp;
+    Part 2: Desire &nbsp;|&nbsp;
+    <a href="article-adkar-knowledge.html">Part 3: Knowledge &rarr;</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+
+    <p>When a change program hits resistance, the instinct is to treat it as a people problem. The employees are being difficult. The managers aren't on board. The culture is resistant to change. The workforce just needs to understand that this is happening and adapt.</p>
+
+    <p>That framing is wrong, and it is expensive to be wrong about it.</p>
+
+    <p>Resistance is a signal, not a character flaw. It tells you something specific about where the program's design has failed to address what individuals actually care about. When people resist, they are not being obstinate. They are responding rationally to a situation in which the change has not been made personally compelling to them, or in which their concerns have not been genuinely addressed.</p>
+
+    <p>The <em>Desire</em> phase of ADKAR is where the practitioner's job shifts from communicating facts to engineering conditions — creating an environment in which individuals make the personal decision to support and participate in the change. You cannot mandate that decision. You cannot train it into someone. But you can absolutely design for it.</p>
+
+    <hr>
+
+    <!-- ── Section 1 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Foundation</p>
+      <h2 class="section-title">What Desire Actually Is</h2>
+
+      <p><em>Desire</em> is the most human element of the ADKAR model, and the hardest to influence directly — because it lives inside each individual. It is the personal, internal commitment to support the change, as distinct from surface-level compliance.</p>
+
+      <p>When people genuinely want to change, they invest discretionary effort. They troubleshoot the new process instead of reverting to the old one. They become informal advocates rather than passive resistors. They ask "how do we make this work?" instead of "how do we get back to the way things were?"</p>
+
+      <p>Surface compliance looks like adoption. But it is fragile: the first friction event or leadership signal of wavering commitment, and it evaporates. Genuine <em>Desire</em> is durable. It is also the only way an organization achieves the sustained behavioral change that process excellence programs are designed to deliver.</p>
+
+      <p><em>Desire</em> emerges from three conditions:</p>
+
+      <div class="conditions-row">
+        <div class="condition-card">
+          <p class="condition-label">Pain</p>
+          <p class="condition-desc">The individual recognizes the current state as inadequate in ways that matter to them personally</p>
+        </div>
+        <div class="condition-card">
+          <p class="condition-label">Promise</p>
+          <p class="condition-desc">The future state is compelling to them specifically — in their role and daily work, not in aggregate</p>
+        </div>
+        <div class="condition-card">
+          <p class="condition-label">Trust</p>
+          <p class="condition-desc">They believe the leadership driving the change will deliver on what they're promising</p>
+        </div>
+      </div>
+
+      <p>When any of these three conditions is absent, <em>Desire</em> does not develop — regardless of how many training programs or communication campaigns you run.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── SVG Infographic ── -->
+    <img src="img/adkar_card_desire.svg"
+         alt="ADKAR Desire card — Part 2 of 5: core question, how to build it, operator's lens, warning signs"
+         class="article-image-portrait">
+    <p class="image-caption">ADKAR Practitioner Series — Part 2: Desire. Resistance is a design problem.</p>
+
+    <!-- ── Section 2 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Diagnosis</p>
+      <h2 class="section-title">How to Confirm a Desire Barrier Point</h2>
+
+      <p>An <em>Awareness</em> problem and a <em>Desire</em> problem can look superficially similar. The diagnostic question that separates them: does the person understand the change but still not want it?</p>
+
+      <div class="diagnosis-box">
+        <p class="diagnosis-box-title">Desire Gap Signals</p>
+        <ul>
+          <li>People can explain what's changing and why, but they're not doing it</li>
+          <li>Passive resistance: compliance in meetings, reversion to old behaviors in practice</li>
+          <li>"It won't work here" or "we tried something like this before" narratives dominating team conversations</li>
+          <li>Visible informal leaders are publicly or privately skeptical</li>
+          <li>Training attendance is strong; adoption metrics are weak</li>
+          <li>Managers are not visibly sponsoring the change — they're managing it like an administrative requirement</li>
+        </ul>
+      </div>
+
+      <p>A useful diagnostic conversation: ask a team member directly, "What do you see as the benefit of this change for your specific work?" If they genuinely can't answer — or give you an answer that reflects organizational talking points with no personal conviction — you have a <em>Desire</em> gap.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section 3 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Program Design</p>
+      <h2 class="section-title">Eight Blueprints for Building Desire</h2>
+
+      <!-- Idea 1 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">1</div>
+          <p class="idea-title-text">The WIIFM Matrix — Design This Before Anything Else</p>
+        </div>
+        <p>"What's in it for me?" is not a selfish question. It is the legitimate question every rational person asks before investing effort in something new. The failure to answer it is a design failure, not an attitude problem.</p>
+        <p>Before designing any <em>Desire</em>-building intervention, build a WIIFM matrix: for each major affected population, document what the change means for their specific role. What daily frictions does it eliminate? What capabilities does it give them? What risks does it remove? What does it enable for their team or career that the current state cannot?</p>
+        <p>Then document the other side: what do they stand to lose? Familiar routines. Hard-won process expertise. A certain kind of autonomy. Relationships with systems or tools they've mastered. Acknowledging the losses honestly is as important as articulating the gains — people who feel their losses are being minimized resist more, not less. The WIIFM matrix is the brief for all <em>Desire</em>-building content and conversations.</p>
+      </div>
+
+      <!-- Idea 2 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">2</div>
+          <p class="idea-title-text">Engineering Constructive Dissatisfaction with the Status Quo</p>
+        </div>
+        <p>Even when things are "mostly fine," <em>Desire</em> can be built by making the limitations of the current state visible and personal — not by attacking it, but by surfacing the friction that people already feel but haven't quantified.</p>
+        <p>The technique: use data and story together. Data alone is abstract (a 12% error rate means little). Story alone is anecdotal (one difficult case doesn't represent a systemic problem). Together, they are compelling: "Our rework rate costs this team approximately 4 hours per person per week — that's time you could spend on the work that actually requires your expertise, not on fixing errors that a better-designed process wouldn't produce."</p>
+        <p>This approach is particularly powerful in operational environments where front-line employees already feel the friction of the current state. A leader who says "we see it too, and here's the data to show what it's costing us" validates what they already know — and suddenly the change is solving their problem, not imposing a new one on them.</p>
+      </div>
+
+      <!-- Idea 3 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">3</div>
+          <p class="idea-title-text">The Resistance Mapping Workshop</p>
+        </div>
+        <p>Most change programs address resistance reactively: when it surfaces, they scramble to respond. A better approach: anticipate it systematically before it appears.</p>
+        <p>Resistance mapping is a facilitated workshop with senior leaders and people managers — typically run 4–6 weeks before a major implementation. The output is a resistance map: a segmented view of the affected population, with a hypothesis about the likely source and intensity of resistance in each segment. Resistance sources vary: some segments will resist because of fear, some because of loss, some because of distrust, and some because of genuine concern about the design (they see flaws the project team hasn't seen). Each source requires a different response.</p>
+        <p>The workshop output gives the change team a proactive playbook: targeted conversations, pilot invitations, listening sessions — all segmented and timed before resistance has a chance to consolidate into organized opposition.</p>
+      </div>
+
+      <!-- Idea 4 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">4</div>
+          <p class="idea-title-text">Change Champion Networks</p>
+        </div>
+        <p>Change champions are internal advocates: peers who model the new behavior, answer questions informally, gather real-time feedback, and signal to their colleagues that it's safe to be on board.</p>
+        <p>What makes a good champion is counterintuitive. The best champions are not necessarily the highest performers or the most senior people. They are individuals who are well-networked, trusted by their peers, and credible — which often means informal leaders, long-tenured employees with broad relationships, or people who are known for calling things as they see them. A skeptic-turned-champion carries more <em>Desire</em>-building power than an eager early adopter.</p>
+        <p>Champion network design:</p>
+        <ul class="design-list">
+          <li><strong>Selection:</strong> Identify by function and geography, prioritizing peer influence over hierarchical authority</li>
+          <li><strong>Equipping:</strong> Provide briefings on the full change picture (not the sanitized version), honest Q&amp;A sessions, and clear boundaries on what they can and cannot speak to</li>
+          <li><strong>Activation:</strong> Specific tasks — attending team meetings in their function to answer questions, reporting back resistance themes to the project team, modeling the new behavior visibly</li>
+          <li><strong>Maintenance:</strong> Regular (biweekly) champion forums to share what they're hearing and recalibrate messaging</li>
+        </ul>
+        <p>Champion networks are most effective when champions feel genuinely informed and empowered — not when they feel like they're being used to manage resistance on leadership's behalf. The distinction matters, and employees can tell.</p>
+      </div>
+
+      <!-- Idea 5 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">5</div>
+          <p class="idea-title-text">Personal Impact Dialogues</p>
+        </div>
+        <p>The most effective <em>Desire</em>-building conversations happen in small groups or one-on-one — not in all-hands sessions. Personal impact dialogues are structured conversations, led by people managers, that walk individuals through how the change specifically affects their role, workflow, career path, and day-to-day experience.</p>
+        <p>A well-designed dialogue opens with acknowledgment ("I know this is a significant change for our team"), covers what's changing specifically for their role, addresses what they stand to lose honestly, connects the future state to what they've expressed they want from their work, and ends with space for their questions and a genuine commitment to get answers to what can't be answered in the moment.</p>
+        <p>This is not a one-time event. In the 30 days leading up to a go-live, high-quality personal dialogues — even 15 minutes each — are among the most efficient <em>Desire</em> investments available. They signal that leadership sees the change as a human event, not just a project milestone.</p>
+      </div>
+
+      <!-- Idea 6 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">6</div>
+          <p class="idea-title-text">Visible Loss Acknowledgment</p>
+        </div>
+        <p>The most consistently underutilized <em>Desire</em>-building tool is the honest acknowledgment of what people are giving up.</p>
+        <p>Most change communication is relentlessly future-focused: the new process will be better, faster, more efficient, more consistent. What it doesn't say is: "And yes, the expertise you've spent years building in the current system is being retired. That's real, and it matters."</p>
+        <p>When change leaders acknowledge losses explicitly — "I know this takes away the autonomy you've had in how you sequence this work, and we understand that's meaningful" — it builds a level of trust that no amount of "here's what you'll gain" messaging can match. People don't need to be told their losses are fine. They need to be told that leadership sees them. This is particularly important for long-tenured employees in operational environments, where mastery of the current process is part of professional identity.</p>
+      </div>
+
+      <!-- Idea 7 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">7</div>
+          <p class="idea-title-text">The Pilot Strategy as Desire Tool</p>
+        </div>
+        <p>A visible, successful pilot does more to build <em>Desire</em> than any communication campaign — because it provides proof, not promises. When people see their peers succeeding with the new way, the "it won't work here" narrative loses its grip.</p>
+        <p>Pilot design for <em>Desire</em> impact: choose the population strategically — not the enthusiastic early adopters, but a representative, credible group that includes some skeptics. Success with a skeptical population sends a stronger signal. Make it visible. Share what went wrong, not just what went right. Pilots that are reported as uniformly successful generate skepticism. Pilots that share "here's what was hard and how we addressed it" build trust and <em>Desire</em> simultaneously.</p>
+      </div>
+
+      <!-- Idea 8 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">8</div>
+          <p class="idea-title-text">Recognition Aligned to Participation, Not Just Outcomes</p>
+        </div>
+        <p>Recognition programs that celebrate adoption — not just results — signal that the organization values the effort of change, not only the end-state performance. Most recognition systems are designed for steady-state performance, not for the messy, uncertain middle of a change program. This is an underutilized lever.</p>
+        <p>Specific recognition ideas: publicly acknowledging teams who have completed early adoption milestones (not just the teams performing best on outcome metrics yet); sharing stories from champions and early adopters in leadership communications; creating visible adoption boards or dashboards that celebrate progress; manager recognition from senior sponsors, delivered personally, for teams navigating the change well.</p>
+        <p>The signal sent by recognition during the change process is: this matters, your effort is seen, and the organization is committed enough to pay attention. That signal is a <em>Desire</em> accelerant.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ── Section 4 ── -->
+    <div class="section-block">
+      <div class="operator-lens">
+        <p class="operator-lens-title">The Operator's Lens</p>
+
+        <p><strong>Long tenure creates identity risk.</strong> In operational environments, people often define professional identity through mastery of current processes. A process change doesn't just alter workflows — it can feel like it's retiring the expertise that makes someone valuable. <em>Desire</em> strategy in operational settings must explicitly address identity continuity: what skills and knowledge transfer to the new state? Where does their expertise create an advantage in the new environment? The answers to these questions, communicated directly, convert some of the most resistant employees into the most effective champions.</p>
+
+        <p><strong>Peer influence dominates.</strong> In operational teams, the social proof of seeing respected peers adopt the change is more powerful than any executive communication. One influential informal leader who is visibly on board can move more <em>Desire</em> in a unit than a month of manager cascades. Identify these individuals early. Invest in bringing them into the process with genuine information and influence — not as message carriers, but as real participants in shaping the approach.</p>
+
+        <p><strong>Fear of consequence is a legitimate motivator — use it honestly.</strong> In Lean/Six Sigma and operational transformation work, the consequences of the status quo are often measurable and real: safety incidents, customer defections, regulatory risk, cost overruns. Leaders who clearly articulate "here is what happens to this operation, and to the people in it, if we don't change" are using a legitimate <em>Desire</em> lever. The key is honesty and specificity. Vague urgency ("we need to stay competitive") is less effective than concrete stakes ("at our current error rate, we lose this contract in 18 months").</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ── Section 5 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Common Traps</p>
+      <h2 class="section-title">Mistakes to Avoid</h2>
+
+      <div class="mistake-block">
+        <p class="mistake-title">Prescribing training for a Desire problem.</p>
+        <p>This is the single most costly ADKAR mismatch. Someone who lacks <em>Desire</em> does not lack <em>Knowledge</em>, and forcing training at a person who doesn't want to change reinforces the feeling of being managed, not led.</p>
+      </div>
+
+      <div class="mistake-block">
+        <p class="mistake-title">Calling resistance "culture."</p>
+        <p>Culture is a pattern of behavior, not an immovable force. When practitioners label resistance as "just the culture here," they have stopped diagnosing and started avoiding. Resistance always has a source, and that source is addressable.</p>
+      </div>
+
+      <div class="mistake-block">
+        <p class="mistake-title">Using authority when you need influence.</p>
+        <p>"This is happening, so get on board" is a last resort, not a first response. Authority produces compliance. Genuine <em>Desire</em>-building produces commitment. In complex operational changes that require sustained behavior change over years, compliance is rarely enough.</p>
+      </div>
+
+      <div class="mistake-block">
+        <p class="mistake-title">Skipping the losses.</p>
+        <p>Change programs that present only the gains — and never acknowledge what people are giving up — are not credible. Credibility is the foundation of <em>Desire</em>. Earn it by being honest about the full picture.</p>
+      </div>
+    </div>
+
+    <div class="closing-quote">
+      <em>Desire</em> is where the most change programs are actually broken — and where practitioners tend to feel the least equipped to intervene, because it requires human empathy and organizational design skills simultaneously.<br><br>
+      The good news: resistance is not a fixed condition. It is a signal about what the program hasn't yet addressed. Find the source, design the response, and <em>Desire</em> becomes the accelerant that makes every subsequent investment in <em>Knowledge</em> and <em>Ability</em> pay off.
+    </div>
+
+    <div class="series-nav">
+      <a href="article-adkar-awareness.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        Part 1: Awareness
+      </a>
+      <a href="article-adkar-knowledge.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Next &rarr;</span>
+        Part 3: Knowledge
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">Sources: Prosci ADKAR&reg; Research Hub. Prosci Desire and Resistance Management guidance. Sources of Insight: "Create Desire to Drive Change." Umbrex: Prosci ADKAR Model frameworks.</p>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="article-adkar-awareness.html">&larr; Part 1: Awareness</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="article-adkar-flagship.html">Series Flagship</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>

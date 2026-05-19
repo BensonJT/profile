@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ability: Where Change Programs Actually Stall — Jeffrey Benson</title>
+  <meta name="description" content="Training is complete. Go-live is green. Two months later, 40% of the team is still running the old process. This is the Ability gap — the most reliably underestimated barrier point in organizational change.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Opening scene ── */
+    .opening-scene {
+      font-size: 1.05rem;
+      color: rgba(44,46,47,0.65);
+      font-style: italic;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      padding-left: 20px;
+      border-left: 3px solid rgba(191,163,111,0.4);
+    }
+
+    /* ── Diagnosis box ── */
+    .diagnosis-box {
+      background: rgba(59,75,53,0.05);
+      border-left: 3px solid var(--olive);
+      border-radius: 0 6px 6px 0;
+      padding: 28px 24px;
+      margin: 28px 0;
+    }
+
+    .diagnosis-box-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--olive);
+      margin-bottom: 14px;
+    }
+
+    .diagnosis-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .diagnosis-box ul li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 6px 0 6px 18px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .diagnosis-box ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── Infographic ── */
+    .article-image-portrait {
+      width: 80%;
+      max-width: 580px;
+      margin: 48px auto 12px;
+      display: block;
+      border-radius: 6px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Idea blocks ── */
+    .idea-block { margin-bottom: 48px; }
+
+    .idea-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .idea-num {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--charcoal);
+      color: var(--gold);
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .idea-title-text {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.35;
+      padding-top: 8px;
+    }
+
+    .idea-block p {
+      font-size: 1rem !important;
+      margin-bottom: 1.2em !important;
+    }
+
+    .idea-block p:last-child { margin-bottom: 0 !important; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Proficiency milestones ── */
+    .milestone-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.93rem;
+    }
+
+    .milestone-table th {
+      background: var(--charcoal);
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 10px 16px;
+      text-align: left;
+    }
+
+    .milestone-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid rgba(191,163,111,0.2);
+      line-height: 1.55;
+      vertical-align: top;
+    }
+
+    .milestone-table tr:last-child td { border-bottom: none; }
+    .milestone-table tr:nth-child(odd) td { background: rgba(240,234,214,0.3); }
+    .milestone-table tr:nth-child(even) td { background: #fff; }
+    .milestone-table td:first-child {
+      font-weight: 700;
+      color: var(--olive);
+      white-space: nowrap;
+    }
+
+    /* ── Barrier list ── */
+    .barrier-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+    }
+
+    .barrier-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 8px 0 8px 20px;
+      position: relative;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(191,163,111,0.15);
+    }
+
+    .barrier-list li:last-child { border-bottom: none; }
+
+    .barrier-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: rgba(194,123,88,0.7);
+      font-weight: 700;
+    }
+
+    .barrier-list li strong { color: var(--charcoal); }
+
+    /* ── Operator lens block ── */
+    .operator-lens {
+      background: rgba(44,46,47,0.04);
+      border-radius: 6px;
+      padding: 32px 28px;
+      margin: 40px 0;
+    }
+
+    .operator-lens-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--clay);
+      margin-bottom: 20px;
+    }
+
+    .operator-lens p {
+      font-size: 1rem !important;
+      margin-bottom: 1.2em !important;
+    }
+
+    .operator-lens p:last-child { margin-bottom: 0 !important; }
+
+    /* ── Mistake blocks ── */
+    .mistake-block { margin-bottom: 28px; }
+
+    .mistake-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Closing CTA ── */
+    .closing-quote {
+      background: var(--charcoal);
+      border-radius: 6px;
+      padding: 36px 40px;
+      margin: 48px 0 32px;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--vellum);
+      line-height: 1.75;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .closing-quote { padding: 28px 24px; }
+      .operator-lens { padding: 24px 18px; }
+      .article-image-portrait { width: 95%; max-width: none; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Writing</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Change Management &middot; ADKAR Practitioner Series &middot; Part 4 of 5</p>
+      <h1 class="article-title">Ability: Where Change Programs Actually Stall (And How to Fix It)</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>ADKAR Practitioner Series</strong> &nbsp;&middot;&nbsp;
+    <a href="article-adkar-knowledge.html">&larr; Part 3: Knowledge</a> &nbsp;|&nbsp;
+    Part 4: Ability &nbsp;|&nbsp;
+    <a href="article-adkar-reinforcement.html">Part 5: Reinforcement &rarr;</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+
+    <p class="opening-scene">Training is complete. The curriculum was well-designed and role-specific. Comprehension checks looked good. Go-live is green.<br><br>Two months later, the project sponsor is asking why 40% of the team is still running the old process.</p>
+
+    <p>This is the <em>Ability</em> gap, and it is the most reliably underestimated barrier point in organizational change. It is also the most operationally consequential. Because <em>Ability</em> gaps don't announce themselves before go-live. They appear after it, in production, where the cost of getting them wrong is no longer theoretical.</p>
+
+    <p>Understanding why <em>Ability</em> gaps form — and how to systematically prevent them — is where the practitioner who is serious about sustainable change separates themselves from those who check boxes and move on.</p>
+
+    <hr>
+
+    <!-- ── Section 1 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Foundation</p>
+      <h2 class="section-title">What Ability Actually Is</h2>
+
+      <p><em>Knowledge</em> tells a person what to do and how to do it in theory. <em>Ability</em> is whether they can actually do it — <strong>in the real world, under real conditions, with real stakes.</strong></p>
+
+      <p>Prosci describes the gap between <em>Knowledge</em> and <em>Ability</em> as the gap between classroom performance and live performance. People can understand a process perfectly in a training session and still struggle to execute it when they're simultaneously managing their regular workload, navigating a live system that behaves differently than the sandbox, handling an unexpected edge case, and working without the trainer standing next to them.</p>
+
+      <p>This gap is not a failure of intelligence or effort. It is a natural product of the difference between learning conditions and working conditions. Change management programs that expect full proficiency at go-live are not being ambitious — they are being unrealistic, and building a performance trough that undermines adoption confidence precisely when it matters most.</p>
+
+      <p><em>Ability</em> is built through practice, feedback, coaching, and the gradual removal of barriers between the person and the new behavior. It cannot be compressed into a training event, and it cannot be assumed from a completion certificate.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── SVG Infographic ── -->
+    <img src="img/adkar_card_ability.svg"
+         alt="ADKAR Ability card — Part 4 of 5: core question, how to build it, operator's lens, warning signs"
+         class="article-image-portrait">
+    <p class="image-caption">ADKAR Practitioner Series — Part 4: Ability. The gap between the training room and the production floor.</p>
+
+    <!-- ── Section 2 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Diagnosis</p>
+      <h2 class="section-title">How to Confirm an Ability Barrier Point</h2>
+
+      <p>The <em>Ability</em> gap can look like a <em>Desire</em> problem from a distance: people appear to be avoiding the new process, reverting to old behaviors, or finding workarounds. The distinguishing question: does the person <em>want</em> to perform the new behavior but struggle to do so consistently under real conditions?</p>
+
+      <div class="diagnosis-box">
+        <p class="diagnosis-box-title">Ability Gap Signals</p>
+        <ul>
+          <li>Performance varies significantly across individuals who received the same training</li>
+          <li>Errors are concentrated in the first weeks post-go-live but gradually decreasing — the shape of a learning curve</li>
+          <li>People are following the spirit of the new process but making procedural errors in execution</li>
+          <li>Workarounds are being created not to avoid the change, but to compensate for specific friction points in the new process</li>
+          <li>People report feeling "not confident enough yet" rather than "I don't want to do this"</li>
+          <li>Help desk or supervisor question volume is high and concentrated on specific process steps</li>
+        </ul>
+      </div>
+
+      <p>The <em>Ability</em> diagnostic requires observation, not just conversation. Ask someone to execute a real task in the new process while you observe. The gap between their description of the process and their execution of it tells you exactly where <em>Ability</em> development is needed.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section 3 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Program Design</p>
+      <h2 class="section-title">Eight Blueprints for Building Ability</h2>
+
+      <!-- Idea 1 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">1</div>
+          <p class="idea-title-text">The Performance Support Architecture — Build It Before Go-Live</p>
+        </div>
+        <p>The single most impactful <em>Ability</em> investment is one that happens before go-live: designing the full performance support infrastructure that will be in place when the team needs help in production. Most change programs build training. Fewer build the support system that translates training into performance.</p>
+        <p>A performance support architecture includes:</p>
+        <ul class="support-list">
+          <li><strong>Who to call.</strong> A named point of contact (not just "the help desk") for process and system questions by function.</li>
+          <li><strong>Where to find guidance.</strong> The microlearning library, job aids, and escalation path — accessible in 30 seconds, not buried in an intranet.</li>
+          <li><strong>Who is physically or virtually present.</strong> Floor walkers or super users assigned to specific teams for the first weeks post-go-live.</li>
+          <li><strong>What to do when the exception happens.</strong> Pre-documented exception handling paths for the top 10 scenarios anticipated as go-live risks.</li>
+          <li><strong>The escalation protocol.</strong> For issues that can't be resolved at the team level, a clear path with response SLAs.</li>
+        </ul>
+        <p>Designing this architecture 4–6 weeks before go-live — not scrambling to build it after the first wave of incidents — is one of the highest-leverage actions a change practitioner can take.</p>
+      </div>
+
+      <!-- Idea 2 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">2</div>
+          <p class="idea-title-text">The Floor-Walker / Super User Model</p>
+        </div>
+        <p>Floor walkers are dedicated support personnel — often internal volunteers from the affected workforce, recognized and compensated for their additional role — who are physically or virtually present during the first weeks post-go-live to provide real-time, hands-on support. The model converts the abstract knowledge from training into practiced performance through immediate feedback.</p>
+        <p>Research on complex change implementations suggests a ratio of approximately one floor walker per 15–20 users for high-complexity changes in the first two weeks post-go-live. Design considerations:</p>
+        <ul class="support-list">
+          <li><strong>Selection:</strong> Credible peers, not project team members. An experienced operator seen as having genuine expertise is more effective than a project analyst who knows the system from the outside.</li>
+          <li><strong>Preparation:</strong> Floor walkers need deeper training than the general population — they must handle edge cases and escalate appropriately.</li>
+          <li><strong>Duration:</strong> Typically 2–4 weeks of intensive presence, tapering to on-call availability.</li>
+          <li><strong>Feedback loop:</strong> Floor walkers are your best source of real-time intelligence on where <em>Ability</em> gaps are concentrated — build a structured daily debrief into the model.</li>
+        </ul>
+      </div>
+
+      <!-- Idea 3 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">3</div>
+          <p class="idea-title-text">Coaching Plans Tied to Direct Observation</p>
+        </div>
+        <p>People managers are the most consistent source of <em>Ability</em> support available, but only if they know what to do. Generic direction ("support your team through the transition") produces generic behavior. Structured coaching plans produce targeted development.</p>
+        <p>A coaching plan for the <em>Ability</em> phase gives managers: a behavioral observation guide (the specific new behaviors to look for, and what "correct execution" looks like); a conversation framework for coaching — not discipline — when they observe an error; a frequency cadence (daily in week one, weekly by weeks three through six); and an escalation protocol for when a person is genuinely struggling despite coaching.</p>
+        <p>Prosci's CLARC framework for people managers — Communicator, Liaison, Advocate, Resistance Manager, Coach — puts the coaching role explicitly in the people manager's accountability. The <em>Ability</em> phase is where the Coach role is most operationally critical.</p>
+      </div>
+
+      <!-- Idea 4 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">4</div>
+          <p class="idea-title-text">Ability Sprints</p>
+        </div>
+        <p>For complex changes where the full suite of new capabilities cannot be built simultaneously, <em>Ability</em> sprints provide a structured approach to progressive proficiency development.</p>
+        <p>An <em>Ability</em> sprint is a time-boxed cycle (typically one to two weeks) focused on mastering a specific behavior or process segment, with: a clear definition of what "competent execution" looks like; daily practice scenarios or real-world reps with coached feedback; a defined measure of proficiency (e.g., "executes this step without guidance 80% of the time by end of sprint"); and a retrospective to identify what worked and what carries into the next sprint.</p>
+        <p>The sprint model is effective because it makes the <em>Ability</em> development journey manageable and measurable — breaking a daunting new capability into visible, achievable milestones. People who struggle with the full complexity of a new process often succeed sprint by sprint, and confidence compounds.</p>
+      </div>
+
+      <!-- Idea 5 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">5</div>
+          <p class="idea-title-text">Shadowing and Reverse Shadowing</p>
+        </div>
+        <p>Shadowing is a classical apprenticeship mechanism with particular power in process-intensive environments.</p>
+        <p><strong>Standard shadowing:</strong> The learner observes an experienced performer executing the new process in a live environment, asking questions throughout. The goal is to see the process in context — with all the informal decision-making, exception handling, and situational judgment that a formal training curriculum never quite captures.</p>
+        <p><strong>Reverse shadowing:</strong> The learner performs the task while the experienced performer observes, providing real-time guidance and feedback. The learner narrates their thinking ("I'm doing X because Y") — this surfaces the gaps between what they think they're doing and what they're actually doing.</p>
+        <p>The combination of both, typically run over two to three sessions, accelerates <em>Ability</em> development significantly compared to unsupported practice. In operational environments where "the real work" looks different from the training scenario, this grounding in live context is often the fastest path from <em>Knowledge</em> to <em>Ability</em>.</p>
+      </div>
+
+      <!-- Idea 6 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">6</div>
+          <p class="idea-title-text">Progressive Proficiency Expectations</p>
+        </div>
+        <p>One of the most damaging signals a change program can send is the implicit expectation that everyone should be fully proficient at go-live. It creates anxiety, incentivizes workarounds (people would rather do the old process right than the new process wrong), and masks the real <em>Ability</em> gap because people hide their struggles.</p>
+        <p>Define and communicate explicit proficiency milestones:</p>
+        <table class="milestone-table">
+          <thead>
+            <tr>
+              <th>Milestone</th>
+              <th>Expectation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Day 1</td>
+              <td>Execute core process steps with minimal errors, with support available. Edge cases should be escalated.</td>
+            </tr>
+            <tr>
+              <td>Day 30</td>
+              <td>Handle standard cases independently. Exception handling is still developing.</td>
+            </tr>
+            <tr>
+              <td>Day 60</td>
+              <td>Fully independent on standard cases and handling most exceptions. Check-ins on specific areas.</td>
+            </tr>
+            <tr>
+              <td>Day 90</td>
+              <td>Full proficiency expected. Ongoing support available for outlier scenarios.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Communicating these milestones removes day-one performance anxiety, creates clear development targets that managers can coach toward, and signals that the organization understands <em>Ability</em> development takes time — and has designed for it rather than hoping for it.</p>
+      </div>
+
+      <!-- Idea 7 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">7</div>
+          <p class="idea-title-text">Barrier Removal as Core Ability Work</p>
+        </div>
+        <p>Sometimes the reason employees cannot perform the new behavior has nothing to do with their knowledge or motivation — it's because the environment makes it difficult or impossible. Common structural barriers:</p>
+        <ul class="barrier-list">
+          <li><strong>Process misalignment:</strong> The new workflow requires approvals or inputs from other teams who haven't yet adopted the new process, creating a gap in the handoff.</li>
+          <li><strong>System friction:</strong> The new system requires additional clicks, mandatory fields, or workflow steps that are technically correct but create friction in high-volume operational contexts.</li>
+          <li><strong>Policy conflicts:</strong> Existing policies reference old processes or systems and haven't been updated, creating ambiguity about which standard applies.</li>
+          <li><strong>Workload:</strong> The team is expected to maintain full productivity while learning and performing the new process — the cognitive load is simply unsustainable.</li>
+        </ul>
+        <p>A post-go-live "friction audit" — walking through the process with a representative frontline employee within the first week — surfaces these barriers quickly and provides a high-ROI to-do list for the change team. Many barriers take hours to fix; their cost in adoption delay is weeks.</p>
+      </div>
+
+      <!-- Idea 8 -->
+      <div class="idea-block">
+        <div class="idea-header">
+          <div class="idea-num">8</div>
+          <p class="idea-title-text">Performance Dashboards for Coaching Conversations</p>
+        </div>
+        <p><em>Ability</em> development is most effective when it is targeted — when coaches and managers can see specifically where each person or team is struggling, rather than applying generic support across the board.</p>
+        <p>Simple performance dashboards built around key new-process adoption behaviors give managers the coaching data they need: process compliance metrics (are people using the new templates, system workflows, approval paths?); error or rework rates on key process steps (where are errors concentrated post-go-live?); and volume trends (are adoption rates improving week-over-week, or flatlined?).</p>
+        <p>These dashboards are not surveillance tools — they are coaching enablers. When a manager sees that one team member's error rate on a specific process step is not improving on the same trajectory as their peers, that's a signal for a targeted coaching conversation, not a performance management action. The goal is to make the <em>Ability</em> journey visible enough that support can be directed precisely, rather than distributed uniformly regardless of need.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ── Section 4 ── -->
+    <div class="section-block">
+      <div class="operator-lens">
+        <p class="operator-lens-title">The Operator's Lens</p>
+
+        <p><strong><em>Ability</em> gaps in operations cost more than productivity.</strong> In a knowledge-worker environment, an <em>Ability</em> gap produces inefficiency. In operational environments, it can produce safety incidents, regulatory noncompliance, customer escalations, and contractual SLA failures. Budget for the <em>Ability</em> phase — floor walkers, coaching plans, extended support infrastructure — with the same seriousness as you budget for equipment or contingency. The cost of inadequate <em>Ability</em> support dwarfs the cost of building it correctly.</p>
+
+        <p><strong>Shift-based operations require explicit shift coverage in the support design.</strong> The floor-walker program that covers the day shift does not help the night shift operator encountering an exception at 2 AM. Design your <em>Ability</em> support infrastructure explicitly for all shifts, all sites, and all geographies. If your go-live support plan requires a project team member to be available, and your project team works 9-to-5, you have a coverage gap that will surface within days.</p>
+
+        <p><strong>Standard work belongs in the <em>Ability</em> phase.</strong> Lean practitioners use standard work as both a training artifact and a performance standard. In the ADKAR <em>Ability</em> context, a well-designed standard work document for the new process serves as the behavioral definition of "correct execution" — the reference against which observation, coaching, and self-assessment can all operate. If your change program produces training materials but not standard work documents, the <em>Ability</em> phase has no baseline. Build the standard work, post it where people can see it, and reference it in coaching conversations.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ── Section 5 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Common Traps</p>
+      <h2 class="section-title">Mistakes to Avoid</h2>
+
+      <div class="mistake-block">
+        <p class="mistake-title">Declaring success at training completion.</p>
+        <p>Training is the prerequisite for <em>Ability</em>. Completion is not demonstration. Measure demonstrated performance, not course completions.</p>
+      </div>
+
+      <div class="mistake-block">
+        <p class="mistake-title">Building the support system after go-live incidents.</p>
+        <p>Floor walkers and performance support infrastructure should be in place on day one. Building them in response to the first week's problem reports means the first week went unmanaged.</p>
+      </div>
+
+      <div class="mistake-block">
+        <p class="mistake-title">Setting day-one proficiency expectations at 100%.</p>
+        <p>This incentivizes hiding struggles rather than surfacing them, and punishes the honest acknowledgment of gaps that the coaching relationship depends on.</p>
+      </div>
+
+      <div class="mistake-block">
+        <p class="mistake-title">Treating workarounds as compliance failures.</p>
+        <p>When employees create workarounds, they are almost always telling you something important: either the new process has a structural barrier, or there's a specific <em>Knowledge</em> or <em>Ability</em> gap in a narrow area. Investigate the workaround before treating it as resistance.</p>
+      </div>
+    </div>
+
+    <div class="closing-quote">
+      The <em>Ability</em> phase is where change programs deliver on their promise — or fail quietly while everyone assumes the work is done. It is the gap between the training room and the production floor, between what people know and what they can do when it counts.<br><br>
+      Fill that gap deliberately, with the right support infrastructure, and the investment in <em>Awareness</em>, <em>Desire</em>, and <em>Knowledge</em> pays off. Leave it to chance, and you're one restructuring away from repeating the whole change program.
+    </div>
+
+    <div class="series-nav">
+      <a href="article-adkar-knowledge.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        Part 3: Knowledge
+      </a>
+      <a href="article-adkar-reinforcement.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Next &rarr;</span>
+        Part 5: Reinforcement
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">Sources: Prosci ADKAR&reg; Research Hub. Prosci Ability and Coaching guidance. Umbrex: Prosci ADKAR Model frameworks. Afiniti Change Management practitioner guides.</p>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="article-adkar-knowledge.html">&larr; Part 3: Knowledge</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="article-adkar-flagship.html">Series Flagship</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>

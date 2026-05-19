@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Prescription Trap — Jeffrey Benson</title>
+  <meta name="description" content="41% of the resistance plaguing change programs is avoidable. Not reducible — avoidable. ADKAR is the diagnostic framework that tells you exactly where people are getting stuck.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series navigation bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .series-bar a {
+      color: rgba(240,234,214,0.7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block {
+      margin-bottom: 72px;
+    }
+
+    /* ── Lead stat ── */
+    .lead-stat {
+      background: var(--charcoal);
+      border-radius: 6px;
+      padding: 36px 40px;
+      margin-bottom: 48px;
+      font-size: 1.12rem;
+      line-height: 1.75;
+      color: var(--vellum);
+    }
+
+    .lead-stat strong {
+      color: var(--gold);
+    }
+
+    /* ── ADKAR table ── */
+    .adkar-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 32px 0 40px;
+      font-size: 0.97rem;
+    }
+
+    .adkar-table td {
+      padding: 14px 18px;
+      border: 1px solid rgba(191,163,111,0.25);
+      line-height: 1.6;
+    }
+
+    .adkar-table tr:first-child td { border-top: 2px solid rgba(191,163,111,0.4); }
+    .adkar-table tr:last-child td  { border-bottom: 2px solid rgba(191,163,111,0.4); }
+
+    .adkar-table td:first-child {
+      font-weight: 700;
+      color: var(--olive);
+      white-space: nowrap;
+      width: 200px;
+      background: rgba(59,75,53,0.04);
+    }
+
+    .adkar-table tr:nth-child(even) td { background: rgba(240,234,214,0.35); }
+    .adkar-table tr:nth-child(even) td:first-child { background: rgba(59,75,53,0.07); }
+
+    .adkar-sequence {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-align: center;
+      padding: 20px;
+      background: rgba(59,75,53,0.06);
+      border-radius: 4px;
+      margin-bottom: 36px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Barrier point table ── */
+    .barrier-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 32px 0 40px;
+      font-size: 0.93rem;
+    }
+
+    .barrier-table th {
+      background: var(--charcoal);
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 12px 16px;
+      text-align: left;
+    }
+
+    .barrier-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid rgba(191,163,111,0.2);
+      line-height: 1.55;
+      vertical-align: top;
+    }
+
+    .barrier-table tr:last-child td { border-bottom: none; }
+
+    .barrier-table td:first-child {
+      font-weight: 700;
+      color: var(--olive);
+      white-space: nowrap;
+    }
+
+    .barrier-table tr:nth-child(odd) td { background: rgba(240,234,214,0.3); }
+    .barrier-table tr:nth-child(even) td { background: #fff; }
+
+    .barrier-table td:first-child { background: rgba(59,75,53,0.06); }
+
+    /* ── Mismatch pattern ── */
+    .mismatch-block {
+      margin-bottom: 44px;
+    }
+
+    .mismatch-header {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .mismatch-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 6px;
+    }
+
+    .mismatch-label-looks { color: rgba(59,75,53,0.7); }
+    .mismatch-label-real  { color: var(--clay); }
+
+    .mismatch-section { margin: 14px 0; }
+
+    /* ── Bullet lists ── */
+    .body-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .body-list li {
+      font-size: 1rem;
+      color: rgba(44,46,47,0.86);
+      padding: 8px 0 8px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.4);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .body-list li strong { color: var(--charcoal); }
+
+    /* ── Series crosslinks ── */
+    .series-index {
+      background: rgba(44,46,47,0.04);
+      border-radius: 6px;
+      padding: 32px 28px;
+      margin: 48px 0 40px;
+    }
+
+    .series-index-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .series-link-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .series-link-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(191,163,111,0.2);
+      font-size: 0.97rem;
+      line-height: 1.6;
+    }
+
+    .series-link-list li:last-child { border-bottom: none; }
+
+    .series-link-list a {
+      color: var(--olive);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .series-link-list a:hover { color: var(--gold); }
+
+    .series-link-desc {
+      display: block;
+      font-size: 0.88rem;
+      color: rgba(44,46,47,0.55);
+      margin-top: 2px;
+    }
+
+    /* ── Infographic ── */
+    .article-image {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      margin: 48px 0 12px;
+      display: block;
+    }
+
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Principle anchor ── */
+    .principle-anchor {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 32px 0 28px;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold);
+      line-height: 1.5;
+    }
+
+    /* ── About section ── */
+    .about-section {
+      background: rgba(44,46,47,0.04);
+      border-radius: 6px;
+      padding: 32px 28px;
+      margin: 48px 0 40px;
+    }
+
+    .about-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .about-section p { margin-bottom: 1em !important; }
+
+    /* ── Closing CTA ── */
+    .closing-quote {
+      background: var(--charcoal);
+      border-radius: 6px;
+      padding: 36px 40px;
+      margin: 48px 0 32px;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--vellum);
+      line-height: 1.75;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .header-text { padding: 0; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .closing-quote { padding: 28px 24px; }
+      .about-section { padding: 24px 18px; }
+      .series-index { padding: 24px 18px; }
+      .article-image-wide { width: 100%; margin-left: 0; }
+      .lead-stat { padding: 28px 24px; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Writing</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Change Management &middot; ADKAR Practitioner Series &middot; Flagship</p>
+      <h1 class="article-title">The Prescription Trap: Why Most Change Programs Are Solving the Wrong Problem</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>ADKAR Practitioner Series</strong> &nbsp;&middot;&nbsp;
+    Flagship &nbsp;|&nbsp;
+    <a href="article-adkar-awareness.html">Part 1: Awareness &rarr;</a> &nbsp;&middot;&nbsp;
+    <a href="article-adkar-desire.html">Part 2: Desire &rarr;</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+
+    <div class="lead-stat">
+      Prosci's research across thousands of change initiatives contains a finding that should make every project leader uncomfortable: <strong>41% of practitioners report that more than half of the employee resistance they encountered was avoidable.</strong> Not <em>reducible</em>. <strong>Avoidable</strong>.
+    </div>
+
+    <p>The implication is worth sitting with. A significant share of the friction, stalled adoption, and failed implementations that plague organizational change programs are self-inflicted. Not because the change strategy was wrong, but because the response to resistance was wrong. Teams applied the right interventions to the wrong problems, or the right interventions at the wrong time.</p>
+
+    <p>This is what I am calling <em>the prescription trap</em>. And it is where most change programs quietly hemorrhage value.</p>
+
+    <hr>
+
+    <!-- ── Section 1 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The Framework</p>
+      <h2 class="section-title">Most People Treat ADKAR as a Checklist</h2>
+
+      <p>The Prosci ADKAR&reg; Model has been in active use for over 25 years, developed by Jeff Hiatt after studying change patterns across more than 700 organizations. If you have spent any time in organizational change work, you have seen it. It may have been reduced to a five-box summary on a slide, explained as "the five things people need to change," and then set aside while the project team builds training decks.</p>
+
+      <p>That is not the model's fault. ADKAR is, at its core, a <strong>diagnostic framework</strong>. Its power is not in the five boxes. It is in the sequential logic that connects them, and in what that logic reveals about where your program is actually breaking down.</p>
+
+      <p>The foundational premise: <strong>organizational change only happens when individuals change.</strong> Not departments. Not systems. Individual people, one at a time, making the personal decision to move from today's way of working to tomorrow's. The ADKAR model describes five building blocks every person must move through, in sequence, for that transition to succeed:</p>
+
+      <table class="adkar-table">
+        <tr>
+          <td>A — Awareness</td>
+          <td>Of the need for change — the <em>why</em></td>
+        </tr>
+        <tr>
+          <td>D — Desire</td>
+          <td>To participate and support the change — the <em>want</em></td>
+        </tr>
+        <tr>
+          <td>K — Knowledge</td>
+          <td>Of how to change — the <em>how</em></td>
+        </tr>
+        <tr>
+          <td>A — Ability</td>
+          <td>To demonstrate the required skills and behaviors — the <em>can</em></td>
+        </tr>
+        <tr>
+          <td>R — Reinforcement</td>
+          <td>To sustain the change over time — the <em>keep</em></td>
+        </tr>
+      </table>
+
+      <p>The sequence is the entire point. A person cannot develop Desire without first having Awareness. Knowledge is useless to someone who has no Desire to use it. Ability, without Reinforcement, degrades — and the organization drifts quietly back to the old way.</p>
+
+      <p class="adkar-sequence">Why &nbsp;&rarr;&nbsp; Want &nbsp;&rarr;&nbsp; How &nbsp;&rarr;&nbsp; Can &nbsp;&rarr;&nbsp; Keep</p>
+
+      <p>When a change program stalls, one of these five links is broken. The practitioner's job, before designing any intervention, is to find which one.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section 2 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Core Concept</p>
+      <h2 class="section-title">The Barrier Point: Your Most Valuable Diagnostic Tool</h2>
+
+      <p>Prosci calls the specific building block where a person or population is stuck the <strong>barrier point</strong>. Finding it is more valuable than any individual intervention you will ever design, because the barrier point tells you exactly what kind of intervention is actually needed.</p>
+
+      <p>This matters because every building block requires a fundamentally different response:</p>
+
+      <ul class="body-list">
+        <li>An <strong>Awareness</strong> gap requires communication: the right messages, through the right channels, repeatedly.</li>
+        <li>A <strong>Desire</strong> gap requires motivation: empathy, involvement, visible sponsorship, honest acknowledgment of what people stand to lose, and what they stand to gain.</li>
+        <li>A <strong>Knowledge</strong> gap requires learning: role-specific, well-sequenced, practical.</li>
+        <li>An <strong>Ability</strong> gap requires practice and support: coaching, real-world reps, performance infrastructure.</li>
+        <li>A <strong>Reinforcement</strong> gap requires governance: updated metrics, accountability structures, recognition, policy changes that lock the new way in.</li>
+      </ul>
+
+      <p>None of these interventions are interchangeable. And yet in practice, most organizations default to one — <em>training</em> — regardless of where the actual problem is.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section 3 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Pattern Recognition</p>
+      <h2 class="section-title">The Three Mismatch Patterns That Drain the Most Value</h2>
+
+      <p>Three mismatches appear repeatedly in change programs across industries. Recognizing them is half the diagnostic work.</p>
+
+      <div class="mismatch-block">
+        <p class="mismatch-header">1. The Training-for-Desire Trap</p>
+
+        <div class="mismatch-section">
+          <span class="mismatch-label mismatch-label-looks">What it looks like</span>
+          <p>People attend training. They pass the assessments. Post-go-live adoption is low. Managers report "resistance." The project team schedules mandatory refreshers and adds follow-up modules.</p>
+        </div>
+
+        <div class="mismatch-section">
+          <span class="mismatch-label mismatch-label-real">What's actually happening</span>
+          <p>A Desire gap. These employees are aware of the change and understand it conceptually. They just do not want to do it. They may distrust the leadership driving it. They may see the new way as harder, not better. They may have been excluded from the design process and feel the change is being imposed rather than led. No amount of training addresses any of that.</p>
+          <p>Prosci's data shows that the #1 reason for employee resistance is <strong>lack of awareness of the reason for the change</strong> — not complexity, not capability, not culture. When Awareness or Desire is the barrier, training is not just ineffective. It actively reinforces resistance by signaling that leadership isn't listening to the real problem.</p>
+        </div>
+      </div>
+
+      <div class="mismatch-block">
+        <p class="mismatch-header">2. The Communication-for-Ability Gap</p>
+
+        <div class="mismatch-section">
+          <span class="mismatch-label mismatch-label-looks">What it looks like</span>
+          <p>Surveys show high Awareness and Desire. People say they're on board. But when go-live hits, performance drops, workarounds proliferate, and errors increase. The response: more town halls, more update emails, a "refreshed communications plan."</p>
+        </div>
+
+        <div class="mismatch-section">
+          <span class="mismatch-label mismatch-label-real">What's actually happening</span>
+          <p>An Ability gap. These people know what to do and want to do it. They just cannot do it consistently under real conditions — under time pressure, with competing priorities, in live systems that behave differently than the sandbox. More communication does not help someone who lacks practiced capability.</p>
+          <p>The Ability gap is, according to practitioners, where the most initiatives stall — precisely because it is invisible until go-live. Everything looked fine in training.</p>
+        </div>
+      </div>
+
+      <div class="mismatch-block">
+        <p class="mismatch-header">3. The Announcement-as-Awareness Error</p>
+
+        <div class="mismatch-section">
+          <span class="mismatch-label mismatch-label-looks">What it looks like</span>
+          <p>The project team moves fast. Training is complete. Go-live is on schedule. Three months later, two-thirds of the affected population is still using the old process. "They just aren't getting it."</p>
+        </div>
+
+        <div class="mismatch-section">
+          <span class="mismatch-label mismatch-label-real">What's actually happening</span>
+          <p>Awareness was declared but never built. An all-hands was held. A one-pager was emailed. Leadership assumed that equals awareness. It does not. Awareness is built through repeated, multi-channel, role-relevant communication over time — not a single broadcast. The vacuum left by insufficient communication is always filled with rumor, fear, and worst-case speculation. That is not a communications problem. It is a change architecture problem.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ── Infographic ── -->
+    <img src="img/adkar_model_brand.svg"
+         alt="The ADKAR Model: five sequential building blocks of successful change — Awareness, Desire, Knowledge, Ability, Reinforcement"
+         class="article-image-wide">
+    <p class="image-caption">The ADKAR Model: five sequential building blocks. Progress is sequential — diagnose the barrier point first, then intervene there.</p>
+
+    <!-- ── Section 4 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The Prescription Map</p>
+      <h2 class="section-title">Five Barriers. Five Different Prescriptions.</h2>
+
+      <table class="barrier-table">
+        <thead>
+          <tr>
+            <th>Barrier Point</th>
+            <th>Diagnostic Signal</th>
+            <th>Right Intervention Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Awareness</td>
+            <td>"I don't understand why this is changing."</td>
+            <td>Communication plans, sponsor cascades, manager-led Q&amp;A sessions</td>
+          </tr>
+          <tr>
+            <td>Desire</td>
+            <td>"I understand it. I just don't want to."</td>
+            <td>WIIFM design, change champion networks, visible and trusted sponsorship</td>
+          </tr>
+          <tr>
+            <td>Knowledge</td>
+            <td>"I want to, but I don't know how."</td>
+            <td>Role-based training, learning architecture, job aids</td>
+          </tr>
+          <tr>
+            <td>Ability</td>
+            <td>"I know how. I just can't do it consistently."</td>
+            <td>Coaching plans, practice environments, performance support infrastructure</td>
+          </tr>
+          <tr>
+            <td>Reinforcement</td>
+            <td>"I was doing it. But I drifted back."</td>
+            <td>KPIs, recognition, governance forums, policy and SOP updates</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>This table is deceptively simple. Its practical implication is significant: before a single change intervention is designed, the team must identify — by role and by population — where people actually are in the sequence. A single ADKAR score for "the organization" is a fiction. Different groups are at different barrier points simultaneously. Your communications plan is irrelevant to the team stuck at Ability. Your coaching infrastructure is wasted on the team that still lacks Desire.</p>
+
+      <p class="principle-anchor">Diagnose first. Prescribe second.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section 5 ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The Operator's Lens</p>
+      <h2 class="section-title">Why This Hits Differently in Operational Environments</h2>
+
+      <p>For practitioners who come to change management from a process excellence, operational transformation, or Lean/Six Sigma background, the diagnostic lens carries a specific urgency that classroom change management theory tends to underemphasize.</p>
+
+      <p><strong>The workforce knows the process better than anyone on the project team.</strong> Long-tenured operational staff carry years of institutional knowledge. When they resist a change, it frequently isn't ignorance — it's expertise. They have already mentally run your new process through the edge cases and found the failure modes you haven't seen yet. Labeling that as "resistance" and scheduling more training is both analytically wrong and operationally costly. Surfacing that resistance as part of Awareness and Desire work — making the pain of the current state visible and involving them in solution design — converts the most credible skeptics into the most effective champions you can find.</p>
+
+      <p><strong>Go-live means production impact.</strong> In a knowledge-worker ERP rollout, an Ability gap produces a spike in help desk tickets. In an operational environment, an Ability gap means a missed SLA, a compliance incident, a safety near-miss, or a customer escalation. The cost of launching before Ability is built is not abstract. The time to build performance support infrastructure is before go-live, not in response to the incident report that follows it.</p>
+
+      <p><strong>Change is rarely just to one dimension.</strong> Process excellence initiatives typically combine workflow redesign, systems change, and behavioral shifts in a single program — affecting multiple roles in different ways. A procurement analyst may have full Awareness but fragile Desire. A field technician may have strong Desire but a Knowledge gap because their training wasn't role-specific. The diagnostic must be done by segment, not by program. Aggregate thinking produces misaligned interventions.</p>
+
+      <p><strong>Measure where the variation is.</strong> Prosci's ADKAR assessment provides a 1–5 score per building block by individual or population. Applied systematically by role, it turns the diagnostic from a conversation into data. This is the same logic a Lean practitioner applies before a process intervention: measure where the variation is before prescribing a fix. Change management is no different. The score tells you where to invest.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Series Index ── -->
+    <div class="series-index">
+      <p class="series-index-title">What This Series Covers</p>
+
+      <p style="font-size: 0.97rem; color: rgba(44,46,47,0.7); margin-bottom: 20px; line-height: 1.65;">The following five articles go deep on each ADKAR phase — not to re-explain what each phase means, but to provide the practical program design blueprints that make each phase actually work at scale. Each article is designed to stand alone. If you are designing a program from scratch, read them in order. The sequence matters.</p>
+
+      <ul class="series-link-list">
+        <li>
+          <a href="article-adkar-awareness.html">Part 1 — Awareness</a>
+          <span class="series-link-desc">Campaign architecture, manager toolkits, roadshows, and why one announcement does not equal awareness.</span>
+        </li>
+        <li>
+          <a href="article-adkar-desire.html">Part 2 — Desire</a>
+          <span class="series-link-desc">The WIIFM design process, resistance as a design problem, change champion networks, and how to engineer constructive dissatisfaction with the status quo.</span>
+        </li>
+        <li>
+          <a href="article-adkar-knowledge.html">Part 3 — Knowledge</a>
+          <span class="series-link-desc">Learning architecture, role academies, microlearning libraries, and why most training programs are delivered in the wrong sequence.</span>
+        </li>
+        <li>
+          <a href="article-adkar-ability.html">Part 4 — Ability</a>
+          <span class="series-link-desc">Where initiatives actually stall, performance support infrastructure, floor-walker models, and building demonstrated capability before go-live.</span>
+        </li>
+        <li>
+          <a href="article-adkar-reinforcement.html">Part 5 — Reinforcement</a>
+          <span class="series-link-desc">Governance councils, reinforcement calendars, process mining for adoption compliance, and why the change is not done when go-live ends.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="closing-quote">
+      The 41% of resistance that Prosci identifies as avoidable is not a people problem. It is not a culture problem. It is a diagnostic problem. Programs launch before the team understands where the breakdown is, and then apply the most familiar intervention available — usually training — and measure activity rather than outcomes. ADKAR is a framework for asking the right question before writing the prescription. In change management, as in most disciplines, the right diagnosis is worth more than any intervention you will ever design.
+    </div>
+
+    <p>Continue with <a href="article-adkar-awareness.html" style="color: var(--olive); font-weight: 700;">Part 1: Awareness &mdash; How to Build a Campaign, Not Just Send an Email &rarr;</a></p>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">Source references: Prosci ADKAR&reg; Model &mdash; Jeff Hiatt, 2003. Prosci Best Practices research: projects with excellent change management are 7&times; more likely to meet objectives (88% success rate vs. 13% with poor change management). Prosci Research Hub, 2023: avoidable resistance data.</p>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="articles.html">&larr; All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="article-adkar-awareness.html">Part 1: Awareness &rarr;</a>
+      <span class="footer-div">|</span>
+      <a href="index.html">Profile</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>

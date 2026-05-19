@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 656" preserveAspectRatio="xMidYMid meet">
+
+  <style>
+    text { font-family: 'Inter', 'Segoe UI', -apple-system, Roboto, Arial, sans-serif; }
+    .ctx        { font-size: 13px; fill: #7A6A56; font-style: italic; }
+    .title      { font-size: 26px; font-weight: 700; fill: #2C2E2F; }
+    .phase-ltr  { font-size: 36px; font-weight: 700; fill: #FFFFFF; }
+    .phase-word { font-size: 15px; font-weight: 700; fill: #FFFFFF; letter-spacing: 1px; }
+    .core-cap   { font-size: 9px;  font-weight: 700; fill: #7A6A56; letter-spacing: 1.5px; }
+    .core-q     { font-size: 13px; font-weight: 700; fill: #2C2E2F; font-style: italic; }
+    .sec-cap    { font-size: 10px; font-weight: 700; fill: #7A6A56; letter-spacing: 1.5px; }
+    .bullet     { font-size: 12px; fill: #2C2E2F; }
+    .lens       { font-size: 12px; fill: #5A5043; font-style: italic; }
+    .watch-cap  { font-size: 10px; font-weight: 700; fill: #7A3F20; letter-spacing: 1px; }
+    .watch-txt  { font-size: 11px; fill: #7A3F20; }
+    .principle  { font-size: 13px; font-weight: 700; fill: #2C2E2F; }
+    .footer     { font-size: 12px; fill: #7A6A56; font-style: italic; }
+  </style>
+
+  <rect width="1600" height="656" fill="#FDFAF5"/>
+
+  <text x="60" y="26" class="ctx">Change management methodology. Source: Prosci ADKAR® — patterns across 700+ organizations.</text>
+  <text x="60" y="56" class="title">The ADKAR Model: Five Sequential Building Blocks of Successful Change</text>
+  <text x="60" y="74" class="ctx">Progress is sequential — you cannot skip a phase. Diagnose the barrier point first, then intervene there.</text>
+
+  <!-- Column layout: x=60,358,656,954,1252 · w=288 · gap=10 · y=82–570 -->
+
+  <!-- ===== A — AWARENESS ===== -->
+  <rect x="60"  y="82" width="288" height="488" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="60"  y="82" width="288" height="114" fill="#2C2E2F"/>
+  <circle cx="204" cy="126" r="30" fill="#C27B58"/>
+  <text x="204" y="127" text-anchor="middle" dominant-baseline="middle" class="phase-ltr">A</text>
+  <text x="204" y="174" text-anchor="middle" class="phase-word">AWARENESS</text>
+  <rect x="60"  y="196" width="288" height="50" fill="#F0EAD6"/>
+  <text x="204" y="213" text-anchor="middle" class="core-cap">CORE QUESTION</text>
+  <text x="204" y="233" text-anchor="middle" class="core-q">Why is this changing?</text>
+  <text x="76"  y="262" class="sec-cap">BUILD IT BY:</text>
+  <text x="76"  y="280" class="bullet">• Communication plans</text>
+  <text x="76"  y="298" class="bullet">• Sponsor-cascaded messaging</text>
+  <text x="76"  y="316" class="bullet">• Town halls and Q&amp;A forums</text>
+  <text x="76"  y="334" class="bullet">• Role-tailored "why now" message</text>
+  <line x1="76" y1="352" x2="332" y2="352" stroke="#E8DFC8" stroke-width="1"/>
+  <text x="76"  y="371" class="sec-cap">OPERATOR'S LENS:</text>
+  <text x="76"  y="389" class="lens">Architect the campaign — don't</text>
+  <text x="76"  y="405" class="lens">just send an email. Awareness</text>
+  <text x="76"  y="421" class="lens">builds through multi-channel,</text>
+  <text x="76"  y="437" class="lens">consistent communication over time.</text>
+  <rect x="60"  y="456" width="288" height="114" fill="#FBF4EC"/>
+  <rect x="60"  y="456" width="4"   height="114" fill="#C27B58"/>
+  <text x="76"  y="476" class="watch-cap">WATCH FOR:</text>
+  <text x="76"  y="495" class="watch-txt">One announcement ≠ awareness.</text>
+  <text x="76"  y="513" class="watch-txt">Silence is filled with rumor and fear.</text>
+
+  <!-- ===== D — DESIRE ===== -->
+  <rect x="358" y="82" width="288" height="488" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="358" y="82" width="288" height="114" fill="#2C2E2F"/>
+  <circle cx="502" cy="126" r="30" fill="#C27B58"/>
+  <text x="502" y="127" text-anchor="middle" dominant-baseline="middle" class="phase-ltr">D</text>
+  <text x="502" y="174" text-anchor="middle" class="phase-word">DESIRE</text>
+  <rect x="358" y="196" width="288" height="50" fill="#F0EAD6"/>
+  <text x="502" y="213" text-anchor="middle" class="core-cap">CORE QUESTION</text>
+  <text x="502" y="233" text-anchor="middle" class="core-q">Do I want to change?</text>
+  <text x="374" y="262" class="sec-cap">BUILD IT BY:</text>
+  <text x="374" y="280" class="bullet">• WIIFM: connect to what they value</text>
+  <text x="374" y="298" class="bullet">• Visible and trusted sponsorship</text>
+  <text x="374" y="316" class="bullet">• Change champions in peer groups</text>
+  <text x="374" y="334" class="bullet">• Involve people in shaping solutions</text>
+  <line x1="374" y1="352" x2="630" y2="352" stroke="#E8DFC8" stroke-width="1"/>
+  <text x="374" y="371" class="sec-cap">OPERATOR'S LENS:</text>
+  <text x="374" y="389" class="lens">Resistance = a design problem —</text>
+  <text x="374" y="405" class="lens">not a people problem. Lead with</text>
+  <text x="374" y="421" class="lens">empathy first. Make the current-</text>
+  <text x="374" y="437" class="lens">state pain visible and real.</text>
+  <rect x="358" y="456" width="288" height="114" fill="#FBF4EC"/>
+  <rect x="358" y="456" width="4"   height="114" fill="#C27B58"/>
+  <text x="374" y="476" class="watch-cap">WATCH FOR:</text>
+  <text x="374" y="495" class="watch-txt">Skipping to training. No amount of</text>
+  <text x="374" y="513" class="watch-txt">Knowledge fixes a Desire problem.</text>
+
+  <!-- ===== K — KNOWLEDGE ===== -->
+  <rect x="656" y="82" width="288" height="488" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="656" y="82" width="288" height="114" fill="#2C2E2F"/>
+  <circle cx="800" cy="126" r="30" fill="#C27B58"/>
+  <text x="800" y="127" text-anchor="middle" dominant-baseline="middle" class="phase-ltr">K</text>
+  <text x="800" y="174" text-anchor="middle" class="phase-word">KNOWLEDGE</text>
+  <rect x="656" y="196" width="288" height="50" fill="#F0EAD6"/>
+  <text x="800" y="213" text-anchor="middle" class="core-cap">CORE QUESTION</text>
+  <text x="800" y="233" text-anchor="middle" class="core-q">How do I change?</text>
+  <text x="672" y="262" class="sec-cap">BUILD IT BY:</text>
+  <text x="672" y="280" class="bullet">• Role-based learning paths</text>
+  <text x="672" y="298" class="bullet">• Mixed formats: workshops + job aids</text>
+  <text x="672" y="316" class="bullet">• Accessible process documentation</text>
+  <text x="672" y="334" class="bullet">• Knowledge checks — not just reading</text>
+  <line x1="672" y1="352" x2="928" y2="352" stroke="#E8DFC8" stroke-width="1"/>
+  <text x="672" y="371" class="sec-cap">OPERATOR'S LENS:</text>
+  <text x="672" y="389" class="lens">Resource the learning architecture;</text>
+  <text x="672" y="405" class="lens">don't deliver it yourself. Sequence</text>
+  <text x="672" y="421" class="lens">this AFTER Awareness and Desire</text>
+  <text x="672" y="437" class="lens">are firmly established first.</text>
+  <rect x="656" y="456" width="288" height="114" fill="#FBF4EC"/>
+  <rect x="656" y="456" width="4"   height="114" fill="#C27B58"/>
+  <text x="672" y="476" class="watch-cap">WATCH FOR:</text>
+  <text x="672" y="495" class="watch-txt">Treating training as the primary</text>
+  <text x="672" y="513" class="watch-txt">change tool. Necessary — not alone.</text>
+
+  <!-- ===== A — ABILITY ===== -->
+  <rect x="954" y="82" width="288" height="488" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="954" y="82" width="288" height="114" fill="#2C2E2F"/>
+  <circle cx="1098" cy="126" r="30" fill="#C27B58"/>
+  <text x="1098" y="127" text-anchor="middle" dominant-baseline="middle" class="phase-ltr">A</text>
+  <text x="1098" y="174" text-anchor="middle" class="phase-word">ABILITY</text>
+  <rect x="954" y="196" width="288" height="50" fill="#F0EAD6"/>
+  <text x="1098" y="213" text-anchor="middle" class="core-cap">CORE QUESTION</text>
+  <text x="1098" y="233" text-anchor="middle" class="core-q">Can I actually do this?</text>
+  <text x="970" y="262" class="sec-cap">BUILD IT BY:</text>
+  <text x="970" y="280" class="bullet">• Safe practice environments</text>
+  <text x="970" y="298" class="bullet">• Side-by-side coaching at go-live</text>
+  <text x="970" y="316" class="bullet">• Remove friction in the workflow</text>
+  <text x="970" y="334" class="bullet">• Allocate dedicated practice time</text>
+  <line x1="970" y1="352" x2="1226" y2="352" stroke="#E8DFC8" stroke-width="1"/>
+  <text x="970" y="371" class="sec-cap">OPERATOR'S LENS:</text>
+  <text x="970" y="389" class="lens">Where most initiatives stall. People</text>
+  <text x="970" y="405" class="lens">understand the change but still</text>
+  <text x="970" y="421" class="lens">struggle under real conditions. Build</text>
+  <text x="970" y="437" class="lens">performance support before go-live.</text>
+  <rect x="954" y="456" width="288" height="114" fill="#FBF4EC"/>
+  <rect x="954" y="456" width="4"   height="114" fill="#C27B58"/>
+  <text x="970" y="476" class="watch-cap">WATCH FOR:</text>
+  <text x="970" y="495" class="watch-txt">Course completion ≠ demonstrated</text>
+  <text x="970" y="513" class="watch-txt">performance. Measure the behavior.</text>
+
+  <!-- ===== R — REINFORCEMENT ===== -->
+  <rect x="1252" y="82" width="288" height="488" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="1252" y="82" width="288" height="114" fill="#2C2E2F"/>
+  <circle cx="1396" cy="126" r="30" fill="#C27B58"/>
+  <text x="1396" y="127" text-anchor="middle" dominant-baseline="middle" class="phase-ltr">R</text>
+  <text x="1396" y="174" text-anchor="middle" class="phase-word">REINFORCEMENT</text>
+  <rect x="1252" y="196" width="288" height="50" fill="#F0EAD6"/>
+  <text x="1396" y="213" text-anchor="middle" class="core-cap">CORE QUESTION</text>
+  <text x="1396" y="233" text-anchor="middle" class="core-q">Will I keep doing this?</text>
+  <text x="1268" y="262" class="sec-cap">BUILD IT BY:</text>
+  <text x="1268" y="280" class="bullet">• Update KPIs and dashboards</text>
+  <text x="1268" y="298" class="bullet">• Recognize early adopters publicly</text>
+  <text x="1268" y="316" class="bullet">• Integrate into performance reviews</text>
+  <text x="1268" y="334" class="bullet">• Audit for drift and regression</text>
+  <line x1="1268" y1="352" x2="1524" y2="352" stroke="#E8DFC8" stroke-width="1"/>
+  <text x="1268" y="371" class="sec-cap">OPERATOR'S LENS:</text>
+  <text x="1268" y="389" class="lens">Where governance earns its keep.</text>
+  <text x="1268" y="405" class="lens">Embed the change in your operating</text>
+  <text x="1268" y="421" class="lens">cadence. Done when the new behavior</text>
+  <text x="1268" y="437" class="lens">is the measured, recognized default.</text>
+  <rect x="1252" y="456" width="288" height="114" fill="#FBF4EC"/>
+  <rect x="1252" y="456" width="4"   height="114" fill="#C27B58"/>
+  <text x="1268" y="476" class="watch-cap">WATCH FOR:</text>
+  <text x="1268" y="495" class="watch-txt">Calling the project done at go-live</text>
+  <text x="1268" y="513" class="watch-txt">means repeating the change next year.</text>
+
+  <!-- Progression arrows between columns -->
+  <polygon points="349,219 357,223 349,227" fill="#2C2E2F"/>
+  <polygon points="647,219 655,223 647,227" fill="#2C2E2F"/>
+  <polygon points="945,219 953,223 945,227" fill="#2C2E2F"/>
+  <polygon points="1243,219 1251,223 1243,227" fill="#2C2E2F"/>
+
+  <!-- Footer -->
+  <text x="800" y="596" text-anchor="middle" class="principle">ADKAR is sequential — diagnose the barrier point first. More training never fixes a Desire problem. More communication never fixes an Ability gap.</text>
+  <text x="800" y="616" text-anchor="middle" class="footer">Prosci Best Practices research: projects with excellent change management are 7× more likely to meet objectives — 88% success rate vs. 13% with poor change management.</text>
+  <text x="800" y="636" text-anchor="middle" class="footer">Source: Prosci ADKAR® — Jeff Hiatt, 2003. Most transformations underperform due to people-side challenges, not technical design failures.</text>
+
+</svg>
