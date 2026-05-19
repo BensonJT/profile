@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 640" preserveAspectRatio="xMidYMid meet">
+  <style>
+    text { font-family: 'Inter', 'Segoe UI', -apple-system, Roboto, Arial, sans-serif; }
+    .series    { font-size: 11px; fill: #7A6A56; font-style: italic; letter-spacing: 0.5px; }
+    .phase-ltr { font-size: 44px; font-weight: 700; fill: #FFFFFF; }
+    .phase-wrd { font-size: 16px; font-weight: 700; fill: #FFFFFF; letter-spacing: 2px; }
+    .phase-sub { font-size: 12px; fill: #F0EAD6; font-style: italic; }
+    .core-cap  { font-size: 9px;  font-weight: 700; fill: #7A6A56; letter-spacing: 1.5px; }
+    .core-q    { font-size: 16px; font-weight: 700; fill: #2C2E2F; font-style: italic; }
+    .sec-cap   { font-size: 10px; font-weight: 700; fill: #7A6A56; letter-spacing: 1.5px; }
+    .bullet    { font-size: 13px; fill: #2C2E2F; }
+    .lens      { font-size: 12px; fill: #5A5043; font-style: italic; }
+    .watch-cap { font-size: 10px; font-weight: 700; fill: #7A3F20; letter-spacing: 1px; }
+    .watch-txt { font-size: 12px; fill: #7A3F20; }
+    .footer    { font-size: 10px; fill: #7A6A56; font-style: italic; }
+  </style>
+
+  <rect width="520" height="640" fill="#FDFAF5"/>
+  <rect width="520" height="640" fill="none" stroke="#D4C6A8" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="520" height="148" fill="#2C2E2F"/>
+  <text x="260" y="16" text-anchor="middle" class="series">ADKAR Practitioner Series · Part 5 of 5</text>
+  <circle cx="260" cy="72" r="38" fill="#C27B58"/>
+  <text x="260" y="73" text-anchor="middle" dominant-baseline="middle" class="phase-ltr">R</text>
+  <text x="260" y="122" text-anchor="middle" class="phase-wrd">REINFORCEMENT</text>
+  <text x="260" y="141" text-anchor="middle" class="phase-sub">To sustain the change</text>
+
+  <!-- Core Question -->
+  <rect x="0" y="148" width="520" height="58" fill="#F0EAD6"/>
+  <text x="260" y="168" text-anchor="middle" class="core-cap">CORE QUESTION</text>
+  <text x="260" y="193" text-anchor="middle" class="core-q">Will I keep doing this?</text>
+
+  <!-- Build it section -->
+  <text x="28" y="228" class="sec-cap">BUILD IT BY:</text>
+  <text x="28" y="250" class="bullet">• Reinforcement calendar: 12–18 months, designed at go-live</text>
+  <text x="28" y="272" class="bullet">• Update KPIs — old metrics reinforce old behaviors</text>
+  <text x="28" y="294" class="bullet">• Governance council with data, authority, and cadence</text>
+  <text x="28" y="316" class="bullet">• Policy and SOP lock-in — remove the option to revert</text>
+  <text x="28" y="338" class="bullet">• Story-based reinforcement: make the new way memorable</text>
+
+  <line x1="28" y1="356" x2="492" y2="356" stroke="#E8DFC8" stroke-width="1"/>
+
+  <!-- Operator Lens -->
+  <text x="28" y="378" class="sec-cap">OPERATOR'S LENS:</text>
+  <text x="28" y="398" class="lens">This is the control phase. Apply Lean discipline:</text>
+  <text x="28" y="414" class="lens">a control plan, defined response triggers, and clear</text>
+  <text x="28" y="430" class="lens">ownership. Embed the new standard into onboarding.</text>
+
+  <!-- Watch For -->
+  <rect x="0" y="454" width="520" height="148" fill="#FBF4EC"/>
+  <rect x="0" y="454" width="5" height="148" fill="#C27B58"/>
+  <text x="22" y="478" class="watch-cap">WATCH FOR:</text>
+  <text x="22" y="502" class="watch-txt">Calling the project closed at go-live. The change</text>
+  <text x="22" y="520" class="watch-txt">isn't done when go-live ends — it's done when</text>
+  <text x="22" y="538" class="watch-txt">the new behavior is the unmistakable default.</text>
+
+  <!-- Footer -->
+  <text x="260" y="620" text-anchor="middle" class="footer">Source: Prosci ADKAR® — Jeff Hiatt. Prosci Research Hub, 2023.</text>
+  <text x="260" y="634" text-anchor="middle" class="footer">Significant changes require active reinforcement for 6–18 months post go-live.</text>
+</svg>

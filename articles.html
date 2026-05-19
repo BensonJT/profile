@@ -110,10 +110,10 @@
       padding: 72px 32px 96px;
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 20px;
     }
 
-    /* ── Article Card ── */
+    /* ── Standalone Article Card ── */
     .article-card {
       background: #fff;
       border-left: 4px solid var(--gold);
@@ -138,6 +138,7 @@
       align-items: center;
       gap: 16px;
       margin-bottom: 12px;
+      flex-wrap: wrap;
     }
 
     .card-date {
@@ -213,6 +214,185 @@
 
     .btn-linkedin:hover { border-color: var(--gold); color: var(--charcoal); }
 
+    /* ── Series Gateway Card ── */
+    .series-card {
+      background: #fff;
+      border-left: 4px solid var(--clay);
+      border-radius: 0 6px 6px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      overflow: hidden;
+      transition: box-shadow 0.25s ease;
+    }
+
+    .series-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.11);
+    }
+
+    .series-card-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      padding: 36px 40px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .series-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      background: rgba(194,123,88,0.1);
+      color: var(--clay);
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border-radius: 20px;
+      border: 1px solid rgba(194,123,88,0.25);
+    }
+
+    .series-toggle {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      padding-top: 4px;
+    }
+
+    .btn-expand {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 18px;
+      background: transparent;
+      border: 1px solid rgba(191,163,111,0.45);
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+
+    .btn-expand:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+
+    .series-chevron {
+      display: inline-block;
+      font-size: 0.65rem;
+      transition: transform 0.3s ease;
+      line-height: 1;
+    }
+
+    .series-card.open .series-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* ── Series expanded articles list ── */
+    .series-articles {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .series-divider {
+      height: 1px;
+      background: rgba(191,163,111,0.2);
+      margin: 0 40px;
+    }
+
+    .series-article-list {
+      padding: 8px 40px 28px;
+    }
+
+    .series-article-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(191,163,111,0.15);
+    }
+
+    .series-article-row:last-child { border-bottom: none; }
+
+    .series-part-info {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .series-part-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .series-part-title {
+      font-size: 0.97rem;
+      color: var(--charcoal);
+      font-weight: 600;
+      line-height: 1.35;
+      min-width: 0;
+    }
+
+    .series-part-desc {
+      font-size: 0.85rem;
+      color: rgba(44,46,47,0.52);
+      line-height: 1.5;
+      margin-top: 2px;
+    }
+
+    .series-part-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .series-part-label-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-read-sm {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--olive);
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 3px;
+      white-space: nowrap;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .btn-read-sm:hover { background: var(--gold); }
+
+    .coming-soon-badge {
+      font-size: 0.68rem;
+      color: rgba(44,46,47,0.35);
+      font-style: italic;
+      flex-shrink: 0;
+    }
+
     /* ── Footer ── */
     .page-footer {
       background: var(--charcoal);
@@ -231,12 +411,19 @@
     @media (max-width: 640px) {
       .page-header { padding: 60px 24px 52px; }
       .page-header h1 { font-size: 2.1rem; }
-      .articles-grid { padding: 48px 16px 64px; }
+      .articles-grid { padding: 48px 16px 64px; gap: 16px; }
       .article-card {
         grid-template-columns: 1fr;
         padding: 28px 24px;
       }
       .card-action { flex-direction: row; align-items: center; flex-wrap: wrap; }
+      .series-card-header {
+        grid-template-columns: 1fr;
+        padding: 28px 24px;
+        gap: 16px;
+      }
+      .series-divider { margin: 0 24px; }
+      .series-article-list { padding: 8px 24px 24px; }
       .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
     }
   </style>
@@ -260,6 +447,7 @@
 
   <main class="articles-grid">
 
+    <!-- ── 1. The Operator Method ── -->
     <div class="article-card">
       <div class="card-body">
         <div class="card-meta">
@@ -267,7 +455,7 @@
           <span class="card-tag">Operations &middot; Consulting</span>
         </div>
         <h2 class="card-title">The Operator Method</h2>
-        <p class="card-desc">A partnership approach to eliminating the friction costing your organization millions — by restoring visibility and building the data systems your teams can actually run.</p>
+        <p class="card-desc">A partnership approach to eliminating the friction costing your organization millions &mdash; by restoring visibility and building the data systems your teams can actually run.</p>
       </div>
       <div class="card-action">
         <a href="article-operator-method.html" class="btn-read">Read Article</a>
@@ -275,6 +463,7 @@
       </div>
     </div>
 
+    <!-- ── 2. Servant Leadership ── -->
     <div class="article-card">
       <div class="card-body">
         <div class="card-meta">
@@ -282,7 +471,7 @@
           <span class="card-tag">Leadership &middot; Practice</span>
         </div>
         <h2 class="card-title">Servant Leadership Is Not a Philosophy. It's a Practice.</h2>
-        <p class="card-desc">Six operating principles earned across three decades of high-pressure transformation — not from a leadership book, but from the friction, the people, and the results that held under pressure.</p>
+        <p class="card-desc">Six operating principles earned across three decades of high-pressure transformation &mdash; not from a leadership book, but from the friction, the people, and the results that held under pressure.</p>
       </div>
       <div class="card-action">
         <a href="article-servant-leadership.html" class="btn-read">Read Article</a>
@@ -290,123 +479,238 @@
       </div>
     </div>
 
-    <div class="article-card">
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-date">2024</span>
-          <span class="card-tag">Operations &middot; Automation</span>
+    <!-- ── 3. ADKAR Series (gateway card) ── -->
+    <div class="series-card" id="series-adkar">
+      <div class="series-card-header" onclick="toggleSeries('series-adkar')">
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-date">2026</span>
+            <span class="card-tag">Change Management</span>
+            <span class="series-badge">6-Part Series</span>
+          </div>
+          <h2 class="card-title">ADKAR Practitioner Series</h2>
+          <p class="card-desc">An operator's guide to the diagnostic framework that eliminates avoidable resistance &mdash; from the flagship overview through five deep dives into Awareness, Desire, Knowledge, Ability, and Reinforcement.</p>
         </div>
-        <h2 class="card-title">You Can't Automate a Mess.</h2>
-        <p class="card-desc">A case study in why process clarity must come before automation — and what happens when organizations skip the diagnosis and buy the tool instead.</p>
+        <div class="series-toggle">
+          <button class="btn-expand" onclick="event.stopPropagation(); toggleSeries('series-adkar')">
+            Explore Series <span class="series-chevron">&#9660;</span>
+          </button>
+        </div>
       </div>
-      <div class="card-action">
-        <a href="article-automate-mess.html" class="btn-read">Read Article</a>
-        <a href="https://www.linkedin.com/pulse/case-study-you-cant-automate-mess-cornerstone-solutions-io-iotae/" target="_blank" rel="noopener noreferrer" class="btn-linkedin">View on LinkedIn</a>
+
+      <div class="series-articles" id="series-adkar-articles">
+        <div class="series-divider"></div>
+        <div class="series-article-list">
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Flagship</span>
+                <span class="series-part-title">The Prescription Trap</span>
+              </div>
+              <span class="series-part-desc">Why most change programs are solving the wrong problem &mdash; and the diagnostic framework that fixes that.</span>
+            </div>
+            <a href="article-adkar-flagship.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part 1</span>
+                <span class="series-part-title">Awareness</span>
+              </div>
+              <span class="series-part-desc">How to build a change campaign, not just send an email.</span>
+            </div>
+            <a href="article-adkar-awareness.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part 2</span>
+                <span class="series-part-title">Desire</span>
+              </div>
+              <span class="series-part-desc">Why resistance is a design problem, not a people problem.</span>
+            </div>
+            <a href="article-adkar-desire.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part 3</span>
+                <span class="series-part-title">Knowledge</span>
+              </div>
+              <span class="series-part-desc">Why most training programs are delivered in the wrong order.</span>
+            </div>
+            <a href="article-adkar-knowledge.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part 4</span>
+                <span class="series-part-title">Ability</span>
+              </div>
+              <span class="series-part-desc">Where change programs actually stall &mdash; performance support, floor-walker models, and building demonstrated capability before go-live.</span>
+            </div>
+            <a href="article-adkar-ability.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part 5</span>
+                <span class="series-part-title">Reinforcement</span>
+              </div>
+              <span class="series-part-desc">Governance councils, reinforcement calendars, and why the change is not done when go-live ends.</span>
+            </div>
+            <a href="article-adkar-reinforcement.html" class="btn-read-sm">Read</a>
+          </div>
+
+        </div>
       </div>
     </div>
 
-    <div class="article-card">
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-date">2024</span>
-          <span class="card-tag">People &middot; Operations</span>
+    <!-- ── 4. Forest & Trees Series (gateway card) ── -->
+    <div class="series-card" id="series-forest">
+      <div class="series-card-header" onclick="toggleSeries('series-forest')">
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-date">2018–2025</span>
+            <span class="card-tag">Process &middot; Methodology</span>
+            <span class="series-badge">6-Part Series</span>
+          </div>
+          <h2 class="card-title">How to See the Forest and the Trees</h2>
+          <p class="card-desc">A complete practitioner's guide to IDEF0 process modeling and SIPOC analysis &mdash; from the Context Diagram through Value Stream quantification. Each part builds on the last.</p>
         </div>
-        <h2 class="card-title">The Mathematics of Morale.</h2>
-        <p class="card-desc">Calibrating load and lift — how operational leaders can measure the invisible cost of team burnout and build the case for sustainable capacity design.</p>
+        <div class="series-toggle">
+          <button class="btn-expand" onclick="event.stopPropagation(); toggleSeries('series-forest')">
+            Explore Series <span class="series-chevron">&#9660;</span>
+          </button>
+        </div>
       </div>
-      <div class="card-action">
-        <a href="article-mathematics-of-morale.html" class="btn-read">Read Article</a>
-        <a href="https://www.linkedin.com/pulse/mathematics-morale-calibrating-load-lift-cornerstone-solutions-io-s7mve/" target="_blank" rel="noopener noreferrer" class="btn-linkedin">View on LinkedIn</a>
+
+      <div class="series-articles" id="series-forest-articles">
+        <div class="series-divider"></div>
+        <div class="series-article-list">
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part I</span>
+                <span class="series-part-title">The Context Diagram</span>
+              </div>
+              <span class="series-part-desc">Introduction to IDEF0 &mdash; the Context Diagram and ICOMs so you can map any process at the right level of detail.</span>
+            </div>
+            <a href="article-forest-and-trees.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part II</span>
+                <span class="series-part-title">Activity Node Analysis</span>
+              </div>
+              <span class="series-part-desc">Functional decomposition &mdash; how to break any process from its highest view into structured L1 and L2 detail your teams can act on.</span>
+            </div>
+            <a href="article-forest-and-trees-2.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part III</span>
+                <span class="series-part-title">ICOMs at Every Node</span>
+              </div>
+              <span class="series-part-desc">Applying Inputs, Controls, Outputs, and Mechanisms across the full decomposition tree &mdash; turning a process map into a diagnostic tool.</span>
+            </div>
+            <a href="article-forest-and-trees-3.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part IV</span>
+                <span class="series-part-title">SIPOC — Adding Accountability</span>
+              </div>
+              <span class="series-part-desc">Who provides the inputs and who depends on the outputs? The framework that names the humans on both ends of every process.</span>
+            </div>
+            <a href="article-forest-and-trees-4.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part V</span>
+                <span class="series-part-title">The Combination</span>
+              </div>
+              <span class="series-part-desc">SIPOC + ICOM at every node &mdash; every activity, dependency, and accountability relationship in a single spreadsheet.</span>
+            </div>
+            <a href="article-forest-and-trees-5.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part VI</span>
+                <span class="series-part-title">Value Stream Analysis</span>
+              </div>
+              <span class="series-part-desc">Five data points per activity yield PCE and RTY &mdash; two metrics that reveal exactly where a process is losing time and where it is losing quality.</span>
+            </div>
+            <a href="article-forest-and-trees-6.html" class="btn-read-sm">Read</a>
+          </div>
+
+        </div>
       </div>
     </div>
 
-    <div class="article-card">
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-date">2018</span>
-          <span class="card-tag">Process &middot; Methodology</span>
+    <!-- ── 5. The Capacity Case Study (gateway card) ── -->
+    <div class="series-card" id="series-capacity">
+      <div class="series-card-header" onclick="toggleSeries('series-capacity')">
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-date">2024</span>
+            <span class="card-tag">Operations &middot; Case Study</span>
+            <span class="series-badge">2-Part Case Study</span>
+          </div>
+          <h2 class="card-title">The Capacity Case Study</h2>
+          <p class="card-desc">How a process clarity initiative unlocked an $18M&ndash;$22M workforce capacity model &mdash; told in two parts.</p>
         </div>
-        <h2 class="card-title">How to See the Forest and the Trees (Part I)</h2>
-        <p class="card-desc">An introduction to IDEF0 process modeling — learning the Context Diagram and ICOMs so you can map any process at the right level of detail before you redesign it.</p>
+        <div class="series-toggle">
+          <button class="btn-expand" onclick="event.stopPropagation(); toggleSeries('series-capacity')">
+            Explore Series <span class="series-chevron">&#9660;</span>
+          </button>
+        </div>
       </div>
-      <div class="card-action">
-        <a href="article-forest-and-trees.html" class="btn-read">Read Article</a>
-        <a href="https://www.linkedin.com/pulse/how-see-forest-trees-part-i-jeffrey-benson/" target="_blank" rel="noopener noreferrer" class="btn-linkedin">View on LinkedIn</a>
-      </div>
-    </div>
 
-    <div class="article-card">
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-date">2019</span>
-          <span class="card-tag">Process &middot; Methodology</span>
-        </div>
-        <h2 class="card-title">How to See the Forest and the Trees (Part II)</h2>
-        <p class="card-desc">Activity Node Analysis and functional decomposition — how to break any process from its highest view into the structured L1 and L2 detail your teams can actually act on.</p>
-      </div>
-      <div class="card-action">
-        <a href="article-forest-and-trees-2.html" class="btn-read">Read Article</a>
-        <a href="https://www.linkedin.com/pulse/how-see-forest-trees-part-ii-jeffrey-benson/" target="_blank" rel="noopener noreferrer" class="btn-linkedin">View on LinkedIn</a>
-      </div>
-    </div>
+      <div class="series-articles" id="series-capacity-articles">
+        <div class="series-divider"></div>
+        <div class="series-article-list">
 
-    <div class="article-card">
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-date">2025</span>
-          <span class="card-tag">Process &middot; Methodology</span>
-        </div>
-        <h2 class="card-title">How to See the Forest and the Trees (Part III)</h2>
-        <p class="card-desc">ICOMs at every node — how applying Inputs, Controls, Outputs, and Mechanisms across the full decomposition tree transforms a process map into a diagnostic tool.</p>
-      </div>
-      <div class="card-action">
-        <a href="article-forest-and-trees-3.html" class="btn-read">Read Article</a>
-        <a href="https://www.linkedin.com/pulse/how-see-forest-trees-part-iii-icoms-every-node-jeffrey-benson-b6kue" target="_blank" rel="noopener noreferrer" class="btn-linkedin">View on LinkedIn</a>
-      </div>
-    </div>
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part A</span>
+                <span class="series-part-title">You Can't Automate a Mess</span>
+              </div>
+              <span class="series-part-desc">Why process clarity must come before automation &mdash; and how getting there set the stage for what came next.</span>
+            </div>
+            <a href="article-automate-mess.html" class="btn-read-sm">Read</a>
+          </div>
 
-    <div class="article-card">
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-date">2025</span>
-          <span class="card-tag">Process &middot; Methodology</span>
-        </div>
-        <h2 class="card-title">How to See the Forest and the Trees (Part IV)</h2>
-        <p class="card-desc">SIPOC — adding accountability to the process model. Who provides the inputs and who depends on the outputs? The framework that names the humans on both ends of every process.</p>
-      </div>
-      <div class="card-action">
-        <a href="article-forest-and-trees-4.html" class="btn-read">Read Article</a>
-        <a href="https://www.linkedin.com/pulse/how-see-forest-trees-part-iv-sipoc-adding-jeffrey-benson-hu8be/" target="_blank" rel="noopener noreferrer" class="btn-linkedin">View on LinkedIn</a>
-      </div>
-    </div>
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part B</span>
+                <span class="series-part-title">The Mathematics of Morale</span>
+              </div>
+              <span class="series-part-desc">The workforce capacity model the clean foundation made possible &mdash; and how we quantified $18&ndash;$22M in recoverable value.</span>
+            </div>
+            <a href="article-mathematics-of-morale.html" class="btn-read-sm">Read</a>
+          </div>
 
-    <div class="article-card">
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-date">2025</span>
-          <span class="card-tag">Process &middot; Methodology</span>
         </div>
-        <h2 class="card-title">How to See the Forest and the Trees (Part V)</h2>
-        <p class="card-desc">The Combination — SIPOC + ICOM at every node. Apply both frameworks across the full decomposition tree and capture every activity, dependency, and accountability relationship in a single spreadsheet.</p>
-      </div>
-      <div class="card-action">
-        <a href="article-forest-and-trees-5.html" class="btn-read">Read Article</a>
-        <a href="https://www.linkedin.com/pulse/how-see-forest-trees-part-v-combination-sipoc-icom-every-benson-bopie" target="_blank" rel="noopener noreferrer" class="btn-linkedin">View on LinkedIn</a>
-      </div>
-    </div>
-
-    <div class="article-card">
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-date">2025</span>
-          <span class="card-tag">Process &middot; Methodology</span>
-        </div>
-        <h2 class="card-title">How to See the Forest and the Trees (Part VI)</h2>
-        <p class="card-desc">Value Stream Analysis — quantifying the model. Five data points per activity yield PCE and RTY: two metrics that reveal exactly where a process is losing time and where it is losing quality.</p>
-      </div>
-      <div class="card-action">
-        <a href="article-forest-and-trees-6.html" class="btn-read">Read Article</a>
-        <a href="https://www.linkedin.com/pulse/how-see-forest-trees-part-vi-value-stream-analysis-model-benson-1vk1e/" target="_blank" rel="noopener noreferrer" class="btn-linkedin">View on LinkedIn</a>
       </div>
     </div>
 
@@ -431,6 +735,18 @@
       applyNavOffset();
       window.addEventListener('resize', applyNavOffset);
     })();
+
+    function toggleSeries(id) {
+      var card = document.getElementById(id);
+      var articles = document.getElementById(id + '-articles');
+      if (card.classList.contains('open')) {
+        articles.style.maxHeight = '0';
+        card.classList.remove('open');
+      } else {
+        articles.style.maxHeight = articles.scrollHeight + 'px';
+        card.classList.add('open');
+      }
+    }
   </script>
 
 </body>
