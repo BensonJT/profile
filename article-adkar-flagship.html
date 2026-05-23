@@ -73,10 +73,32 @@
     /* ── Article Header ── */
     .article-header {
       background: var(--olive);
-      padding: 72px 48px 80px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .header-image-wrap {
+      position: relative;
+    }
+
+    .header-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.82;
+    }
+
+    .header-image-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, var(--olive));
+      pointer-events: none;
     }
 
     .header-text {
+      padding: 48px 48px 64px;
       max-width: 840px;
       margin: 0 auto;
       text-align: center;
@@ -485,8 +507,7 @@
     /* ── Responsive ── */
     @media (max-width: 640px) {
       .article-title { font-size: 1.9rem; }
-      .header-text { padding: 0; }
-      .article-header { padding: 52px 24px 60px; }
+      .header-text { padding: 36px 24px 48px; }
       .article-body { padding: 48px 20px 72px; }
       .section-title { font-size: 1.35rem; }
       .closing-quote { padding: 28px 24px; }
@@ -511,6 +532,10 @@
 
   <!-- ── Article Header ── -->
   <header class="article-header">
+    <div class="header-image-wrap">
+      <img src="img/ADKAR_Cover.webp"
+           alt="The ADKAR Model — the diagnostic framework for individual change">
+    </div>
     <div class="header-text">
       <a href="articles.html" class="article-back">&larr; All Writing</a>
       <p class="article-eyebrow">Change Management &middot; ADKAR Practitioner Series &middot; Flagship</p>
@@ -730,6 +755,12 @@
     </div>
 
     <hr>
+
+    <!-- ── Infographic ── -->
+    <img src="img/ADKAR_Overview.webp"
+         alt="The ADKAR Model Overview — Awareness, Desire, Knowledge, Ability, Reinforcement"
+         class="article-image">
+    <p class="image-caption">The ADKAR Model: a sequential bridge from the current state to the future state.</p>
 
     <!-- ── Series Index ── -->
     <div class="series-index">
