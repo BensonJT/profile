@@ -1335,6 +1335,7 @@
         <a href="#top">Overview</a>
         <a href="#operator-method">Method</a>
         <a href="#leadership-philosophy">Philosophy</a>
+        <a href="#forester">Forester</a>
         <a href="#work">Work</a>
         <a href="articles.html">Notebook</a>
         <a href="#connect">Connect</a>
@@ -2056,6 +2057,76 @@
         </div></div>
     </div>
 
+    <div class="section-bridge bridge-olive">
+        The method, made into a product — my whole career, distilled into software.
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         PROJECT FORESTER — career-as-product viewer
+         ══════════════════════════════════════════ -->
+    <style>
+        .fr-section { background: var(--charcoal); color: var(--vellum); padding: 90px 6%; }
+        .fr-inner { max-width: 1280px; margin: 0 auto; }
+        .fr-header { text-align: center; margin-bottom: 34px; }
+        .fr-eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-size: 0.72rem; font-weight: 700; margin-bottom: 10px; }
+        .fr-header h2 { font-size: 2.4rem; font-weight: 300; color: var(--vellum); margin-bottom: 14px; }
+        .fr-tagline { color: rgba(240,234,214,0.7); max-width: 740px; margin: 0 auto; font-size: 1rem; line-height: 1.65; }
+        .fr-tagline em { color: var(--gold); font-style: italic; }
+        .fr-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 26px; }
+        .fr-tab { background: transparent; color: rgba(240,234,214,0.55); border: 1px solid rgba(191,163,111,0.3); border-radius: 4px; padding: 9px 18px; font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: color 0.2s, background 0.2s, border-color 0.2s; font-family: inherit; }
+        .fr-tab:hover { color: var(--vellum); border-color: var(--gold); }
+        .fr-tab.active { background: var(--gold); color: var(--charcoal); border-color: var(--gold); }
+        .fr-stage { text-align: center; }
+        .fr-slide { width: 100%; max-width: 1120px; height: auto; border-radius: 6px; box-shadow: 0 18px 50px rgba(0,0,0,0.42); border: 1px solid rgba(191,163,111,0.25); background: var(--vellum); cursor: zoom-in; }
+        .fr-hint { margin-top: 14px; color: rgba(240,234,214,0.45); font-size: 0.8rem; font-style: italic; }
+        @media (max-width: 600px) {
+            .fr-section { padding: 60px 5%; }
+            .fr-header h2 { font-size: 1.8rem; }
+            .fr-tab { padding: 7px 12px; font-size: 0.64rem; letter-spacing: 1px; }
+        }
+    </style>
+
+    <section id="forester" class="fr-section">
+        <div class="fr-inner">
+            <div class="fr-header">
+                <p class="fr-eyebrow">Project Forester</p>
+                <h2>The Career, Built Into a Product</h2>
+                <p class="fr-tagline">Project Forester is the Benson Method made into software — each layer is a capability I've delivered at Fortune-20 scale. Read it as the product story, or as proof of what I do. <em>(Working name; the product name is still being finalized.)</em></p>
+            </div>
+
+            <div class="fr-tabs" role="tablist">
+                <button class="fr-tab active" data-slide="00_hero_project_forester" data-alt="Project Forester — one career distilled into a product">Overview</button>
+                <button class="fr-tab" data-slide="01_capture" data-alt="Capture layer — structured decomposition, SIPOC, ICOM, and the AI interview">Capture</button>
+                <button class="fr-tab" data-slide="02_quantify" data-alt="Quantify layer — the four-lens quantitative stack">Quantify</button>
+                <button class="fr-tab" data-slide="03_visualize" data-alt="Visualize layer — FDPM, IDEF0, BPMN, and the one-pagers">Visualize</button>
+                <button class="fr-tab" data-slide="04_diagnose" data-alt="Diagnose layer — the current vs. future transformation impact dashboard">Diagnose</button>
+                <button class="fr-tab" data-slide="05_decide" data-alt="Decide layer — the scenario explorer and transformation roadmap">Decide</button>
+            </div>
+
+            <div class="fr-stage">
+                <img id="fr-slide" class="fr-slide" src="slides/00_hero_project_forester.svg"
+                     alt="Project Forester — one career distilled into a product"
+                     onclick="openModal(this.src)">
+                <p class="fr-hint">Tap the slide to enlarge · best viewed full-screen (rotate on mobile)</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function () {
+            var tabs = document.querySelectorAll('#forester .fr-tab');
+            var img = document.getElementById('fr-slide');
+            tabs.forEach(function (t) {
+                t.addEventListener('click', function () {
+                    tabs.forEach(function (x) { x.classList.remove('active'); });
+                    t.classList.add('active');
+                    img.src = 'slides/' + t.dataset.slide + '.svg';
+                    img.alt = t.dataset.alt;
+                });
+            });
+        })();
+    </script>
+
     <div class="section-bridge bridge-white">
         The philosophy in practice — here's exactly how operational excellence gets built, step by step.
     </div>
@@ -2180,7 +2251,7 @@
             <h2 style="font-size:2.2rem; font-weight:300; color:var(--charcoal); margin-bottom:16px;">Operator by discipline. Servant by conviction.</h2>
             <p style="font-size:1.05rem; color:rgba(44,46,47,0.65); max-width:650px; margin:0 auto 48px; line-height:1.7;">
                 Evolved thought leadership in strategic operational transformation: rigorous methods and leadership
-                practices distilled from three decades of delivering enduring results.</p>
+                practices distilled from two decades of delivering enduring results.</p>
             <div class="writing-teaser-grid">
                 <a href="article-operator-method.html"
                     style="display:block; background:#fff; border-left:4px solid var(--gold); border-radius:0 6px 6px 0; padding:28px 28px; text-decoration:none; box-shadow:0 2px 10px rgba(0,0,0,0.06); transition:box-shadow 0.25s;"
@@ -2801,7 +2872,7 @@
         // ── Active nav highlighting ──
         (function () {
             const navLinks = document.querySelectorAll('.site-nav a');
-            const anchors = ['top', 'operator-method', 'leadership-philosophy', 'work', 'writing', 'connect'];
+            const anchors = ['top', 'operator-method', 'leadership-philosophy', 'forester', 'work', 'writing', 'connect'];
 
             function updateNav() {
                 const scrollY = window.scrollY + 70;

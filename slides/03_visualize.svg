@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 920" preserveAspectRatio="xMidYMid meet">
+
+  <defs>
+    <marker id="dn" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L5,10 L10,0 z" fill="#3B4B35"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif; }
+    .ctx        { font-size: 14px; fill: #6B6A63; font-style: italic; }
+    .title      { font-size: 30px; font-weight: 700; fill: #2C2E2F; }
+    .subtitle   { font-size: 15px; fill: #3B4B35; font-style: italic; }
+    .band-cap   { font-size: 13px; font-weight: 700; fill: #FFFFFF; letter-spacing: 2px; }
+    .band-cap-g { font-size: 13px; font-weight: 700; fill: #7DC97D; letter-spacing: 2px; }
+    .feat-t     { font-size: 16px; font-weight: 700; fill: #2C2E2F; }
+    .feat-n     { font-size: 15px; font-weight: 700; fill: #FFFFFF; }
+    .feat-d     { font-size: 13.5px; fill: #4A4A45; }
+    .sch-cap    { font-size: 10px; font-weight: 700; fill: #6B6A63; letter-spacing: 1.5px; }
+    .node       { font-size: 13px; font-weight: 700; fill: #FFFFFF; }
+    .rlabel     { font-size: 11px; font-weight: 700; fill: #3B4B35; }
+    .mini       { font-size: 9px; fill: #4A4A45; }
+    .micro      { font-size: 9.5px; font-weight: 700; fill: #BFA36F; letter-spacing: 1.5px; }
+    .pc-skill   { font-size: 15px; font-weight: 700; fill: #2C2E2F; }
+    .pc-v       { font-size: 20px; font-weight: 700; fill: #C27B58; }
+    .pc-l       { font-size: 12.5px; fill: #4A4A45; }
+    .pc-anchor  { font-size: 12px; fill: #6B6A63; font-style: italic; }
+    .footer     { font-size: 14px; fill: #6B6A63; font-style: italic; }
+  </style>
+
+  <rect width="1600" height="920" fill="#F0EAD6"/>
+
+  <!-- Header -->
+  <text x="60" y="34" class="ctx">Project Forester  ·  Layer 3 of 5  ·  one model, many audiences</text>
+  <text x="60" y="72" class="title">Visualize: Three Visual Languages + the One-Pagers</text>
+  <text x="60" y="96" class="subtitle">The same model, rendered for whoever's in the room — from the shop floor to the boardroom.</text>
+  <line x1="60" y1="112" x2="1540" y2="112" stroke="#D9CFB8" stroke-width="1.5"/>
+
+  <!-- ═══════════ UPPER BAND — IN THE PRODUCT ═══════════ -->
+  <rect x="60" y="128" width="1480" height="40" fill="#3B4B35"/>
+  <text x="80" y="153"><tspan class="band-cap-g">IN THE PRODUCT</tspan><tspan class="band-cap">   —  ONE MODEL, RENDERED IN EVERY LANGUAGE THAT MATTERS</tspan></text>
+  <rect x="60" y="168" width="1480" height="368" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+
+  <!-- Left: four renderings -->
+  <circle cx="96" cy="204" r="15" fill="#3B4B35"/>
+  <text x="96" y="209" text-anchor="middle" class="feat-n">1</text>
+  <text x="128" y="200" class="feat-t">FDPM swimlane — the proprietary view</text>
+  <text x="128" y="222" class="feat-d">Activities by owner-lane: the working diagram the team</text>
+  <text x="128" y="240" class="feat-d">runs on, and Forester's signature differentiator.</text>
+
+  <circle cx="96" cy="288" r="15" fill="#3B4B35"/>
+  <text x="96" y="293" text-anchor="middle" class="feat-n">2</text>
+  <text x="128" y="284" class="feat-t">IDEF0 — the rigorous standard</text>
+  <text x="128" y="306" class="feat-d">Full ICOM notation and decomposition, for analysts and</text>
+  <text x="128" y="324" class="feat-d">engineers who need the formal model.</text>
+
+  <circle cx="96" cy="372" r="15" fill="#3B4B35"/>
+  <text x="96" y="377" text-anchor="middle" class="feat-n">3</text>
+  <text x="128" y="368" class="feat-t">BPMN — the industry interchange</text>
+  <text x="128" y="390" class="feat-d">Exportable to .bpmn 2.0 (Camunda, Bizagi) — the bridge</text>
+  <text x="128" y="408" class="feat-d">to systems, automation, and IT.</text>
+
+  <circle cx="96" cy="460" r="15" fill="#C27B58"/>
+  <text x="96" y="465" text-anchor="middle" class="feat-n">&#9733;</text>
+  <text x="128" y="456" class="feat-t">Context &amp; SIPOC one-pagers</text>
+  <text x="128" y="478" class="feat-d">The least-detailed, most-seen artifacts — the single page</text>
+  <text x="128" y="496" class="feat-d">that actually fits on an executive's slide.</text>
+
+  <line x1="940" y1="190" x2="940" y2="514" stroke="#ECE4D0" stroke-width="1.5"/>
+
+  <!-- Right: schematic — one model fans into renders -->
+  <text x="980" y="196" class="sch-cap">ONE MODEL → MANY AUDIENCES</text>
+  <rect x="1185" y="208" width="120" height="32" rx="4" fill="#3B4B35"/>
+  <text x="1245" y="229" text-anchor="middle" class="node">MODEL</text>
+  <line x1="1245" y1="240" x2="1040" y2="296" stroke="#3B4B35" stroke-width="1.4"/>
+  <line x1="1245" y1="240" x2="1245" y2="296" stroke="#3B4B35" stroke-width="1.4"/>
+  <line x1="1245" y1="240" x2="1450" y2="296" stroke="#3B4B35" stroke-width="1.4"/>
+
+  <!-- FDPM mini -->
+  <rect x="965" y="302" width="150" height="60" fill="#FFFFFF" stroke="#D9CFB8"/>
+  <rect x="965" y="302" width="150" height="18" fill="#9FB08A"/>
+  <rect x="965" y="338" width="150" height="18" fill="#ECE4D0"/>
+  <rect x="980" y="306" width="34" height="10" fill="#3B4B35"/>
+  <rect x="1060" y="306" width="34" height="10" fill="#3B4B35"/>
+  <rect x="996" y="342" width="34" height="10" fill="#BFA36F"/>
+  <text x="1040" y="378" text-anchor="middle" class="rlabel">FDPM swimlane</text>
+
+  <!-- IDEF0 mini -->
+  <rect x="1215" y="312" width="58" height="40" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.6"/>
+  <line x1="1188" y1="332" x2="1213" y2="332" stroke="#3B4B35" stroke-width="1.4"/>
+  <line x1="1244" y1="298" x2="1244" y2="310" stroke="#C27B58" stroke-width="1.4"/>
+  <line x1="1275" y1="332" x2="1300" y2="332" stroke="#3B4B35" stroke-width="1.4"/>
+  <line x1="1244" y1="354" x2="1244" y2="366" stroke="#6B6A63" stroke-width="1.4"/>
+  <text x="1244" y="378" text-anchor="middle" class="rlabel">IDEF0</text>
+
+  <!-- BPMN mini -->
+  <circle cx="1372" cy="332" r="7" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.6"/>
+  <line x1="1379" y1="332" x2="1393" y2="332" stroke="#3B4B35" stroke-width="1.2"/>
+  <rect x="1393" y="322" width="30" height="20" rx="4" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.4"/>
+  <line x1="1423" y1="332" x2="1437" y2="332" stroke="#3B4B35" stroke-width="1.2"/>
+  <rect x="1444" y="322" width="20" height="20" fill="#FFFFFF" stroke="#C27B58" stroke-width="1.4" transform="rotate(45 1454 332)"/>
+  <line x1="1469" y1="332" x2="1483" y2="332" stroke="#3B4B35" stroke-width="1.2"/>
+  <circle cx="1492" cy="332" r="7" fill="#FFFFFF" stroke="#3B4B35" stroke-width="2"/>
+  <text x="1430" y="378" text-anchor="middle" class="rlabel">BPMN</text>
+
+  <!-- one-pager emphasis -->
+  <text x="980" y="416" class="sch-cap">+ THE ONE-PAGERS — WHAT FITS ON A SLIDE</text>
+  <rect x="1110" y="426" width="84" height="92" fill="#FFFFFF" stroke="#BFA36F" stroke-width="1.6"/>
+  <rect x="1110" y="426" width="84" height="16" fill="#BFA36F"/>
+  <line x1="1120" y1="456" x2="1184" y2="456" stroke="#D9CFB8" stroke-width="2"/>
+  <line x1="1120" y1="470" x2="1184" y2="470" stroke="#D9CFB8" stroke-width="2"/>
+  <line x1="1120" y1="484" x2="1184" y2="484" stroke="#D9CFB8" stroke-width="2"/>
+  <line x1="1120" y1="498" x2="1160" y2="498" stroke="#D9CFB8" stroke-width="2"/>
+  <text x="1252" y="462" class="mini">Context diagram &amp; high-level SIPOC —</text>
+  <text x="1252" y="480" class="mini">the artifacts that get the most</text>
+  <text x="1252" y="498" class="mini">executive eyeballs.</text>
+
+  <!-- ═══════════ LOWER BAND — WHERE THIS CAME FROM ═══════════ -->
+  <rect x="60" y="556" width="1480" height="40" fill="#C27B58"/>
+  <text x="80" y="581"><tspan class="band-cap">WHERE THIS CAME FROM</tspan><tspan class="band-cap" style="font-weight:400;">   —  PROCESS MAPS THE WHOLE ORGANIZATION ACTUALLY USED</tspan></text>
+
+  <!-- PC1 -->
+  <rect x="60"  y="608" width="476" height="220" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="60"  y="608" width="5"   height="220" fill="#C27B58"/>
+  <text x="86"  y="638" class="micro">MAPS THAT SURVIVED REORGS</text>
+  <text x="86"  y="666" class="pc-skill">Mapped two merging companies into one</text>
+  <text x="86"  y="700" class="pc-v">“Oneness” — Wireless + Wireline</text>
+  <text x="86"  y="726" class="pc-l">Drove the business-process-modeling maps that built</text>
+  <text x="86"  y="744" class="pc-l">unified future-state processes across a convergence of</text>
+  <text x="86"  y="762" class="pc-l">two organizations.</text>
+  <text x="86"  y="800" class="pc-anchor">“…driving business process modeling maps…”</text>
+  <text x="86"  y="817" class="pc-anchor">— Deborah Holt, Global Technology Leader, VZ</text>
+
+  <!-- PC2 -->
+  <rect x="562" y="608" width="476" height="220" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="562" y="608" width="5"   height="220" fill="#C27B58"/>
+  <text x="588" y="638" class="micro">THE TRANSLATOR BETWEEN WORLDS</text>
+  <text x="588" y="666" class="pc-skill">Made the complex legible to everyone</text>
+  <text x="588" y="700" class="pc-v">Business ↔ technical, in one view</text>
+  <text x="588" y="726" class="pc-l">Translated tangled business processes into language both</text>
+  <text x="588" y="744" class="pc-l">end-users and programmers could act on — the reason</text>
+  <text x="588" y="762" class="pc-l">whole projects ran smoothly.</text>
+  <text x="588" y="800" class="pc-anchor">“…the translation between myself and the end-users.”</text>
+  <text x="588" y="817" class="pc-anchor">— Phet Boudsyvongsakd, Systems Developer</text>
+
+  <!-- PC3 -->
+  <rect x="1064" y="608" width="476" height="220" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="1064" y="608" width="5"   height="220" fill="#C27B58"/>
+  <text x="1090" y="638" class="micro">VISUAL, DATA-DRIVEN, DECISIVE</text>
+  <text x="1090" y="666" class="pc-skill">Built the Profile Mapping Tool</text>
+  <text x="1090" y="700" class="pc-v">Less drive time, +10% dispatch</text>
+  <text x="1090" y="726" class="pc-l">A visual, data-driven picture of every work area —</text>
+  <text x="1090" y="744" class="pc-l">turning overlapping chaos into contiguous technician</text>
+  <text x="1090" y="762" class="pc-l">profiles leaders could act on.</text>
+  <text x="1090" y="800" class="pc-anchor">“…conceptualized and developed a highly effective</text>
+  <text x="1090" y="817" class="pc-anchor">Profile Mapping Tool.” — Carlos Quirindongo, VZ</text>
+
+  <line x1="60" y1="852" x2="1540" y2="852" stroke="#D9CFB8" stroke-width="1.5"/>
+  <text x="800" y="882" text-anchor="middle" class="footer">Visualize is where rigor meets the room. One model speaks to the technician, the engineer, the integrator, and the executive — each in their own language.</text>
+
+</svg>
