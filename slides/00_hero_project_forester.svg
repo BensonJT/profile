@@ -32,7 +32,7 @@
   <!-- Header -->
   <text x="60" y="34" class="ctx">Working name: Project Forester  ·  the synthesis of 20+ years of operations transformation</text>
   <text x="60" y="72" class="title">Project Forester: One Career, Distilled Into a Product</text>
-  <text x="60" y="96" class="subtitle">The Benson Method made software — every layer of the product is a capability I built and proved at Fortune-20 scale.</text>
+  <text x="60" y="96" class="subtitle">The Operator Method made software — every layer of the product is a capability I built and proved at Fortune-20 scale.</text>
   <line x1="60" y1="112" x2="1540" y2="112" stroke="#D9CFB8" stroke-width="1.5"/>
 
   <!-- ═══════════════ LEFT RAIL — THE OPERATOR ═══════════════ -->
@@ -46,7 +46,7 @@
 
   <text x="88" y="262" class="sec">CORE KSAs</text>
   <text x="88" y="288" class="bullet">•  Lean Six Sigma Black Belt — DMAIC</text>
-  <text x="88" y="312" class="bullet">•  The Benson Method — proprietary</text>
+  <text x="88" y="312" class="bullet">•  The Operator Method — proprietary</text>
   <text x="104" y="332" class="bullet-c">process-modeling methodology</text>
   <text x="88" y="356" class="bullet">•  BI &amp; data analytics — Python · SQL</text>
   <text x="88" y="380" class="bullet">•  Decision-support &amp; FP&amp;A modeling</text>
