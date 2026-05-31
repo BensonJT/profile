@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 920" preserveAspectRatio="xMidYMid meet">
+
+  <style>
+    text { font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif; }
+    .ctx        { font-size: 14px; fill: #6B6A63; font-style: italic; }
+    .title      { font-size: 30px; font-weight: 700; fill: #2C2E2F; }
+    .subtitle   { font-size: 15px; fill: #3B4B35; font-style: italic; }
+    .eyebrow    { font-size: 12px; font-weight: 700; fill: #C27B58; letter-spacing: 2.5px; }
+    .sec        { font-size: 11px; font-weight: 700; fill: #3B4B35; letter-spacing: 1.8px; }
+    .micro      { font-size: 9.5px; font-weight: 700; fill: #BFA36F; letter-spacing: 1.5px; }
+    .name       { font-size: 23px; font-weight: 700; fill: #2C2E2F; }
+    .tagline    { font-size: 15px; fill: #C27B58; font-style: italic; }
+    .bullet     { font-size: 13.5px; fill: #2C2E2F; }
+    .bullet-c   { font-size: 13.5px; fill: #6B6A63; }
+    .found      { font-size: 14px; fill: #2C2E2F; }
+    .found-num  { font-size: 14px; font-weight: 700; fill: #BFA36F; }
+    .stat-v     { font-size: 13.5px; font-weight: 700; fill: #C27B58; }
+    .stat-l     { font-size: 13.5px; fill: #6B6A63; }
+    .layer-num  { font-size: 10px; font-weight: 700; fill: #7DC97D; letter-spacing: 2px; }
+    .layer-verb { font-size: 23px; font-weight: 700; fill: #FFFFFF; }
+    .layer-sub  { font-size: 12px; fill: #E7DEC6; font-style: italic; }
+    .what       { font-size: 14.5px; fill: #2C2E2F; }
+    .proof-v    { font-size: 14px; font-weight: 700; fill: #C27B58; }
+    .proof-c    { font-size: 12px; fill: #6B6A63; }
+    .footer     { font-size: 14px; fill: #6B6A63; font-style: italic; }
+  </style>
+
+  <!-- Background -->
+  <rect width="1600" height="920" fill="#F0EAD6"/>
+
+  <!-- Header -->
+  <text x="60" y="34" class="ctx">Working name: Project Forester  ·  the synthesis of 20+ years of operations transformation</text>
+  <text x="60" y="72" class="title">Project Forester: One Career, Distilled Into a Product</text>
+  <text x="60" y="96" class="subtitle">The Benson Method made software — every layer of the product is a capability I built and proved at Fortune-20 scale.</text>
+  <line x1="60" y1="112" x2="1540" y2="112" stroke="#D9CFB8" stroke-width="1.5"/>
+
+  <!-- ═══════════════ LEFT RAIL — THE OPERATOR ═══════════════ -->
+  <rect x="60" y="128" width="440" height="684" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="60" y="128" width="6" height="684" fill="#3B4B35"/>
+
+  <text x="88" y="162" class="eyebrow">THE OPERATOR</text>
+  <text x="88" y="194" class="name">Jeff Benson</text>
+  <text x="88" y="218" class="tagline">“An operator who codes.”</text>
+  <line x1="88" y1="236" x2="472" y2="236" stroke="#ECE4D0" stroke-width="1.5"/>
+
+  <text x="88" y="262" class="sec">CORE KSAs</text>
+  <text x="88" y="288" class="bullet">•  Lean Six Sigma Black Belt — DMAIC</text>
+  <text x="88" y="312" class="bullet">•  The Benson Method — proprietary</text>
+  <text x="104" y="332" class="bullet-c">process-modeling methodology</text>
+  <text x="88" y="356" class="bullet">•  BI &amp; data analytics — Python · SQL</text>
+  <text x="88" y="380" class="bullet">•  Decision-support &amp; FP&amp;A modeling</text>
+  <text x="88" y="404" class="bullet">•  GenAI orchestration — agentic AI</text>
+  <line x1="88" y1="422" x2="472" y2="422" stroke="#ECE4D0" stroke-width="1.5"/>
+
+  <text x="88" y="448" class="sec">THREE FOUNDATIONS</text>
+  <text x="88" y="474" class="found"><tspan class="found-num">1</tspan>   Diagnose with Empathy</text>
+  <text x="88" y="498" class="found"><tspan class="found-num">2</tspan>   Automate to Elevate</text>
+  <text x="88" y="522" class="found"><tspan class="found-num">3</tspan>   Model for Reality</text>
+  <line x1="88" y1="540" x2="472" y2="540" stroke="#ECE4D0" stroke-width="1.5"/>
+
+  <text x="88" y="566" class="sec">PROVEN AT SCALE</text>
+  <text x="88" y="592"><tspan class="stat-v">20+ years</tspan><tspan class="stat-l">  —  Fortune-20 transformation</tspan></text>
+  <text x="88" y="618"><tspan class="stat-v">$3B+</tspan><tspan class="stat-l">  operating expense governed</tspan></text>
+  <text x="88" y="644"><tspan class="stat-v">$500M</tspan><tspan class="stat-l">  merger synergy validated</tspan></text>
+  <text x="88" y="670"><tspan class="stat-v">86%</tspan><tspan class="stat-l">  procedural error reduction</tspan></text>
+  <text x="88" y="696"><tspan class="stat-v">21–33×</tspan><tspan class="stat-l">  deployment velocity (DMAIC)</tspan></text>
+  <text x="88" y="722"><tspan class="stat-v">$455M</tspan><tspan class="stat-l">  transformation benefits governed</tspan></text>
+  <line x1="88" y1="744" x2="472" y2="744" stroke="#ECE4D0" stroke-width="1.5"/>
+  <text x="88" y="770" class="stat-l">LSSBB · PSM I · ITIL · M.A. Org. Management</text>
+  <text x="88" y="792" class="stat-l">Founder &amp; Principal — Cornerstone Solutions</text>
+
+  <!-- ═══════════════ RIGHT — THE PRODUCT (FORESTER STACK) ═══════════════ -->
+  <text x="528" y="162" class="eyebrow">THE PRODUCT — FORESTER, LAYER BY LAYER</text>
+
+  <!-- Tier template: chip x=528 w=250 | what x=778 w=518 | proof x=1298 w=242 | h=116 -->
+
+  <!-- T1 CAPTURE  y=176 -->
+  <rect x="528" y="176" width="1012" height="116" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="528" y="176" width="250" height="116" fill="#3B4B35"/>
+  <text x="552" y="206" class="layer-num">LAYER 1</text>
+  <text x="552" y="238" class="layer-verb">CAPTURE</text>
+  <text x="552" y="262" class="layer-sub">Structure &amp; AI interview</text>
+  <text x="796" y="204" class="micro">IN THE PRODUCT</text>
+  <text x="796" y="228" class="what">Structured IDEF0 decomposition with SIPOC accountability and</text>
+  <text x="796" y="250" class="what">ICOM flow — captured live by a methodology-trained AI interviewer.</text>
+  <rect x="1298" y="176" width="242" height="116" fill="#ECE4D0"/>
+  <rect x="1298" y="176" width="4" height="116" fill="#C27B58"/>
+  <text x="1316" y="204" class="micro">FROM MY CAREER</text>
+  <text x="1316" y="230" class="proof-v">ISO 9000 · 143 SOPs</text>
+  <text x="1316" y="252" class="proof-c">86% fewer procedural errors;</text>
+  <text x="1316" y="270" class="proof-c">attrition cut 50 → 1 (98%).</text>
+
+  <!-- T2 QUANTIFY  y=304 -->
+  <rect x="528" y="304" width="1012" height="116" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="528" y="304" width="250" height="116" fill="#3B4B35"/>
+  <text x="552" y="334" class="layer-num">LAYER 2</text>
+  <text x="552" y="366" class="layer-verb">QUANTIFY</text>
+  <text x="552" y="390" class="layer-sub">The four-lens stack</text>
+  <text x="796" y="332" class="micro">IN THE PRODUCT</text>
+  <text x="796" y="356" class="what">Every activity scored four ways — Value-Stream waste, Capacity</text>
+  <text x="796" y="378" class="what">&amp; FTE gap, Six-Sigma capability, and Financial cost.</text>
+  <rect x="1298" y="304" width="242" height="116" fill="#ECE4D0"/>
+  <rect x="1298" y="304" width="4" height="116" fill="#C27B58"/>
+  <text x="1316" y="332" class="micro">FROM MY CAREER</text>
+  <text x="1316" y="358" class="proof-v">$18–22M capacity</text>
+  <text x="1316" y="380" class="proof-c">GNO force-to-load model;</text>
+  <text x="1316" y="398" class="proof-c">450% FP&amp;A capability gain.</text>
+
+  <!-- T3 VISUALIZE  y=432 -->
+  <rect x="528" y="432" width="1012" height="116" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="528" y="432" width="250" height="116" fill="#3B4B35"/>
+  <text x="552" y="462" class="layer-num">LAYER 3</text>
+  <text x="552" y="494" class="layer-verb">VISUALIZE</text>
+  <text x="552" y="518" class="layer-sub">Three visual languages</text>
+  <text x="796" y="460" class="micro">IN THE PRODUCT</text>
+  <text x="796" y="484" class="what">One model, rendered as an FDPM swimlane, IDEF0, or BPMN —</text>
+  <text x="796" y="506" class="what">plus Context &amp; SIPOC one-pagers executives actually read.</text>
+  <rect x="1298" y="432" width="242" height="116" fill="#ECE4D0"/>
+  <rect x="1298" y="432" width="4" height="116" fill="#C27B58"/>
+  <text x="1316" y="460" class="micro">FROM MY CAREER</text>
+  <text x="1316" y="486" class="proof-v">Maps used for years</text>
+  <text x="1316" y="508" class="proof-c">Process flows adopted</text>
+  <text x="1316" y="526" class="proof-c">enterprise-wide (Director, VZ).</text>
+
+  <!-- T4 DIAGNOSE  y=560 -->
+  <rect x="528" y="560" width="1012" height="116" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="528" y="560" width="250" height="116" fill="#3B4B35"/>
+  <text x="552" y="590" class="layer-num">LAYER 4</text>
+  <text x="552" y="622" class="layer-verb">DIAGNOSE</text>
+  <text x="552" y="646" class="layer-sub">Impact dashboard</text>
+  <text x="796" y="588" class="micro">IN THE PRODUCT</text>
+  <text x="796" y="612" class="what">Current-State vs. Future-State side by side — waste, capacity, and</text>
+  <text x="796" y="634" class="what">cost deltas quantified before a dollar is spent.</text>
+  <rect x="1298" y="560" width="242" height="116" fill="#ECE4D0"/>
+  <rect x="1298" y="560" width="4" height="116" fill="#C27B58"/>
+  <text x="1316" y="588" class="micro">FROM MY CAREER</text>
+  <text x="1316" y="614" class="proof-v">$61M ITAM savings</text>
+  <text x="1316" y="636" class="proof-c">Validated year one —</text>
+  <text x="1316" y="654" class="proof-c">138% of plan.</text>
+
+  <!-- T5 DECIDE  y=688 -->
+  <rect x="528" y="688" width="1012" height="116" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="528" y="688" width="250" height="116" fill="#3B4B35"/>
+  <text x="552" y="718" class="layer-num">LAYER 5</text>
+  <text x="552" y="750" class="layer-verb">DECIDE</text>
+  <text x="552" y="774" class="layer-sub">Scenario explorer &amp; roadmap</text>
+  <text x="796" y="716" class="micro">IN THE PRODUCT</text>
+  <text x="796" y="740" class="what">Goal-driven generation of feasible Future-State candidates — the</text>
+  <text x="796" y="762" class="what">roadmap, with the quantified business case already attached.</text>
+  <rect x="1298" y="688" width="242" height="116" fill="#ECE4D0"/>
+  <rect x="1298" y="688" width="4" height="116" fill="#C27B58"/>
+  <text x="1316" y="716" class="micro">FROM MY CAREER</text>
+  <text x="1316" y="742" class="proof-v">Backbone of strategy</text>
+  <text x="1316" y="764" class="proof-c">F2L model drove enterprise</text>
+  <text x="1316" y="782" class="proof-c">headcount &amp; investment calls.</text>
+
+  <!-- ═══════════════ FOOTER RIBBON ═══════════════ -->
+  <line x1="60" y1="836" x2="1540" y2="836" stroke="#D9CFB8" stroke-width="1.5"/>
+  <text x="800" y="866" text-anchor="middle" class="footer">One throughline across 20+ years — diagnose the real process, quantify the hidden waste, hand leaders a decision they can trust.</text>
+  <text x="800" y="892" text-anchor="middle" class="footer">Project Forester makes that method repeatable — and available to the 99% of operators who could never replicate it by hand.</text>
+
+</svg>

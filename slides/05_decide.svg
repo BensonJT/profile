@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 920" preserveAspectRatio="xMidYMid meet">
+
+  <defs>
+    <marker id="dn2" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L5,10 L10,0 z" fill="#3B4B35"/>
+    </marker>
+    <marker id="dnc" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L5,10 L10,0 z" fill="#C27B58"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif; }
+    .ctx        { font-size: 14px; fill: #6B6A63; font-style: italic; }
+    .title      { font-size: 30px; font-weight: 700; fill: #2C2E2F; }
+    .subtitle   { font-size: 15px; fill: #3B4B35; font-style: italic; }
+    .band-cap   { font-size: 13px; font-weight: 700; fill: #FFFFFF; letter-spacing: 2px; }
+    .band-cap-g { font-size: 13px; font-weight: 700; fill: #7DC97D; letter-spacing: 2px; }
+    .feat-t     { font-size: 16px; font-weight: 700; fill: #2C2E2F; }
+    .feat-n     { font-size: 15px; font-weight: 700; fill: #FFFFFF; }
+    .feat-d     { font-size: 13.5px; fill: #4A4A45; }
+    .sch-cap    { font-size: 10px; font-weight: 700; fill: #6B6A63; letter-spacing: 1.5px; }
+    .node       { font-size: 13px; font-weight: 700; fill: #FFFFFF; }
+    .sc-name    { font-size: 12px; font-weight: 700; fill: #3B4B35; }
+    .sc-name-p  { font-size: 12px; font-weight: 700; fill: #C27B58; }
+    .sc-trade   { font-size: 11px; fill: #4A4A45; }
+    .promo      { font-size: 9px; font-weight: 700; fill: #FFFFFF; letter-spacing: 1px; }
+    .barlbl     { font-size: 13px; font-weight: 700; fill: #FFFFFF; }
+    .micro      { font-size: 9.5px; font-weight: 700; fill: #BFA36F; letter-spacing: 1.5px; }
+    .pc-skill   { font-size: 15px; font-weight: 700; fill: #2C2E2F; }
+    .pc-v       { font-size: 20px; font-weight: 700; fill: #C27B58; }
+    .pc-l       { font-size: 12.5px; fill: #4A4A45; }
+    .pc-anchor  { font-size: 12px; fill: #6B6A63; font-style: italic; }
+    .footer     { font-size: 14px; fill: #6B6A63; font-style: italic; }
+  </style>
+
+  <rect width="1600" height="920" fill="#F0EAD6"/>
+
+  <!-- Header -->
+  <text x="60" y="34" class="ctx">Project Forester  ·  Layer 5 of 5  ·  from analysis to decision</text>
+  <text x="60" y="72" class="title">Decide: The Scenario Explorer &amp; Transformation Roadmap</text>
+  <text x="60" y="96" class="subtitle">Set the goal; Forester generates feasible future-state paths — each with the quantified business case already attached.</text>
+  <line x1="60" y1="112" x2="1540" y2="112" stroke="#D9CFB8" stroke-width="1.5"/>
+
+  <!-- ═══════════ UPPER BAND — IN THE PRODUCT ═══════════ -->
+  <rect x="60" y="128" width="1480" height="40" fill="#3B4B35"/>
+  <text x="80" y="153"><tspan class="band-cap-g">IN THE PRODUCT</tspan><tspan class="band-cap">   —  GOAL-DRIVEN FUTURE STATES, RANKED BY FEASIBILITY</tspan></text>
+  <rect x="60" y="168" width="1480" height="368" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+
+  <!-- Left: four capabilities -->
+  <circle cx="96" cy="204" r="15" fill="#3B4B35"/>
+  <text x="96" y="209" text-anchor="middle" class="feat-n">1</text>
+  <text x="128" y="200" class="feat-t">Goal-driven generation</text>
+  <text x="128" y="222" class="feat-d">State the target — cost, capacity, or cycle time — and the</text>
+  <text x="128" y="240" class="feat-d">explorer proposes future-state candidates that reach it.</text>
+
+  <circle cx="96" cy="288" r="15" fill="#3B4B35"/>
+  <text x="96" y="293" text-anchor="middle" class="feat-n">2</text>
+  <text x="128" y="284" class="feat-t">Bounded by real feasibility</text>
+  <text x="128" y="306" class="feat-d">Candidates respect the model's actual capacity, capability,</text>
+  <text x="128" y="324" class="feat-d">and cost constraints — not wishful thinking.</text>
+
+  <circle cx="96" cy="372" r="15" fill="#3B4B35"/>
+  <text x="96" y="377" text-anchor="middle" class="feat-n">3</text>
+  <text x="128" y="368" class="feat-t">Promote-to-draft</text>
+  <text x="128" y="390" class="feat-d">Pick a path and it becomes a real Future-State model</text>
+  <text x="128" y="408" class="feat-d">draft, ready to refine and hand off.</text>
+
+  <circle cx="96" cy="460" r="15" fill="#C27B58"/>
+  <text x="96" y="465" text-anchor="middle" class="feat-n">&#9733;</text>
+  <text x="128" y="456" class="feat-t">The roadmap, with the case attached</text>
+  <text x="128" y="478" class="feat-d">The chosen path carries its ROI straight into the Impact</text>
+  <text x="128" y="496" class="feat-d">Dashboard's story — a decision a leader can sign.</text>
+
+  <line x1="940" y1="190" x2="940" y2="514" stroke="#ECE4D0" stroke-width="1.5"/>
+
+  <!-- Right: scenario explorer schematic -->
+  <text x="980" y="196" class="sch-cap">STATE THE GOAL → GET FEASIBLE PATHS</text>
+  <rect x="1175" y="208" width="150" height="32" rx="4" fill="#3B4B35"/>
+  <text x="1250" y="229" text-anchor="middle" class="node">GOAL: −$3M</text>
+
+  <line x1="1250" y1="240" x2="1037" y2="288" stroke="#3B4B35" stroke-width="1.4"/>
+  <line x1="1250" y1="240" x2="1250" y2="288" stroke="#C27B58" stroke-width="1.6"/>
+  <line x1="1250" y1="240" x2="1463" y2="288" stroke="#3B4B35" stroke-width="1.4"/>
+
+  <!-- Scenario A -->
+  <rect x="965" y="292" width="148" height="74" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1.2"/>
+  <text x="977" y="312" class="sc-name">Scenario A</text>
+  <text x="977" y="332" class="sc-trade">−$3.0M cost</text>
+  <text x="977" y="348" class="sc-trade">+6 wk · 0 FTE</text>
+
+  <!-- Scenario B (promoted) -->
+  <rect x="1176" y="292" width="148" height="74" fill="#FFFFFF" stroke="#C27B58" stroke-width="2.5"/>
+  <rect x="1176" y="292" width="148" height="18" fill="#C27B58"/>
+  <text x="1250" y="305" text-anchor="middle" class="promo">PROMOTED</text>
+  <text x="1188" y="330" class="sc-name-p">Scenario B</text>
+  <text x="1188" y="348" class="sc-trade">−$2.4M · +2 wk</text>
+  <text x="1188" y="362" class="sc-trade">+3 FTE (balanced)</text>
+
+  <!-- Scenario C -->
+  <rect x="1387" y="292" width="148" height="74" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1.2"/>
+  <text x="1399" y="312" class="sc-name">Scenario C</text>
+  <text x="1399" y="332" class="sc-trade">−$3.4M cost</text>
+  <text x="1399" y="348" class="sc-trade">+10 wk · −2 FTE</text>
+
+  <!-- promote arrow down to roadmap bar -->
+  <line x1="1250" y1="366" x2="1250" y2="392" stroke="#C27B58" stroke-width="1.6"/>
+  <rect x="965" y="396" width="570" height="44" rx="4" fill="#3B4B35"/>
+  <text x="985" y="423" class="barlbl">→  Future-State draft created — business case attached</text>
+
+  <text x="980" y="470" class="feat-d">The explorer sits on the entire stack: it reads the captured model, the</text>
+  <text x="980" y="490" class="feat-d">four lenses, and the diagnosed deltas to propose only paths the</text>
+  <text x="980" y="510" class="feat-d">organization can actually execute.</text>
+
+  <!-- ═══════════ LOWER BAND — WHERE THIS CAME FROM ═══════════ -->
+  <rect x="60" y="556" width="1480" height="40" fill="#C27B58"/>
+  <text x="80" y="581"><tspan class="band-cap">WHERE THIS CAME FROM</tspan><tspan class="band-cap" style="font-weight:400;">   —  MODELS THAT MADE THE BIG DECISIONS DEFENSIBLE</tspan></text>
+
+  <!-- PC1 -->
+  <rect x="60"  y="608" width="476" height="220" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="60"  y="608" width="5"   height="220" fill="#C27B58"/>
+  <text x="86"  y="638" class="micro">THE HEADCOUNT BUSINESS CASE</text>
+  <text x="86"  y="666" class="pc-skill">Justified the workforce, both ways</text>
+  <text x="86"  y="700" class="pc-v">50 FTE approved · $1.5M avoided</text>
+  <text x="86"  y="726" class="pc-l">The force-to-load / SWM models became the backbone</text>
+  <text x="86"  y="744" class="pc-l">for headcount decisions — defending additions and</text>
+  <text x="86"  y="762" class="pc-l">reductions as demand shifted.</text>
+  <text x="86"  y="800" class="pc-anchor">“…justification for resource allocation shifts.”</text>
+  <text x="86"  y="817" class="pc-anchor">— Carlos Quirindongo, Senior Analyst, VZ</text>
+
+  <!-- PC2 -->
+  <rect x="562" y="608" width="476" height="220" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="562" y="608" width="5"   height="220" fill="#C27B58"/>
+  <text x="588" y="638" class="micro">THE INVESTMENT, SECURED</text>
+  <text x="588" y="666" class="pc-skill">Modeled the case for strategic spend</text>
+  <text x="588" y="700" class="pc-v">Investment won · skill gaps closed</text>
+  <text x="588" y="726" class="pc-l">The FWA data model and the GNO F2L rebuild secured</text>
+  <text x="588" y="744" class="pc-l">strategic investment and a $18–22M technician training</text>
+  <text x="588" y="762" class="pc-l">roadmap aimed at the real skill gaps.</text>
+  <text x="588" y="800" class="pc-anchor">“…secured strategic investment, addressed critical</text>
+  <text x="588" y="817" class="pc-anchor">skill gaps.” — Morad Bosen, Analytics Engineer, VZ</text>
+
+  <!-- PC3 -->
+  <rect x="1064" y="608" width="476" height="220" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="1064" y="608" width="5"   height="220" fill="#C27B58"/>
+  <text x="1090" y="638" class="micro">FORECASTS THAT OPTIMIZED THE FORCE</text>
+  <text x="1090" y="666" class="pc-skill">Turned forecasts into staffing moves</text>
+  <text x="1090" y="700" class="pc-v">$1–3M OT savings · millions saved</text>
+  <text x="1090" y="726" class="pc-l">Forecasting models gave leadership the insight to</text>
+  <text x="1090" y="744" class="pc-l">optimize staffing levels — shift, cross-training, and</text>
+  <text x="1090" y="762" class="pc-l">overtime decisions worth millions.</text>
+  <text x="1090" y="800" class="pc-anchor">“…optimize staffing levels and identify opportunities</text>
+  <text x="1090" y="817" class="pc-anchor">to save millions.” — Carlos Orellana, Data Engineer, VZ</text>
+
+  <line x1="60" y1="852" x2="1540" y2="852" stroke="#D9CFB8" stroke-width="1.5"/>
+  <text x="800" y="882" text-anchor="middle" class="footer">Decide is the capstone. Capture, quantification, visualization, and diagnosis converge into one thing a leader has always needed: a recommendation they can trust.</text>
+
+</svg>

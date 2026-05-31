@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 920" preserveAspectRatio="xMidYMid meet">
+
+  <defs>
+    <marker id="up" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,10 L5,0 L10,10 z" fill="#C27B58"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif; }
+    .ctx        { font-size: 14px; fill: #6B6A63; font-style: italic; }
+    .title      { font-size: 30px; font-weight: 700; fill: #2C2E2F; }
+    .subtitle   { font-size: 15px; fill: #3B4B35; font-style: italic; }
+    .band-cap   { font-size: 13px; font-weight: 700; fill: #FFFFFF; letter-spacing: 2px; }
+    .band-cap-g { font-size: 13px; font-weight: 700; fill: #7DC97D; letter-spacing: 2px; }
+    .feat-n     { font-size: 15px; font-weight: 700; fill: #FFFFFF; }
+    .feat-t     { font-size: 16px; font-weight: 700; fill: #2C2E2F; }
+    .feat-d     { font-size: 13.5px; fill: #4A4A45; }
+    .sch-cap    { font-size: 10px; font-weight: 700; fill: #6B6A63; letter-spacing: 1.5px; }
+    .node       { font-size: 13px; font-weight: 700; fill: #FFFFFF; }
+    .nodeo      { font-size: 12px; font-weight: 700; fill: #3B4B35; }
+    .chip-l     { font-size: 11px; font-weight: 700; fill: #FFFFFF; letter-spacing: 0.5px; }
+    .chip-v     { font-size: 15px; font-weight: 700; fill: #2C2E2F; }
+    .chip-vc    { font-size: 15px; font-weight: 700; fill: #C27B58; }
+    .ann        { font-size: 11px; fill: #6B6A63; font-style: italic; }
+    .micro      { font-size: 9.5px; font-weight: 700; fill: #BFA36F; letter-spacing: 1.5px; }
+    .pc-skill   { font-size: 15px; font-weight: 700; fill: #2C2E2F; }
+    .pc-v       { font-size: 20px; font-weight: 700; fill: #C27B58; }
+    .pc-l       { font-size: 12.5px; fill: #4A4A45; }
+    .pc-anchor  { font-size: 12px; fill: #6B6A63; font-style: italic; }
+    .footer     { font-size: 14px; fill: #6B6A63; font-style: italic; }
+  </style>
+
+  <rect width="1600" height="920" fill="#F0EAD6"/>
+
+  <!-- Header -->
+  <text x="60" y="34" class="ctx">Project Forester  ·  Layer 2 of 5  ·  the quantitative engine</text>
+  <text x="60" y="72" class="title">Quantify: The Four-Lens Stack</text>
+  <text x="60" y="96" class="subtitle">Score every activity four ways — so waste, capacity, capability, and cost stop being opinions and start being numbers.</text>
+  <line x1="60" y1="112" x2="1540" y2="112" stroke="#D9CFB8" stroke-width="1.5"/>
+
+  <!-- ═══════════ UPPER BAND — IN THE PRODUCT ═══════════ -->
+  <rect x="60" y="128" width="1480" height="40" fill="#3B4B35"/>
+  <text x="80" y="153"><tspan class="band-cap-g">IN THE PRODUCT</tspan><tspan class="band-cap">   —  FOUR QUANTITATIVE LENSES ON ONE TREE</tspan></text>
+  <rect x="60" y="168" width="1480" height="368" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+
+  <!-- Left: four lenses -->
+  <circle cx="96" cy="204" r="15" fill="#3B4B35"/>
+  <text x="96" y="209" text-anchor="middle" class="feat-n">1</text>
+  <text x="128" y="200" class="feat-t">Value Stream Analysis (VSA)</text>
+  <text x="128" y="222" class="feat-d">Lead time, process time, %complete-&amp;-accurate — PCE and</text>
+  <text x="128" y="240" class="feat-d">rolled yield expose where time and value get destroyed.</text>
+
+  <circle cx="96" cy="288" r="15" fill="#3B4B35"/>
+  <text x="96" y="293" text-anchor="middle" class="feat-n">2</text>
+  <text x="128" y="284" class="feat-t">Capacity &amp; FTE modeling</text>
+  <text x="128" y="306" class="feat-d">Demand × labor content vs. available hours → the FTE gap,</text>
+  <text x="128" y="324" class="feat-d">computed at every activity in the tree.</text>
+
+  <circle cx="96" cy="372" r="15" fill="#3B4B35"/>
+  <text x="96" y="377" text-anchor="middle" class="feat-n">3</text>
+  <text x="128" y="368" class="feat-t">Six Sigma capability</text>
+  <text x="128" y="390" class="feat-d">Defect rates, sigma level, rolled-throughput yield — where</text>
+  <text x="128" y="408" class="feat-d">the process can't hold its tolerance.</text>
+
+  <circle cx="96" cy="460" r="15" fill="#C27B58"/>
+  <text x="96" y="465" text-anchor="middle" class="feat-n">$</text>
+  <text x="128" y="456" class="feat-t">Financial — the lens that moves executives</text>
+  <text x="128" y="478" class="feat-d">Cost per activity and cost of poor quality put a dollar figure</text>
+  <text x="128" y="496" class="feat-d">on every inefficiency the other three lenses surface.</text>
+
+  <line x1="940" y1="190" x2="940" y2="514" stroke="#ECE4D0" stroke-width="1.5"/>
+
+  <!-- Right: schematic -->
+  <text x="980" y="196" class="sch-cap">FOUR LENSES ON EVERY ACTIVITY</text>
+
+  <!-- lens chips -->
+  <rect x="980"  y="210" width="128" height="22" fill="#3B4B35"/>
+  <text x="1044" y="225" text-anchor="middle" class="chip-l">VSA</text>
+  <rect x="980"  y="232" width="128" height="40" fill="#FFFFFF" stroke="#D9CFB8"/>
+  <text x="1044" y="258" text-anchor="middle" class="chip-v">PCE 32%</text>
+
+  <rect x="1118" y="210" width="128" height="22" fill="#3B4B35"/>
+  <text x="1182" y="225" text-anchor="middle" class="chip-l">CAPACITY</text>
+  <rect x="1118" y="232" width="128" height="40" fill="#FFFFFF" stroke="#D9CFB8"/>
+  <text x="1182" y="258" text-anchor="middle" class="chip-vc">+4 FTE gap</text>
+
+  <rect x="1256" y="210" width="128" height="22" fill="#3B4B35"/>
+  <text x="1320" y="225" text-anchor="middle" class="chip-l">CAPABILITY</text>
+  <rect x="1256" y="232" width="128" height="40" fill="#FFFFFF" stroke="#D9CFB8"/>
+  <text x="1320" y="258" text-anchor="middle" class="chip-v">3.2&#963;</text>
+
+  <rect x="1394" y="210" width="128" height="22" fill="#C27B58"/>
+  <text x="1458" y="225" text-anchor="middle" class="chip-l">FINANCIAL</text>
+  <rect x="1394" y="232" width="128" height="40" fill="#FFFFFF" stroke="#D9CFB8"/>
+  <text x="1458" y="258" text-anchor="middle" class="chip-vc">$1.4M COPQ</text>
+
+  <!-- roll-up tree -->
+  <text x="980" y="306" class="sch-cap">ENTERED AT THE LEAF, ROLLED UP THE TREE</text>
+  <rect x="1180" y="320" width="120" height="30" rx="4" fill="#3B4B35"/>
+  <text x="1240" y="340" text-anchor="middle" class="node">A0</text>
+  <text x="1312" y="339" class="ann">← model metrics (computed)</text>
+
+  <rect x="1006" y="386" width="92" height="28" rx="4" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <text x="1052" y="405" text-anchor="middle" class="nodeo">A1</text>
+  <rect x="1336" y="386" width="92" height="28" rx="4" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <text x="1382" y="405" text-anchor="middle" class="nodeo">A2</text>
+
+  <rect x="960"  y="450" width="86" height="28" rx="4" fill="#F0EAD6" stroke="#BFA36F" stroke-width="1.5"/>
+  <text x="1003" y="469" text-anchor="middle" class="nodeo">A1.1</text>
+  <rect x="1052" y="450" width="86" height="28" rx="4" fill="#F0EAD6" stroke="#BFA36F" stroke-width="1.5"/>
+  <text x="1095" y="469" text-anchor="middle" class="nodeo">A1.2</text>
+  <rect x="1290" y="450" width="86" height="28" rx="4" fill="#F0EAD6" stroke="#BFA36F" stroke-width="1.5"/>
+  <text x="1333" y="469" text-anchor="middle" class="nodeo">A2.1</text>
+  <rect x="1382" y="450" width="86" height="28" rx="4" fill="#F0EAD6" stroke="#BFA36F" stroke-width="1.5"/>
+  <text x="1425" y="469" text-anchor="middle" class="nodeo">A2.2</text>
+
+  <!-- roll-up arrows (point up to parent) -->
+  <line x1="1003" y1="450" x2="1048" y2="416" stroke="#C27B58" stroke-width="1.6"/>
+  <line x1="1095" y1="450" x2="1056" y2="416" stroke="#C27B58" stroke-width="1.6"/>
+  <line x1="1333" y1="450" x2="1378" y2="416" stroke="#C27B58" stroke-width="1.6"/>
+  <line x1="1425" y1="450" x2="1386" y2="416" stroke="#C27B58" stroke-width="1.6"/>
+  <line x1="1052" y1="386" x2="1200" y2="352" stroke="#C27B58" stroke-width="1.6"/>
+  <line x1="1382" y1="386" x2="1280" y2="352" stroke="#C27B58" stroke-width="1.6"/>
+
+  <text x="980" y="502" class="ann">Every analytic is leaf-entered and post-order rolled up — parents and the</text>
+  <text x="980" y="518" class="ann">root are read-only and correct at every level of decomposition.</text>
+
+  <!-- ═══════════ LOWER BAND — WHERE THIS CAME FROM ═══════════ -->
+  <rect x="60" y="556" width="1480" height="40" fill="#C27B58"/>
+  <text x="80" y="581"><tspan class="band-cap">WHERE THIS CAME FROM</tspan><tspan class="band-cap" style="font-weight:400;">   —  TWO DECADES OF MAKING PROCESSES MEASURABLE</tspan></text>
+
+  <!-- PC1 -->
+  <rect x="60"  y="608" width="476" height="220" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="60"  y="608" width="5"   height="220" fill="#C27B58"/>
+  <text x="86"  y="638" class="micro">LEAN — WASTE AT THE SOURCE</text>
+  <text x="86"  y="666" class="pc-skill">Cut critical-path cycle time 82%</text>
+  <text x="86"  y="700" class="pc-v">17 weeks → under 3 weeks</text>
+  <text x="86"  y="726" class="pc-l">DMAIC plus an executive Work-Out eliminated 43% of</text>
+  <text x="86"  y="744" class="pc-l">critical-path steps and 33% of handoffs across a</text>
+  <text x="86"  y="762" class="pc-l">64-system enterprise process.</text>
+  <text x="86"  y="800" class="pc-anchor">“One of the best Black Belts… my go-to guy.”</text>
+  <text x="86"  y="817" class="pc-anchor">— Jai Padmanabhan, Master Black Belt, VZ</text>
+
+  <!-- PC2 -->
+  <rect x="562" y="608" width="476" height="220" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="562" y="608" width="5"   height="220" fill="#C27B58"/>
+  <text x="588" y="638" class="micro">CAPACITY — THE HIDDEN WORKFORCE</text>
+  <text x="588" y="666" class="pc-skill">Uncovered $18–22M in capacity</text>
+  <text x="588" y="700" class="pc-v">41,326 ZIPs → 521 work areas</text>
+  <text x="588" y="726" class="pc-l">The GNO force-to-load model sized demand against skill</text>
+  <text x="588" y="744" class="pc-l">supply at every work area — and lifted automated</text>
+  <text x="588" y="762" class="pc-l">dispatch by 10%.</text>
+  <text x="588" y="800" class="pc-anchor">“…the backbone for our headcount modeling</text>
+  <text x="588" y="817" class="pc-anchor">and reporting.” — Kristine Reelfs, VZ GNO</text>
+
+  <!-- PC3 -->
+  <rect x="1064" y="608" width="476" height="220" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="1064" y="608" width="5"   height="220" fill="#C27B58"/>
+  <text x="1090" y="638" class="micro">CAPABILITY &amp; COST — IN DOLLARS</text>
+  <text x="1090" y="666" class="pc-skill">450% process-capability gain</text>
+  <text x="1090" y="700" class="pc-v">$4.2M/yr  ·  70% faster</text>
+  <text x="1090" y="726" class="pc-l">FP&amp;A automation governing $3B+ in operating expense;</text>
+  <text x="1090" y="744" class="pc-l">proved $500M in merger synergy over six years of</text>
+  <text x="1090" y="762" class="pc-l">$2.2B spend governance.</text>
+  <text x="1090" y="800" class="pc-anchor">The financial lens that turned process work into</text>
+  <text x="1090" y="817" class="pc-anchor">board-level decisions.</text>
+
+  <line x1="60" y1="852" x2="1540" y2="852" stroke="#D9CFB8" stroke-width="1.5"/>
+  <text x="800" y="882" text-anchor="middle" class="footer">Quantify is the engine room. Four lenses on one tree turn a process map into a business case — the analytical core of an operator who codes.</text>
+
+</svg>

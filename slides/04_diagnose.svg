@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 920" preserveAspectRatio="xMidYMid meet">
+
+  <defs>
+    <marker id="rt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#C27B58"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif; }
+    .ctx        { font-size: 14px; fill: #6B6A63; font-style: italic; }
+    .title      { font-size: 30px; font-weight: 700; fill: #2C2E2F; }
+    .subtitle   { font-size: 15px; fill: #3B4B35; font-style: italic; }
+    .band-cap   { font-size: 13px; font-weight: 700; fill: #FFFFFF; letter-spacing: 2px; }
+    .band-cap-g { font-size: 13px; font-weight: 700; fill: #7DC97D; letter-spacing: 2px; }
+    .feat-t     { font-size: 16px; font-weight: 700; fill: #2C2E2F; }
+    .feat-n     { font-size: 15px; font-weight: 700; fill: #FFFFFF; }
+    .feat-d     { font-size: 13.5px; fill: #4A4A45; }
+    .sch-cap    { font-size: 10px; font-weight: 700; fill: #6B6A63; letter-spacing: 1.5px; }
+    .pan-h      { font-size: 12px; font-weight: 700; fill: #FFFFFF; letter-spacing: 1px; }
+    .met-l      { font-size: 11.5px; fill: #4A4A45; }
+    .met-cur    { font-size: 14px; font-weight: 700; fill: #6B6A63; }
+    .met-fut    { font-size: 14px; font-weight: 700; fill: #3B4B35; }
+    .delta      { font-size: 11px; font-weight: 700; fill: #FFFFFF; }
+    .micro      { font-size: 9.5px; font-weight: 700; fill: #BFA36F; letter-spacing: 1.5px; }
+    .pc-skill   { font-size: 15px; font-weight: 700; fill: #2C2E2F; }
+    .pc-v       { font-size: 20px; font-weight: 700; fill: #C27B58; }
+    .pc-l       { font-size: 12.5px; fill: #4A4A45; }
+    .pc-anchor  { font-size: 12px; fill: #6B6A63; font-style: italic; }
+    .footer     { font-size: 14px; fill: #6B6A63; font-style: italic; }
+  </style>
+
+  <rect width="1600" height="920" fill="#F0EAD6"/>
+
+  <!-- Header -->
+  <text x="60" y="34" class="ctx">Project Forester  ·  Layer 4 of 5  ·  current state vs. future state</text>
+  <text x="60" y="72" class="title">Diagnose: The Transformation Impact Dashboard</text>
+  <text x="60" y="96" class="subtitle">Put today's process beside tomorrow's and let the deltas make the business case — before a dollar is spent.</text>
+  <line x1="60" y1="112" x2="1540" y2="112" stroke="#D9CFB8" stroke-width="1.5"/>
+
+  <!-- ═══════════ UPPER BAND — IN THE PRODUCT ═══════════ -->
+  <rect x="60" y="128" width="1480" height="40" fill="#3B4B35"/>
+  <text x="80" y="153"><tspan class="band-cap-g">IN THE PRODUCT</tspan><tspan class="band-cap">   —  CURRENT STATE AND FUTURE STATE, MEASURED SIDE BY SIDE</tspan></text>
+  <rect x="60" y="168" width="1480" height="368" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+
+  <!-- Left: four capabilities -->
+  <circle cx="96" cy="204" r="15" fill="#3B4B35"/>
+  <text x="96" y="209" text-anchor="middle" class="feat-n">1</text>
+  <text x="128" y="200" class="feat-t">Current ↔ Future pairing</text>
+  <text x="128" y="222" class="feat-d">Model state is first-class. One workspace holds both, shown</text>
+  <text x="128" y="240" class="feat-d">split — current state left, future state right.</text>
+
+  <circle cx="96" cy="288" r="15" fill="#3B4B35"/>
+  <text x="96" y="293" text-anchor="middle" class="feat-n">2</text>
+  <text x="128" y="284" class="feat-t">Automatic delta detection</text>
+  <text x="128" y="306" class="feat-d">Changed labels, new ICOM elements, re-assigned owners,</text>
+  <text x="128" y="324" class="feat-d">and KPI targets are highlighted node by node.</text>
+
+  <circle cx="96" cy="372" r="15" fill="#3B4B35"/>
+  <text x="96" y="377" text-anchor="middle" class="feat-n">3</text>
+  <text x="128" y="368" class="feat-t">Quantified before / after</text>
+  <text x="128" y="390" class="feat-d">VSA, capacity, capability, and cost deltas — target values</text>
+  <text x="128" y="408" class="feat-d">sit beside current values, so the gain is provable.</text>
+
+  <circle cx="96" cy="460" r="15" fill="#C27B58"/>
+  <text x="96" y="465" text-anchor="middle" class="feat-n">&#9733;</text>
+  <text x="128" y="456" class="feat-t">The consulting deliverable</text>
+  <text x="128" y="478" class="feat-d">Both models plus the dashboard <tspan font-style="italic">are</tspan> the engagement output —</text>
+  <text x="128" y="496" class="feat-d">a validated business case the client keeps.</text>
+
+  <line x1="940" y1="190" x2="940" y2="514" stroke="#ECE4D0" stroke-width="1.5"/>
+
+  <!-- Right: split before/after dashboard -->
+  <text x="952" y="196" class="sch-cap">THE DELTA IS THE BUSINESS CASE</text>
+
+  <!-- CURRENT panel -->
+  <rect x="952" y="212" width="210" height="150" fill="#FFFFFF" stroke="#D9CFB8"/>
+  <rect x="952" y="212" width="210" height="26" fill="#6B6A63"/>
+  <text x="1057" y="230" text-anchor="middle" class="pan-h">CURRENT STATE</text>
+  <text x="968" y="270" class="met-l">Process cycle efficiency</text>
+  <text x="1146" y="270" text-anchor="end" class="met-cur">28%</text>
+  <text x="968" y="304" class="met-l">FTE capacity gap</text>
+  <text x="1146" y="304" text-anchor="end" class="met-cur">+12</text>
+  <text x="968" y="338" class="met-l">Cost of poor quality</text>
+  <text x="1146" y="338" text-anchor="end" class="met-cur">$4.1M</text>
+
+  <!-- FUTURE panel -->
+  <rect x="1288" y="212" width="210" height="150" fill="#FFFFFF" stroke="#D9CFB8"/>
+  <rect x="1288" y="212" width="210" height="26" fill="#3B4B35"/>
+  <text x="1393" y="230" text-anchor="middle" class="pan-h">FUTURE STATE</text>
+  <text x="1304" y="270" class="met-l">Process cycle efficiency</text>
+  <text x="1482" y="270" text-anchor="end" class="met-fut">61%</text>
+  <text x="1304" y="304" class="met-l">FTE capacity gap</text>
+  <text x="1482" y="304" text-anchor="end" class="met-fut">0</text>
+  <text x="1304" y="338" class="met-l">Cost of poor quality</text>
+  <text x="1482" y="338" text-anchor="end" class="met-fut">$0.9M</text>
+
+  <!-- delta badges + connecting arrows -->
+  <line x1="1165" y1="265" x2="1285" y2="265" stroke="#C27B58" stroke-width="1.4" marker-end="url(#rt)"/>
+  <line x1="1165" y1="299" x2="1285" y2="299" stroke="#C27B58" stroke-width="1.4" marker-end="url(#rt)"/>
+  <line x1="1165" y1="333" x2="1285" y2="333" stroke="#C27B58" stroke-width="1.4" marker-end="url(#rt)"/>
+  <rect x="1192" y="254" width="66" height="20" rx="10" fill="#C27B58"/>
+  <text x="1225" y="268" text-anchor="middle" class="delta">+33 pts</text>
+  <rect x="1192" y="288" width="66" height="20" rx="10" fill="#C27B58"/>
+  <text x="1225" y="302" text-anchor="middle" class="delta">−12 FTE</text>
+  <rect x="1192" y="322" width="66" height="20" rx="10" fill="#C27B58"/>
+  <text x="1225" y="336" text-anchor="middle" class="delta">−$3.2M</text>
+
+  <text x="980" y="408" class="sch-cap">SPLIT VIEW · NODE-BY-NODE</text>
+  <text x="980" y="438" class="feat-d">Every changed activity is flagged and quantified. The gap between</text>
+  <text x="980" y="458" class="feat-d">the two models — in time, capacity, capability, and cost — is the</text>
+  <text x="980" y="478" class="feat-d">transformation roadmap, costed before execution begins.</text>
+
+  <!-- ═══════════ LOWER BAND — WHERE THIS CAME FROM ═══════════ -->
+  <rect x="60" y="556" width="1480" height="40" fill="#C27B58"/>
+  <text x="80" y="581"><tspan class="band-cap">WHERE THIS CAME FROM</tspan><tspan class="band-cap" style="font-weight:400;">   —  I PROVED THE VALUE BEFORE ANYONE SPENT THE MONEY</tspan></text>
+
+  <!-- PC1 -->
+  <rect x="60"  y="608" width="476" height="220" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="60"  y="608" width="5"   height="220" fill="#C27B58"/>
+  <text x="86"  y="638" class="micro">VALIDATED, TO THE DOLLAR</text>
+  <text x="86"  y="666" class="pc-skill">Walked executives through the numbers</text>
+  <text x="86"  y="700" class="pc-v">$61M validated · 138% of plan</text>
+  <text x="86"  y="726" class="pc-l">Built the SQL/ETL backbone for an IT modernization</text>
+  <text x="86"  y="744" class="pc-l">program and led the financial walks that confirmed</text>
+  <text x="86"  y="762" class="pc-l">$61M in first-year ITAM value.</text>
+  <text x="86"  y="800" class="pc-anchor">“…in-depth metrics for executive decision-making.”</text>
+  <text x="86"  y="817" class="pc-anchor">— Carolyn DeReus, PMP, EAM program, VZ</text>
+
+  <!-- PC2 -->
+  <rect x="562" y="608" width="476" height="220" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="562" y="608" width="5"   height="220" fill="#C27B58"/>
+  <text x="588" y="638" class="micro">SAVINGS MADE VISIBLE</text>
+  <text x="588" y="666" class="pc-skill">Surfaced waste hiding in the spend</text>
+  <text x="588" y="700" class="pc-v">$5M exposed · 22% → 80% use</text>
+  <text x="588" y="726" class="pc-l">A hardware-maintenance dashboard exposed $5M — 18%</text>
+  <text x="588" y="744" class="pc-l">of spend — and drove asset utilization from 22% to 80%</text>
+  <text x="588" y="762" class="pc-l">across the supply chain.</text>
+  <text x="588" y="800" class="pc-anchor">“…we realized millions of dollars in expense savings.”</text>
+  <text x="588" y="817" class="pc-anchor">— John Georges, Operations Executive, VZ</text>
+
+  <!-- PC3 -->
+  <rect x="1064" y="608" width="476" height="220" fill="#FFFFFF" stroke="#D9CFB8" stroke-width="1"/>
+  <rect x="1064" y="608" width="5"   height="220" fill="#C27B58"/>
+  <text x="1090" y="638" class="micro">MANUAL COMPARES → INSTANT TRUTH</text>
+  <text x="1090" y="666" class="pc-skill">Automated the executive reporting</text>
+  <text x="1090" y="700" class="pc-v">3 days → 5 minutes · 84% cut</text>
+  <text x="1090" y="726" class="pc-l">Turned a three-day manual “stare &amp; compare” into a</text>
+  <text x="1090" y="744" class="pc-l">single click, and cut executive-report cycle time 84%</text>
+  <text x="1090" y="762" class="pc-l">(~$2.0M/yr in value).</text>
+  <text x="1090" y="800" class="pc-anchor">“…3 days of manual stare &amp; compare into a mouse click.”</text>
+  <text x="1090" y="817" class="pc-anchor">— Collin Ice, Business Operations</text>
+
+  <line x1="60" y1="852" x2="1540" y2="852" stroke="#D9CFB8" stroke-width="1.5"/>
+  <text x="800" y="882" text-anchor="middle" class="footer">Diagnose is where the method pays for itself — the before/after the client signs off on, and the proof that the future state is worth building.</text>
+
+</svg>
