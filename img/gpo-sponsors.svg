@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 820" preserveAspectRatio="xMidYMid meet">
+
+  <style>
+    text { font-family: 'Inter', 'Segoe UI', -apple-system, Roboto, Arial, sans-serif; }
+    .ctx          { font-size: 14px; fill: #7A6A56; font-style: italic; }
+    .title        { font-size: 28px; font-weight: 700; fill: #2C2E2F; }
+    .subtitle     { font-size: 14px; fill: #5A5043; font-style: italic; }
+    .domain-name  { font-size: 19px; font-weight: 700; fill: #FFFFFF; }
+    .domain-sub   { font-size: 11px; font-style: italic; fill: #F0EAD6; }
+    .card-cap     { font-size: 10px; font-weight: 700; fill: #7A6A56; letter-spacing: 2px; }
+    .sponsor-name { font-size: 15px; font-weight: 700; fill: #2C2E2F; }
+    .sponsor-role { font-size: 12px; fill: #5A5043; font-style: italic; }
+    .why-text     { font-size: 12px; fill: #2C2E2F; }
+    .ask-cap      { font-size: 11px; font-weight: 700; fill: #FFFFFF; letter-spacing: 1.5px; }
+    .ask-q        { font-size: 14px; font-style: italic; fill: #2C2E2F; }
+    .ask-frame    { font-size: 12px; fill: #3B4B35; font-weight: 700; letter-spacing: 1.5px; }
+    .principle    { font-size: 13px; fill: #2C2E2F; }
+    .footer       { font-size: 14px; fill: #7A6A56; font-style: italic; }
+  </style>
+
+  <rect width="1600" height="820" fill="#FFFFFF"/>
+
+  <!-- Header -->
+  <text x="50" y="28" class="ctx">Sponsor coalition strategy, one executive sponsor per GPO domain, locked by Day 30.</text>
+  <text x="50" y="62" class="title">Sponsor Coalition Map: Five Domains, Five Executive Sponsors</text>
+  <text x="50" y="86" class="subtitle">A function with one or two patrons doesn't survive normal organizational turbulence. A function with five domain-specific sponsors does. This is structural, not a soft skill.</text>
+
+  <!-- ===== PROGRAM SPONSORSHIP BANNER ===== -->
+  <rect x="50" y="112" width="1500" height="54" fill="#2C2E2F" stroke="#BFA36F" stroke-width="1.5"/>
+  <rect x="50" y="112" width="8"    height="54" fill="#BFA36F"/>
+  <text x="80" y="143" style="font-size:11px;font-weight:700;fill:#BFA36F;letter-spacing:2px;font-family:'Inter',sans-serif;">PROGRAM-LEVEL EXECUTIVE SPONSORSHIP</text>
+  <text x="450" y="145" style="font-size:16px;font-weight:700;fill:#FFFFFF;font-family:'Inter',sans-serif;">Chief Executive Officer &amp; Chief Financial Officer</text>
+  <text x="880" y="143" style="font-size:12px;fill:#F0EAD6;font-style:italic;font-family:'Inter',sans-serif;">Economic governance and operational mandate cleared at the platform board level.</text>
+
+  <!-- ===== 5 CARDS ===== -->
+  <!-- Card width 288, gap 15, x positions: 50, 353, 656, 959, 1262 -->
+
+  <!-- Card 1: Plan-to-Build -->
+  <rect x="50" y="180" width="288" height="400" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <rect x="50" y="180" width="288" height="62" fill="#3B4B35"/>
+  <text x="194" y="211" text-anchor="middle" class="domain-name">Plan-to-Build</text>
+  <text x="194" y="230" text-anchor="middle" class="domain-sub">Branch capacity — setup capacity &amp; fleet</text>
+
+  <text x="68" y="266" class="card-cap">POTENTIAL SPONSOR</text>
+  <text x="68" y="292" class="sponsor-name">Chief Investment Officer</text>
+
+  <text x="68" y="322" class="card-cap">WHY THIS SPONSOR</text>
+  <text x="68" y="345" class="why-text">Owns the regional branch</text>
+  <text x="68" y="364" class="why-text">capital risk. Branch governance,</text>
+  <text x="68" y="383" class="why-text">change order control, and program</text>
+  <text x="68" y="402" class="why-text">management standards are immediate</text>
+  <text x="68" y="421" class="why-text">value areas with measurable EBITDA.</text>
+
+  <text x="68" y="451" class="card-cap">YEAR 1 OUTCOME</text>
+  <text x="68" y="474" class="why-text" style="font-style:italic;">Site selection framework</text>
+  <text x="68" y="493" class="why-text" style="font-style:italic;">prevents a delayed</text>
+  <text x="68" y="512" class="why-text" style="font-style:italic;">or failed branch launch.</text>
+
+  <rect x="50" y="540" width="288" height="40" fill="#F0EAD6"/>
+  <text x="194" y="566" text-anchor="middle" class="ask-frame">PRIORITY 1 SPONSOR</text>
+
+  <!-- Card 2: Lead-to-Order -->
+  <rect x="353" y="180" width="288" height="400" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <rect x="353" y="180" width="288" height="62" fill="#3B4B35"/>
+  <text x="497" y="211" text-anchor="middle" class="domain-name">Lead-to-Order</text>
+  <text x="497" y="230" text-anchor="middle" class="domain-sub">Revenue origination — secure contracts</text>
+
+  <text x="371" y="266" class="card-cap">POTENTIAL SPONSOR</text>
+  <text x="371" y="292" class="sponsor-name">Chief Revenue Officer</text>
+
+  <text x="371" y="322" class="card-cap">WHY THIS SPONSOR</text>
+  <text x="371" y="345" class="why-text">Revenue origination owns the highest-</text>
+  <text x="371" y="364" class="why-text">risk handoff in the architecture, the</text>
+  <text x="371" y="383" class="why-text">CRITICAL seam where sales commits</text>
+  <text x="371" y="402" class="why-text">must be operationally deliverable.</text>
+  <text x="371" y="421" class="why-text">Sponsorship here de-risks the seam.</text>
+
+  <text x="371" y="451" class="card-cap">YEAR 1 OUTCOME</text>
+  <text x="371" y="474" class="why-text" style="font-style:italic;">L2O → O2O handoff standard</text>
+  <text x="371" y="493" class="why-text" style="font-style:italic;">cuts deliverability gaps by</text>
+  <text x="371" y="512" class="why-text" style="font-style:italic;">a measurable margin.</text>
+
+  <rect x="353" y="540" width="288" height="40" fill="#FBF4EC"/>
+  <text x="497" y="566" text-anchor="middle" class="ask-frame" style="fill:#C27B58;">CRITICAL SEAM SPONSOR</text>
+
+  <!-- Card 3: Order-to-Operate -->
+  <rect x="656" y="180" width="288" height="400" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <rect x="656" y="180" width="288" height="62" fill="#3B4B35"/>
+  <text x="800" y="211" text-anchor="middle" class="domain-name">Order-to-Operate</text>
+  <text x="800" y="230" text-anchor="middle" class="domain-sub">Service delivery — operations &amp; relationship</text>
+
+  <text x="674" y="266" class="card-cap">POTENTIAL SPONSOR</text>
+  <text x="674" y="292" class="sponsor-name">Chief Operations Officer</text>
+
+  <text x="674" y="322" class="card-cap">WHY THIS SPONSOR</text>
+  <text x="674" y="345" class="why-text">Customer experience, NPS, and</text>
+  <text x="674" y="364" class="why-text">provisioning velocity all converge</text>
+  <text x="674" y="383" class="why-text">here. Three of the four seams land</text>
+  <text x="674" y="402" class="why-text">at O2O, making this sponsor the</text>
+  <text x="674" y="421" class="why-text">most cross-functionally exposed.</text>
+
+  <text x="674" y="451" class="card-cap">YEAR 1 OUTCOME</text>
+  <text x="674" y="474" class="why-text" style="font-style:italic;">10% compression in</text>
+  <text x="674" y="493" class="why-text" style="font-style:italic;">provisioning cycle time;</text>
+  <text x="674" y="512" class="why-text" style="font-style:italic;">SLA variance reduced.</text>
+
+  <rect x="656" y="540" width="288" height="40" fill="#F0EAD6"/>
+  <text x="800" y="566" text-anchor="middle" class="ask-frame">INTEGRATION NODE SPONSOR</text>
+
+  <!-- Card 4: Source-to-Pay -->
+  <rect x="959" y="180" width="288" height="400" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <rect x="959" y="180" width="288" height="62" fill="#3B4B35"/>
+  <text x="1103" y="211" text-anchor="middle" class="domain-name">Source-to-Pay</text>
+  <text x="1103" y="230" text-anchor="middle" class="domain-sub">Spend &amp; supply — enables all streams</text>
+
+  <text x="977" y="266" class="card-cap">POTENTIAL SPONSOR</text>
+  <text x="977" y="292" class="sponsor-name">Chief Procurement Officer</text>
+
+  <text x="977" y="322" class="card-cap">WHY THIS SPONSOR</text>
+  <text x="977" y="345" class="why-text">Spend management and financial</text>
+  <text x="977" y="364" class="why-text">controls are direct beneficiaries.</text>
+  <text x="977" y="383" class="why-text">The CFO makes EBITDA attribution</text>
+  <text x="977" y="402" class="why-text">credible to Private Equity. Whoever governs</text>
+  <text x="977" y="421" class="why-text">procurement is the operational anchor.</text>
+
+  <text x="977" y="451" class="card-cap">YEAR 1 OUTCOME</text>
+  <text x="977" y="474" class="why-text" style="font-style:italic;">3–7% savings on addressable</text>
+  <text x="977" y="493" class="why-text" style="font-style:italic;">spend in one scoped category;</text>
+  <text x="977" y="512" class="why-text" style="font-style:italic;">attribution model validated.</text>
+
+  <rect x="959" y="540" width="288" height="40" fill="#F0EAD6"/>
+  <text x="1103" y="566" text-anchor="middle" class="ask-frame">EBITDA CREDIBILITY SPONSOR</text>
+
+  <!-- Card 5: Hire-to-Retire -->
+  <rect x="1262" y="180" width="288" height="400" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <rect x="1262" y="180" width="288" height="62" fill="#3B4B35"/>
+  <text x="1406" y="211" text-anchor="middle" class="domain-name">Hire-to-Retire</text>
+  <text x="1406" y="230" text-anchor="middle" class="domain-sub">Workforce lifecycle — staffs all domains</text>
+
+  <text x="1280" y="266" class="card-cap">POTENTIAL SPONSOR</text>
+  <text x="1280" y="292" class="sponsor-name">Chief People Officer</text>
+
+  <text x="1280" y="322" class="card-cap">WHY THIS SPONSOR</text>
+  <text x="1280" y="345" class="why-text">Workforce planning, technician</text>
+  <text x="1280" y="364" class="why-text">qualification, and global HR</text>
+  <text x="1280" y="383" class="why-text">standardization all sit here.</text>
+  <text x="1280" y="402" class="why-text">Sponsorship is required for the</text>
+  <text x="1280" y="421" class="why-text">H2R → O2O readiness seam.</text>
+
+  <text x="1280" y="451" class="card-cap">YEAR 1 OUTCOME</text>
+  <text x="1280" y="474" class="why-text" style="font-style:italic;">Certification matrix tied to</text>
+  <text x="1280" y="493" class="why-text" style="font-style:italic;">branch ramp calendars across</text>
+  <text x="1280" y="507" class="why-text" style="font-style:italic;">all active launch branches.</text>
+
+  <rect x="1262" y="540" width="288" height="40" fill="#F0EAD6"/>
+  <text x="1406" y="566" text-anchor="middle" class="ask-frame">ENABLING DOMAIN SPONSOR</text>
+
+  <!-- ===== Day 30 Question Banner ===== -->
+  <rect x="50" y="608" width="1500" height="130" fill="#2C2E2F"/>
+  <rect x="50" y="608" width="8"    height="130" fill="#C27B58"/>
+  <text x="80" y="638" style="font-size:11px;font-weight:700;fill:#C27B58;letter-spacing:2px;font-family:'Inter',sans-serif;">THE DAY 30 CONVERSATION — ASKED OF EACH SPONSOR</text>
+  <text x="80" y="676" style="font-size:21px;font-weight:700;fill:#FFFFFF;font-style:italic;font-family:'Inter',sans-serif;">"What outcome do you want to see in this domain by Day 365 that would</text>
+  <text x="80" y="706" style="font-size:21px;font-weight:700;fill:#FFFFFF;font-style:italic;font-family:'Inter',sans-serif;">make my function worth its cost to your part of the business?"</text>
+  <text x="80" y="728" style="font-size:12px;fill:#F0EAD6;font-style:italic;font-family:'Inter',sans-serif;">Each sponsor's answer becomes their measurable Year 1 commitment. The validated mandate document captures all five.</text>
+
+  <!-- Footer -->
+  <text x="800" y="782" text-anchor="middle" class="footer">Day 30 deliverable: validated mandate with five sponsor commitments. The mandate and the coalition are the foundation, everything else follows.</text>
+
+</svg>

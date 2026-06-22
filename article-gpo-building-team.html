@@ -254,6 +254,27 @@
     .page-footer a:hover { text-decoration: underline; }
     .footer-div { margin: 0 12px; opacity: 0.4; }
 
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
     /* ── Sources ── */
     .sources-note {
       font-size: 0.82rem;
@@ -271,6 +292,7 @@
       .article-header { padding: 52px 24px 60px; }
       .article-body { padding: 48px 20px 72px; }
       .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
       .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
     }
   </style>
@@ -333,6 +355,10 @@
       <p>Here's the instinct I'd push back on hardest: the urge to staff a big function with junior analysts.</p>
       <p>Five domains across a growing, multi-site company is an enormous surface area. Cover it with junior people and you get volume of activity without leverage: lots of motion, lots of documents, not much that changes the business. A small number of senior specialists, each able to operate as a force multiplier across hundreds of people in the functional organizations, produces far more actual change.</p>
       <p>So for Meridian's first year I'd want a lean, senior team: a few process-excellence leads who run the cross-functional work, one specialist who builds the data infrastructure behind every measure, and one who owns adoption and change. Small by design, senior by necessity. The team is intentionally a lever, not a labor pool.</p>
+
+    <!-- ── Infographic: Team Capability Model ── -->
+    <img src="img/gpo-team.svg" alt="GPO Team Capability Model comparing Scenario A Lean Team vs. Scenario B Specialists Build-out, displaying roles and responsibilities." class="article-image-wide">
+    <p class="image-caption">Team Capability Model: Comparing a lean, senior core team (Scenario A) with an specialized, accelerated specialist expansion (Scenario B).</p>
     </div>
 
     <hr>

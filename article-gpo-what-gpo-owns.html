@@ -254,6 +254,27 @@
     .page-footer a:hover { text-decoration: underline; }
     .footer-div { margin: 0 12px; opacity: 0.4; }
 
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
     /* ── Sources ── */
     .sources-note {
       font-size: 0.82rem;
@@ -271,6 +292,7 @@
       .article-header { padding: 52px 24px 60px; }
       .article-body { padding: 48px 20px 72px; }
       .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
       .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
     }
   </style>
@@ -334,6 +356,10 @@
       <p>You can't govern a value chain you can't see in detail, so the first real work is decomposition: breaking each domain down from the whole chain (call it L0) into its major activities (L1) and then into the sub-processes where the work actually happens (L2).</p>
       <p>This is the method I've walked through, step by step, in my <strong><a href="https://bensonjt.github.io/profile/articles.html">How to See the Forest and the Trees</a></strong> series, so I won't repeat the mechanics here. The point for this discussion is what decomposition <em>gives</em> you: a shared map. For Meridian's Plan-to-Build domain, that map runs from site selection and feasibility, through design standards and permitting, into construction oversight, and out through commissioning and the turnover to operations. Each of those is an L1 activity with its own sub-processes, its own handoffs, and its own places where value either compounds or leaks.</p>
       <p>Until that map exists, every conversation about "our process" is really five different conversations, because five people picture five different things. The map is what makes the domain governable.</p>
+
+    <!-- ── Infographic: Process Architecture ── -->
+    <img src="img/gpo-architecture.svg" alt="Process Architecture showing L0 Value Chain decomposition down to L1 Activities and L2 Sub-processes across five domains." class="article-image-wide">
+    <p class="image-caption">Process Taxonomy: Decomposing enterprise value chains (L0) into discrete activities (L1) and sub-processes (L2) to establish clear ownership boundaries.</p>
     </div>
 
     <hr>

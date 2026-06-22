@@ -254,6 +254,27 @@
     .page-footer a:hover { text-decoration: underline; }
     .footer-div { margin: 0 12px; opacity: 0.4; }
 
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
     /* ── Sources ── */
     .sources-note {
       font-size: 0.82rem;
@@ -271,6 +292,7 @@
       .article-header { padding: 52px 24px 60px; }
       .article-body { padding: 48px 20px 72px; }
       .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
       .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
     }
   </style>
@@ -354,6 +376,10 @@
       <h2 class="section-title">Making the seams visible</h2>
       <p>There's a reason seams stay invisible: most process documentation draws the boxes and leaves the arrows between them vague. "And then it goes to operations" is not a handoff; it's a hope.</p>
       <p>This is exactly what I want instrumented in the tool I'm building alongside this series (working name: Forester). Every handoff becomes a traceable connection in the model, with the output, the readiness condition, and the owner attached to it, rather than an assumption living in someone's head. When the seams are explicit data instead of tribal knowledge, you can finally see, and govern, the places value actually leaks. A registry of seams turns out to be one of the most valuable artifacts a process function can hold.</p>
+
+    <!-- ── Infographic: Seam Registry ── -->
+    <img src="img/gpo-seams.svg" alt="Cross-Domain Seam Registry diagram listing cross-cutting handoffs, inputs, outputs, readiness rules, and metrics." class="article-image-wide">
+    <p class="image-caption">The Seam Registry: Documenting, measuring, and assigning accountability to the cross-domain boundaries where organizational handoffs occur.</p>
     </div>
 
     <hr>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 850" preserveAspectRatio="xMidYMid meet">
+
+  <defs>
+    <marker id="ah-amber" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#C27B58"/>
+    </marker>
+    <marker id="ah-navy" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3B4B35"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: 'Inter', 'Segoe UI', -apple-system, Roboto, Arial, sans-serif; }
+    .ctx        { font-size: 14px; fill: #7A6A56; font-style: italic; }
+    .title      { font-size: 28px; font-weight: 700; fill: #2C2E2F; }
+    .tier-cap   { font-size: 12px; font-weight: 700; fill: #7A6A56; letter-spacing: 2.5px; }
+    .domain-name { font-size: 24px; font-weight: 700; fill: #FFFFFF; }
+    .domain-sub  { font-size: 13px; font-style: italic; fill: #5A5043; }
+    .bullet      { font-size: 15px; fill: #2C2E2F; }
+    .band-name   { font-size: 20px; font-weight: 700; fill: #3B4B35; }
+    .band-sub    { font-size: 13px; font-style: italic; fill: #5A5043; }
+    .band-items  { font-size: 14px; fill: #2C2E2F; }
+    .seam-label  { font-size: 13px; font-weight: 600; fill: #2C2E2F; }
+    .seam-desc   { font-size: 12px; fill: #5A5043; font-style: italic; }
+    .badge-text  { font-size: 11px; font-weight: 700; fill: #FFFFFF; letter-spacing: 0.5px; }
+    .footer      { font-size: 14px; fill: #7A6A56; font-style: italic; }
+  </style>
+
+  <!-- Background -->
+  <rect width="1600" height="850" fill="#FFFFFF"/>
+
+  <!-- Context + Title -->
+  <text x="100" y="28" class="ctx">Co-designed with functional leaders. Standards governed by GPO.</text>
+  <text x="100" y="62" class="title">Enterprise Process Architecture: Primary Value Streams and Enabling Domains</text>
+
+  <!-- ===== Hire-to-Retire — top canopy band ===== -->
+  <rect x="100" y="78" width="1400" height="76" fill="#F0EAD6" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="100" y="78" width="8"    height="76" fill="#3B4B35"/>
+  <text x="130" y="108" class="band-name">Hire-to-Retire</text>
+  <text x="130" y="129" class="band-sub">Workforce lifecycle — staffs and enables all domains</text>
+  <text x="130" y="149" class="band-items">Workforce Planning  •  Talent &amp; Onboarding  •  Performance &amp; Mobility</text>
+
+  <!-- PRIMARY VALUE STREAMS caption -->
+  <text x="100" y="200" class="tier-cap">PRIMARY VALUE STREAMS</text>
+
+  <!-- ===== Plan-to-Build — top-left ===== -->
+  <rect x="100" y="218" width="420" height="210" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <rect x="100" y="218" width="420" height="50"  fill="#3B4B35"/>
+  <text x="310" y="253" text-anchor="middle" class="domain-name">Plan-to-Build</text>
+  <text x="310" y="293" text-anchor="middle" class="domain-sub">Branch capacity — Setup footprint &amp; fleet</text>
+  <text x="140" y="332" class="bullet">•  Market Analysis &amp; Site Selection</text>
+  <text x="140" y="367" class="bullet">•  Facility Setup &amp; Fleet Provisioning</text>
+  <text x="140" y="402" class="bullet">•  Branch Activation &amp; Launch</text>
+
+  <!-- ===== Lead-to-Order — bottom-left ===== -->
+  <rect x="100" y="458" width="420" height="210" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <rect x="100" y="458" width="420" height="50"  fill="#3B4B35"/>
+  <text x="310" y="493" text-anchor="middle" class="domain-name">Lead-to-Order</text>
+  <text x="310" y="533" text-anchor="middle" class="domain-sub">Revenue origination — Secure service contracts</text>
+  <text x="140" y="572" class="bullet">•  Demand Generation</text>
+  <text x="140" y="607" class="bullet">•  Solution Design &amp; Pricing</text>
+  <text x="140" y="642" class="bullet">•  Contract Execution</text>
+
+  <!-- ===== Order-to-Operate — narrow right panel, right-justified ===== -->
+  <rect x="1080" y="218" width="420" height="450" fill="#FFFFFF" stroke="#3B4B35" stroke-width="2"/>
+  <rect x="1080" y="218" width="420" height="50"  fill="#3B4B35"/>
+  <text x="1290" y="253" text-anchor="middle" class="domain-name">Order-to-Operate</text>
+  <text x="1290" y="298" text-anchor="middle" class="domain-sub">Service delivery — Operations &amp; relationship</text>
+  <text x="1118" y="344" class="bullet">•  Contract Onboarding</text>
+  <text x="1118" y="385" class="bullet">•  Technician Dispatch &amp; Schedule</text>
+  <text x="1118" y="426" class="bullet">•  Service Delivery &amp; Maintenance</text>
+  <text x="1118" y="467" class="bullet">•  Performance Monitoring</text>
+  <text x="1118" y="508" class="bullet">•  Customer Service &amp; Incidents</text>
+  <text x="1118" y="549" class="bullet">•  Contract Expansion &amp; Renewal</text>
+
+  <!-- ===== Seam arrows — both horizontal through the open center zone ===== -->
+
+  <!-- Seam B (HIGH): Plan-to-Build → Order-to-Operate -->
+  <line x1="520" y1="323" x2="1078" y2="323"
+        stroke="#3B4B35" stroke-width="2.5" marker-end="url(#ah-navy)"/>
+
+  <!-- Seam B label block — centered in the open zone -->
+  <g transform="translate(560, 268)">
+    <rect x="0" y="0" width="460" height="46" rx="8" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+    <text x="16" y="20" class="seam-label">Branch capacity readiness handoff</text>
+    <rect x="320" y="6" width="46" height="18" rx="3" fill="#3B4B35"/>
+    <text x="343" y="19" text-anchor="middle" class="badge-text">HIGH</text>
+    <text x="16" y="38" class="seam-desc">Branch and capacity ready before committing to customer contracts</text>
+  </g>
+
+  <!-- Seam A (CRITICAL): Lead-to-Order → Order-to-Operate -->
+  <line x1="520" y1="563" x2="1078" y2="563"
+        stroke="#C27B58" stroke-width="3.5" marker-end="url(#ah-amber)"/>
+
+  <!-- Seam A label block — centered in the open zone -->
+  <g transform="translate(535, 508)">
+    <rect x="0" y="0" width="490" height="46" rx="8" fill="#FFFFFF" stroke="#C27B58" stroke-width="2"/>
+    <text x="16" y="20" class="seam-label">Commercial promise → Operational delivery</text>
+    <rect x="348" y="4" width="76" height="18" rx="3" fill="#C27B58"/>
+    <text x="386" y="17" text-anchor="middle" class="badge-text">CRITICAL</text>
+    <text x="16" y="38" class="seam-desc">Sales commitment must be deliverable by operations — highest risk seam</text>
+  </g>
+
+  <!-- ===== Source-to-Pay — bottom supply band ===== -->
+  <rect x="100" y="688" width="1400" height="88" fill="#F0EAD6" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="100" y="688" width="8"    height="88" fill="#3B4B35"/>
+  <text x="130" y="718" class="band-name">Source-to-Pay</text>
+  <text x="130" y="740" class="band-sub">Spend &amp; supply — feeds all primary value streams</text>
+  <text x="130" y="763" class="band-items">Category Strategy  •  Sourcing &amp; Contracting  •  Payment &amp; Performance</text>
+
+  <!-- Footer -->
+  <text x="800" y="822" text-anchor="middle" class="footer">Three primary streams, two enabling domains. All commitments land at Order-to-Operate.</text>
+
+</svg>
