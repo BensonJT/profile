@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Playbook: Service Before Standards | Jeffrey Benson</title>
+  <meta name="description" content="A process function that leads with standards gets tolerated and then ignored. A process function that leads with service gets invited back.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Notebook</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; GPO Series &middot; Part 5 of 6</p>
+      <h1 class="article-title">The Playbook: Service Before Standards</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>GPO Series</strong> &nbsp;&middot;&nbsp; <a href="article-gpo-flagship.html">Flagship</a> &nbsp;|&nbsp; <a href="article-gpo-validate-mandate.html">Part 1</a> &nbsp;|&nbsp; <a href="article-gpo-what-gpo-owns.html">Part 2</a> &nbsp;|&nbsp; <a href="article-gpo-seams-leak-value.html">Part 3</a> &nbsp;|&nbsp; <a href="article-gpo-building-team.html">Part 4</a> &nbsp;|&nbsp; <a href="article-gpo-service-before-standards.html">Part 5</a> &nbsp;|&nbsp; <a href="article-gpo-earn-keep-ebitda.html">Part 6</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p class="opening-scene"><em>Part 5 of the "How Would You Build It?" series · by Jeffrey Benson</em></p>
+    <p>Here is the failure mode that ends most process functions, and it almost never looks like failure while it's happening. The team documents diligently. The standards get written. The binders fill up. And six months in, the functional leaders have quietly gone back to doing things their own way, routing around the very function that was supposed to help them.</p>
+    <p>The lesson took me years to fully absorb: <strong>adoption, not documentation, is the binding constraint.</strong> A standard nobody follows is not a standard. It's a dead document with a version number. So the playbook for how a process function operates has to be built around earning adoption, and that starts with three principles that matter more than any deliverable.</p>
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Principle</p>
+      <h2 class="section-title">Principle 1: Service before standards</h2>
+      <p>The function operates as a <strong>service organization</strong> first, and a standards organization second. Functional leaders pull you in when your help is real and fast. They route around you when your value is theoretical. That's not unfair; it's just how busy people allocate trust.</p>
+      <p>In practice that means a few hard commitments:</p>
+        <ul class="support-list">
+          <li><strong>Speed of help is the first measure of value.</strong> When a Meridian branch leader has a process pain point, the response is measured in days, not weeks. If using the process team is slower than working around it, people will work around it, every time.</li>
+          <li><strong>Standards are earned, not asserted.</strong> No standard gets published for a process the team hasn't walked through with the people actually doing the work.</li>
+          <li><strong>Adoption is the scoreboard.</strong> Three months in, if functional leaders aren't <em>requesting</em> the team's help, the function has failed, regardless of how much it has documented. Pull, not compliance, is the metric.</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Principle</p>
+      <h2 class="section-title">Principle 2: Co-design, validate on-site, and have them sign</h2>
+      <p>Any standard that touches operational work is <strong>co-designed with the people accountable for it, validated where the work happens, and signed by them before it's published.</strong></p>
+      <p>That last part is not a formality. When a branch leader's name is on the standard as a co-author, two things change: the standard is better, because it was built by someone who knows the work, and it gets adopted, because people don't route around something they helped build.</p>
+      <p>There's a quieter principle nested inside this one that I care about a lot: <strong>standardize up, not down.</strong> Standards should be drawn from the practices of the teams doing the work <em>best</em>, then offered to everyone else as the new model. The lazy version of standardization averages everyone toward the middle and quietly punishes your best performers. The good version finds what your strongest branch is doing differently, makes that the standard, and gives the struggling branches a proven path instead of a template. One regresses to the mean; the other lifts the floor. Only one is worth doing.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Principle</p>
+      <h2 class="section-title">Principle 3: Respect the boundaries</h2>
+      <p>The function defines <strong>what</strong> a process needs. The functional partners own <strong>how</strong> their systems and their people deliver against it.</p>
+      <p>That means the process team doesn't duplicate work done elsewhere or compete for territory. Technology owns the enterprise systems. Operations owns the floor. The process function works <em>upstream</em> of all of them, shaping the requirements that inform their work, without trying to annex their domains. Where a boundary is genuinely ambiguous, the function defers. Lane discipline is more valuable than scope expansion, and it's a big part of how the function stays trusted rather than feared.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Governance</p>
+      <h2 class="section-title">The playbook is the institution</h2>
+      <p>Those three principles govern <em>how</em> the team behaves. The playbook itself is the written architecture that makes the function durable beyond any one person, and it gets built domain by domain, in working versions, not as a single grand publication. Its chapters cover the predictable ground: the process taxonomy, documentation standards, the KPI framework, how process standards inform technology, change management, cross-domain governance, and continuous improvement.</p>
+      <p>I won't march through all of them here, but two deserve to be called out, because they're where good intentions usually go wrong.</p>
+      <p><strong>The co-authorship standard.</strong> Every published standard names the functional partner who co-designed it. This isn't a courtesy; it's the load-bearing requirement that makes adoption possible. When the standards do need to <em>land</em> as real behavior change, the framework I reach for is the one I've written about in detail in my <strong><a href="https://bensonjt.github.io/profile/articles.html">ADKAR series</a></strong>: awareness, desire, knowledge, ability, reinforcement. Documentation tells people what changed. ADKAR is how the change actually sticks. And the whole posture, partnering rather than policing, is the same one I've described in my work on <strong><a href="https://bensonjt.github.io/profile/articles.html">servant leadership</a></strong>: the function exists to make the operators successful, not to make itself important.</p>
+      <p><strong>Incident response: site authority is absolute.</strong> This one is non-negotiable. When something is actively going wrong at a branch (a safety event, a service outage, a crisis in progress), the site leader's authority is absolute, and process governance is not in the room. The process function's contribution to incidents lives entirely in the <em>structure around</em> them: the documentation standard, the post-incident review, the cross-site trend analysis, the lessons that cycle back into the standards. Any rule we'd propose that could introduce a moment of hesitation during a live emergency is rejected by design. Knowing where your governance stops is as important as knowing where it starts.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Conclusion</p>
+      <h2 class="section-title">Why this is the hard part</h2>
+      <p>Everything in the first four parts of this series is, frankly, the analytical work, and analytical work is the part I find easiest. This part, earning the right to be useful, co-authoring instead of dictating, knowing when to defer, is the human work, and it's what actually determines whether any of the architecture ever gets used.</p>
+      <p>A process function that leads with standards gets tolerated, then ignored. A process function that leads with service gets invited back. The order matters.</p>
+      <p>So here's the question I'd leave you with: when your process, quality, or transformation team shows up, do people lean in, or do they brace? The honest answer tells you almost everything about whether that function is earning adoption or just generating documentation. I'd genuinely like to hear what shapes the difference in your experience.</p>
+      <p><em>Next in the series: Part 6, the hardest discipline of all, committing the function to a number and being willing to wind it down if it can't earn its keep.</em></p>
+    </div>
+
+    <div class="series-nav">
+      <a href="article-gpo-building-team.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        Part 4: The Team
+      </a>
+      <a href="article-gpo-earn-keep-ebitda.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Next</span>
+        Part 6: Earn Your Keep &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">Sources: Independent research on Process Excellence and Global Process Ownership (GPO) framework deployments. Practical applications of standard work, organizational design, and continuous improvement metrics in high-growth rollups.</p>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>

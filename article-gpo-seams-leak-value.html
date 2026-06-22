@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Seams Are Where Value Leaks | Jeffrey Benson</title>
+  <meta name="description" content="Inefficiencies within a department are usually visible. The failures that hide are at the handoffs, where work crosses domains and has no owner.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Notebook</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; GPO Series &middot; Part 3 of 6</p>
+      <h1 class="article-title">The Seams Are Where Value Leaks</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>GPO Series</strong> &nbsp;&middot;&nbsp; <a href="article-gpo-flagship.html">Flagship</a> &nbsp;|&nbsp; <a href="article-gpo-validate-mandate.html">Part 1</a> &nbsp;|&nbsp; <a href="article-gpo-what-gpo-owns.html">Part 2</a> &nbsp;|&nbsp; Part 3 &nbsp;|&nbsp; <a href="article-gpo-building-team.html">Part 4</a> &nbsp;|&nbsp; <a href="article-gpo-service-before-standards.html">Part 5</a> &nbsp;|&nbsp; <a href="article-gpo-earn-keep-ebitda.html">Part 6</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p class="opening-scene"><em>Part 3 of the "How Would You Build It?" series · by Jeffrey Benson</em></p>
+    <p>If you've spent any time inside process improvement, you've watched teams pour effort into making each step better: faster, cleaner, more consistent. That work matters, and there's real value to recover inside almost every process; I'll come back to that before the end. But after enough years of this, I've learned where to look <em>first</em>, and it's the place almost everyone walks right past:</p>
+    <p><strong>The seams between the boxes, where work crosses from one domain into another and nobody owns the crossing.</strong></p>
+    <p>The work <em>within</em> a domain is usually done by people who are good at it, and its inefficiencies are at least visible to someone who owns that box. The procurement team knows procurement. The sales team knows sales. The branch crews know how to deliver. The handoffs are different: they belong to no one, so they fail quietly.</p>
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Risk</p>
+      <h2 class="section-title">The seams that cost the most</h2>
+      <p>At Meridian Field Services, four handoffs carry most of the risk in the whole operating model. None of them lives inside a single domain. All of them are where one team's output becomes another team's problem.</p>
+        <ul class="support-list">
+          <li><strong>Lead-to-Order → Order-to-Operate.</strong> This is the critical one. Sales makes a commitment on scope, timing, and price; operations has to deliver against it. When those two aren't synchronized by a shared standard, the customer experiences the gap as a broken promise, at the exact moment of highest commitment. A deal that looked great on Friday becomes an operational scramble on Monday.</li>
+          <li><strong>Plan-to-Build → Order-to-Operate.</strong> A new branch or a new line of capacity has to be genuinely ready, not just "open," before operations commits it to customers. When readiness and commitment aren't synchronized, you've sold something you can't yet deliver.</li>
+          <li><strong>Source-to-Pay → Plan-to-Build.</strong> Procurement timing quietly becomes construction schedule risk. A part that arrives three weeks late doesn't show up as a procurement metric; it shows up as a missed build date, and the build team takes the blame for a seam they didn't own.</li>
+          <li><strong>Hire-to-Retire → Order-to-Operate.</strong> The skilled-technician pipeline either does or doesn't match the ramp of new contracts. Win the work without the certified people to staff it, and the seam becomes the constraint on growth itself.</li>
+        </ul>
+      <p>Notice the pattern. In every case, the failure is invisible from inside either domain. Each side did its job. The work still failed, because the <em>crossing</em> had no owner.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Structure</p>
+      <h2 class="section-title">Why seams get orphaned</h2>
+      <p>This isn't carelessness; it's structural. Org charts are vertical. Every leader is accountable for their own box and measured on their own box's performance. So everyone, rationally, optimizes their box. The seam between two boxes belongs to neither budget, neither scorecard, neither leader.</p>
+      <p>It's the organizational equivalent of the strip of grass between two neighbors' yards that neither one mows. Not because anyone's negligent, but because it was never anyone's job.</p>
+      <p>And here's the trap: when a seam fails, the instinct is to go fix the boxes on either side. Tighten sales. Tighten operations. But the boxes weren't the problem. The crossing was. You can perfect both domains and still leak value at the handoff between them, because the handoff was never the target.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Governance</p>
+      <h2 class="section-title">Governing the seams is the real job</h2>
+      <p>This is where a Global Process Owner earns the title. Managing the seams is not the responsibility of any single domain owner, by definition; it sits above them. It belongs to the function that can see the whole horizontal flow.</p>
+      <p>What does governing a seam actually look like? A seam standard is simpler than it sounds. It's a shared, written agreement about three things:</p>
+        <p><strong>1. What crosses the boundary</strong> (the specific output, defined the same way on both sides).</p>
+        <p><strong>2. What "ready" means</strong> (the conditions that have to be true before the handoff is allowed to happen).</p>
+        <p><strong>3. Who confirms it</strong> (a named person or check on each side, so the crossing is an event, not an assumption).</p>
+      <p>For the Lead-to-Order to Order-to-Operate seam at Meridian, that's a transition standard: a deal isn't "closed" until operations has confirmed it can deliver what sales committed, on the timeline sales promised. It's not bureaucracy. It's the difference between a promise and a guess.</p>
+      <p>Build that for the two or three highest-risk seams, and you've done more for the business than perfecting any single domain ever could.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Tooling</p>
+      <h2 class="section-title">Making the seams visible</h2>
+      <p>There's a reason seams stay invisible: most process documentation draws the boxes and leaves the arrows between them vague. "And then it goes to operations" is not a handoff; it's a hope.</p>
+      <p>This is exactly what I want instrumented in the tool I'm building alongside this series (working name: Forester). Every handoff becomes a traceable connection in the model, with the output, the readiness condition, and the owner attached to it, rather than an assumption living in someone's head. When the seams are explicit data instead of tribal knowledge, you can finally see, and govern, the places value actually leaks. A registry of seams turns out to be one of the most valuable artifacts a process function can hold.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Prioritization</p>
+      <h2 class="section-title">Seams first, not seams only</h2>
+      <p>Let me be honest about a trap in my own argument: looking at the seams <em>first</em> is not the same as looking <em>only</em> at the seams. The handoffs are where you recover value fastest, because they're orphaned and cross-cutting, and a single seam standard can pay off across the whole business in weeks. But there is usually at least as much value buried <em>inside</em> each end-to-end process, in the ordinary forms of waste: redundant steps, rework loops, defects, and the quiet sprawl of too many systems doing overlapping jobs.</p>
+      <p>I learned how much hides in there on an enterprise IT asset-management process earlier in my career. Working alongside the teams who ran it, we decomposed the process to real depth, four levels everywhere and six where it was warranted, across roughly 400 activities. What surfaced was sobering: around 200 distinct forms of waste, 110 handoffs, and 64 different systems and tools all touching the same process. None of that was visible from the top. It only appeared once we went deep enough to see it.</p>
+      <p>The redesign that followed cut roughly a third of the handoffs and more than 40% of the steps, and pulled cycle time down by over 80%, from about seventeen weeks to under three. Most of the hard-dollar savings came from decommissioning redundant systems and retiring them off their hardware and software maintenance contracts, and the result landed well past the target the program had been given. The point isn't the figures; it's where they came from. That value was <em>inside</em> the process, invisible until someone decomposed it far enough to find it.</p>
+      <p>So the sequence I'd run is straightforward: govern the seams first for the fast, cross-cutting wins, then go domain by domain into the boxes for the deeper waste. The seams buy you credibility quickly; the within-process work is where the larger, slower pool of value usually lives. A process function that only ever looks at the handoffs is leaving most of the money on the floor.</p>
+      <p>So here's the question I'd leave you with: in your organization, what's the single most expensive handoff, the one where one team's "done" becomes another team's "wait, what?" Almost everyone has a candidate the moment they're asked. And once you've named it, ask the harder question right behind it: how much more is hiding <em>inside</em> the processes on either side? I'd like to hear what comes to mind, because naming the leak is the first step to finally giving it an owner.</p>
+      <p><em>Next in the series: Part 4, on building the team that does this work, and why the answer is senior, lean, and AI-native by design.</em></p>
+    </div>
+
+    <div class="series-nav">
+      <a href="article-gpo-what-gpo-owns.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        Part 2: What a GPO Owns
+      </a>
+      <a href="article-gpo-building-team.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Next</span>
+        Part 4: Building the Team &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">Sources: Independent research on Process Excellence and Global Process Ownership (GPO) framework deployments. Practical applications of standard work, organizational design, and continuous improvement metrics in high-growth rollups.</p>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>

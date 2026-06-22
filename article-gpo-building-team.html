@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building the Team: Senior, Lean, and AI-Native by Design | Jeffrey Benson</title>
+  <meta name="description" content="Covering a massive corporate footprint doesn't require a large department. A senior, lean, AI-native team produces far more actual leverage.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Notebook</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; GPO Series &middot; Part 4 of 6</p>
+      <h1 class="article-title">Building the Team: Senior, Lean, and AI-Native by Design</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>GPO Series</strong> &nbsp;&middot;&nbsp; <a href="article-gpo-flagship.html">Flagship</a> &nbsp;|&nbsp; <a href="article-gpo-validate-mandate.html">Part 1</a> &nbsp;|&nbsp; <a href="article-gpo-what-gpo-owns.html">Part 2</a> &nbsp;|&nbsp; <a href="article-gpo-seams-leak-value.html">Part 3</a> &nbsp;|&nbsp; Part 4 &nbsp;|&nbsp; <a href="article-gpo-service-before-standards.html">Part 5</a> &nbsp;|&nbsp; <a href="article-gpo-earn-keep-ebitda.html">Part 6</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p class="opening-scene"><em>Part 4 of the "How Would You Build It?" series · by Jeffrey Benson</em></p>
+    <p>The first question people ask about a new function is "how many people do you need?" It's the wrong first question. Before headcount comes a decision about <em>philosophy</em>, and getting that decision right is what makes the headcount question answerable at all.</p>
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Philosophy</p>
+      <h2 class="section-title">Domain experts, or capability specialists?</h2>
+      <p>There are two pure ways to staff a process function, and they pull in opposite directions.</p>
+      <p>You can hire <strong>domain experts</strong>: each person a specialist in one or two of the five value chains. The strength is instant credibility with functional leaders; the weakness is that principal-level domain experts are brutally hard to recruit, the domains silo, and your capacity sloshes unevenly as priorities shift quarter to quarter.</p>
+      <p>Or you can hire <strong>capability specialists</strong>: each person owns a craft (process architecture, data engineering, change management) and applies it across all five domains. The strength is that scarce skills get used at full leverage everywhere; the weakness is less day-one domain credibility and more dependence on functional partners to bring the domain knowledge into the room.</p>
+      <p>For Meridian Field Services, my answer is a <strong>hybrid</strong>, and not as a timid compromise. A couple of process-excellence leads carry domain flavor with Lean Six Sigma as the load-bearing credential, while the data and change specialists are pure capability roles applied across the whole portfolio. Each choice is deliberate, not split-the-difference.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Recruiting</p>
+      <h2 class="section-title">Hire skill-first</h2>
+      <p>When I recruit the process-excellence leads, the primary screen is the craft: a Lean Six Sigma Black Belt or Master Black Belt with demonstrated, quantified results at real scale. Domain experience is a strong <em>tie-breaker</em> between otherwise comparable candidates, weighted a little heavier for the domains with the most distinctive subcultures, but it is not the gate.</p>
+      <p>The reasoning is simple. Excellent principal-level methodology skill cannot be reproduced quickly; you either have a decade of rigor behind you or you don't. Domain knowledge, by contrast, can be learned, through stakeholder interviews, site visits, and genuine partnership with the people who own the work. If I filter the recruiting pool down to domain experts, I slow hiring dramatically and risk compromising the skill bar that the whole function depends on. So I hire the rare thing and teach the learnable thing.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Leverage</p>
+      <h2 class="section-title">Senior by necessity, small by design</h2>
+      <p>Here's the instinct I'd push back on hardest: the urge to staff a big function with junior analysts.</p>
+      <p>Five domains across a growing, multi-site company is an enormous surface area. Cover it with junior people and you get volume of activity without leverage: lots of motion, lots of documents, not much that changes the business. A small number of senior specialists, each able to operate as a force multiplier across hundreds of people in the functional organizations, produces far more actual change.</p>
+      <p>So for Meridian's first year I'd want a lean, senior team: a few process-excellence leads who run the cross-functional work, one specialist who builds the data infrastructure behind every measure, and one who owns adoption and change. Small by design, senior by necessity. The team is intentionally a lever, not a labor pool.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Technology</p>
+      <h2 class="section-title">AI-native, not AI-aware</h2>
+      <p>There's a reason a lean team can credibly cover five domains now in a way it couldn't five years ago, and it's worth being explicit about it.</p>
+      <p>I expect every specialist on this team to use agentic AI as a personal force multiplier, not as a novelty they're "aware of." Decomposing a process from a stack of interview transcripts, drafting a first-pass standard operating procedure, running variation analysis across messy data: these are now hours of work, not weeks, for someone who's fluent. That fluency is precisely what lets a small senior team operate at a scale that used to require a department. AI-native isn't a perk of this team design. It's load-bearing to it.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Co-Authorship</p>
+      <h2 class="section-title">The non-negotiable: we author with, never for</h2>
+      <p>Whatever the hiring philosophy, one principle holds in every version of the model, and it's the one that actually determines whether the function survives.</p>
+      <p>The work is <strong>led by us, but authored with the functional partners.</strong> Mapping the current state, designing the future state, eliminating waste, building the standards: none of that is ours to author alone. The team's job is to lead cross-functional groups made up of the operational leaders who actually own the work, and every published standard names its functional co-authors. The leader is credited as the architect of their domain's standard; we're credited as the facilitators and structural authors who made it rigorous and repeatable. Skip that, and the function fails fast, no matter how skilled the team, because people don't adopt what they feel was imposed on them.</p>
+      <p>This is also where my own background shows up most directly. Years ago, I built a workforce-capacity model that forecast skilled-technician demand against the available supply of qualified labor, across geography and skill set. We didn't build it <em>for</em> the operations leaders; we built it <em>with</em> them, and it surfaced a picture of capacity that the org had never been able to see clearly before. At a company like Meridian, where the skilled-technician pipeline is a genuine constraint on growth, that same approach is exactly what the Hire-to-Retire domain needs: a clear, shared view of supply against demand that the operations leaders help author and therefore actually trust.</p>
+      <p>A question for anyone scaling a team right now: are you staffing for <em>volume</em> or for <em>leverage</em>? They look similar on an org chart and produce completely different results. I've watched senior, lean teams outperform departments three times their size, entirely because of how the work was leveraged rather than how many hands touched it. I'd be curious which way your last hire was really aimed.</p>
+      <p><em>Next in the series: Part 5, on the playbook itself, and the three principles that decide whether a process function gets pulled in or quietly routed around within six months.</em></p>
+    </div>
+
+    <div class="series-nav">
+      <a href="article-gpo-seams-leak-value.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        Part 3: The Seams
+      </a>
+      <a href="article-gpo-service-before-standards.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Next</span>
+        Part 5: The Playbook &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">Sources: Independent research on Process Excellence and Global Process Ownership (GPO) framework deployments. Practical applications of standard work, organizational design, and continuous improvement metrics in high-growth rollups.</p>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>

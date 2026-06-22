@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero to One: Building a Process Excellence Function Worth Its Cost | Jeffrey Benson</title>
+  <meta name="description" content="How would you build a zero-to-one Process Excellence and Global Process Ownership function inside a high-growth, private-equity-backed company? Let's look at the reasoning underneath.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Notebook</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; GPO Series &middot; Flagship</p>
+      <h1 class="article-title">Zero to One: Building a Process Excellence Function Worth Its Cost</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>GPO Series</strong> &nbsp;&middot;&nbsp; Flagship &nbsp;|&nbsp; <a href="article-gpo-validate-mandate.html">Part 1</a> &nbsp;|&nbsp; <a href="article-gpo-what-gpo-owns.html">Part 2</a> &nbsp;|&nbsp; <a href="article-gpo-seams-leak-value.html">Part 3</a> &nbsp;|&nbsp; <a href="article-gpo-building-team.html">Part 4</a> &nbsp;|&nbsp; <a href="article-gpo-service-before-standards.html">Part 5</a> &nbsp;|&nbsp; <a href="article-gpo-earn-keep-ebitda.html">Part 6</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p class="opening-scene"><em>Flagship of the "How Would You Build It?" series · by Jeffrey Benson</em></p>
+    <p>Here is a question I find clarifying, the kind I'd happily lose an afternoon to:</p>
+    <p><strong>How would you build a zero-to-one Process Excellence and Global Process Ownership function inside a high-growth, private-equity-backed company, and provide leadership across five end-to-end process domains: Plan-to-Build, Lead-to-Order, Order-to-Operate, Source-to-Pay, and Hire-to-Retire?</strong></p>
+    <p>No existing team. No playbook. No standards to inherit. A board that expects the function to pay for itself in hard dollars. Five sprawling value chains that each cut across every department in the company. And a leadership team that is, understandably, already at capacity running the business that exists today.</p>
+    <p>It's a deliberately ambiguous ask. That's exactly what makes it worth answering well. The quality of your answer to <em>this</em> question tells a hiring committee, or a sponsor, or a board, far more than any list of certifications. So let me show you how I think through it: not the polished conclusion, but the reasoning underneath.</p>
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Context</p>
+      <h2 class="section-title">A company to make this concrete</h2>
+      <p>Abstractions are easy to nod along to and impossible to act on. So I'll borrow a composite company and carry it through the whole series.</p>
+      <p>Meet <strong>Meridian Field Services</strong>, a PE-backed platform rolling up regional commercial mechanical-services firms (the companies that install and maintain the HVAC and mechanical systems inside large buildings). Meridian buys three or four companies a year, stands up new branches, and is trying to operate them as <em>one</em> company instead of a dozen that happen to share a logo.</p>
+      <p>Meridian has all five domains, and they're real:</p>
+        <ul class="support-list">
+          <li><strong>Plan-to-Build:</strong> opening new branches and building service capacity</li>
+          <li><strong>Lead-to-Order:</strong> originating and closing commercial service contracts</li>
+          <li><strong>Order-to-Operate:</strong> delivering the work and servicing the relationship for its life</li>
+          <li><strong>Source-to-Pay:</strong> buying equipment, parts, and subcontracted labor at scale</li>
+          <li><strong>Hire-to-Retire:</strong> recruiting, certifying, and retaining a skilled-technician workforce</li>
+        </ul>
+      <p>Meridian is fictional. The pattern is not. If you've ever worked inside a company growing faster than its operating model can standardize, you already feel the friction Meridian is feeling: handoffs that drop, the same problem solved five different ways in five locations, a number on the board's dashboard that nobody fully trusts.</p>
+      <p>The instinct, when you're handed this mandate, is to walk in on Day 1 with a finished framework and start executing it. <strong>That instinct is the single most common way this role fails.</strong> A plan you deploy before you've listened is, almost by definition, the right answer to the wrong question.</p>
+      <p>So here is the spine of how I'd actually approach it: <strong>earn the trust to build → build → prove it works.</strong> Three movements delivered in that order is non-negotiable.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Diagnosis</p>
+      <h2 class="section-title">First: diagnose the real mandate before you design anything</h2>
+      <p>Before I draw a single process map, I owe myself an honest answer to one question: <em>what problem is this company actually hiring this function to solve?</em> The answer governs everything downstream: what you build first, who you hire, how hard you push.</p>
+      <p>At Meridian, the surface answer is "standardize our processes." But underneath, there are usually two or three forces operating at once: a scaling problem (the operating model is being stress-tested faster than it can adapt), a financial-discipline problem (the sponsor needs operational performance that is <em>visible, measurable, and improving</em>), and an organizational-moment problem (new leadership wants to put its own fingerprint on how the company runs). Which of those is <em>most</em> urgent changes your entire sequencing.</p>
+      <p>The discipline I bring here is to treat my own plan as a set of <strong>hypotheses to be validated, not facts to be executed.</strong> Every assumption gets written down and labeled by confidence. <em>Is this function greenfield, or are there informal process owners I haven't met yet? Does the company want true enterprise standardization, or does it value local autonomy more than it admits? Which of the five domains is genuinely on fire?</em> Then I spend the first thirty days listening, one-on-one with the leaders who own the work, to confirm or kill each assumption before I commit resources to it.</p>
+      <p>This is the unglamorous part, and it's the part that earns the right to everything that follows. <strong>(Part 1 of this series goes deep here.)</strong></p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Architecture</p>
+      <h2 class="section-title">Second: architect the function around standards, not headcount</h2>
+      <p>A Global Process Owner is one of the most misunderstood roles in a company, so let me be precise about what it <em>is</em>, and what it isn't.</p>
+      <p>A GPO does <strong>not</strong> own the people, the budget, or the execution of a domain. The branch managers, the sales leaders, the procurement team: they keep owning the work. What the GPO owns is the <strong>standards, the handoffs, and the performance measures</strong> that govern how work flows through the domain end to end. Process ownership is not the same as operational ownership. I own the architecture; the functional leaders own the execution. The moment that line blurs, the function gets resented and routed around.</p>
+      <p>To build that architecture, I decompose each domain the way I've described in my <strong><a href="https://bensonjt.github.io/profile/articles.html">How to See the Forest and the Trees</a></strong> series, from the whole value chain (L0) down through its major activities (L1) and into the sub-processes where work actually happens (L2 -&gt; L3 -&gt; Lx). The domains aren't departments on an org chart; they're <em>value chains</em> that cut sideways across the whole company. <strong>(Part 2.)</strong></p>
+      <p>And here is the idea I care about most, the one most process functions underweight:</p>
+      <p><strong>Plenty of value leaks inside the boxes, through waste, defects, and rework. But the value no one is even looking for leaks at the seams between them.</strong></p>
+      <p>Within a domain, the work is usually done by people who are good at it, and its inefficiencies are at least visible to someone. The failures that hide are at the <strong>handoffs:</strong> where Lead-to-Order makes a commercial promise that Order-to-Operate then has to deliver against, where Source-to-Pay's procurement timing becomes Plan-to-Build's schedule risk, where Hire-to-Retire's technician pipeline either does or doesn't match the ramp of new contracts. Nobody owns those seams, so they're where customers experience the gap as a broken promise. Governing the seams is the fastest first win; draining the waste inside each process is the deeper work that follows. <strong>(Part 3, the heart of the series.)</strong></p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Doctrine</p>
+      <h2 class="section-title">Third: build a function that earns pull, not compliance</h2>
+      <p>You can design the most elegant process architecture in the world and watch the organization quietly ignore it. Adoption, not documentation, is the binding constraint. So three principles govern how the function <em>behaves</em>, and they matter more than any deliverable:</p>
+        <p><strong>1. Service before standards.</strong> The function operates as a service organization first. Leaders pull us in when our help is real and fast; they route around us when our value is theoretical. Response measured in days, not weeks. No standard is published for a process we haven't walked through with the people doing the work.</p>
+        <p><strong>2. Co-design, then sign.</strong> Any standard that touches operational work is co-designed with the people accountable for it, validated on-site, and signed by them before it's published. We <em>standardize up:</em> we learn from the branches doing it best and elevate that as the model, rather than averaging everyone down to a template.</p>
+        <p><strong>3. Respect the boundaries.</strong> We define <em>what</em> a process needs. The functional partners own <em>how</em> their systems and people deliver it. Where the lane is ambiguous, we defer. Lane discipline beats scope expansion every time.</p>
+      <p>If that sounds less like a standards police force and more like a trusted partner, that's the point. It's the same posture I've written about in my work on <strong><a href="https://bensonjt.github.io/profile/articles.html">servant leadership</a></strong>. And when the standards do need to <em>land</em> as behavior change, the framework I reach for is <strong><a href="https://bensonjt.github.io/profile/articles.html">ADKAR</a></strong>. <strong>(Parts 4 and 5.)</strong></p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Scale</p>
+      <h2 class="section-title">"So how big would you build it?"</h2>
+      <p>Whenever I'm asked this in the room, my answer is the same: <strong>start lean and senior, prove value, and scale only when the data justifies it.</strong></p>
+      <p>For Meridian in Year 1, I'd want a small, senior team: a handful of principal-level specialists who can each operate as a force multiplier across hundreds of people in the functional organizations, rather than a large team of junior analysts producing volume without leverage. Process-excellence leads who lead cross-functional teams; one specialist who builds the data infrastructure behind the measures; one who owns adoption and change. Senior by necessity, small by design.</p>
+      <p>And I'd put a number on myself before anyone asked. <strong>The function must return at least five times its fully loaded cost in measurable, attributable improvement. If it doesn't, we revise it; if it still doesn't pay, we wind it down.</strong> I want that bar in the room because it disciplines my own choices about where to point the team. A value-creation function that can't earn its keep shouldn't survive, and saying so is how you earn a sponsor's trust. <strong>(Part 6.)</strong></p>
+      <p>That bar isn't bravado. I've held my own work to the same test for years; in one six-year stretch, the data and process infrastructure I built returned many times what it cost to put in place, comfortably past the floor I'm describing. I set the bar where I'm confident, not where I hope.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Tooling</p>
+      <h2 class="section-title">The operator's instinct: build the instrument</h2>
+      <p>There's one more thing I'd bring to Meridian that I think separates this approach from a slide deck.</p>
+      <p>When I model a domain (the decomposition, the seams, the KPIs at every step), I don't want it living in a static Visio file that's wrong the day after it's drawn. I want it <em>instrumented</em>: a structured model where every handoff is a traceable connection, every activity carries its own measures, and the before-and-after story for the board generates itself instead of being assembled by hand the night before the review.</p>
+      <p>That's why, alongside the writing, I'm building the tool that mechanizes exactly this method. (Working name: Forester, still in active development.) The articles teach the thinking; the instrument makes it scalable. It's the difference between an operator who <em>describes</em> the function and one who can actually <em>run</em> it. I'll point to it where it's relevant as the series goes on.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Roadmap</p>
+      <h2 class="section-title">Where this goes next</h2>
+      <p>This flagship is the map. The six parts that follow are the territory:</p>
+        <p><strong>1. Validate the Mandate:</strong> diagnosing the real problem before designing the solution</p>
+        <p><strong>2. What a Global Process Owner Actually Owns:</strong> standards, not headcount</p>
+        <p><strong>3. The Seams Are Where Value Leaks:</strong> governing the handoffs between domains</p>
+        <p><strong>4. Building the Team:</strong> senior, lean, and AI-native by design</p>
+        <p><strong>5. The Playbook: Service Before Standards</strong>, on why process functions get routed around, and how not to</p>
+        <p><strong>6. Earn Your Keep in EBITDA:</strong> committing to a number, and the discipline behind it</p>
+      <p>If you're carrying a version of this ambiguity right now (a company growing faster than its operating model, handoffs that keep dropping, a number on the dashboard you don't fully trust), I'd genuinely like to hear where the friction is sharpest for you. That's usually where the most valuable conversation starts.</p>
+      <p><em>Next in the series: <strong>Part 1 — Validate the Mandate.</strong></em></p>
+    </div>
+
+    <div class="series-nav">
+      <a href="articles.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; All Writing</span>
+        All Writing
+      </a>
+      <a href="article-gpo-validate-mandate.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Next</span>
+        Part 1: Validate the Mandate &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">Sources: Independent research on Process Excellence and Global Process Ownership (GPO) framework deployments. Practical applications of standard work, organizational design, and continuous improvement metrics in high-growth rollups.</p>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>
