@@ -254,6 +254,27 @@
     .page-footer a:hover { text-decoration: underline; }
     .footer-div { margin: 0 12px; opacity: 0.4; }
 
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
     /* ── Sources ── */
     .sources-note {
       font-size: 0.82rem;
@@ -271,6 +292,7 @@
       .article-header { padding: 52px 24px 60px; }
       .article-body { padding: 48px 20px 72px; }
       .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
       .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
     }
   </style>
@@ -339,6 +361,10 @@
         </ul>
       <p>And these three domain-level sources are only half the map. Just as much value tends to sit <em>inside</em> each process, in the ordinary waste a deeper look surfaces: redundant steps, rework loops, and the sprawl of overlapping systems that quietly carry licensing and maintenance cost. Some of the most durable hard-dollar savings I've seen came not from a new initiative at all, but from decomposing a bloated process, cutting the redundant steps and handoffs, and retiring the duplicate or end of life systems off their maintenance contracts entirely.</p>
       <p>None of this is exotic. That's the point. The value comes from governing the handoffs between domains and draining the waste inside them, from standardizing decisions that were previously made five different ways, not from chasing a clever new initiative.</p>
+
+    <!-- ── Infographic: ROI Investment Case ── -->
+    <img src="img/gpo-roi.svg" alt="ROI Investment Case diagram detailing Scenario A and Scenario B models, including fully loaded team costs, EBITDA lift targets, and payback timelines." class="article-image-wide">
+    <p class="image-caption">ROI Investment Case: Structuring team costs against EBITDA lift targets to ensure the function pays for itself at a target 5× ROI threshold.</p>
     </div>
 
     <hr>

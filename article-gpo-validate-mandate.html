@@ -254,6 +254,27 @@
     .page-footer a:hover { text-decoration: underline; }
     .footer-div { margin: 0 12px; opacity: 0.4; }
 
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
     /* ── Sources ── */
     .sources-note {
       font-size: 0.82rem;
@@ -271,6 +292,7 @@
       .article-header { padding: 52px 24px 60px; }
       .article-body { padding: 48px 20px 72px; }
       .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
       .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
     }
   </style>
@@ -357,6 +379,10 @@
       <p>There's a structural move in the first thirty days that matters more than any deliverable: I want active sponsorship from a coalition of executives, ideally one per domain, by the end of the month.</p>
       <p>A new function that depends on one or two patrons is fragile. The day those patrons get reorganized, distracted, or outvoted, the function is orphaned. A function with five domain-specific sponsors survives normal organizational turbulence, because its value is anchored in five different parts of the business at once.</p>
       <p>And I'd give each sponsor the same question to answer: <em>what outcome in your domain, twelve months from now, would make this function unmistakably worth its cost to your part of the business?</em> Their answer is not small talk. It becomes my commitment, and it tells me exactly where to point the team first.</p>
+
+    <!-- ── Infographic: Sponsor Coalition Map ── -->
+    <img src="img/gpo-sponsors.svg" alt="Sponsor Coalition Map showing C-Suite alignment (CEO, CFO, COO, CPO, CPRO, CPIO) across five domains, highlighting CEO and CFO Top-Level Program Involvement." class="article-image-wide">
+    <p class="image-caption">Sponsor Coalition Map: Aligning C-suite leaders to own domain-specific outcomes under a program-level CEO/CFO overlay.</p>
     </div>
 
     <hr>

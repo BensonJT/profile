@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800" preserveAspectRatio="xMidYMid meet">
+
+  <style>
+    text { font-family: 'Inter', 'Segoe UI', -apple-system, Roboto, Arial, sans-serif; }
+    .ctx         { font-size: 13px; fill: #7A6A56; font-style: italic; }
+    .title       { font-size: 24px; font-weight: 700; fill: #2C2E2F; }
+    .tagline     { font-size: 12px; fill: #5A5043; font-style: italic; }
+    .phase-cap   { font-size: 10px; font-weight: 700; fill: #FFFFFF; letter-spacing: 2px; }
+    .phase-name  { font-size: 18px; font-weight: 700; fill: #FFFFFF; }
+    .sec-cap     { font-size: 10px; font-weight: 700; fill: #3B4B35; letter-spacing: 1.5px; }
+    .sec-cap-red { font-size: 10px; font-weight: 700; fill: #C27B58; letter-spacing: 1.5px; }
+    .item        { font-size: 12px; fill: #2C2E2F; }
+    .tool-name   { font-size: 12px; font-weight: 700; fill: #C27B58; }
+    .out-cap     { font-size: 10px; font-weight: 700; fill: #F0EAD6; letter-spacing: 1.5px; }
+    .out-head    { font-size: 16px; font-weight: 700; fill: #FFFFFF; }
+    .out-body    { font-size: 11px; fill: #F0EAD6; font-style: italic; }
+    .footer      { font-size: 12px; fill: #7A6A56; font-style: italic; }
+  </style>
+
+  <rect width="1600" height="800" fill="#FFFFFF"/>
+
+  <!-- ===== HEADER ===== -->
+  <text x="60" y="26" class="ctx">A repeatable methodology for building process standards that practitioners adopt and sustain.</text>
+  <text x="60" y="55" class="title">How Standards Get Built: Best Practice First, Lean Six Sigma Second</text>
+  <text x="60" y="73" class="tagline">Standardize up to excellence — not down to compliance. The best practitioners set the floor. Lean Six Sigma discipline raises it.</text>
+
+  <!-- ===== PHASE 1 PANEL ===== -->
+  <rect x="60"  y="86"  width="710" height="56"  fill="#3B4B35"/>
+  <text x="80"  y="105" class="phase-cap">PHASE 1</text>
+  <text x="80"  y="128" class="phase-name">Identify &amp; Learn from the Best</text>
+
+  <rect x="60"  y="142" width="710" height="390" fill="#F0EAD6"/>
+  <rect x="60"  y="142" width="5"   height="390" fill="#3B4B35"/>
+
+  <text x="80" y="166" class="sec-cap">PRINCIPLE</text>
+  <text x="80" y="185" class="item">Some processes inside your organization are already excellent.</text>
+  <text x="80" y="203" class="item">The operators running them have earned that performance over years.</text>
+  <text x="80" y="221" class="item">They are your first and best source of truth — not a framework.</text>
+
+  <text x="80" y="251" class="sec-cap">HOW IT WORKS</text>
+  <text x="80" y="270" class="item">• Identify leaders whose metrics already stand out from the baseline</text>
+  <text x="80" y="288" class="item">• Observe and interview — let practitioners teach the current best state</text>
+  <text x="80" y="306" class="item">• Document what is working before prescribing what should change</text>
+  <text x="80" y="324" class="item">• Build the baseline from the best — not from an assumed average</text>
+  <text x="80" y="342" class="item">• Capture institutional knowledge before it dissipates or walks out</text>
+
+  <text x="80" y="372" class="sec-cap">WHY IT MATTERS</text>
+  <text x="80" y="391" class="item">Practitioners adopt standards they helped build.</text>
+  <text x="80" y="409" class="item">Standards handed down from above get worked around.</text>
+  <text x="80" y="427" class="item">The best operators are your most credible change agents.</text>
+
+  <!-- Phase 1 Key Insight -->
+  <rect x="75"  y="462" width="682" height="66" rx="4" fill="#3B4B35"/>
+  <text x="416" y="482" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#F0EAD6;letter-spacing:1.5px;font-family:'Inter',sans-serif;">KEY INSIGHT</text>
+  <text x="416" y="504" text-anchor="middle" style="font-size:12px;font-weight:700;fill:#FFFFFF;font-family:'Inter',sans-serif;">You don't arrive with the answer.</text>
+  <text x="416" y="520" text-anchor="middle" style="font-size:12px;font-weight:700;fill:#FFFFFF;font-family:'Inter',sans-serif;">You arrive with the questions.</text>
+
+  <!-- ===== CONNECTOR ===== -->
+  <text x="803" y="268" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#5A5043;letter-spacing:1.5px;font-family:'Inter',sans-serif;">THEN</text>
+  <line x1="776" y1="286" x2="828" y2="286" stroke="#3B4B35" stroke-width="2"/>
+  <polygon points="826,280 838,286 826,292" fill="#3B4B35"/>
+
+  <!-- ===== PHASE 2 PANEL ===== -->
+  <rect x="838" y="86"  width="702" height="56"  fill="#C27B58"/>
+  <text x="858" y="105" class="phase-cap">PHASE 2</text>
+  <text x="858" y="128" class="phase-name">Apply Lean Six Sigma Discipline</text>
+
+  <rect x="838" y="142" width="702" height="390" fill="#FBF4EC"/>
+  <rect x="838" y="142" width="5"   height="390" fill="#C27B58"/>
+
+  <text x="858" y="166" class="sec-cap-red">PRINCIPLE</text>
+  <text x="858" y="185" class="item">The current best state is the starting point — not the destination.</text>
+  <text x="858" y="203" class="item">LSS tools push beyond what even the best practitioners have been</text>
+  <text x="858" y="221" class="item">able to achieve working without a rigorous improvement methodology.</text>
+
+  <text x="858" y="251" class="sec-cap-red">LSS TOOLS APPLIED</text>
+  <text x="858" y="271" class="tool-name">Value Stream Mapping</text>
+  <text x="858" y="288" class="item">  Visualize end-to-end flow; surface every non-value-added step</text>
+  <text x="858" y="310" class="tool-name">Lean Principles</text>
+  <text x="858" y="327" class="item">  Eliminate waste, reduce wait time, simplify handoffs, create flow</text>
+  <text x="858" y="349" class="tool-name">Six Sigma</text>
+  <text x="858" y="366" class="item">  DMAIC: Define → Measure → Analyze → Improve → Control</text>
+  <text x="858" y="384" class="item">  Reduce variation and defects</text>
+
+  <text x="858" y="410" class="sec-cap-red">THE DISCIPLINE</text>
+  <text x="858" y="429" class="item">• Separate signal from noise — data over intuition and assumption</text>
+  <text x="858" y="447" class="item">• Lock in gains through governance and measurement cadence</text>
+
+  <!-- Phase 2 Key Insight -->
+  <rect x="853" y="462" width="676" height="66" rx="4" fill="#C27B58"/>
+  <text x="1191" y="482" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#F0EAD6;letter-spacing:1.5px;font-family:'Inter',sans-serif;">KEY INSIGHT</text>
+  <text x="1191" y="504" text-anchor="middle" style="font-size:12px;font-weight:700;fill:#FFFFFF;font-family:'Inter',sans-serif;">If you can't measure the delta,</text>
+  <text x="1191" y="520" text-anchor="middle" style="font-size:12px;font-weight:700;fill:#FFFFFF;font-family:'Inter',sans-serif;">you can't own the result.</text>
+
+  <!-- ===== OUTPUT STRIP — THREE RESULTS ===== -->
+  <rect x="60"   y="558" width="480" height="120" fill="#2C2E2F"/>
+  <rect x="560"  y="558" width="480" height="120" fill="#3B4B35"/>
+  <rect x="1060" y="558" width="480" height="120" fill="#5A5043"/>
+
+  <text x="300"  y="581" text-anchor="middle" class="out-cap">THE RESULT IS</text>
+  <text x="300"  y="607" text-anchor="middle" class="out-head">Owned by Operators</text>
+  <text x="300"  y="629" text-anchor="middle" class="out-body">Built alongside the people doing the work —</text>
+  <text x="300"  y="645" text-anchor="middle" class="out-body">not handed down from a framework.</text>
+
+  <text x="800"  y="581" text-anchor="middle" class="out-cap">THE RESULT IS</text>
+  <text x="800"  y="607" text-anchor="middle" class="out-head">Measured from Baseline</text>
+  <text x="800"  y="629" text-anchor="middle" class="out-body">Every improvement is the delta from a defensible</text>
+  <text x="800"  y="645" text-anchor="middle" class="out-body">starting point — not an assumed prior state.</text>
+
+  <text x="1300" y="581" text-anchor="middle" class="out-cap">THE RESULT IS</text>
+  <text x="1300" y="607" text-anchor="middle" class="out-head">Scalable by Design</text>
+  <text x="1300" y="629" text-anchor="middle" class="out-body">Governed, repeatable, and enterprise-ready —</text>
+  <text x="1300" y="645" text-anchor="middle" class="out-body">not a local fix that cannot travel.</text>
+
+  <!-- ===== FOOTER ===== -->
+  <text x="800" y="718" text-anchor="middle" class="footer">The standard is not a document. It is the delta between current best practice and what Lean Six Sigma discipline makes possible.</text>
+  <text x="800" y="740" text-anchor="middle" style="font-size:11px;fill:#A49B8E;font-style:italic;font-family:'Inter',sans-serif;">Process Excellence  ·  Lean Six Sigma  ·  Value Stream Mapping  ·  DMAIC  ·  Continuous Improvement</text>
+
+</svg>

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 880" preserveAspectRatio="xMidYMid meet">
+
+  <defs>
+    <marker id="thesis-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3B4B35"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: 'Inter', 'Segoe UI', -apple-system, Roboto, Arial, sans-serif; }
+    .ctx          { font-size: 14px; fill: #7A6A56; font-style: italic; }
+    .title        { font-size: 30px; font-weight: 700; fill: #2C2E2F; }
+    .subtitle     { font-size: 14px; fill: #5A5043; font-style: italic; }
+    .station-cap  { font-size: 11px; font-weight: 700; fill: #FFFFFF; letter-spacing: 2px; }
+    .station-head { font-size: 17px; font-weight: 700; fill: #2C2E2F; }
+    .station-sub  { font-size: 12px; fill: #5A5043; font-style: italic; }
+    .item-num     { font-size: 22px; font-weight: 700; fill: #3B4B35; }
+    .item-text    { font-size: 13px; fill: #2C2E2F; }
+    .item-bold    { font-size: 13px; fill: #2C2E2F; font-weight: 700; }
+    .item-sub     { font-size: 11px; fill: #7A6A56; font-style: italic; }
+    .domain-line  { font-size: 14px; font-weight: 700; fill: #3B4B35; }
+    .domain-tag   { font-size: 11px; fill: #5A5043; font-style: italic; }
+    .big-money    { font-size: 30px; font-weight: 700; fill: #C27B58; }
+    .big-amber    { font-size: 30px; font-weight: 700; fill: #C27B58; }
+    .footer       { font-size: 15px; fill: #3B4B35; font-weight: 700; font-style: italic; }
+    .footer-sub   { font-size: 13px; fill: #7A6A56; font-style: italic; }
+  </style>
+
+  <rect width="1600" height="880" fill="#FFFFFF"/>
+
+  <!-- Header -->
+  <text x="60" y="28" class="ctx">The thesis on one page — the verbal anchor for the first five minutes of any conversation.</text>
+  <text x="60" y="62" class="title">The Thesis: One Function, One Equation</text>
+  <text x="60" y="88" class="subtitle">3 inflection points · 5 GPO domains · 1 Director + 5 ICs · 90/180/365 milestones · 5× ROI floor.</text>
+
+  <!-- ===== STATION CAPTION BAR ===== -->
+  <rect x="60" y="118" width="1480" height="32" fill="#2C2E2F"/>
+
+  <!-- 5 stations, w=288, gap=10 → x: 60, 358, 656, 954, 1252 -->
+  <text x="204"  y="139" text-anchor="middle" class="station-cap">WHY NOW</text>
+  <text x="502"  y="139" text-anchor="middle" class="station-cap">WHAT</text>
+  <text x="800"  y="139" text-anchor="middle" class="station-cap">WHO</text>
+  <text x="1098" y="139" text-anchor="middle" class="station-cap">WHEN</text>
+  <text x="1396" y="139" text-anchor="middle" class="station-cap">HOW MUCH</text>
+
+  <!-- ===== STATION 1: WHY NOW — 3 inflection points ===== -->
+  <rect x="60" y="160" width="288" height="540" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <text x="204" y="188" text-anchor="middle" class="station-head">Three Inflection Points</text>
+  <text x="204" y="208" text-anchor="middle" class="station-sub">All real. All operating simultaneously.</text>
+
+  <g transform="translate(78, 232)">
+    <text x="0" y="22" class="item-num">1</text>
+    <text x="32" y="22" class="item-bold">Scale Without Chaos</text>
+    <text x="32" y="42" class="item-text">Adding new branches</text>
+    <text x="32" y="58" class="item-text">faster than the operating</text>
+    <text x="32" y="74" class="item-text">model can standardize.</text>
+    <text x="32" y="96" class="item-sub">The operationally urgent driver.</text>
+  </g>
+
+  <g transform="translate(78, 358)">
+    <text x="0" y="22" class="item-num">2</text>
+    <text x="32" y="22" class="item-bold">Private Equity EBITDA</text>
+    <text x="32" y="42" class="item-bold">Discipline</text>
+    <text x="32" y="62" class="item-text">Operational controls must be</text>
+    <text x="32" y="78" class="item-text">visible, measurable, and</text>
+    <text x="32" y="94" class="item-text">improving.</text>
+    <text x="32" y="116" class="item-sub">The governance frame around it.</text>
+  </g>
+
+  <g transform="translate(78, 504)">
+    <text x="0" y="22" class="item-num">3</text>
+    <text x="32" y="22" class="item-bold">Operating Model Drift</text>
+    <text x="32" y="42" class="item-text">Growth has produced regional</text>
+    <text x="32" y="58" class="item-text">and site-by-site variation in</text>
+    <text x="32" y="74" class="item-text">how work gets done. Standards</text>
+    <text x="32" y="90" class="item-text">unlock synergy and controls.</text>
+    <text x="32" y="112" class="item-sub">Fragmentation has a measurable cost.</text>
+  </g>
+
+  <rect x="60" y="654" width="288" height="46" fill="#F0EAD6"/>
+  <text x="204" y="675" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#3B4B35;letter-spacing:1.5px;font-family:'Inter',sans-serif;">THE THESIS</text>
+  <text x="204" y="692" text-anchor="middle" style="font-size:12px;fill:#2C2E2F;font-style:italic;font-family:'Inter',sans-serif;">Build the function that fits all three.</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="350" y1="430" x2="356" y2="430" stroke="#3B4B35" stroke-width="2.5" marker-end="url(#thesis-arrow)"/>
+
+  <!-- ===== STATION 2: WHAT — 5 GPO Domains ===== -->
+  <rect x="358" y="160" width="288" height="540" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <text x="502" y="188" text-anchor="middle" class="station-head">Five Domains + Change Capability</text>
+  <text x="502" y="208" text-anchor="middle" class="station-sub">Value streams, enablers, and change capability.</text>
+
+  <!-- Primary streams -->
+  <text x="366" y="237" style="font-size:10px;font-weight:700;fill:#7A6A56;letter-spacing:1.5px;font-family:'Inter',sans-serif;">PRIMARY VALUE STREAMS</text>
+
+  <rect x="366" y="249" width="272" height="56" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <rect x="366" y="249" width="8" height="56" fill="#3B4B35"/>
+  <text x="386" y="271" class="domain-line">Plan-to-Build</text>
+  <text x="386" y="291" class="domain-tag">Branch capacity — setup capacity &amp; fleet</text>
+
+  <rect x="366" y="315" width="272" height="56" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <rect x="366" y="315" width="8" height="56" fill="#3B4B35"/>
+  <text x="386" y="337" class="domain-line">Lead-to-Order</text>
+  <text x="386" y="357" class="domain-tag">Revenue origination — secure contracts</text>
+
+  <rect x="366" y="381" width="272" height="56" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <rect x="366" y="381" width="8" height="56" fill="#C27B58"/>
+  <text x="386" y="403" class="domain-line">Order-to-Operate</text>
+  <text x="386" y="423" class="domain-tag">Service delivery — operations &amp; relationship</text>
+
+  <!-- Enablers -->
+  <text x="366" y="465" style="font-size:10px;font-weight:700;fill:#7A6A56;letter-spacing:1.5px;font-family:'Inter',sans-serif;">ENABLING DOMAINS</text>
+
+  <rect x="366" y="477" width="272" height="46" fill="#F0EAD6" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="366" y="477" width="8" height="46" fill="#3B4B35"/>
+  <text x="386" y="497" class="domain-line">Source-to-Pay</text>
+  <text x="386" y="514" class="domain-tag">Spend &amp; supply feeds all streams</text>
+
+  <rect x="366" y="531" width="272" height="46" fill="#F0EAD6" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="366" y="531" width="8" height="46" fill="#3B4B35"/>
+  <text x="386" y="551" class="domain-line">Hire-to-Retire</text>
+  <text x="386" y="568" class="domain-tag">Workforce lifecycle — all domains</text>
+
+  <!-- Change Capability tier -->
+  <text x="366" y="600" style="font-size:10px;font-weight:700;fill:#7A6A56;letter-spacing:1.5px;font-family:'Inter',sans-serif;">CHANGE CAPABILITY</text>
+
+  <rect x="366" y="608" width="272" height="40" fill="#F0EAD6" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="366" y="608" width="8" height="40" fill="#C27B58"/>
+  <text x="386" y="626" class="domain-line">Change Management</text>
+  <text x="386" y="641" class="domain-tag">Adoption layer across all 5 domains</text>
+
+  <rect x="358" y="654" width="288" height="46" fill="#F0EAD6"/>
+  <text x="502" y="675" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#3B4B35;letter-spacing:1.5px;font-family:'Inter',sans-serif;">THE SCOPE</text>
+  <text x="502" y="692" text-anchor="middle" style="font-size:12px;fill:#2C2E2F;font-style:italic;font-family:'Inter',sans-serif;">Four seams. One owns them all.</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="648" y1="430" x2="654" y2="430" stroke="#3B4B35" stroke-width="2.5" marker-end="url(#thesis-arrow)"/>
+
+  <!-- ===== STATION 3: WHO — Scenario A Team ===== -->
+  <rect x="656" y="160" width="288" height="540" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <text x="800" y="188" text-anchor="middle" class="station-head">Scenario A Team</text>
+  <text x="800" y="208" text-anchor="middle" class="station-sub">The minimum credible complement.</text>
+
+  <!-- Director box -->
+  <rect x="674" y="232" width="252" height="58" fill="#3B4B35"/>
+  <text x="800" y="258" text-anchor="middle" style="font-size:16px;font-weight:700;fill:#FFFFFF;font-family:'Inter',sans-serif;">Director, Process</text>
+  <text x="800" y="278" text-anchor="middle" style="font-size:16px;font-weight:700;fill:#FFFFFF;font-family:'Inter',sans-serif;">Excellence</text>
+
+  <!-- IC stack -->
+  <text x="674" y="316" style="font-size:10px;font-weight:700;fill:#7A6A56;letter-spacing:1.5px;font-family:'Inter',sans-serif;">5 SENIOR / PRINCIPAL ICs</text>
+
+  <rect x="674" y="326" width="252" height="36" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <text x="688" y="349" class="item-text">• GPO Lead 1 — P2B (dedicated)</text>
+
+  <rect x="674" y="368" width="252" height="36" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <text x="688" y="391" class="item-text">• GPO Lead 2 — L2O + O2O</text>
+
+  <rect x="674" y="410" width="252" height="36" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <text x="688" y="433" class="item-text">• GPO Lead 3 — S2P + H2R</text>
+
+  <rect x="674" y="452" width="252" height="36" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <text x="688" y="475" class="item-text">• Data Engineer (KPI infra)</text>
+
+  <rect x="674" y="494" width="252" height="36" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <text x="688" y="517" class="item-text">• Change Management Lead</text>
+
+  <!-- Cost line -->
+  <text x="800" y="580" text-anchor="middle" class="big-money">~$1.55M</text>
+  <text x="800" y="601" text-anchor="middle" class="item-sub">Estimated fully loaded Year 1 cost</text>
+  <text x="800" y="623" text-anchor="middle" class="item-sub">Director + 5 Senior / Principal ICs</text>
+
+  <rect x="656" y="654" width="288" height="46" fill="#F0EAD6"/>
+  <text x="800" y="675" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#3B4B35;letter-spacing:1.5px;font-family:'Inter',sans-serif;">THE TEAM</text>
+  <text x="800" y="692" text-anchor="middle" style="font-size:12px;fill:#2C2E2F;font-style:italic;font-family:'Inter',sans-serif;">Senior by design — not analyst-staffed.</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="946" y1="430" x2="952" y2="430" stroke="#3B4B35" stroke-width="2.5" marker-end="url(#thesis-arrow)"/>
+
+  <!-- ===== STATION 4: WHEN — 90/180/365 ===== -->
+  <rect x="954" y="160" width="288" height="540" fill="#FFFFFF" stroke="#3B4B35" stroke-width="1.5"/>
+  <text x="1098" y="188" text-anchor="middle" class="station-head">90 / 180 / 365</text>
+  <text x="1098" y="208" text-anchor="middle" class="station-sub">Earn trust, then build, then prove.</text>
+
+  <!-- D30 -->
+  <g transform="translate(972, 232)">
+    <rect x="0" y="0" width="60" height="22" rx="4" fill="#3B4B35"/>
+    <text x="30" y="15" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#FFFFFF;letter-spacing:1px;font-family:'Inter',sans-serif;">DAY 30</text>
+    <text x="72" y="16" class="item-bold">Validated mandate</text>
+    <text x="0" y="42" class="item-text">Scope + domain priority + org</text>
+    <text x="0" y="58" class="item-text">design + 5 sponsor commitments.</text>
+  </g>
+
+  <!-- D90 -->
+  <g transform="translate(972, 318)">
+    <rect x="0" y="0" width="60" height="22" rx="4" fill="#C27B58"/>
+    <text x="30" y="15" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#FFFFFF;letter-spacing:1px;font-family:'Inter',sans-serif;">DAY 90</text>
+    <text x="72" y="16" class="item-bold">Early wins</text>
+    <text x="0" y="42" class="item-text">L2O → O2O handoff drafted;</text>
+    <text x="0" y="58" class="item-text">P2B site selection framework;</text>
+    <text x="0" y="74" class="item-text">branch immersion at 5+ locations.</text>
+  </g>
+
+  <!-- D180 -->
+  <g transform="translate(972, 422)">
+    <rect x="0" y="0" width="60" height="22" rx="4" fill="#C27B58"/>
+    <text x="30" y="15" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#FFFFFF;letter-spacing:1px;font-family:'Inter',sans-serif;">DAY 180</text>
+    <text x="72" y="16" class="item-bold">First EBITDA story</text>
+    <text x="0" y="42" class="item-text">2 measurable improvements;</text>
+    <text x="0" y="58" class="item-text">KPI dashboards Domains 1 &amp; 2;</text>
+    <text x="0" y="74" class="item-text">all 5 domains mapped L0 → L2.</text>
+  </g>
+
+  <!-- D365 -->
+  <g transform="translate(972, 526)">
+    <rect x="0" y="0" width="60" height="22" rx="4" fill="#3B4B35"/>
+    <text x="30" y="15" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#FFFFFF;letter-spacing:1px;font-family:'Inter',sans-serif;">DAY 365</text>
+    <text x="72" y="16" class="item-bold">GPO operating</text>
+    <text x="0" y="42" class="item-text">Playbook v1.0 + 5-domain KPI suite;</text>
+    <text x="0" y="58" class="item-text">all 5 mapped L3+ where targeted;</text>
+    <text x="0" y="74" class="item-text">Year 2 LSS charter backlog ready;</text>
+    <text x="0" y="90" class="item-text">documented ROI vs. ~$1.55M.</text>
+  </g>
+
+  <rect x="954" y="654" width="288" height="46" fill="#F0EAD6"/>
+  <text x="1098" y="675" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#3B4B35;letter-spacing:1.5px;font-family:'Inter',sans-serif;">THE CADENCE</text>
+  <text x="1098" y="692" text-anchor="middle" style="font-size:12px;fill:#2C2E2F;font-style:italic;font-family:'Inter',sans-serif;">Listen. Build. Prove. Scale.</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="1244" y1="430" x2="1250" y2="430" stroke="#3B4B35" stroke-width="2.5" marker-end="url(#thesis-arrow)"/>
+
+  <!-- ===== STATION 5: HOW MUCH — 5× ROI ===== -->
+  <rect x="1252" y="160" width="288" height="540" fill="#FFFFFF" stroke="#C27B58" stroke-width="2"/>
+  <text x="1396" y="188" text-anchor="middle" class="station-head">5× ROI Floor</text>
+  <text x="1396" y="208" text-anchor="middle" class="station-sub">Math that survives Private Equity scrutiny.</text>
+
+  <!-- Investment -->
+  <text x="1396" y="248" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#7A6A56;letter-spacing:1.5px;font-family:'Inter',sans-serif;">INVESTMENT</text>
+  <text x="1396" y="284" text-anchor="middle" class="big-money">~$1.55M</text>
+  <text x="1396" y="304" text-anchor="middle" class="item-sub">Scenario A team cost</text>
+
+  <!-- Multiplier -->
+  <g transform="translate(1370, 322)">
+    <line x1="26" y1="0" x2="26" y2="22" stroke="#3B4B35" stroke-width="2"/>
+    <polygon points="20,22 26,32 32,22" fill="#3B4B35"/>
+    <rect x="6" y="34" width="40" height="24" rx="6" fill="#3B4B35"/>
+    <text x="26" y="51" text-anchor="middle" style="font-size:14px;font-weight:700;fill:#FFFFFF;font-family:'Inter',sans-serif;">5×</text>
+  </g>
+
+  <!-- Return -->
+  <text x="1396" y="408" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#7A6A56;letter-spacing:1.5px;font-family:'Inter',sans-serif;">YEAR 1 MINIMUM</text>
+  <text x="1396" y="444" text-anchor="middle" class="big-amber">~$7.75M+</text>
+  <text x="1396" y="464" text-anchor="middle" class="item-sub">Measurable, attributable EBITDA</text>
+  <text x="1396" y="482" text-anchor="middle" class="item-sub">Range: $5M–$16M+ (3+ value sources)</text>
+
+  <!-- Year 2 gate -->
+  <line x1="1272" y1="504" x2="1520" y2="504" stroke="#D4C6A8" stroke-width="1"/>
+  <text x="1396" y="538" text-anchor="middle" style="font-size:10px;font-weight:700;fill:#7A6A56;letter-spacing:1.5px;font-family:'Inter',sans-serif;">YEAR 2 GATE</text>
+  <text x="1396" y="558" text-anchor="middle" class="item-text">Outcome-governed decision:</text>
+  <text x="1396" y="576" text-anchor="middle" class="item-text">Scale to Scenario B at &gt;5× (~$2.55M)</text>
+  <text x="1396" y="596" text-anchor="middle" class="item-sub">Adds 4 senior-level specialists:</text>
+  <text x="1396" y="614" text-anchor="middle" class="item-text">+2 GPO Leads (dedicated domains)</text>
+  <text x="1396" y="632" text-anchor="middle" class="item-text">AI Workflow &amp; Process Mining Leads</text>
+
+  <rect x="1252" y="654" width="288" height="46" fill="#FBF4EC"/>
+  <text x="1396" y="675" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#C27B58;letter-spacing:1.5px;font-family:'Inter',sans-serif;">THE PROOF</text>
+  <text x="1396" y="692" text-anchor="middle" style="font-size:12px;fill:#2C2E2F;font-style:italic;font-family:'Inter',sans-serif;">EBITDA — not narrative.</text>
+
+  <!-- ===== Footer punch line ===== -->
+  <rect x="60" y="730" width="1480" height="92" fill="#2C2E2F"/>
+  <rect x="60" y="730" width="8" height="92" fill="#C27B58"/>
+  <text x="800" y="768" text-anchor="middle" style="font-size:22px;font-weight:700;fill:#FFFFFF;font-style:italic;font-family:'Inter',sans-serif;">Three inflection points. Five domains. Four seams.</text>
+  <text x="800" y="800" text-anchor="middle" style="font-size:18px;fill:#F0EAD6;font-style:italic;font-family:'Inter',sans-serif;">One function built to produce measurable EBITDA — not narrative.</text>
+
+  <!-- Bottom line -->
+  <text x="800" y="858" text-anchor="middle" class="footer-sub">Co-designed with functional leaders. Standards governed by GPO. Every dollar attributed must survive Private Equity scrutiny.</text>
+
+</svg>

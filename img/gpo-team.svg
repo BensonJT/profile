@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 640" preserveAspectRatio="xMidYMid meet">
+
+  <style>
+    text { font-family: 'Inter', 'Segoe UI', -apple-system, Roboto, Arial, sans-serif; }
+    .ctx       { font-size: 13px; fill: #7A6A56; font-style: italic; }
+    .title     { font-size: 26px; font-weight: 700; fill: #2C2E2F; }
+    .sub       { font-size: 12px; fill: #7A6A56; font-style: italic; }
+    .dir-cap   { font-size: 9px; font-weight: 700; fill: #FFFFFF; letter-spacing: 2px; }
+    .dir-txt   { font-size: 11.5px; fill: #F0EAD6; }
+    .role-ttl  { font-size: 14px; font-weight: 700; fill: #FFFFFF; }
+    .role-sub  { font-size: 10px; fill: #F0EAD6; }
+    .dom-txt   { font-size: 8.5px; font-weight: 700; fill: #3B4B35; letter-spacing: 0.8px; }
+    .dom-warn  { font-size: 8.5px; font-weight: 700; fill: #C27B58; letter-spacing: 0.8px; }
+    .del-cap   { font-size: 9px; font-weight: 700; fill: #7A6A56; letter-spacing: 1.5px; }
+    .del-item  { font-size: 11px; fill: #2C2E2F; }
+    .roi-lbl   { font-size: 9px; font-weight: 700; fill: #C27B58; letter-spacing: 1px; }
+    .roi-val   { font-size: 11px; font-weight: 700; fill: #C27B58; }
+    .roi-anc   { font-size: 10px; fill: #7A3F20; }
+    .sc-cap    { font-size: 9px; font-weight: 700; fill: #F0EAD6; letter-spacing: 2px; }
+    .sc-total  { font-size: 24px; font-weight: 700; fill: #FFFFFF; }
+    .sc-desc   { font-size: 11px; fill: #F0EAD6; }
+    .sc-role   { font-size: 11px; fill: #F0EAD6; }
+    .gate-val  { font-size: 30px; font-weight: 700; fill: #C27B58; }
+    .gate-lbl  { font-size: 10px; font-weight: 700; fill: #5A5043; letter-spacing: 1px; }
+    .gate-sub  { font-size: 10px; fill: #7A6A56; font-style: italic; }
+    .b-cap     { font-size: 9px; font-weight: 700; fill: #FFFFFF; letter-spacing: 2px; }
+    .b-total   { font-size: 24px; font-weight: 700; fill: #FFFFFF; }
+    .b-note    { font-size: 10.5px; fill: #FFFFFF; font-style: italic; }
+    .b-add     { font-size: 11px; fill: #FFFFFF; }
+    .footer    { font-size: 11px; fill: #7A6A56; font-style: italic; }
+  </style>
+
+  <rect width="1600" height="640" fill="#FFFFFF"/>
+
+  <!-- ── HEADER ── -->
+  <text x="60" y="26" class="ctx">Team capability model · Scenario A: Year 1 capabilities. Scenario B: outcome-governed expansion.</text>
+  <text x="60" y="56" class="title">Process Excellence: Team Capability Model</text>
+  <text x="60" y="74" class="sub">Scenario A is the Year 1 investment. Scenario B is earned — triggered by &gt;5× ROI with multi-domain wins, not by time.</text>
+
+  <!-- ── DIRECTOR STRIP ── -->
+  <rect x="60" y="82" width="1480" height="62" fill="#3B4B35"/>
+  <text x="76"  y="100" class="dir-cap">DIRECTOR — OWNS THE ARCHITECTURE, SPONSOR COALITION, AND EXECUTIVE GOVERNANCE</text>
+  <text x="76"  y="122" class="dir-txt">• Validated mandate + 5-domain sponsor coalition</text>
+  <text x="430" y="122" class="dir-txt">• Cross-domain seam ownership + executive review cadence</text>
+  <text x="890" y="122" class="dir-txt">• ROI attribution + Private Equity narrative</text>
+  <text x="1230" y="122" class="dir-txt">• Year 2 gate decision</text>
+
+  <!-- ═══════════════════════════════════════════════════
+       IC CARDS  ·  x=60,358,656,954,1252  ·  w=288
+       y=152–422  ·  h=270
+       Zones: navy header(52) · domain(28) · delivers(102) · roi(88)
+       ═══════════════════════════════════════════════════ -->
+
+  <!-- ── CARD 1: GPO Lead 1 — Plan-to-Build ── -->
+  <rect x="60"  y="152" width="288" height="270" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="60"  y="152" width="288" height="52"  fill="#3B4B35"/>
+  <text x="204" y="173" text-anchor="middle" class="role-ttl">GPO Lead 1</text>
+  <text x="204" y="193" text-anchor="middle" class="role-sub">Senior / Principal IC</text>
+  <rect x="60"  y="204" width="288" height="28"  fill="#F0EAD6"/>
+  <text x="204" y="222" text-anchor="middle" class="dom-txt">PLAN-TO-BUILD (P2B) — PRIMARY</text>
+  <text x="76"  y="250" class="del-cap">DELIVERS:</text>
+  <text x="76"  y="267" class="del-item">• Site selection framework (D90)</text>
+  <text x="76"  y="284" class="del-item">• Change order governance standard</text>
+  <text x="76"  y="301" class="del-item">• Owner's program mgmt process</text>
+  <text x="76"  y="318" class="del-item">• GPO Playbook Chapters 1–2 (P2B)</text>
+  <rect x="60"  y="334" width="288" height="88"  fill="#FBF4EC"/>
+  <rect x="60"  y="334" width="4"   height="88"  fill="#C27B58"/>
+  <text x="76"  y="353" class="roi-lbl">VALUE SOURCE:</text>
+  <text x="76"  y="370" class="roi-val">Plan-to-Build &#8594; ~$2M–$5M</text>
+  <text x="76"  y="389" class="roi-lbl">ANCHOR:</text>
+  <text x="76"  y="406" class="roi-anc">branch launch delay prevention</text>
+
+  <!-- ── CARD 2: GPO Lead 2 — L2O→O2O Critical Seam ── -->
+  <rect x="358" y="152" width="288" height="270" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="358" y="152" width="288" height="52"  fill="#3B4B35"/>
+  <text x="502" y="173" text-anchor="middle" class="role-ttl">GPO Lead 2</text>
+  <text x="502" y="193" text-anchor="middle" class="role-sub">Senior / Principal IC</text>
+  <rect x="358" y="204" width="288" height="28"  fill="#F0EAD6"/>
+  <text x="502" y="222" text-anchor="middle" class="dom-txt">LEAD-TO-ORDER · ORDER-TO-OPERATE</text>
+  <text x="374" y="250" class="del-cap">DELIVERS:</text>
+  <text x="374" y="267" class="del-item">• L2O process standards + domain map</text>
+  <text x="374" y="284" class="del-item">• O2O provisioning SLA baseline</text>
+  <text x="374" y="301" class="del-item">• L2O&#8594;O2O handoff standard (D90)</text>
+  <text x="374" y="318" class="del-item">• Commercial commitment governance</text>
+  <rect x="358" y="334" width="288" height="88"  fill="#FBF4EC"/>
+  <rect x="358" y="334" width="4"   height="88"  fill="#C27B58"/>
+  <text x="374" y="353" class="roi-lbl">VALUE SOURCE:</text>
+  <text x="374" y="370" class="roi-val">Order-to-Operate &#8594; ~$1M–$3M</text>
+  <text x="374" y="389" class="roi-lbl">ANCHOR:</text>
+  <text x="374" y="406" class="roi-anc">10% provisioning cycle compression</text>
+
+  <!-- ── CARD 3: GPO Lead 3 — S2P + H2R ── -->
+  <rect x="656" y="152" width="288" height="270" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="656" y="152" width="288" height="52"  fill="#3B4B35"/>
+  <text x="800" y="173" text-anchor="middle" class="role-ttl">GPO Lead 3</text>
+  <text x="800" y="193" text-anchor="middle" class="role-sub">Senior / Principal IC</text>
+  <rect x="656" y="204" width="288" height="28"  fill="#F0EAD6"/>
+  <text x="800" y="222" text-anchor="middle" class="dom-txt">SOURCE-TO-PAY · HIRE-TO-RETIRE</text>
+  <text x="672" y="250" class="del-cap">DELIVERS:</text>
+  <text x="672" y="267" class="del-item">• Supplier qualification standard</text>
+  <text x="672" y="284" class="del-item">• Contract term leverage framework</text>
+  <text x="672" y="301" class="del-item">• Maverick spend reduction playbook</text>
+  <text x="672" y="318" class="del-item">• Workforce planning process standard</text>
+  <rect x="656" y="334" width="288" height="88"  fill="#FBF4EC"/>
+  <rect x="656" y="334" width="4"   height="88"  fill="#C27B58"/>
+  <text x="672" y="353" class="roi-lbl">VALUE SOURCE:</text>
+  <text x="672" y="370" class="roi-val">Source-to-Pay &#8594; ~$2M–$8M</text>
+  <text x="672" y="389" class="roi-lbl">ANCHOR:</text>
+  <text x="672" y="406" class="roi-anc">3–7% of addressable spend (PE benchmarks)</text>
+
+  <!-- ── CARD 4: Data Engineer ── -->
+  <rect x="954" y="152" width="288" height="270" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="954" y="152" width="288" height="52"  fill="#3B4B35"/>
+  <text x="1098" y="173" text-anchor="middle" class="role-ttl">Data Engineer / BI</text>
+  <text x="1098" y="193" text-anchor="middle" class="role-sub">Senior IC</text>
+  <rect x="954" y="204" width="288" height="28"  fill="#F0EAD6"/>
+  <text x="1098" y="222" text-anchor="middle" class="dom-txt">ALL 5 DOMAINS · MEASUREMENT</text>
+  <text x="970" y="250" class="del-cap">DELIVERS:</text>
+  <text x="970" y="267" class="del-item">• Day 30 baseline (all 5 domains)</text>
+  <text x="970" y="284" class="del-item">• Automated KPI pipeline (D90)</text>
+  <text x="970" y="301" class="del-item">• EBITDA attribution model</text>
+  <text x="970" y="318" class="del-item">• Sponsor-ready dashboard suite</text>
+  <rect x="954" y="334" width="288" height="88"  fill="#FBF4EC"/>
+  <rect x="954" y="334" width="4"   height="88"  fill="#C27B58"/>
+  <text x="970" y="353" class="roi-lbl">CRITICAL FUNCTION:</text>
+  <text x="970" y="370" class="roi-val">ROI is unattributable without this</text>
+  <text x="970" y="389" class="roi-lbl">SOURCING:</text>
+  <text x="970" y="406" class="roi-anc">Internal analytics / BI team or dedicated resource</text>
+
+  <!-- ── CARD 5: CM Lead ── -->
+  <rect x="1252" y="152" width="288" height="270" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="1252" y="152" width="288" height="52"  fill="#3B4B35"/>
+  <text x="1396" y="173" text-anchor="middle" class="role-ttl">CM Lead</text>
+  <text x="1396" y="193" text-anchor="middle" class="role-sub">Senior IC</text>
+  <rect x="1252" y="204" width="288" height="28"  fill="#F0EAD6"/>
+  <text x="1396" y="222" text-anchor="middle" class="dom-txt">ALL 5 DOMAINS · CHANGE ADOPTION</text>
+  <text x="1268" y="250" class="del-cap">DELIVERS:</text>
+  <text x="1268" y="267" class="del-item">• Stakeholder readiness assessment</text>
+  <text x="1268" y="284" class="del-item">• Domain adoption tracking</text>
+  <text x="1268" y="301" class="del-item">• Change champion network (all sites)</text>
+  <text x="1268" y="318" class="del-item">• Post-go-live reinforcement monitoring</text>
+  <rect x="1252" y="334" width="288" height="88"  fill="#FBF4EC"/>
+  <rect x="1252" y="334" width="4"   height="88"  fill="#C27B58"/>
+  <text x="1268" y="353" class="roi-lbl">CRITICAL FUNCTION:</text>
+  <text x="1268" y="370" class="roi-val">Standards die without adoption</text>
+  <text x="1268" y="389" class="roi-lbl">ANCHOR:</text>
+  <text x="1268" y="406" class="roi-anc">ADKAR: Desire gap &gt; technical gap</text>
+
+  <!-- ═══════════════════════════════════════════════════
+       SCENARIO STRIP  ·  y=432–582  ·  h=150
+       A: x=60 w=480 · Gate: x=552 w=196 · B: x=760 w=780
+       ═══════════════════════════════════════════════════ -->
+
+  <!-- Scenario A: x=60, w=620 -->
+  <rect x="60"  y="432" width="620" height="150" fill="#3B4B35"/>
+  <text x="76"  y="452" class="sc-cap">SCENARIO A — YEAR 1</text>
+  <text x="76"  y="477" class="sc-total">~$1.55M</text>
+  <text x="76"  y="494" class="sc-desc">Estimated fully loaded · Director + 5 Senior/Principal capabilities</text>
+  <line x1="76" y1="503" x2="664" y2="503" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+  <text x="76"  y="520" class="sc-role">• Director — architecture + governance</text>
+  <text x="76"  y="537" class="sc-role">• GPO Leads × 3 — domain process ownership</text>
+  <text x="76"  y="554" class="sc-role">• Data Engineer / BI — measurement infrastructure</text>
+  <text x="76"  y="571" class="sc-role">• CM Lead — adoption and reinforcement</text>
+
+  <!-- Gate: x=690, w=160 -->
+  <rect x="690" y="432" width="160" height="150" fill="#FDFAF5" stroke="#E8DFC8" stroke-width="1"/>
+  <text x="770" y="476" text-anchor="middle" class="gate-val">&gt;5×</text>
+  <text x="770" y="494" text-anchor="middle" class="gate-lbl">ROI FLOOR</text>
+  <text x="770" y="514" text-anchor="middle" class="gate-sub">Multi-domain wins</text>
+  <text x="770" y="530" text-anchor="middle" class="gate-sub">required</text>
+  <text x="770" y="550" text-anchor="middle" class="gate-sub">Outcome-governed</text>
+  <text x="770" y="566" text-anchor="middle" class="gate-sub">— not time-governed</text>
+  <polygon points="840,500 852,506 840,512" fill="#C27B58"/>
+
+  <!-- Scenario B: x=860, w=620 -->
+  <rect x="860" y="432" width="620" height="150" fill="#C27B58"/>
+  <text x="876" y="452" class="b-cap">SCENARIO B — OUTCOME-TRIGGERED EXPANSION</text>
+  <text x="876" y="477" class="b-total">~$2.55M</text>
+  <text x="876" y="493" class="b-note">+4 specialists · triggered by Year 1 ROI performance, not a calendar date</text>
+  <line x1="876" y1="503" x2="1464" y2="503" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+  <text x="876" y="520" class="b-add">+ GPO Lead 4 — Expanded domain depth (P2B or S2P)</text>
+  <text x="876" y="537" class="b-add">+ GPO Lead 5 — Expanded domain depth (O2O or H2R)</text>
+  <text x="876" y="554" class="b-add">+ AI Workflow Architect — Agentic AI force multipliers</text>
+  <text x="876" y="571" class="b-add">+ Process Mining Specialist — Celonis or equivalent</text>
+
+  <!-- ── FOOTER ── -->
+  <text x="800" y="606" text-anchor="middle" class="footer">Minimum viable capability floor: 3 GPO Leads · 1 Data Engineer / BI · 1 CM Lead. Below this floor, domain coverage fails and the ROI attribution story collapses.</text>
+  <text x="800" y="624" text-anchor="middle" class="footer">Hire-to-Retire (H2R) · Plan-to-Build (P2B) · Lead-to-Order (L2O) · Order-to-Operate (O2O) · Source-to-Pay (S2P)</text>
+
+</svg>

@@ -254,6 +254,27 @@
     .page-footer a:hover { text-decoration: underline; }
     .footer-div { margin: 0 12px; opacity: 0.4; }
 
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
     /* ── Sources ── */
     .sources-note {
       font-size: 0.82rem;
@@ -271,6 +292,7 @@
       .article-header { padding: 52px 24px 60px; }
       .article-body { padding: 48px 20px 72px; }
       .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
       .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
     }
   </style>
@@ -327,6 +349,10 @@
       <p>Any standard that touches operational work is <strong>co-designed with the people accountable for it, validated where the work happens, and signed by them before it's published.</strong></p>
       <p>That last part is not a formality. When a branch leader's name is on the standard as a co-author, two things change: the standard is better, because it was built by someone who knows the work, and it gets adopted, because people don't route around something they helped build.</p>
       <p>There's a quieter principle nested inside this one that I care about a lot: <strong>standardize up, not down.</strong> Standards should be drawn from the practices of the teams doing the work <em>best</em>, then offered to everyone else as the new model. The lazy version of standardization averages everyone toward the middle and quietly punishes your best performers. The good version finds what your strongest branch is doing differently, makes that the standard, and gives the struggling branches a proven path instead of a template. One regresses to the mean; the other lifts the floor. Only one is worth doing.</p>
+
+    <!-- ── Infographic: Process Standardization ── -->
+    <img src="img/gpo-standardization.svg" alt="Process Standardization Lifecycle diagram showing Phase 1 (Identify and Learn from the Best) and Phase 2 (Apply Lean Six Sigma Discipline) to achieve scalable standards." class="article-image-wide">
+    <p class="image-caption">Process Standardization Lifecycle: Finding and learning from the best practitioners first, then applying Lean Six Sigma DMAIC discipline to lift the floor.</p>
     </div>
 
     <hr>

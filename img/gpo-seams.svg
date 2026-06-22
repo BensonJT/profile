@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 880" preserveAspectRatio="xMidYMid meet">
+
+  <defs>
+    <marker id="reg-arrow-navy" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3B4B35"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: 'Inter', 'Segoe UI', -apple-system, Roboto, Arial, sans-serif; }
+    .ctx        { font-size: 14px; fill: #7A6A56; font-style: italic; }
+    .title      { font-size: 28px; font-weight: 700; fill: #2C2E2F; }
+    .subtitle   { font-size: 14px; fill: #5A5043; font-style: italic; }
+    .col-head   { font-size: 12px; font-weight: 700; fill: #FFFFFF; letter-spacing: 2px; }
+    .seam-name  { font-size: 17px; font-weight: 700; fill: #2C2E2F; }
+    .seam-flow  { font-size: 13px; font-weight: 600; fill: #3B4B35; }
+    .seam-arrow { font-size: 14px; font-weight: 700; fill: #3B4B35; }
+    .seam-tag   { font-size: 11px; fill: #FFFFFF; font-weight: 700; letter-spacing: 0.5px; }
+    .domain-pill { font-size: 12px; font-weight: 700; fill: #3B4B35; }
+    .risk-label { font-size: 11px; font-weight: 700; fill: #7A6A56; letter-spacing: 1.5px; }
+    .risk-num   { font-size: 12px; fill: #7A6A56; font-style: italic; }
+    .body-text  { font-size: 13px; fill: #2C2E2F; }
+    .body-head  { font-size: 12px; font-weight: 700; fill: #3B4B35; letter-spacing: 0.5px; }
+    .footer     { font-size: 14px; fill: #7A6A56; font-style: italic; }
+    .gov-anchor { font-size: 11px; fill: #7A6A56; font-style: italic; }
+  </style>
+
+  <rect width="1600" height="880" fill="#FFFFFF"/>
+
+  <!-- Header -->
+  <text x="60" y="28" class="ctx">Cross-domain seam governance, managing the four highest-risk interfaces in the GPO architecture.</text>
+  <text x="60" y="62" class="title">The 4-Seam Registry: Where Value Leaks Without Governance</text>
+  <text x="60" y="86" class="subtitle">Domains deliver work; seams deliver risk. The GPO function governs the seams, requiring horizontal alignment across functional domain owners.</text>
+
+  <!-- ===== Table header bar ===== -->
+  <rect x="60" y="118" width="1480" height="36" fill="#2C2E2F"/>
+  <text x="80"   y="141" class="col-head">SEAM</text>
+  <text x="460"  y="141" class="col-head">RISK</text>
+  <text x="650"  y="141" class="col-head">WHAT BREAKS WITHOUT A STANDARD</text>
+  <text x="1110" y="141" class="col-head">GOVERNANCE MECHANISM</text>
+
+  <!-- ===== ROW 1: L2O → O2O, CRITICAL ===== -->
+  <rect x="60" y="154" width="1480" height="170" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="60" y="154" width="8" height="170" fill="#C27B58"/>
+
+  <!-- Col A: Seam -->
+  <text x="80" y="184" class="seam-name">Commercial Promise →</text>
+  <text x="80" y="207" class="seam-name">Operational Delivery</text>
+  <g transform="translate(80, 224)">
+    <rect x="0" y="0" width="115" height="22" rx="4" fill="#3B4B35"/>
+    <text x="57" y="15" text-anchor="middle" class="seam-tag">LEAD-TO-ORDER</text>
+    <text x="123" y="16" class="seam-arrow">→</text>
+    <rect x="138" y="0" width="155" height="22" rx="4" fill="#3B4B35"/>
+    <text x="215" y="15" text-anchor="middle" class="seam-tag">ORDER-TO-OPERATE</text>
+  </g>
+  <text x="80" y="276" class="body-text" style="font-style:italic;fill:#5A5043;">L2O and O2O owners must align</text>
+  <text x="80" y="293" class="body-text" style="font-style:italic;fill:#5A5043;">before commitments reach customers.</text>
+  <text x="80" y="313" class="gov-anchor">Day 90 deliverable.</text>
+
+  <!-- Col B: Risk -->
+  <g transform="translate(440, 178)">
+    <rect x="0" y="0" width="130" height="44" rx="8" fill="#C27B58"/>
+    <text x="65" y="29" text-anchor="middle" style="font-size:18px;font-weight:700;fill:#FFFFFF;letter-spacing:1px;font-family:'Inter',sans-serif;">CRITICAL</text>
+  </g>
+  <text x="440" y="244" class="risk-label">PRIORITY</text>
+  <text x="440" y="262" class="risk-num">Highest-risk seam in</text>
+  <text x="440" y="278" class="risk-num">the entire architecture.</text>
+
+  <!-- Col C: What breaks -->
+  <text x="650" y="184" class="body-head">FAILURE MODES</text>
+  <text x="650" y="205" class="body-text">• L2O owners commit before O2O confirms deliverability</text>
+  <text x="650" y="227" class="body-text">• Customer experiences gap as broken promise</text>
+  <text x="650" y="249" class="body-text">• The company absorbs revenue risk and NPS erosion</text>
+  <text x="650" y="271" class="body-text">• Provisioning velocity stalls at the handoff</text>
+  <text x="650" y="291" class="gov-anchor">Anchor: When functional L2O and O2O leaders are not aligned,</text>
+  <text x="650" y="307" class="gov-anchor">the gap becomes a customer event.</text>
+
+  <!-- Col D: Governance -->
+  <text x="1110" y="184" class="body-head">CONTROL MECHANISMS</text>
+  <text x="1110" y="205" class="body-text">• Formal L2O → O2O handoff standard (D90)</text>
+  <text x="1110" y="227" class="body-text">• Deliverability checklist before contract execution</text>
+  <text x="1110" y="249" class="body-text">• Provisioning SLA baseline + variance dashboard</text>
+  <text x="1110" y="271" class="body-text">• Joint commercial-operational review cadence</text>
+  <text x="1110" y="305" class="gov-anchor">Owner: GPO Lead (O2O) co-leads with GPO Lead (L2O).</text>
+
+  <!-- ===== ROW 2: P2B → O2O, HIGH ===== -->
+  <rect x="60" y="324" width="1480" height="170" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="60" y="324" width="8" height="170" fill="#3B4B35"/>
+
+  <!-- Col A -->
+  <text x="80" y="354" class="seam-name">Infrastructure Readiness</text>
+  <text x="80" y="377" class="seam-name">Handoff</text>
+  <g transform="translate(80, 394)">
+    <rect x="0" y="0" width="115" height="22" rx="4" fill="#3B4B35"/>
+    <text x="57" y="15" text-anchor="middle" class="seam-tag">PLAN-TO-BUILD</text>
+    <text x="123" y="16" class="seam-arrow">→</text>
+    <rect x="138" y="0" width="155" height="22" rx="4" fill="#3B4B35"/>
+    <text x="215" y="15" text-anchor="middle" class="seam-tag">ORDER-TO-OPERATE</text>
+  </g>
+  <text x="80" y="446" class="body-text" style="font-style:italic;fill:#5A5043;">Physical asset must be ready</text>
+  <text x="80" y="463" class="body-text" style="font-style:italic;fill:#5A5043;">before customer go-live commits.</text>
+  <text x="80" y="483" class="gov-anchor">Day 180 deliverable.</text>
+
+  <!-- Col B -->
+  <g transform="translate(440, 348)">
+    <rect x="0" y="0" width="130" height="44" rx="8" fill="#3B4B35"/>
+    <text x="65" y="29" text-anchor="middle" style="font-size:18px;font-weight:700;fill:#FFFFFF;letter-spacing:1px;font-family:'Inter',sans-serif;">HIGH</text>
+  </g>
+  <text x="440" y="414" class="risk-label">PRIORITY</text>
+  <text x="440" y="432" class="risk-num">Where capital readiness</text>
+  <text x="440" y="448" class="risk-num">meets revenue recognition.</text>
+
+  <!-- Col C -->
+  <text x="650" y="354" class="body-head">FAILURE MODES</text>
+  <text x="650" y="375" class="body-text">• Lease commits before branch launch is complete</text>
+  <text x="650" y="397" class="body-text">• Revenue recognition delayed; capital sits stranded</text>
+  <text x="650" y="419" class="body-text">• Customer go-live slips; SLA risk rises</text>
+  <text x="650" y="441" class="body-text">• Turnover acceptance is informal and inconsistent</text>
+  <text x="650" y="462" class="gov-anchor">Anchor: At branch launch scale, the cost of a late turnover</text>
+  <text x="650" y="478" class="gov-anchor">compounds across the customer pipeline.</text>
+
+  <!-- Col D -->
+  <text x="1110" y="354" class="body-head">CONTROL MECHANISMS</text>
+  <text x="1110" y="375" class="body-text">• Commissioning-to-turnover standard with go-live gates</text>
+  <text x="1110" y="397" class="body-text">• Branch schedule transparency to O2O leadership</text>
+  <text x="1110" y="419" class="body-text">• Formal turnover acceptance protocol</text>
+  <text x="1110" y="441" class="body-text">• Variance reporting on branch launch predictability</text>
+  <text x="1110" y="475" class="gov-anchor">Owner: GPO Lead (P2B) co-leads with GPO Lead (O2O).</text>
+
+  <!-- ===== ROW 3: S2P → P2B, HIGH ===== -->
+  <rect x="60" y="494" width="1480" height="170" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="60" y="494" width="8" height="170" fill="#3B4B35"/>
+
+  <!-- Col A -->
+  <text x="80" y="524" class="seam-name">Branch Procurement</text>
+  <text x="80" y="547" class="seam-name">Continuity</text>
+  <g transform="translate(80, 564)">
+    <rect x="0" y="0" width="115" height="22" rx="4" fill="#3B4B35"/>
+    <text x="57" y="15" text-anchor="middle" class="seam-tag">SOURCE-TO-PAY</text>
+    <text x="123" y="16" class="seam-arrow">→</text>
+    <rect x="138" y="0" width="115" height="22" rx="4" fill="#3B4B35"/>
+    <text x="195" y="15" text-anchor="middle" class="seam-tag">PLAN-TO-BUILD</text>
+  </g>
+  <text x="80" y="616" class="body-text" style="font-style:italic;fill:#5A5043;">Procurement delays propagate</text>
+  <text x="80" y="633" class="body-text" style="font-style:italic;fill:#5A5043;">as construction schedule risk.</text>
+  <text x="80" y="653" class="gov-anchor">Year 1 deliverable.</text>
+
+  <!-- Col B -->
+  <g transform="translate(440, 518)">
+    <rect x="0" y="0" width="130" height="44" rx="8" fill="#3B4B35"/>
+    <text x="65" y="29" text-anchor="middle" style="font-size:18px;font-weight:700;fill:#FFFFFF;letter-spacing:1px;font-family:'Inter',sans-serif;">HIGH</text>
+  </g>
+  <text x="440" y="584" class="risk-label">PRIORITY</text>
+  <text x="440" y="602" class="risk-num">High frequency,</text>
+  <text x="440" y="618" class="risk-num">high capital exposure.</text>
+
+  <!-- Col C -->
+  <text x="650" y="524" class="body-head">FAILURE MODES</text>
+  <text x="650" y="545" class="body-text">• Long-lead items (HVAC units, fleet vehicles) slip</text>
+  <text x="650" y="567" class="body-text">• Construction schedule compresses or extends</text>
+  <text x="650" y="589" class="body-text">• Capital deployment plan no longer matches reality</text>
+  <text x="650" y="611" class="body-text">• Site-by-site supplier choices erode spend leverage</text>
+  <text x="650" y="632" class="gov-anchor">Anchor: A 6-week HVAC unit delay = a 6-week revenue delay</text>
+  <text x="650" y="648" class="gov-anchor">at a new branch.</text>
+
+  <!-- Col D -->
+  <text x="1110" y="524" class="body-head">CONTROL MECHANISMS</text>
+  <text x="1110" y="545" class="body-text">• Category strategy for capital-critical equipment</text>
+  <text x="1110" y="567" class="body-text">• Long-lead order management protocol w/ construction</text>
+  <text x="1110" y="589" class="body-text">• Supplier qualification + redundancy standards</text>
+  <text x="1110" y="611" class="body-text">• Joint S2P/P2B program governance cadence</text>
+  <text x="1110" y="645" class="gov-anchor">Owner: GPO Lead (S2P) co-leads with GPO Lead (P2B).</text>
+
+  <!-- ===== ROW 4: H2R → O2O, MEDIUM ===== -->
+  <rect x="60" y="664" width="1480" height="170" fill="#FFFFFF" stroke="#D4C6A8" stroke-width="1"/>
+  <rect x="60" y="664" width="8" height="170" fill="#5A5043"/>
+
+  <!-- Col A -->
+  <text x="80" y="694" class="seam-name">Workforce-to-Branch</text>
+  <text x="80" y="717" class="seam-name">Readiness</text>
+  <g transform="translate(80, 734)">
+    <rect x="0" y="0" width="125" height="22" rx="4" fill="#3B4B35"/>
+    <text x="62" y="15" text-anchor="middle" class="seam-tag">HIRE-TO-RETIRE</text>
+    <text x="133" y="16" class="seam-arrow">→</text>
+    <rect x="148" y="0" width="155" height="22" rx="4" fill="#3B4B35"/>
+    <text x="225" y="15" text-anchor="middle" class="seam-tag">ORDER-TO-OPERATE</text>
+  </g>
+  <text x="80" y="786" class="body-text" style="font-style:italic;fill:#5A5043;">Qualified technicians must be</text>
+  <text x="80" y="803" class="body-text" style="font-style:italic;fill:#5A5043;">available when branches ramp.</text>
+  <text x="80" y="823" class="gov-anchor">Seam governance: Year 2 priority.</text>
+
+  <!-- Col B -->
+  <g transform="translate(440, 688)">
+    <rect x="0" y="0" width="130" height="44" rx="8" fill="#5A5043"/>
+    <text x="65" y="29" text-anchor="middle" style="font-size:17px;font-weight:700;fill:#FFFFFF;letter-spacing:1px;font-family:'Inter',sans-serif;">MEDIUM</text>
+  </g>
+  <text x="440" y="754" class="risk-label">PRIORITY</text>
+  <text x="440" y="772" class="risk-num">Operational quality and</text>
+  <text x="440" y="788" class="risk-num">safety risk at ramp.</text>
+
+  <!-- Col C -->
+  <text x="650" y="694" class="body-head">FAILURE MODES</text>
+  <text x="650" y="715" class="body-text">• Technicians under-qualified or under-staffed at go-live</text>
+  <text x="650" y="737" class="body-text">• SLA breaches and incident exposure in first 90 days</text>
+  <text x="650" y="759" class="body-text">• Branch directors absorb the gap with overtime + workarounds</text>
+  <text x="650" y="781" class="body-text">• Training cadence detached from branch ramp calendar</text>
+  <text x="650" y="802" class="gov-anchor">Anchor: A ramp without qualified hands is a</text>
+  <text x="650" y="818" class="gov-anchor">customer experience failure, not just an HR issue.</text>
+
+  <!-- Col D -->
+  <text x="1110" y="694" class="body-head">CONTROL MECHANISMS</text>
+  <text x="1110" y="715" class="body-text">• Branch ramp workforce planning standard</text>
+  <text x="1110" y="737" class="body-text">• Certification matrix tied to branch launch calendar</text>
+  <text x="1110" y="759" class="body-text">• Talent pipeline cadence per ramp event</text>
+  <text x="1110" y="781" class="body-text">• Safety + qualification audit at site activation</text>
+  <text x="1110" y="815" class="gov-anchor">Owner: GPO Lead (H2R) co-leads with GPO Lead (O2O).</text>
+
+  <!-- Footer -->
+  <text x="800" y="862" text-anchor="middle" class="footer">Seam governance requires horizontal alignment across functional domain owners. GPO coordinates the standards, executive leadership aligns the functions.</text>
+
+</svg>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 790" preserveAspectRatio="xMidYMid meet">
+
+  <style>
+    text { font-family: 'Inter', 'Segoe UI', -apple-system, Roboto, Arial, sans-serif; }
+    .ctx        { font-size: 13px; fill: #7A6A56; font-style: italic; }
+    .title      { font-size: 26px; font-weight: 700; fill: #2C2E2F; }
+    .principle  { font-size: 12px; fill: #5A5043; font-style: italic; }
+    .phase-num  { font-size: 10px; font-weight: 700; fill: #E8DFC8; letter-spacing: 2px; }
+    .phase-name { font-size: 17px; font-weight: 700; fill: #FFFFFF; }
+    .phase-goal { font-size: 11px; font-style: italic; fill: #F0EAD6; }
+    .row-label  { font-size: 11px; font-weight: 700; fill: #3B4B35; letter-spacing: 1.5px; }
+    .strip-text { font-size: 11px; font-weight: 700; fill: #FFFFFF; letter-spacing: 1px; }
+    .item       { font-size: 12px; fill: #2C2E2F; }
+    .item-dim   { font-size: 12px; fill: #A49B8E; font-style: italic; }
+    .deliv-head { font-size: 13px; font-weight: 700; fill: #2C2E2F; }
+    .badge-text { font-size: 10px; font-weight: 700; fill: #FFFFFF; letter-spacing: 0.5px; }
+    .footer     { font-size: 13px; fill: #7A6A56; font-style: italic; }
+  </style>
+
+  <rect width="1600" height="790" fill="#FFFFFF"/>
+
+  <!-- Context + Title + Principle -->
+  <text x="60" y="26" class="ctx">Co-designed with functional leaders. Standards governed by GPO.</text>
+  <text x="60" y="56" class="title">Process Excellence: 90 / 180 / 365 Day Roadmap</text>
+  <text x="60" y="74" class="principle">Principle: earn the trust to build, then build, then prove it works. I own the architecture and governance; my team owns the execution.</text>
+
+  <!-- Outer grid border -->
+  <rect x="60" y="82" width="1500" height="658" fill="none" stroke="#D4C6A8" stroke-width="1.5"/>
+
+  <!-- ===== LEFT COLUMN BACKGROUNDS ===== -->
+  <rect x="60" y="82"  width="140" height="68"  fill="#2C2E2F"/>
+  <rect x="60" y="150" width="140" height="195" fill="#F0EAD6"/>
+  <rect x="60" y="150" width="5"   height="195" fill="#3B4B35"/>
+  <rect x="60" y="345" width="140" height="160" fill="#FDFAF5"/>
+  <rect x="60" y="345" width="5"   height="160" fill="#7A6A56"/>
+  <rect x="60" y="505" width="140" height="235" fill="#F0EAD6"/>
+  <rect x="60" y="505" width="5"   height="235" fill="#3B4B35"/>
+
+  <!-- Left column separator -->
+  <line x1="200" y1="82" x2="200" y2="740" stroke="#D4C6A8" stroke-width="1.5"/>
+
+  <!-- ===== PHASE HEADER BANDS ===== -->
+  <rect x="200"  y="82" width="340" height="68" fill="#3B4B35"/>
+  <rect x="540"  y="82" width="340" height="68" fill="#3B4B35"/>
+  <rect x="880"  y="82" width="340" height="68" fill="#3B4B35"/>
+  <rect x="1220" y="82" width="340" height="68" fill="#3B4B35"/>
+
+  <!-- Phase column separator lines (full height) -->
+  <line x1="540"  y1="82" x2="540"  y2="740" stroke="#D4C6A8" stroke-width="1"/>
+  <line x1="880"  y1="82" x2="880"  y2="740" stroke="#D4C6A8" stroke-width="1"/>
+  <line x1="1220" y1="82" x2="1220" y2="740" stroke="#D4C6A8" stroke-width="1"/>
+
+  <!-- Row separator lines -->
+  <line x1="60" y1="150" x2="1560" y2="150" stroke="#D4C6A8" stroke-width="1.5"/>
+  <line x1="60" y1="345" x2="1560" y2="345" stroke="#D4C6A8" stroke-width="1.5"/>
+  <line x1="60" y1="505" x2="1560" y2="505" stroke="#D4C6A8" stroke-width="1.5"/>
+
+  <!-- ===== ROW TITLE STRIPS ===== -->
+  <rect x="200" y="150" width="1360" height="22" fill="#3B4B35"/>
+  <rect x="200" y="345" width="1360" height="22" fill="#5A5043"/>
+  <rect x="200" y="505" width="1360" height="22" fill="#3B4B35"/>
+
+  <!-- Phase 2 deliverables cell: amber tint (content area only, below strip) -->
+  <rect x="540" y="527" width="340" height="213" fill="#FBF4EC"/>
+  <rect x="540" y="527" width="3"   height="213" fill="#C27B58"/>
+
+  <!-- ===== LEFT COLUMN ROTATED LABELS ===== -->
+  <text transform="translate(130, 247) rotate(-90)" text-anchor="middle" dominant-baseline="middle" class="row-label">WHAT I OWN</text>
+  <text transform="translate(130, 425) rotate(-90)" text-anchor="middle" dominant-baseline="middle"
+        style="font-size:11px;font-weight:700;fill:#5A5043;letter-spacing:1.5px;font-family:'Inter','Segoe UI',sans-serif;">WHAT I DIRECT</text>
+  <text transform="translate(130, 622) rotate(-90)" text-anchor="middle" dominant-baseline="middle" class="row-label">KEY DELIVERABLES</text>
+
+  <!-- ===== ROW TITLE STRIP LABELS ===== -->
+  <text x="216" y="165" class="strip-text">WHAT I OWN — Director-level personal work</text>
+  <text x="216" y="360" class="strip-text">WHAT I DIRECT — Team execution and leverage</text>
+  <text x="216" y="520" class="strip-text">KEY DELIVERABLES — Measurable outcomes by phase</text>
+
+  <!-- ===== PHASE HEADER TEXT ===== -->
+  <text x="370"  y="100" text-anchor="middle" class="phase-num">PHASE 1  ·  DAYS 1–30</text>
+  <text x="370"  y="121" text-anchor="middle" class="phase-name">Validate the Mandate</text>
+  <text x="370"  y="140" text-anchor="middle" class="phase-goal">Listen first. Diagnose. Build nothing yet.</text>
+
+  <text x="710"  y="100" text-anchor="middle" class="phase-num">PHASE 2  ·  DAYS 31–90</text>
+  <text x="710"  y="121" text-anchor="middle" class="phase-name">Establish the Architecture</text>
+  <text x="710"  y="140" text-anchor="middle" class="phase-goal">Foundation. First hires. Site immersion.</text>
+
+  <text x="1050" y="100" text-anchor="middle" class="phase-num">PHASE 3  ·  DAYS 91–180</text>
+  <text x="1050" y="121" text-anchor="middle" class="phase-name">Prove Value</text>
+  <text x="1050" y="140" text-anchor="middle" class="phase-goal">Two EBITDA wins. Dashboards live.</text>
+
+  <text x="1390" y="100" text-anchor="middle" class="phase-num">PHASE 4  ·  DAYS 181–365</text>
+  <text x="1390" y="121" text-anchor="middle" class="phase-name">Scale &amp; Institutionalize</text>
+  <text x="1390" y="140" text-anchor="middle" class="phase-goal">GPO Playbook v1.0. Year 2 decision.</text>
+
+  <!-- ===== ROW 1: WHAT I OWN (content y=172–345, items start y=191) ===== -->
+
+  <!-- Phase 1 -->
+  <text x="215" y="191" class="item">• Stakeholder listening tour (D1–21)</text>
+  <text x="215" y="210" class="item">• Executive alignment sessions (D15–30)</text>
+  <text x="215" y="229" class="item">• Current-state process inventory</text>
+  <text x="215" y="248" class="item">• Technology landscape review</text>
+  <text x="215" y="267" class="item">• Build 5-sponsor coalition by D30</text>
+
+  <!-- Phase 2 -->
+  <text x="555" y="191" class="item">• GPO Playbook Ch 1–2 (first draft)</text>
+  <text x="555" y="210" class="item">• Domain 1 (P2B) cross-functional</text>
+  <text x="567" y="229" class="item">workshop with functional leaders</text>
+  <text x="555" y="248" class="item">• Executive governance cadence est.</text>
+  <text x="555" y="267" class="item">• Branch immersion: 5+ locations (D31–60)</text>
+  <text x="555" y="286" class="item">• Hiring plan finalized; recruiting live</text>
+
+  <!-- Phase 3 -->
+  <text x="895" y="191" class="item">• Cross-domain seam governance</text>
+  <text x="907" y="210" class="item">(2 highest-risk seams formalized)</text>
+  <text x="895" y="229" class="item">• Process-technology alignment review</text>
+  <text x="895" y="248" class="item">• Executive process perf. dashboard</text>
+  <text x="895" y="267" class="item">• Change management infrastructure</text>
+
+  <!-- Phase 4 -->
+  <text x="1235" y="191" class="item">• GPO Playbook v1.0 published</text>
+  <text x="1235" y="210" class="item">• Annual process performance review</text>
+  <text x="1235" y="229" class="item">• Talent development cycle</text>
+  <text x="1235" y="248" class="item">• Private Equity EBITDA narrative</text>
+
+  <!-- ===== ROW 2: WHAT I DIRECT (content y=367–505, items start y=387) ===== -->
+
+  <!-- Phase 1 -->
+  <text x="215" y="400" class="item-dim">Hiring underway —</text>
+  <text x="215" y="419" class="item-dim">team not yet on board</text>
+
+  <!-- Phase 2 -->
+  <text x="555" y="387" class="item">• GPO Lead: P2B map &amp; gap analysis</text>
+  <text x="555" y="406" class="item">• Data Eng: KPI data availability</text>
+  <text x="567" y="425" class="item">assessment (all proposed KPIs)</text>
+
+  <!-- Phase 3 -->
+  <text x="895" y="387" class="item">• GPO Leads: Domains 2–5 mapped (L0→L2)</text>
+  <text x="895" y="406" class="item">• Data Eng: 1st automated KPI pipeline</text>
+  <text x="895" y="425" class="item">• CM Lead: First adoption assessment</text>
+
+  <!-- Phase 4 -->
+  <text x="1235" y="387" class="item">• All 5 domains: L3+ where targeted</text>
+  <text x="1235" y="406" class="item">• Data Eng: 5-domain KPI suite</text>
+  <text x="1235" y="425" class="item">• GPO Leads: Agentic AI workflows</text>
+  <text x="1247" y="444" class="item">as force multipliers</text>
+
+  <!-- ===== ROW 3: KEY DELIVERABLES (content y=527–740) ===== -->
+  <!-- Badge y=537, h=20, text y=550. Items start y=572. -->
+
+  <!-- Phase 1: D30 Deliverable -->
+  <rect x="215" y="537" width="150" height="20" rx="4" fill="#3B4B35"/>
+  <text x="290" y="550" text-anchor="middle" class="badge-text">D30 DELIVERABLE</text>
+  <text x="215" y="574" class="deliv-head">Validated Mandate Document</text>
+  <text x="215" y="593" class="item">• Confirmed current-state problem</text>
+  <text x="215" y="611" class="item">• Domain priority order approved</text>
+  <text x="215" y="629" class="item">• Org design decision made</text>
+  <text x="215" y="647" class="item">• 5 sponsor commitments locked</text>
+
+  <!-- Phase 2: Early Wins (amber) -->
+  <rect x="555" y="537" width="140" height="20" rx="4" fill="#C27B58"/>
+  <text x="625" y="550" text-anchor="middle" class="badge-text">EARLY WINS — DAY 90</text>
+  <text x="555" y="572" class="item">• L2O → O2O handoff standard</text>
+  <text x="555" y="590" class="item">• P2B site selection framework</text>
+  <text x="555" y="608" class="item">• GPO Playbook Ch 1–2 published</text>
+  <text x="555" y="626" class="item">• Domain 1 (P2B) mapped L0 → L2</text>
+  <text x="555" y="644" class="item">• Executive review forum live</text>
+  <text x="555" y="662" class="item">• Branch immersion: 5+ locations done</text>
+
+  <!-- Phase 3: First EBITDA Story (amber) -->
+  <rect x="895" y="537" width="204" height="20" rx="4" fill="#C27B58"/>
+  <text x="997" y="550" text-anchor="middle" class="badge-text">FIRST EBITDA STORY — DAY 180</text>
+  <text x="895" y="572" class="item">• 2 measurable EBITDA improvements</text>
+  <text x="895" y="590" class="item">• KPI dashboards: Domains 1 &amp; 2 live</text>
+  <text x="895" y="608" class="item">• All 5 domains mapped L0 → L2</text>
+  <text x="895" y="626" class="item">• Full Scenario A team on board</text>
+  <text x="895" y="644" class="item">• Post-incident review standard active</text>
+
+  <!-- Phase 4: GPO Operating (navy) -->
+  <rect x="1235" y="537" width="178" height="20" rx="4" fill="#3B4B35"/>
+  <text x="1324" y="550" text-anchor="middle" class="badge-text">GPO OPERATING — DAY 365</text>
+  <text x="1235" y="572" class="item">• GPO Playbook v1.0 (all 8 chapters)</text>
+  <text x="1235" y="590" class="item">• 5-domain KPI dashboard suite</text>
+  <text x="1235" y="608" class="item">• All 5 domains: L3+ where targeted</text>
+  <text x="1235" y="626" class="item">• Year 2 LSS charter backlog prioritized</text>
+  <text x="1235" y="644" class="item">• Year 2 Scenario A/B recommendation</text>
+  <text x="1235" y="662" class="item">• Documented ROI vs. ~$1.55M cost</text>
+  <text x="1235" y="680" class="item">• Private Equity EBITDA narrative co-authored</text>
+
+  <!-- Domain Legend -->
+  <text x="800" y="757" text-anchor="middle" class="footer">Hire-to-Retire (H2R)  ·  Plan-to-Build (P2B)  ·  Lead-to-Order (L2O)  ·  Order-to-Operate (O2O)  ·  Source-to-Pay (S2P)</text>
+
+  <!-- Footer -->
+  <text x="800" y="773" text-anchor="middle" class="footer">Three swimlanes: what the Director owns, what the team delivers, what the business receives. Standards co-authored with functional leaders.</text>
+
+</svg>
