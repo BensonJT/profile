@@ -150,7 +150,23 @@
       font-weight: 700;
     }
 
-    /* ── LinkedIn bar ── */
+        /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+/* ── LinkedIn bar ── */
     .linkedin-bar {
       background: rgba(44,46,47,0.92);
       border-top: 1px solid rgba(191,163,111,0.18);
@@ -586,6 +602,10 @@
       <p class="article-byline"><strong>Cornerstone Solutions</strong> &nbsp;&middot;&nbsp; 2024</p>
     </div>
   </header>
+
+  <div class="series-bar">
+    <strong>Capacity Series</strong> &nbsp;&middot;&nbsp; <a href="article-automate-mess.html">Part A</a> &nbsp;|&nbsp; Part B
+  </div>
 
   <div class="linkedin-bar">
     Originally published on LinkedIn &mdash;

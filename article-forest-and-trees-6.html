@@ -145,7 +145,23 @@
 
     .article-byline strong { color: rgba(240,234,214,0.85); font-weight: 700; }
 
-    /* ── LinkedIn bar ── */
+        /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+/* ── LinkedIn bar ── */
     .linkedin-bar {
       background: rgba(44,46,47,0.92);
       border-top: 1px solid rgba(191,163,111,0.18);
@@ -573,6 +589,10 @@
       <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2025</p>
     </div>
   </header>
+
+  <div class="series-bar">
+    <strong>Forest & Trees Series</strong> &nbsp;&middot;&nbsp; <a href="article-forest-and-trees.html">Part I</a> &nbsp;|&nbsp; <a href="article-forest-and-trees-2.html">Part II</a> &nbsp;|&nbsp; <a href="article-forest-and-trees-3.html">Part III</a> &nbsp;|&nbsp; <a href="article-forest-and-trees-4.html">Part IV</a> &nbsp;|&nbsp; <a href="article-forest-and-trees-5.html">Part V</a> &nbsp;|&nbsp; Part VI
+  </div>
 
   <div class="linkedin-bar">
     Originally published on LinkedIn &mdash;
