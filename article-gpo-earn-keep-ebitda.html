@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earn Your Keep in EBITDA: Committing to a Number | Jeffrey Benson</title>
+  <meta name="description" content="A process excellence function should return at least five times its fully loaded cost. If it can't earn its keep, it shouldn't survive.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Notebook</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; GPO Series &middot; Part 6 of 6</p>
+      <h1 class="article-title">Earn Your Keep in EBITDA: Committing to a Number</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>GPO Series</strong> &nbsp;&middot;&nbsp; <a href="article-gpo-flagship.html">Flagship</a> &nbsp;|&nbsp; <a href="article-gpo-validate-mandate.html">Part 1</a> &nbsp;|&nbsp; <a href="article-gpo-what-gpo-owns.html">Part 2</a> &nbsp;|&nbsp; <a href="article-gpo-seams-leak-value.html">Part 3</a> &nbsp;|&nbsp; <a href="article-gpo-building-team.html">Part 4</a> &nbsp;|&nbsp; <a href="article-gpo-service-before-standards.html">Part 5</a> &nbsp;|&nbsp; Part 6
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p class="opening-scene"><em>Part 6 of the "How Would You Build It?" series · by Jeffrey Benson</em></p>
+    <p>A process excellence function inside a private-equity-backed company is not justified by a good story. It's justified by dollars. And the fastest way to lose a sponsor's trust is to talk about value in the language of activity, decks produced, processes mapped, workshops held, instead of the language of the P&L.</p>
+    <p>So I'd do something most people in this seat avoid: I'd put a number on the function before anyone asked me to.</p>
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Strategy</p>
+      <h2 class="section-title">The bar I set on myself</h2>
+      <p><strong>The function must return at least five times its fully loaded cost in measurable, attributable improvement. If it doesn't, we revise it. If it still doesn't pay, we wind it down.</strong></p>
+      <p>I want that bar in the room from Day 1, and I want it stated out loud, because it does three things at once. It disciplines my own choices about where to point a lean, senior team. It tells the sponsor I understand exactly why the function exists. And it builds trust through a kind of honesty most internal functions never offer: a willingness to be measured, and a willingness to be wrong.</p>
+      <p>Note what that multiple is measured against: the <em>function's</em> fully loaded cost, the team's budget. That's the right denominator for a value-creation function, and it's a number everyone in the room can see.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Rigor</p>
+      <h2 class="section-title">No claim without a baseline</h2>
+      <p>Here's the discipline that makes the number credible instead of aspirational: <strong>no improvement is claimed without a defensible baseline.</strong></p>
+      <p>That's why one of the first deliverables, inside the first thirty days, is baseline measurement for each place the function intends to create value. The improvement story is always the <em>delta</em> from that baseline, not the gap from some assumed prior state that no one wrote down. At Meridian Field Services, the data specialist's very first work product isn't a dashboard; it's the baseline infrastructure that makes every later claim of value defensible to a finance team that will, rightly, push back.</p>
+      <p>If you can't measure where you started, you can't prove what you changed. Skip the baseline and your value story is just narrative wearing a number.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Sources</p>
+      <h2 class="section-title">Where the value actually comes from</h2>
+      <p>For Meridian, I'd point the function at three sources of measurable value in the first year, each scoped conservatively and tied to a specific sponsor:</p>
+        <ul class="support-list">
+          <li><strong>Plan-to-Build owner's-process governance.</strong> This is the capacity engine, where the largest capital is committed and the largest unmanaged risk lives. Tightening the owner's process, entitlement and feasibility risk, program governance, change-order control, protects capital that would otherwise leak through avoidable rework and delay. A single prevented misstep here can pay for the whole team.</li>
+          <li><strong>Source-to-Pay standardization.</strong> Consistent supplier qualification, contracting standards, and reduced off-contract spend produce value through better terms and shorter cycles. Even a modest percentage of a large, fragmented spend base is a number with real weight, scoped in partnership with the finance organization.</li>
+          <li><strong>Order-to-Operate velocity.</strong> Every day faster from signed contract to live, billable delivery is working capital freed and revenue recognized sooner, and the effect compounds across a growing customer base.</li>
+        </ul>
+      <p>And these three domain-level sources are only half the map. Just as much value tends to sit <em>inside</em> each process, in the ordinary waste a deeper look surfaces: redundant steps, rework loops, and the sprawl of overlapping systems that quietly carry licensing and maintenance cost. Some of the most durable hard-dollar savings I've seen came not from a new initiative at all, but from decomposing a bloated process, cutting the redundant steps and handoffs, and retiring the duplicate or end of life systems off their maintenance contracts entirely.</p>
+      <p>None of this is exotic. That's the point. The value comes from governing the handoffs between domains and draining the waste inside them, from standardizing decisions that were previously made five different ways, not from chasing a clever new initiative.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Governance</p>
+      <h2 class="section-title">The honesty of a wind-down clause</h2>
+      <p>The bar I set has a decision tree attached, and the last branch is the one that matters most:</p>
+        <ul class="support-list">
+          <li>If the function clears five times its cost with wins across multiple domains, the case for expanding it writes itself.</li>
+          <li>If it lands somewhere between three and five times, hold steady and add only where the value is already proven.</li>
+          <li>If it comes in under three times, we have an honest conversation about whether the function should continue, and we revise it or wind it down.</li>
+        </ul>
+      <p>I want that last line explicit, because a function that cannot earn its keep should not survive on the strength of its narrative. Naming that bar disciplines me more than anyone else. It keeps the team pointed at value the business can actually feel, rather than at the comfortable work of producing more documentation.</p>
+      <p>I hold my own work to that same test, and I have for years. The infrastructure I've built has consistently returned many times what it cost to put in place, comfortably past the floor I'm describing here. I set the bar where experience tells me it belongs, not where I'd like it to be. And I'm deliberate about <em>not</em> claiming value that depended on the work of others; if I can't cleanly attribute it, I don't count it. That restraint is part of what makes the numbers I <em>do</em> claim trustworthy.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Tooling</p>
+      <h2 class="section-title">Letting the story tell itself</h2>
+      <p>There's a practical problem buried in all of this: the before-and-after story is brutal to assemble by hand, and it tends to get built the night before a board review, from spreadsheets nobody fully trusts.</p>
+      <p>That's one of the reasons I'm building the instrument I've mentioned through this series (working name: Forester). When every process carries its own measures and a current-state model can be paired against a future-state one, the transformation story, the change in cycle efficiency, in cost, in capacity, generates itself, clearly labeled as estimated where it's projected and observed where it's measured. A function that has to commit to a number deserves an instrument that can show the number honestly, on demand, rather than reconstructing it under deadline. The discipline of earning your keep is a lot more sustainable when the proof is a query instead of an all-nighter.</p>
+      <p>This is the end of the series, so let me close with the question the whole thing has been building toward: <strong>could your process, operations, or transformation function survive a wind-down test?</strong> If you measured what it returns against what it costs, and committed in advance to acting on the answer, what would you find? It's an uncomfortable question, and it's exactly the one that separates a function that earns its place from one that merely occupies it. I'd genuinely like to hear how you'd approach the answer.</p>
+      <p>Thanks for following the whole arc, from validating the mandate, through owning the architecture and governing the seams, to building the team, earning adoption, and proving the value. If you're carrying a version of this build inside your own company, that's the conversation I most enjoy having.</p>
+      <p><em>This completes the "How Would You Build It?" series. Start at the <a href="https://bensonjt.github.io/profile/articles.html">flagship</a> if you came in partway through.</em></p>
+    </div>
+
+    <div class="series-nav">
+      <a href="article-gpo-service-before-standards.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        Part 5: Playbook
+      </a>
+      <a href="article-gpo-flagship.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Flagship</span>
+        Zero to One &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">Sources: Independent research on Process Excellence and Global Process Ownership (GPO) framework deployments. Practical applications of standard work, organizational design, and continuous improvement metrics in high-growth rollups.</p>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>

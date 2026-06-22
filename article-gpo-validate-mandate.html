@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validate the Mandate: Diagnose the Real Problem Before You Design the Solution | Jeffrey Benson</title>
+  <meta name="description" content="Resist the urge to deploy a plan before you've listened. The first thirty days are not for building; they are for earning the right to build.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Notebook</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; GPO Series &middot; Part 1 of 6</p>
+      <h1 class="article-title">Validate the Mandate: Diagnose the Real Problem Before You Design the Solution</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>GPO Series</strong> &nbsp;&middot;&nbsp; <a href="article-gpo-flagship.html">Flagship</a> &nbsp;|&nbsp; Part 1 &nbsp;|&nbsp; <a href="article-gpo-what-gpo-owns.html">Part 2</a> &nbsp;|&nbsp; <a href="article-gpo-seams-leak-value.html">Part 3</a> &nbsp;|&nbsp; <a href="article-gpo-building-team.html">Part 4</a> &nbsp;|&nbsp; <a href="article-gpo-service-before-standards.html">Part 5</a> &nbsp;|&nbsp; <a href="article-gpo-earn-keep-ebitda.html">Part 6</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p class="opening-scene"><em>Part 1 of the "How Would You Build It?" series · by Jeffrey Benson</em></p>
+    <p>You were hired to build something. You have a point of view, a track record, and a board that wants to see motion. So the instinct, on Day 1, is to arrive with a plan and start executing it.</p>
+    <p>Resist that instinct. A plan you deploy before you've listened is, almost by definition, the right answer to the wrong question. The first thirty days are not for building. They're for earning the right to build, and that begins with one question.</p>
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Mandate</p>
+      <h2 class="section-title">The question that governs everything</h2>
+      <p>Before I draw a single process map, I owe myself an honest answer to this: <em>what problem is this company actually hiring this function to solve?</em></p>
+      <p>It sounds obvious. It isn't. At our composite company, Meridian Field Services (a PE-backed platform rolling up regional commercial mechanical-services firms), the surface answer is "standardize our processes." But underneath that tidy phrase, there are usually two or three forces operating at once, and they don't pull in the same direction:</p>
+        <ul class="support-list">
+          <li><strong>A scaling problem.</strong> The operating model that worked at six locations is being stress-tested at thirty. Handoffs that used to happen in a hallway now cross time zones and acquired-company boundaries.</li>
+          <li><strong>A financial-discipline problem.</strong> The sponsor needs operational performance that is visible, measurable, and improving, not a different story from every branch.</li>
+          <li><strong>An organizational-moment problem.</strong> New leadership wants to put its own fingerprint on how the company runs, not inherit the methods of the chapter before.</li>
+        </ul>
+      <p>All three can be true. But which one is <em>most</em> urgent reorders everything downstream: what you build first, who you hire, how hard you push. Diagnose the wrong primary driver and you'll build a beautiful answer to a problem nobody was losing sleep over.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Methodology</p>
+      <h2 class="section-title">Write your plan as hypotheses, not facts</h2>
+      <p>Here's the discipline that separates a builder from a presenter: I treat my own plan as a set of <strong>hypotheses to be validated, not facts to be executed.</strong></p>
+      <p>Every assumption goes on paper, labeled by confidence, with a note on what changes if I'm wrong. For Meridian, a few of mine would look like this:</p>
+        <ul class="support-list">
+          <li><em>This function is greenfield.</em> (Confidence: medium. If informal process owners already exist, my first month becomes alignment, not architecture.)</li>
+          <li><em>The company wants true enterprise standardization.</em> (Confidence: medium. If it actually values local autonomy more than it admits, my governance model has to be lighter and more advisory than directive.)</li>
+          <li><em>Not all five domains are equally on fire.</em> (Confidence: medium. If urgency is evenly spread, I need a domain diagnostic before I commit anyone's time.)</li>
+        </ul>
+      <p>There's a leadership reason to work this way, not just an analytical one. A leader who names their assumptions and labels their confidence earns trust. A leader who asserts certainty about things they cannot yet know loses it, usually right when it matters most. Saying "here's what I believe, and here's how I'll find out if I'm wrong" is not weakness. It's the posture that makes the eventual plan credible.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Discipline</p>
+      <h2 class="section-title">The first thirty days are for listening</h2>
+      <p>So I spend the first month on a listening tour, one-on-one with the leaders who own the work. Not to present a plan. To understand theirs.</p>
+      <p>The questions are simple and they're about <em>them</em>, not me: Where does process inconsistency cost you today? What does "good" look like from your seat? Where have you been burned before by someone who arrived with a framework and left with a slide deck? You learn more from how a branch manager describes a dropped handoff than from any document.</p>
+      <p>Two cautions I'd carry into that month:</p>
+        <p><strong>1. Don't assume the current-state answer is "nothing."</strong> Even a young company has informal standards, spreadsheets that quietly run the business, and grassroots systems somebody built because they had to. Part of the job is to find what already works and protect it, not to bulldoze it in the name of a clean architecture.</p>
+        <p><strong>2. Map the technology landscape early.</strong> If an ERP, a planning tool, or an analytics program is already in flight, your process standards either inform those configurations or get retrofitted to them later at much higher cost. Better to know on Day 10 than Day 100.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Sponsorship</p>
+      <h2 class="section-title">Build a coalition, not a patron</h2>
+      <p>There's a structural move in the first thirty days that matters more than any deliverable: I want active sponsorship from a coalition of executives, ideally one per domain, by the end of the month.</p>
+      <p>A new function that depends on one or two patrons is fragile. The day those patrons get reorganized, distracted, or outvoted, the function is orphaned. A function with five domain-specific sponsors survives normal organizational turbulence, because its value is anchored in five different parts of the business at once.</p>
+      <p>And I'd give each sponsor the same question to answer: <em>what outcome in your domain, twelve months from now, would make this function unmistakably worth its cost to your part of the business?</em> Their answer is not small talk. It becomes my commitment, and it tells me exactly where to point the team first.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Deliverable</p>
+      <h2 class="section-title">What Day 30 actually produces</h2>
+      <p>The deliverable at the end of the month is not a finished architecture. It's a <strong>validated mandate</strong>: the assumptions confirmed or revised, the domains ranked by real urgency, a recommended team design ready for a decision, and the sponsor coalition with each sponsor's twelve-month outcome written down.</p>
+      <p>That document is unglamorous. It doesn't look like building. But it <em>is</em> the foundation, because everything after it is now pointed at a problem the company actually has, sponsored by people who actually want it solved.</p>
+      <p>The month you spend not building is what earns you the right to build.</p>
+      <p>Somewhere in your organization right now, there's probably a capable team executing a well-made plan against a problem nobody stopped to validate. Where is it? I'd genuinely like to hear where you've seen the gap between the stated mandate and the real one, because that gap is usually where the most valuable work begins.</p>
+      <p><em>Next in the series: Part 2, on what a Global Process Owner actually owns, which turns out to be far less, and far more, than headcount.</em></p>
+    </div>
+
+    <div class="series-nav">
+      <a href="article-gpo-flagship.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        Flagship: Zero to One
+      </a>
+      <a href="article-gpo-what-gpo-owns.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Next</span>
+        Part 2: What a GPO Owns &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">Sources: Independent research on Process Excellence and Global Process Ownership (GPO) framework deployments. Practical applications of standard work, organizational design, and continuous improvement metrics in high-growth rollups.</p>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>

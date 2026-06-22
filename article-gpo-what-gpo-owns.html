@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What a Global Process Owner Actually Owns: Standards, Not Headcount | Jeffrey Benson</title>
+  <meta name="description" content="A GPO does not own operational headcount or budgets. They own the standards, handoffs, and performance measures that govern how value flows.">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html#top">Overview</a>
+    <a href="index.html#operator-method">Method</a>
+    <a href="index.html#leadership-philosophy">Philosophy</a>
+    <a href="index.html#work">Work</a>
+    <a href="articles.html" class="nav-current">Notebook</a>
+    <a href="index.html#connect">Connect</a>
+  </nav>
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; GPO Series &middot; Part 2 of 6</p>
+      <h1 class="article-title">What a Global Process Owner Actually Owns: Standards, Not Headcount</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>GPO Series</strong> &nbsp;&middot;&nbsp; <a href="article-gpo-flagship.html">Flagship</a> &nbsp;|&nbsp; <a href="article-gpo-validate-mandate.html">Part 1</a> &nbsp;|&nbsp; Part 2 &nbsp;|&nbsp; <a href="article-gpo-seams-leak-value.html">Part 3</a> &nbsp;|&nbsp; <a href="article-gpo-building-team.html">Part 4</a> &nbsp;|&nbsp; <a href="article-gpo-service-before-standards.html">Part 5</a> &nbsp;|&nbsp; <a href="article-gpo-earn-keep-ebitda.html">Part 6</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p class="opening-scene"><em>Part 2 of the "How Would You Build It?" series · by Jeffrey Benson</em></p>
+    <p>When people hear "Global Process Owner," they usually picture an empire: a big team, a big budget, authority over how a whole slice of the company runs. That picture is wrong, and getting it wrong is how the role fails.</p>
+    <p>Let me be precise about what a GPO <em>is</em>, and what it isn't.</p>
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Authority</p>
+      <h2 class="section-title">Ownership without ownership</h2>
+      <p>A Global Process Owner does <strong>not</strong> own the people, the budget, or the execution of a domain. At Meridian Field Services, the branch managers still run the branches. The sales leaders still close the deals. The procurement team still cuts the purchase orders. None of that moves under the GPO.</p>
+      <p>What the GPO owns is narrower and, in a way, harder: the <strong>standards, the handoffs, and the performance measures</strong> that govern how work flows through a domain from end to end.</p>
+      <p>Process ownership is not the same as operational ownership. I own the architecture; the functional leaders own the execution. The moment that line blurs, the moment a process owner starts trying to run the work instead of govern how it flows, the function gets resented and quietly routed around. Holding that boundary is not a limitation of the role. It <em>is</em> the role.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Structure</p>
+      <h2 class="section-title">Domains are value chains, not departments</h2>
+      <p>The second thing people get wrong: they treat the five domains as if they were departments. They aren't. They're <strong>value chains that cut sideways across the org chart.</strong></p>
+      <p>Take Lead-to-Order at Meridian. Where does it live? Not in one box. It runs through marketing (the lead), sales (the qualification), a solutions engineer (the technical scope), finance (the pricing), and legal (the contract), before it ever hands off to operations. No single department owns it. That's exactly why it needs a process owner: someone accountable for the whole chain, not any one link.</p>
+      <p>This is the mental shift the role demands. An org chart is vertical; value flows horizontally. The GPO's job is to see and govern the horizontal flow that the vertical chart was never designed to show.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Methodology</p>
+      <h2 class="section-title">You have to decompose it to see it</h2>
+      <p>You can't govern a value chain you can't see in detail, so the first real work is decomposition: breaking each domain down from the whole chain (call it L0) into its major activities (L1) and then into the sub-processes where the work actually happens (L2).</p>
+      <p>This is the method I've walked through, step by step, in my <strong><a href="https://bensonjt.github.io/profile/articles.html">How to See the Forest and the Trees</a></strong> series, so I won't repeat the mechanics here. The point for this discussion is what decomposition <em>gives</em> you: a shared map. For Meridian's Plan-to-Build domain, that map runs from site selection and feasibility, through design standards and permitting, into construction oversight, and out through commissioning and the turnover to operations. Each of those is an L1 activity with its own sub-processes, its own handoffs, and its own places where value either compounds or leaks.</p>
+      <p>Until that map exists, every conversation about "our process" is really five different conversations, because five people picture five different things. The map is what makes the domain governable.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Adoption</p>
+      <h2 class="section-title">Why the boundary protects you</h2>
+      <p>There's a failure mode every process function has to design against: becoming a bureaucratic standards body that functional leaders comply with on paper and ignore in practice. Once that happens, the function is dead; it just doesn't know it yet.</p>
+      <p>The boundary I described, owning the architecture and not the execution, is the antidote, because it forces the function to earn its authority rather than assert it. When you don't command the work, the only way your standards get adopted is if they're genuinely useful: faster, clearer, less painful than what people were doing before. That keeps the function honest. Authority that comes from a mandate erodes the first time someone tests it. Authority that comes from usefulness compounds.</p>
+      <p>So the GPO's real currency is velocity, credibility, and proof of value, delivered fast. I'll spend all of Part 5 on the operating principles that make that real.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Taxonomy</p>
+      <h2 class="section-title">The five domains as an example, not a template</h2>
+      <p>A quick caution about the five domains themselves: Plan-to-Build, Lead-to-Order, Order-to-Operate, Source-to-Pay, and Hire-to-Retire. For a company like Meridian, that taxonomy fits well. For yours, it might not, and that's fine. The domains are an <em>example</em> of an end-to-end taxonomy, not a universal answer. Here's the Meridian read, briefly, so the shape is concrete:</p>
+        <ul class="support-list">
+          <li><strong>Plan-to-Build</strong> is the capacity engine: opening branches and standing up service capability. The largest capital, the largest unmanaged risk.</li>
+          <li><strong>Lead-to-Order</strong> is revenue origination: how a prospect becomes a signed, priced, deliverable contract.</li>
+          <li><strong>Order-to-Operate</strong> is delivery and lifecycle service, the domain most directly tied to customer experience and retention.</li>
+          <li><strong>Source-to-Pay</strong> is everything from category strategy through procurement to payment, spanning both big equipment buys and high-frequency operational supply.</li>
+          <li><strong>Hire-to-Retire</strong> is the workforce lifecycle, which at a skilled-trades company is a competitive constraint, not a back-office function.</li>
+        </ul>
+      <p>The exercise for any company is the same: name the handful of end-to-end value chains that actually carry the business, and resist the urge to make them match the org chart.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Tooling</p>
+      <h2 class="section-title">A note on building it to last</h2>
+      <p>When I decompose a domain, I don't want the result living in a static diagram that's wrong the day after it's drawn. I want it structured: every activity, every handoff, every measure captured as data, so the model stays alive as the business changes. That's the tool I'm building alongside this series (working name: Forester), and it's why decomposition, for me, is the entry point to instrumentation rather than the end of the exercise. More on that as the series goes on.</p>
+      <p>Here's a question worth sitting with: in your organization, what's a process that everyone technically owns a piece of, and therefore no one owns end to end? Those orphaned value chains are where a process function earns its keep, and they're almost never the ones on the org chart. I'd like to hear which one came to mind.</p>
+      <p><em>Next in the series: Part 3, on the single most valuable idea in this whole body of work, which is that value doesn't leak inside the boxes. It leaks at the seams between them.</em></p>
+    </div>
+
+    <div class="series-nav">
+      <a href="article-gpo-validate-mandate.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        Part 1: Validate Mandate
+      </a>
+      <a href="article-gpo-seams-leak-value.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Next</span>
+        Part 3: The Seams &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">Sources: Independent research on Process Excellence and Global Process Ownership (GPO) framework deployments. Practical applications of standard work, organizational design, and continuous improvement metrics in high-growth rollups.</p>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+</body>
+</html>
