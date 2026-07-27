@@ -399,6 +399,12 @@ cite {
     padding-top: var(--s-3);
     border-top: 1px solid var(--rule);
 }
+/* Series list "READ" buttons: converted to the same underlined link used on
+   the standalone cards. One pattern instead of two, and six dark pills stacked
+   down a list pulled the eye away from the article titles they serve. */
+.btn-read-sm,
+.btn-expand,
+.btn-linkedin,
 .btn-read,
 .card-action a {
     /* originals are dark pills; clear the box or the override's accent text
@@ -637,4 +643,20 @@ body {
         transform: none;
         margin-inline: 0;
     }
+}
+
+/* the expand toggle keeps a light chip so it still reads as a control */
+.btn-expand {
+    border: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: var(--s-2) var(--s-4);
+}
+.btn-expand:hover {
+    border-color: var(--accent);
+    opacity: 1;
+}
+.series-article-row,
+.series-article-list li {
+    align-items: baseline;
 }
