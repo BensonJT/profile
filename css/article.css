@@ -274,6 +274,12 @@ cite {
     padding: var(--s-6);
     background: var(--bg);
 }
+/* These are card surfaces, not prose links. Each article's own <style> block
+   sets text-decoration: none at (0,1,0), which `.article-body a` above beats
+   at (0,2,0) — so the whole card rendered underlined. */
+.article-body a.series-nav-card {
+    text-decoration: none;
+}
 
 /* ---------- Footer ---------- */
 .page-footer {
@@ -671,4 +677,93 @@ body {
 .series-article-row,
 .series-article-list li {
     align-items: baseline;
+}
+
+/* ── Author card ──────────────────────────────────────────────────────────
+   Injected by author-card.js into <div id="author-card"></div>. Styling
+   lives here rather than inline so the card can be restyled in one place.
+
+   Selectors carry a redundant .author-card ancestor on purpose. Each article
+   still has its own <style> block with rules like `.article-body p`, which is
+   (0,2,0) and would otherwise beat a single class here. */
+.author-card {
+    display: flex;
+    align-items: center;
+    gap: var(--s-6);
+    margin: var(--s-12) 0 0;
+    padding: var(--s-6) var(--s-8);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+.author-card img.author-card__photo {
+    width: 72px;
+    height: 72px;
+    max-width: 72px;
+    flex-shrink: 0;
+    margin: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 18%;
+    border: 1px solid var(--rule);
+    box-shadow: none;
+}
+.author-card .author-card__body {
+    min-width: 0;
+}
+.author-card p {
+    margin: 0;
+}
+.author-card p.author-card__name {
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--fg);
+    letter-spacing: -0.01em;
+}
+.author-card p.author-card__role {
+    font-size: var(--t-xs);
+    line-height: 1.45;
+    color: var(--fg-muted);
+    letter-spacing: 0.02em;
+    margin-top: var(--s-1);
+}
+.author-card .author-card__dot {
+    margin: 0 var(--s-2);
+    color: var(--n-300);
+}
+.author-card p.author-card__line {
+    font-size: var(--t-sm);
+    line-height: 1.45;
+    font-style: normal;
+    color: var(--olive);
+    margin-top: var(--s-2);
+}
+.author-card a.author-card__link {
+    display: inline-block;
+    margin-top: var(--s-3);
+    font-family: var(--font-text);
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+}
+.author-card a.author-card__link:hover {
+    color: var(--fg);
+    text-decoration: none;
+}
+
+@media (max-width: 520px) {
+    .author-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--s-4);
+        padding: var(--s-6);
+    }
 }
