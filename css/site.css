@@ -1304,3 +1304,85 @@ h3 {
     color: var(--vellum);
     border-bottom-color: var(--gold);
 }
+
+/* ---------- 25. DOMAIN MAP ---------- */
+.dmap {
+    margin-block: var(--s-12);
+}
+.dmap__lede {
+    max-width: var(--measure);
+    color: var(--fg-muted);
+    font-size: var(--t-sm);
+    line-height: 1.7;
+    margin-bottom: var(--s-8);
+}
+.dmap__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 2px solid var(--rule);
+}
+.dmap__item {
+    position: relative;
+    padding: var(--s-4) 0 var(--s-4) var(--s-8);
+    display: grid;
+    gap: var(--s-1);
+}
+@media (min-width: 720px) {
+    .dmap__item {
+        grid-template-columns: 5.5rem minmax(0, 1fr) minmax(0, 1.1fr);
+        gap: var(--s-6);
+        align-items: baseline;
+        padding-block: var(--s-3);
+    }
+}
+/* the node on the rule */
+.dmap__item::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: calc(var(--s-4) + 0.55em);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+@media (min-width: 720px) {
+    .dmap__item::before {
+        top: calc(var(--s-3) + 0.5em);
+    }
+}
+.dmap__when {
+    font-size: var(--t-xs);
+    font-variant-numeric: tabular-nums;
+    color: var(--fg-muted);
+    letter-spacing: 0.04em;
+}
+.dmap__what {
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    line-height: 1.2;
+}
+.dmap__result {
+    font-size: var(--t-sm);
+    line-height: 1.6;
+    align-self: center;
+    color: var(--fg-muted);
+}
+.dmap__result b {
+    color: var(--accent);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+.dmap__foot {
+    margin-top: var(--s-6);
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--rule);
+    font-size: var(--t-sm);
+    color: var(--fg-muted);
+    max-width: var(--measure);
+}
+.dmap__foot strong {
+    color: var(--fg);
+    font-weight: 600;
+}

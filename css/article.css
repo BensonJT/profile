@@ -221,6 +221,9 @@ body {
 /* ---------- Pull quotes and citations ---------- */
 .pullquote,
 .closing-quote {
+    /* originals set a dark background; the override recolors the text, so the
+       background has to be cleared or it becomes charcoal on charcoal */
+    background: transparent;
     font-family: var(--font-display);
     font-size: var(--t-xl);
     line-height: 1.3;
