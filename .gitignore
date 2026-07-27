@@ -13,3 +13,7 @@ __pycache__/
 # Editor
 .vscode/
 *.swp
+
+# Private resume variants — never commit
+*_private.pdf
+*_PRIVATE.pdf
