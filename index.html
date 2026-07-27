@@ -264,20 +264,85 @@
 
                     <div class="decomp__stage">
                         <div class="node" data-row="0"><span>Bake Brownies</span><span class="node__id">A0</span></div>
-
                         <div class="decomp__row" data-row="1">
-                            <div class="node"><span>Acquire Ingredients</span><span class="node__id">A1</span></div>
-                            <div class="node"><span>Set-up Environment</span><span class="node__id">A2</span></div>
-                            <div class="node"><span>Mix Ingredients</span><span class="node__id">A3</span></div>
-                            <div class="node"><span>Bake Brownies</span><span class="node__id">A4</span></div>
-                            <div class="node"><span>Serve Brownies</span><span class="node__id">A5</span></div>
-                            <div class="node"><span>Clean-up Kitchen</span><span class="node__id">A6</span></div>
-                        </div>
-
-                        <div class="decomp__row decomp__row--l2" data-row="2">
-                            <div class="node"><span>Check the pantry</span><span class="node__id">A1.1</span></div>
-                            <div class="node"><span>Buy what is missing</span><span class="node__id">A1.2</span></div>
-                            <div class="node"><span>Verify the receipt</span><span class="node__id">A1.3</span></div>
+                            <div class="decomp__branch">
+                                <div class="node"><span>Acquire Ingredients</span><span class="node__id">A1</span></div>
+                                <div class="decomp__kids" data-row="2">
+                                    <div class="node">
+                                        <span>Check the pantry</span><span class="node__id">A1.1</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Buy what is missing</span><span class="node__id">A1.2</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Verify the receipt</span><span class="node__id">A1.3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decomp__branch">
+                                <div class="node"><span>Set-up Environment</span><span class="node__id">A2</span></div>
+                                <div class="decomp__kids" data-row="2">
+                                    <div class="node">
+                                        <span>Preheat the oven</span><span class="node__id">A2.1</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Line the baking dish</span><span class="node__id">A2.2</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Lay out the tools</span><span class="node__id">A2.3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decomp__branch">
+                                <div class="node"><span>Mix Ingredients</span><span class="node__id">A3</span></div>
+                                <div class="decomp__kids" data-row="2">
+                                    <div class="node">
+                                        <span>Combine dry ingredients</span><span class="node__id">A3.1</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Combine wet ingredients</span><span class="node__id">A3.2</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Fold into batter</span><span class="node__id">A3.3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decomp__branch">
+                                <div class="node"><span>Bake Brownies</span><span class="node__id">A4</span></div>
+                                <div class="decomp__kids" data-row="2">
+                                    <div class="node"><span>Load the oven</span><span class="node__id">A4.1</span></div>
+                                    <div class="node">
+                                        <span>Hold at temperature</span><span class="node__id">A4.2</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Test for doneness</span><span class="node__id">A4.3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decomp__branch">
+                                <div class="node"><span>Serve Brownies</span><span class="node__id">A5</span></div>
+                                <div class="decomp__kids" data-row="2">
+                                    <div class="node"><span>Cool and cut</span><span class="node__id">A5.1</span></div>
+                                    <div class="node">
+                                        <span>Plate the servings</span><span class="node__id">A5.2</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Serve the customer</span><span class="node__id">A5.3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decomp__branch">
+                                <div class="node"><span>Clean-up Kitchen</span><span class="node__id">A6</span></div>
+                                <div class="decomp__kids" data-row="2">
+                                    <div class="node">
+                                        <span>Clear the dishes</span><span class="node__id">A6.1</span>
+                                    </div>
+                                    <div class="node"><span>Wash and dry</span><span class="node__id">A6.2</span></div>
+                                    <div class="node">
+                                        <span>Reset the workspace</span><span class="node__id">A6.3</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

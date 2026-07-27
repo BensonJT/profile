@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Operator’s Notebook: Frameworks & Reflections — Jeffrey Benson</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
   <style>
     :root {
       --olive: #3B4B35;
@@ -501,18 +505,34 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="css/article.css">
 </head>
 
 <body>
 
-  <nav class="site-nav">
-    <a href="index.html">Home</a>
-    <a href="work.html">Work</a>
-    <a href="method.html">Method</a>
-    <a href="systems.html">Systems</a>
-    <a href="articles.html" class="nav-current">Notebook</a>
-    <a href="about.html">About</a>
-    <a href="resume.html">R&eacute;sum&eacute;</a>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+        <div class="nav__links">
+          <a href="work.html">Work</a>
+          <a href="method.html">Method</a>
+          <a href="systems.html">Systems</a>
+          <a href="articles.html" class="is-current">Notebook</a>
+          <a href="about.html">About</a>
+        </div>
+        <a class="btn btn--primary nav__cta" href="resume.html">R&eacute;sum&eacute;</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">Menu</button>
+      </div>
+      <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+        <a href="work.html">Work</a>
+        <a href="method.html">Method</a>
+        <a href="systems.html">Systems</a>
+        <a href="articles.html">Notebook</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">R&eacute;sum&eacute;</a>
+      </div>
+    </div>
   </nav>
 
   <header class="page-header">
@@ -956,6 +976,7 @@
     }
   </script>
 
+  <script src="js/site.js" defer></script>
 </body>
 
 </html>
