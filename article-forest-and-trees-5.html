@@ -608,7 +608,7 @@
 
     <p class="article-intro">To see the forest and the trees, you develop the capability to step back and see the big picture, while simultaneously being able to zoom in and observe the trees. This series of articles will teach some practical things that will help you to cultivate this skill.</p>
 
-    <p>In <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a> we introduced the Context Diagram and the ICOMs that define any process boundary. In <a href="article-forest-and-trees-2.html" style="color: var(--olive); font-weight: 700;">Part II</a> we decomposed that context into an Activity Node Tree. In <a href="article-forest-and-trees-3.html" style="color: var(--olive); font-weight: 700;">Part III</a> we applied ICOMs to every node in the tree. In <a href="article-forest-and-trees-4.html" style="color: var(--olive); font-weight: 700;">Part IV</a> we added SIPOC &mdash; naming the suppliers and customers at the boundaries of the whole process.</p>
+    <p>In <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a> we introduced the Context Diagram and the ICOMs that define any process boundary. In <a href="article-forest-and-trees-2.html" style="color: var(--olive); font-weight: 700;">Part II</a> we decomposed that context into an Activity Node Tree. In <a href="article-forest-and-trees-3.html" style="color: var(--olive); font-weight: 700;">Part III</a> we applied ICOMs to every node in the tree. In <a href="article-forest-and-trees-4.html" style="color: var(--olive); font-weight: 700;">Part IV</a> we added SIPOC, naming the suppliers and customers at the boundaries of the whole process.</p>
 
     <p>We now have two frameworks. Each is powerful on its own. Neither is complete on its own.</p>
 
@@ -616,7 +616,7 @@
 
     <p><strong>SIPOC</strong> tells us the accountability at the boundaries: who provides the inputs and who depends on the outputs. It is an accountability framework.</p>
 
-    <p>The question we left open at the end of Part IV was this: what happens when you apply SIPOC not just at the top level &mdash; but at every activity node in the decomposition tree?</p>
+    <p>The question we left open at the end of Part IV was this: what happens when you apply SIPOC not just at the top level, but at every activity node in the decomposition tree?</p>
 
     <p>The answer is the model this entire series has been building toward.</p>
 
@@ -629,7 +629,7 @@
 
     <p>Now we open the box.</p>
 
-    <p>When we apply SIPOC at every activity node &mdash; the same way we applied ICOMs in <a href="article-forest-and-trees-3.html" style="color: var(--olive); font-weight: 700;">Part III</a> &mdash; we discover that every activity is its own mini-process with its own supplier and its own customer.</p>
+    <p>When we apply SIPOC at every activity node, the same way we applied ICOMs in <a href="article-forest-and-trees-3.html" style="color: var(--olive); font-weight: 700;">Part III</a>, we discover that every activity is its own mini-process with its own supplier and its own customer.</p>
 
     <p>Every Supplier in this model is the <strong>person performing this activity</strong>, supplying their time, skill, and judgment to turn inputs into outputs. That is the service they provide. Materials suppliers (grocery stores, utility companies) appear alongside them because they provide the raw inputs, but the human doing the work is always named first.</p>
 
@@ -639,7 +639,7 @@
 
     <p>In the brownie example, it is the same Baker at every step. In a real business process, those are different people or teams, and each handoff is an explicit accountability boundary. This is what is invisible at the L1 SIPOC level. It only becomes visible when you apply SIPOC at every node.</p>
 
-    <p>One more nuance: when an activity is fully automated &mdash; executed by a script, a programmed workflow, or an AI agent with no human intervention &mdash; the automation itself fills the Supplier role. It is simultaneously the performer and a Mechanism. This is an accommodation the method makes for fully automated steps: the automation is named as Supplier to preserve the accountability structure, even when no person is involved.</p>
+    <p>One more nuance: when an activity is fully automated, executed by a script, a programmed workflow, or an AI agent with no human intervention, the automation itself fills the Supplier role. It is simultaneously the performer and a Mechanism. This is an accommodation the method makes for fully automated steps: the automation is named as Supplier to preserve the accountability structure, even when no person is involved.</p>
 
     <p>This is what combining SIPOC and ICOM at every node gives you: the ability to trace every input, output, control, and mechanism back to a specific person (or automation) and forward to a specific person, at every level of the process.</p>
 
@@ -672,35 +672,35 @@
       <li>A <strong>Customer</strong> who receives the outputs of prior activities and depends on them being right</li>
     </ul>
 
-    <p>The oven, the mixing bowl, the timer, the cooling rack &mdash; these remain Mechanisms. They enable the activity but neither provide nor receive. They have no stake in the outcome. People do.</p>
+    <p>The oven, the mixing bowl, the timer, the cooling rack, these remain Mechanisms. They enable the activity but neither provide nor receive. They have no stake in the outcome. People do.</p>
 
     <hr>
 
     <!-- ── The Combined Model: A2 Mix Ingredients ── -->
     <h2 class="section-title">The Combined Model: A2 Mix Ingredients</h2>
 
-    <p>Let's apply the full combined model &mdash; SIPOC + ICOM with the Mechanisms refinement &mdash; to A2 (Mix Ingredients). This activity has the richest set of elements in the brownie process, which makes it the clearest illustration of what the combined model reveals.</p>
+    <p>Let's apply the full combined model, SIPOC + ICOM with the Mechanisms refinement, to A2 (Mix Ingredients). This activity has the richest set of elements in the brownie process, which makes it the clearest illustration of what the combined model reveals.</p>
 
     <h3 class="subsection-title">Supplier / Role: Baker + Grocery Store / Pantry</h3>
     <p class="guiding-question">Who is supplying the inputs? Who is performing the activity?</p>
 
     <p>The Supplier for any activity captures two things: who provides the inputs, and who performs the work.</p>
 
-    <p>The <strong>Grocery Store Clerk and Baker</strong> supply the physical ingredients &mdash; brownie mix, eggs, water, and pan. They deliver the raw materials that A2 will consume. If the grocery store is out of eggs, A2 cannot begin.</p>
+    <p>The <strong>Grocery Store Clerk and Baker</strong> supply the physical ingredients, brownie mix, eggs, water, and pan. They deliver the raw materials that A2 will consume. If the grocery store is out of eggs, A2 cannot begin.</p>
 
-    <p>The <strong>Baker</strong> supplies the labor, skill, and judgment required to actually do the mixing. Ingredients alone do not produce batter. Someone has to combine them, in the right proportions, in the right sequence. That person &mdash; the one performing the activity &mdash; is also a Supplier.</p>
+    <p>The <strong>Baker</strong> supplies the labor, skill, and judgment required to actually do the mixing. Ingredients alone do not produce batter. Someone has to combine them, in the right proportions, in the right sequence. That person, the one performing the activity, is also a Supplier.</p>
 
     <p>Both are named. One delivers materials; the other delivers the service.</p>
 
     <h3 class="subsection-title">Inputs: Brownie Mix, Eggs, Water, Pan</h3>
     <p class="guiding-question">What comes into this activity that is transformed or consumed?</p>
 
-    <p>These are the materials that A2 consumes and transforms. Same as the ICOM definition in <a href="article-forest-and-trees-3.html" style="color: var(--olive); font-weight: 700;">Part III</a>. SIPOC does not change what the inputs are &mdash; it adds who is responsible for delivering them.</p>
+    <p>These are the materials that A2 consumes and transforms. Same as the ICOM definition in <a href="article-forest-and-trees-3.html" style="color: var(--olive); font-weight: 700;">Part III</a>. SIPOC does not change what the inputs are, it adds who is responsible for delivering them.</p>
 
     <h3 class="subsection-title">Controls: Recipe, Customer Preference</h3>
     <p class="guiding-question">What outside force constrains the process?</p>
 
-    <p>The recipe governs how much of each ingredient, in what order, combined in what way. Customer Preference governs variations &mdash; more chocolate, less sugar, brownies vs. blondies. Controls are not consumed; they govern. Neither the grocery store nor the baker's family provides a control arrow &mdash; controls come from standards, preferences, and operating norms.</p>
+    <p>The recipe governs how much of each ingredient, in what order, combined in what way. Customer Preference governs variations, more chocolate, less sugar, brownies vs. blondies. Controls are not consumed; they govern. Neither the grocery store nor the baker's family provides a control arrow, controls come from standards, preferences, and operating norms.</p>
 
     <h3 class="subsection-title">Outputs: Brownie Batter, Trash, Greased Pan</h3>
     <p class="guiding-question">What is the output from this activity? What does the supplier deliver?</p>
@@ -715,7 +715,7 @@
     <h3 class="subsection-title">Customer: Baker (performing A3)</h3>
     <p class="guiding-question">Who is the output delivered to? Who is the activity performed for?</p>
 
-    <p>The immediate customer of A2's output is the <strong>Baker who will execute A3 (Bake &amp; Serve Brownies)</strong>. They depend on A2 delivering a correctly prepared batter: the right consistency, right quantity, in a properly prepared pan. If A2 delivers poorly &mdash; wrong consistency, wrong amount, ungreased pan &mdash; A3 will fail even if everything else is perfect.</p>
+    <p>The immediate customer of A2's output is the <strong>Baker who will execute A3 (Bake &amp; Serve Brownies)</strong>. They depend on A2 delivering a correctly prepared batter: the right consistency, right quantity, in a properly prepared pan. If A2 delivers poorly, wrong consistency, wrong amount, ungreased pan, A3 will fail even if everything else is perfect.</p>
 
     <p>In the brownie example that is the same Baker throughout. In a real business process it is often a different person or team, and naming them makes the handoff explicit. That is an internal supplier-customer accountability that a standard L1 SIPOC cannot see.</p>
 
@@ -727,7 +727,7 @@
     <p>With A2 fully mapped, here is how the combined SIPOC + ICOM model looks across all four activities:</p>
 
     <div class="activity-block">
-      <p class="activity-block-title">A1 &mdash; Preheat Oven</p>
+      <p class="activity-block-title">A1, Preheat Oven</p>
       <dl class="activity-dl">
         <dt>Supplier</dt>
         <dd>Oven Operator (performs the activity) + Fuel Provider (provides fuel/electricity)</dd>
@@ -740,14 +740,14 @@
         <dt>Mechanisms</dt>
         <dd>Oven</dd>
         <dt>Customer</dt>
-        <dd>Baker (performing A3 &mdash; depends on the preheated oven)</dd>
+        <dd>Baker (performing A3, depends on the preheated oven)</dd>
         <dt>Problems</dt>
         <dd>Oven runs cool; need to adjust temperature to match expectation</dd>
       </dl>
     </div>
 
     <div class="activity-block">
-      <p class="activity-block-title">A2 &mdash; Mix Ingredients</p>
+      <p class="activity-block-title">A2, Mix Ingredients</p>
       <dl class="activity-dl">
         <dt>Supplier</dt>
         <dd>Baker (performs the activity) + Grocery Store Clerk (provides ingredients)</dd>
@@ -760,14 +760,14 @@
         <dt>Mechanisms</dt>
         <dd>Mixing Bowl &amp; Spoon, Pan</dd>
         <dt>Customer</dt>
-        <dd>Baker (performing A3 &mdash; receives batter + greased pan)</dd>
+        <dd>Baker (performing A3, receives batter + greased pan)</dd>
         <dt>Comments</dt>
-        <dd>Peanut / Nut Allergy Alert &mdash; no ingredient made in a factory with other nuts</dd>
+        <dd>Peanut / Nut Allergy Alert, no ingredient made in a factory with other nuts</dd>
       </dl>
     </div>
 
     <div class="activity-block">
-      <p class="activity-block-title">A3 &mdash; Bake &amp; Serve Brownies</p>
+      <p class="activity-block-title">A3, Bake &amp; Serve Brownies</p>
       <dl class="activity-dl">
         <dt>Supplier</dt>
         <dd>Baker + Oven Operator</dd>
@@ -787,7 +787,7 @@
     </div>
 
     <div class="activity-block">
-      <p class="activity-block-title">A4 &mdash; Cleanup</p>
+      <p class="activity-block-title">A4, Cleanup</p>
       <dl class="activity-dl">
         <dt>Supplier</dt>
         <dd>Baker + Oven Operator</dd>
@@ -804,9 +804,9 @@
       </dl>
     </div>
 
-    <p>Notice what just happened. Each activity now has a named Supplier (the person performing it), a named Customer (the person depending on its output), and a clear set of inputs, outputs, controls, and mechanisms. A4 (Cleanup) is a good example of something that often goes undocumented &mdash; it has real inputs, real outputs, real people responsible, and a real customer (the Baker who needs clean equipment for the next batch). When you leave activities like this off the model, you also leave off the accountability.</p>
+    <p>Notice what just happened. Each activity now has a named Supplier (the person performing it), a named Customer (the person depending on its output), and a clear set of inputs, outputs, controls, and mechanisms. A4 (Cleanup) is a good example of something that often goes undocumented, it has real inputs, real outputs, real people responsible, and a real customer (the Baker who needs clean equipment for the next batch). When you leave activities like this off the model, you also leave off the accountability.</p>
 
-    <p>In this example it is the same Baker throughout &mdash; but the accountability at each handoff is distinct. If you are troubleshooting a bad batch of brownies, you now have a structured accountability map: which Supplier failed to deliver? Which input was wrong? Which control was violated? Which mechanism was unavailable?</p>
+    <p>In this example it is the same Baker throughout, but the accountability at each handoff is distinct. If you are troubleshooting a bad batch of brownies, you now have a structured accountability map: which Supplier failed to deliver? Which input was wrong? Which control was violated? Which mechanism was unavailable?</p>
 
     <p>That is diagnostic power. And it comes from combining two frameworks at every node.</p>
 
@@ -815,7 +815,7 @@
     <!-- ── The Spreadsheet: One Row Per Activity ── -->
     <h2 class="section-title">The Spreadsheet: One Row Per Activity</h2>
 
-    <p>The combined SIPOC + ICOM model is powerful &mdash; but it becomes operational when you put it in a spreadsheet.</p>
+    <p>The combined SIPOC + ICOM model is powerful, but it becomes operational when you put it in a spreadsheet.</p>
 
     <p>Each row in the spreadsheet represents one activity. Each column captures one element of the model. The result is a single view of the entire process in which every activity, every dependency, and every accountability relationship is visible at once.</p>
 
@@ -824,9 +824,9 @@
     <p>Every process model should have at minimum three levels of decomposition:</p>
 
     <ul>
-      <li><strong>L0</strong> &mdash; the Context Diagram: the entire process as a single box, with its external inputs, controls, outputs, and mechanisms</li>
-      <li><strong>L1</strong> &mdash; the major activities inside that box (Preheat Oven, Mix Ingredients, Bake &amp; Serve Brownies, Cleanup)</li>
-      <li><strong>L2</strong> &mdash; the sub-activities within each L1 step (Secure Fuel, Check Oven, Ignite Oven&hellip;)</li>
+      <li><strong>L0</strong>, the Context Diagram: the entire process as a single box, with its external inputs, controls, outputs, and mechanisms</li>
+      <li><strong>L1</strong>, the major activities inside that box (Preheat Oven, Mix Ingredients, Bake &amp; Serve Brownies, Cleanup)</li>
+      <li><strong>L2</strong>, the sub-activities within each L1 step (Secure Fuel, Check Oven, Ignite Oven&hellip;)</li>
     </ul>
 
     <p>Whether you need L3 or deeper depends entirely on scope. For a discrete, localized process like baking brownies, L2 is sufficient. For end-to-end business processes spanning multiple departments, systems, or organizational handoffs, you will need L3 and sometimes L4 or beyond. The purpose of the model is to decompose down to the level where the work can actually be analyzed, assigned, and improved. That level is where the real problems live.</p>
@@ -1085,7 +1085,7 @@
 
     <p>The KPIs and Problems / Pain Points columns are not part of the original IDEF0 or SIPOC frameworks. They are the natural next step: once you know what each activity produces and who depends on it, you can ask how well it performs and where it fails. Those are the columns that connect the structural model to the operational reality of the business.</p>
 
-    <p>This spreadsheet is not a diagram. It is not a swim lane chart. It is not a value stream map. It is a structured data table &mdash; and that means it can be filtered, sorted, analyzed, and extended. Every row is a work unit (an activity within a process, or a process step, within a particular context). Every column is a dimension of inquiry.</p>
+    <p>This spreadsheet is not a diagram. It is not a swim lane chart. It is not a value stream map. It is a structured data table, and that means it can be filtered, sorted, analyzed, and extended. Every row is a work unit (an activity within a process, or a process step, within a particular context). Every column is a dimension of inquiry.</p>
 
     <p>A process that lives in this spreadsheet can be diagnosed, discussed, and improved by any team, without requiring a Visio license, an IDEF0 tool, or a Lean Six Sigma certification (although, the Lean Six Sigma certification is a PLUS!).</p>
 
@@ -1096,11 +1096,11 @@
 
     <p>The traditional IDEF0 practitioner applies ICOMs at every node and produces a rich decomposition diagram. The traditional LSS practitioner builds a SIPOC and produces a stakeholder map. Both are useful. Both are incomplete.</p>
 
-    <p>The IDEF0 decomposition has no accountability &mdash; it can tell you that a brownie-mixing activity needs a recipe and a bowl, but it cannot tell you who is responsible for ensuring the recipe is current, or who gets called when the batter is wrong.</p>
+    <p>The IDEF0 decomposition has no accountability, it can tell you that a brownie-mixing activity needs a recipe and a bowl, but it cannot tell you who is responsible for ensuring the recipe is current, or who gets called when the batter is wrong.</p>
 
-    <p>The SIPOC stakeholder map has no structure &mdash; it can tell you that the Grocery Store is a supplier and the Baker's Family is a customer, but it cannot tell you which activities inside the process are failing and why.</p>
+    <p>The SIPOC stakeholder map has no structure, it can tell you that the Grocery Store is a supplier and the Baker's Family is a customer, but it cannot tell you which activities inside the process are failing and why.</p>
 
-    <p>The combined model closes both gaps. Applied at every node, it produces a complete picture of any process: its structure, its governance, its accountability, and its performance potential &mdash; all visible in a single spreadsheet.</p>
+    <p>The combined model closes both gaps. Applied at every node, it produces a complete picture of any process: its structure, its governance, its accountability, and its performance potential, all visible in a single spreadsheet.</p>
 
     <p>That is the model. In Part VI, we will add the final layer: quantifying it.</p>
 
@@ -1111,11 +1111,11 @@
 
     <p>Applying SIPOC at every activity node, not just at the top level, reveals internal supplier-customer relationships that the traditional L1 SIPOC cannot see. Combining it with ICOM at every node gives each activity a complete analytical profile: who provides, what flows in, what governs it, what produces it, what enables it, and who depends on the output.</p>
 
-    <p>The Mechanisms Redefinition &mdash; placing people in Supplier and Customer, leaving only tools and systems in Mechanisms &mdash; sharpens the model by ensuring every element has exactly one home.</p>
+    <p>The Mechanisms Redefinition, placing people in Supplier and Customer, leaving only tools and systems in Mechanisms, sharpens the model by ensuring every element has exactly one home.</p>
 
-    <p>The spreadsheet is not a visualization tool. It is the operational artifact &mdash; one row per activity at every level of decomposition, all fields in a single view, extensible with Critical KPIs and Problems. L1 gives you the high-level picture. L2 gives you the work. L3 and beyond give you the precision a large end-to-end process requires. It makes the model actionable for any team without requiring specialized software.</p>
+    <p>The spreadsheet is not a visualization tool. It is the operational artifact, one row per activity at every level of decomposition, all fields in a single view, extensible with Critical KPIs and Problems. L1 gives you the high-level picture. L2 gives you the work. L3 and beyond give you the precision a large end-to-end process requires. It makes the model actionable for any team without requiring specialized software.</p>
 
-    <p>In Part VI, we will add the final dimension: Value Stream Analysis. Each activity can be quantified &mdash; cycle time, value-added time, wait time, defect rate. From those numbers we can calculate two derived metrics that tell you, objectively, how well the whole process performs and where the waste is hiding.</p>
+    <p>In Part VI, we will add the final dimension: Value Stream Analysis. Each activity can be quantified, cycle time, value-added time, wait time, defect rate. From those numbers we can calculate two derived metrics that tell you, objectively, how well the whole process performs and where the waste is hiding.</p>
 
     <p style="font-style: italic; color: rgba(44,46,47,0.58); margin-top: 2em;">If you found this article informative, please like it and share it with your network. I'd like to hear from you in the comments and address any questions you might have.</p>
 
@@ -1127,7 +1127,7 @@
       </a>
       <a href="article-forest-and-trees-6.html" class="series-nav-card">
         <p class="series-nav-label">Part VI &rarr;</p>
-        <p class="series-nav-title">Value Stream Analysis &mdash; Quantifying the Model</p>
+        <p class="series-nav-title">Value Stream Analysis, Quantifying the Model</p>
       </a>
     </div>
 
@@ -1138,7 +1138,7 @@
 
   <footer class="page-footer">
     <p>
-      <a href="article-forest-and-trees-4.html">&larr; Part IV: SIPOC &mdash; Adding Accountability</a>
+      <a href="article-forest-and-trees-4.html">&larr; Part IV: SIPOC, Adding Accountability</a>
       <span class="footer-div">|</span>
       <a href="articles.html">All Writing</a>
       <span class="footer-div">|</span>
