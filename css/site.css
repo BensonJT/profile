@@ -753,3 +753,371 @@ h3 {
     color: rgba(240, 234, 214, 0.45);
     padding-bottom: var(--s-8);
 }
+
+/* ---------- 16. PAGE HEADER (interior pages) ---------- */
+.page-head {
+    padding-block: var(--s-16) var(--s-12);
+}
+.page-head h1 {
+    max-width: 18ch;
+    margin-bottom: var(--s-6);
+}
+.page-head .lede {
+    max-width: 62ch;
+}
+
+/* ---------- 17. FIGURES ---------- */
+.fig {
+    margin-block: var(--s-8);
+}
+.fig__frame {
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: #fff;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.fig__frame img {
+    min-width: 720px;
+}
+.fig__frame--fit img {
+    min-width: 0;
+    width: 100%;
+}
+.fig figcaption {
+    margin-top: var(--s-3);
+    font-size: var(--t-sm);
+    line-height: 1.6;
+    color: var(--fg-muted);
+    max-width: var(--measure);
+}
+.fig figcaption b {
+    color: var(--fg);
+    font-weight: 600;
+}
+.fig__hint {
+    font-size: var(--t-xs);
+    color: var(--fg-muted);
+    margin-top: var(--s-2);
+    font-style: italic;
+}
+
+/* ---------- 18. BEATS (numbered sequence) ---------- */
+.beat {
+    display: grid;
+    gap: var(--s-4);
+    padding-block: var(--s-12);
+}
+.beat + .beat {
+    border-top: 1px solid var(--rule);
+}
+.beat__n {
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+}
+.beat h3 {
+    font-size: var(--t-2xl);
+    max-width: 24ch;
+    text-wrap: balance;
+}
+.beat p {
+    max-width: var(--measure);
+    color: var(--fg-muted);
+}
+.beat p strong {
+    color: var(--fg);
+    font-weight: 600;
+}
+
+/* ---------- 19. GALLERY ---------- */
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+}
+@media (min-width: 700px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1000px) {
+    .gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.gallery figure {
+    margin: 0;
+}
+.gallery a {
+    display: block;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: #fff;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+}
+.gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+}
+.gallery figcaption {
+    margin-top: var(--s-2);
+    font-size: var(--t-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+}
+.gallery figcaption span {
+    display: block;
+    margin-top: 2px;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    font-weight: 400;
+    color: var(--fg-muted);
+}
+
+/* ---------- 20. SPEC LIST ---------- */
+.spec {
+    display: grid;
+    gap: 0;
+    margin-top: var(--s-8);
+}
+.spec div {
+    display: grid;
+    gap: var(--s-1);
+    padding-block: var(--s-3);
+    border-top: 1px solid var(--rule);
+}
+@media (min-width: 640px) {
+    .spec div {
+        grid-template-columns: 12rem 1fr;
+        gap: var(--s-6);
+    }
+}
+.spec dt {
+    font-size: var(--t-sm);
+    font-weight: 600;
+    color: var(--accent);
+}
+.spec dd {
+    font-size: var(--t-sm);
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0;
+}
+
+/* ---------- 21. CALLOUT ---------- */
+.callout {
+    border-left: 2px solid var(--accent);
+    padding: var(--s-4) 0 var(--s-4) var(--s-6);
+    max-width: var(--measure);
+    margin-block: var(--s-8);
+}
+.callout p {
+    font-size: var(--t-sm);
+    line-height: 1.7;
+    color: var(--fg-muted);
+}
+.callout p + p {
+    margin-top: var(--s-3);
+}
+.callout strong {
+    color: var(--fg);
+    font-weight: 600;
+}
+
+/* ---------- 22. RESUME ---------- */
+.cv {
+    --measure: 72ch;
+}
+.cv__head {
+    padding-block: var(--s-16) var(--s-8);
+    border-bottom: 1px solid var(--rule);
+}
+.cv__name {
+    font-size: var(--t-4xl);
+    margin-bottom: var(--s-3);
+}
+.cv__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-4);
+    font-size: var(--t-sm);
+    color: var(--fg-muted);
+}
+.cv__meta a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+}
+
+.cv__opening {
+    padding-block: var(--s-12);
+    border-bottom: 1px solid var(--rule);
+}
+.cv__opening p {
+    font-size: var(--t-md);
+    line-height: 1.7;
+    max-width: var(--measure);
+}
+.cv__opening p + p {
+    margin-top: var(--s-4);
+}
+.cv__opening strong {
+    font-weight: 600;
+}
+
+.cv__sec {
+    padding-block: var(--s-12);
+    border-bottom: 1px solid var(--rule);
+}
+.cv__sec > h2 {
+    font-family: var(--font-text);
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--s-8);
+}
+
+.role {
+    display: grid;
+    gap: var(--s-4);
+}
+.role + .role {
+    margin-top: var(--s-12);
+    padding-top: var(--s-12);
+    border-top: 1px solid var(--rule);
+}
+.role__head {
+    display: grid;
+    gap: var(--s-1);
+}
+@media (min-width: 760px) {
+    .role__head {
+        grid-template-columns: 1fr auto;
+        align-items: baseline;
+        gap: var(--s-6);
+    }
+}
+.role__title {
+    font-family: var(--font-display);
+    font-size: var(--t-xl);
+    line-height: 1.15;
+}
+.role__where {
+    font-size: var(--t-sm);
+    color: var(--fg-muted);
+}
+.role__when {
+    font-size: var(--t-sm);
+    color: var(--fg-muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+.role__body {
+    display: grid;
+    gap: var(--s-3);
+    max-width: var(--measure);
+}
+.role__body p {
+    font-size: var(--t-sm);
+    line-height: 1.75;
+    color: var(--fg-muted);
+}
+.role__body p.friction {
+    color: var(--fg);
+}
+.role__body strong {
+    color: var(--fg);
+    font-weight: 600;
+}
+
+.outcomes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+    margin-top: var(--s-2);
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--rule);
+}
+@media (min-width: 620px) {
+    .outcomes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.outcomes div {
+    display: grid;
+    gap: var(--s-1);
+    align-content: start;
+}
+.outcomes dt {
+    font-size: var(--t-lg);
+    font-weight: 600;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums lining-nums;
+    letter-spacing: -0.015em;
+}
+.outcomes dd {
+    font-size: var(--t-xs);
+    line-height: 1.5;
+    color: var(--fg-muted);
+    margin: 0;
+}
+
+.chron {
+    display: grid;
+    gap: 0;
+    max-width: var(--measure);
+}
+.chron div {
+    display: grid;
+    gap: var(--s-1);
+    padding-block: var(--s-3);
+    border-top: 1px solid var(--rule);
+    font-size: var(--t-sm);
+}
+@media (min-width: 620px) {
+    .chron div {
+        grid-template-columns: 11rem 1fr;
+        gap: var(--s-6);
+    }
+}
+.chron dt {
+    color: var(--fg-muted);
+    font-variant-numeric: tabular-nums;
+}
+.chron dd {
+    margin: 0;
+}
+.chron dd span {
+    color: var(--fg-muted);
+}
+
+@media print {
+    .nav,
+    .foot,
+    .cv__print-hide {
+        display: none !important;
+    }
+    body {
+        background: #fff;
+        color: #000;
+        font-size: 10.5pt;
+    }
+    .cv__sec,
+    .role + .role {
+        break-inside: avoid;
+    }
+    a {
+        text-decoration: none;
+    }
+}

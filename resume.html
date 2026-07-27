@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Jeffrey Benson — Résumé</title>
+        <meta
+            name="description"
+            content="Thirty one years, eight domains, every one unfamiliar on arrival. Quality systems, IT asset management, enterprise security, FP&amp;A, capital governance, field workforce capacity."
+        />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="css/site.css" />
+    </head>
+
+    <body>
+        <nav class="nav cv__print-hide">
+            <div class="wrap">
+                <div class="nav__inner">
+                    <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+                    <div class="nav__links">
+                        <a href="work.html">Work</a>
+                        <a href="method.html">Method</a>
+                        <a href="systems.html">Systems</a>
+                        <a href="articles.html">Notebook</a>
+                        <a href="about.html">About</a>
+                    </div>
+                    <a class="btn btn--primary nav__cta" href="Jeffrey_Benson_Resume.pdf">Download PDF</a>
+                    <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">
+                        Menu
+                    </button>
+                </div>
+                <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+                    <a href="work.html">Work</a>
+                    <a href="method.html">Method</a>
+                    <a href="systems.html">Systems</a>
+                    <a href="articles.html">Notebook</a>
+                    <a href="about.html">About</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="wrap cv">
+            <!-- ══ HEAD ══ -->
+            <header class="cv__head">
+                <h1 class="cv__name">Jeffrey Benson</h1>
+                <div class="cv__meta">
+                    <span>Business process optimization &middot; Operational excellence &middot; Data engineering</span>
+                    <span>Lovettsville, Virginia</span>
+                    <a href="https://www.linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer"
+                        >LinkedIn</a
+                    >
+                    <a href="https://github.com/BensonJT" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+            </header>
+
+            <!-- ══ OPENING ══ -->
+            <section class="cv__opening">
+                <p>
+                    Thirty one years. Eight domains, every one unfamiliar on arrival: quality systems, capital
+                    governance, corporate FP&amp;A, IT asset management, enterprise security migration, IT
+                    modernization, field workforce capacity, and most recently equity research systems.
+                </p>
+                <p>
+                    <strong>The assignment has always been the same.</strong> Go into something complicated that nobody
+                    fully owns. Find out what is actually happening, not what the three year old presentation says is
+                    happening. Quantify what the gap is costing. Then build something measurably better that keeps
+                    running after I leave.
+                </p>
+                <p>
+                    I am a Lean Six Sigma Black Belt who writes production Python and SQL. That combination is the
+                    point: the person diagnosing the problem and the person building the fix are the same person, so
+                    nothing is lost in the handoff.
+                </p>
+            </section>
+
+            <!-- ══ CURRENT ══ -->
+            <section class="cv__sec">
+                <h2>Currently</h2>
+
+                <article class="role">
+                    <div class="role__head">
+                        <div>
+                            <h3 class="role__title">Principal Consultant</h3>
+                            <p class="role__where">Cornerstone Solutions &middot; Lovettsville, VA</p>
+                        </div>
+                        <p class="role__when">Dec 2025 &ndash; Present</p>
+                    </div>
+                    <div class="role__body">
+                        <p class="friction">
+                            Cornerstone is the vehicle for a contracted engagement and for the tooling that came out of
+                            it. Through the first half of 2026 it was a practice being stood up while I was in the
+                            market and deliberately building the AI-assisted delivery skills the work now runs on. The
+                            first client engagement began in July.
+                        </p>
+                        <p>
+                            <strong>Meridian</strong> (client engagement, in build). An AI-assisted research system for
+                            a private investment firm. I ran discovery first: requirements, evaluation of twelve
+                            candidate data providers, and the system architecture. I modeled the client&rsquo;s
+                            operating process before designing anything, and that model became the architecture&rsquo;s
+                            top level decomposition, so the build is structured by the process rather than the reverse.
+                            Now in production build: twelve ingestion sources into PostgreSQL, an analytics layer, and a
+                            reporting surface. I cut the nightly transform window from seven hours to four by measuring
+                            where the time actually went, and I reverted a vectorization approach after measuring it
+                            3.3&times; slower than what it replaced.
+                        </p>
+                        <p>
+                            <strong>Forester</strong> (product, seventeen sprints, not publicly launched). The process
+                            modeling method I have used for three decades, encoded as software. One captured model
+                            generates six industry standard diagram languages automatically at every level of the
+                            decomposition, including BPMN 2.0 that opens in Camunda with layout intact. Thirty five
+                            metrics compute across six stakeholder lenses. A methodology coach detects contradictions
+                            between nodes and proposes ranked, one click resolutions.
+                        </p>
+                        <p>
+                            <strong>Benson Academy</strong> (production application). A full stack Next.js application,
+                            built solo and live, running a human in the loop AI content pipeline: a grounded knowledge
+                            base as the source of truth, generation, and a mandatory human review gate before anything
+                            publishes.
+                        </p>
+                        <dl class="outcomes">
+                            <div>
+                                <dt>7h &rarr; 4h</dt>
+                                <dd>Nightly transform window, measured rather than assumed</dd>
+                            </div>
+                            <div>
+                                <dt>6 languages</dt>
+                                <dd>Generated from one captured model, at every decomposition level</dd>
+                            </div>
+                            <div>
+                                <dt>~80%</dt>
+                                <dd>Reduction in research to publish cycle time, Benson Academy</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </article>
+            </section>
+
+            <!-- ══ SELECTED ENGAGEMENTS ══ -->
+            <section class="cv__sec">
+                <h2>Selected engagements &middot; Verizon, 1994&ndash;2025</h2>
+
+                <article class="role">
+                    <div class="role__head">
+                        <div>
+                            <h3 class="role__title">The capacity nobody could see</h3>
+                            <p class="role__where">Senior Manager, Global Network Operations</p>
+                        </div>
+                        <p class="role__when">2019 &ndash; 2025</p>
+                    </div>
+                    <div class="role__body">
+                        <p class="friction">
+                            A thousand person field organization was carrying overtime while skills sat idle elsewhere
+                            in the same operation, and nobody could see it, because the work area map underneath had
+                            grown without governance. It was incomplete, non-contiguous, and redundant. A single ZIP
+                            code could appear in six different areas. Dispatch automation was running on geography that
+                            did not exist.
+                        </p>
+                        <p>
+                            I rebuilt the foundation from zero with the field supervisors, who carried the local
+                            knowledge no data model could replace: all <strong>41,326 ZIP codes</strong>, contiguous,
+                            each one in exactly one area. That 1:1 constraint is what made everything downstream
+                            possible. Then I volunteered to build the thing the clean foundation now allowed, a
+                            Force-to-Load capacity model in Python and SQL that mapped skill supply against demand by
+                            geography and shift.
+                        </p>
+                        <dl class="outcomes">
+                            <div>
+                                <dt>$18&ndash;22M</dt>
+                                <dd>Hidden capacity surfaced, converted into a prioritized cross-training roadmap</dd>
+                            </div>
+                            <div>
+                                <dt>50 FTE</dt>
+                                <dd>Approved on the data-backed business case</dd>
+                            </div>
+                            <div>
+                                <dt>+10%</dt>
+                                <dd>Automated dispatch accuracy, from the foundation work alone</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </article>
+
+                <article class="role">
+                    <div class="role__head">
+                        <div>
+                            <h3 class="role__title">Governing a $2.8B portfolio without adding headcount</h3>
+                            <p class="role__where">Senior Manager, Global Network Management</p>
+                        </div>
+                        <p class="role__when">2019 &ndash; 2025</p>
+                    </div>
+                    <div class="role__body">
+                        <p class="friction">
+                            Transformation portfolio reporting ran on manual reconciliation across disconnected
+                            spreadsheets. Every month was a scramble, and the forecasts arrived too late to change any
+                            decision.
+                        </p>
+                        <p>
+                            I built the financial governance layer as a Python and SQL pipeline that reconciled actuals
+                            automatically and fed executive reporting directly. Separately, I established a forensic
+                            review of vendor consumption against contract terms, which reframed an apparent productivity
+                            problem as a contract structure problem.
+                        </p>
+                        <dl class="outcomes">
+                            <div>
+                                <dt>12.8&times;</dt>
+                                <dd>Value multiple: $19.5M in directly attributable savings on $1.525M invested</dd>
+                            </div>
+                            <div>
+                                <dt>200+ hrs</dt>
+                                <dd>Manual effort eliminated per user annually, at 100% reporting accuracy</dd>
+                            </div>
+                            <div>
+                                <dt>$2&ndash;10M</dt>
+                                <dd>Non-productive vendor spend isolated, scalable across similar contracts</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </article>
+
+                <article class="role">
+                    <div class="role__head">
+                        <div>
+                            <h3 class="role__title">The $40M rationalization</h3>
+                            <p class="role__where">Manager, IT Asset Management &middot; Black Belt on the program</p>
+                        </div>
+                        <p class="role__when">2013 &ndash; 2019</p>
+                    </div>
+                    <div class="role__body">
+                        <p class="friction">
+                            An enterprise expense mandate arrived with the usual reflex: freeze hiring, find headcount
+                            to cut. But in an IT asset lifecycle that had been running long enough, the waste had become
+                            invisible. Forensic decomposition found 400 distinct activities, 110 handoffs, and 64
+                            interconnected systems.
+                        </p>
+                        <p>
+                            Rather than redesigning in isolation, we co-facilitated a Work Out session that ran from the
+                            data center floor to the SVP level, so the people who would have to live in the new model
+                            helped build it. Forty three percent of the critical path turned out to exist because it had
+                            always existed, not because it added value.
+                        </p>
+                        <dl class="outcomes">
+                            <div>
+                                <dt>$40M</dt>
+                                <dd>Annual expense reduction, including 5,000 legacy servers decommissioned</dd>
+                            </div>
+                            <div>
+                                <dt>82%</dt>
+                                <dd>Faster asset acquisition, from 17+ weeks to under three</dd>
+                            </div>
+                            <div>
+                                <dt>8</dt>
+                                <dd>Green Belts mentored through full certification</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </article>
+
+                <article class="role">
+                    <div class="role__head">
+                        <div>
+                            <h3 class="role__title">Fifteen servers a week to five hundred</h3>
+                            <p class="role__where">Manager, Enterprise Security Migration</p>
+                        </div>
+                        <p class="role__when">2013 &ndash; 2019</p>
+                    </div>
+                    <div class="role__body">
+                        <p class="friction">
+                            A 30,000 server security migration was moving at fifteen servers a week. Every executive
+                            deadline was unreachable at that pace. The people were working hard; the system they were
+                            working inside was the constraint. Data lived in 27 disconnected sources, so problems
+                            surfaced during change windows instead of before them.
+                        </p>
+                        <p>
+                            A DMAIC rebuild pulled 27 data sources into one view of server readiness and re-sequenced
+                            the workflow into a pull-based pre-qualify, schedule, implement order, so failures were
+                            found and fixed before the window rather than inside it.
+                        </p>
+                        <dl class="outcomes">
+                            <div>
+                                <dt>33&times;</dt>
+                                <dd>Peak deployment velocity, 15 to 500 servers per week</dd>
+                            </div>
+                            <div>
+                                <dt>27</dt>
+                                <dd>Data sources harmonized into a single operational picture</dd>
+                            </div>
+                            <div>
+                                <dt>84%</dt>
+                                <dd>Reduction in hardware holding time, asset utilization to 80%</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </article>
+
+                <article class="role">
+                    <div class="role__head">
+                        <div>
+                            <h3 class="role__title">When clarity turned out to be the culture fix</h3>
+                            <p class="role__where">Senior Member of Technical Staff, 24&times;7 Technical Operations</p>
+                        </div>
+                        <p class="role__when">Early career</p>
+                    </div>
+                    <div class="role__body">
+                        <p class="friction">
+                            A skilled, motivated operations team was losing half its people every year. It was not a pay
+                            problem and it was not a culture problem. Nobody had ever documented how the work was
+                            supposed to be done, so every technician was guessing their way through mission critical
+                            tasks and carrying the quiet exhaustion of never being sure they were right.
+                        </p>
+                        <p>
+                            We built an ISO 9000 quality system from the ground up by walking the technicians through
+                            their actual daily work: <strong>143 standard operating procedures</strong>, process flows,
+                            and decision trees for the edge cases, every one refined through their input, made
+                            accessible through a knowledge management system in the operating environment.
+                        </p>
+                        <dl class="outcomes">
+                            <div>
+                                <dt>50% &rarr; 1%</dt>
+                                <dd>Annual attrition</dd>
+                            </div>
+                            <div>
+                                <dt>86%</dt>
+                                <dd>Reduction in procedural errors; critical outages down 80%</dd>
+                            </div>
+                            <div>
+                                <dt>First time</dt>
+                                <dd>All availability targets met, in the group&rsquo;s history</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </article>
+
+                <article class="role">
+                    <div class="role__head">
+                        <div>
+                            <h3 class="role__title">Financial governance at $3B</h3>
+                            <p class="role__where">Senior Member of Technical Staff, Corporate FP&amp;A</p>
+                        </div>
+                        <p class="role__when">Early career</p>
+                    </div>
+                    <div class="role__body">
+                        <p class="friction">
+                            During a merger integration, leadership needed near real time control over billions in data
+                            processing cash flows. The existing process was manual reconciliation with no automated way
+                            to produce a forward-looking view that merged actuals with estimates.
+                        </p>
+                        <p>
+                            I re-engineered the FP&amp;A process and built the automation behind it, then architected a
+                            data integrity governance layer in SQL that made the synergy numbers defensible.
+                        </p>
+                        <dl class="outcomes">
+                            <div>
+                                <dt>$500M</dt>
+                                <dd>Merger synergy savings validated across a $3B opex portfolio</dd>
+                            </div>
+                            <div>
+                                <dt>$4.2M</dt>
+                                <dd>Annual productivity value; monthly reconciliation cycle down 70%</dd>
+                            </div>
+                            <div>
+                                <dt>450%</dt>
+                                <dd>Process capability improvement</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </article>
+            </section>
+
+            <!-- ══ CHRONOLOGY ══ -->
+            <section class="cv__sec">
+                <h2>Chronology</h2>
+                <dl class="chron">
+                    <div>
+                        <dt>Dec 2025 &ndash; Present</dt>
+                        <dd>Principal Consultant <span>&middot; Cornerstone Solutions</span></dd>
+                    </div>
+                    <div>
+                        <dt>Feb 2019 &ndash; Dec 2025</dt>
+                        <dd>
+                            Senior Manager
+                            <span>&middot; Verizon, Global Network Operations and Global Network Management</span>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Jan 2013 &ndash; Jan 2019</dt>
+                        <dd>
+                            Manager
+                            <span>&middot; Verizon, IT Asset Management, Enterprise Security, IT Modernization</span>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>1994 &ndash; 2012</dt>
+                        <dd>
+                            Senior Member of Technical Staff and earlier roles
+                            <span
+                                >&middot; Bell Atlantic and Verizon: technical operations, data center capital planning,
+                                corporate FP&amp;A, release management</span
+                            >
+                        </dd>
+                    </div>
+                </dl>
+                <p class="role__body" style="margin-top: var(--s-6)">
+                    <span class="chron-note"
+                        >One durable artifact from that period worth naming: an application release process I designed
+                        that governed <strong>40,000+ IT changes over twenty years</strong>, increasing team capacity
+                        300% while sustaining above 99.90% availability.</span
+                    >
+                </p>
+            </section>
+
+            <!-- ══ CREDENTIALS ══ -->
+            <section class="cv__sec">
+                <h2>Credentials</h2>
+                <dl class="chron">
+                    <div>
+                        <dt>Education</dt>
+                        <dd>
+                            M.A. Organizational Management, University of Phoenix<br />
+                            B.A. Computer Systems &amp; Psychology, Grove City College
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Certifications</dt>
+                        <dd>
+                            Lean Six Sigma Black Belt &middot; Professional Scrum Master (PSM I) &middot; ITIL v3
+                            Service Management &middot; Master&rsquo;s Certificate, Project Management (PMBOK)
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Technical</dt>
+                        <dd>
+                            Python (pandas, NumPy) &middot; SQL (CTEs, window functions, ETL) &middot; PostgreSQL
+                            &middot; GenAI orchestration and agent workflows &middot; Grafana, Tableau &middot;
+                            ServiceNow, SAP/PeopleSoft, Oracle DB, Jira
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Methods</dt>
+                        <dd>
+                            DMAIC &middot; IDEF0 and SIPOC decomposition &middot; Value stream analysis &middot; ISO
+                            9000 &middot; ADKAR change management &middot; Agile/Scrum &middot; CMM/CMMI
+                        </dd>
+                    </div>
+                </dl>
+            </section>
+
+            <!-- ══ HONEST NOTE ══ -->
+            <section class="cv__sec">
+                <h2>One thing worth saying plainly</h2>
+                <div class="role__body">
+                    <p class="friction">
+                        The ideas, the judgment, and the standards are mine. AI helps me articulate and build faster
+                        than I could alone.
+                    </p>
+                    <p>
+                        I am not a software engineer and I am not going to pretend to be one. I learned data engineering
+                        the long way, self taught, over about fifteen years, and I have written a great deal of
+                        production SQL and Python. What I did not do is become an architect. So on Forester and Meridian
+                        I bring the problem, the method, and the judgment about whether the answer is right.
+                    </p>
+                    <p>
+                        <strong
+                            >That division of labor is not a caveat. It is why one person can now ship what used to take
+                            a team.</strong
+                        >
+                    </p>
+                </div>
+            </section>
+
+            <section class="cv__sec cv__print-hide" style="border-bottom: 0">
+                <div class="hero__actions">
+                    <a
+                        class="btn btn--primary"
+                        href="https://www.linkedin.com/in/jeffreytbenson/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Start a conversation</a
+                    >
+                    <a class="btn btn--ghost" href="Jeffrey_Benson_Resume.pdf">Download the ATS version (PDF)</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="on-ink foot cv__print-hide">
+            <div class="wrap">
+                <p class="foot__fine" style="padding-top: var(--s-8)">
+                    Lovettsville, Virginia. Contact through LinkedIn.
+                </p>
+            </div>
+        </footer>
+
+        <script src="js/site.js" defer></script>
+    </body>
+</html>
