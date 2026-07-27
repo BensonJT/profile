@@ -1,27 +1,22 @@
+/* Author card — single source for every article page.
+   Each article carries only <div id="author-card"></div>; all markup lives
+   here and all styling lives in css/article.css under .author-card.
+   Change it once, every article updates. */
 (function () {
-  var placeholder = document.getElementById('author-card');
-  if (!placeholder) return;
+    var mount = document.getElementById("author-card");
+    if (!mount) return;
 
-  placeholder.innerHTML = [
-    '<div style="background:#fff;border-left:4px solid var(--gold);border-radius:0 6px 6px 0;',
-    'padding:28px 32px;margin:48px 0 0;display:flex;align-items:center;gap:24px;',
-    'box-shadow:0 2px 10px rgba(0,0,0,0.06);">',
-      '<img src="img/Gemini_Headshot.webp" alt="Jeffrey Benson"',
-      ' style="width:72px;height:72px;border-radius:50%;object-fit:cover;',
-      'flex-shrink:0;border:2px solid var(--gold);">',
-      '<div>',
-        '<p style="font-size:1rem;font-weight:700;color:var(--charcoal);margin-bottom:4px;">Jeffrey Benson</p>',
-        '<p style="font-size:0.85rem;color:rgba(44,46,47,0.6);line-height:1.5;margin-bottom:8px;">',
-          'Principal, Cornerstone Solutions &nbsp;&middot;&nbsp; Lean Six Sigma Black Belt',
-        '</p>',
-        '<p style="font-size:0.9rem;font-style:italic;color:var(--olive);margin-bottom:8px;">',
-          'Let\'s build something better, together.',
-        '</p>',
-        '<a href="https://www.linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer"',
-        ' style="color:var(--gold);text-decoration:none;font-size:0.82rem;font-weight:700;">',
-          'Connect on LinkedIn &rarr;',
-        '</a>',
-      '</div>',
-    '</div>'
-  ].join('');
+    mount.className = "author-card";
+    mount.innerHTML = [
+        '<img class="author-card__photo" src="img/headshot_jb_sm.webp" width="400" height="400"',
+        ' loading="lazy" decoding="async" alt="Jeffrey Benson">',
+        '<div class="author-card__body">',
+        '<p class="author-card__name">Jeffrey Benson</p>',
+        '<p class="author-card__role">Principal, Cornerstone Solutions',
+        '<span class="author-card__dot">&middot;</span>Lean Six Sigma Black Belt</p>',
+        '<p class="author-card__line">Let&rsquo;s build something better, together.</p>',
+        '<a class="author-card__link" href="https://www.linkedin.com/in/jeffreytbenson/"',
+        ' target="_blank" rel="noopener noreferrer">Connect on LinkedIn &rarr;</a>',
+        "</div>",
+    ].join("");
 })();
