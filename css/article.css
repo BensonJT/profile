@@ -482,6 +482,10 @@ body {
     overflow-x: clip;
 }
 
+/* Wide diagrams break out of the 68ch reading measure to 80% of the viewport,
+   centered. Uses 80vw rather than 100vw so the scrollbar can never cause
+   overflow, and only above 900px, below which the reading column is already
+   wider than 80vw. */
 .article-image-wide,
 .diagram-image-wide {
     width: 100%;
@@ -489,6 +493,21 @@ body {
     margin-left: 0;
     margin-right: 0;
     left: auto;
+}
+@media (min-width: 900px) {
+    .article-image-wide,
+    .diagram-image-wide {
+        width: 80vw;
+        max-width: 80vw;
+        margin-inline: calc(50% - 40vw);
+    }
+    .article-image-wide + .image-caption,
+    .diagram-image-wide + .image-caption {
+        width: 80vw;
+        margin-inline: calc(50% - 40vw);
+        text-align: center;
+        max-width: 80vw;
+    }
 }
 
 /* Any wide table scrolls inside its own box */
@@ -523,4 +542,99 @@ body {
 .tiles > *,
 .cards > * {
     min-width: 0;
+}
+
+/* ============================================================
+   DARK BLOCKS: give them a light text color
+
+   Several of these set a dark background but never set a color, so their
+   paragraphs inherited charcoal from body and rendered charcoal-on-charcoal.
+   That is a pre-existing bug, visible in article-automate-mess where the
+   bold words carry hand-patched inline vellum and the surrounding prose does
+   not. Setting the color on the block fixes every child at once; the eyebrow
+   and accent rules inside still win on specificity.
+   ============================================================ */
+.act-id,
+.closing-quote,
+.flow-callout,
+.formula-pill,
+.id-group,
+.idea-num,
+.lead-stat,
+.pert-block,
+.series-callout,
+.series-coming,
+.sipoc-letter,
+.takeaway-block {
+    color: var(--vellum);
+}
+.act-id :is(p, li, strong, b, em, i, td, th),
+.closing-quote :is(p, li, strong, b, em, i, td, th),
+.flow-callout :is(p, li, strong, b, em, i, td, th),
+.formula-pill :is(p, li, strong, b, em, i, td, th),
+.id-group :is(p, li, strong, b, em, i, td, th),
+.idea-num :is(p, li, strong, b, em, i, td, th),
+.lead-stat :is(p, li, strong, b, em, i, td, th),
+.pert-block :is(p, li, strong, b, em, i, td, th),
+.series-callout :is(p, li, strong, b, em, i, td, th),
+.series-coming :is(p, li, strong, b, em, i, td, th),
+.sipoc-letter :is(p, li, strong, b, em, i, td, th),
+.takeaway-block :is(p, li, strong, b, em, i, td, th) {
+    color: inherit;
+}
+/* .closing-quote is restyled as a light-background pull quote elsewhere,
+   so it keeps the body color rather than vellum */
+.closing-quote,
+.closing-quote :is(p, li, strong, b, em, i) {
+    color: var(--fg);
+}
+
+/* ============================================================
+   WIDE TABLES: centered on the viewport, natural width, capped at 80vw
+
+   Deliberately NOT forced to 80vw. Most of these tables are narrower than
+   that, and stretching a 660px table across 1150px of space left-aligns its
+   content inside a mostly empty block, which reads worse than leaving it in
+   the reading column. width:auto lets each table take its natural size;
+   left/translate centers it on the viewport regardless of the narrow parent;
+   max-width caps the genuinely wide ones.
+   ============================================================ */
+@media (min-width: 900px) {
+    .barrier-table,
+    .adkar-table,
+    .summary-table,
+    .reference-table,
+    .milestone-table,
+    .jit-table {
+        display: table;
+        width: auto;
+        max-width: 80vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-inline: 0;
+    }
+    /* Wrapped tables: the wrapper breaks out and scrolls; the table centers
+       inside it at its natural width.
+       display:block made the table BOX full width while its content stayed
+       left, which reads as off-center. inline-table shrinks the box to its
+       content, and text-align on the wrapper then centers it reliably even
+       when the wrapper is a scroll container. */
+    .process-table-wrap {
+        width: 80vw;
+        max-width: 80vw;
+        margin-inline: calc(50% - 40vw);
+        text-align: center;
+    }
+    .process-table-wrap > table,
+    .process-table-wrap > .process-table {
+        display: inline-table;
+        width: auto;
+        max-width: 100%;
+        text-align: left;
+        position: static;
+        left: auto;
+        transform: none;
+        margin-inline: 0;
+    }
 }
