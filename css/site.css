@@ -698,8 +698,21 @@ h3 {
     display: grid;
     gap: var(--s-3);
 }
-@media (min-width: 700px) {
+@media (min-width: 620px) {
     .decomp__row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 900px) {
+    .decomp__row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.decomp__row--l2 {
+    grid-template-columns: 1fr;
+}
+@media (min-width: 620px) {
+    .decomp__row--l2 {
         grid-template-columns: repeat(3, 1fr);
     }
 }
