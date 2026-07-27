@@ -1134,3 +1134,8 @@ h3 {
         text-decoration: none;
     }
 }
+
+/* First role on a page has no preceding sibling, so it needs its own top space */
+.cv > .role:first-of-type {
+    margin-top: var(--s-16);
+}
