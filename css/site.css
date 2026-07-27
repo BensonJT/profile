@@ -578,8 +578,8 @@ h3 {
 }
 @media (min-width: 780px) {
     .tiles {
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--s-6);
+        grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+        gap: var(--s-8) var(--s-6);
     }
 }
 .tiles--2 {

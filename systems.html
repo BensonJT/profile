@@ -328,9 +328,9 @@
 
                 <div class="role__body" style="max-width: 64ch">
                     <p class="friction">
-                        An AI-assisted research system for a private investor. Discovery came first:
-                        requirements, evaluation of twelve candidate data providers, and the system architecture, all
-                        delivered and invoiced before a line of production code was written.
+                        An AI-assisted research system for a private investor. Discovery came first: requirements,
+                        evaluation of twelve candidate data providers, and the system architecture, all delivered and
+                        invoiced before a line of production code was written.
                     </p>
                     <p>
                         <strong>The part worth pausing on:</strong> I modeled the client's operating process in Forester
@@ -391,6 +391,56 @@
                 </div>
                 <a class="link-more" href="https://bensonacademy.com/" target="_blank" rel="noopener noreferrer"
                     >Visit the live site &rarr;</a
+                >
+            </div>
+        </section>
+
+        <!-- ══ WORK SAMPLE ══ -->
+        <section class="on-paper section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Work sample &middot; public and runnable</p>
+                    <h2>A problem somebody else set.</h2>
+                </div>
+                <div class="role__body" style="max-width: 64ch">
+                    <p class="friction">
+                        A take-home assessment for a government data engineering role: compare a legacy healthcare
+                        claims system against its replacement, find the discrepancies, and say whether the migration
+                        should proceed. Everything else on this page is work I scoped myself. This one I did not.
+                    </p>
+                    <p>
+                        Most migration validations report row counts and null rates. I ran it as a
+                        <strong>quality problem</strong> instead: defects per million opportunities, sigma levels, and
+                        yield, field by field, rolled into a go/no-go scorecard an executive can read in one screen. The
+                        headline numbers looked good, 4.58&sigma; on carrier claims and 4.68&sigma; on beneficiary
+                        summary. The scorecard still said do not proceed, because 4,777 claims and 159 beneficiaries had
+                        gone missing outright and 82,699 payments disagreed.
+                        <strong>Good average quality was hiding categorical failures</strong>, which is exactly what a
+                        sigma-level view is for.
+                    </p>
+                    <p>
+                        Built on DuckDB with chunked streaming for memory efficiency, SQLAlchemy, scipy for the
+                        inverse-normal sigma calculations, and a Streamlit dashboard with nine views. It runs end to end
+                        on CMS public synthetic data, so anyone can reproduce it.
+                    </p>
+                </div>
+
+                <div class="callout">
+                    <p>
+                        <strong>On how it was built.</strong> The analysis was mine: which comparisons mattered, how to
+                        frame quality as a sigma problem, what the scorecard should say, and where the real risk sat. AI
+                        helped me write the queries faster than I would have written them alone. That is the same
+                        division of labor stated everywhere else on this site, and this is the one place you can go
+                        inspect it yourself.
+                    </p>
+                </div>
+
+                <a
+                    class="link-more"
+                    href="https://github.com/BensonJT/data_eng_exercise"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Read the code and the report on GitHub &rarr;</a
                 >
             </div>
         </section>
