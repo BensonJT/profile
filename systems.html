@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Systems — Jeffrey Benson</title>
+        <meta
+            name="description"
+            content="Forester, Meridian, and Benson Academy. Thirty-one years of process methodology encoded as software, applied on a client engagement, and shipped to production."
+        />
+        <meta property="og:title" content="Systems — Jeffrey Benson" />
+        <meta
+            property="og:description"
+            content="One captured model, six industry standard diagram languages, thirty-five metrics across six stakeholder lenses."
+        />
+        <meta property="og:image" content="https://bensonjt.github.io/profile/img/og-card.png" />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="css/site.css" />
+    </head>
+
+    <body>
+        <nav class="nav">
+            <div class="wrap">
+                <div class="nav__inner">
+                    <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+                    <div class="nav__links">
+                        <a href="work.html">Work</a>
+                        <a href="method.html">Method</a>
+                        <a href="systems.html">Systems</a>
+                        <a href="articles.html">Notebook</a>
+                        <a href="about.html">About</a>
+                    </div>
+                    <a class="btn btn--primary nav__cta" href="resume.html">Résumé</a>
+                    <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">
+                        Menu
+                    </button>
+                </div>
+                <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+                    <a href="work.html">Work</a>
+                    <a href="method.html">Method</a>
+                    <a href="systems.html">Systems</a>
+                    <a href="articles.html">Notebook</a>
+                    <a href="about.html">About</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ══ PAGE HEAD ══ -->
+        <header class="on-ink">
+            <div class="wrap page-head">
+                <p class="eyebrow">Systems</p>
+                <h1>Turning judgment into systems other people can run.</h1>
+                <p class="lede">
+                    I have spent thirty-one years doing one thing. First procedures, then governance models, then
+                    pipelines, now software. Forester is the sixth time, and this time the expertise being encoded is my
+                    own.
+                </p>
+            </div>
+        </header>
+
+        <!-- ══ FORESTER ══ -->
+        <section class="section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Forester &middot; product, seventeen sprints, not publicly launched</p>
+                    <h2>The method, running as software.</h2>
+                    <p>
+                        Most process tools draw a picture. This one captures the process as data, then draws every
+                        picture from it. What follows is the actual sequence, using two real models: a client engagement
+                        mid-build, and a reference model already resolved.
+                    </p>
+                </div>
+
+                <!-- Beat 1 -->
+                <div class="beat">
+                    <p class="beat__n">01 &middot; The problem</p>
+                    <h3>Process models are usually wrong, and nobody can tell.</h3>
+                    <p>
+                        Two people describe the same handoff differently. One activity claims an input that nothing
+                        upstream produces. A diagram gets signed off because it looks right, and every number derived
+                        from it inherits the error. At scale a human reviewer cannot hold the whole graph in mind, so
+                        the contradictions survive.
+                    </p>
+                    <figure class="fig">
+                        <div class="fig__frame">
+                            <img
+                                src="img/forester/coach-contradictions.webp"
+                                width="1700"
+                                height="537"
+                                alt="Forester Coach showing three detected contradictions, each with ranked resolution options and an Apply button"
+                                loading="lazy"
+                            />
+                        </div>
+                        <figcaption>
+                            <b>The Coach on a live model, mid-build.</b> Zero errors, seven warnings, thirty-three
+                            informational findings. It has caught that A7 records a document as coming from A5 while A6
+                            records producing it for A7, and that A7 expects an output A6 does not declare. Each finding
+                            carries ranked resolutions and a recommended default.
+                        </figcaption>
+                        <p class="fig__hint">
+                            A tool that finds nothing proves nothing. This is what working looks like.
+                        </p>
+                    </figure>
+                </div>
+
+                <!-- Beat 2 -->
+                <div class="beat">
+                    <p class="beat__n">02 &middot; Resolution</p>
+                    <h3>It proposes the fix, and can complete the flow itself.</h3>
+                    <p>
+                        The third finding is the interesting one. Rather than only flagging a missing output, the Coach
+                        infers it:
+                        <strong
+                            >&ldquo;A6 does produce Significant Change Signals. Add that output and complete the
+                            flow.&rdquo;</strong
+                        >
+                        One click writes it into the model. That is the difference between a tool that validates and a
+                        tool that builds alongside you, and it is where the hours go.
+                    </p>
+                    <p>
+                        Findings are scoped: <strong>HERE</strong> for what is wrong at the current node,
+                        <strong>FLOW</strong> for what is wrong across the model. Nothing blocks saving. Advisory by
+                        design, because a methodology that refuses your work does not get used.
+                    </p>
+                </div>
+
+                <!-- Beat 3 -->
+                <div class="beat">
+                    <p class="beat__n">03 &middot; One model, many lenses</p>
+                    <h3>Six visual languages, every level of the tree, from one capture.</h3>
+                    <p>
+                        The languages are not exports. They are projections of the same knowledge graph, so a single
+                        ICOM arrow is simultaneously a graph edge feeding the IDEF0 diagram, a labelled flow in the
+                        BPMN, and an input to the rolled-up yield calculation. Change the model and every view changes
+                        with it.
+                    </p>
+                    <figure class="fig">
+                        <div class="fig__frame">
+                            <img
+                                src="img/forester/workspace-six-languages.webp"
+                                width="1900"
+                                height="795"
+                                alt="The Forester workspace showing the six language tabs, a decomposition navigator, ICOM display toggles, export controls, and the Coach docked below"
+                                loading="lazy"
+                            />
+                        </div>
+                        <figcaption>
+                            <b>The workspace.</b> Six languages grouped as Overview, Structure and Flow. A navigator
+                            that walks the decomposition from A0 down. Toggles that add or remove the
+                            <b>I&nbsp;&middot;&nbsp;C&nbsp;&middot;&nbsp;O&nbsp;&middot;&nbsp;M</b> layers on the same
+                            render, which is the data spine made visibly separable from its presentation. Export to PNG,
+                            SVG, PDF, and standards-faithful <code>.bpmn</code>. The Coach runs against whatever is on
+                            screen.
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <!-- Beat 4 -->
+                <div class="beat">
+                    <p class="beat__n">04 &middot; The output</p>
+                    <h3>Once the model is consistent, the diagrams fall out.</h3>
+                    <p>
+                        Below is one reference model, <em>Bake Brownies</em>, rendered six ways. Nothing here was drawn.
+                        A practitioner who would have spent hours on a single Visio diagram gets the whole set the
+                        moment the model exists, at every decomposition level.
+                    </p>
+                    <p>
+                        Three are recognized industry standards. One is proprietary. Two are executive one-pagers. And
+                        yes, the process is a brownie recipe: if the method holds on something you can check against
+                        your own kitchen, the domain was never the hard part.
+                    </p>
+
+                    <div class="gallery mt-8">
+                        <figure>
+                            <a
+                                href="img/forester/bake_brownies/IDEF0__A0__bake-brownies.webp"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <img
+                                    src="img/forester/bake_brownies/IDEF0__A0__bake-brownies.webp"
+                                    alt="IDEF0 diagram of the Bake Brownies model"
+                                    loading="lazy"
+                            /></a>
+                            <figcaption>
+                                IDEF0 <span>The ICAM standard. Labelled ICOM arrows, node and title block.</span>
+                            </figcaption>
+                        </figure>
+                        <figure>
+                            <a
+                                href="img/forester/bake_brownies/FDPM__A0__bake-brownies.webp"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <img
+                                    src="img/forester/bake_brownies/FDPM__A0__bake-brownies.webp"
+                                    alt="FDPM swimlane diagram of the Bake Brownies model"
+                                    loading="lazy"
+                            /></a>
+                            <figcaption>
+                                FDPM
+                                <span
+                                    >Proprietary. Swimlanes plus ICOM data plus a context lane. No commercial tool
+                                    produces it.</span
+                                >
+                            </figcaption>
+                        </figure>
+                        <figure>
+                            <a
+                                href="img/forester/bake_brownies/BPMN__A0__bake-brownies.webp"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <img
+                                    src="img/forester/bake_brownies/BPMN__A0__bake-brownies.webp"
+                                    alt="BPMN 2.0 diagram of the Bake Brownies model"
+                                    loading="lazy"
+                            /></a>
+                            <figcaption>
+                                BPMN 2.0
+                                <span
+                                    >Pools, lanes, message flows. Exports as .bpmn and opens in Camunda with layout
+                                    intact.</span
+                                >
+                            </figcaption>
+                        </figure>
+                        <figure>
+                            <a
+                                href="img/forester/bake_brownies/VSM-Mfg__A0__bake-brownies.webp"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <img
+                                    src="img/forester/bake_brownies/VSM-Mfg__A0__bake-brownies.webp"
+                                    alt="Value stream map of the Bake Brownies model"
+                                    loading="lazy"
+                            /></a>
+                            <figcaption>
+                                VSM
+                                <span>The Lean standard. Timeline ladder with metrics computed, not hand-summed.</span>
+                            </figcaption>
+                        </figure>
+                        <figure>
+                            <a
+                                href="img/forester/bake_brownies/Context__A0__bake-brownies.webp"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <img
+                                    src="img/forester/bake_brownies/Context__A0__bake-brownies.webp"
+                                    alt="Context diagram of the Bake Brownies model"
+                                    loading="lazy"
+                            /></a>
+                            <figcaption>
+                                Context <span>The whole process in one frame. Purpose, viewpoint, boundary.</span>
+                            </figcaption>
+                        </figure>
+                        <figure>
+                            <a
+                                href="img/forester/bake_brownies/SIPOC__A0__bake-brownies.webp"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <img
+                                    src="img/forester/bake_brownies/SIPOC__A0__bake-brownies.webp"
+                                    alt="High-level SIPOC of the Bake Brownies model"
+                                    loading="lazy"
+                            /></a>
+                            <figcaption>
+                                SIPOC <span>The classic five columns, aggregated from the stages beneath.</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- Beat 5 -->
+                <div class="beat">
+                    <p class="beat__n">05 &middot; Instrumented, not drawn</p>
+                    <h3>Thirty-five metrics across six stakeholder lenses.</h3>
+                    <p>
+                        This is the part that separates a diagram from a management instrument. Every metric is
+                        organized by the lens that cares about it, so a COO and a CFO read the same model in their own
+                        language rather than a shared wall of numbers.
+                    </p>
+                    <figure class="fig">
+                        <div class="fig__frame">
+                            <img
+                                src="img/forester/bake_brownies/forester-lens-stack.webp"
+                                width="1900"
+                                height="507"
+                                alt="Forester derived metrics across Flow, Capability, Capacity, Quality, Equipment and Economic lenses"
+                                loading="lazy"
+                            />
+                        </div>
+                        <figcaption>
+                            <b>Live derived metrics from the captured data.</b> Process cycle efficiency 59.2%, rolled
+                            throughput yield 72.4%, weakest-link Cpk 0.35, worst DPMO 60,000, required FTE 3.9 against
+                            5.5 scheduled, bottleneck at A6. And a process margin of <b>&minus;$81.20</b>: this batch of
+                            brownies loses money.
+                        </figcaption>
+                        <p class="fig__hint">
+                            Note the assumptions line. Labor content is entered explicitly, never inferred.
+                        </p>
+                    </figure>
+                    <div class="callout">
+                        <p>
+                            <strong>Where this actually stands.</strong> Phase 1 is feature complete and in active
+                            hardening. The capture schema, the derived-metric algorithms, all six visual languages, full
+                            import and export round-trip, and the Coach are shipped and dogfooded on a live client
+                            engagement. The executive dashboards, the AI interview agent, and multi-tenant activation
+                            are the phases still ahead.
+                        </p>
+                        <p>It is not publicly launched, and the product name is not final.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ MERIDIAN ══ -->
+        <section class="on-paper section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Meridian &middot; client engagement, in build under contract</p>
+                    <h2>The method, the tool, and a paying client.</h2>
+                </div>
+
+                <div class="role__body" style="max-width: 64ch">
+                    <p class="friction">
+                        An AI-assisted research system for a private investment firm. Discovery came first:
+                        requirements, evaluation of twelve candidate data providers, and the system architecture, all
+                        delivered and invoiced before a line of production code was written.
+                    </p>
+                    <p>
+                        <strong>The part worth pausing on:</strong> I modeled the client's operating process in Forester
+                        before designing anything, and that model became the architecture's top-level decomposition. The
+                        method produced the tool, the tool structured the engagement, and the engagement validated both.
+                        That loop is the whole argument of this page, and it closed on someone else's money.
+                    </p>
+                    <p>
+                        Now in production build: twelve ingestion sources into PostgreSQL, an analytics layer, and a
+                        reporting surface. I cut the nightly transform window from seven hours to four by measuring
+                        where the time actually went. I also built a vectorization approach, measured it
+                        <strong>3.3&times; slower</strong> than what it replaced, reverted it, and recorded it as a
+                        closed question rather than a failure. That file is the one I would show first.
+                    </p>
+                </div>
+
+                <dl class="outcomes" style="max-width: 64ch">
+                    <div>
+                        <dt>12 sources</dt>
+                        <dd>Ingesting into PostgreSQL on a scheduled pipeline</dd>
+                    </div>
+                    <div>
+                        <dt>7h &rarr; 4h</dt>
+                        <dd>Nightly transform window, measured rather than assumed</dd>
+                    </div>
+                    <div>
+                        <dt>~2/3</dt>
+                        <dd>Through the contracted build phase. Roughly half the planned system is still ahead</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- ══ BENSON ACADEMY ══ -->
+        <section class="section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Benson Academy &middot; in production</p>
+                    <h2>Hallucination control, designed in rather than hoped for.</h2>
+                </div>
+                <div class="role__body" style="max-width: 64ch">
+                    <p class="friction">
+                        A full-stack Next.js and TypeScript application, built solo and live, serving a multi-course
+                        curriculum.
+                    </p>
+                    <p>
+                        The transferable part is the pipeline behind it. A grounded knowledge base is the source of
+                        truth, generation is constrained to it, custom Python handles asset automation, and a
+                        <strong>mandatory human review gate</strong> sits before publication. Research to published
+                        cycle time fell roughly eighty percent, with source traceability maintained and zero tolerance
+                        for unverified claims.
+                    </p>
+                    <p>
+                        That architecture is the same shape any organization needs before it puts generative AI near
+                        customer-facing or regulated content: retrieval grounded in a source of record, and a human
+                        accountable at the gate.
+                    </p>
+                </div>
+                <a class="link-more" href="https://bensonacademy.com/" target="_blank" rel="noopener noreferrer"
+                    >Visit the live site &rarr;</a
+                >
+            </div>
+        </section>
+
+        <!-- ══ CLOSE ══ -->
+        <section class="on-olive section">
+            <div class="wrap">
+                <div class="s-head">
+                    <h2>Let&rsquo;s find where the friction is costing you.</h2>
+                    <p>
+                        If you are hiring for a role where the job is to go into something complicated and come back
+                        with clarity, I would like to talk about it.
+                    </p>
+                </div>
+                <div class="hero__actions">
+                    <a
+                        class="btn btn--primary"
+                        href="https://www.linkedin.com/in/jeffreytbenson/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Start a conversation</a
+                    >
+                    <a class="btn btn--ghost" href="resume.html">Résumé</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="on-ink foot">
+            <div class="wrap">
+                <p class="foot__fine" style="padding-top: var(--s-8)">Northern Virginia. Contact through LinkedIn.</p>
+            </div>
+        </footer>
+
+        <script src="js/site.js" defer></script>
+    </body>
+</html>
