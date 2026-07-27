@@ -708,8 +708,27 @@ h3 {
         grid-template-columns: repeat(3, 1fr);
     }
 }
-.decomp__row--l2 {
-    grid-template-columns: 1fr;
+/* A1's children nest directly beneath it: display:contents lets the branch
+   dissolve so A1 is a normal grid cell, then the kids span the full row,
+   which forces them between A1 and A2 rather than after A6. */
+.decomp__branch {
+    display: contents;
+}
+.decomp__kids {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: var(--s-3);
+    margin-left: var(--s-6);
+    padding-left: var(--s-6);
+    border-left: 2px solid var(--rule);
+}
+@media (min-width: 620px) {
+    .decomp__kids {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.decomp__kids .node {
+    background: transparent;
 }
 @media (min-width: 620px) {
     .decomp__row--l2 {
@@ -1278,4 +1297,10 @@ h3 {
     font-variant-numeric: tabular-nums;
     font-weight: 600;
     font-size: var(--t-xs);
+}
+
+/* Current-page marker in the nav */
+.nav__links a.is-current {
+    color: var(--vellum);
+    border-bottom-color: var(--gold);
 }
