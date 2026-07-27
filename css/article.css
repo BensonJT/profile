@@ -505,12 +505,18 @@ body {
     .diagram-image-wide {
         width: 80vw;
         max-width: 80vw;
-        margin-inline: calc(50% - 40vw);
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-inline: 0;
     }
     .article-image-wide + .image-caption,
     .diagram-image-wide + .image-caption {
         width: 80vw;
-        margin-inline: calc(50% - 40vw);
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-inline: 0;
         text-align: center;
         max-width: 80vw;
     }
@@ -621,27 +627,33 @@ body {
         margin-inline: 0;
     }
     /* Wrapped tables: the wrapper breaks out and scrolls; the table centers
-       inside it at its natural width.
-       display:block made the table BOX full width while its content stayed
-       left, which reads as off-center. inline-table shrinks the box to its
-       content, and text-align on the wrapper then centers it reliably even
-       when the wrapper is a scroll container. */
+       inside it ONLY when it fits.
+
+       text-align:center on content wider than its scroll container pushes the
+       overflow off the left edge, where it cannot be scrolled to. Forest and
+       Trees part 5 has a 2779px table and its first columns became
+       unreachable. flex + margin-inline:auto is the correct idiom: auto
+       margins resolve to 0 when the child overflows, so a wide table starts
+       flush left and scrolls normally, while a narrow one still centers. */
     .process-table-wrap {
         width: 80vw;
         max-width: 80vw;
-        margin-inline: calc(50% - 40vw);
-        text-align: center;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-inline: 0;
+        display: flex;
+        text-align: left;
     }
     .process-table-wrap > table,
     .process-table-wrap > .process-table {
-        display: inline-table;
+        display: table;
         width: auto;
-        max-width: 100%;
-        text-align: left;
+        max-width: none;
+        margin-inline: auto;
         position: static;
         left: auto;
         transform: none;
-        margin-inline: 0;
     }
 }
 
