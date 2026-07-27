@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Method — Jeffrey Benson</title>
+        <meta
+            name="description"
+            content="Functional decomposition, SIPOC and ICOM at every node, and the four-step engagement process. How a complicated process gets taken apart until each activity can be assigned, measured, and improved."
+        />
+        <meta property="og:title" content="Method — Jeffrey Benson" />
+        <meta
+            property="og:description"
+            content="Every process comes apart the same way. It works on a bakery and it works on a two point two billion dollar spend portfolio."
+        />
+        <meta property="og:image" content="https://bensonjt.github.io/profile/img/og-card.png" />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="css/site.css" />
+    </head>
+
+    <body>
+        <nav class="nav">
+            <div class="wrap">
+                <div class="nav__inner">
+                    <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+                    <div class="nav__links">
+                        <a href="work.html">Work</a>
+                        <a href="method.html">Method</a>
+                        <a href="systems.html">Systems</a>
+                        <a href="articles.html">Notebook</a>
+                        <a href="about.html">About</a>
+                    </div>
+                    <a class="btn btn--primary nav__cta" href="resume.html">Résumé</a>
+                    <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">
+                        Menu
+                    </button>
+                </div>
+                <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+                    <a href="work.html">Work</a>
+                    <a href="method.html">Method</a>
+                    <a href="systems.html">Systems</a>
+                    <a href="articles.html">Notebook</a>
+                    <a href="about.html">About</a>
+                </div>
+            </div>
+        </nav>
+
+        <header class="on-ink">
+            <div class="wrap page-head">
+                <p class="eyebrow">The method</p>
+                <h1>Every process comes apart the same way.</h1>
+                <p class="lede">
+                    There is no framework to buy here. There is a way of looking at work that has held up across eight
+                    domains and thirty-one years, and it is simple enough to explain in about four minutes.
+                </p>
+            </div>
+        </header>
+
+        <!-- ══ PART ONE: DECOMPOSITION ══ -->
+        <section class="section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Part one &middot; Decomposition</p>
+                    <h2>Start with one box. Keep breaking it down.</h2>
+                    <p>
+                        Take the whole thing as a single activity. Break it into the three to six activities that
+                        actually perform it. Break those down again. Keep going until each activity is small enough to
+                        <strong>assign to someone, measure, and improve</strong>. That last test is what tells you when
+                        to stop.
+                    </p>
+                </div>
+
+                <div class="decomp" data-decomp>
+                    <div class="decomp__bar" role="tablist" aria-label="Decomposition level">
+                        <button role="tab" data-level="0" aria-selected="false">L0 &middot; Context</button>
+                        <button role="tab" data-level="1" aria-selected="true">L1 &middot; Activities</button>
+                        <button role="tab" data-level="2" aria-selected="false">L2 &middot; Sub-activities</button>
+                    </div>
+                    <div class="decomp__stage">
+                        <div class="node" data-row="0"><span>Bake Brownies</span><span class="node__id">A0</span></div>
+                        <div class="decomp__row" data-row="1">
+                            <div class="node"><span>Acquire Ingredients</span><span class="node__id">A1</span></div>
+                            <div class="node"><span>Set-up Environment</span><span class="node__id">A2</span></div>
+                            <div class="node"><span>Mix Ingredients</span><span class="node__id">A3</span></div>
+                            <div class="node"><span>Bake Brownies</span><span class="node__id">A4</span></div>
+                            <div class="node"><span>Serve Brownies</span><span class="node__id">A5</span></div>
+                            <div class="node"><span>Clean-up Kitchen</span><span class="node__id">A6</span></div>
+                        </div>
+                        <div class="decomp__row decomp__row--l2" data-row="2">
+                            <div class="node"><span>Check the pantry</span><span class="node__id">A1.1</span></div>
+                            <div class="node"><span>Buy what is missing</span><span class="node__id">A1.2</span></div>
+                            <div class="node"><span>Verify the receipt</span><span class="node__id">A1.3</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <p>
+                        <strong>Why a brownie recipe.</strong> Because you can check it against your own kitchen. If the
+                        method holds on something trivially verifiable, the domain was never the hard part. I have run
+                        this on a bakery and on a two point two billion dollar spend portfolio, and the only thing that
+                        changed was how many levels deep it went.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ PART TWO: THE FOUR QUESTIONS ══ -->
+        <section class="on-paper section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Part two &middot; What goes on every node</p>
+                    <h2>Four questions, asked at every level.</h2>
+                    <p>
+                        A decomposition tree on its own is just an outline. What turns it into a management instrument
+                        is answering the same four questions at every single activity.
+                    </p>
+                </div>
+
+                <dl class="spec">
+                    <div>
+                        <dt>Input</dt>
+                        <dd>
+                            What is consumed or transformed here, and <strong>who supplies it</strong>? The supplier is
+                            the half most models leave out, and it is where accountability actually lives.
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Control</dt>
+                        <dd>
+                            What governs <em>how</em> this is done? Policy, standard, regulation, trigger. Controls
+                            constrain the work; they are not consumed by it. A recipe is a control. Eggs are an input.
+                            Most modelers lump both onto the left arrow, and the model stops being able to answer
+                            &ldquo;what rule made this happen.&rdquo;
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Output</dt>
+                        <dd>
+                            What leaves, and <strong>who receives it</strong>? Every output has to land somewhere
+                            downstream as an input or a control. When it does not, you have found either a dead end or a
+                            missing activity.
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Mechanism</dt>
+                        <dd>
+                            What tools and systems perform the work. <strong>People do not belong here.</strong> Human
+                            accountability lives in supplier and customer, so the mechanism arrow is reserved for the
+                            infrastructure that makes the work possible. That separation is what lets you ask
+                            &ldquo;what would automation actually replace&rdquo; and get a real answer.
+                        </dd>
+                    </div>
+                </dl>
+
+                <div class="callout">
+                    <p>
+                        <strong>Then two more, and this is the part that makes it diagnostic.</strong> At each activity:
+                        what is the measurement that says this is performing well or badly, and what is broken or at
+                        risk here right now? Those two fields turn a picture of how things work into an active account
+                        of where the friction is.
+                    </p>
+                </div>
+
+                <a class="link-more" href="article-forest-and-trees.html">The full six-part write-up &rarr;</a>
+            </div>
+        </section>
+
+        <!-- ══ PART THREE: ENGAGEMENT ══ -->
+        <section class="section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Part three &middot; How the work runs</p>
+                    <h2>Four steps, and the first one is the one everybody skips.</h2>
+                </div>
+
+                <div class="beat">
+                    <p class="beat__n">01</p>
+                    <h3>Listen, map, and align.</h3>
+                    <p>
+                        Conversations with everyone who touches the process, not just leadership looking at KPIs. Where
+                        does it hurt? What are you carrying that you should not have to carry? What workarounds has the
+                        team built because the official system does not work? At the same time the decomposition gets
+                        underway, mapping what actually happens rather than what the three-year-old presentation says
+                        happens.
+                        <strong>This is where most engagements rush, and it is why most engagements fail.</strong>
+                    </p>
+                </div>
+
+                <div class="beat">
+                    <p class="beat__n">02</p>
+                    <h3>Fix the foundation before building on it.</h3>
+                    <p>
+                        You cannot model complexity on a broken base. If the underlying data is fragmented, analytics
+                        built on top amplify the problem rather than reveal it. On one engagement this phase took three
+                        months and 41,326 ZIP codes before a single line of the capacity model was written. It is
+                        scope-dependent and it is non-negotiable: every solution built on a fragile foundation inherits
+                        that fragility.
+                    </p>
+                </div>
+
+                <div class="beat">
+                    <p class="beat__n">03</p>
+                    <h3>Build, show, listen, adapt.</h3>
+                    <p>
+                        The build is iterative on purpose. A first version goes back to the team, and something useful
+                        happens: because they can finally <em>see</em> the data, they start asking questions they could
+                        not have articulated before the build started. Can we filter by shift? Can we flag when capacity
+                        drops below a threshold? Some are a new query, some need new dimensions in the pipeline. The
+                        loop continues until the system answers the questions that actually matter, not the ones we
+                        guessed at in week one.
+                    </p>
+                </div>
+
+                <div class="beat">
+                    <p class="beat__n">04</p>
+                    <h3>Hand it off so it outlives me.</h3>
+                    <p>
+                        The measure of a successful engagement is that the thing keeps delivering value long after the
+                        engagement closes. That means documentation, architecture, data flow, a maintenance playbook,
+                        and structured training, sized to what the organization can actually carry. A model nobody owns
+                        is a model that dies the quarter after I leave.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ FOUNDATIONS ══ -->
+        <section class="on-ink section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">What guides it</p>
+                    <h2>Three foundations.</h2>
+                </div>
+                <div class="tiles">
+                    <article class="tile">
+                        <h3 class="tile__label">Diagnose with empathy</h3>
+                        <p class="tile__body">
+                            Find the true root cause, not the most visible symptom. Listen to the people carrying the
+                            weight before building anything. Behind most broken processes is someone carrying weight
+                            they should not have to carry, and the weight is almost always structural.
+                        </p>
+                    </article>
+                    <article class="tile">
+                        <h3 class="tile__label">Automate to elevate</h3>
+                        <p class="tile__body">
+                            Free teams from manual work so they can do what only people can do. Infrastructure that
+                            runs, not analyses that sit in a drawer. And never automate a process that is not understood
+                            first, because automating a mess only makes the friction faster.
+                        </p>
+                    </article>
+                    <article class="tile">
+                        <h3 class="tile__label">Model for reality</h3>
+                        <p class="tile__body">
+                            Surface the capacity, cost, and friction that have become too complex to see. Clean
+                            foundations before complex models. No improvement is real without a defensible baseline, and
+                            the delta is what proves the people doing the work earned the result.
+                        </p>
+                    </article>
+                </div>
+                <a class="link-more" href="about.html">The six operating principles &rarr;</a>
+            </div>
+        </section>
+
+        <!-- ══ CLOSE ══ -->
+        <section class="on-olive section">
+            <div class="wrap">
+                <div class="s-head">
+                    <h2>This method is now software.</h2>
+                    <p>
+                        Forester encodes everything on this page: the decomposition, the four questions at every node,
+                        the measurement layer, and a coach that catches the contradictions a human reviewer misses.
+                    </p>
+                </div>
+                <div class="hero__actions">
+                    <a class="btn btn--primary" href="systems.html">See it running</a>
+                    <a class="btn btn--ghost" href="work.html">See the record</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="on-ink foot">
+            <div class="wrap">
+                <p class="foot__fine" style="padding-top: var(--s-8)">Northern Virginia. Contact through LinkedIn.</p>
+            </div>
+        </footer>
+
+        <script src="js/site.js" defer></script>
+    </body>
+</html>
