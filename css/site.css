@@ -1393,7 +1393,11 @@ h3 {
 /* ---------- 26. OVERFLOW GUARDS ---------- */
 /* Wide diagrams are deliberately min-width:720px so they stay legible and
    scroll inside their own frame. That only works if every ancestor is allowed
-   to shrink below its content, hence min-width:0 down the chain. */
+   to shrink below its content, hence min-width:0 down the chain.
+
+   NOTE: do NOT add max-width here for .wrap. It already carries
+   max-width: var(--maxw) and a later max-width:100% silently removes the
+   1180px container cap, letting every page run edge to edge. */
 html,
 body {
     overflow-x: clip;
@@ -1410,6 +1414,15 @@ body {
 .role__body,
 .dmap {
     min-width: 0;
+}
+.beat,
+.fig,
+.fig__frame,
+.gallery figure,
+.tiles > *,
+.cards > *,
+.role__body,
+.dmap {
     max-width: 100%;
 }
 .fig__frame {
