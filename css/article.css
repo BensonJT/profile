@@ -1,0 +1,298 @@
+/* ============================================================
+   article.css — OVERRIDE LAYER for the 23 article pages.
+
+   Loaded AFTER each article's own <style> block, so it wins the
+   cascade. It retargets only the shared chrome and base typography
+   so articles match the redesigned site. Every specialized
+   component class (adkar-table, sipoc-letter, brownie-field,
+   icom-block, and the rest) is deliberately left alone, because
+   those carry real content structure and are article-specific.
+
+   Requires css/site.css to be loaded first for tokens and fonts.
+   ============================================================ */
+
+/* ---------- Base ---------- */
+/* The old nav was position:fixed with body padding to compensate.
+   It is sticky now, so that padding leaves a dead strip at the top. */
+html {
+    scroll-padding-top: 60px;
+}
+body {
+    padding-top: 0;
+    font-family: var(--font-text);
+    background: var(--paper);
+    color: var(--fg);
+    font-size: var(--t-base);
+    line-height: 1.6;
+}
+
+/* ---------- Nav: match the rest of the site ---------- */
+.site-nav {
+    position: sticky;
+    top: 0;
+    left: auto;
+    right: auto;
+    z-index: 50;
+    background: color-mix(in srgb, var(--ink) 92%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid rgba(240, 234, 214, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    padding-inline: var(--s-4);
+}
+.site-nav a {
+    font-family: var(--font-text);
+    font-size: var(--t-sm);
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    color: rgba(240, 234, 214, 0.78);
+    padding: 0 var(--s-4);
+    height: 60px;
+    border-bottom: 1px solid transparent;
+    transition:
+        color 0.16s var(--ease),
+        border-color 0.16s var(--ease);
+}
+.site-nav a:hover {
+    color: var(--vellum);
+    border-bottom-color: var(--gold);
+}
+.site-nav a.nav-current {
+    color: var(--vellum);
+    border-bottom-color: var(--gold);
+}
+
+/* ---------- Article header ---------- */
+.article-header {
+    background: var(--ink);
+    color: var(--vellum);
+    padding: var(--s-24) var(--gutter) var(--s-16);
+}
+.header-text {
+    max-width: var(--maxw);
+    margin-inline: auto;
+}
+.article-eyebrow {
+    font-family: var(--font-text);
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+    margin-bottom: var(--s-4);
+}
+.article-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5.2vw, 4.2rem);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    color: var(--vellum);
+    max-width: 22ch;
+    text-wrap: balance;
+    margin-bottom: var(--s-6);
+}
+.article-subtitle,
+.article-intro {
+    font-size: var(--t-md);
+    line-height: 1.65;
+    color: var(--n-300);
+    max-width: 62ch;
+}
+.article-byline {
+    font-size: var(--t-sm);
+    color: var(--n-300);
+    margin-top: var(--s-6);
+}
+.article-back {
+    font-size: var(--t-sm);
+    color: var(--gold-ink);
+    text-decoration: none;
+}
+.article-back:hover {
+    text-decoration: underline;
+}
+
+/* Header images are optional; keep them modest when present */
+.header-image-wrap img {
+    border-radius: var(--radius);
+}
+
+/* ---------- Series bar ---------- */
+.series-bar {
+    background: var(--n-100);
+    border-bottom: 1px solid var(--rule);
+    font-size: var(--t-sm);
+    color: var(--n-700);
+    text-align: center;
+    padding: var(--s-3) var(--gutter);
+}
+.series-bar a {
+    color: var(--gold-text);
+}
+
+/* ---------- Body ---------- */
+.article-body {
+    max-width: 68ch;
+    margin-inline: auto;
+    padding: var(--s-16) var(--gutter) var(--s-24);
+}
+.article-body p {
+    font-size: var(--t-base);
+    line-height: 1.75;
+    color: var(--n-700);
+    margin-bottom: 1.35em;
+}
+.article-body strong {
+    color: var(--fg);
+    font-weight: 600;
+}
+.article-body a {
+    color: var(--gold-text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.article-body hr {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: var(--s-16) 0;
+}
+
+/* ---------- Headings ---------- */
+.section-eyebrow,
+.chapter-eyebrow,
+.takeaway-eyebrow {
+    font-family: var(--font-text);
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-text);
+}
+.section-title,
+.chapter-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--t-2xl);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    text-wrap: balance;
+    margin-bottom: var(--s-4);
+}
+.subsection-title,
+.section-title-sm,
+.idea-title-text,
+.principle-title,
+.step-title,
+.mistake-title,
+.case-study-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--t-lg);
+    line-height: 1.2;
+    color: var(--fg);
+}
+.section-block {
+    margin-bottom: var(--s-12);
+}
+
+/* ---------- Figures ---------- */
+.article-image,
+.article-image-wide,
+.article-image-portrait,
+.diagram-image,
+.diagram-image-wide {
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: #fff;
+}
+.image-caption {
+    font-size: var(--t-sm);
+    line-height: 1.6;
+    color: var(--n-500);
+    margin-top: var(--s-3);
+}
+
+/* ---------- Pull quotes and citations ---------- */
+.pullquote,
+.closing-quote {
+    font-family: var(--font-display);
+    font-size: var(--t-xl);
+    line-height: 1.3;
+    color: var(--fg);
+    border-left: 2px solid var(--gold-text);
+    padding-left: var(--s-6);
+    font-style: normal;
+}
+cite {
+    display: block;
+    margin-top: var(--s-3);
+    font-style: normal;
+    font-size: var(--t-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gold-text);
+}
+
+/* ---------- Series navigation ---------- */
+.series-nav {
+    border-top: 1px solid var(--rule);
+    padding-top: var(--s-8);
+    margin-top: var(--s-16);
+}
+.series-nav-label {
+    font-size: var(--t-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gold-text);
+}
+.series-nav-title {
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    line-height: 1.2;
+}
+.series-nav-link {
+    text-decoration: none;
+}
+.series-nav-card {
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: var(--s-6);
+    background: var(--bg);
+}
+
+/* ---------- Footer ---------- */
+.page-footer {
+    background: var(--ink);
+    color: rgba(240, 234, 214, 0.55);
+    text-align: center;
+    padding: var(--s-12) var(--gutter);
+    font-size: var(--t-sm);
+    letter-spacing: 0;
+    border-top: 1px solid rgba(240, 234, 214, 0.12);
+}
+.page-footer a {
+    color: rgba(240, 234, 214, 0.78);
+    text-decoration: none;
+}
+.page-footer a:hover {
+    color: var(--vellum);
+}
+
+/* ---------- Wide content must scroll inside itself ---------- */
+.process-table-wrap,
+.adkar-table,
+.summary-table,
+.reference-table,
+.milestone-table,
+.jit-table,
+.barrier-table {
+    overflow-x: auto;
+}
