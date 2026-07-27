@@ -803,6 +803,8 @@ h3 {
     margin-block: var(--s-8);
 }
 .fig__frame {
+    min-width: 0;
+    max-width: 100%;
     border: 1px solid var(--rule);
     border-radius: var(--radius);
     background: #fff;
@@ -836,6 +838,7 @@ h3 {
 
 /* ---------- 18. BEATS (numbered sequence) ---------- */
 .beat {
+    min-width: 0;
     display: grid;
     gap: var(--s-4);
     padding-block: var(--s-12);
@@ -1385,4 +1388,39 @@ h3 {
 .dmap__foot strong {
     color: var(--fg);
     font-weight: 600;
+}
+
+/* ---------- 26. OVERFLOW GUARDS ---------- */
+/* Wide diagrams are deliberately min-width:720px so they stay legible and
+   scroll inside their own frame. That only works if every ancestor is allowed
+   to shrink below its content, hence min-width:0 down the chain. */
+html,
+body {
+    overflow-x: clip;
+}
+.wrap,
+.section,
+.beat,
+.fig,
+.fig__frame,
+.gallery,
+.gallery figure,
+.tiles > *,
+.cards > *,
+.role__body,
+.dmap {
+    min-width: 0;
+    max-width: 100%;
+}
+.fig__frame {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.fig__frame img {
+    min-width: min(720px, 100%);
+}
+@media (max-width: 560px) {
+    .fig__frame img {
+        min-width: 560px;
+    }
 }

@@ -93,6 +93,9 @@ body {
     letter-spacing: -0.015em;
     color: var(--vellum);
     max-width: 22ch;
+    /* header-text is centered; a max-width block needs auto margins or it
+       sits left of center */
+    margin-inline: auto;
     text-wrap: balance;
     margin-bottom: var(--s-6);
 }
@@ -102,6 +105,7 @@ body {
     line-height: 1.65;
     color: var(--n-300);
     max-width: 62ch;
+    margin-inline: auto;
 }
 .article-byline {
     font-size: var(--t-sm);
@@ -298,4 +302,225 @@ cite {
 .jit-table,
 .barrier-table {
     overflow-x: auto;
+}
+
+/* ============================================================
+   NOTEBOOK INDEX (articles.html)
+   Responsive card grid: 1 column on phones, 2 on tablets,
+   3 on wide screens. Series accordions always span full width
+   because they expand into lists.
+   ============================================================ */
+.articles-grid {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding: var(--s-16) var(--gutter) var(--s-24);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+    align-items: start;
+}
+@media (min-width: 700px) {
+    .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1080px) {
+    .articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+/* Accordions hold lists; let them run the full width */
+.articles-grid > .series-card,
+.articles-grid > .series-block {
+    grid-column: 1 / -1;
+}
+
+/* ---- Standalone article card ---- */
+.article-card {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--accent);
+    border-radius: var(--radius);
+    box-shadow: none;
+    padding: var(--s-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    height: 100%;
+    transition: background 0.18s var(--ease);
+}
+.article-card:hover {
+    box-shadow: none;
+    background: color-mix(in srgb, var(--gold) 6%, transparent);
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    flex: 1;
+}
+.card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-3);
+    align-items: baseline;
+}
+.card-date,
+.card-tag {
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+.card-date {
+    font-variant-numeric: tabular-nums;
+}
+.card-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--t-lg);
+    line-height: 1.2;
+    color: var(--fg);
+    text-wrap: balance;
+    margin: 0;
+}
+.card-desc {
+    font-size: var(--t-sm);
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0;
+}
+.card-action {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-top: auto;
+    padding-top: var(--s-3);
+    border-top: 1px solid var(--rule);
+}
+.btn-read,
+.card-action a {
+    /* originals are dark pills; clear the box or the override's accent text
+       lands on a dark background */
+    background: none;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: var(--t-sm);
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+}
+.btn-read:hover,
+.card-action a:hover {
+    opacity: 0.72;
+}
+
+/* ---- Series accordion ---- */
+.series-card {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--accent);
+    border-radius: var(--radius);
+    box-shadow: none;
+}
+.series-card:hover {
+    box-shadow: none;
+}
+.series-card-header {
+    padding: var(--s-6);
+    gap: var(--s-4);
+}
+.series-article-list {
+    padding: 0 var(--s-6) var(--s-6);
+}
+
+/* ---- Notebook page header ---- */
+.page-header {
+    background: var(--ink);
+    color: var(--vellum);
+    padding: var(--s-24) var(--gutter) var(--s-16);
+    text-align: center;
+}
+.page-header h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5.2vw, 4.2rem);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    max-width: 24ch;
+    margin-inline: auto;
+    text-wrap: balance;
+}
+.page-header .deck {
+    font-size: var(--t-md);
+    line-height: 1.65;
+    color: var(--n-300);
+    max-width: 62ch;
+    margin: var(--s-6) auto 0;
+}
+.page-header .eyebrow {
+    color: var(--gold-ink);
+}
+
+/* ============================================================
+   OVERFLOW GUARDS
+   Measured at 375 / 768 / 1024 / 1440. Three real causes:
+   1. .article-image-wide used width:100vw, which includes the
+      scrollbar and overflows by its width.
+   2. Wide tables had no scroll container, so they pushed the page.
+   3. Flex and grid children default to min-width:auto, which stops
+      a scroll container from ever shrinking below its content.
+   ============================================================ */
+html,
+body {
+    overflow-x: clip;
+}
+
+.article-image-wide,
+.diagram-image-wide {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    left: auto;
+}
+
+/* Any wide table scrolls inside its own box */
+.process-table-wrap,
+.adkar-table,
+.barrier-table,
+.summary-table,
+.reference-table,
+.milestone-table,
+.jit-table,
+.process-table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.process-table-wrap > table,
+.process-table,
+.adkar-table,
+.barrier-table,
+.summary-table,
+.reference-table {
+    min-width: max-content;
+}
+
+/* Let scroll containers actually shrink inside flex and grid parents */
+.article-body,
+.article-body > *,
+.fig,
+.fig__frame,
+.beat,
+.tiles > *,
+.cards > * {
+    min-width: 0;
 }
