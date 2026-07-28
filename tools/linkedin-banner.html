@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>LinkedIn banner — 1584×396</title>
+        <!--
+      Renders the LinkedIn profile banner from the site's own type and palette,
+      so the profile and the site read as one object.
+
+      Render:  node/bash → see tools/render-banner.sh
+      Output:  img/linkedin-banner.png (1584×396)
+
+      Safe zones honoured:
+        · Desktop avatar overlays roughly x 40–370 in the lower half. Left of
+          x=420 is deliberately empty.
+        · Mobile centre-crops the sides, so nothing load-bearing sits past
+          x≈1450.
+    -->
+        <style>
+            @font-face {
+                font-family: "Instrument Serif";
+                src: url("../fonts/InstrumentSerif-400.woff2") format("woff2");
+                font-weight: 400;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Instrument Serif";
+                src: url("../fonts/InstrumentSerif-400-italic.woff2") format("woff2");
+                font-weight: 400;
+                font-style: italic;
+            }
+            @font-face {
+                font-family: "Inter";
+                src: url("../fonts/Inter-var.woff2") format("woff2");
+                font-weight: 100 900;
+                font-style: normal;
+            }
+
+            :root {
+                --ink: #161914;
+                --ink-2: #1f241d;
+                --vellum: #f0ead6;
+                --gold: #bfa36f;
+                --gold-ink: #c9ae7a;
+                --n-300: #b9b3a2;
+                --olive: #3b4b35;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                width: 1584px;
+                height: 396px;
+                overflow: hidden;
+            }
+
+            body {
+                position: relative;
+                background: var(--ink);
+                font-family: "Inter", sans-serif;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            /* A slow diagonal lift so the flat field has some depth without
+         becoming a "designed" gradient. */
+            .field {
+                position: absolute;
+                inset: 0;
+                background:
+                    radial-gradient(120% 150% at 78% 18%, rgba(59, 75, 53, 0.5) 0%, transparent 62%),
+                    linear-gradient(103deg, #12150f 0%, #161914 46%, #1c211a 100%);
+            }
+
+            /* Hairline grid — reads as drafting paper, not as decoration. */
+            .grid {
+                position: absolute;
+                inset: 0;
+                background-image:
+                    linear-gradient(to right, rgba(240, 234, 214, 0.045) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(240, 234, 214, 0.045) 1px, transparent 1px);
+                background-size: 44px 44px;
+                mask-image: linear-gradient(100deg, transparent 18%, #000 52%, transparent 96%);
+                -webkit-mask-image: linear-gradient(100deg, transparent 18%, #000 52%, transparent 96%);
+            }
+
+            .content {
+                position: absolute;
+                left: 430px;
+                right: 90px;
+                top: 0;
+                bottom: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            /* ── The scale: eight domains, thirty one years ── */
+            .scale {
+                margin-bottom: 34px;
+            }
+
+            .scale__label {
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 0.26em;
+                text-transform: uppercase;
+                color: var(--gold-ink);
+                opacity: 0.9;
+                margin-bottom: 13px;
+            }
+
+            /* Eight equal columns rather than absolute offsets, so the first
+         and last labels cannot clip at the edges of the rule. */
+            .scale__rule {
+                display: grid;
+                grid-template-columns: repeat(8, 1fr);
+                border-top: 1px solid rgba(191, 163, 111, 0.42);
+            }
+
+            .tick {
+                text-align: center;
+                padding: 0 4px;
+            }
+
+            .tick::before {
+                content: "";
+                display: block;
+                width: 1px;
+                height: 7px;
+                margin: 0 auto 6px;
+                background: rgba(191, 163, 111, 0.62);
+            }
+
+            .tick b {
+                display: block;
+                font-size: 10px;
+                font-weight: 600;
+                letter-spacing: 0.12em;
+                color: rgba(240, 234, 214, 0.5);
+                white-space: nowrap;
+            }
+
+            .tick span {
+                display: block;
+                margin-top: 3px;
+                font-size: 9.5px;
+                font-weight: 400;
+                letter-spacing: 0.05em;
+                color: rgba(240, 234, 214, 0.27);
+                white-space: nowrap;
+            }
+
+            /* ── The line ── */
+            /* No max-width — the <br> sets the break. A ch-based cap wrapped
+         the line a second time and orphaned two words. */
+            .line {
+                font-family: "Instrument Serif", Georgia, serif;
+                font-size: 52px;
+                line-height: 1.22;
+                letter-spacing: -0.008em;
+                color: var(--vellum);
+                white-space: nowrap;
+            }
+
+            .line em {
+                font-style: italic;
+                color: var(--gold-ink);
+            }
+
+            /* ── The pointer ── */
+            .url {
+                margin-top: 30px;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                font-size: 15.5px;
+                font-weight: 600;
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+                color: rgba(240, 234, 214, 0.58);
+            }
+
+            .url b {
+                color: var(--gold-ink);
+                font-weight: 600;
+            }
+
+            .url .bar {
+                width: 32px;
+                height: 1px;
+                background: rgba(191, 163, 111, 0.55);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="field"></div>
+        <div class="grid"></div>
+
+        <div class="content">
+            <div class="scale">
+                <p class="scale__label">Eight domains &middot; Thirty one years</p>
+                <div class="scale__rule">
+                    <div class="tick"><b>1990s</b><span>Quality systems</span></div>
+                    <div class="tick"><b>2001</b><span>Capital governance</span></div>
+                    <div class="tick"><b>2004</b><span>Corporate FP&amp;A</span></div>
+                    <div class="tick"><b>2013</b><span>IT asset management</span></div>
+                    <div class="tick"><b>2017</b><span>Enterprise security</span></div>
+                    <div class="tick"><b>2018</b><span>IT modernization</span></div>
+                    <div class="tick"><b>2023</b><span>Field workforce</span></div>
+                    <div class="tick"><b>2026</b><span>Equity research</span></div>
+                </div>
+            </div>
+
+            <p class="line">
+                I come alongside leaders to fix<br />
+                what&rsquo;s become <em>too complex to see.</em>
+            </p>
+
+            <p class="url">
+                <span class="bar"></span>
+                <span><b>bensonjt.github.io/profile</b></span>
+            </p>
+        </div>
+    </body>
+</html>
