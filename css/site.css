@@ -1437,3 +1437,65 @@ body {
         min-width: 560px;
     }
 }
+
+/* ── Velocity curve (EAM case study) ─────────────────────────────────
+   The endpoints alone imply a switch was flipped. The shape is the
+   argument: gains compounded as the team trained itself. */
+.velocity {
+    margin: var(--s-7) 0 var(--s-6);
+}
+.velocity svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+.velocity figcaption {
+    font-size: var(--t-sm);
+    line-height: 1.6;
+    color: var(--fg-muted);
+    max-width: 62ch;
+    margin-bottom: var(--s-5);
+}
+.velocity .vx {
+    stroke: var(--rule);
+    stroke-width: 1;
+}
+.velocity .vline {
+    fill: none;
+    stroke: var(--gold-text);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+}
+.velocity .vfill {
+    fill: var(--gold-text);
+    opacity: 0.07;
+    stroke: none;
+}
+.velocity .vpt circle {
+    fill: var(--bg);
+    stroke: var(--gold-text);
+    stroke-width: 2.5;
+}
+.velocity .vpt .vlast {
+    fill: var(--gold-text);
+}
+.velocity .vnum text {
+    font-family: var(--font-display);
+    font-size: 21px;
+    fill: var(--fg);
+    text-anchor: middle;
+}
+.velocity .vmul text {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    fill: var(--gold-text);
+    text-anchor: middle;
+}
+.velocity .vlab text {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    fill: var(--fg-muted);
+    text-anchor: middle;
+}
