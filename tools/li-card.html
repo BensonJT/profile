@@ -132,6 +132,11 @@
                 color: rgba(240, 234, 214, 0.6);
                 padding-right: 18px;
             }
+            /* Marks the one item a card is *about* when the strip lists a series. */
+            .strip div b {
+                color: var(--gold-ink);
+                font-weight: 600;
+            }
             .strip div::before {
                 content: "";
                 display: block;
@@ -243,6 +248,11 @@
                         "Source&#8209;to&#8209;Pay",
                         "Hire&#8209;to&#8209;Retire",
                     ],
+                },
+                "adkar-desire": {
+                    eyebrow: "Change management &middot; ADKAR, part two",
+                    headline: "Resistance is a signal, not a character flaw.",
+                    strip: ["Awareness", "<b>Desire</b>", "Knowledge", "Ability", "Reinforcement"],
                 },
                 forest: {
                     eyebrow: "Process modeling &middot; Six parts",
