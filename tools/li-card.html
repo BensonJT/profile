@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>LinkedIn experience card — 1200×627</title>
+        <!--
+      Per-entry media cards for LinkedIn experience items, rendered from the
+      site's own type and palette so the profile, the banner and the site all
+      read as one object.
+
+      Add an entry to CARDS below, then:  NAME=eam tools/render-card.sh
+      Output: img/li-cards/<name>.png at 1200x627.
+
+      Sizing note: LinkedIn displays these small. Nothing below ~19px.
+    -->
+        <style>
+            @font-face {
+                font-family: "Instrument Serif";
+                src: url("../fonts/InstrumentSerif-400.woff2") format("woff2");
+                font-weight: 400;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Inter";
+                src: url("../fonts/Inter-var.woff2") format("woff2");
+                font-weight: 100 900;
+                font-style: normal;
+            }
+            :root {
+                --ink: #161914;
+                --vellum: #f0ead6;
+                --gold-ink: #c9ae7a;
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                width: 1200px;
+                height: 627px;
+                overflow: hidden;
+            }
+            body {
+                position: relative;
+                background: var(--ink);
+                font-family: "Inter", sans-serif;
+                -webkit-font-smoothing: antialiased;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 0 78px;
+            }
+            .field {
+                position: absolute;
+                inset: 0;
+                z-index: -2;
+                background:
+                    radial-gradient(110% 140% at 82% 12%, rgba(59, 75, 53, 0.5) 0%, transparent 60%),
+                    linear-gradient(103deg, #12150f 0%, #161914 46%, #1c211a 100%);
+            }
+            .grid {
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+                background-image:
+                    linear-gradient(to right, rgba(240, 234, 214, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(240, 234, 214, 0.05) 1px, transparent 1px);
+                background-size: 48px 48px;
+                mask-image: linear-gradient(100deg, transparent 12%, #000 55%, transparent 98%);
+                -webkit-mask-image: linear-gradient(100deg, transparent 12%, #000 55%, transparent 98%);
+            }
+            .eyebrow {
+                font-size: 22px;
+                font-weight: 600;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: var(--gold-ink);
+                margin-bottom: 26px;
+            }
+            .headline {
+                font-family: "Instrument Serif", Georgia, serif;
+                font-size: 58px;
+                line-height: 1.15;
+                letter-spacing: -0.01em;
+                color: var(--vellum);
+                margin-bottom: 44px;
+                max-width: 21ch;
+            }
+            /* `hidden` loses to an explicit display value, so state it. */
+            .stats[hidden],
+            .strip[hidden] {
+                display: none;
+            }
+            .stats {
+                display: flex;
+                gap: 58px;
+                border-top: 1px solid rgba(191, 163, 111, 0.42);
+                padding-top: 26px;
+            }
+            .stat b {
+                display: block;
+                font-family: "Instrument Serif", Georgia, serif;
+                font-size: 46px;
+                font-weight: 400;
+                line-height: 1;
+                color: var(--gold-ink);
+                letter-spacing: -0.01em;
+                white-space: nowrap;
+            }
+            .stat span {
+                display: block;
+                margin-top: 10px;
+                font-size: 20px;
+                line-height: 1.35;
+                color: rgba(240, 234, 214, 0.55);
+                max-width: 15ch;
+            }
+            /* Article cards use a label strip instead of stat pairs: same rule,
+               even columns, no numbers. */
+            .strip {
+                display: grid;
+                grid-auto-flow: column;
+                grid-auto-columns: 1fr;
+                border-top: 1px solid rgba(191, 163, 111, 0.42);
+                padding-top: 22px;
+            }
+            .strip div {
+                font-size: 21px;
+                line-height: 1.3;
+                color: rgba(240, 234, 214, 0.6);
+                padding-right: 18px;
+            }
+            .strip div::before {
+                content: "";
+                display: block;
+                width: 1px;
+                height: 10px;
+                margin-bottom: 12px;
+                background: rgba(191, 163, 111, 0.6);
+            }
+            .url {
+                position: absolute;
+                right: 78px;
+                bottom: 46px;
+                font-size: 19px;
+                font-weight: 600;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: rgba(240, 234, 214, 0.42);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="field"></div>
+        <div class="grid"></div>
+
+        <p class="eyebrow" id="eyebrow"></p>
+        <h1 class="headline" id="headline"></h1>
+        <div class="stats" id="stats"></div>
+        <div class="strip" id="strip" hidden></div>
+        <p class="url">bensonjt.github.io/profile</p>
+
+        <script>
+            const CARDS = {
+                itam: {
+                    eyebrow: "IT Asset Management &middot; 2012&ndash;2014",
+                    headline: "Every handoff is a seam. I counted them.",
+                    stats: [
+                        ["400+", "activities mapped end to end"],
+                        ["64", "systems involved"],
+                        ["110", "handoffs between owners"],
+                        ["43%", "of the critical path removed"],
+                    ],
+                },
+                gpo: {
+                    eyebrow: "How would you build it?",
+                    headline: "No team. No playbook. No standards to inherit.",
+                    strip: [
+                        "Plan&#8209;to&#8209;Build",
+                        "Lead&#8209;to&#8209;Order",
+                        "Order&#8209;to&#8209;Operate",
+                        "Source&#8209;to&#8209;Pay",
+                        "Hire&#8209;to&#8209;Retire",
+                    ],
+                },
+                eam: {
+                    eyebrow: "Enterprise Security &middot; 2017&ndash;2018",
+                    headline: "The bottleneck was never the team.",
+                    stats: [
+                        ["15 &rarr; 500", "servers converted per week, at peak"],
+                        ["33x", "throughput, same people"],
+                        ["30,000+", "UNIX and Linux servers in scope"],
+                        ["13", "pre-qualification checks that unlocked it"],
+                    ],
+                },
+            };
+
+            const name = new URLSearchParams(location.search).get("card") || "itam";
+            const c = CARDS[name];
+            document.getElementById("eyebrow").innerHTML = c.eyebrow;
+            document.getElementById("headline").innerHTML = c.headline;
+            if (c.strip) {
+                document.getElementById("stats").hidden = true;
+                const strip = document.getElementById("strip");
+                strip.hidden = false;
+                strip.innerHTML = c.strip.map((l) => `<div>${l}</div>`).join("");
+            } else {
+                document.getElementById("stats").innerHTML = c.stats
+                    .map(([v, l]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`)
+                    .join("");
+            }
+        </script>
+    </body>
+</html>
