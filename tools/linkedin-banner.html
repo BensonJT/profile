@@ -104,14 +104,18 @@
                 margin-bottom: 34px;
             }
 
+            /* IMPORTANT: LinkedIn renders this 1584x396 file at 792x198 on
+         desktop, so every size here is HALVED on screen. Design to an
+         effective 792px canvas and treat these numbers as 2x. Anything
+         below ~18px is illegible on the live profile. */
             .scale__label {
-                font-size: 11px;
+                font-size: 20px;
                 font-weight: 600;
-                letter-spacing: 0.26em;
+                letter-spacing: 0.22em;
                 text-transform: uppercase;
                 color: var(--gold-ink);
                 opacity: 0.9;
-                margin-bottom: 13px;
+                margin-bottom: 18px;
             }
 
             /* Eight equal columns rather than absolute offsets, so the first
@@ -131,29 +135,24 @@
                 content: "";
                 display: block;
                 width: 1px;
-                height: 7px;
-                margin: 0 auto 6px;
+                height: 11px;
+                margin: 0 auto 9px;
                 background: rgba(191, 163, 111, 0.62);
             }
 
             .tick b {
                 display: block;
-                font-size: 10px;
-                font-weight: 600;
-                letter-spacing: 0.12em;
-                color: rgba(240, 234, 214, 0.5);
+                font-size: 18px;
+                font-weight: 500;
+                letter-spacing: 0.1em;
+                color: rgba(240, 234, 214, 0.52);
                 white-space: nowrap;
             }
 
-            .tick span {
-                display: block;
-                margin-top: 3px;
-                font-size: 9.5px;
-                font-weight: 400;
-                letter-spacing: 0.05em;
-                color: rgba(240, 234, 214, 0.27);
-                white-space: nowrap;
-            }
+            /* The domain names were dropped rather than shrunk: eight of them
+         across this rule cannot clear ~9px on screen at any size that
+         also fits. The years carry the span, the label carries the
+         count, and /work carries the detail. */
 
             /* ── The line ── */
             /* No max-width — the <br> sets the break. A ch-based cap wrapped
@@ -178,9 +177,9 @@
                 display: flex;
                 align-items: center;
                 gap: 14px;
-                font-size: 15.5px;
+                font-size: 24px;
                 font-weight: 600;
-                letter-spacing: 0.15em;
+                letter-spacing: 0.14em;
                 text-transform: uppercase;
                 color: rgba(240, 234, 214, 0.58);
             }
@@ -191,7 +190,7 @@
             }
 
             .url .bar {
-                width: 32px;
+                width: 44px;
                 height: 1px;
                 background: rgba(191, 163, 111, 0.55);
             }
@@ -205,14 +204,14 @@
             <div class="scale">
                 <p class="scale__label">Eight domains &middot; Thirty one years</p>
                 <div class="scale__rule">
-                    <div class="tick"><b>1990s</b><span>Quality systems</span></div>
-                    <div class="tick"><b>2001</b><span>Capital governance</span></div>
-                    <div class="tick"><b>2004</b><span>Corporate FP&amp;A</span></div>
-                    <div class="tick"><b>2013</b><span>IT asset management</span></div>
-                    <div class="tick"><b>2017</b><span>Enterprise security</span></div>
-                    <div class="tick"><b>2018</b><span>IT modernization</span></div>
-                    <div class="tick"><b>2023</b><span>Field workforce</span></div>
-                    <div class="tick"><b>2026</b><span>Equity research</span></div>
+                    <div class="tick"><b>1990s</b></div>
+                    <div class="tick"><b>2001</b></div>
+                    <div class="tick"><b>2004</b></div>
+                    <div class="tick"><b>2013</b></div>
+                    <div class="tick"><b>2017</b></div>
+                    <div class="tick"><b>2018</b></div>
+                    <div class="tick"><b>2023</b></div>
+                    <div class="tick"><b>2026</b></div>
                 </div>
             </div>
 
