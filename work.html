@@ -160,11 +160,19 @@
                     <!-- The measurement half of this engagement is the point of the whole entry:
                          the instrument built to verify the target is what found the overachievement. -->
                     <p>
-                        The mandate carried a five-year target: $40M in savings, anchored on decommissioning at least
-                        5,000 legacy servers. Five years later I was asked to build the mechanism that would confirm we
-                        had hit it. Mining the asset database in SQL showed we had gone well past it, $61M realized
-                        against a $40M case. The instrument built to verify the number is what found the
+                        The five-year target was built from the bottom up rather than negotiated down: retire 5,000
+                        legacy servers at roughly $8,000 each in annual machine expense, being hardware and software
+                        maintenance plus the licences for whatever was still running on them. Five thousand times eight
+                        thousand is the $40M. Five years later I was asked back to build the mechanism that would
+                        confirm we had hit it. Mining the asset database in SQL showed we had gone well past it, $61M
+                        realized against a $40M case. The instrument built to verify the number is what found the
                         overachievement, which is the argument for measuring your own work rather than reporting it.
+                    </p>
+                    <p>
+                        What that query really did was close the loop on the redesign. A DMAIC project is meant to end
+                        in Control, and most of them end instead when the person who ran it moves on. This one got its
+                        Control phase five years late, from the same person who had run the Improve phase, which is the
+                        only reason anybody knows what the redesign was actually worth.
                     </p>
                     <dl class="outcomes">
                         <div>
@@ -457,10 +465,12 @@
                 </div>
                 <div class="role__body">
                     <p class="friction">
-                        During a merger integration, roughly $3B of demand pressed against a $2.2B expense budget, and
-                        leadership needed near real-time control over all of it. The existing process was manual
-                        reconciliation with no automated way to produce a forward-looking view merging actuals with
-                        estimates, and every synergy claim had to survive audit.
+                        During a merger integration, roughly $3B of demand pressed against a $2.2B machine expense
+                        budget: hardware and software maintenance, software licensing, and the parts that keep data
+                        centres running, as distinct from people. Leadership needed near real-time control over all of
+                        it. The existing process was manual reconciliation with no automated way to produce a
+                        forward-looking view merging actuals with estimates, and every synergy claim had to survive
+                        audit.
                     </p>
                     <p>
                         I re-engineered the FP&amp;A process and built the automation behind it, then architected a data
@@ -468,9 +478,11 @@
                     </p>
                     <p>
                         The program finished $500M under budget across six years. Getting there took considerably more
-                        than $500M in real reductions, because upward pressure kept arriving and had to be absorbed
-                        before any of it could show as an underrun. The reported figure is the net, which is the only
-                        version worth defending.
+                        than $500M in real reductions, because upward pressure kept arriving and had to be absorbed. The
+                        early cloud migration was one of those pressures rather than a source of savings: in the first
+                        years it added cost, and that had to be funded out of reductions found elsewhere before any of
+                        it could show as an underrun. The reported figure is the net, which is the only version worth
+                        defending.
                     </p>
                     <dl class="outcomes">
                         <div>
