@@ -291,6 +291,16 @@
                         the workflow into a pull-based pre-qualify, schedule, implement order, so problems were found
                         and fixed before the window rather than inside it.
                     </p>
+                    <!-- The two-cycle point inverts the usual process-improvement claim, so it stays
+                         explicit: this design ADDED complexity and paid for it with visibility. -->
+                    <p>
+                        Servers that failed pre-qualification were remediated rather than set aside, which fed the ready
+                        pool instead of draining it. That made the program harder to run, not easier: two cycles now
+                        moved at once, conversion and remediation, and a second cycle nobody can see is a backlog with a
+                        nicer name. The data work is what made it affordable. Readiness was inferred by tying
+                        configuration logs to operational records, so at any moment the program knew what was not ready,
+                        why, and what had just become ready.
+                    </p>
                     <!-- The scope discovery is the point of this case study, not a footnote to it:
                          the data work both unlocked the throughput and revealed why the throughput
                          was going to be needed. -->
