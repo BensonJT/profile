@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prototype — Hero variants A / B / C | Jeffrey Benson</title>
+  <meta name="robots" content="noindex">
+  <link rel="preload" href="../fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/site.css">
+  <style>
+    /* Proto-only chrome. This file gets deleted after the choice is made. */
+    .vband {
+      background: var(--n-100);
+      padding: var(--s-4) 0;
+      border-top: 3px solid var(--gold);
+    }
+    .vband p { margin: 0; }
+    .vband .vband__note {
+      font-size: var(--t-sm);
+      color: var(--fg-muted);
+      margin-top: var(--s-1);
+    }
+    .hero .eyebrow { margin-bottom: var(--s-4); }
+  </style>
+</head>
+
+<body>
+
+  <!-- ════════════════ VARIANT A ════════════════ -->
+  <div class="vband">
+    <div class="wrap">
+      <p class="eyebrow" style="--accent:var(--clay-text)">Variant A &middot; Minimal surgery — keep the line, add the shelf</p>
+      <p class="vband__note">Eyebrow classifies, H1 differentiates, subhead delivers the comeback. Closest to what is live today.</p>
+    </div>
+  </div>
+
+  <header class="on-ink">
+    <div class="wrap hero">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Process &amp; Operational Excellence &middot; Business Transformation &middot; Lean Six Sigma Black Belt</p>
+          <h1>I go into the problems nobody owns.</h1>
+          <p class="lede">
+            The seam between two teams. The process everyone quietly works around. I go in cold,
+            listen, map what is actually happening, diagnose why, and rebuild it so the gain holds.
+            Pulled into eight domains in thirty-one years, every one measurably better on the way out.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">See the record</a>
+            <a class="btn btn--ghost" href="#">Résumé&nbsp;(PDF)</a>
+          </div>
+        </div>
+        <img class="portrait" src="../img/headshot_jb.webp" width="800" height="800" alt="Jeffrey Benson">
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════ VARIANT B ════════════════ -->
+  <div class="vband">
+    <div class="wrap">
+      <p class="eyebrow" style="--accent:var(--clay-text)">Variant B &middot; The arc lands in the headline</p>
+      <p class="vband__note">Entrance and exit in the H1 itself. The subhead is the same one you approved, so A versus B is a pure headline comparison.</p>
+    </div>
+  </div>
+
+  <header class="on-ink">
+    <div class="wrap hero">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Process &amp; Operational Excellence &middot; Business Transformation &middot; Lean Six Sigma Black Belt</p>
+          <h1>I go into the problems nobody owns. I come back with proof.</h1>
+          <p class="lede">
+            The seam between two teams. The process everyone quietly works around. I go in cold,
+            listen, map what is actually happening, diagnose why, and rebuild it so the gain holds.
+            Pulled into eight domains in thirty-one years, every one measurably better on the way out.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">See the record</a>
+            <a class="btn btn--ghost" href="#">Résumé&nbsp;(PDF)</a>
+          </div>
+        </div>
+        <img class="portrait" src="../img/headshot_jb.webp" width="800" height="800" alt="Jeffrey Benson">
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════ VARIANT C ════════════════ -->
+  <div class="vband">
+    <div class="wrap">
+      <p class="eyebrow" style="--accent:var(--clay-text)">Variant C &middot; The arc is the headline, identity moves to the subhead</p>
+      <p class="vband__note">"Nobody owns" keeps its place in the subhead, so the theme survives. The Black Belt moves out of the eyebrow to avoid saying it twice. The subhead deliberately echoes the headline: scanners read one or the other, and for double-readers the echo binds the claim to the eight domains.</p>
+    </div>
+  </div>
+
+  <header class="on-ink">
+    <div class="wrap hero">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Process &amp; Operational Excellence &middot; Business Transformation</p>
+          <h1>Unfamiliar on day one. Measurably better on the way out.</h1>
+          <p class="lede">
+            I&rsquo;m a Lean Six Sigma Black Belt who takes on the problems nobody owns: the seam
+            between two teams, the process everyone quietly works around, the number no one can
+            explain. I go in cold, listen, map what is actually happening, diagnose why, and rebuild
+            it so the gain holds. Pulled into eight domains in thirty-one years, every one measurably
+            better on the way out.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">See the record</a>
+            <a class="btn btn--ghost" href="#">Résumé&nbsp;(PDF)</a>
+          </div>
+        </div>
+        <img class="portrait" src="../img/headshot_jb.webp" width="800" height="800" alt="Jeffrey Benson">
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════ VARIANT C2 ════════════════ -->
+  <div class="vband">
+    <div class="wrap">
+      <p class="eyebrow" style="--accent:var(--clay-text)">Variant C2 &middot; Same structure as C, demand-side first phrase</p>
+      <p class="vband__note">"Pulled" is the first word of the site. "Cold" carries the unfamiliarity claim without the referent problem. The lede's verb chain now leads with "listen first" so "cold" is not said three times.</p>
+    </div>
+  </div>
+
+  <header class="on-ink">
+    <div class="wrap hero">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Process &amp; Operational Excellence &middot; Business Transformation</p>
+          <h1>Pulled in cold. Measurably better on the way out.</h1>
+          <p class="lede">
+            I&rsquo;m a Lean Six Sigma Black Belt who takes on the problems nobody owns: the seam
+            between two teams, the process everyone quietly works around, the number no one can
+            explain. I listen first, map what is actually happening, diagnose why, and rebuild it so
+            the gain holds. Pulled into eight domains in thirty-one years, every one measurably
+            better on the way out.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">See the record</a>
+            <a class="btn btn--ghost" href="#">Résumé&nbsp;(PDF)</a>
+          </div>
+        </div>
+        <img class="portrait" src="../img/headshot_jb.webp" width="800" height="800" alt="Jeffrey Benson">
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════ PROOF BAR (shared context) ════════════════ -->
+  <section class="on-ink section--tight" aria-label="Selected outcomes">
+    <div class="wrap">
+      <div class="proof">
+        <div class="metric">
+          <span class="metric__value">$40M</span>
+          <p class="metric__note">Expense reduction case from one IT asset lifecycle redesign, measured
+            five years later at $61M realized. Cycle time down 82 percent.</p>
+        </div>
+        <div class="metric">
+          <span class="metric__value">15 &rarr; 500</span>
+          <p class="metric__note">Servers converted per week, sustained at the end of Q4 on a stalled
+            Fortune 20 security migration. Same team, better system.</p>
+        </div>
+        <div class="metric">
+          <span class="metric__value">50% &rarr; 1%</span>
+          <p class="metric__note">Annual attrition in a 24&times;7 operations group, after 143
+            procedures were written with the people doing the work.</p>
+        </div>
+        <div class="metric">
+          <span class="metric__value">$18&ndash;22M</span>
+          <p class="metric__note">Workforce capacity surfaced by a Python and SQL capacity model, inside
+            an existing thousand person field organization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ PROTOTYPE NOTES — not part of the design ════════════════ -->
+  <section class="section--tight" style="background:var(--n-100)">
+    <div class="wrap measure">
+      <p class="eyebrow" style="--accent:var(--clay-text)">How to judge these</p>
+      <p class="card__body mt-8">
+        <strong>Run the five-second test on each variant separately.</strong> Show one variant to
+        someone who does not know your work, for five seconds, then ask two questions: <em>what does
+        he do for a living</em>, and <em>what would you hire him for</em>. A variant passes when the
+        answer contains a job-shaped noun and the person is still curious. Do not show the same
+        person two variants; first impressions do not reset.
+      </p>
+      <p class="card__body">
+        <strong>Trade-offs.</strong> A keeps maximum continuity with LinkedIn and the résumé summary,
+        which now carry the "nobody owns" theme. B is the most quotable but the headline runs two
+        lines longer on mobile; check it at 375&nbsp;px. C answers the industry-fit objection hardest
+        ("unfamiliar on day one" is the whole transferability claim at display size) but gives up the
+        signature line as the headline.
+      </p>
+      <p class="card__body">
+        <strong>Two shared details to notice.</strong> "I go in cold" is doing the unfamiliar-on-day-one
+        work in every subhead, so the transferability claim survives even where the words moved. And
+        the fourth proof-bar note now names the instrument ("a Python and SQL capacity model"): that is
+        the data analytics muscle made visible exactly where it is credible, without promoting it into
+        the eyebrow.
+      </p>
+      <p class="card__body">
+        This page is throwaway: <code>proto/hero-variants.html</code>, noindex, delete after the
+        choice is made.
+      </p>
+    </div>
+  </section>
+
+</body>
+
+</html>
