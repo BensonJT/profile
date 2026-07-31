@@ -11,7 +11,7 @@
         <meta property="og:title" content="Systems — Jeffrey Benson" />
         <meta
             property="og:description"
-            content="One captured model, six industry standard diagram languages, thirty-five metrics across six stakeholder lenses."
+            content="One captured model, 6 industry standard diagram languages, 35 metrics across 6 stakeholder lenses."
         />
         <meta property="og:image" content="https://bensonjt.github.io/profile/img/li-cards/systems.png" />
         <meta property="og:image:width" content="1200" />
@@ -67,7 +67,7 @@
         <section class="section">
             <div class="wrap">
                 <div class="s-head">
-                    <p class="eyebrow">Forester &middot; product, eighteen sprints shipped, not publicly launched</p>
+                    <p class="eyebrow">Forester &middot; product, 18 sprints shipped, not publicly launched</p>
                     <h2>The method, running as software.</h2>
                     <p>
                         I was teaching the method to an AI so it could help me finalize the rest of the Forest and Trees
@@ -103,10 +103,10 @@
                             />
                         </div>
                         <figcaption>
-                            <b>The Coach on a live model, mid-build.</b> Zero errors, seven warnings, thirty-three
-                            informational findings. It has caught that A7 records a document as coming from A5 while A6
-                            records producing it for A7, and that A7 expects an output A6 does not declare. Each finding
-                            carries ranked resolutions and a recommended default.
+                            <b>The Coach on a live model, mid-build.</b> 0 errors, 7 warnings, 33 informational
+                            findings. It has caught that A7 records a document as coming from A5 while A6 records
+                            producing it for A7, and that A7 expects an output A6 does not declare. Each finding carries
+                            ranked resolutions and a recommended default.
                         </figcaption>
                         <p class="fig__hint">
                             A tool that finds nothing proves nothing. This is what working looks like.
@@ -138,7 +138,7 @@
                 <!-- Beat 3 -->
                 <div class="beat">
                     <p class="beat__n">03 &middot; One model, many lenses</p>
-                    <h3>Six visual languages, every level of the tree, from one capture.</h3>
+                    <h3>6 visual languages, every level of the tree, from one capture.</h3>
                     <p>
                         The languages are not exports. They are projections of the same knowledge graph, so a single
                         ICOM arrow is simultaneously a graph edge feeding the IDEF0 diagram, a labelled flow in the
@@ -156,8 +156,8 @@
                             />
                         </div>
                         <figcaption>
-                            <b>The workspace.</b> Six languages grouped as Overview, Structure and Flow. A navigator
-                            that walks the decomposition from A0 down. Toggles that add or remove the
+                            <b>The workspace.</b> 6 languages grouped as Overview, Structure and Flow. A navigator that
+                            walks the decomposition from A0 down. Toggles that add or remove the
                             <b>I&nbsp;&middot;&nbsp;C&nbsp;&middot;&nbsp;O&nbsp;&middot;&nbsp;M</b> layers on the same
                             render, which is the data spine made visibly separable from its presentation. Export to PNG,
                             SVG, PDF, and standards-faithful <code>.bpmn</code>. The Coach runs against whatever is on
@@ -287,7 +287,7 @@
                 <!-- Beat 5 -->
                 <div class="beat">
                     <p class="beat__n">05 &middot; Instrumented, not drawn</p>
-                    <h3>Thirty-five metrics across six stakeholder lenses.</h3>
+                    <h3>35 metrics across 6 stakeholder lenses.</h3>
                     <p>
                         This is the part that separates a diagram from a management instrument. Every metric is
                         organized by the lens that cares about it, so a COO and a CFO read the same model in their own
@@ -339,8 +339,8 @@
                     <p class="friction">
                         An AI-assisted research system for a private investor, and itself a pull: the client had watched
                         me build and ship Benson Academy, and offered the contract on the strength of what he saw.
-                        Discovery came first: requirements, evaluation of twelve candidate data providers, and the
-                        system architecture, all delivered and invoiced before a line of production code was written.
+                        Discovery came first: requirements, evaluation of 12 candidate data providers, and the system
+                        architecture, all delivered and invoiced before a line of production code was written.
                     </p>
                     <p>
                         <strong>The part worth pausing on:</strong> I modeled the client's operating process in Forester
@@ -349,8 +349,8 @@
                         That loop is the whole argument of this page, and it closed on someone else's money.
                     </p>
                     <p>
-                        Now in production build: twelve ingestion sources into PostgreSQL, an analytics layer, and a
-                        reporting surface. The nightly transform ran seven hours and nobody knew where the time actually
+                        Now in production build: 12 ingestion sources into PostgreSQL, an analytics layer, and a
+                        reporting surface. The nightly transform ran 7 hours and nobody knew where the time actually
                         went, so I stopped guessing and profiled it. Two rewrites I had already built, a numpy
                         vectorization and a parallel staging path, turned out to be aimed at the same
                         <strong>23% of the runtime</strong>. The window functions were 13.4 seconds of a 59 second
@@ -359,9 +359,9 @@
                     <p>
                         So the wins were the unglamorous ones: narrower stored rows, an autovacuum gate, and a rebuilt
                         query that reads a hundred times fewer pages.
-                        <strong>Seven hours to four.</strong> The vectorization was validated bit-exact across 7.3
-                        million rows, measured 3.3&times; slower end to end because the write dominated, and stayed in
-                        the codebase behind a flag as a closed question rather than a failure.
+                        <strong>7 hours to 4.</strong> The vectorization was validated bit-exact across 7.3 million
+                        rows, measured 3.3&times; slower end to end because the write dominated, and stayed in the
+                        codebase behind a flag as a closed question rather than a failure.
                     </p>
                 </div>
 
@@ -409,8 +409,8 @@
                         The transferable part is the pipeline behind it. A grounded knowledge base is the source of
                         truth, generation is constrained to it, custom Python handles asset automation, and a
                         <strong>mandatory human review gate</strong> sits before publication. Research to published
-                        cycle time fell roughly eighty percent, with source traceability maintained and zero tolerance
-                        for unverified claims.
+                        cycle time fell roughly 80%, with source traceability maintained and zero tolerance for
+                        unverified claims.
                     </p>
                     <p>
                         That architecture is the same shape any organization needs before it puts generative AI near
@@ -449,8 +449,8 @@
                     </p>
                     <p>
                         Built on DuckDB with chunked streaming for memory efficiency, SQLAlchemy, scipy for the
-                        inverse-normal sigma calculations, and a Streamlit dashboard with nine views. It runs end to end
-                        on CMS public synthetic data, so anyone can reproduce it.
+                        inverse-normal sigma calculations, and a Streamlit dashboard with 9 views. It runs end to end on
+                        CMS public synthetic data, so anyone can reproduce it.
                     </p>
                 </div>
 
