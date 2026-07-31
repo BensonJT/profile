@@ -268,7 +268,12 @@ h3 {
         gap: var(--s-16);
     }
 }
+/* The hero eyebrow is the only element on the page that names the category, so
+   it has to land before the H1 rather than after it. 1.5x the standard eyebrow,
+   with the tracking eased so the longer string still reads as one label. */
 .hero .eyebrow {
+    font-size: var(--t-md);
+    letter-spacing: 0.1em;
     margin-bottom: var(--s-4);
 }
 .hero h1 {
