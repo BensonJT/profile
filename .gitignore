@@ -17,3 +17,6 @@ __pycache__/
 # Private resume variants — never commit
 *_private.pdf
 *_PRIVATE.pdf
+
+# Word master stays local; only the PDF publishes
+Jeffrey_Benson_Resume.docx
