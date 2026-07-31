@@ -268,8 +268,9 @@
                         <p>
                             No baseline, no claim. The delta is the proof, and it also ensures the people who did the
                             work get the credit they earned. This one applies to my own work too: on the current client
-                            engagement I built a vectorization approach, measured it 3.3&times; slower than what it
-                            replaced, reverted it, and recorded it as a closed question rather than quietly dropping it.
+                            engagement I built a vectorization approach and measured it 3.3&times; slower than what it
+                            replaced. The cost was the return trip to the database, not the compute, so I reverted it,
+                            fixed the constraint the measurement actually pointed to, and recorded the lesson.
                         </p>
                         <div class="quote">
                             <p>
