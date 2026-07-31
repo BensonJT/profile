@@ -202,20 +202,23 @@
 
         <div class="content">
             <div class="scale">
-                <p class="scale__label">Eight domains &middot; Thirty one years</p>
+                <p class="scale__label">Eight domains &middot; Thirty-one years</p>
+                <!-- Ticks are the canonical eight domain START years, matching the
+                     /work domain map exactly: release 1997, quality 1999, capital
+                     2001, ITAM 2013, security 2017, fiber 2019, field 2023, AI 2024. -->
                 <div class="scale__rule">
-                    <div class="tick"><b>1990s</b></div>
+                    <div class="tick"><b>1997</b></div>
+                    <div class="tick"><b>1999</b></div>
                     <div class="tick"><b>2001</b></div>
-                    <div class="tick"><b>2004</b></div>
                     <div class="tick"><b>2013</b></div>
                     <div class="tick"><b>2017</b></div>
-                    <div class="tick"><b>2018</b></div>
+                    <div class="tick"><b>2019</b></div>
                     <div class="tick"><b>2023</b></div>
-                    <div class="tick"><b>2026</b></div>
+                    <div class="tick"><b>2024</b></div>
                 </div>
             </div>
 
-            <p class="line">
+            <p class="line" id="line">
                 I come alongside leaders to fix<br />
                 what&rsquo;s become <em>too complex to see.</em>
             </p>
@@ -225,5 +228,49 @@
                 <span><b>bensonjt.github.io/profile</b></span>
             </p>
         </div>
+
+        <script>
+            // Rotation set: ?v=<name> selects the headline. Every phrase is
+            // Jeff's own canon. Default stays the original line.
+            const VARIANTS = {
+                complex: {
+                    html: "I come alongside leaders to fix<br />what’s become <em>too complex to see.</em>",
+                },
+                together: {
+                    html: "Let’s build something better, <em>together.</em>",
+                    size: 58,
+                },
+                pulled: {
+                    html: "Pulled into eight domains in thirty-one years.<br /><em>Every one measurably better on the way out.</em>",
+                    size: 45,
+                },
+                nobodyowns: {
+                    html: "I go into <em>the problems nobody owns.</em>",
+                    size: 58,
+                },
+                automate: {
+                    html: "You can’t automate <em>a mess.</em>",
+                    size: 62,
+                },
+                seams: {
+                    html: "The value no one is even looking for<br />leaks <em>at the seams.</em>",
+                },
+                fingerprint: {
+                    html: "Leave the team, and the process they run,<br /><em>measurably better than when I joined them.</em>",
+                    size: 47,
+                },
+                principles: {
+                    html: "Listen first. Diagnose before you design.<br /><em>Measure what changes.</em>",
+                    size: 49,
+                },
+            };
+            const pick = new URLSearchParams(location.search).get("v");
+            const v = VARIANTS[pick];
+            if (v) {
+                const el = document.getElementById("line");
+                el.innerHTML = v.html;
+                if (v.size) el.style.fontSize = v.size + "px";
+            }
+        </script>
     </body>
 </html>
