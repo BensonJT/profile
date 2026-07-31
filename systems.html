@@ -342,18 +342,18 @@
                     </p>
                     <p>
                         Now in production build: twelve ingestion sources into PostgreSQL, an analytics layer, and a
-                        reporting surface. The nightly transform ran seven hours and nobody knew where the time
-                        actually went, so I stopped guessing and profiled it. Two rewrites I had already built, a
-                        numpy vectorization and a parallel staging path, turned out to be aimed at the same
+                        reporting surface. The nightly transform ran seven hours and nobody knew where the time actually
+                        went, so I stopped guessing and profiled it. Two rewrites I had already built, a numpy
+                        vectorization and a parallel staging path, turned out to be aimed at the same
                         <strong>23% of the runtime</strong>. The window functions were 13.4 seconds of a 59 second
                         recompute. The write was the other 46.
                     </p>
                     <p>
-                        So the wins were the unglamorous ones: narrower stored rows, an autovacuum gate, and a
-                        rebuilt query that reads a hundred times fewer pages.
+                        So the wins were the unglamorous ones: narrower stored rows, an autovacuum gate, and a rebuilt
+                        query that reads a hundred times fewer pages.
                         <strong>Seven hours to four.</strong> The vectorization was validated bit-exact across 7.3
-                        million rows, measured 3.3&times; slower end to end because the write dominated, and stayed
-                        in the codebase behind a flag as a closed question rather than a failure.
+                        million rows, measured 3.3&times; slower end to end because the write dominated, and stayed in
+                        the codebase behind a flag as a closed question rather than a failure.
                     </p>
                 </div>
 
@@ -461,8 +461,8 @@
                 <div class="s-head">
                     <h2>Let&rsquo;s find where the friction is costing you.</h2>
                     <p>
-                        If you are hiring for a role where the job is to go into something complicated and come back
-                        with clarity, I would like to talk about it.
+                        If you are hiring for a role where the job is to be pulled into something complicated and come
+                        back with clarity, I would like to talk about it.
                     </p>
                 </div>
                 <div class="hero__actions">
