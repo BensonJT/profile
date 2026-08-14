@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prototype — Headshot background compare | Jeffrey Benson</title>
+  <meta name="robots" content="noindex">
+  <link rel="preload" href="../fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/site.css">
+  <style>
+    /* Proto-only chrome. This file gets deleted after the choice is made. */
+    body { background: var(--ink); }
+
+    .vband {
+      background: var(--ink-2);
+      color: var(--vellum);
+      --accent: var(--gold-ink);
+      --fg-muted: var(--n-300);
+      padding: var(--s-4) 0;
+      border-top: 3px solid var(--gold);
+    }
+    .vband p { margin: 0; }
+    .vband .vband__note {
+      font-size: var(--t-sm);
+      color: var(--fg-muted);
+      margin-top: var(--s-1);
+    }
+    .hero .eyebrow { margin-bottom: var(--s-4); }
+
+    /* Quick-scan swatch grid */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-6);
+      margin-top: var(--s-8);
+    }
+    @media (max-width: 700px) {
+      .swatch-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .swatch {
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .swatch img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+    .swatch__label {
+      padding: var(--s-3) var(--s-4);
+      background: var(--ink-2);
+    }
+    .swatch__label strong {
+      display: block;
+      font-family: var(--font-text);
+      font-size: var(--t-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .swatch__label span {
+      font-size: var(--t-xs);
+      color: var(--fg-muted);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ════════════════ QUICK SCAN: all six side by side ════════════════ -->
+  <section class="section--tight on-ink">
+    <div class="wrap">
+      <p class="eyebrow">Quick scan &middot; six background variants</p>
+      <h2 style="margin-top:var(--s-2)">Same photo, six flat backgrounds.</h2>
+      <p class="card__body" style="max-width:var(--measure)">
+        Fast side-by-side before judging any of them in context below. The current live site uses
+        neither of these &mdash; it's the original background, shown first for reference.
+      </p>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <img src="../img/headshot_jb.webp" alt="Current live headshot" width="800" height="800">
+          <div class="swatch__label"><strong>Current (live)</strong><span>original background, unchanged</span></div>
+        </div>
+        <div class="swatch">
+          <img src="../img/Headshot_ink_4Kx4K_square.webp" alt="Headshot on ink background" width="800" height="800">
+          <div class="swatch__label"><strong>Ink</strong><span>#161914 &mdash; matches the hero section itself</span></div>
+        </div>
+        <div class="swatch">
+          <img src="../img/Headshot_vellum_4Kx4K_square.webp" alt="Headshot on vellum background" width="800" height="800">
+          <div class="swatch__label"><strong>Vellum</strong><span>#f0ead6 &mdash; main site background</span></div>
+        </div>
+        <div class="swatch">
+          <img src="../img/Headshot_paper_4Kx4K_square.webp" alt="Headshot on paper background" width="800" height="800">
+          <div class="swatch__label"><strong>Paper</strong><span>#fbf8ef &mdash; article reading background</span></div>
+        </div>
+        <div class="swatch">
+          <img src="../img/Headshot_gold_4Kx4K_square.webp" alt="Headshot on gold background" width="800" height="800">
+          <div class="swatch__label"><strong>Gold</strong><span>#bfa36f &mdash; primary accent</span></div>
+        </div>
+        <div class="swatch">
+          <img src="../img/Headshot_gold-ink_4Kx4K_square.webp" alt="Headshot on gold-ink background" width="800" height="800">
+          <div class="swatch__label"><strong>Gold-ink</strong><span>#c9ae7a &mdash; lighter gold, used on dark backgrounds</span></div>
+        </div>
+        <div class="swatch">
+          <img src="../img/Headshot_olive_4Kx4K_square.webp" alt="Headshot on olive background" width="800" height="800">
+          <div class="swatch__label"><strong>Olive</strong><span>#3b4b35 &mdash; close-section background</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ IN CONTEXT: index.html hero, one per variant ════════════════ -->
+
+  <div class="vband">
+    <div class="wrap">
+      <p class="eyebrow" style="--accent:var(--clay-text)">In context &middot; Current (live)</p>
+      <p class="vband__note">Baseline. This is what ships today on index.html and about.html.</p>
+    </div>
+  </div>
+  <header class="on-ink">
+    <div class="wrap hero">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Process &amp; Operational Excellence &middot; Business Transformation</p>
+          <h1>Pulled in cold. Measurably better on the way out.</h1>
+          <p class="lede">
+            When the way work gets done has quietly stopped working, or become painful for the people
+            carrying it, I am the person brought in to sort it out. I listen first, map what is
+            actually happening in the business, find out why, and redesign the process so the
+            improvement lasts after I leave. Pulled into eight domains since 1994, each one measurably
+            better on the way out. I am a Lean Six Sigma Black Belt.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">See the record</a>
+            <a class="btn btn--ghost" href="#">Résumé&nbsp;(PDF)</a>
+          </div>
+        </div>
+        <img class="portrait" src="../img/headshot_jb.webp" width="800" height="800" alt="Jeffrey Benson">
+      </div>
+    </div>
+  </header>
+
+  <div class="vband">
+    <div class="wrap">
+      <p class="eyebrow" style="--accent:var(--clay-text)">In context &middot; Ink</p>
+      <p class="vband__note">Matches the hero section background exactly. The photo edge should disappear &mdash; subject floats, no visible frame.</p>
+    </div>
+  </div>
+  <header class="on-ink">
+    <div class="wrap hero">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Process &amp; Operational Excellence &middot; Business Transformation</p>
+          <h1>Pulled in cold. Measurably better on the way out.</h1>
+          <p class="lede">
+            When the way work gets done has quietly stopped working, or become painful for the people
+            carrying it, I am the person brought in to sort it out. I listen first, map what is
+            actually happening in the business, find out why, and redesign the process so the
+            improvement lasts after I leave. Pulled into eight domains since 1994, each one measurably
+            better on the way out. I am a Lean Six Sigma Black Belt.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">See the record</a>
+            <a class="btn btn--ghost" href="#">Résumé&nbsp;(PDF)</a>
+          </div>
+        </div>
+        <img class="portrait" src="../img/Headshot_ink_4Kx4K_square.webp" width="800" height="800" alt="Jeffrey Benson">
+      </div>
+    </div>
+  </header>
+
+  <div class="vband">
+    <div class="wrap">
+      <p class="eyebrow" style="--accent:var(--clay-text)">In context &middot; Vellum</p>
+      <p class="vband__note">Matches the site's main page background, not the hero. Reads as a deliberate cream card against dark ink, not a blend.</p>
+    </div>
+  </div>
+  <header class="on-ink">
+    <div class="wrap hero">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Process &amp; Operational Excellence &middot; Business Transformation</p>
+          <h1>Pulled in cold. Measurably better on the way out.</h1>
+          <p class="lede">
+            When the way work gets done has quietly stopped working, or become painful for the people
+            carrying it, I am the person brought in to sort it out. I listen first, map what is
+            actually happening in the business, find out why, and redesign the process so the
+            improvement lasts after I leave. Pulled into eight domains since 1994, each one measurably
+            better on the way out. I am a Lean Six Sigma Black Belt.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">See the record</a>
+            <a class="btn btn--ghost" href="#">Résumé&nbsp;(PDF)</a>
+          </div>
+        </div>
+        <img class="portrait" src="../img/Headshot_vellum_4Kx4K_square.webp" width="800" height="800" alt="Jeffrey Benson">
+      </div>
+    </div>
+  </header>
+
+  <div class="vband">
+    <div class="wrap">
+      <p class="eyebrow" style="--accent:var(--clay-text)">In context &middot; Paper</p>
+      <p class="vband__note">Slightly lighter/whiter than vellum. Same framed-card effect against ink, very close to vellum in this context.</p>
+    </div>
+  </div>
+  <header class="on-ink">
+    <div class="wrap hero">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Process &amp; Operational Excellence &middot; Business Transformation</p>
+          <h1>Pulled in cold. Measurably better on the way out.</h1>
+          <p class="lede">
+            When the way work gets done has quietly stopped working, or become painful for the people
+            carrying it, I am the person brought in to sort it out. I listen first, map what is
+            actually happening in the business, find out why, and redesign the process so the
+            improvement lasts after I leave. Pulled into eight domains since 1994, each one measurably
+            better on the way out. I am a Lean Six Sigma Black Belt.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">See the record</a>
+            <a class="btn btn--ghost" href="#">Résumé&nbsp;(PDF)</a>
+          </div>
+        </div>
+        <img class="portrait" src="../img/Headshot_paper_4Kx4K_square.webp" width="800" height="800" alt="Jeffrey Benson">
+      </div>
+    </div>
+  </header>
+
+  <div class="vband">
+    <div class="wrap">
+      <p class="eyebrow" style="--accent:var(--clay-text)">In context &middot; Gold</p>
+      <p class="vband__note">Primary accent color as a framed card. Warmer/brighter than vellum or paper.</p>
+    </div>
+  </div>
+  <header class="on-ink">
+    <div class="wrap hero">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Process &amp; Operational Excellence &middot; Business Transformation</p>
+          <h1>Pulled in cold. Measurably better on the way out.</h1>
+          <p class="lede">
+            When the way work gets done has quietly stopped working, or become painful for the people
+            carrying it, I am the person brought in to sort it out. I listen first, map what is
+            actually happening in the business, find out why, and redesign the process so the
+            improvement lasts after I leave. Pulled into eight domains since 1994, each one measurably
+            better on the way out. I am a Lean Six Sigma Black Belt.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">See the record</a>
+            <a class="btn btn--ghost" href="#">Résumé&nbsp;(PDF)</a>
+          </div>
+        </div>
+        <img class="portrait" src="../img/Headshot_gold_4Kx4K_square.webp" width="800" height="800" alt="Jeffrey Benson">
+      </div>
+    </div>
+  </header>
+
+  <div class="vband">
+    <div class="wrap">
+      <p class="eyebrow" style="--accent:var(--clay-text)">In context &middot; Gold-ink</p>
+      <p class="vband__note">The lighter gold tint, specifically chosen elsewhere on the site for use against dark ink. Nearly identical to plain Gold at this saturation.</p>
+    </div>
+  </div>
+  <header class="on-ink">
+    <div class="wrap hero">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Process &amp; Operational Excellence &middot; Business Transformation</p>
+          <h1>Pulled in cold. Measurably better on the way out.</h1>
+          <p class="lede">
+            When the way work gets done has quietly stopped working, or become painful for the people
+            carrying it, I am the person brought in to sort it out. I listen first, map what is
+            actually happening in the business, find out why, and redesign the process so the
+            improvement lasts after I leave. Pulled into eight domains since 1994, each one measurably
+            better on the way out. I am a Lean Six Sigma Black Belt.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">See the record</a>
+            <a class="btn btn--ghost" href="#">Résumé&nbsp;(PDF)</a>
+          </div>
+        </div>
+        <img class="portrait" src="../img/Headshot_gold-ink_4Kx4K_square.webp" width="800" height="800" alt="Jeffrey Benson">
+      </div>
+    </div>
+  </header>
+
+  <div class="vband">
+    <div class="wrap">
+      <p class="eyebrow" style="--accent:var(--clay-text)">In context &middot; Olive</p>
+      <p class="vband__note">Dark green, closer in value to ink than the light variants, so the frame is more subtle color-shift than stark rectangle.</p>
+    </div>
+  </div>
+  <header class="on-ink">
+    <div class="wrap hero">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Process &amp; Operational Excellence &middot; Business Transformation</p>
+          <h1>Pulled in cold. Measurably better on the way out.</h1>
+          <p class="lede">
+            When the way work gets done has quietly stopped working, or become painful for the people
+            carrying it, I am the person brought in to sort it out. I listen first, map what is
+            actually happening in the business, find out why, and redesign the process so the
+            improvement lasts after I leave. Pulled into eight domains since 1994, each one measurably
+            better on the way out. I am a Lean Six Sigma Black Belt.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#">See the record</a>
+            <a class="btn btn--ghost" href="#">Résumé&nbsp;(PDF)</a>
+          </div>
+        </div>
+        <img class="portrait" src="../img/Headshot_olive_4Kx4K_square.webp" width="800" height="800" alt="Jeffrey Benson">
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════ PROTOTYPE NOTES — not part of the design ════════════════ -->
+  <section class="section--tight on-ink">
+    <div class="wrap measure">
+      <p class="eyebrow">How to judge these</p>
+      <p class="card__body mt-8">
+        Both real placements (<code>index.html</code> hero, <code>about.html</code> header) sit on
+        the dark <code>on-ink</code> section shown here. <strong>Ink</strong> is the only variant
+        that actually blends into that background &mdash; every other variant will show as a visible
+        rectangle behind the subject, which may or may not be the look you want.
+      </p>
+      <p class="card__body">
+        This page is throwaway: <code>proto/headshot-bg-compare.html</code>, noindex, delete after
+        the choice is made.
+      </p>
+    </div>
+  </section>
+
+</body>
+
+</html>
