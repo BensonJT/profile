@@ -474,6 +474,59 @@
             </div>
         </section>
 
+        <!-- ══ UTILITY ══ -->
+        <section class="section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Utility &middot; open source</p>
+                    <h2>The undocumented workbook, read as data.</h2>
+                </div>
+                <div class="role__body" style="max-width: 64ch">
+                    <p class="friction">
+                        Every operation has one: a spreadsheet that runs something important, built by someone who
+                        left, with twenty tabs, no documentation, and a monthly cycle that leaves nobody time to
+                        untangle it. Opening it and reading cells is how people usually start. It is also why they
+                        never finish.
+                    </p>
+                    <p>
+                        <strong>sheets_decomposer</strong> starts somewhere else. Point it at a Google Sheet or an Excel
+                        file and it extracts the whole structure as data: every formula, every reference, the named
+                        ranges, validations, and hidden tabs. It rewrites the formulas in relative notation so that a
+                        column of two hundred cells collapses to one line of logic, builds the dependency graph between
+                        tabs, and classifies each tab as input, calculation, or output. Then it runs the checks a
+                        careful analyst would run by hand: formulas typed over with a number, cells that break the
+                        pattern of their neighbours, literals hidden inside logic, broken links, numbers stored as text,
+                        tabs nothing reads. The result is a report with the questions to ask the owner, a queryable
+                        DuckDB database, and a structure-only context file for a language model.
+                    </p>
+                    <p>
+                        That last piece is the point. The model never sees the spreadsheet and never sees the data. It
+                        sees the extraction, cites the cell for every claim, and says "not in the extraction" when the
+                        answer is not there. Deterministic scripts do the finding; the model does the explaining; a
+                        person reviews anything that becomes a source of truth.
+                    </p>
+                </div>
+
+                <div class="callout">
+                    <p>
+                        <strong>On how it was built.</strong> The method is the one described across this site, made
+                        runnable: inventory first, patterns not cells, defects in the owner&rsquo;s vocabulary, build
+                        alongside rather than modify in place. The code was written with AI assistance in one evening,
+                        against a synthetic capacity model with fifteen planted defects, so the checks could be scored
+                        against an answer key before they were trusted.
+                    </p>
+                </div>
+
+                <a
+                    class="link-more"
+                    href="https://github.com/BensonJT/sheets_decomposer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Read the code and run it on your own workbook &rarr;</a
+                >
+            </div>
+        </section>
+
         <!-- ══ CLOSE ══ -->
         <section class="on-olive section">
             <div class="wrap">
