@@ -331,7 +331,7 @@
         <section class="on-paper section">
             <div class="wrap">
                 <div class="s-head">
-                    <p class="eyebrow">Meridian &middot; client engagement, in build under contract</p>
+                    <p class="eyebrow">Meridian &middot; client engagement, in daily use</p>
                     <h2>The method, the tool, and a paying client.</h2>
                 </div>
 
@@ -339,8 +339,8 @@
                     <p class="friction">
                         An AI-assisted research system for a private investor, and itself a pull: the client had watched
                         me build and ship Benson Academy, and offered the contract on the strength of what he saw.
-                        Discovery came first: requirements, evaluation of 12 candidate data providers, and the system
-                        architecture, all delivered and invoiced before a line of production code was written.
+                        Discovery came first: requirements, evaluation of more than 20 candidate data sources, and the
+                        system architecture, all delivered and invoiced before a line of production code was written.
                     </p>
                     <p>
                         <strong>The part worth pausing on:</strong> I modeled the client's operating process in Forester
@@ -349,10 +349,11 @@
                         That loop is the whole argument of this page, and it closed on someone else's money.
                     </p>
                     <p>
-                        Now in production build: 12 ingestion sources into PostgreSQL, an analytics layer, and a
-                        reporting surface. The nightly transform ran 7 hours and nobody knew where the time actually
-                        went, so I stopped guessing and profiled it. Two rewrites I had already built, a numpy
-                        vectorization and a parallel staging path, turned out to be aimed at the same
+                        In daily use since August 2026, on the client&rsquo;s own machine: scheduled ingestion into
+                        PostgreSQL, an analytics layer, and a reporting surface. The nightly transform ran 7 hours and
+                        nobody knew where the time actually went, so I stopped guessing and profiled it. Two rewrites I
+                        had already built, a numpy vectorization and a parallel staging path, turned out to be aimed at
+                        the same
                         <strong>23% of the runtime</strong>. The window functions were 13.4 seconds of a 59 second
                         recompute. The write was the other 46.
                     </p>
@@ -367,16 +368,16 @@
 
                 <dl class="outcomes" style="max-width: 64ch">
                     <div>
-                        <dt>12 sources</dt>
-                        <dd>Ingesting into PostgreSQL on a scheduled pipeline</dd>
+                        <dt>20+ sources</dt>
+                        <dd>Evaluated in writing before any was adopted</dd>
                     </div>
                     <div>
                         <dt>7h &rarr; 4h</dt>
                         <dd>Nightly transform window, measured rather than assumed</dd>
                     </div>
                     <div>
-                        <dt>~2/3</dt>
-                        <dd>Through the contracted build phase. Roughly half the planned system is still ahead</dd>
+                        <dt>124</dt>
+                        <dd>Database migrations shipped to the client&rsquo;s machine, which I never touch directly</dd>
                     </div>
                 </dl>
 
@@ -404,6 +405,14 @@
                     <p class="friction">
                         A full-stack Next.js and TypeScript application, built solo and live, serving a multi-course
                         curriculum.
+                    </p>
+                    <p>
+                        Now in its Gamma release, after the Beta: five lessons complete in the new format, including the
+                        first lesson of a second course, Abide 102. Each lesson can be heard in an AI narration voice,
+                        male or female; the podcast runs from a script I control; a roughly ten-minute explainer video
+                        carries our own slides; and the full lesson is on YouTube in sections that follow the article.
+                        The site&rsquo;s whole look was redesigned by Claude Opus 5.5 overnight, working toward a goal I
+                        set before I went to sleep.
                     </p>
                     <p>
                         The transferable part is the pipeline behind it. A grounded knowledge base is the source of
@@ -457,10 +466,12 @@
                 <div class="callout">
                     <p>
                         <strong>On how it was built.</strong> The analysis was mine: which comparisons mattered, how to
-                        frame quality as a sigma problem, what the scorecard should say, and where the real risk sat. AI
-                        helped me write the queries faster than I would have written them alone. That is the same
-                        division of labor stated everywhere else on this site, and this is the one place you can go
-                        inspect it yourself.
+                        frame quality as a sigma problem, what the scorecard should say, and where the real risk sat. I
+                        built it with Claude Code. Mostly I directed: what each query had to answer, and how the data
+                        should be scored for the Lean Six Sigma calculations. Some of it was hands-on: I started several
+                        queries myself and had the AI finish them by following my pattern across about a hundred
+                        columns. That is the same division of labor stated everywhere else on this site, and this is the
+                        one place you can go inspect it yourself.
                     </p>
                 </div>
 
