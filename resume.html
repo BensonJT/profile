@@ -105,13 +105,14 @@
                             first client engagement began in July.
                         </p>
                         <p>
-                            <strong>Meridian</strong> (client engagement, in build). An AI-assisted research system for
-                            a private investor. I ran discovery first: requirements, evaluation of 12 candidate data
-                            providers, and the system architecture. I modeled the client&rsquo;s operating process
-                            before designing anything, and that model became the architecture&rsquo;s top level
-                            decomposition, so the build is structured by the process rather than the reverse. Now in
-                            production build: 12 ingestion sources into PostgreSQL, an analytics layer, and a reporting
-                            surface. I cut the nightly transform window from 7 hours to 4 by measuring where the time
+                            <strong>Meridian</strong> (client engagement, in daily use). An AI-assisted research system
+                            for a private investor. I ran discovery first: requirements, evaluation of more than 20
+                            candidate data sources, and the system architecture. I modeled the client&rsquo;s operating
+                            process before designing anything, and that model became the architecture&rsquo;s top level
+                            decomposition, so the build is structured by the process rather than the reverse. In daily
+                            use since August 2026, on the client&rsquo;s own machine: scheduled ingestion into
+                            PostgreSQL, an analytics layer, and a reporting surface, with 124 database migrations
+                            shipped. I cut the nightly transform window from 7 hours to 4 by measuring where the time
                             actually went. A numpy vectorization I had already built measured 3.3&times; slower end to
                             end because the write dominated, not the compute, so it stayed behind a flag as a closed
                             question rather than a failure.
