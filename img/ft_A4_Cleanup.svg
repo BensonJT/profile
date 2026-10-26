@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="t d">
+  <title id="t">A4 Cleanup: ICOM diagram</title>
+  <desc id="d">Inputs: Dirty Pans &amp; Utensils, Dish Washing Detergent, Water. Controls: none listed. Outputs: Clean Pans &amp; Utensils. Mechanisms: Towels, Wash Cloths, Sink, Baker, Oven Operator.</desc>
+  <defs>
+    <marker id="aOl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3B4B35"/></marker>
+    <marker id="aGo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A88A4F"/></marker>
+    <marker id="aCl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#C27B58"/></marker>
+  </defs>
+  <style>
+    text { font-family: Inter, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #2C2E2F; }
+    .lbl { font-size: 14px; }
+    .sm { font-size: 12.5px; }
+    .cat { font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; }
+    .name { font-family: "Instrument Serif", Georgia, serif; font-size: 24px; }
+    .nm { font-family: "Instrument Serif", Georgia, serif; font-size: 19px; }
+    .id { font-size: 13px; font-weight: 700; fill: #3B4B35; }
+    .wt { fill: #FFFFFF; }
+  </style>
+  <rect width="960" height="420" fill="#FFFFFF"/>
+
+  <text class="cat" x="230" y="22" style="fill:#A88A4F">CONTROLS</text>
+  <text class="sm" x="480" y="100" text-anchor="middle" font-style="italic" style="fill:#A88A4F">none listed</text>
+  <rect x="230" y="120" width="500" height="160" rx="4" fill="#F0EAD6" stroke="#2C2E2F" stroke-width="2"/>
+  <text class="name" x="480" y="208" text-anchor="middle">Cleanup</text>
+  <text class="id" x="718" y="268" text-anchor="end">A4</text>
+  <text class="cat" x="20" y="112" style="fill:#3B4B35">INPUTS</text>
+  <line x1="20" y1="160" x2="230" y2="160" stroke="#3B4B35" stroke-width="2" marker-end="url(#aOl)"/>
+  <text class="lbl" x="125" y="152" text-anchor="middle">Dirty Pans &amp; Utensils</text>
+  <line x1="20" y1="200" x2="230" y2="200" stroke="#3B4B35" stroke-width="2" marker-end="url(#aOl)"/>
+  <text class="lbl" x="125" y="192" text-anchor="middle">Dish Washing Detergent</text>
+  <line x1="20" y1="240" x2="230" y2="240" stroke="#3B4B35" stroke-width="2" marker-end="url(#aOl)"/>
+  <text class="lbl" x="125" y="232" text-anchor="middle">Water</text>
+  <text class="cat" x="940" y="112" text-anchor="end" style="fill:#3B4B35">OUTPUT</text>
+  <line x1="730" y1="200" x2="940" y2="200" stroke="#3B4B35" stroke-width="2" marker-end="url(#aOl)"/>
+  <text class="lbl" x="835" y="192" text-anchor="middle">Clean Pans &amp; Utensils</text>
+  <line x1="313" y1="335" x2="313" y2="280" stroke="#C27B58" stroke-width="2" marker-end="url(#aCl)"/>
+  <text class="lbl" x="313" y="355" text-anchor="middle">Towels</text>
+  <line x1="397" y1="335" x2="397" y2="280" stroke="#C27B58" stroke-width="2" marker-end="url(#aCl)"/>
+  <text class="lbl" x="397" y="355" text-anchor="middle">Wash Cloths</text>
+  <line x1="480" y1="335" x2="480" y2="280" stroke="#C27B58" stroke-width="2" marker-end="url(#aCl)"/>
+  <text class="lbl" x="480" y="355" text-anchor="middle">Sink</text>
+  <line x1="563" y1="335" x2="563" y2="280" stroke="#C27B58" stroke-width="2" marker-end="url(#aCl)"/>
+  <text class="lbl" x="563" y="355" text-anchor="middle">Baker</text>
+  <line x1="647" y1="335" x2="647" y2="280" stroke="#C27B58" stroke-width="2" marker-end="url(#aCl)"/>
+  <text class="lbl" x="647" y="355" text-anchor="middle">Oven Operator</text>
+  <text class="cat" x="230" y="406" style="fill:#C27B58">MECHANISMS</text>
+</svg>

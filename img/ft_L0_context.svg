@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="t d">
+  <title id="t">Baking Brownies context diagram (A0) with ICOMs</title>
+  <desc id="d">Inputs: Brownie Mix, Eggs, Water, Grease, Fuel (Electric / Gas), Dish Washing Detergent. Controls: Recipe, Customer Preferences (no nuts), Oven Performance, Safety Regulations. Outputs: Delicious Brownies, Defective Brownies, Trash, Clean Pans &amp; Utensils. Mechanisms: Baker, Oven Operator, Grocery Store Clerk, Fuel Provider, Oven, Timer, Mixing Bowl &amp; Spoon, Pan, Spatula, Oven Mitt, Cooling Rack, Sink &amp; Towels.</desc>
+  <defs>
+    <marker id="aOl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3B4B35"/></marker>
+    <marker id="aGo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A88A4F"/></marker>
+    <marker id="aCl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#C27B58"/></marker>
+  </defs>
+  <style>
+    text { font-family: Inter, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #2C2E2F; }
+    .lbl { font-size: 14px; }
+    .sm { font-size: 12.5px; }
+    .cat { font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; }
+    .name { font-family: "Instrument Serif", Georgia, serif; font-size: 24px; }
+    .nm { font-family: "Instrument Serif", Georgia, serif; font-size: 19px; }
+    .id { font-size: 13px; font-weight: 700; fill: #3B4B35; }
+    .wt { fill: #FFFFFF; }
+  </style>
+  <rect width="900" height="560" fill="#FFFFFF"/>
+
+  <rect x="330" y="200" width="240" height="150" rx="4" fill="#F0EAD6" stroke="#2C2E2F" stroke-width="2"/>
+  <text class="name" x="450.0" y="283.0" text-anchor="middle">Baking Brownies</text>
+  <text class="id" x="558" y="338" text-anchor="end">A0</text>
+  <text class="sm" x="20" y="28"><tspan font-weight="700" style="fill:#3B4B35">Purpose: </tspan>Describe the "as is" (current state) Brownie Baking process</text>
+  <text class="sm" x="20" y="48"><tspan font-weight="700" style="fill:#3B4B35">Viewpoint: </tspan>The Baker</text>
+  <text class="cat" x="20" y="161" style="fill:#3B4B35">INPUTS</text>
+  <line x1="20" y1="275" x2="330" y2="275" stroke="#3B4B35" stroke-width="2" marker-end="url(#aOl)"/>
+  <text class="lbl" x="20" y="182.0" text-anchor="start">Brownie Mix</text>
+  <text class="lbl" x="20" y="199.0" text-anchor="start">Eggs</text>
+  <text class="lbl" x="20" y="216.0" text-anchor="start">Water</text>
+  <text class="lbl" x="20" y="233.0" text-anchor="start">Grease</text>
+  <text class="lbl" x="20" y="250.0" text-anchor="start">Fuel (Electric / Gas)</text>
+  <text class="lbl" x="20" y="267.0" text-anchor="start">Dish Washing Detergent</text>
+  <text class="cat" x="880" y="195" text-anchor="end" style="fill:#3B4B35">OUTPUTS</text>
+  <line x1="570" y1="275" x2="880" y2="275" stroke="#3B4B35" stroke-width="2" marker-end="url(#aOl)"/>
+  <text class="lbl" x="880" y="216.0" text-anchor="end">Delicious Brownies</text>
+  <text class="lbl" x="880" y="233.0" text-anchor="end">Defective Brownies</text>
+  <text class="lbl" x="880" y="250.0" text-anchor="end">Trash</text>
+  <text class="lbl" x="880" y="267.0" text-anchor="end">Clean Pans &amp; Utensils</text>
+  <line x1="450.0" y1="160" x2="450.0" y2="200" stroke="#A88A4F" stroke-width="2" marker-end="url(#aGo)"/>
+  <text class="cat" x="464.0" y="86" style="fill:#A88A4F">CONTROLS</text>
+  <text class="lbl" x="464.0" y="116" text-anchor="start">Recipe</text>
+  <text class="lbl" x="464.0" y="133" text-anchor="start">Customer Preferences (no nuts)</text>
+  <text class="lbl" x="464.0" y="150" text-anchor="start">Oven Performance</text>
+  <text class="lbl" x="464.0" y="167" text-anchor="start">Safety Regulations</text>
+  <line x1="450.0" y1="390" x2="450.0" y2="350" stroke="#C27B58" stroke-width="2" marker-end="url(#aCl)"/>
+  <text class="cat" x="450.0" y="412" text-anchor="middle" style="fill:#C27B58">MECHANISMS</text>
+  <text class="lbl" x="436.0" y="434" text-anchor="end">Baker</text>
+  <text class="lbl" x="436.0" y="451" text-anchor="end">Oven Operator</text>
+  <text class="lbl" x="436.0" y="468" text-anchor="end">Grocery Store Clerk</text>
+  <text class="lbl" x="436.0" y="485" text-anchor="end">Fuel Provider</text>
+  <text class="lbl" x="436.0" y="502" text-anchor="end">Oven</text>
+  <text class="lbl" x="436.0" y="519" text-anchor="end">Timer</text>
+  <text class="lbl" x="464.0" y="434" text-anchor="start">Mixing Bowl &amp; Spoon</text>
+  <text class="lbl" x="464.0" y="451" text-anchor="start">Pan</text>
+  <text class="lbl" x="464.0" y="468" text-anchor="start">Spatula</text>
+  <text class="lbl" x="464.0" y="485" text-anchor="start">Oven Mitt</text>
+  <text class="lbl" x="464.0" y="502" text-anchor="start">Cooling Rack</text>
+  <text class="lbl" x="464.0" y="519" text-anchor="start">Sink &amp; Towels</text>
+</svg>

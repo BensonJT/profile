@@ -604,7 +604,7 @@
 
     <p>That means we can draw ICOMs for every activity, just as we did for the Context Diagram.</p>
 
-    <img src="img/Ax_Generic_Activity.webp"
+    <img src="img/ft_Ax_Generic_Activity.svg"
          alt="Generic ICOM activity diagram showing two inputs on the left, two controls on top, two outputs on the right, and three mechanism types on the bottom: System, Tool, and Personnel"
          class="diagram-image">
     <p class="image-caption">Every activity node in the decomposition tree has the same structure as the Context Diagram (its own Inputs, Controls, Outputs, and Mechanisms).</p>
@@ -641,12 +641,13 @@
     <!-- ── Application: Baking Brownies ── -->
     <h2 class="section-title">Application: Baking Brownies - ICOMs at Every L1 Node</h2>
 
-    <p>Let's return to the Baking Brownie process. In <a href="article-forest-and-trees-2.html" style="color: var(--olive); font-weight: 700;">Part II</a> we identified three high-level activities at L1:</p>
+    <p>Let's return to the Baking Brownie process. In <a href="article-forest-and-trees-2.html" style="color: var(--olive); font-weight: 700;">Part II</a> we identified four high-level activities at L1:</p>
 
     <div class="activity-tree" style="margin-bottom: 32px;">
       <div class="activity-parent"><span class="activity-id">A1</span><span>Preheat Oven</span></div>
       <div class="activity-parent"><span class="activity-id">A2</span><span>Mix Ingredients</span></div>
-      <div class="activity-parent"><span class="activity-id">A3</span><span>Bake Brownies</span></div>
+      <div class="activity-parent"><span class="activity-id">A3</span><span>Bake &amp; Serve Brownies</span></div>
+      <div class="activity-parent"><span class="activity-id">A4</span><span>Cleanup</span></div>
     </div>
 
     <p>Now let's apply ICOMs to each activity individually, moving from the forest view down to the level of each tree.</p>
@@ -656,50 +657,66 @@
       <!-- A1 -->
       <h3 class="subsection-title" style="margin-top: 0;">A1 - Preheat Oven</h3>
 
-      <img src="img/A1_Preheat_Oven.webp"
-           alt="ICOM diagram for A1, Preheat Oven. Input: Fuel (Electricity/Gas). Controls: Recipe, Oven Performance History. Output: Preheated Oven. Mechanisms: Oven, Baker."
+      <img src="img/ft_A1_Preheat_Oven.svg"
+           alt="ICOM diagram for A1, Preheat Oven. Input: Fuel (Electric / Gas). Controls: Recipe, Oven Performance, Safety Regulations. Output: Preheated Oven. Mechanisms: Oven, Oven Operator."
            class="diagram-image" style="margin-top: 8px;">
 
       <ul class="icom-list">
         <li><span class="icom-label">Input</span><span class="icom-value">Fuel (electricity or gas) consumed by the oven to reach temperature</span></li>
-        <li><span class="icom-label">Controls</span><span class="icom-value">Recipe (specifies required temperature), Oven Performance History (does this oven run hot or cool?)</span></li>
+        <li><span class="icom-label">Controls</span><span class="icom-value">Recipe (specifies required temperature), Oven Performance (does this oven run hot or cool?), Safety Regulations</span></li>
         <li><span class="icom-label">Output</span><span class="icom-value">Preheated Oven (the oven has reached the correct baking temperature)</span></li>
-        <li><span class="icom-label">Mechanisms</span><span class="icom-value">Oven (the machine executing the activity), Baker (who initiates, monitors, and verifies)</span></li>
+        <li><span class="icom-label">Mechanisms</span><span class="icom-value">Oven (the machine executing the activity), Oven Operator (who initiates, monitors, and verifies)</span></li>
       </ul>
 
-      <p>Notice how we name the output: <em>"Preheated Oven."</em> It states what this activity must deliver before the next step can begin. Also notice that Oven Performance History is a control. Experienced bakers know whether their oven runs hot or cool and adjust for it. Writing it down as a control means the next baker can follow it too.</p>
+      <p>Notice how we name the output: <em>"Preheated Oven."</em> It states what this activity must deliver before the next step can begin. Also notice that Oven Performance is a control. Experienced bakers know whether their oven runs hot or cool and adjust for it. Writing it down as a control means the next baker can follow it too.</p>
 
       <!-- A2 -->
       <h3 class="subsection-title">A2 - Mix Ingredients</h3>
 
-      <img src="img/A2_Mix_Ingredients.webp"
-           alt="ICOM diagram for A2, Mix Ingredients. Inputs: Brownie Mix, Eggs, Water, Pan. Controls: Recipe, Customer Preference. Outputs: Brownie Batter, Trash, Greased Pan. Mechanisms: Mixing Bowl &amp; Spoon, Baker."
+      <img src="img/ft_A2_Mix_Ingredients.svg"
+           alt="ICOM diagram for A2, Mix Ingredients. Inputs: Brownie Mix, Eggs, Water, Grease. Controls: Recipe, Customer Preferences. Outputs: Brownie Batter, Trash, Greased Pan. Mechanisms: Mixing Bowl &amp; Spoon, Pan, Baker."
            class="diagram-image" style="margin-top: 8px;">
 
       <ul class="icom-list">
-        <li><span class="icom-label">Inputs</span><span class="icom-value">Brownie Mix, Eggs, Water, Pan (all consumed or transformed by this activity)</span></li>
+        <li><span class="icom-label">Inputs</span><span class="icom-value">Brownie Mix, Eggs, Water, Grease (all consumed or transformed by this activity)</span></li>
         <li><span class="icom-label">Controls</span><span class="icom-value">Recipe (specifies proportions and mixing method), Customer Preference (nut allergies, add-ins, consistency preferences)</span></li>
-        <li><span class="icom-label">Outputs</span><span class="icom-value">Brownie Batter (primary), Trash (egg shells and packaging), Greased Pan (the pan is prepped here and flows to A3)</span></li>
-        <li><span class="icom-label">Mechanisms</span><span class="icom-value">Mixing Bowl &amp; Spoon, Baker</span></li>
+        <li><span class="icom-label">Outputs</span><span class="icom-value">Brownie Batter (primary), Trash (egg shells and packaging), Greased Pan (the pan is greased here and flows to A3)</span></li>
+        <li><span class="icom-label">Mechanisms</span><span class="icom-value">Mixing Bowl &amp; Spoon, Pan, Baker</span></li>
       </ul>
 
-      <p>The inputs to this activity (Brownie Mix, Eggs, and Water) are consumed and transformed. When A2 is complete, the ingredients no longer exist in their original form. They have become Brownie Batter. Note also the three outputs. The primary output (Brownie Batter) flows forward. The secondary output (Trash) exits the process. And the Greased Pan, prepped during this step, flows directly to A3 where it will be needed.</p>
+      <p>The inputs to this activity (Brownie Mix, Eggs, Water, and Grease) are consumed and transformed. When A2 is complete, the ingredients no longer exist in their original form. They have become Brownie Batter. Note also the three outputs. The primary output (Brownie Batter) flows forward. The secondary output (Trash) exits the process. And the Greased Pan flows directly to A3 where it will be needed. The pan itself is a Mechanism, but greasing it changes it, so the Greased Pan leaves A2 as an output.</p>
 
       <!-- A3 -->
-      <h3 class="subsection-title">A3 - Bake Brownies</h3>
+      <h3 class="subsection-title">A3 - Bake &amp; Serve Brownies</h3>
 
-      <img src="img/A3_Bake_Brownies.webp"
-           alt="ICOM diagram for A3, Bake Brownies. Inputs: Brownie Batter, Greased Pan. Controls: Recipe, Customer Preference. Outputs: Baked Brownies, Dirty Pan &amp; Cooling Rack. Mechanisms: Preheated Oven &amp; Timer, Oven Mitt &amp; Cooling Rack, Baker."
+      <img src="img/ft_A3_Bake_Serve.svg"
+           alt="ICOM diagram for A3, Bake and Serve Brownies. Inputs: Brownie Batter, Greased Pan. Controls: Recipe, Customer Preferences, Oven Performance. Outputs: Baked Brownies, Defective Brownies, Dirty Pans &amp; Utensils. Mechanisms: Preheated Oven, Timer, Oven Mitt, Cooling Rack, Baker, Oven Operator."
            class="diagram-image" style="margin-top: 8px;">
 
       <ul class="icom-list">
         <li><span class="icom-label">Inputs</span><span class="icom-value">Brownie Batter (from A2), Greased Pan (from A2)</span></li>
-        <li><span class="icom-label">Controls</span><span class="icom-value">Recipe (baking time and temperature), Customer Preference (final product requirements)</span></li>
-        <li><span class="icom-label">Outputs</span><span class="icom-value">Baked Brownies (primary), Dirty Pan &amp; Cooling Rack (waste/byproduct output)</span></li>
-        <li><span class="icom-label">Mechanisms</span><span class="icom-value">Preheated Oven &amp; Timer (oven is ready from A1), Oven Mitt &amp; Cooling Rack, Baker</span></li>
+        <li><span class="icom-label">Controls</span><span class="icom-value">Recipe (baking time and temperature), Customer Preferences (final product requirements), Oven Performance</span></li>
+        <li><span class="icom-label">Outputs</span><span class="icom-value">Baked Brownies (primary), Defective Brownies (a burned batch), Dirty Pans &amp; Utensils (flow to A4)</span></li>
+        <li><span class="icom-label">Mechanisms</span><span class="icom-value">Preheated Oven (ready from A1), Timer, Oven Mitt, Cooling Rack, Baker, Oven Operator</span></li>
       </ul>
 
       <p>Look carefully at A3's inputs and mechanisms. <em>Both of its inputs came from A2</em> (the Brownie Batter and the Greased Pan), and its primary mechanism, the Preheated Oven, was produced by A1. A3 cannot execute until A1 and A2 have done their work correctly, and the ICOMs put those dependencies on the diagram where everyone can see them.</p>
+
+      <!-- A4 -->
+      <h3 class="subsection-title">A4 - Cleanup</h3>
+
+      <img src="img/ft_A4_Cleanup.svg"
+           alt="ICOM diagram for A4, Cleanup. Inputs: Dirty Pans &amp; Utensils, Dish Washing Detergent, Water. Controls: none listed. Output: Clean Pans &amp; Utensils. Mechanisms: Towels, Wash Cloths, Sink, Baker, Oven Operator."
+           class="diagram-image" style="margin-top: 8px;">
+
+      <ul class="icom-list">
+        <li><span class="icom-label">Inputs</span><span class="icom-value">Dirty Pans &amp; Utensils (from A3), Dish Washing Detergent, Water</span></li>
+        <li><span class="icom-label">Controls</span><span class="icom-value">None listed</span></li>
+        <li><span class="icom-label">Output</span><span class="icom-value">Clean Pans &amp; Utensils (ready for the next batch)</span></li>
+        <li><span class="icom-label">Mechanisms</span><span class="icom-value">Towels, Wash Cloths, Sink, Baker, Oven Operator</span></li>
+      </ul>
+
+      <p>A4 is the kind of activity that is easy to leave off a model. Notice that our model has no control listed for it. What governs cleanup? Is there a standard for how clean is clean enough? We will come back to that question below.</p>
 
     </div>
 
@@ -708,26 +725,30 @@
     <!-- ── Seeing the Flow ── -->
     <h2 class="section-title">Seeing the Flow</h2>
 
-    <p>Now let's step back and look at all three activities together. The connected diagram below shows the full L1 process, with the cross-activity flows that link them.</p>
+    <p>Now let's step back and look at all four activities together. The connected diagram below shows the full L1 process, with the cross-activity flows that link them.</p>
 
-    <img src="img/L1_Baking_Brownies.webp"
-         alt="Connected ICOM diagram showing all three L1 activities (Preheat Oven A1, Mix Ingredients A2, and Bake Brownies A3) with flow arrows connecting A1's Preheated Oven output to A3's mechanism, and A2's Brownie Batter and Greased Pan outputs to A3's inputs."
+    <img src="img/ft_L1_Connected.svg"
+         alt="Connected diagram of the four L1 activities: A1's Preheated Oven output is a mechanism for A3, A2's Brownie Batter and Greased Pan outputs are inputs to A3, and A3's Dirty Pans and Utensils are an input to A4."
          class="diagram-image-wide">
     <p class="image-caption">The L1 Baking Brownies process with ICOMs at every node and the flows between activities.</p>
 
     <div class="flow-callout">
-      <p class="flow-callout-label">The two critical cross-activity flows</p>
+      <p class="flow-callout-label">The three cross-activity flows</p>
       <div class="flow-callout-item">
         <span class="flow-arrow">&#8594;</span>
-        <p><strong>A1 &rarr; A3:</strong> The Preheated Oven is the <em>output</em> of Preheat Oven and a <em>mechanism</em> for Bake Brownies. Like every mechanism, the oven is not consumed by the baking. A3 cannot start until A1 has delivered this output.</p>
+        <p><strong>A1 &rarr; A3:</strong> The Preheated Oven is the <em>output</em> of Preheat Oven and a <em>mechanism</em> for Bake &amp; Serve Brownies. Like every mechanism, the oven is not consumed by the baking. A3 cannot start until A1 has delivered this output.</p>
       </div>
       <div class="flow-callout-item">
         <span class="flow-arrow">&#8594;</span>
-        <p><strong>A2 &rarr; A3:</strong> Brownie Batter and Greased Pan are <em>outputs</em> of Mix Ingredients and <em>inputs</em> to Bake Brownies. They are consumed and transformed by the baking. Without them, A3 has nothing to bake.</p>
+        <p><strong>A2 &rarr; A3:</strong> Brownie Batter and Greased Pan are <em>outputs</em> of Mix Ingredients and <em>inputs</em> to Bake &amp; Serve Brownies. They are consumed and transformed by the baking. Without them, A3 has nothing to bake.</p>
+      </div>
+      <div class="flow-callout-item">
+        <span class="flow-arrow">&#8594;</span>
+        <p><strong>A3 &rarr; A4:</strong> Dirty Pans &amp; Utensils are an <em>output</em> of Bake &amp; Serve Brownies and an <em>input</em> to Cleanup. A4 turns them back into Clean Pans &amp; Utensils for the next batch.</p>
       </div>
     </div>
 
-    <p>Preheat Oven and Mix Ingredients must both succeed before Bake Brownies can begin. If either one fails to produce its output, Bake Brownies cannot run.</p>
+    <p>Preheat Oven and Mix Ingredients must both succeed before Bake &amp; Serve Brownies can begin. If either one fails to produce its output, Bake &amp; Serve Brownies cannot run.</p>
 
     <hr>
 
@@ -745,7 +766,7 @@
       </div>
       <div class="gap-card">
         <p class="gap-card-title">Controls</p>
-        <p>What governs this activity? If the answer is "whoever is doing it decides," there is no standard, and no consistency when that person is unavailable.</p>
+        <p>What governs this activity? If the answer is "whoever is doing it decides," there is no standard, and no consistency when that person is unavailable. (That is the question our own A4 Cleanup raised.)</p>
       </div>
       <div class="gap-card">
         <p class="gap-card-title">Outputs</p>

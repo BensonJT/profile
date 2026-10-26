@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1026 470" role="img" aria-labelledby="t d">
+  <title id="t">Traditional L1 SIPOC for Baking Brownies</title>
+  <desc id="d">Suppliers: Fuel Provider, Grocery Store Clerk, Oven Operator, Baker; Inputs: Fuel, Brownie Mix, Eggs, Water, Grease, Dish Washing Detergent; Process: A1 Preheat Oven, A2 Mix Ingredients, A3 Bake &amp; Serve Brownies, A4 Cleanup; Outputs: Baked Brownies, Defective Brownies, Trash, Clean Pans &amp; Utensils; Customers: Baker's Family, Guests, Baker (clean pans)</desc>
+  <defs>
+    <marker id="aOl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3B4B35"/></marker>
+    <marker id="aGo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A88A4F"/></marker>
+    <marker id="aCl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#C27B58"/></marker>
+  </defs>
+  <style>
+    text { font-family: Inter, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #2C2E2F; }
+    .lbl { font-size: 14px; }
+    .sm { font-size: 12.5px; }
+    .cat { font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; }
+    .name { font-family: "Instrument Serif", Georgia, serif; font-size: 24px; }
+    .nm { font-family: "Instrument Serif", Georgia, serif; font-size: 19px; }
+    .id { font-size: 13px; font-weight: 700; fill: #3B4B35; }
+    .wt { fill: #FFFFFF; }
+  </style>
+  <rect width="1026" height="470" fill="#FFFFFF"/>
+
+  <rect x="20" y="30" width="186" height="44" rx="6" fill="#3B4B35"/>
+  <text class="cat" x="113.0" y="57" text-anchor="middle" style="fill:#FFFFFF">SUPPLIERS</text>
+  <rect x="20" y="82" width="186" height="368" rx="6" fill="#F0EAD6" opacity="0.6"/>
+  <rect x="30" y="94" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="113.0" y="122" text-anchor="middle">Fuel Provider</text>
+  <rect x="30" y="150" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="113.0" y="170" text-anchor="middle">Grocery</text>
+  <text class="lbl" x="113.0" y="186" text-anchor="middle">Store Clerk</text>
+  <rect x="30" y="206" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="113.0" y="234" text-anchor="middle">Oven Operator</text>
+  <rect x="30" y="262" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="113.0" y="290" text-anchor="middle">Baker</text>
+  <path d="M208,46 l8,6 l-8,6 z" fill="#A88A4F"/>
+  <rect x="220" y="30" width="186" height="44" rx="6" fill="#5B6B52"/>
+  <text class="cat" x="313.0" y="57" text-anchor="middle" style="fill:#FFFFFF">INPUTS</text>
+  <rect x="220" y="82" width="186" height="368" rx="6" fill="#F0EAD6" opacity="0.6"/>
+  <rect x="230" y="94" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="313.0" y="122" text-anchor="middle">Fuel</text>
+  <rect x="230" y="150" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="313.0" y="178" text-anchor="middle">Brownie Mix</text>
+  <rect x="230" y="206" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="313.0" y="234" text-anchor="middle">Eggs</text>
+  <rect x="230" y="262" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="313.0" y="290" text-anchor="middle">Water</text>
+  <rect x="230" y="318" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="313.0" y="346" text-anchor="middle">Grease</text>
+  <rect x="230" y="374" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="313.0" y="394" text-anchor="middle">Dish Washing</text>
+  <text class="lbl" x="313.0" y="410" text-anchor="middle">Detergent</text>
+  <path d="M408,46 l8,6 l-8,6 z" fill="#A88A4F"/>
+  <rect x="420" y="30" width="186" height="44" rx="6" fill="#2C2E2F"/>
+  <text class="cat" x="513.0" y="57" text-anchor="middle" style="fill:#FFFFFF">PROCESS</text>
+  <rect x="420" y="82" width="186" height="368" rx="6" fill="#F0EAD6" opacity="0.6"/>
+  <rect x="430" y="94" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="513.0" y="122" text-anchor="middle">A1 Preheat Oven</text>
+  <rect x="430" y="150" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="513.0" y="178" text-anchor="middle">A2 Mix Ingredients</text>
+  <rect x="430" y="206" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="513.0" y="226" text-anchor="middle">A3 Bake &amp;</text>
+  <text class="lbl" x="513.0" y="242" text-anchor="middle">Serve Brownies</text>
+  <rect x="430" y="262" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="513.0" y="290" text-anchor="middle">A4 Cleanup</text>
+  <path d="M608,46 l8,6 l-8,6 z" fill="#A88A4F"/>
+  <rect x="620" y="30" width="186" height="44" rx="6" fill="#5B6B52"/>
+  <text class="cat" x="713.0" y="57" text-anchor="middle" style="fill:#FFFFFF">OUTPUTS</text>
+  <rect x="620" y="82" width="186" height="368" rx="6" fill="#F0EAD6" opacity="0.6"/>
+  <rect x="630" y="94" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="713.0" y="122" text-anchor="middle">Baked Brownies</text>
+  <rect x="630" y="150" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="713.0" y="178" text-anchor="middle">Defective Brownies</text>
+  <rect x="630" y="206" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="713.0" y="234" text-anchor="middle">Trash</text>
+  <rect x="630" y="262" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="713.0" y="282" text-anchor="middle">Clean Pans</text>
+  <text class="lbl" x="713.0" y="298" text-anchor="middle">&amp; Utensils</text>
+  <path d="M808,46 l8,6 l-8,6 z" fill="#A88A4F"/>
+  <rect x="820" y="30" width="186" height="44" rx="6" fill="#3B4B35"/>
+  <text class="cat" x="913.0" y="57" text-anchor="middle" style="fill:#FFFFFF">CUSTOMERS</text>
+  <rect x="820" y="82" width="186" height="368" rx="6" fill="#F0EAD6" opacity="0.6"/>
+  <rect x="830" y="94" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="913.0" y="122" text-anchor="middle">Baker's Family</text>
+  <rect x="830" y="150" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="913.0" y="178" text-anchor="middle">Guests</text>
+  <rect x="830" y="206" width="166" height="46" rx="5" fill="#FFFFFF" stroke="#D8CFB4"/>
+  <text class="lbl" x="913.0" y="234" text-anchor="middle">Baker (clean pans)</text>
+</svg>
