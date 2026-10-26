@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How to See the Forest and the Trees (Part VI): Value Stream Analysis — Jeffrey Benson</title>
-  <meta name="description" content="Value Stream Analysis: collect five data points per activity to calculate PCE and RTY — two metrics that reveal exactly where a process is losing time and quality.">
+  <title>How to See the Forest and the Trees (Part VI): Value Stream Analysis - Jeffrey Benson</title>
+  <meta name="description" content="Value Stream Analysis: collect five data points per activity to calculate Process Cycle Efficiency and Rolled Throughput Yield, two metrics that show where a process is losing time and quality.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -632,20 +632,21 @@
 
     <p class="article-intro">To see the forest and the trees, you develop the capability to step back and see the big picture, while simultaneously being able to zoom in and observe the trees. This series of articles will teach some practical things that will help you to cultivate this skill.</p>
 
-    <p>Parts I through V built a process model that is complete in its structure. You know what activities exist. You know what flows between them, what inputs arrive, what controls govern them, what mechanisms run them, what outputs they produce. You know who supplies each step and who depends on its output.</p>
+    <p>On the asset lifecycle I described in <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a>, I added columns to the spreadsheet model for pain points and key KPIs, though we had very little measured data. From the pain point descriptions and the decomposition itself, I could mark each step as value-added or non-value-added and count 200 forms of TIMWOODS waste across the 400 rows. It was not a full, data-driven value stream analysis, but it was enough to show where the waste was. The redesign removed 43% of the critical path steps and a third of the 110 handoffs, and it cut cycle time from over seventeen weeks to under three (82%). This part shows the full version, with numbers for every activity.</p>
 
-    <p>What you do not yet have is numbers.</p>
+    <p>Parts I through V built a process model that is complete in its structure. You know what activities exist, what flows between them, what controls govern them, what mechanisms run them, and what outputs they produce. You know who supplies each step and who depends on its output. What you do not have yet is numbers.</p>
 
-    <p>Value Stream Analysis adds the quantitative layer. It asks five questions of every activity in your model. From those five answers it derives three metrics per activity and two metrics for the process as a whole. Those two process-level metrics, Process Cycle Efficiency and Rolled Throughput Yield, give you an objective answer to the two most important operational questions: where is the process losing time, and where is it losing quality.</p>
+
+    <p>Value Stream Analysis adds the numbers. It asks five questions of every activity in your model. From those five answers it derives three metrics per activity and two metrics for the entire process. The two process-level metrics, Process Cycle Efficiency and Rolled Throughput Yield, answer the two most important operational questions: where is the process losing time, and where is it losing quality?</p>
 
     <hr>
 
     <!-- ── What VSA Is ── -->
     <h2 class="section-title">What Value Stream Analysis Is</h2>
 
-    <p>Value Stream Analysis is not Value Stream Mapping. Value Stream Mapping (VSM) is a visual artifact, a diagram drawn on a whiteboard or in a tool like Lucidchart, showing the flow of material and information across a process with a time ladder along the bottom. VSM is a useful workshop tool. It produces a deliverable that lives apart from your spreadsheet and requires a separate facilitation exercise to build and maintain.</p>
+    <p>Value Stream Analysis is different from Value Stream Mapping. Value Stream Mapping (VSM) is a visual artifact: a diagram drawn on a whiteboard or in a tool like Lucidchart, showing the flow of material and information across a process with a time ladder along the bottom. VSM is a useful workshop tool, but it produces a deliverable that lives apart from your spreadsheet and takes a separate facilitation exercise to build and maintain.</p>
 
-    <p>VSA is the data collection and calculation layer embedded in the model you already have. It is eight new columns added to the rows from Part V. No new diagram. No new software. No separate exercise. You observe each activity, record five values, and the spreadsheet derives the rest.</p>
+    <p>Value Stream Analysis (VSA) is the data collection and calculation layer inside the model you already have: eight new columns added to the rows from Part V. You observe each activity, record five values, and the spreadsheet derives the rest.</p>
 
     <hr>
 
@@ -655,15 +656,15 @@
     <p>For each activity in your process model, collect these five values:</p>
 
     <ol>
-      <li><strong>Cycle Time (CT)</strong>, Total elapsed time from when the activity starts until it produces its output. This includes every minute the activity is in process, active work, pauses, and any waits that occur within the step itself.</li>
-      <li><strong>Value-Added Time (VAT)</strong>, The portion of Cycle Time where the work is directly transforming the input into something the customer cares about. The customer pays for brownies; they do not pay for the baker waiting for the oven to heat. VAT is the time that changes the input in a way the customer would recognize as worth paying for.</li>
-      <li><strong>Wait Time (WT)</strong>, Idle or queue time <em>before</em> this activity begins, the gap between the previous step finishing and this one starting. The batter waits in the bowl before the baker carries it to the oven. That wait belongs to the Bake step as WT, not as part of its CT.</li>
-      <li><strong>Defect Rate (DR)</strong>, The percentage of outputs from this activity that fail to meet requirements on the first attempt. Any unit that exits the activity in a condition requiring correction, burned, wrong proportion, missing a step, is a defect.</li>
-      <li><strong>Rework Rate (RR)</strong>, The subset of defects that can be corrected and continue downstream rather than being scrapped. A batch with too little sugar can be adjusted; a burned batch cannot. DR captures all defects; RR captures only those that are recoverable. The RTY formula uses DR, because any defect, even a reworked one, represents a quality failure at that step.</li>
+      <li><strong>Cycle Time (CT)</strong> - Total elapsed time from when the activity starts until it produces its output. This includes every minute the activity is in process (active work, pauses, and any waits that occur within the step itself).</li>
+      <li><strong>Value-Added Time (VAT)</strong> - The portion of Cycle Time where the work is directly transforming the input into something the customer cares about. The customer pays for brownies, not for the baker waiting for the oven to heat. VAT is the time that changes the input in a way the customer would recognize as worth paying for.</li>
+      <li><strong>Wait Time (WT)</strong> - Idle or queue time <em>before</em> this activity begins (the gap between the previous step finishing and this one starting). The batter waits in the bowl before the baker carries it to the oven. That wait belongs to the Bake step as WT, not as part of its CT.</li>
+      <li><strong>Defect Rate (DR)</strong> - The percentage of outputs from this activity that fail to meet requirements on the first attempt. Any unit that exits the activity in a condition requiring correction (burned, wrong proportion, missing a step) is a defect.</li>
+      <li><strong>Rework Rate (RR)</strong> - The subset of defects that can be corrected and continue downstream rather than being scrapped. A batch with too little sugar can be adjusted, but a burned batch cannot. DR counts all defects, and RR counts only the ones that are recoverable. The RTY formula uses DR, because any defect, even a reworked one, is a quality failure at that step.</li>
     </ol>
 
     <div class="concept-callout">
-      <p>Some NVA time is <strong>necessary</strong>, the oven must heat; the brownie must cool. Some NVA time is <strong>pure waste</strong>, waiting for an approval that sat unread, a handoff delayed by a scheduling gap. VSA surfaces both. The distinction between necessary and wasteful NVA determines your improvement strategy: necessary NVA points toward process redesign or throughput scaling; wasteful NVA points toward workflow changes and automation.</p>
+      <p>Some non-value-added (NVA) time is <strong>necessary</strong>: the oven must heat, the brownies must cool, and the pans must be cleaned. Some NVA time is <strong>pure waste</strong>: waiting for an approval that sat unread, or a handoff delayed by a scheduling conflict. VSA surfaces both, and the difference decides your improvement strategy. Necessary NVA points toward process redesign or throughput scaling, and wasteful NVA points toward workflow changes and automation.</p>
     </div>
 
     <hr>
@@ -678,11 +679,11 @@
     <div class="rule-block">
       <div class="formula-row">
         <span class="formula-expr">NVA Time = CT &minus; VAT</span>
-        <p class="formula-note">Time in this step that is not adding value. The gap between what the step takes and what it delivers. A necessary preheating wait and a preventable approval delay both show up here, the number tells you the size of the problem; the root cause tells you which lever to pull.</p>
+        <p class="formula-note">Time in this step that is not adding value. A necessary preheating wait and a preventable approval delay both show up here. The number tells you the size of the problem, and the root cause tells you what to change.</p>
       </div>
       <div class="formula-row">
         <span class="formula-expr">Activity Efficiency = VAT &divide; CT &times; 100%</span>
-        <p class="formula-note">The percentage of time in this step that creates value. Thirteen percent means 13 seconds of every minute are value-adding; 87 are overhead. One hundred percent means every second transforms the input into something the customer needs.</p>
+        <p class="formula-note">The percentage of time in this step that creates value. Thirteen percent means 13 of every 100 minutes add value and the other 87 do not. One hundred percent means every minute transforms the input into something the customer needs.</p>
       </div>
       <div class="formula-row">
         <span class="formula-expr">First Pass Yield (FPY) = 1 &minus; DR</span>
@@ -697,7 +698,7 @@
     <div class="rule-block">
       <div class="formula-row">
         <span class="formula-expr">Total Lead Time (TLT) = &Sigma;(CT + WT) across all activities</span>
-        <p class="formula-note">How long the process takes end-to-end, from the first activity starting to the final output delivered, including all wait time between steps. This is the denominator for PCE.</p>
+        <p class="formula-note">How long the process takes end to end, from the first activity starting to the final output delivered, including all wait time between steps. This is the denominator for PCE.</p>
       </div>
       <div class="formula-row">
         <span class="formula-expr">Total Value-Added Time (TVAT) = &Sigma;(VAT) across all activities</span>
@@ -705,11 +706,11 @@
       </div>
       <div class="formula-row">
         <span class="formula-expr">Process Cycle Efficiency (PCE) = TVAT &divide; TLT &times; 100%</span>
-        <p class="formula-note">The fraction of total lead time that is actually adding value. A PCE of 33% means for every three minutes a unit is in process, one minute creates value and two do not. Most service and knowledge-work processes run 5&ndash;30% PCE. World-class manufacturing targets 25% or higher.</p>
+        <p class="formula-note">The fraction of total lead time that adds value. A PCE of 33% means that for every three minutes a unit is in process, one minute creates value and two do not.</p>
       </div>
       <div class="formula-row">
         <span class="formula-expr">Rolled Throughput Yield (RTY) = FPY&#x2081; &times; FPY&#x2082; &times; &middot;&middot;&middot; &times; FPY&#x2099;</span>
-        <p class="formula-note">Probability a unit passes through the <em>entire process</em> without encountering a single defect at any step. RTY compounds the yield of every activity. A four-step process with each step at 97% FPY produces RTY = 0.97&#x2074; = 88.5% &mdash; more than 1 in 10 units encounters a defect somewhere, even though no single step looks alarming on its own.</p>
+        <p class="formula-note">Probability a unit passes through the <em>entire process</em> without encountering a single defect at any step. RTY compounds the yield of every activity. A four-step process with each step at 97% FPY produces RTY = 0.97&#x2074; = 88.5%, so more than 1 in 10 units encounters a defect somewhere, even though no single step looks alarming on its own.</p>
       </div>
     </div>
 
@@ -718,7 +719,7 @@
     <!-- ── The Brownie Example ── -->
     <h2 class="section-title">The Brownie Example</h2>
 
-    <p>Applying VSA to the L1 activities from the brownie process model: the five values in the left columns are collected by direct observation; the three values in the right columns are calculated from them.</p>
+    <p>Here is VSA applied to the four L1 activities of the brownie process model. The five values on the left are collected by direct observation, and the three on the right are calculated from them.</p>
 
     <!-- Full-width table: activity data + calculated metrics -->
     <div class="process-table-wrap">
@@ -783,12 +784,12 @@
             <td class="act-id">A4</td>
             <td>Cleanup</td>
             <td class="num-td">10</td>
-            <td class="num-td">10</td>
+            <td class="num-td">0</td>
             <td class="num-td">2</td>
             <td class="num-td">0%</td>
             <td class="num-td">0%</td>
-            <td class="calc-td">0</td>
-            <td class="calc-td">100%</td>
+            <td class="calc-td">10</td>
+            <td class="calc-td">0%</td>
             <td class="calc-td">100%</td>
           </tr>
         </tbody>
@@ -816,14 +817,14 @@
         <tr>
           <td class="metric-name">Total VA Time</td>
           <td class="formula-cell">&Sigma;(VAT)</td>
-          <td class="value-cell">28 min</td>
-          <td>Time actually adding value across all steps</td>
+          <td class="value-cell">18 min</td>
+          <td>Time adding value across all steps</td>
         </tr>
         <tr>
           <td class="metric-name">PCE</td>
           <td class="formula-cell">TVAT &divide; TLT</td>
-          <td class="value-cell">33.3%</td>
-          <td>One-third of total time adds value; two-thirds does not</td>
+          <td class="value-cell">21.4%</td>
+          <td>About one-fifth of total time adds value, and four-fifths does not</td>
         </tr>
         <tr>
           <td class="metric-name">RTY</td>
@@ -836,11 +837,13 @@
 
     <h3 class="subsection-title">Reading the Numbers</h3>
 
-    <p>The PCE of 33.3% reflects the physics of baking. A3 (Bake &amp; Serve) contributes 35 of the 56 total NVA minutes, and those 35 minutes are oven time and cooling time that cannot be removed without changing the product. In a commercial kitchen, the improvement lever is not speed, it is batch size. More units per bake cycle amortizes the fixed NVA time across more output, improving throughput without touching the recipe. In a business process, NVA time driven by mandatory system processing or compliance holds points toward automation or workflow redesign, not headcount reduction.</p>
+    <p>The PCE of 21.4% reflects the physics of baking. Of the 66 minutes in the lead time that do not add value (61 NVA minutes inside the steps plus 5 minutes of wait), A3 (Bake &amp; Serve) contributes 35, and those 35 minutes are oven time and cooling time that cannot be removed without changing the product. In a commercial kitchen, the improvement lever is batch size: more units per bake cycle spread the fixed NVA time across more output and raise throughput without touching the recipe. In a business process, NVA time driven by mandatory system processing or compliance holds points toward automation or workflow redesign, not headcount reduction.</p>
 
-    <p>The RTY of 90.3% means roughly 1 in 10 batches will encounter at least one defect somewhere in the process. The source is clear: A2 (Mix Ingredients) carries the highest defect rate at 5%, driven by the nut allergy risk documented in the Comments column of the Part V spreadsheet. The structural model told you where the risk lived. The VSA confirms it in the yield number. These two artifacts are designed to be read together.</p>
+    <p>A4 (Cleanup) adds 10 more minutes of business-critical non-value-added time. The customer does not pay for clean pans, but we must clean our environment before making a new batch so no one gets sick. Necessary NVA like this is something to make efficient, not something to eliminate.</p>
 
-    <p>Taken together, the numbers give you a two-dimensional picture of process health. PCE tells you where time is going. RTY tells you where quality is leaking. Activities with both low Activity Efficiency and high Defect Rate are the highest-priority improvement targets, they are costing you in both dimensions simultaneously.</p>
+    <p>The RTY of 90.3% means roughly 1 in 10 batches will encounter at least one defect somewhere in the process. A2 (Mix Ingredients) has the highest defect rate at 5%, driven by the nut allergy risk recorded in the Comments column of the Part V spreadsheet. The structural model showed where the risk was, and the yield number confirms it, which is why the two are meant to be read together.</p>
+
+    <p>Taken together, PCE tells you where the time goes and RTY tells you where quality is lost. Activities with both low Activity Efficiency and a high Defect Rate are the highest-priority improvement targets, because they cost you in both.</p>
 
     <hr>
 
@@ -881,7 +884,7 @@
         <tr>
           <td><strong>Rework Rate (RR)</strong></td>
           <td><span class="type-badge badge-collect">Collect</span></td>
-          <td>Subset of DR that is corrected and continues downstream (vs. scrapped). Informs improvement strategy; does not feed PCE or RTY directly.</td>
+          <td>Subset of DR that is corrected and continues downstream (vs. scrapped). Informs the improvement strategy and does not feed PCE or RTY directly.</td>
         </tr>
         <tr>
           <td><strong>NVA Time</strong></td>
@@ -908,7 +911,7 @@
       <li><strong>Rolled Throughput Yield:</strong> <code>= PRODUCT(FPY column range)</code></li>
     </ul>
 
-    <p>The RR column does not flow into PCE or RTY, it informs the improvement conversation. High DR combined with high RR means defects are expensive but recoverable; high DR combined with low RR means output is being scrapped and the true cost is compounding. Both scenarios demand attention; RR tells you which one you are facing.</p>
+    <p>The RR column does not flow into PCE or RTY. It informs the improvement conversation. High DR with high RR means defects are expensive but recoverable. High DR with low RR means output is being scrapped and the cost is compounding. Both need attention, and RR tells you which one you are facing.</p>
 
     <hr>
 
@@ -918,31 +921,31 @@
     <p>Parts I through VI have built one complete analytical toolkit for any business process:</p>
 
     <ul>
-      <li><strong>Part I</strong>, The Context Diagram and ICOMs: the process boundary and what flows across it</li>
-      <li><strong>Part II</strong>, Activity Node Analysis and decomposition: the structure and the hierarchy</li>
-      <li><strong>Part III</strong>, ICOMs at every node: governance applied across the full decomposition tree</li>
-      <li><strong>Part IV</strong>, SIPOC adding accountability: the humans on both ends of every step</li>
-      <li><strong>Part V</strong>, The Combination: SIPOC + ICOM at every node in a single spreadsheet</li>
-      <li><strong>Part VI</strong>, Value Stream Analysis: five inputs per activity, three per-activity metrics, two process-level diagnostics</li>
+      <li><strong>Part I</strong> - The Context Diagram and ICOMs: the process boundary and what flows across it</li>
+      <li><strong>Part II</strong> - Activity Node Analysis and decomposition: the structure and the hierarchy</li>
+      <li><strong>Part III</strong> - ICOMs at every node: governance applied across the full decomposition tree</li>
+      <li><strong>Part IV</strong> - SIPOC, adding accountability: the suppliers and customers on both ends of every step</li>
+      <li><strong>Part V</strong> - The Combination: SIPOC + ICOM at every node in a single spreadsheet</li>
+      <li><strong>Part VI</strong> - Value Stream Analysis: five inputs per activity, three per-activity metrics, two process-level diagnostics</li>
     </ul>
 
-    <p>This methodology does not require a certification or a consulting engagement to apply. It requires a spreadsheet, direct observation, and the discipline to ask: what is actually happening here, and how well is it working?</p>
+    <p>This methodology does not require a certification or a consulting engagement to apply. It requires a spreadsheet, direct observation, and the discipline to ask: what is happening here, and how well is it working?</p>
 
     <p>Take one process. Map the L0 context. Decompose to L1 and L2. Apply ICOMs and SIPOC at every node. Collect the five data points. Let PCE and RTY tell you where to look.</p>
 
-    <p>That is how you see the forest and the trees.</p>
+    <p>That is how you see the forest <em>and</em> the trees.</p>
 
-    <p style="font-style: italic; color: rgba(44,46,47,0.58); margin-top: 2em;">If you found this series valuable, please like it and share it with your network. I would love to hear how you are applying these frameworks, leave a comment and let me know what process you are mapping.</p>
+    <p style="font-style: italic; color: rgba(44,46,47,0.58); margin-top: 2em;">If you found this series informative, please share it with your network. I'd like to hear from you in the comments and address any questions you might have. What process will you map first?</p>
 
     <!-- ── Series navigation ── -->
     <div class="series-nav">
       <a href="article-forest-and-trees-5.html" class="series-nav-card">
         <p class="series-nav-label">&larr; Part V</p>
-        <p class="series-nav-title">The Combination, SIPOC + ICOM at Every Node</p>
+        <p class="series-nav-title">The Combination: SIPOC + ICOM at Every Node</p>
       </a>
       <div class="series-nav-card" style="opacity: 0.42; cursor: default; text-align: right;">
         <p class="series-nav-label">Series Complete</p>
-        <p class="series-nav-title">Parts I &ndash; VI available in Writing</p>
+        <p class="series-nav-title">Parts I-VI are in the Notebook</p>
       </div>
     </div>
 
