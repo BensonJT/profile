@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How to See the Forest and the Trees (Part IV): SIPOC, Adding Accountability — Jeffrey Benson</title>
-  <meta name="description" content="SIPOC: adding accountability to the process model — who provides the inputs and who depends on the outputs. Part IV of the functional process decomposition series.">
+  <title>How to See the Forest and the Trees (Part IV): SIPOC, Adding Accountability - Jeffrey Benson</title>
+  <meta name="description" content="SIPOC: adding accountability to the process model. Learn who provides the inputs and who depends on the outputs, and why a traditional SIPOC stops at the top of the tree. Part IV of the functional process decomposition series.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -466,6 +466,15 @@
       .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
       .comparison-grid { grid-template-columns: 1fr; }
     }
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
   </style>
   <link rel="stylesheet" href="css/article.css">
 </head>
@@ -521,89 +530,89 @@
 
     <p class="article-intro">To see the forest and the trees, you develop the capability to step back and see the big picture, while simultaneously being able to zoom in and observe the trees. This series of articles will teach some practical things that will help you to cultivate this skill.</p>
 
-    <p>In <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a> we introduced the Context Diagram and the four ICOM arrows that define the boundary of any process. In <a href="article-forest-and-trees-2.html" style="color: var(--olive); font-weight: 700;">Part II</a> we decomposed that context into an Activity Node Tree. In <a href="article-forest-and-trees-3.html" style="color: var(--olive); font-weight: 700;">Part III</a> we applied ICOMs to every node in that tree, tracing the flow of value from activity to activity.</p>
+    <p>In <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a> we introduced the Context Diagram and the four ICOM arrows that define the boundary of any process. In <a href="article-forest-and-trees-2.html" style="color: var(--olive); font-weight: 700;">Part II</a> we decomposed that context into an Activity Node Tree. In <a href="article-forest-and-trees-3.html" style="color: var(--olive); font-weight: 700;">Part III</a> we applied ICOMs to every node in that tree, tracing the flow from activity to activity.</p>
 
-    <p>The ICOM framework tells us what flows through a process, what governs each activity, and what enables it to execute. But there is one question it cannot answer: <strong>who?</strong></p>
+    <p>The asset lifecycle from Part I ran across two SVP organizations, and each one owned part of it. Once the 110 handoffs were on the model, I framed them as divided ownership rather than poor team performance, which made a joint redesign possible. To get there, every handoff needed a named owner on each side.</p>
 
-    <p>Who provides the inputs? Who receives the outputs? Without naming the people, teams, or organizations on both ends of the process, we have a technically complete diagram with no human accountability attached to it. That is where SIPOC comes in.</p>
+    <p>The ICOMs tell us what flows through a process, what governs each activity, and what enables it to execute. They do not tell us <strong>who</strong> is on each end.</p>
+
+    <p>Who provides the inputs? Who receives the outputs? Until we name the people, teams, or organizations on both ends of the process, nobody is accountable for the diagram. SIPOC adds that accountability.</p>
 
     <hr>
 
     <!-- ── What is SIPOC ── -->
     <h2 class="section-title">What is SIPOC?</h2>
 
-    <p>SIPOC is a framework that originated in Lean Six Sigma. The acronym stands for:</p>
+    <p>SIPOC is a framework widely used in Lean Six Sigma. The acronym stands for:</p>
 
     <ul class="sipoc-list">
       <li>
         <span class="sipoc-letter">S</span>
         <div class="sipoc-content">
           <p class="sipoc-term">Supplier</p>
-          <p class="sipoc-desc">Who provides the inputs to the process, an internal team, an external vendor, another process, or an individual</p>
+          <p class="sipoc-desc">Who provides the inputs or performs the activity (an internal team, an external vendor, another process, an individual, or an automated system)</p>
         </div>
       </li>
       <li>
         <span class="sipoc-letter">I</span>
         <div class="sipoc-content">
           <p class="sipoc-term">Input</p>
-          <p class="sipoc-desc">What is provided, the materials, information, or resources that enter the process and are consumed or transformed</p>
+          <p class="sipoc-desc">What is provided (the materials, information, or resources that enter the process and are consumed or transformed)</p>
         </div>
       </li>
       <li>
         <span class="sipoc-letter">P</span>
         <div class="sipoc-content">
           <p class="sipoc-term">Process</p>
-          <p class="sipoc-desc">The activities that transform the inputs into outputs, typically shown at the high-level L1 view</p>
+          <p class="sipoc-desc">The activities that transform the inputs into outputs (typically shown at the high-level L1 view)</p>
         </div>
       </li>
       <li>
         <span class="sipoc-letter">O</span>
         <div class="sipoc-content">
           <p class="sipoc-term">Output</p>
-          <p class="sipoc-desc">What the process produces, the results, deliverables, or products that flow to the customer</p>
+          <p class="sipoc-desc">What the process produces (the results, deliverables, or products that flow to the customer)</p>
         </div>
       </li>
       <li>
         <span class="sipoc-letter">C</span>
         <div class="sipoc-content">
           <p class="sipoc-term">Customer</p>
-          <p class="sipoc-desc">Who receives the outputs, internal or external, the next process in line or the end recipient</p>
+          <p class="sipoc-desc">Who receives the outputs (internal or external, the next process in line or the end recipient)</p>
         </div>
       </li>
     </ul>
 
     <img src="img/SIPOC_generic.webp"
-         alt="Generic SIPOC diagram template with five columns: Suppliers, Inputs, Process, Outputs, Customers — each with placeholder rows showing the standard structure"
+         alt="Generic SIPOC diagram template with five columns: Suppliers, Inputs, Process, Outputs, Customers, each with placeholder rows showing the standard structure"
          class="diagram-image-wide">
-    <p class="image-caption">The standard SIPOC template, five columns, one row per process, stakeholders named on both ends.</p>
+    <p class="image-caption">The standard SIPOC template: five columns, with stakeholders named on both ends.</p>
 
-    <p>Notice what SIPOC adds that ICOMs alone cannot provide: a named <strong>Supplier</strong> on the left and a named <strong>Customer</strong> on the right. The process does not exist in isolation, it has accountable parties on both ends.</p>
+    <p>Notice what SIPOC adds to the ICOMs: a named <strong>Supplier</strong> on the left and a named <strong>Customer</strong> on the right.</p>
 
-    <p>Notice also what SIPOC does <em>not</em> include: Controls and Mechanisms. SIPOC has no element for the external standards or constraints that govern the process, and no element for the tools, systems, or people that enable it to execute. That is not a flaw, it is a difference in purpose.</p>
+    <p>Notice also what SIPOC does <em>not</em> include: Controls and Mechanisms. SIPOC has no element for the external standards or constraints that govern the process, and no element for the tools and equipment used to execute it.</p>
+
+    <p>Both frameworks describe structure and flow (something goes in, an activity transforms it, and something comes out), and both include whoever performs the activity. In ICOM, the performer is a Mechanism. In SIPOC, the performer is a Supplier, because a supplier provides the inputs or performs the activity. The performer can be a person like the Baker, or an automated system when the activity is fully automated. SIPOC also lists the Customers who receive the outputs, which ICOM does not. ICOM lists the Controls, and the tools and equipment used in the activity (the oven, the mixing bowl), which SIPOC does not.</p>
 
     <div class="comparison-grid">
       <div class="comparison-card has">
-        <p class="comparison-card-title">SIPOC provides</p>
+        <p class="comparison-card-title">Only SIPOC has</p>
         <ul>
-          <li>Who supplies the inputs</li>
-          <li>What enters the process</li>
-          <li>What the process produces</li>
-          <li>Who receives the outputs</li>
+          <li>Suppliers of the inputs</li>
+          <li>Customers (who receives the outputs)</li>
         </ul>
       </div>
       <div class="comparison-card has-not">
-        <p class="comparison-card-title">ICOM provides</p>
+        <p class="comparison-card-title">Only ICOM has</p>
         <ul>
-          <li>What governs the process (Controls)</li>
-          <li>What enables execution (Mechanisms)</li>
-          <li>What flows in and out (Inputs / Outputs)</li>
-          <li>Cross-activity dependencies</li>
+          <li>Controls (what governs the activity)</li>
+          <li>Tools and equipment used in the activity</li>
         </ul>
       </div>
     </div>
 
     <div class="rule-block">
-      <p>SIPOC is an accountability framework. ICOM is a structural and governance framework. Neither is complete on its own. Together, they are.</p>
+      <p>Both have Inputs, Outputs, the activity between them, and whoever performs it, a person or an automated system (a Mechanism in ICOM, a Supplier in SIPOC). Used together, they describe an activity completely.</p>
     </div>
 
     <hr>
@@ -611,18 +620,17 @@
     <!-- ── How SIPOC is traditionally taught ── -->
     <h2 class="section-title">How SIPOC is Traditionally Taught</h2>
 
-    <p>In most Lean Six Sigma training, SIPOC is introduced as a <strong>high-level process overview</strong>, a single diagram that captures the entire process on one page. The Process column shows the four to six major steps at the L1 level, the same level we identified in <a href="article-forest-and-trees-2.html" style="color: var(--olive); font-weight: 700;">Part II</a>. The Supplier and Customer columns name the key stakeholders at the boundaries of the whole process.</p>
+    <p>SIPOC grew out of the Total Quality Management programs of the late 1980s, which treated every step in a process as a customer of the step before it (the idea Kaoru Ishikawa called "next operation as customer"). In most Lean Six Sigma training today, SIPOC is introduced as a <strong>high-level process overview</strong> (a single diagram that captures the process on one page). The Process column shows the major steps at the L1 level, the same level we identified in <a href="article-forest-and-trees-2.html" style="color: var(--olive); font-weight: 700;">Part II</a>. The Supplier and Customer columns list the key stakeholders at the boundaries of the process.</p>
 
-    <p>This is the traditional view: one SIPOC, one process, one page.</p>
 
-    <p>It is useful. It is fast to build. It gives leadership a quick stakeholder map that answers: who feeds this process and who depends on it? For a first conversation with a sponsor or an executive team, it is often exactly the right level of detail.</p>
+    <p>It is useful, and it is fast to build. It gives leadership a quick stakeholder map that answers two questions: who feeds this process, and who depends on it? For a first conversation with a sponsor or an executive team, it is often the right level of detail.</p>
 
-    <p>But it is also incomplete, and we will come back to exactly why at the end of this article.</p>
+    <p>But it is also incomplete, and we will come back to why at the end of this article.</p>
 
     <hr>
 
     <!-- ── Application: Baking Brownies ── -->
-    <h2 class="section-title">Application: Baking Brownies, The Traditional L1 SIPOC</h2>
+    <h2 class="section-title">Application: Baking Brownies - The Traditional L1 SIPOC</h2>
 
     <p>Let's apply the traditional SIPOC approach to the Baking Brownies process we have been building throughout this series.</p>
 
@@ -631,22 +639,22 @@
       <img src="img/SIPOC_Brownies.webp"
            alt="SIPOC diagram for the Baking Brownies process. Suppliers: Grocery Clerk, Baker. Inputs: Brownie Mix, Eggs, Water, Grease, Fuel. Process: A1 Preheat Oven, A2 Mix Ingredients, A3 Bake Brownies. Outputs: Baked Brownies, Defective Brownies, Trash, Dirty Pans and Utensils. Customers: Baker's Family, Guests."
            class="diagram-image-wide" style="margin-top: 0;">
-      <p class="image-caption" style="margin-bottom: 28px;">The Baking Brownies SIPOC at L1, the traditional single-page process overview.</p>
+      <p class="image-caption" style="margin-bottom: 28px;">The Baking Brownies SIPOC at L1 (the traditional single-page process overview).</p>
 
       <h3 class="subsection-title" style="margin-top: 0;">Supplier</h3>
-      <p>Who provides the inputs? The grocery store provides the brownie mix, eggs, and water. The Baker, who shows up in this column as the person providing their skill and effort to the process, is also a supplier. Naming suppliers makes explicit that this process depends on someone else delivering before it can begin.</p>
+      <p>Who provides the inputs? The grocery store (the Grocery Clerk in the diagram) provides the ingredients. The Baker is also a supplier, providing their skill and effort to the process. Listing the suppliers makes it clear that this process depends on someone else delivering before it can begin.</p>
 
       <h3 class="subsection-title">Input</h3>
-      <p>The inputs are the brownie mix, eggs, water, grease for the pan, and fuel for the oven, the same items we identified as Inputs in the ICOM framework. SIPOC and ICOM agree on what enters the process. The difference is that SIPOC now names <em>who</em> provides them.</p>
+      <p>The inputs are the brownie mix, eggs, water, grease for the pan, and fuel for the oven (nearly the same items we identified as Inputs with the ICOMs). SIPOC and ICOM agree on what enters the process. The difference is that SIPOC now tells us <em>who</em> provides them.</p>
 
       <h3 class="subsection-title">Process</h3>
-      <p>The Process column lists the high-level activities at L1, the same three steps from <a href="article-forest-and-trees-2.html" style="color: var(--olive); font-weight: 700;">Part II</a>: A1 Preheat Oven, A2 Mix Ingredients, A3 Bake Brownies. In the traditional application, this column is intentionally high-level. The goal is a one-page view, not a full decomposition. You are mapping the forest, not the individual trees.</p>
+      <p>The Process column lists the high-level activities at L1, the same three steps from <a href="article-forest-and-trees-2.html" style="color: var(--olive); font-weight: 700;">Part II</a>: A1 Preheat Oven, A2 Mix Ingredients, A3 Bake Brownies. In the traditional application, this column stays at L1 so that the SIPOC fits on one page. A traditional SIPOC shows us the forest. In Part V we will add the trees.</p>
 
       <h3 class="subsection-title">Output</h3>
-      <p>The outputs are the baked brownies, and, as we identified in <a href="article-forest-and-trees-3.html" style="color: var(--olive); font-weight: 700;">Part III</a>, also defective brownies, trash, and dirty pans and utensils. Good SIPOC practice, like good ICOM practice, names the defect outputs explicitly. Acknowledging that a process can produce bad outputs is the first step toward understanding where and why they occur.</p>
+      <p>The outputs are the baked brownies and, as we identified in <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a>, also defective brownies, trash, and dirty pans and utensils. Good SIPOC practice, like good ICOM practice, lists the defect outputs too. You cannot find out where and why a process produces bad outputs until you admit that it does.</p>
 
       <h3 class="subsection-title">Customer</h3>
-      <p>Who receives the outputs? The Baker's Family and Guests, the people the brownies are made for. Naming the customer anchors the process to its purpose. The entire reason for preheating the oven, mixing ingredients, and baking brownies is to deliver a specific result to a specific person. When you lose sight of the customer, the process becomes an end in itself.</p>
+      <p>Who receives the outputs? The Baker's Family and Guests (the people the brownies are made for). Listing the customer ties the process to its purpose. We preheat the oven, mix the ingredients, and bake the brownies to deliver a specific result to specific people.</p>
 
     </div>
 
@@ -655,34 +663,35 @@
     <!-- ── What SIPOC adds and what it does not ── -->
     <h2 class="section-title">What SIPOC Adds, and What It Does Not</h2>
 
-    <p>The traditional L1 SIPOC gives us something the ICOM framework alone could not: <strong>named accountability at the boundaries of the process</strong>.</p>
+    <p>The traditional L1 SIPOC gives us something the ICOMs could not: <strong>named accountability at the boundaries of the process</strong>.</p>
 
-    <p>We know that inputs come from the grocery store and the baker. We know that outputs go to the Baker's Family and Guests. If there is a problem with the inputs, wrong ingredients, wrong quality, we know exactly who to work with to resolve it. If the outputs do not meet expectations, we know exactly whose requirements we are failing to satisfy.</p>
+    <p>We know that inputs come from the grocery store and the baker. We know that outputs go to the Baker's Family and Guests. If there is a problem with the inputs (wrong ingredients, wrong quality), we know who to work with to resolve it. If the outputs do not meet expectations, we know whose requirements we are failing to satisfy.</p>
 
-    <p>But here is the limitation. And it matters.</p>
 
-    <p>The traditional L1 SIPOC treats the entire process as a single unit. It tells us who provides to the <em>process as a whole</em> and who receives from it <em>as a whole</em>. It says nothing about the accountability <em>inside</em> the process, between activities.</p>
+    <p>But the traditional L1 SIPOC has a limitation. It treats the process as a single unit. It tells us who provides to the <em>process</em> and who receives from it, treating it as one unit. It says nothing about the accountability <em>inside</em> the process, between activities.</p>
 
     <div class="concept-callout">
       <p>When A1 (Preheat Oven) produces its output, who is the customer of that output? It is A3 (Bake Brownies), not the Baker's Family. A3 depends on A1 delivering a preheated oven before it can begin. That is an internal supplier-customer relationship that the traditional L1 SIPOC cannot see.</p>
     </div>
 
-    <p>These are accountability gaps that only become visible when you apply SIPOC <strong>at every activity node in the decomposition tree</strong>, not just at the top level.</p>
+    <p>That accountability between activities only becomes visible when you apply SIPOC <strong>at every activity node in the decomposition tree</strong>.</p>
 
-    <p>Most Lean Six Sigma training stops at L1. One SIPOC per process. That is useful as far as it goes. But combined with the Activity Node Tree from Part II and the ICOM analysis from Part III, SIPOC becomes something far more powerful than a one-page summary.</p>
+    <p>Most Lean Six Sigma training stops at L1, with one SIPOC per process. On the asset lifecycle I did not stop there. I ran SIPOC together with ICOMs at every node of the Activity Node Tree, and in 2013 that SIPOC and ICOM tree-node model was nominated and presented at Verizon's Lean Six Sigma Best Practice Conference. When I showed the method to a Master Black Belt coach, he told me that SIPOC at every node is how the tool was meant to be applied, and that training people to use it only as a high-level process map is an unfortunate reduction of scope for it.</p>
 
     <hr>
 
     <!-- ── In Summary ── -->
     <h2 class="section-title">In Summary</h2>
 
-    <p>SIPOC adds the accountability layer that ICOM alone cannot provide: a named supplier who provides the inputs and a named customer who receives the outputs. Together, SIPOC and ICOM begin to form a complete picture of any process, its structure, its governance, and its accountability.</p>
+    <p>SIPOC adds what the ICOMs cannot: named suppliers (who provide the inputs or perform the activity) and named customers (who receive the outputs). ICOM adds what SIPOC cannot: the controls that govern each activity and the tools and equipment used in it. Together they describe each activity completely.</p>
 
-    <p>But as traditionally taught, SIPOC stops at the high level. It gives you the stakeholder map for the whole process, not for each activity within it.</p>
+    <p>But as traditionally taught, SIPOC stops at the high level. It gives you the stakeholder map for the process (the forest), and none for the activities within it (the trees).</p>
 
-    <p>In Part V we will apply SIPOC at every node in the decomposition tree, the same way we applied ICOMs in Part III. And when we combine the two frameworks at every level of decomposition, something powerful emerges: a model that captures not just what each activity does, but who provides for it, what flows through it, what governs it, what enables it, and who depends on it.</p>
+    <p>In Part V we will apply SIPOC at every node in the decomposition tree, the same way we applied ICOMs in Part III. When we combine the two frameworks at every level of decomposition, we can see for each activity who supplies it, what flows through it, what governs it, what enables it, and who depends on it.</p>
 
-    <p>That is the complete picture. And it fits in a spreadsheet.</p>
+    <p>We will also see how the entire model fits in one spreadsheet.</p>
+
+    <p>If you found this article informative, please share it with your network. I'd like to hear from you in the comments and address any questions you might have.</p>
 
     <!-- ── Series navigation ── -->
     <div class="series-nav">
@@ -695,6 +704,8 @@
         <p class="series-nav-title">The Combination, SIPOC + ICOM at Every Node</p>
       </a>
     </div>
+
+    <p class="sources-note">Source references: SIPOC in the Total Quality Management programs of the late 1980s, and as a simplification of Philip Crosby's Process Model (Wikipedia, "SIPOC"). Kaoru Ishikawa's "next operation as customer" (Wikipedia, "Next operation as customer"; Keki R. Bhote, <em>Next Operation as Customer</em>, 1991).</p>
 
     <div id="author-card"></div>
     <script src="author-card.js"></script>
