@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How to See the Forest and the Trees (Part I): The Context Diagram — Jeffrey Benson</title>
-  <meta name="description" content="An introduction to IDEF0 process modeling — learning the Context Diagram and ICOMs so you can see the full picture of any process before you redesign it.">
+  <title>How to See the Forest and the Trees (Part I): The Context Diagram - Jeffrey Benson</title>
+  <meta name="description" content="An introduction to IDEF0 process modeling. Learn the Context Diagram and the ICOMs so you can see the full picture of any process before you redesign it.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -551,7 +551,9 @@
 
     <p class="article-intro">To see the forest and the trees, you develop the capability to step back and see the big picture, while simultaneously being able to zoom in and observe the trees. This series of articles will teach some practical things that will help you to cultivate this skill.</p>
 
-    <p>We begin by looking at some key concepts from IDEF0. This article will not make you an expert on IDEF nor provide you a detailed history of IDEF. (If you want to learn more, you can visit the <a href="https://en.wikipedia.org/wiki/IDEF" target="_blank" rel="noopener noreferrer" style="color: var(--olive); font-weight: 700;">Wikipedia IDEF page</a>.) Rather, we will learn about the Context Diagram and the ICOMs. In future articles we will learn how to decompose the Context Diagram into lower levels of detail.</p>
+    <p>Around 2012 at Verizon, application teams waited more than seventeen weeks for compute infrastructure, and nobody had ever mapped why. The asset lifecycle ran across two SVP organizations and tens of thousands of servers. In two weeks I modeled that lifecycle end to end. It started as one context diagram (A0), broke into 8 steps at L1 and about 6 activities under each of those at L2, reached L3 everywhere, and went down to L4, L5 or L6 only where the depth was needed. In all, the model held 400 activities across 64 systems. The delay was in the 110 handoffs between owners rather than in any individual step, and none of those handoffs could be seen from the top. The redesign cut cycle time from over seventeen weeks to under three (82%), and the success led to my method being nominated and presented at Verizon's Lean Six Sigma Best Practice Conference in 2013 and again in 2014.</p>
+
+    <p>We begin by looking at some key concepts I learned from IDEF0. This article will not make you an expert on IDEF nor provide you a detailed history of IDEF. (If you want to learn more about IDEF you can google it or visit the <a href="https://en.wikipedia.org/wiki/IDEF" target="_blank" rel="noopener noreferrer" style="color: var(--olive); font-weight: 700;">Wikipedia IDEF page</a>.) Rather, we will learn about the Context Diagram and the ICOMs. In future articles we will learn how to decompose the Context Diagram into lower levels of detail.</p>
 
     <hr>
 
@@ -562,34 +564,34 @@
 
     <p>When modeling or diagramming any process, the consultant must first define the "Context for the Context." Start by identifying the purpose, viewpoint, and the boundary of the process.</p>
 
-    <p><strong>Purpose</strong> clarifies why you are studying the process, and who the intended stakeholders are. Why are you studying the process? Who is the audience that will benefit from this study? Which audience are you preparing the model for?</p>
+    <p>Defining the <strong>purpose</strong> will clarify why you are studying the process, and who the intended stakeholders are. Why are you studying the process? Who is the audience that will benefit from this study? Which audience are you preparing the model for?</p>
 
     <p>The <strong>viewpoint</strong> defines the lens that will be used to understand the process. From which stakeholder's viewpoint will we look at and understand the process? This becomes important because it influences how the activities of the process are articulated.</p>
 
     <p>The <strong>boundary</strong> defines the scope of the process. When does the process start? When does it end?</p>
 
-    <h3 class="subsection-title">IDEF0, The Context Diagram</h3>
+    <h3 class="subsection-title">IDEF0 - The Context Diagram</h3>
 
     <p>The foundational construct of IDEF0 is the Context Diagram. Very simply, the context diagram provides the context of the process being studied.</p>
 
     <img src="img/activity.webp"
-         alt="IDEF0 Context Diagram — a single activity box with Activity ID A0"
+         alt="IDEF0 Context Diagram: a single activity box with Activity ID A0"
          class="diagram-image">
     <p class="image-caption">The IDEF0 Context Diagram: a single box representing the boundary of the process, labeled A0.</p>
 
-    <p>The context diagram is comprised of a single box which represents the boundary of the process or system being studied. The box is labeled with the name of the process being studied. In the lower right corner is the "Activity ID", for the context diagram this always starts at A0 ("A" represents Activity and "0" represents level 0, the highest depiction of this process).</p>
+    <p>The context diagram is comprised of a single box which represents the boundary of the process or system being studied. The box is labeled with the name of the process being studied. In the lower right corner is the "Activity ID", which for the context diagram always starts at A0 ("A" represents Activity and "0" represents level 0, the highest depiction of this process).</p>
 
-    <p>There are four arrows interacting with this box that represent the relevant Inputs, Controls, Outputs, and Mechanisms, these are called <strong>ICOMs</strong>. The ICOMs clarify the boundary of the process, and are discussed next.</p>
+    <p>There are four arrows interacting with this box that represent the relevant Inputs, Controls, Outputs, and Mechanisms (these are called <strong>ICOMs</strong>). The ICOMs clarify the boundary of the process, and are discussed next.</p>
 
     <img src="img/icoms.webp"
-         alt="IDEF0 Context Diagram with ICOMs — Inputs on left, Controls on top, Outputs on right, Mechanisms on bottom"
+         alt="IDEF0 Context Diagram with ICOMs: Inputs on left, Controls on top, Outputs on right, Mechanisms on bottom"
          class="diagram-image">
     <p class="image-caption">The four ICOM arrows define the boundary of any process.</p>
 
     <hr>
 
     <!-- ── ICOMs ── -->
-    <h2 class="section-title">ICOMs, Inputs, Controls, Outputs, and Mechanisms</h2>
+    <h2 class="section-title">ICOMs - Inputs, Controls, Outputs, and Mechanisms</h2>
 
     <div class="icom-block">
       <p class="icom-term">Inputs</p>
@@ -611,13 +613,13 @@
     <div class="icom-block">
       <p class="icom-term">Controls</p>
       <h3 class="icom-title">External factors that constrain or specify conditions</h3>
-      <p>Controls are external factors that constrain the process or specify conditions required to produce the outputs that satisfy requirements. Controls might be plans, customer specifications, legislation, or industry standards. They specify the conditions to produce the correct outputs. Control arrows enter from the top of the box. Think of them as external forces that constrain or limit the process, things that must be satisfied by the process to be successful.</p>
+      <p>Controls are external factors that constrain the process or specify conditions required to produce the outputs that satisfy requirements. Controls might be plans, customer specifications, legislation, or industry standards. Controls specify the conditions to produce the correct outputs. Control arrows enter from the top of the box. Think of them as external forces that constrain or limit the process, things that must be satisfied by the process to be successful.</p>
     </div>
 
     <img src="img/controls.webp"
          alt="IDEF0 diagram showing Controls entering from the top of the activity box"
          class="diagram-image">
-    <p class="image-caption">Controls enter from the top, external forces that constrain or guide the process.</p>
+    <p class="image-caption">Controls enter from the top (external forces that constrain or guide the process).</p>
 
     <div class="icom-block">
       <p class="icom-term">Mechanisms</p>
@@ -628,12 +630,12 @@
     <img src="img/mechanisms.webp"
          alt="IDEF0 diagram showing Mechanisms entering from the bottom of the activity box"
          class="diagram-image">
-    <p class="image-caption">Mechanisms enter from the bottom, they enable the process without being consumed by it.</p>
+    <p class="image-caption">Mechanisms enter from the bottom (they enable the process without being consumed by it).</p>
 
     <hr>
 
     <!-- ── Brownie Application ── -->
-    <h2 class="section-title">Application: Baking Brownies</h2>
+    <h2 class="section-title">Application: Baking Brownies Process</h2>
 
     <p>Now that we understand how to define the context of any process or system using the IDEF0 Context Diagram, let's demonstrate how simple it is by defining the context for baking brownies.</p>
 
@@ -661,19 +663,19 @@
       <p style="font-size: 0.95rem; color: rgba(44,46,47,0.7); margin-bottom: 16px;">So far our context diagram looks like the following:</p>
 
       <img src="img/brownie_context_1.webp"
-           alt="IDEF0 Context Diagram for Baking Brownies — showing the process box from the Baker's viewpoint"
+           alt="IDEF0 Context Diagram for Baking Brownies, showing the process box from the Baker's viewpoint"
            class="diagram-image" style="margin-top: 0;">
-      <p class="image-caption" style="margin-bottom: 28px;">Context diagram for Baking Brownies, purpose and viewpoint defined, ICOMs to follow.</p>
+      <p class="image-caption" style="margin-bottom: 28px;">Context diagram for Baking Brownies with the purpose and viewpoint defined (ICOMs to follow).</p>
 
       <!-- ── The Boundaries ── -->
       <p class="brownie-field-label">The Boundaries (ICOMs)</p>
 
       <div class="icom-boundary">
         <p class="icom-boundary-head">Outputs</p>
-        <p style="font-size: 0.97rem; color: rgba(44,46,47,0.8); line-height: 1.7; margin-bottom: 10px;">Beginning with the end in mind, let's think about the Outputs of the Baking Brownie process. When we bake brownies what are the outputs of the process?</p>
+        <p style="font-size: 0.97rem; color: rgba(44,46,47,0.8); line-height: 1.7; margin-bottom: 10px;">Beginning with the end in mind, let's think about the Outputs of the Baking Brownie process. When we bake brownies what are the outputs of the process? For example, the output may include:</p>
         <ul class="icom-list">
-          <li>Delicious Brownies</li>
-          <li>Defective Brownies (burned batch)</li>
+          <li>Delicious Brownies (yum!)</li>
+          <li>Defective Brownies (Oh no! I burned this batch!)</li>
           <li>Trash</li>
         </ul>
         <p class="reader-prompt">Can you think of any other outputs?</p>
@@ -681,7 +683,7 @@
 
       <div class="icom-boundary">
         <p class="icom-boundary-head">Inputs</p>
-        <p style="font-size: 0.97rem; color: rgba(44,46,47,0.8); line-height: 1.7; margin-bottom: 10px;">What are the Inputs that are transformed or consumed in the brownie baking process?</p>
+        <p style="font-size: 0.97rem; color: rgba(44,46,47,0.8); line-height: 1.7; margin-bottom: 10px;">So what are the Inputs that are transformed or consumed in the brownie baking process?</p>
         <ul class="icom-list">
           <li>Brownie Mix</li>
           <li>Eggs</li>
@@ -697,7 +699,7 @@
         <ul class="icom-list">
           <li>The Baker</li>
         </ul>
-        <p class="icom-sub-label">Tools &amp; Equipment</p>
+        <p class="icom-sub-label">Other Tools or Mechanisms</p>
         <ul class="icom-list">
           <li>Mixing bowl</li>
           <li>Mixing Spoon</li>
@@ -717,29 +719,31 @@
         <ul class="icom-list">
           <li>Recipe</li>
         </ul>
-        <p class="icom-sub-label">Customer Specifications (Voice of the Customer)</p>
+        <p class="icom-sub-label">Customer Specifications (Voice of the Customer!)</p>
         <ul class="icom-list">
-          <li>Moist Chocolate Chip Fudge Brownies preferred</li>
+          <li>Moist Chocolate Chip Fudge Brownies favored</li>
           <li>Don't like dry brownies</li>
-          <li>Nut allergies, no tree nuts or peanuts, and no ingredients from facilities that process nuts</li>
+          <li>Nut allergies (no tree nuts or peanuts, and no ingredients made in a factory with any tree nuts or peanuts)</li>
         </ul>
         <p class="icom-sub-label">Other Constraints or External Factors</p>
         <ul class="icom-list">
-          <li>History of oven performance, does the oven run cool or hot? Do you need to adjust baking time or temperature to get optimal results?</li>
+          <li>History of oven performance - does the oven run cool or hot? Do you have to adjust baking time or temperature to get optimal results?</li>
         </ul>
         <p class="reader-prompt">Can you think of any other controls?</p>
       </div>
 
     </div>
 
-    <p>After identifying the ICOMs, our Context Diagram might look like this:</p>
+    <p>After identifying some of these ICOMs, our Context Diagram might look like this:</p>
 
     <img src="img/brownie_context_2.webp"
-         alt="Completed IDEF0 Context Diagram for Baking Brownies — with Inputs, Controls, Outputs, and Mechanisms defined"
+         alt="Completed IDEF0 Context Diagram for Baking Brownies with Inputs, Controls, Outputs, and Mechanisms defined"
          class="diagram-image">
-    <p class="image-caption">The completed Context Diagram for Baking Brownies, all ICOMs defined, boundary established.</p>
+    <p class="image-caption">The completed Context Diagram for Baking Brownies with all of its ICOMs defined.</p>
 
-    <p>If you found this article informative, please share it with your network. I'd love to hear from you in the comments and address any questions you might have.</p>
+    <p>If you found this article informative, please share it with your network. I'd like to hear from you in the comments and address any questions you might have.</p>
+
+    <p>In <a href="article-forest-and-trees-2.html" style="color: var(--olive); font-weight: 700;">Part II</a> we will begin to learn about Activity Node Analysis and the concept of functional decomposition.</p>
 
     <!-- ── Series navigation ── -->
     <div class="series-nav">
