@@ -109,7 +109,7 @@
                             for a private investor. I ran discovery first: requirements, evaluation of more than 20
                             candidate data sources, and the system architecture. I modeled the client&rsquo;s operating
                             process before designing anything, and that model became the architecture&rsquo;s top level
-                            decomposition, so the build is structured by the process rather than the reverse. In daily
+                            decomposition, so the build is structured by the process. In daily
                             use since August 2026, on the client&rsquo;s own machine: scheduled ingestion into
                             PostgreSQL, an analytics layer, and a reporting surface, with 124 database migrations
                             shipped. I cut the nightly transform window from 7 hours to 4 by measuring where the time
@@ -131,7 +131,7 @@
                             process, written as Claude skills, that publishes more than 40 assets per lesson: the web
                             lesson, study guide, teacher packet, slide decks, podcast, explainer and section videos, and
                             narration in two AI voices. Every Scripture quotation is checked by script, and a mandatory
-                            human review gate sits before anything publishes.
+                            human review gate comes before anything publishes.
                         </p>
                         <dl class="outcomes">
                             <div>
@@ -165,15 +165,15 @@
                     </div>
                     <div class="role__body">
                         <p class="friction">
-                            A 1,000 person field organization was carrying overtime while skills sat idle elsewhere in
+                            A 1,000 person field organization was paying for overtime while skills sat idle elsewhere in
                             the same operation, and nobody could see it, because the work area map underneath had grown
                             without governance. It was incomplete, non-contiguous, and redundant. A single ZIP code
                             could appear in 6 different areas. Dispatch automation was running on geography that did not
                             exist.
                         </p>
                         <p>
-                            I rebuilt the foundation from zero with the field supervisors, who carried the local
-                            knowledge no data model could replace: all <strong>41,326 ZIP codes</strong>, contiguous,
+                            I rebuilt the foundation from zero with the field supervisors, who had the local knowledge
+                            no data model could replace: all <strong>41,326 ZIP codes</strong>, contiguous,
                             each one in exactly one area. That 1:1 constraint is what made everything downstream
                             possible. Then I volunteered to build the thing the clean foundation now allowed, a
                             Force-to-Load capacity model in Python and SQL that mapped skill supply against demand by
@@ -261,7 +261,7 @@
                             systems across two SVP organizations, and around 200 distinct forms of waste.
                         </p>
                         <p>
-                            Rather than redesigning in isolation, we co-facilitated a Work Out session that ran from the
+                            We co-facilitated a Work Out session that ran from the
                             data center floor to the SVP level, so the people who would have to live in the new model
                             helped build it. 43% of the critical path turned out to exist because it had always existed,
                             not because it added value.
@@ -297,14 +297,14 @@
                     <div class="role__body">
                         <p class="friction">
                             A 30,000 server security migration was moving at 15 servers a week. Every executive deadline
-                            was unreachable at that pace. The people were working hard; the system they were working
+                            was unreachable at that pace. The people were working hard. The system they were working
                             inside was the constraint. Data lived in 15 disconnected sources, so problems surfaced
                             during change windows instead of before them.
                         </p>
                         <p>
                             A DMAIC rebuild pulled 15 data sources into one view of server readiness and re-sequenced
                             the workflow into a pull-based pre-qualify, schedule, implement order, so failures were
-                            found and fixed before the window rather than inside it.
+                            found and fixed before the window.
                         </p>
                         <dl class="outcomes">
                             <div>
@@ -332,7 +332,7 @@
                             A skilled, motivated operations team was losing half its people every year. It was not a pay
                             problem and it was not a culture problem. Nobody had ever documented how the work was
                             supposed to be done, so every technician was guessing their way through mission critical
-                            tasks and carrying the quiet exhaustion of never being sure they were right.
+                            tasks, worn down by never being sure they were right.
                         </p>
                         <p>
                             We built an ISO 9000 quality system from the ground up by walking the technicians through
@@ -465,7 +465,7 @@
                         <dt>Technical</dt>
                         <dd>
                             Python (pandas, NumPy) &middot; SQL (CTEs, window functions, ETL) &middot; PostgreSQL
-                            &middot; GenAI orchestration and agent workflows &middot; Grafana, Tableau &middot;
+                            &middot; GenAI orchestration and agent workflows &middot; Grafana &middot;
                             ServiceNow, SAP/PeopleSoft, Oracle DB, Jira
                         </dd>
                     </div>
@@ -481,20 +481,15 @@
 
             <!-- ══ HONEST NOTE ══ -->
             <section class="cv__sec">
-                <h2>Let me be clear</h2>
+                <h2>How I use AI</h2>
                 <div class="role__body">
                     <p class="friction">
                         The ideas, the judgment, and the standards are mine. AI helps me articulate and build faster
                         than I could alone.
                     </p>
                     <p>
-                        I am not a software engineer and I am not going to pretend to be one. I learned data engineering
-                        the long way, self taught, over about 15 years, and I have written a great deal of production
-                        SQL and Python. What I did not do is become an architect. So on Forester and Meridian I bring
-                        the problem, the method, and the judgment about whether the answer is right.
-                    </p>
-                    <p>
-                        <strong>That division of labor is why one person can now ship what used to take a team.</strong>
+                        I bring the problem, the method, and the judgment about whether the answer is right. More on
+                        how that works is on the <a href="about.html">About page</a>.
                     </p>
                 </div>
             </section>
