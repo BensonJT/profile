@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How to See the Forest and the Trees (Part II): Activity Node Analysis — Jeffrey Benson</title>
-  <meta name="description" content="Activity Node Analysis and functional decomposition — how to break any process from its highest view (L0) into the structured detail your teams can actually act on.">
+  <title>How to See the Forest and the Trees (Part II): Activity Node Analysis - Jeffrey Benson</title>
+  <meta name="description" content="Activity Node Analysis and functional decomposition. Learn how to decompose any process from its highest view (L0) into the activities that make it up, and how deep to go.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -528,7 +528,7 @@
 
     <p class="article-intro">To see the forest and the trees, you develop the capability to step back and see the big picture, while simultaneously being able to zoom in and observe the trees. This series of articles will teach some practical things that will help you to cultivate this skill.</p>
 
-    <p>In <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a> we introduced the Context Diagram, referred to as the Level 0 diagram, the highest view of the process. The context diagram is the broadest view of the forest. In Part II we will learn how to decompose the forest to begin to see the individual trees and understand how they fit into it. In IDEF0 terms, this is called building an <strong>Activity Node Tree</strong>.</p>
+    <p>In <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a> we introduced the Context Diagram (we refer to this as the Level 0 diagram - the highest view of the process). The context diagram is the broadest view of the forest. In Part II we will learn how to decompose the forest to begin to see the individual trees and understand how they fit into the forest. In IDEF0 terms, this is called building an <strong>Activity Node Tree</strong>.</p>
 
     <hr>
 
@@ -538,21 +538,21 @@
     <p>In IDEF0 we use <strong>Activity Node Analysis</strong> to break down the Context Diagram's process (Level 0) into the activities that make up that process. We systematically decompose each activity <em>until we get the level of understanding required by the process model's purpose and viewpoint</em>.</p>
 
     <div class="rule-block">
-      <p><strong>The 3–6 Rule:</strong> When decomposing any process into its activities, each level should contain three to no more than six activities. If you identify more than six, roll them up at a higher level and articulate those additional details at a lower level of decomposition.</p>
+      <p><strong>The 3-6 Rule:</strong> When decomposing the process into the activities that make up the process, each level should be articulated in three to no more than six activities. If you see more than six activities, then roll them up at a higher level of decomposition and articulate those additional details at a lower level.</p>
     </div>
 
-    <p>Using the paradigm of L0 as the highest level of decomposition: <strong>L1</strong> represents the <em>high level process</em>, and <strong>L2</strong> represents a <em>lower level articulation</em> of each activity. As a general best practice, taking each process down two levels of decomposition (L0 → L1 → L2) is normally sufficient. But sometimes it is necessary to go deeper.</p>
+    <p>It is recommended to take each process down two levels of decomposition (decompose L0 into L1 and L2). Using the paradigm of L0 being the highest level of decomposition, <strong>L1</strong> would be the <em>high level process</em>, and <strong>L2</strong> would be a <em>lower level articulation of the process</em>. But sometimes it is necessary to decompose an activity more deeply.</p>
 
-    <p>For example, if the L2 decomposition of a specific activity requires more than six sub-activities, you might summarize it at L2 and decompose that particular activity further to L3. The Activity Node Tree graphic below illustrates this:</p>
+    <p>For example, if the lower level of decomposition (L2) requires more than six activities to articulate it, you might summarize one activity and decompose that particular activity to a lower level of detail (L3), as shown in this Activity Node Tree graphic:</p>
 
     <img src="img/decomposition_concept.webp"
          alt="Activity Node Tree diagram showing L0 decomposing to L1 (Activities 1, 2, 3), then L2 (sub-activities), and Activity 2.3 decomposing further to L3"
          class="diagram-image">
-    <p class="image-caption">The Activity Node Tree, how L0 decomposes to L1, L2, and selectively to L3 when needed.</p>
+    <p class="image-caption">The Activity Node Tree: L0 decomposes to L1 and L2, and to L3 only where needed.</p>
 
-    <p>Once you get beyond L2, it is not necessary to decompose <em>all</em> activities to a deeper level. As shown above, we might only decompose Activity 2.3 more deeply, producing Activities A2.3.1, A2.3.2, and A2.3.3 at L3.</p>
+    <p>Once you get beyond the lower level of process decomposition, known as L2, it is not necessary to take <em>all</em> activities to a deeper level of articulation. As shown above, we might only decompose Activity 2.3 more deeply, seeing Activities A2.3.1, A2.3.2, and A2.3.3 at L3.</p>
 
-    <p>The <strong>numbering scheme</strong> always references the context:</p>
+    <p>Note that the Activity <strong>numbering scheme</strong> always references the context:</p>
 
     <div class="numbering-grid">
       <span class="num-code">A1, A2, A3</span>
@@ -566,41 +566,42 @@
     </div>
 
     <div class="concept-callout">
-      <p>Remember: only decompose to the level required by your <strong>purpose and viewpoint</strong>. The goal is clarity, not exhaustive documentation.</p>
+      <p>Remember, it is only necessary to decompose to the level required by your <strong>purpose and viewpoint</strong>. As a general rule, articulating the process as a context diagram (L0), high level process (L1), and the lower level (L2) is normally sufficient and a good best practice, but there may be situations where decomposing a process well beyond L2 may be required.</p>
     </div>
 
     <hr>
 
     <!-- ── When might we go deeper? ── -->
-    <h2 class="section-title">When might we need to go beyond L2?</h2>
+    <h2 class="section-title">When might we go deeper into the forest and need to decompose a process beyond L2?</h2>
 
-    <p>Deeper decomposition becomes necessary when modeling end-to-end or full lifecycle processes. For example, if you are an organizational executive or a business transformation office trying to understand the critical activities associated with how your organization develops and delivers goods and services across several lines of business, starting with the first three levels (L0, L1, L2) is a great first step.</p>
+    <p>We may have to go much deeper if we are modeling an end to end or full lifecycle process. For example, if you are an organizational executive or a business transformation office, and you want to understand the critical activities associated with how your organization develops and delivers your goods and services across several lines of business, starting with the first three levels would be a great first step.</p>
 
-    <p>Then each line-of-business executive may choose to take their activities down to three levels of decomposition, and the functional leaders that report to them may do the same. Following this approach, it is possible to articulate a process through six or more levels of decomposition, with hundreds of activities identified, all of which roll up cleanly to the six to eight activities that make up the high level process at L1.</p>
+    <p>Then each of the line of business executives below their executive leader may want to take their activities down to three levels of decomposition, and the functional leaders that report to them may wish to do the same. Following that approach, it would be possible to have a process articulated through 6 or more levels of decomposition with hundreds of activities identified that all roll up to the 6-8 activities that make up the high level process (L1).</p>
 
-    <p>That is what it means to simultaneously see the forest <em>and</em> the trees: a complete, navigable view from the highest strategic context down to the operational detail.</p>
+    <p>The asset lifecycle model I described in <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a> worked this way. It started from one A0, broke into 8 activities at L1 and about 6 under each at L2, reached L3 everywhere, and went to L4, L5 or L6 only where the depth was needed (400 activities in all). That is what it means to see the forest <em>and</em> the trees. The context diagram (L0) is the forest and the activities at the lowest level of decomposition (Ln) are the trees. Because every activity number traces back up through its parent activities to A0, you can work at any level without losing sight of the forest.</p>
+
 
     <hr>
 
     <!-- ── Application: Baking Brownies ── -->
     <h2 class="section-title">Application: Baking Brownie Process</h2>
 
-    <p>To help crystallize the concepts, let's apply Activity Node Analysis to the Baking Brownie process. In <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a> we built a Level 0 Context Diagram for this process:</p>
+    <p>I am sure you are following along, but to help crystallize the concepts, let's apply this to the Baking Brownie process. Remember in <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a> we built a Level 0 Context Diagram for the Baking Brownies process:</p>
 
     <div class="brownie-section">
 
       <img src="img/brownie_context_2.webp"
-           alt="Completed IDEF0 Context Diagram for Baking Brownies — the L0 view with all ICOMs defined"
+           alt="Completed IDEF0 Context Diagram for Baking Brownies: the L0 view with all ICOMs defined"
            class="diagram-image" style="margin-top: 0;">
       <p class="image-caption" style="margin-bottom: 28px;">The L0 Context Diagram from Part I, our starting point for decomposition.</p>
 
-      <p>We are documenting this process from the viewpoint of the Baker. Now let's decompose the L0 Context Diagram into the high level activities that make up the process, the <strong>L1</strong> level of detail.</p>
+      <p>We are documenting this process from the viewpoint of the Baker. Let's take the L0 Context Diagram for the Baking Brownies process and decompose it to the high level activities that make up that process (the <strong>L1</strong> level of detail).</p>
 
       <div class="concept-callout" style="margin: 20px 0;">
-        <p>When identifying activities, best practice is to use the formula <span class="formula-pill">verb + noun</span> and to keep the language as simple as possible.</p>
+        <p>When identifying activities, it is a best practice to use the formula <span class="formula-pill">verb noun</span> and to keep the language as simple as possible.</p>
       </div>
 
-      <p>At L1, the high level steps are:</p>
+      <p>In this process we might say the high level steps are:</p>
 
       <div class="activity-tree">
         <div class="activity-parent">
@@ -622,7 +623,7 @@
            class="diagram-image">
       <p class="image-caption" style="margin-bottom: 28px;">L0 → L1: the three high level activities of the Baking Brownies process.</p>
 
-      <p>Next, let's break each L1 activity into its L2 detail. What are the sub-steps within each high level activity?</p>
+      <p>Next let's break each of these process steps into the next level of detail. What might the next level of decomposition (L2) be for the Baking Brownie process?</p>
 
       <div class="activity-tree">
         <div class="activity-parent">
@@ -659,12 +660,12 @@
         </ul>
       </div>
 
-      <p>Our Activity Node Tree for the Baking Brownie process now looks like this, decomposed to L2:</p>
+      <p>So our Activity Node Tree for the Baking Brownie process now looks like this, as we decompose the process to the lower level (L2):</p>
 
       <img src="img/L0_L1_L2_Brownies.webp"
-           alt="Full Activity Node Tree for Baking Brownies — L0 to L1 to L2, showing all sub-activities under Preheat Oven, Mix Ingredients, and Bake Brownies"
+           alt="Full Activity Node Tree for Baking Brownies, L0 to L1 to L2, showing all sub-activities under Preheat Oven, Mix Ingredients, and Bake Brownies"
            class="diagram-image">
-      <p class="image-caption" style="margin-bottom: 0;">The complete Activity Node Tree, L0 context, L1 high level activities, L2 sub-activities. The forest and the trees, in one view.</p>
+      <p class="image-caption" style="margin-bottom: 0;">The forest and the trees: the complete Activity Node Tree, from the L0 context to the L1 and L2 activities.</p>
 
     </div>
 
@@ -673,11 +674,13 @@
     <!-- ── In Summary ── -->
     <h2 class="section-title">In Summary</h2>
 
-    <p>Once you have identified the context (L0) and decomposed that process into two or more levels of decomposition (L1, L2, …), you are now beginning to see both the forest and the trees. You have a structured, navigable view of any process, from the highest strategic vantage point down to the operational detail that actually drives execution.</p>
+    <p>Once you have identified the context (L0) and decomposed that process into two or more levels of decomposition (L1, L2, …), you are now beginning to see both the forest and the trees.</p>
 
     <p>But there is more we can do to fully comprehend the interrelationships between the forest and the trees.</p>
 
-    <p>Do you remember the ICOMs, Inputs, Controls, Outputs, and Mechanisms, discussed in <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a>? In Part III we will start to understand the role of each activity within the process by identifying the critical ICOMs for each activity at each level of decomposition. IDEF0 provides a powerful modeling diagram to illustrate these relationships, and Part III is where the method becomes a diagnostic tool, not just a documentation framework.</p>
+    <p>Do you remember the ICOMs (Inputs, Controls, Outputs, and Mechanisms) discussed in <a href="article-forest-and-trees.html" style="color: var(--olive); font-weight: 700;">Part I</a>? In Part III of this article series we will start to understand the role of each activity within the process by identifying the critical inputs, outputs, controls, and mechanisms for each activity at each level of decomposition. IDEF0 provides a really helpful modeling diagram to illustrate these relationships, and we will introduce this in Part III.</p>
+
+    <p>If you found this article informative, please share it with your network. I'd like to hear from you in the comments and address any questions you might have.</p>
 
     <!-- ── Series navigation ── -->
     <div class="series-nav">
