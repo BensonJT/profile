@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="t d">
+  <title id="t">Baking Brownies context diagram (A0), purpose and viewpoint defined</title>
+  <desc id="d">The A0 box for Baking Brownies with its purpose and viewpoint; ICOMs to follow.</desc>
+  <defs>
+    <marker id="aOl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3B4B35"/></marker>
+    <marker id="aGo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A88A4F"/></marker>
+    <marker id="aCl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#C27B58"/></marker>
+  </defs>
+  <style>
+    text { font-family: Inter, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #2C2E2F; }
+    .lbl { font-size: 14px; }
+    .sm { font-size: 12.5px; }
+    .cat { font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; }
+    .name { font-family: "Instrument Serif", Georgia, serif; font-size: 24px; }
+    .nm { font-family: "Instrument Serif", Georgia, serif; font-size: 19px; }
+    .id { font-size: 13px; font-weight: 700; fill: #3B4B35; }
+    .wt { fill: #FFFFFF; }
+  </style>
+  <rect width="900" height="560" fill="#FFFFFF"/>
+
+  <rect x="330" y="200" width="240" height="150" rx="4" fill="#F0EAD6" stroke="#2C2E2F" stroke-width="2"/>
+  <text class="name" x="450.0" y="283.0" text-anchor="middle">Baking Brownies</text>
+  <text class="id" x="558" y="338" text-anchor="end">A0</text>
+  <text class="sm" x="20" y="28"><tspan font-weight="700" style="fill:#3B4B35">Purpose: </tspan>Describe the "as is" (current state) Brownie Baking process</text>
+  <text class="sm" x="20" y="48"><tspan font-weight="700" style="fill:#3B4B35">Viewpoint: </tspan>The Baker</text>
+</svg>

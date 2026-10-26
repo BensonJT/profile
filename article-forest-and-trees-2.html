@@ -545,7 +545,7 @@
 
     <p>For example, if the lower level of decomposition (L2) requires more than six activities to articulate it, you might summarize one activity and decompose that particular activity to a lower level of detail (L3), as shown in this Activity Node Tree graphic:</p>
 
-    <img src="img/decomposition_concept.webp"
+    <img src="img/ft_decomposition_concept.svg"
          alt="Activity Node Tree diagram showing L0 decomposing to L1 (Activities 1, 2, 3), then L2 (sub-activities), and Activity 2.3 decomposing further to L3"
          class="diagram-image">
     <p class="image-caption">The Activity Node Tree: L0 decomposes to L1 and L2, and to L3 only where needed.</p>
@@ -590,8 +590,8 @@
 
     <div class="brownie-section">
 
-      <img src="img/brownie_context_2.webp"
-           alt="Completed IDEF0 Context Diagram for Baking Brownies: the L0 view with all ICOMs defined"
+      <img src="img/ft_L0_context.svg"
+           alt="Completed IDEF0 Context Diagram for Baking Brownies (A0): the L0 view with all ICOMs defined"
            class="diagram-image" style="margin-top: 0;">
       <p class="image-caption" style="margin-bottom: 28px;">The L0 Context Diagram from Part I, our starting point for decomposition.</p>
 
@@ -614,14 +614,18 @@
         </div>
         <div class="activity-parent">
           <span class="activity-id">A3</span>
-          <span>Bake Brownies</span>
+          <span>Bake &amp; Serve Brownies</span>
+        </div>
+        <div class="activity-parent">
+          <span class="activity-id">A4</span>
+          <span>Cleanup</span>
         </div>
       </div>
 
-      <img src="img/L0_L1_Brownies.webp"
-           alt="Activity Node Tree showing L0 (Baking Brownies) decomposed to L1: Preheat Oven, Mix Ingredients, Bake Brownies"
+      <img src="img/ft_L0_L1.svg"
+           alt="Activity Node Tree showing L0 (Baking Brownies) decomposed to L1: Preheat Oven, Mix Ingredients, Bake and Serve Brownies, Cleanup"
            class="diagram-image">
-      <p class="image-caption" style="margin-bottom: 28px;">L0 → L1: the three high level activities of the Baking Brownies process.</p>
+      <p class="image-caption" style="margin-bottom: 28px;">L0 → L1: the four high level activities of the Baking Brownies process.</p>
 
       <p>Next let's break each of these process steps into the next level of detail. What might the next level of decomposition (L2) be for the Baking Brownie process?</p>
 
@@ -631,8 +635,8 @@
           <span>Preheat Oven</span>
         </div>
         <ul class="activity-children">
-          <li><span class="activity-id">A1.1</span><span>Check Recipe</span></li>
-          <li><span class="activity-id">A1.2</span><span>Determine Temp (adjust for oven performance)</span></li>
+          <li><span class="activity-id">A1.1</span><span>Secure Fuel</span></li>
+          <li><span class="activity-id">A1.2</span><span>Check Oven</span></li>
           <li><span class="activity-id">A1.3</span><span>Ignite Oven</span></li>
         </ul>
 
@@ -641,29 +645,34 @@
           <span>Mix Ingredients</span>
         </div>
         <ul class="activity-children">
-          <li><span class="activity-id">A2.1</span><span>Add Brownie Mix</span></li>
-          <li><span class="activity-id">A2.2</span><span>Add Water</span></li>
-          <li><span class="activity-id">A2.3</span><span>Add Eggs</span></li>
-          <li><span class="activity-id">A2.4</span><span>Mix</span></li>
-          <li><span class="activity-id">A2.5</span><span>Pour</span></li>
+          <li><span class="activity-id">A2.1</span><span>Secure Ingredients</span></li>
+          <li><span class="activity-id">A2.2</span><span>Combine Ingredients</span></li>
+          <li><span class="activity-id">A2.3</span><span>Mix Ingredients</span></li>
+          <li><span class="activity-id">A2.4</span><span>Pour Ingredients</span></li>
         </ul>
 
         <div class="activity-parent">
           <span class="activity-id">A3</span>
-          <span>Bake Brownies</span>
+          <span>Bake &amp; Serve Brownies</span>
         </div>
         <ul class="activity-children">
-          <li><span class="activity-id">A3.1</span><span>Place in Oven</span></li>
-          <li><span class="activity-id">A3.2</span><span>Set Timer</span></li>
-          <li><span class="activity-id">A3.3</span><span>Remove</span></li>
-          <li><span class="activity-id">A3.4</span><span>Cool</span></li>
+          <li><span class="activity-id">A3.1</span><span>Bake Brownies</span></li>
+          <li><span class="activity-id">A3.2</span><span>Cool Brownies</span></li>
+          <li><span class="activity-id">A3.3</span><span>Serve Brownies</span></li>
         </ul>
+
+        <div class="activity-parent">
+          <span class="activity-id">A4</span>
+          <span>Cleanup</span>
+        </div>
       </div>
+
+      <p>Notice that A4 (Cleanup) stays at L1. It is simple enough that decomposing it would not tell us anything more, which is the point of decomposing only to the level your purpose and viewpoint require.</p>
 
       <p>So our Activity Node Tree for the Baking Brownie process now looks like this, as we decompose the process to the lower level (L2):</p>
 
-      <img src="img/L0_L1_L2_Brownies.webp"
-           alt="Full Activity Node Tree for Baking Brownies, L0 to L1 to L2, showing all sub-activities under Preheat Oven, Mix Ingredients, and Bake Brownies"
+      <img src="img/ft_L0_L1_L2.svg"
+           alt="Full Activity Node Tree for Baking Brownies, L0 to L1 to L2: the activities under Preheat Oven, Mix Ingredients, and Bake and Serve Brownies, with Cleanup at L1"
            class="diagram-image">
       <p class="image-caption" style="margin-bottom: 0;">The forest and the trees: the complete Activity Node Tree, from the L0 context to the L1 and L2 activities.</p>
 

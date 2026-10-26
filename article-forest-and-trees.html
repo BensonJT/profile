@@ -574,7 +574,7 @@
 
     <p>The foundational construct of IDEF0 is the Context Diagram. Very simply, the context diagram provides the context of the process being studied.</p>
 
-    <img src="img/activity.webp"
+    <img src="img/ft_activity.svg"
          alt="IDEF0 Context Diagram: a single activity box with Activity ID A0"
          class="diagram-image">
     <p class="image-caption">The IDEF0 Context Diagram: a single box representing the boundary of the process, labeled A0.</p>
@@ -583,7 +583,7 @@
 
     <p>There are four arrows interacting with this box that represent the relevant Inputs, Controls, Outputs, and Mechanisms (these are called <strong>ICOMs</strong>). The ICOMs clarify the boundary of the process, and are discussed next.</p>
 
-    <img src="img/icoms.webp"
+    <img src="img/ft_icoms.svg"
          alt="IDEF0 Context Diagram with ICOMs: Inputs on left, Controls on top, Outputs on right, Mechanisms on bottom"
          class="diagram-image">
     <p class="image-caption">The four ICOM arrows define the boundary of any process.</p>
@@ -605,7 +605,7 @@
       <p>Outputs are the results of the process. Outputs might be information (data) or material goods (objects) that flow out of the process. These are depicted as arrows coming out of the right side of the box.</p>
     </div>
 
-    <img src="img/inputs_outputs.webp"
+    <img src="img/ft_inputs_outputs.svg"
          alt="IDEF0 diagram showing Inputs on the left and Outputs on the right"
          class="diagram-image">
     <p class="image-caption">Inputs enter from the left; Outputs exit from the right.</p>
@@ -616,7 +616,7 @@
       <p>Controls are external factors that constrain the process or specify conditions required to produce the outputs that satisfy requirements. Controls might be plans, customer specifications, legislation, or industry standards. Controls specify the conditions to produce the correct outputs. Control arrows enter from the top of the box. Think of them as external forces that constrain or limit the process, things that must be satisfied by the process to be successful.</p>
     </div>
 
-    <img src="img/controls.webp"
+    <img src="img/ft_controls.svg"
          alt="IDEF0 diagram showing Controls entering from the top of the activity box"
          class="diagram-image">
     <p class="image-caption">Controls enter from the top (external forces that constrain or guide the process).</p>
@@ -627,7 +627,7 @@
       <p>Mechanisms can be tools or the physical resources utilized within the process or activity to transform the inputs into outputs. Mechanisms may include things like specific functions (human resources), machines, or applications. It is helpful to think of mechanisms as things that <em>mechanize</em> the process and support the execution of the activity. These are depicted as arrows flowing up into the bottom of the box, figuratively supporting the process. Unlike inputs, mechanisms are not transformed or consumed as a result of the process.</p>
     </div>
 
-    <img src="img/mechanisms.webp"
+    <img src="img/ft_mechanisms.svg"
          alt="IDEF0 diagram showing Mechanisms entering from the bottom of the activity box"
          class="diagram-image">
     <p class="image-caption">Mechanisms enter from the bottom (they enable the process without being consumed by it).</p>
@@ -662,8 +662,8 @@
 
       <p style="font-size: 0.95rem; color: rgba(44,46,47,0.7); margin-bottom: 16px;">So far our context diagram looks like the following:</p>
 
-      <img src="img/brownie_context_1.webp"
-           alt="IDEF0 Context Diagram for Baking Brownies, showing the process box from the Baker's viewpoint"
+      <img src="img/ft_L0_context_start.svg"
+           alt="IDEF0 Context Diagram for Baking Brownies: the A0 box with its purpose and viewpoint, before the ICOMs are added"
            class="diagram-image" style="margin-top: 0;">
       <p class="image-caption" style="margin-bottom: 28px;">Context diagram for Baking Brownies with the purpose and viewpoint defined (ICOMs to follow).</p>
 
@@ -677,6 +677,7 @@
           <li>Delicious Brownies (yum!)</li>
           <li>Defective Brownies (Oh no! I burned this batch!)</li>
           <li>Trash</li>
+          <li>Clean Pans &amp; Utensils</li>
         </ul>
         <p class="reader-prompt">Can you think of any other outputs?</p>
       </div>
@@ -688,6 +689,9 @@
           <li>Brownie Mix</li>
           <li>Eggs</li>
           <li>Water</li>
+          <li>Grease</li>
+          <li>Fuel (Electric / Gas)</li>
+          <li>Dish Washing Detergent</li>
         </ul>
         <p class="reader-prompt">Can you think of any other inputs?</p>
       </div>
@@ -698,6 +702,9 @@
         <p class="icom-sub-label">Human Resources</p>
         <ul class="icom-list">
           <li>The Baker</li>
+          <li>The Oven Operator</li>
+          <li>The Grocery Store Clerk</li>
+          <li>The Fuel Provider</li>
         </ul>
         <p class="icom-sub-label">Other Tools or Mechanisms</p>
         <ul class="icom-list">
@@ -708,6 +715,8 @@
           <li>Oven</li>
           <li>Oven Mitt</li>
           <li>Cooling Rack</li>
+          <li>Timer</li>
+          <li>Sink &amp; Towels</li>
         </ul>
         <p class="reader-prompt">Can you think of any other mechanisms?</p>
       </div>
@@ -728,6 +737,7 @@
         <p class="icom-sub-label">Other Constraints or External Factors</p>
         <ul class="icom-list">
           <li>History of oven performance - does the oven run cool or hot? Do you have to adjust baking time or temperature to get optimal results?</li>
+          <li>Safety Regulations</li>
         </ul>
         <p class="reader-prompt">Can you think of any other controls?</p>
       </div>
@@ -736,8 +746,8 @@
 
     <p>After identifying some of these ICOMs, our Context Diagram might look like this:</p>
 
-    <img src="img/brownie_context_2.webp"
-         alt="Completed IDEF0 Context Diagram for Baking Brownies with Inputs, Controls, Outputs, and Mechanisms defined"
+    <img src="img/ft_L0_context.svg"
+         alt="Completed IDEF0 Context Diagram for Baking Brownies (A0) with its Inputs, Controls, Outputs, and Mechanisms listed"
          class="diagram-image">
     <p class="image-caption">The completed Context Diagram for Baking Brownies with all of its ICOMs defined.</p>
 
