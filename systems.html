@@ -55,8 +55,8 @@
                 <p class="eyebrow">Systems</p>
                 <h1>Turning judgment into systems other people can run.</h1>
                 <p class="lede">
-                    Thirty-one years, one thing: listen until the work is truly understood, diagnose what is actually
-                    happening, transform the work, and leave that new understanding in a form the team can run without
+                    Thirty-one years, one thing: listen until the work is understood, diagnose what is happening,
+                    transform the work, and leave that new understanding in a form the team can run without
                     me. Only the form has changed: procedures, then governance models, then pipelines, now software.
                     Forester is the sixth time, and this time the expertise being encoded is my own.
                 </p>
@@ -105,8 +105,8 @@
                         <figcaption>
                             <b>The Coach on a live model, mid-build.</b> 0 errors, 7 warnings, 33 informational
                             findings. It has caught that A7 records a document as coming from A5 while A6 records
-                            producing it for A7, and that A7 expects an output A6 does not declare. Each finding carries
-                            ranked resolutions and a recommended default.
+                            producing it for A7, and that A7 expects an output A6 does not declare. Each finding comes
+                            with ranked resolutions and a recommended default.
                         </figcaption>
                         <p class="fig__hint">
                             A tool that finds nothing proves nothing. This is what working looks like.
@@ -119,7 +119,7 @@
                     <p class="beat__n">02 &middot; Resolution</p>
                     <h3>It proposes the fix, and can complete the flow itself.</h3>
                     <p>
-                        The third finding is the interesting one. Rather than only flagging a missing output, the Coach
+                        The third finding is the interesting one. The Coach does more than flag the missing output. It
                         infers it:
                         <strong
                             >&ldquo;A6 does produce Significant Change Signals. Add that output and complete the
@@ -140,8 +140,8 @@
                     <p class="beat__n">03 &middot; One model, many lenses</p>
                     <h3>6 visual languages, every level of the tree, from one capture.</h3>
                     <p>
-                        The languages are not exports. They are projections of the same knowledge graph, so a single
-                        ICOM arrow is simultaneously a graph edge feeding the IDEF0 diagram, a labelled flow in the
+                        Every diagram is drawn from the same stored model, so a single ICOM arrow is at once a graph
+                        edge feeding the IDEF0 diagram, a labelled flow in the
                         BPMN, and an input to the rolled-up yield calculation. Change the model and every view changes
                         with it.
                     </p>
@@ -159,7 +159,7 @@
                             <b>The workspace.</b> 6 languages grouped as Overview, Structure and Flow. A navigator that
                             walks the decomposition from A0 down. Toggles that add or remove the
                             <b>I&nbsp;&middot;&nbsp;C&nbsp;&middot;&nbsp;O&nbsp;&middot;&nbsp;M</b> layers on the same
-                            render, which is the data spine made visibly separable from its presentation. Export to PNG,
+                            render, so the data can be seen apart from how it is drawn. Export to PNG,
                             SVG, PDF, and standards-faithful <code>.bpmn</code>. The Coach runs against whatever is on
                             screen.
                         </figcaption>
@@ -177,8 +177,7 @@
                     </p>
                     <p>
                         Three are recognized industry standards. One is proprietary. Two are executive one-pagers. And
-                        yes, the process is a brownie recipe: if the method holds on something you can check against
-                        your own kitchen, the domain was never the hard part.
+                        yes, the process is a brownie recipe.
                     </p>
 
                     <div class="gallery mt-8">
@@ -315,7 +314,7 @@
                     </figure>
                     <div class="callout">
                         <p>
-                            <strong>Where this actually stands.</strong> Phase 1 is feature complete and in active
+                            <strong>Where this stands.</strong> Phase 1 is feature complete and in active
                             hardening. The capture schema, the derived-metric algorithms, all six visual languages, full
                             import and export round-trip, and the Coach are shipped and dogfooded on a live client
                             engagement. The executive dashboards, the AI interview agent, and multi-tenant activation
@@ -343,22 +342,23 @@
                         system architecture, all delivered and invoiced before a line of production code was written.
                     </p>
                     <p>
-                        <strong>The part worth pausing on:</strong> I modeled the client's operating process in Forester
-                        before designing anything, and that model became the architecture's top-level decomposition. The
-                        method produced the tool, the tool structured the engagement, and the engagement validated both.
-                        That loop is the whole argument of this page, and it closed on someone else's money.
+                        <strong>The method on a paid engagement.</strong> I modeled the client's operating process in
+                        Forester
+                        before designing anything, and that model became the architecture's top-level decomposition. It
+                        was the first time the method and the tool were tested together on a client&rsquo;s project and
+                        budget.
                     </p>
                     <p>
                         In daily use since August 2026, on the client&rsquo;s own machine: scheduled ingestion into
                         PostgreSQL, an analytics layer, and a reporting surface. The nightly transform ran 7 hours and
-                        nobody knew where the time actually went, so I stopped guessing and profiled it. Two rewrites I
+                        nobody knew where the time went, so I stopped guessing and profiled it. Two rewrites I
                         had already built, a numpy vectorization and a parallel staging path, turned out to be aimed at
                         the same
                         <strong>23% of the runtime</strong>. The window functions were 13.4 seconds of a 59 second
                         recompute. The write was the other 46.
                     </p>
                     <p>
-                        So the wins were the unglamorous ones: narrower stored rows, an autovacuum gate, and a rebuilt
+                        The wins were the unglamorous ones: narrower stored rows, an autovacuum gate, and a rebuilt
                         query that reads a hundred times fewer pages.
                         <strong>7 hours to 4.</strong> The vectorization was validated bit-exact across 7.3 million
                         rows, measured 3.3&times; slower end to end because the write dominated, and stayed in the
@@ -399,7 +399,7 @@
             <div class="wrap">
                 <div class="s-head">
                     <p class="eyebrow">Benson Academy &middot; in production</p>
-                    <h2>Hallucination control, designed in rather than hoped for.</h2>
+                    <h2>Hallucination control, built into the process.</h2>
                 </div>
                 <div class="role__body" style="max-width: 64ch">
                     <p class="friction">
@@ -424,9 +424,9 @@
                     <p>
                         The transferable part is the pipeline behind it. A grounded knowledge base is the source of
                         truth, generation is constrained to it, and every step that touches Scripture pulls it from a
-                        translation tool, never from memory; a script checks every quotation in every written asset
+                        translation tool, never from memory, and a script checks every quotation in every written asset
                         before it counts as done. Custom Python handles asset automation, and a
-                        <strong>mandatory human review gate</strong> sits before publication. Research to published
+                        <strong>mandatory human review gate</strong> comes before publication. Research to published
                         cycle time fell roughly 80%, with source traceability maintained and zero tolerance for
                         unverified claims.
                     </p>
@@ -475,7 +475,7 @@
                 <div class="callout">
                     <p>
                         <strong>On how it was built.</strong> The analysis was mine: which comparisons mattered, how to
-                        frame quality as a sigma problem, what the scorecard should say, and where the real risk sat. I
+                        frame quality as a sigma problem, what the scorecard should say, and where the real risk was. I
                         built it with Claude Code. Mostly I directed: what each query had to answer, and how the data
                         should be scored for the Lean Six Sigma calculations. Some of it was hands-on: I started several
                         queries myself and had the AI finish them by following my pattern across about a hundred
@@ -521,7 +521,7 @@
                     <p>
                         That last piece is the point. The model never sees the spreadsheet and never sees the data. It
                         sees the extraction, cites the cell for every claim, and says "not in the extraction" when the
-                        answer is not there. Deterministic scripts do the finding; the model does the explaining; a
+                        answer is not there. Deterministic scripts find the problems, the model explains them, and a
                         person reviews anything that becomes a source of truth.
                     </p>
                 </div>
@@ -552,8 +552,7 @@
                 <div class="s-head">
                     <h2>Let&rsquo;s find where the friction is costing you.</h2>
                     <p>
-                        If there is something complicated in your business that needs to come back clear, I would like
-                        to talk about it.
+                        If something in your business has become too tangled to see, I would like to talk about it.
                     </p>
                 </div>
                 <div class="hero__actions">
