@@ -273,14 +273,17 @@
 }
 
 /* ---------- 30. AI EVALUATION ----------
-   The #evaluation section and the "How I evaluate it" line on each project card.
-   Built only from site.css tokens; anchors clear the 60px sticky nav. */
-#systems [id],
-#evaluation [id] {
-    scroll-margin-top: calc(60px + var(--s-6));
+   The evaluation bands (.band--eval) and the "How I evaluate it" line on each project card.
+   Built only from site.css tokens; anchors clear the 60px sticky nav and the sticky sub-nav. */
+html {
+    scroll-padding-top: calc(60px + var(--s-6));
 }
 
-/* Summary line on a project card. Uses --accent (not --gold-text) because the cards sit on ink. */
+html:has(.subnav) {
+    scroll-padding-top: calc(60px + var(--subnav-h) + var(--s-6));
+}
+
+/* Summary line on a project card. Uses --accent (not --gold-text) so it reads on every band color. */
 .eval__card {
     margin-top: var(--s-3);
     font-size: var(--t-xs);
@@ -313,12 +316,12 @@
     margin-bottom: var(--s-8);
 }
 
-#evaluation .beat code {
+.band--eval .beat code {
     font-size: 0.9em;
 }
 
 /* .beat is a grid, so a bare link would stretch the full width */
-#evaluation .beat > .textlink {
+.band--eval .beat > .textlink {
     justify-self: start;
 }
 
@@ -376,9 +379,6 @@
    "How the practice grew": an index of the seven dated stories beside one story at a time
    (builder.js adds .practice--js). Without JS the index is a table of contents and every
    story stays stacked below it. Wide screens: sticky index on the left. Narrow: a row of chips. */
-#evaluation .eval__sub {
-    scroll-margin-top: calc(60px + var(--s-6));
-}
 
 .practice__index {
     margin-bottom: var(--s-12);
@@ -460,7 +460,7 @@
 
     .practice--js .practice__index {
         position: sticky;
-        top: calc(60px + var(--s-6));
+        top: calc(60px + var(--subnav-h) + var(--s-6));
         margin-bottom: 0;
     }
 }
@@ -535,6 +535,9 @@
 
 /* ---------- AI Builder sub-nav (the four ai-builder*.html pages; the Leland bundle drops it) ---------- */
 .subnav {
+    position: sticky;
+    top: 60px; /* under the site nav (.nav, sticky, 60px) */
+    z-index: 40;
     background: var(--ink-2);
     color: var(--vellum);
     border-bottom: 1px solid rgb(240 234 214 / 10%);
@@ -542,7 +545,10 @@
 
 .subnav__inner {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* one row at every width, so its height (--subnav-h) stays fixed */
+    overflow-x: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
     align-items: center;
     gap: var(--s-2) var(--s-6);
     padding-block: var(--s-3);
@@ -568,4 +574,46 @@
 .subnav a[aria-current="page"] {
     color: var(--vellum);
     border-bottom-color: var(--gold);
+}
+
+/* ---------- 33. THEMATIC BANDS (2026-10-27) ----------
+   Each AI Builder page alternates band colors (ink, paper, olive, vellum) so its parts read as separate
+   themes. A band that starts mid-story drops its first child's top margin; the section padding spaces it. */
+.band > .wrap > :first-child {
+    margin-top: 0;
+}
+
+/* Dark bands: cards and build tiles sit on a raised dark surface, and strong text stays light.
+   site.css sets --bg and --fg for light pages only; the AI Builder pages put cards on ink and olive too. */
+.on-ink {
+    --bg: var(--ink-2);
+    --fg: var(--vellum);
+}
+
+.on-olive {
+    --bg: color-mix(in srgb, var(--olive) 82%, var(--ink));
+    --fg: var(--vellum);
+
+    /* site.css's olive gray and gold sit just under 4.5:1 on olive; lift both a little */
+    --fg-muted: color-mix(in srgb, var(--n-300) 60%, var(--n-100));
+    --accent: color-mix(in srgb, var(--gold-ink) 75%, var(--vellum));
+}
+
+/* Light bands: site.css's muted gray (--n-500) is 3.6:1 on vellum, under the 4.5:1 body-text guideline. The AI
+   Builder pages use a darker muted gray; .on-ink and .on-olive set their own light gray, so dark bands keep theirs. */
+:root {
+    --subnav-h: 58px; /* height of the sticky AI Builder sub-nav (measured; one row at every width) */
+    --fg-muted: color-mix(in srgb, var(--n-500) 45%, var(--n-700));
+}
+
+/* Phones: the sub-nav keeps all four links on one row by dropping its label and the word "builds" */
+@media (width < 600px) {
+    .subnav__label,
+    .subnav .subnav__more {
+        display: none;
+    }
+
+    .subnav__inner {
+        gap: var(--s-4);
+    }
 }
