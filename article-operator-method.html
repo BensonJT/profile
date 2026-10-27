@@ -1185,8 +1185,7 @@
                             obstacle removal, run on the near-real-time readiness data.
                         </p>
                         <p>
-                            Servers that failed pre-qualification were remediated rather than set aside, which fed the
-                            ready pool instead of draining it. That deliberately made the program harder to run: two
+                            Servers that failed pre-qualification were remediated, creating a pool of pre-qualified servers we could pull into the migration schedule. That deliberately made the program harder to run: two
                             cycles now moved at once, conversion and remediation. Adding a parallel stream is the wrong
                             call without visibility and the right one with it, and the visibility is what the data work
                             bought (readiness inferred by tying configuration logs to operational records), so the
