@@ -1,0 +1,619 @@
+/* ============================================================
+   Jeffrey Benson — builder.css
+   Components used ONLY by the AI Builder page.
+
+   site.css is an untouched copy of the profile site's stylesheet
+   and stays the single source of truth for tokens and primitives.
+   Everything here is built from those tokens; no new colors, no
+   new fonts, no shadows, no gradients.
+
+   ON MERGE INTO THE PROFILE SITE: append this file to the end of
+   site.css as sections 27-29 (numbering continues from there) and
+   delete the extra <link> tag from the page.
+   ============================================================ */
+
+/* ---------- 27. HERO BYLINE ----------
+   Name + title under the H1. Reads as a signature, not a heading. */
+.byline {
+    display: grid;
+    gap: var(--s-1);
+    margin-bottom: var(--s-8);
+}
+
+.byline__name {
+    font-family: var(--font-display);
+    font-size: var(--t-xl);
+    line-height: 1.2;
+}
+
+.byline__title {
+    font-size: var(--t-sm);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+/* ---------- 28. BUILD LEDGER ----------
+   The program builds, ruled like .cards (1px gap over the rule color)
+   so the grid reads as a ledger rather than a pile of boxes. */
+.ledger {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border-block: 1px solid var(--rule);
+}
+
+@media (width >= 700px) {
+    .ledger {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (width >= 1040px) {
+    .ledger {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.build {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    background: var(--bg);
+    padding: var(--s-8) var(--s-6);
+    min-width: 0;
+}
+
+.on-paper .build {
+    background: var(--paper);
+}
+
+.build__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--s-4);
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+}
+
+.build__n {
+    color: var(--fg-muted);
+}
+
+/* Status label. Muted until something ships; gold once it does.
+   Set with data-status="soon" | "progress" | "shipped" on the .build. */
+.build__status {
+    color: var(--fg-muted);
+}
+
+.build[data-status="progress"] .build__status {
+    color: var(--clay-text);
+}
+
+.build[data-status="shipped"] .build__status {
+    color: var(--accent);
+}
+
+.build__status::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: var(--s-2);
+    border-radius: 50%;
+    border: 1px solid currentcolor;
+    vertical-align: 1px;
+}
+
+.build[data-status="shipped"] .build__status::before,
+.build[data-status="progress"] .build__status::before {
+    background: currentcolor;
+}
+
+.build__title {
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    line-height: 1.15;
+    text-wrap: balance;
+}
+
+.build__body {
+    font-size: var(--t-sm);
+    line-height: 1.7;
+    color: var(--fg-muted);
+    flex-grow: 1;
+}
+
+/* Which earlier system a course build extends, or that it is new to me */
+.build__on {
+    font-size: var(--t-xs);
+    line-height: 1.5;
+    color: var(--gold-text);
+}
+
+.build__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-6);
+    margin-top: var(--s-3);
+}
+
+/* Text-style buttons that match .link-more, sized for a card */
+.textlink {
+    font: inherit;
+    font-size: var(--t-sm);
+    font-weight: 600;
+    color: var(--accent);
+    background: none;
+    border: none;
+    border-bottom: 1px solid currentcolor;
+    padding: 0 0 2px;
+    cursor: pointer;
+    transition: opacity 0.18s var(--ease);
+}
+
+.textlink:hover {
+    opacity: 0.75;
+}
+
+/* Panel content lives in the HTML next to its card, hidden, and is
+   copied into the shared dialog by builder.js. */
+.build__panel {
+    display: none;
+}
+
+/* site.css .feature was designed for light bands; its <strong> uses --fg (charcoal),
+   which disappears on ink. Restore contrast when a feature sits in a dark band. */
+.on-ink .feature__body strong,
+.on-olive .feature__body strong {
+    color: var(--vellum);
+}
+
+/* Three-column tile grid for the "Since December 2025" projects (six tiles = two even rows).
+   site.css .tiles uses auto-fit, which leaves an orphan row at this count. */
+@media (width >= 780px) {
+    .tiles--3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--s-12) var(--s-8);
+    }
+}
+
+/* ---------- 29. DIALOG ----------
+   Native <dialog>: Escape and focus handling come from the browser. */
+.sheet {
+    width: min(680px, calc(100% - 2 * var(--gutter)));
+    max-height: min(80vh, 760px);
+    margin: auto;
+    padding: 0;
+    background: var(--paper);
+    color: var(--charcoal);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+}
+
+.sheet::backdrop {
+    background: color-mix(in srgb, var(--ink) 78%, transparent);
+    backdrop-filter: blur(2px);
+}
+
+.sheet__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--s-6);
+    padding: var(--s-6) var(--s-8);
+    border-bottom: 1px solid var(--rule);
+}
+
+.sheet__head .eyebrow {
+    margin-bottom: var(--s-2);
+}
+
+.sheet__title {
+    font-size: var(--t-2xl);
+}
+
+.sheet__close {
+    flex-shrink: 0;
+    font: inherit;
+    font-size: var(--t-sm);
+    color: var(--fg-muted);
+    background: none;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: var(--s-1) var(--s-3);
+    cursor: pointer;
+}
+
+.sheet__close:hover {
+    color: var(--fg);
+    border-color: var(--accent);
+}
+
+.sheet__body {
+    padding: var(--s-8);
+    min-height: 8rem;
+}
+
+.sheet__body > * + * {
+    margin-top: var(--s-4);
+}
+
+/* Write-ups reuse .beat from site.css; its page-level spacing is too loose
+   for a popup, so tighten it here only. Detail pages keep the full rhythm. */
+.sheet__body .beat {
+    padding-block: var(--s-8);
+}
+
+.sheet__body .beat:first-child {
+    padding-top: 0;
+}
+
+.sheet__body .beat h3 {
+    font-size: var(--t-xl);
+}
+
+.sheet__empty {
+    font-size: var(--t-sm);
+    color: var(--fg-muted);
+    font-style: italic;
+}
+
+@media (width <= 560px) {
+    .sheet__head,
+    .sheet__body {
+        padding-inline: var(--s-6);
+    }
+}
+
+/* ---------- 30. AI EVALUATION ----------
+   The evaluation bands (.band--eval) and the "How I evaluate it" line on each project card.
+   Built only from site.css tokens; anchors clear the 60px sticky nav and the sticky sub-nav. */
+html {
+    scroll-padding-top: calc(60px + var(--s-6));
+}
+
+html:has(.subnav) {
+    scroll-padding-top: calc(60px + var(--subnav-h) + var(--s-6));
+}
+
+/* Summary line on a project card. Uses --accent (not --gold-text) so it reads on every band color. */
+.eval__card {
+    margin-top: var(--s-3);
+    font-size: var(--t-xs);
+    line-height: 1.5;
+    color: var(--accent);
+}
+
+.eval__intro {
+    font-size: var(--t-sm);
+    color: var(--fg-muted);
+    margin-bottom: var(--s-6);
+}
+
+.eval__fine {
+    font-size: var(--t-xs);
+    line-height: 1.6;
+    color: var(--fg-muted);
+    max-width: var(--measure);
+    margin-top: var(--s-8);
+}
+
+.eval__text {
+    max-width: var(--measure);
+    color: var(--fg-muted);
+    margin-block: var(--s-6) var(--s-16);
+}
+
+.eval__sub {
+    margin-top: var(--s-16);
+    margin-bottom: var(--s-8);
+}
+
+.band--eval .beat code {
+    font-size: 0.9em;
+}
+
+/* .beat is a grid, so a bare link would stretch the full width */
+.band--eval .beat > .textlink {
+    justify-self: start;
+}
+
+/* Charts popup: on a phone, keep the SVG charts readable and let the frame scroll sideways */
+@media (width <= 600px) {
+    .sheet__body .fig__frame--fit img {
+        min-width: 560px;
+        width: 560px;
+    }
+}
+
+/* Presentation window (Build 06 deck): sized so a 16:9 frame fits the screen with the header */
+.sheet--deck {
+    width: min(96vw, calc((92vh - 7.5rem) * 16 / 9));
+    max-width: none;
+    max-height: none;
+    background: var(--ink);
+    color: var(--vellum);
+    border-color: var(--ink-2);
+}
+
+.sheet--deck .sheet__head {
+    border-bottom-color: color-mix(in srgb, var(--vellum) 14%, transparent);
+    padding-block: var(--s-3);
+}
+
+.sheet--deck .sheet__title {
+    font-size: var(--t-lg);
+}
+
+.sheet--deck .sheet__close {
+    color: var(--vellum);
+}
+
+.deck__frame {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    background: var(--ink);
+}
+
+/* More than one deck shares the window; only the open one shows */
+.deck__frame[hidden] {
+    display: none;
+}
+
+.deck__hint {
+    padding: var(--s-2) var(--s-6);
+    font-size: var(--t-xs);
+    color: var(--n-300);
+}
+
+/* ---------- 31. EVALUATION TIMELINE ----------
+   "How the practice grew": an index of the seven dated stories beside one story at a time
+   (builder.js adds .practice--js). Without JS the index is a table of contents and every
+   story stays stacked below it. Wide screens: sticky index on the left. Narrow: a row of chips. */
+
+.practice__index {
+    margin-bottom: var(--s-12);
+}
+
+.practice__index ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--s-1);
+}
+
+.practice__item {
+    display: grid;
+    gap: 2px;
+    padding: var(--s-3) var(--s-4);
+    border-left: 2px solid var(--rule);
+    color: var(--fg);
+    text-decoration: none;
+    transition:
+        background-color 0.18s var(--ease),
+        border-color 0.18s var(--ease);
+}
+
+.practice__item:hover,
+.practice__item[aria-current="true"] {
+    background: color-mix(in srgb, var(--gold) 12%, transparent);
+}
+
+.practice__item[aria-current="true"] {
+    border-left-color: var(--accent);
+}
+
+.practice__when {
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.practice__head {
+    font-family: var(--font-display);
+    font-size: var(--t-md);
+    line-height: 1.2;
+}
+
+.practice__panel[hidden],
+.practice__step[hidden] {
+    display: none;
+}
+
+.practice--js .practice__panel {
+    padding-top: 0;
+    border-top: 0;
+}
+
+.practice__step {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--s-6);
+    padding-top: var(--s-6);
+    border-top: 1px solid var(--rule);
+}
+
+.practice__step button:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+@media (width >= 900px) {
+    .practice--js {
+        display: grid;
+        grid-template-columns: minmax(240px, 320px) 1fr;
+        gap: var(--s-12);
+        align-items: start;
+    }
+
+    .practice--js .practice__index {
+        position: sticky;
+        top: calc(60px + var(--subnav-h) + var(--s-6));
+        margin-bottom: 0;
+    }
+}
+
+@media (width <= 899px) {
+    .practice--js .practice__index {
+        margin-bottom: var(--s-8);
+    }
+
+    .practice--js .practice__index ol {
+        display: flex;
+        gap: var(--s-2);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: var(--s-2);
+    }
+
+    .practice--js .practice__index li {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+    }
+
+    .practice--js .practice__item {
+        padding: var(--s-2) var(--s-3);
+        border-left: 0;
+        border-bottom: 2px solid var(--rule);
+        white-space: nowrap;
+    }
+
+    .practice--js .practice__item[aria-current="true"] {
+        border-bottom-color: var(--accent);
+    }
+
+    .practice--js .practice__head {
+        display: none;
+    }
+}
+
+/* ---------- 32. LATEST ANALYSIS ----------
+   A slim paper band under the proof bar: one finding, and a button that opens its deck in the
+   Presentation window (builder.js; deck_inline.js in the Leland bundle). */
+.latest {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-6);
+}
+
+.latest > div:first-child {
+    flex: 1 1 30rem;
+}
+
+/* Same scale as a section head (h2 and lede), so the band reads as part of the page */
+.latest__title {
+    font-size: var(--t-4xl);
+    max-width: 30ch;
+    margin-top: var(--s-3);
+    text-wrap: balance;
+}
+
+.latest__actions {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+}
+
+.latest .lede {
+    margin-top: var(--s-4);
+}
+
+/* ---------- AI Builder sub-nav (the four ai-builder*.html pages; the Leland bundle drops it) ---------- */
+.subnav {
+    position: sticky;
+    top: 60px; /* under the site nav (.nav, sticky, 60px) */
+    z-index: 40;
+    background: var(--ink-2);
+    color: var(--vellum);
+    border-bottom: 1px solid rgb(240 234 214 / 10%);
+}
+
+.subnav__inner {
+    display: flex;
+    flex-wrap: nowrap; /* one row at every width, so its height (--subnav-h) stays fixed */
+    overflow-x: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
+    align-items: center;
+    gap: var(--s-2) var(--s-6);
+    padding-block: var(--s-3);
+    font-size: var(--t-sm);
+}
+
+.subnav__label {
+    color: var(--gold-ink);
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.subnav a {
+    color: rgb(240 234 214 / 78%);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-block: var(--s-1);
+}
+
+.subnav a:hover,
+.subnav a[aria-current="page"] {
+    color: var(--vellum);
+    border-bottom-color: var(--gold);
+}
+
+/* ---------- 33. THEMATIC BANDS (2026-10-27) ----------
+   Each AI Builder page alternates band colors (ink, paper, olive, vellum) so its parts read as separate
+   themes. A band that starts mid-story drops its first child's top margin; the section padding spaces it. */
+.band > .wrap > :first-child {
+    margin-top: 0;
+}
+
+/* Dark bands: cards and build tiles sit on a raised dark surface, and strong text stays light.
+   site.css sets --bg and --fg for light pages only; the AI Builder pages put cards on ink and olive too. */
+.on-ink {
+    --bg: var(--ink-2);
+    --fg: var(--vellum);
+}
+
+.on-olive {
+    --bg: color-mix(in srgb, var(--olive) 82%, var(--ink));
+    --fg: var(--vellum);
+
+    /* site.css's olive gray and gold sit just under 4.5:1 on olive; lift both a little */
+    --fg-muted: color-mix(in srgb, var(--n-300) 60%, var(--n-100));
+    --accent: color-mix(in srgb, var(--gold-ink) 75%, var(--vellum));
+}
+
+/* Light bands: site.css's muted gray (--n-500) is 3.6:1 on vellum, under the 4.5:1 body-text guideline. The AI
+   Builder pages use a darker muted gray; .on-ink and .on-olive set their own light gray, so dark bands keep theirs. */
+:root {
+    --subnav-h: 58px; /* height of the sticky AI Builder sub-nav (measured; one row at every width) */
+    --fg-muted: color-mix(in srgb, var(--n-500) 45%, var(--n-700));
+}
+
+/* Phones: the sub-nav keeps all four links on one row by dropping its label and the word "builds" */
+@media (width < 600px) {
+    .subnav__label,
+    .subnav .subnav__more {
+        display: none;
+    }
+
+    .subnav__inner {
+        gap: var(--s-4);
+    }
+}

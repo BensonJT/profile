@@ -1,0 +1,20 @@
+{
+    "name": "profile",
+    "private": true,
+    "description": "bensonjt.github.io/profile: static site. Node is only for the lint, test and build tools below. The lint step covers the AI Builder files; the older pages predate it (site.css and several pages already fail the stylelint and Prettier style rules).",
+    "scripts": {
+        "build:leland": "python3 tools/leland/build_single.py",
+        "test": "npm run lint && python3 tools/tests/check_links.py && python3 tools/leland/build_single.py && node tools/tests/test_decks.js",
+        "test:links": "python3 tools/tests/check_links.py",
+        "test:decks": "node tools/tests/test_decks.js",
+        "test:figures": "python3 tools/tests/recount_ai_dependence.py",
+        "lint": "htmlhint \"*.html\" && stylelint css/builder.css && prettier --check \"ai-builder*.html\" css/builder.css js/builder.js tools/tests/test_decks.js package.json"
+    },
+    "devDependencies": {
+        "@playwright/test": "1.60.0",
+        "htmlhint": "1.1.4",
+        "prettier": "3.3.3",
+        "stylelint": "16.10.0",
+        "stylelint-config-standard": "36.0.1"
+    }
+}
