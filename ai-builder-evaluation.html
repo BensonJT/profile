@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>AI Builder: Evaluation — Jeffrey Benson</title>
+        <meta
+            name="description"
+            content="How Jeffrey Benson measures AI output before trusting it: deterministic code by default, and an evaluation story for each project."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="AI Builder: Evaluation — Jeffrey Benson" />
+        <meta
+            property="og:description"
+            content="Learning to build with AI the way I learned everything else: one build at a time, documented."
+        />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="css/site.css" />
+        <link rel="stylesheet" href="css/builder.css" />
+    </head>
+
+    <body>
+        <!-- ══════════ NAV ══════════ -->
+        <nav class="nav">
+            <div class="wrap">
+                <div class="nav__inner">
+                    <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+                    <div class="nav__links">
+                        <a href="ai-builder.html" class="is-current" aria-current="page">AI Builder</a>
+                        <a href="work.html">Work</a>
+                        <a href="method.html">Method</a>
+                        <a href="systems.html">Systems</a>
+                        <a href="articles.html">Notebook</a>
+                        <a href="about.html">About</a>
+                    </div>
+                    <a class="btn btn--primary nav__cta" href="resume.html">Résumé</a>
+                    <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">
+                        Menu
+                    </button>
+                </div>
+                <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+                    <a href="ai-builder.html" class="is-current" aria-current="page">AI Builder</a>
+                    <a href="work.html">Work</a>
+                    <a href="method.html">Method</a>
+                    <a href="systems.html">Systems</a>
+                    <a href="articles.html">Notebook</a>
+                    <a href="about.html">About</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- leland:drop-start (the bundle is one page; it has no sub-nav) -->
+        <nav class="subnav" aria-label="AI Builder pages">
+            <div class="wrap subnav__inner">
+                <span class="subnav__label">AI Builder</span>
+                <a href="ai-builder.html">Overview</a>
+                <a href="ai-builder-projects.html">Projects</a>
+                <a href="ai-builder-evaluation.html" aria-current="page">Evaluation</a>
+                <a href="ai-builder-level1.html">Level 1 builds</a>
+            </div>
+        </nav>
+        <!-- leland:drop-end -->
+
+        <!-- leland:drop-start (page heads are not part of the one-page bundle) -->
+        <header class="on-ink" id="top">
+            <div class="wrap page-head">
+                <p class="eyebrow">How I evaluate AI</p>
+                <h1>Evaluation</h1>
+                <p class="lede">
+                    Deterministic code does the bulk of the work, and a model is trusted only where it has been
+                    measured. One evaluation story per project, in date order.
+                </p>
+            </div>
+        </header>
+        <!-- leland:drop-end -->
+
+        <!-- leland:content-start -->
+
+        <!-- ══════════ 5b. AI EVALUATION ══════════
+             Facts from briefs/*-evaluations-brief.md and briefs/deterministic-by-default-brief.md, all as of
+             2026-10-20 (counts approximate; re-measure before republishing). Each entry's id is the target of
+             its project card's "How I evaluate it" link, and each entry links back to its card.
+        -->
+        <section class="section" id="evaluation">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">AI evaluation &middot; As of October 20, 2026</p>
+                    <h2>Deterministic by default.</h2>
+                    <p>
+                        I build AI systems that depend on AI as little as possible. If a step can be deterministic code,
+                        it is. A model gets a step only when reading or writing language is the actual task, and only
+                        after it passes a bar I wrote down before the test. Then code checks everything it returns.
+                    </p>
+                </div>
+
+                <p class="eval__intro">Share of each system&rsquo;s code that calls a language model:</p>
+                <div class="tiles tiles--3">
+                    <div class="tile">
+                        <h3 class="tile__label">Meridian</h3>
+                        <span class="tile__metric">2&ndash;4%</span>
+                        <p class="tile__body">
+                            All of it reads the news. Everything with a number in it is code, and the overnight batch
+                            calls no model.
+                        </p>
+                    </div>
+                    <div class="tile">
+                        <h3 class="tile__label">Forester</h3>
+                        <span class="tile__metric">0%</span>
+                        <p class="tile__body">AI built it; none runs in it. 0 of 470 modules call a model.</p>
+                    </div>
+                    <div class="tile">
+                        <h3 class="tile__label">Requirements Fit Analyzer</h3>
+                        <span class="tile__metric">10%</span>
+                        <p class="tile__body">
+                            Two of the eleven nightly stages call a language model, both near the end. 19% counting the
+                            local embedding models.
+                        </p>
+                    </div>
+                    <div class="tile">
+                        <h3 class="tile__label">AdoptiScope</h3>
+                        <span class="tile__metric">0%</span>
+                        <p class="tile__body">
+                            No AI at runtime, by design: the diagnosis stays with the practitioner.
+                        </p>
+                    </div>
+                    <div class="tile">
+                        <h3 class="tile__label">Sheets Decomposer</h3>
+                        <span class="tile__metric">0%</span>
+                        <p class="tile__body">
+                            Code finds the defects. A model only explains them, and it sees the structure, never the
+                            data.
+                        </p>
+                    </div>
+                    <div class="tile">
+                        <h3 class="tile__label">Benson Academy</h3>
+                        <span class="tile__metric">4%</span>
+                        <p class="tile__body">
+                            All of it calls Gemini&rsquo;s text-to-speech model to read the lessons aloud. No module
+                            writes text with a model, and the local Whisper code that checks the audio is mostly
+                            checking, not making.
+                        </p>
+                    </div>
+                </div>
+                <p class="eval__fine">
+                    Measured October 27, 2026, from the tracked source code, with tests and generated code left out; a
+                    module counts if it makes the model call. Across all six, 10 of 973 modules call a language model,
+                    and the three in Benson Academy only make audio.
+                </p>
+                <p class="eval__text">
+                    That choice pays off four ways. Deterministic stages cost nothing per run. A model outage stops one
+                    step, never the run. The same input gives the same answer, so the code gets pass-or-fail tests. And
+                    private data stays local, with the model sent the least it needs. What&rsquo;s left for AI is small
+                    enough to evaluate properly.
+                </p>
+
+                <!-- Headline pattern (Abide). A .feature with no popups: this section reads with JS off. -->
+                <div class="feature">
+                    <div>
+                        <span class="tile__tag">Benson Academy &middot; In production</span>
+                        <h3 class="feature__title">Turn AI-made media back into text, then judge it with code.</h3>
+                        <p class="feature__body">
+                            Every Abide lesson is read aloud by Gemini&rsquo;s text-to-speech model, a large language
+                            model that turns a script into speech, and the same model voices the podcast. No text
+                            checker can read audio, so a free Whisper model on my own machine transcribes each section
+                            that comes back, and code compares that transcript with the script we sent. The script is
+                            the golden source, and the size of a miss decides what happens. A large miss, like an
+                            invented sentence, a dropped passage or a sentence read three times, means the audio is
+                            wrong, and that section is requested again. A narrow miss gets investigated, because the
+                            transcription itself can be slightly wrong: I listen to that spot against the script. Before
+                            a lesson is done, I listen to the whole thing, reading along.
+                        </p>
+                        <div class="build__links">
+                            <a class="textlink" href="#eval-abide">How it is checked &darr;</a>
+                        </div>
+                    </div>
+                    <ol class="feature__parts">
+                        <li>Send the approved script to Gemini&rsquo;s text-to-speech model, 100 words at a time</li>
+                        <li>A pace check rejects any piece read too fast or too slow</li>
+                        <li>Whisper transcribes the audio that comes back, on my machine</li>
+                        <li>Code compares the transcript with the script we sent</li>
+                        <li>A large miss is requested again; a narrow miss, I check by ear</li>
+                        <li>I listen to the whole lesson, reading along, before it&rsquo;s done</li>
+                    </ol>
+                </div>
+
+                <div class="s-head eval__sub">
+                    <h3>How the practice grew.</h3>
+                    <p>Each project taught me something about evaluation that I carried into the next one.</p>
+                </div>
+
+                <div class="practice" data-practice>
+                    <nav class="practice__index" aria-label="Evaluation stories in date order">
+                        <ol>
+                            <li>
+                                <a class="practice__item" href="#eval-forester">
+                                    <span class="practice__when">May to July 2026 &middot; Forester</span>
+                                    <span class="practice__head"
+                                        >A claim about a model is a test, not an argument.</span
+                                    >
+                                </a>
+                            </li>
+                            <li>
+                                <a class="practice__item" href="#eval-meridian">
+                                    <span class="practice__when">August 2026 &middot; Meridian</span>
+                                    <span class="practice__head">The bar comes before the run.</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="practice__item" href="#eval-sheets">
+                                    <span class="practice__when">September 2026 &middot; Sheets Decomposer</span>
+                                    <span class="practice__head">Even the answer key was wrong.</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="practice__item" href="#eval-jobsearch">
+                                    <span class="practice__when"
+                                        >September 2026 &middot; Requirements Fit Analyzer</span
+                                    >
+                                    <span class="practice__head">A judge keeps only the role it passed.</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="practice__item" href="#eval-adoptiscope">
+                                    <span class="practice__when">September 2026 &middot; AdoptiScope</span>
+                                    <span class="practice__head">Sometimes the right amount of AI is none.</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="practice__item" href="#eval-keystone">
+                                    <span class="practice__when">October 2026 &middot; Keystone</span>
+                                    <span class="practice__head">A peer researcher, trained in the method.</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="practice__item" href="#eval-abide">
+                                    <span class="practice__when">October 2026 &middot; Benson Academy</span>
+                                    <span class="practice__head"
+                                        >Everything I&rsquo;d learned, applied to audio and source texts.</span
+                                    >
+                                </a>
+                            </li>
+                        </ol>
+                    </nav>
+                    <div class="practice__panels">
+                        <div class="beat practice__panel" id="eval-forester">
+                            <p class="beat__n">May to July 2026 &middot; Forester</p>
+                            <h3>A claim about a model is a test, not an argument.</h3>
+                            <p>
+                                Forester has no AI inside it yet, but it will have an interview agent, so I argued about
+                                how that agent would read field names. Then I tested it: 12 blind Claude Sonnet runs in
+                                a 2 &times; 2 &times; 3 design. Given a field named <code>_pct</code> and no stated
+                                scale, Claude wrote 15 for 15% in 3 of 3 trials, a hundred times too large. Named
+                                <code>_rate</code>, it wrote 0.15 every time, and with the scale written down both names
+                                worked. I recorded the result even though it corrected half my argument, and it changed
+                                the build: a generated field reference for the future agent, behind a drift gate.
+                            </p>
+                            <p>
+                                The other lesson was about checkers. Test cases generated by the engine had locked in
+                                the engine&rsquo;s own bugs, so the lists that check Forester&rsquo;s Coach are now
+                                written by hand.
+                            </p>
+                            <p>
+                                <strong>Carried forward:</strong> run the experiment, and write down the expected answer
+                                before the engine runs.
+                            </p>
+                            <a class="textlink" href="ai-builder-projects.html#forester">Back to Forester &uarr;</a>
+                        </div>
+
+                        <div class="beat practice__panel" id="eval-meridian">
+                            <p class="beat__n">August 2026 &middot; Meridian</p>
+                            <h3>The bar comes before the run.</h3>
+                            <p>
+                                Meridian was the first time a language model wrote to a production database, reading
+                                news for sentiment and dated events. I didn&rsquo;t pick the model by argument. Four
+                                candidates ran on the same 120 frozen articles, scored against answers set by two Claude
+                                raters, with Claude Opus settling the 24 rows where they split. I wrote the bars before
+                                any run: 85% sentiment agreement overall and 90% on articles that aren&rsquo;t neutral.
+                                Then I graded the graders. Against the settled answers, Claude Haiku, one of the two
+                                raters, scored 83.3%, below the bar. I kept the bar. Gemma 4 31B cleared it at 93.3% and
+                                97.9%. One prompt revision was adopted on its numbers and the next was rejected on its
+                                numbers.
+                            </p>
+                            <p>
+                                In production, every row the model writes records the model and prompt version, every
+                                quoted date must appear word for word in the article, and a known fact always overrides
+                                an inferred one.
+                            </p>
+                            <p>
+                                <strong>Carried forward:</strong> write the bar first, measure the measurer, and record
+                                where every answer came from.
+                            </p>
+                            <a class="textlink" href="ai-builder-projects.html#meridian">Back to Meridian &uarr;</a>
+                        </div>
+
+                        <div class="beat practice__panel" id="eval-sheets">
+                            <p class="beat__n">September 2026 &middot; Sheets Decomposer</p>
+                            <h3>Even the answer key was wrong.</h3>
+                            <p>
+                                Sheets Decomposer&rsquo;s code finds a spreadsheet&rsquo;s defects, and a model only
+                                explains them. The model sees the structure and never the data, so an invented value is
+                                easy to spot. To test it, Claude built a practice workbook with 15 planted defects and
+                                an answer key, and a 24-question test with four trap questions. On the first run, Gemini
+                                corrected the answer key: one defect sat in a different month and row than the key said.
+                                It also found a defect nobody had planted. On October 20 I re-ran the test with Claude
+                                Sonnet standing in. It scored 24 of 24, found the key wrong again, and found that three
+                                labels in the sample were giving the answers away. I neutralized the labels, kept the
+                                new defect in the key, and re-ran: 24 of 24.
+                            </p>
+                            <p>
+                                <strong>Carried forward:</strong> when a model disagrees with the key, check the key,
+                                and the test data too.
+                            </p>
+                            <a class="textlink" href="ai-builder-projects.html#sheets-decomposer"
+                                >Back to Sheets Decomposer &uarr;</a
+                            >
+                        </div>
+
+                        <div class="beat practice__panel" id="eval-jobsearch">
+                            <p class="beat__n">September 2026 &middot; Requirements Fit Analyzer</p>
+                            <h3>A judge keeps only the role it passed.</h3>
+                            <p>
+                                The Requirements Fit Analyzer uses five kinds of machine judgment, and every one is
+                                scored against the same ground truth: my own fit grades, counting only the ones I gave
+                                before I saw any machine score. Each has a written bar, and a model that fails keeps
+                                only the role it earned. Embeddings failed as a ranker, at 0.669 against the trained
+                                models&rsquo; 0.955, and now explain rankings instead. A Gemma second judge never passed
+                                in eight rounds and now appears only as evidence. Jev passed the Required-fit bar,
+                                catching 91% and agreeing 93%, but failed calibration, so the Required call is the only
+                                thing it acts on. Since October 20 it hands grey cases to me instead of demoting them.
+                            </p>
+                            <p>
+                                I measured myself too. Between my first pass on one blind sheet and my final grades, 55
+                                of 72 grades stayed the same. A judge that&rsquo;s a person is still a gauge.
+                            </p>
+                            <p>
+                                <strong>Claims are selected, not written.</strong> When I started, AI drafted tailored
+                                documents from a long skill and a full biography, and too often it mixed metrics from
+                                different projects into one new claim. I moved the facts into a database: 202
+                                statements, each re-audited against my records and my memory, and tagged with its
+                                project, the problem it solved, the section it belongs to and what it must never be used
+                                to claim. For each requirement document, AI selects the 14 to 16 that fit and uses them
+                                word for word, with their context lines, and a script builds the Word file. Tests keep
+                                the verbs varied within each context and section: the 202 statements open with 140
+                                different verbs. AI still drafts the summary and picks the skills, under strict rules,
+                                and I review every document before it goes out, usually adjusting those two parts and
+                                sometimes asking for another statement. Slight edits to two paragraphs beat a whole
+                                document that drifts.
+                            </p>
+                            <p>
+                                <strong>Carried forward:</strong> grade the graders as a measurement system, me
+                                included, and where the facts matter, select instead of generate.
+                            </p>
+                            <a class="textlink" href="ai-builder-projects.html#jobsearch"
+                                >Back to the Requirements Fit Analyzer &uarr;</a
+                            >
+                        </div>
+
+                        <div class="beat practice__panel" id="eval-adoptiscope">
+                            <p class="beat__n">September 2026 &middot; AdoptiScope</p>
+                            <h3>Sometimes the right amount of AI is none.</h3>
+                            <p>
+                                AdoptiScope turns a practitioner&rsquo;s scores into a barrier reading, and no model
+                                makes that call: a tool that takes scores and hands out interventions would be the
+                                prescription engine my articles argue against. AI built it, though. Claude Code wrote
+                                the generator and drafted the method content from my six articles, so the checks aim at
+                                what AI made. The rules are written twice, as spreadsheet formulas and as Python. A
+                                hand-built answer key must agree with the Python, and real Excel and real Google Sheets
+                                must agree with the key: 134 of 134 values in each. Every practice the AI drafted cites
+                                the article it came from, and an earlier AI-written summary with broken citations is
+                                banned as a source by name. Since October 20, lint and all 25 tests run before every
+                                commit.
+                            </p>
+                            <p>
+                                <strong>Carried forward:</strong> trace every AI-drafted word or formula to its source.
+                            </p>
+                            <a class="textlink" href="ai-builder-projects.html#adoptiscope"
+                                >Back to AdoptiScope &uarr;</a
+                            >
+                        </div>
+
+                        <div class="beat practice__panel" id="eval-keystone">
+                            <p class="beat__n">October 2026 &middot; Keystone</p>
+                            <h3>A peer researcher, trained in the method.</h3>
+                            <p>
+                                Keystone is where I keep the standard work my AI tools follow, and one thing it does is
+                                turn an expert&rsquo;s written method into skills, so Claude works as a peer researcher,
+                                the way it&rsquo;s already a peer in programming. My worked example is the Bible study
+                                method behind the Abide course. On October 4 I wrote it from the course&rsquo;s own
+                                textbook into Claude skills: a router and eleven step files, about 15,000 words, backed
+                                by scripts that pull the source text instead of quoting from memory. I gave it two
+                                public-domain translations as local files, with their word tables, so Claude can find
+                                the original-language word behind an English one, find the other passages that use the
+                                same word, and point them out to me. Then we read the lexicons together to settle what
+                                the word means. Licensed translations come live from their publishers. The same approach
+                                fits any discipline with a written method: audit standards, clinical guidelines, a
+                                company&rsquo;s playbooks.
+                            </p>
+                            <p>
+                                The skills teach it to be the research partner I&rsquo;d want. It pulls every passage
+                                with a tool, treats its own cross-references as leads to check rather than proofs,
+                                claims what a word means only from a lexicon I&rsquo;ve pasted, and lays out a contested
+                                reading with who holds each view, leaving the call to me. Then I pointed those skills at
+                                my own course. Working the method the textbook teaches, Claude found errors I had made:
+                                a word study that drew a word&rsquo;s meaning from its English derivative, the very
+                                fallacy the textbook warns against, and a passage labeled as one translation that
+                                carried another&rsquo;s wording. I ruled on every finding, and the rulings became
+                                written rules every lesson is audited against. Abide&rsquo;s quote checks run on the
+                                same source-text scripts.
+                            </p>
+                            <p>
+                                <strong>Carried forward:</strong> the skills that make AI a good research partner also
+                                make it a good auditor, of my work as much as its own.
+                            </p>
+                            <a class="textlink" href="ai-builder-projects.html#keystone">Back to Keystone &uarr;</a>
+                        </div>
+
+                        <div class="beat practice__panel" id="eval-abide">
+                            <p class="beat__n">October 2026 &middot; Benson Academy</p>
+                            <h3>Everything I&rsquo;d learned, applied to audio and source texts.</h3>
+                            <p>
+                                The audio check in the feature above uses all of it. The bars are written in code:
+                                spelling-only differences are noise, and a second, larger Whisper model re-audits every
+                                finished file, flagging any match under 97% or any run of more than three words skipped
+                                or added. The transcriber is treated as a gauge that can be wrong: a podcast part fails
+                                only if both Whisper models fail it, and where they disagree, I listen. Claude wrote the
+                                scripts that run it overnight, requesting the audio, transcribing and scoring with no
+                                Claude tokens spent running or watching them, and a flagged file holds the queue until
+                                it&rsquo;s fixed. The checks have caught about 42 seconds of invented speech, a dropped
+                                passage, a misread name, and a sentence read three times while the generator reported
+                                success.
+                            </p>
+                            <p>
+                                Text gets the same treatment, using Keystone&rsquo;s source-text scripts. Every
+                                quotation of the course&rsquo;s primary text is checked by script against a
+                                public-domain ground-truth file, and must sit in the passage it cites. Every quotation
+                                of a scholar must match a paste from my library, filed by script byte for byte, under
+                                the citation of the source the lesson credits. On October 20: 200 source passages and
+                                862 quotations across the five lessons in the current release, with 0 differences. I
+                                approve every section, theology and tone are mine, and no lesson is done until
+                                I&rsquo;ve listened to all of it, reading along.
+                            </p>
+                            <p>
+                                Since October 20 the checks are gated in both places the content lives: the app blocks a
+                                commit whose lesson content fails and a push whose build or tests fail, and the
+                                vault&rsquo;s validation run logs every pass. The first push the new gate guarded was
+                                blocked by six regressions.
+                            </p>
+                            <a class="textlink" href="ai-builder-projects.html#benson-academy"
+                                >Back to Benson Academy &uarr;</a
+                            >
+                        </div>
+                        <div class="practice__step" data-practice-step hidden>
+                            <button class="textlink" type="button" data-practice-prev>&larr; Earlier</button>
+                            <button class="textlink" type="button" data-practice-next>Later &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="s-head eval__sub">
+                    <h3>Green isn&rsquo;t the evaluation.</h3>
+                    <p>
+                        Most of this code was written by AI, so the code is checked as hard as the models are, at every
+                        step from commit to deploy.
+                    </p>
+                </div>
+                <div class="cards">
+                    <div class="card">
+                        <h4 class="card__q">At every commit</h4>
+                        <p class="card__body">
+                            Meridian and Forester run lint, formatting and fast tests or type checks before any commit;
+                            a failure means no commit. AdoptiScope runs lint and its 25 tests. Abide&rsquo;s app blocks
+                            a commit whose lesson content fails its source-text and quote checks.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h4 class="card__q">At push and deploy</h4>
+                        <p class="card__body">
+                            Forester runs GitHub Actions on every code push: migrations, lint, type checks, the full
+                            test suites, then Playwright end-to-end tests; Vercel builds the deploy, and a failed build
+                            never replaces the live site. Abide&rsquo;s app runs its build and Playwright suite before
+                            any push. Meridian&rsquo;s deploy is a ledger of database migrations, checked by checksum on
+                            a machine I never touch.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h4 class="card__q">Inside the build loop</h4>
+                        <p class="card__body">
+                            The autonomous build loops can&rsquo;t mark a task done until its gates pass, three failures
+                            mark it blocked, and every stage ends with a stop for my sign-off. Forester&rsquo;s rules
+                            engines are written twice, in TypeScript and Python, and must agree byte for byte on about
+                            890 fixture cases.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h4 class="card__q">After the loop</h4>
+                        <p class="card__body">
+                            A passing suite the loop wrote itself is not the acceptance test. An independent audit of
+                            one Meridian stage found 9 defects, 3 of them high. When I mutation-tested the loop&rsquo;s
+                            own tests, 4 of 13 planted defects got through; after the fixes, 15 of 15 were caught.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <p>
+                        <strong>Always improving.</strong> Evaluation here keeps changing. On October 20 alone,
+                        AdoptiScope gained a pre-commit gate; Abide&rsquo;s checks were gated in both places its content
+                        lives, its quote checker began tying each quote to its cited verse and credited source, research
+                        pastes are now filed by script, and licensed translations are checked live with a stored copy as
+                        backup, so a verse the publisher revises is flagged for me rather than silently changed; Jev
+                        began handing grey cases to me; and a model caught Sheets Decomposer&rsquo;s test data giving
+                        answers away, so it was fixed. Next: a scheduled drift check for Meridian&rsquo;s news model,
+                        and decoy documents in the Requirements Fit Analyzer&rsquo;s blind grading sheets to measure
+                        Jev&rsquo;s demotions directly.
+                    </p>
+                    <p>
+                        As of October 20, 2026; counts are approximate and will grow. AI helped build all of it: Claude
+                        for most, Gemini for some, and I pushed some commits myself.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- leland:content-end -->
+
+        <!-- leland:drop-start (the bundle has one contact section, on the hub) -->
+
+        <!-- ══════════ 7. CLOSE ══════════ -->
+        <section class="on-olive section" id="contact">
+            <div class="wrap">
+                <div class="s-head">
+                    <h2>Want to see how any of this was built?</h2>
+                    <p>
+                        Ask me. I&rsquo;m glad to walk through the decisions, the dead ends, and what I&rsquo;d do
+                        differently next time.
+                    </p>
+                    <p>Open to full-time and contract roles in process excellence, analytics, and applied AI.</p>
+                </div>
+                <div class="hero__actions">
+                    <a
+                        class="btn btn--primary"
+                        href="https://www.linkedin.com/in/jeffreytbenson/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Start a conversation</a
+                    >
+                    <a class="btn btn--ghost" href="index.html">Main profile</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- leland:drop-end -->
+
+        <!-- ══════════ FOOTER ══════════ -->
+        <footer class="on-ink foot">
+            <div class="wrap">
+                <div class="foot__grid">
+                    <div>
+                        <h3>Jeffrey Benson</h3>
+                        <p class="card__body">
+                            Lean Six Sigma Black Belt. Thirty-one years of Fortune 20 business transformation. Principal
+                            at Cornerstone Solutions.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>AI Builder</h3>
+                        <ul>
+                            <li><a href="ai-builder.html">Overview</a></li>
+                            <li><a href="ai-builder-projects.html">Projects</a></li>
+                            <li><a href="ai-builder-evaluation.html">Evaluation</a></li>
+                            <li><a href="ai-builder-level1.html">Level 1 builds</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Elsewhere</h3>
+                        <ul>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com/in/jeffreytbenson/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >LinkedIn</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://github.com/BensonJT" target="_blank" rel="noopener noreferrer"
+                                    >GitHub</a
+                                >
+                            </li>
+                            <li><a href="index.html">Profile site</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="foot__fine">Northern Virginia. Contact through LinkedIn.</p>
+            </div>
+        </footer>
+
+        <!-- Shared popup for every build's "How I built this" / "Documentation" -->
+        <dialog class="sheet" data-sheet aria-labelledby="sheet-title">
+            <div class="sheet__head">
+                <div>
+                    <p class="eyebrow" data-sheet-kind></p>
+                    <h2 class="sheet__title" id="sheet-title" data-sheet-title></h2>
+                </div>
+                <button class="sheet__close" type="button" data-sheet-close>Close</button>
+            </div>
+            <div class="sheet__body" data-sheet-body></div>
+        </dialog>
+
+        <!-- Full-screen window for the Build 06 deck. The Presentation links work as plain links with JS off;
+             build_single.py inlines the deck here (data-deck-b64) for single-file hosts. The frame is
+             created by builder.js on first open: Leland's sanitizer strips frame tags from the markup. -->
+        <dialog class="sheet sheet--deck" data-deck-sheet aria-labelledby="deck-title">
+            <div class="sheet__head">
+                <div>
+                    <p class="eyebrow">Presentation</p>
+                    <h2 class="sheet__title" id="deck-title">Where my experience fits</h2>
+                </div>
+                <button class="sheet__close" type="button" data-deck-close>Close</button>
+            </div>
+            <div class="deck__slot" data-deck-slot></div>
+            <p class="deck__hint">
+                Click the slides, then use the arrow keys. N shows my speaker notes, F goes full screen.
+            </p>
+        </dialog>
+
+        <script src="js/site.js" defer></script>
+
+        <script src="js/builder.js" defer></script>
+    </body>
+</html>
