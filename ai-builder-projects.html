@@ -1,0 +1,1992 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>AI Builder: Projects — Jeffrey Benson</title>
+        <meta
+            name="description"
+            content="Projects Jeffrey Benson has built with AI since December 2025: what each does, where the AI is and where it is not, and how it was evaluated."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="AI Builder: Projects — Jeffrey Benson" />
+        <meta
+            property="og:description"
+            content="Learning to build with AI the way I learned everything else: one build at a time, documented."
+        />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="css/site.css" />
+        <link rel="stylesheet" href="css/builder.css" />
+    </head>
+
+    <body>
+        <!-- ══════════ NAV ══════════ -->
+        <nav class="nav">
+            <div class="wrap">
+                <div class="nav__inner">
+                    <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+                    <div class="nav__links">
+                        <a href="ai-builder.html" class="is-current" aria-current="page">AI Builder</a>
+                        <a href="work.html">Work</a>
+                        <a href="method.html">Method</a>
+                        <a href="systems.html">Systems</a>
+                        <a href="articles.html">Notebook</a>
+                        <a href="about.html">About</a>
+                    </div>
+                    <a class="btn btn--primary nav__cta" href="resume.html">Résumé</a>
+                    <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">
+                        Menu
+                    </button>
+                </div>
+                <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+                    <a href="ai-builder.html" class="is-current" aria-current="page">AI Builder</a>
+                    <a href="work.html">Work</a>
+                    <a href="method.html">Method</a>
+                    <a href="systems.html">Systems</a>
+                    <a href="articles.html">Notebook</a>
+                    <a href="about.html">About</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- leland:drop-start (the bundle is one page; it has no sub-nav) -->
+        <nav class="subnav" aria-label="AI Builder pages">
+            <div class="wrap subnav__inner">
+                <span class="subnav__label">AI Builder</span>
+                <a href="ai-builder.html">Overview</a>
+                <a href="ai-builder-projects.html" aria-current="page">Projects</a>
+                <a href="ai-builder-evaluation.html">Evaluation</a>
+                <a href="ai-builder-level1.html">Level 1<span class="subnav__more"> builds</span></a>
+            </div>
+        </nav>
+        <!-- leland:drop-end -->
+
+        <!-- leland:drop-start (page heads are not part of the one-page bundle) -->
+        <header class="on-ink" id="top">
+            <div class="wrap page-head">
+                <p class="eyebrow">Built with AI since December 2025</p>
+                <h1>Projects</h1>
+                <p class="lede">
+                    Each project told as a build: what it does, where the AI is and where it is not, and how its output
+                    was checked. The same projects appear on the Systems page as what they do for a client.
+                </p>
+            </div>
+        </header>
+        <!-- leland:drop-end -->
+
+        <!-- leland:content-start -->
+
+        <!-- ══════════ 5. SYSTEMS (since December 2025) ══════════
+             Tile copy matches the "Since December 2025" section of the profile home page.
+        -->
+        <section class="on-paper section band band--projects" id="projects">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Since December 2025</p>
+                    <h2>Already building before the program started.</h2>
+                    <p>
+                        The program is new. The building isn&rsquo;t. These are the systems from the last ten months,
+                        each written up the same way as the
+                        <a class="textlink" href="ai-builder-level1.html">course builds</a>: how I built it, and the
+                        documentation someone else would need.
+                    </p>
+                </div>
+
+                <!-- Featured: Forester. Same .feature block as Job Search. -->
+                <div class="feature" id="forester">
+                    <div>
+                        <span class="tile__tag">Product &middot; Private MVP</span>
+                        <h3 class="feature__title">Forester</h3>
+                        <p class="feature__body">
+                            My process-modeling method, turned into software. Capture a process once, as data, and
+                            Forester draws six standard diagrams from it at every level of the decomposition, computes
+                            the full Lean Six Sigma metric stack, and coaches the modeler on the method as they go.
+                            1,375 commits and 18 sprints, much of it built by an autonomous AI loop working from specs I
+                            wrote and reviewed. <strong>Not publicly launched.</strong>
+                        </p>
+                        <p class="eval__card">
+                            Evaluated: a blind test settled how Claude reads fraction fields; two implementations must
+                            agree on about 890 cases.
+                        </p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                            <a class="textlink" href="ai-builder-evaluation.html#eval-forester"
+                                >How I evaluate it &rarr;</a
+                            >
+                            <a class="textlink" href="systems.html#forester">What it does for a client &rarr;</a>
+                        </div>
+                    </div>
+                    <ol class="feature__parts">
+                        <li>Context Diagram: the whole process on one page</li>
+                        <li>High-level SIPOC</li>
+                        <li>IDEF0, the standard functional notation</li>
+                        <li>FDPM swimlane, my own notation</li>
+                        <li>BPMN 2.0, exports that open in Camunda</li>
+                        <li>Value Stream Map with timeline ladder</li>
+                    </ol>
+                    <div class="build__panel" data-panel="how">
+                        <div class="beat">
+                            <p class="beat__n">01 &middot; The problem</p>
+                            <h3>The method only scaled as far as I could.</h3>
+                            <p>
+                                For thirty years my process work ran on one method: decompose the work, then at every
+                                step capture who supplies and receives what, the inputs, controls, outputs, and
+                                mechanisms, and the time and value in each step. It works, but only when I run the
+                                interviews and draw every diagram by hand, one diagram at a time.
+                            </p>
+                        </div>
+                        <div class="beat">
+                            <p class="beat__n">02 &middot; The approach</p>
+                            <h3>Capture the model once and compute every diagram from it.</h3>
+                            <p>
+                                Forester is a web app: a React and TypeScript workspace, a FastAPI backend, and
+                                Postgres. You build the process as a tree, edit it as a tree, a spreadsheet, or one step
+                                at a time, and every diagram and metric is computed from that single model: flow
+                                efficiency, rolled throughput yield, sigma level, Cp and Cpk, required staffing,
+                                equipment effectiveness, and the cost of poor quality. It imports and exports JSON, CSV,
+                                Excel, and BPMN files, behind a preview that writes nothing until you confirm.
+                            </p>
+                            <p>
+                                The build ran on binding sprint plans. Claude Fable reviewed each spec for any place the
+                                builder would have to guess; one pass found 5 blockers and 8 unstated judgment calls,
+                                each settled with my ruling before work began. An autonomous loop running Claude
+                                headless then took one task at a time with a fresh context, ran its tests, and
+                                committed: 313 commits came from that loop. Judgment-heavy stages I built interactively
+                                with Claude Opus. 1,375 commits from May 18 to September 26, 2026, and 31 architecture
+                                decision records.
+                            </p>
+                        </div>
+                        <div class="beat">
+                            <p class="beat__n">03 &middot; Key decisions</p>
+                            <h3>Store each arrow once.</h3>
+                            <p>
+                                <strong>One data model.</strong> Each input, control, output, or mechanism arrow is
+                                stored once, and is at the same time an edge in every diagram and an input to the metric
+                                roll-ups. Diagrams are views of the model, never separate drawings to keep in sync.
+                            </p>
+                            <p>
+                                <strong>Every metric written twice and checked.</strong> Each formula exists in
+                                TypeScript for the screen and Python for the server, locked to shared test fixtures so
+                                the two can&rsquo;t drift, and governed by one canonical metric catalog.
+                            </p>
+                            <p>
+                                <strong>One owner for every fact.</strong> Each kind of fact, from the database schema
+                                to the roadmap, has exactly one document that owns it, and a change to the code updates
+                                its owner in the same commit. The metric catalog stayed clean for eleven sprints under
+                                that rule, so I made it the rule for everything.
+                            </p>
+                        </div>
+                        <div class="beat">
+                            <p class="beat__n">04 &middot; What went wrong</p>
+                            <h3>Real client work found what demo models didn&rsquo;t.</h3>
+                            <p>
+                                The first paying engagement modeled in Forester exposed that the order of steps in the
+                                BPMN export was inferred from the tree rather than declared. That cost an unplanned
+                                sprint: flow became explicit data, and round-tripping the real model took five rounds of
+                                fixes before it came back intact.
+                            </p>
+                            <p>
+                                The loop has failure modes too. One stage was built from the sprint plan instead of the
+                                design and had to be rebuilt by hand, which is why specs now get that critical pass
+                                before the loop runs.
+                            </p>
+                        </div>
+                        <div class="beat">
+                            <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                            <h3>The interview is still ahead.</h3>
+                            <p>
+                                The feature that matters most, an AI interviewer that runs the conversation I used to
+                                run by hand and captures the model as it goes, isn&rsquo;t built yet. Neither are
+                                accounts for multiple customers or the executive dashboards. The foundation came first
+                                on purpose; the next phases build on it.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="build__panel" data-panel="docs">
+                        <p>
+                            A process-modeling workspace that turns one captured model into six diagram types and a full
+                            Lean Six Sigma metric stack. Phase 1 is a private, single-user product that is
+                            feature-complete and being hardened; it is not publicly available.
+                        </p>
+                        <dl class="spec">
+                            <div>
+                                <dt>Workspace</dt>
+                                <dd>
+                                    Tree, spreadsheet, and per-step editors over one model; an entities admin view; and
+                                    the Coach, which flags methodology gaps on every view with one-click fixes.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Metrics</dt>
+                                <dd>
+                                    Flow, quality, capability, capacity, equipment, and economic lenses, each read in
+                                    its stakeholder&rsquo;s language, from process cycle efficiency to cost of poor
+                                    quality.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Import and export</dt>
+                                <dd>
+                                    JSON, CSV, Excel, and BPMN 2.0 in; PNG, PDF, SVG, Excel, CSV, BPMN, and a lossless
+                                    JSON backup out.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Stack</dt>
+                                <dd>
+                                    React 18 and TypeScript, FastAPI and Python, Neon Postgres with row-level security,
+                                    pure SVG diagram rendering, Vercel.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Quality</dt>
+                                <dd>
+                                    3,293 automated tests (1,179 Python, 2,114 TypeScript), metric parity fixtures, and
+                                    31 architecture decision records.
+                                </dd>
+                            </div>
+                        </dl>
+                        <div class="callout">
+                            <p>
+                                <strong>Not yet built:</strong> the AI interviewer, multi-customer accounts, and the
+                                executive dashboards. The code is proprietary and not public.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured: Meridian (client-confidential; facts from briefs/meridian-brief.md). -->
+            </div>
+        </section>
+
+        <section class="on-olive section band band--projects" aria-label="Meridian">
+            <div class="wrap">
+                <div class="feature" id="meridian">
+                    <div>
+                        <span class="tile__tag">Client engagement &middot; In daily use</span>
+                        <h3 class="feature__title">Meridian</h3>
+                        <p class="feature__body">
+                            An AI-assisted research system for a private investor, in daily use since August 2026. I
+                            modeled the client&rsquo;s operating process first, in Forester, and its five operating
+                            modes became the architecture&rsquo;s top level. Every number is computed by deterministic
+                            code; AI reads language where language is the task. 1,693 commits and 4,310 automated tests.
+                            <strong>Client-confidential: no code, screens, or data sources shown.</strong>
+                        </p>
+                        <p class="eval__card">
+                            Evaluated: four models on 120 frozen articles, against bars written before any run.
+                        </p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                            <button class="textlink" type="button" data-open="auto">What is automated</button>
+                            <a class="textlink" href="ai-builder-evaluation.html#eval-meridian"
+                                >How I evaluate it &rarr;</a
+                            >
+                            <a class="textlink" href="systems.html#meridian">What it does for a client &rarr;</a>
+                        </div>
+                        <div class="build__panel" data-panel="auto">
+                            <p>
+                                Meridian runs on two clocks: a news lane three times a day, and an overnight batch I
+                                schedule. Every step is safe to rerun, so a missed or skipped slot loses nothing.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Scheduled: news lane</dt>
+                                    <dd>
+                                        Three times a day. It pulls news and options data for every active ticker,
+                                        scores the new articles with a language model (newest first), and derives events
+                                        against the market calendar. It checks the data vendor&rsquo;s remaining credits
+                                        first; when the free tier runs low, it skips the pull but still scores the
+                                        backlog.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>On my schedule: overnight batch</dt>
+                                    <dd>
+                                        I pick a start time and the laptop wakes itself to run the batch, which finishes
+                                        before the market opens. It pre-flights twice: once when I confirm, so a problem
+                                        shows up before I go to bed, and again at the start time.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Triggered</dt>
+                                    <dd>
+                                        Checks that fire from a calendar of known releases, and a file import that
+                                        routes each file by type or stops with an error.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Guardrails</dt>
+                                    <dd>
+                                        Locks keep the news lane from colliding with the batch: if the batch is running,
+                                        the news slot stands down and the next one catches up.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Why not daily:</strong> the batch would run every night if my hardware
+                                    allowed it. On the client&rsquo;s machine it does.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <ol class="feature__parts">
+                        <li>Overnight batch, finished before the market opens</li>
+                        <li>Intraday monitor that flags significant changes</li>
+                        <li>Checks triggered by a calendar of known releases</li>
+                        <li>File import that routes by type or stops with an error</li>
+                        <li>The investor&rsquo;s own routine, inside the boundary</li>
+                    </ol>
+                    <div class="build__panel" data-panel="how">
+                        <div class="beat">
+                            <p class="beat__n">01 &middot; The problem</p>
+                            <h3>The research lived in many places, each read by hand.</h3>
+                            <p>
+                                The investor&rsquo;s research ran across separate data services, spreadsheets, and
+                                broker exports, each opened and read by hand. They needed one place to read the
+                                morning&rsquo;s picture, with the numbers computed once and reconciled, while their own
+                                thinking stayed on their own machine.
+                            </p>
+                        </div>
+                        <div class="beat">
+                            <p class="beat__n">02 &middot; The approach</p>
+                            <h3>Model the process first, then build the system around it.</h3>
+                            <p>
+                                Before any code, I modeled the client&rsquo;s operating process in Forester. Its five
+                                top-level activities, from the overnight batch to the investor&rsquo;s own routine,
+                                became the architecture&rsquo;s top-level decomposition word for word, and every
+                                component exists to serve one of them. Putting the investor&rsquo;s own routine inside
+                                the boundary is why the file inputs, the dashboard, and the setup agent were designed in
+                                rather than bolted on.
+                            </p>
+                            <p>
+                                Underneath sit seven layers: scheduling, one ingest harness per source, PostgreSQL with
+                                append-only history, deterministic analytics, language-model work, report generation,
+                                and a local dashboard with 12 views. The sources were chosen from more than 20 evaluated
+                                in a written scoring before any was adopted.
+                            </p>
+                            <p>
+                                1,693 commits from July 8 to October 20, 2026: 500 from an autonomous loop working
+                                headless from written specs, and 127 from the client&rsquo;s machine, where a coding
+                                agent applies each migration and reports diagnostics back, because I never have a shell
+                                there.
+                            </p>
+                        </div>
+                        <div class="beat">
+                            <p class="beat__n">03 &middot; Key decisions</p>
+                            <h3>AI explains the numbers but never computes them.</h3>
+                            <p>
+                                <strong>A never-AI zone.</strong> Price math, technical analysis, money flow, and
+                                reconciliation are deterministic code only. When numbers enter a prompt they arrive
+                                pre-computed, so a model can narrate vetted numbers but can&rsquo;t introduce an
+                                arithmetic error. Language models are used where reading language is the task, starting
+                                with scoring the news.
+                            </p>
+                            <p>
+                                <strong>Free hosted models, chosen by test.</strong> The news is read by Gemma 4, an
+                                open-weight model, on Google AI Studio&rsquo;s free tier. A local model on the
+                                investor&rsquo;s own machine was the first plan, but neither machine is big enough for a
+                                local model that does the job well; the small local model in the bake-off scored 28%.
+                                The tradeoff is volume: the free tier limits how many articles get scored each day. If a
+                                model fails, the system falls back to another free model, never silently to a paid one,
+                                and failure alerts use fixed text so they still fire when the AI stack is down.
+                            </p>
+                            <p>
+                                <strong>Fetch and compute are separate.</strong> Ingest scripts only fetch; every
+                                calculation pulls the stored data in its own script, and everything derived recomputes
+                                whenever the data underneath it moves. That rule was locked after an early script
+                                computed from a redundant API pull and disagreed with the local data on most rows.
+                            </p>
+                        </div>
+                        <div class="beat">
+                            <p class="beat__n">04 &middot; What went wrong</p>
+                            <h3>The quiet failures were the dangerous ones.</h3>
+                            <p>
+                                On the client&rsquo;s machine, blocked network calls degraded runs without stopping
+                                them, so for a stretch no overnight run finished and nobody heard about it. That
+                                produced egress checks, a diagnostic report the client&rsquo;s agent pastes back, and a
+                                rule: a failure that isn&rsquo;t fatal must still raise an alert. A database outage also
+                                left no record of itself, because the run log lived in the database; an append-only
+                                local log now records lost runs and replays them when the database returns.
+                            </p>
+                            <p>
+                                A full-pipeline audit turned up 249 open findings and became a ten-stage remediation
+                                sprint, and the plan for the next sprint was scrapped and rebuilt around it. The first
+                                production run also crashed on the client&rsquo;s Mac, whose built-in shell dates from
+                                2007, so every script was reworked to run on both systems.
+                            </p>
+                        </div>
+                        <div class="beat">
+                            <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                            <h3>Make every failure visible before the first overnight run.</h3>
+                            <p>
+                                The alert rules came after the silent stretch. Starting again, they would exist before
+                                the system ran unattended for the first time. Next on the list: finishing two historical
+                                data loads on the client&rsquo;s machine and speeding up the overnight run.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="build__panel" data-panel="docs">
+                        <p>
+                            A private research system running on the investor&rsquo;s own machine: scheduled data
+                            collection, deterministic analytics, AI-scored news, generated reports, and a local
+                            dashboard. Client-confidential; no client details, code, screens, or vendors are shown.
+                        </p>
+                        <dl class="spec">
+                            <div>
+                                <dt>Data</dt>
+                                <dd>
+                                    Government filings, economic series, market prices, news, ownership disclosures, and
+                                    the investor&rsquo;s own exports, chosen from more than 20 sources evaluated.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Outputs</dt>
+                                <dd>
+                                    Morning reports before the market opens, intraday and event alerts, and a 12-view
+                                    local dashboard.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Stack</dt>
+                                <dd>
+                                    Python 3.12, pandas, SciPy, statsmodels, PostgreSQL 16, Streamlit and Plotly, Gemma
+                                    4 on Google AI Studio&rsquo;s free tier, behind one model adapter.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>How it&rsquo;s built</dt>
+                                <dd>
+                                    Claude Code with Opus, Sonnet, and Fable; an autonomous build loop for bounded,
+                                    test-pinned stages; a Codex agent on the client&rsquo;s machine. Developed on Linux,
+                                    running in production on macOS.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Quality</dt>
+                                <dd>
+                                    4,310 automated tests, 124 database migrations applied on a machine I never touch
+                                    directly, 8 architecture decision records, and 16 rejected ideas recorded with their
+                                    evidence so they aren&rsquo;t explored twice.
+                                </dd>
+                            </div>
+                        </dl>
+                        <div class="callout">
+                            <p>
+                                <strong>Boundaries:</strong> the system informs and never trades. The investor owns
+                                every decision, and their data stays on their machine except for explicit, logged API
+                                calls.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured: Job Search. Reuses the profile site's .feature block (section 24 of site.css). -->
+            </div>
+        </section>
+
+        <section class="section band band--projects" aria-label="Requirements Fit Analyzer">
+            <div class="wrap">
+                <div class="feature" id="jobsearch">
+                    <div>
+                        <span class="tile__tag">Fit analysis &middot; In daily use</span>
+                        <h3 class="feature__title">Requirements Fit Analyzer</h3>
+                        <p class="feature__body">
+                            A system that reads requirement documents and measures how well each one fits a verified
+                            evidence record. Its first job is my own career search: it reads postings straight from
+                            employers&rsquo; own hiring systems, keeps a true history of each one, and ranks the open
+                            ones against my record. Cheap, deterministic steps do the volume work; AI models only judge
+                            a small, gated shortlist, and only after passing the same kind of measurement-system study
+                            I&rsquo;d run on any gauge.
+                            <strong>Every decision is still mine.</strong>
+                        </p>
+                        <p class="eval__card">
+                            Evaluated: every model measured like a gauge against my blind fit grades, keeping only the
+                            role it passed.
+                        </p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                            <a
+                                class="textlink"
+                                href="https://github.com/BensonJT/requirements-fit-analyzer"
+                                target="_blank"
+                                rel="noopener"
+                                >Code on GitHub</a
+                            >
+                            <button class="textlink" type="button" data-open="auto">What is automated</button>
+                            <button class="textlink" type="button" data-open="charts">Charts</button>
+                            <a class="textlink" href="my-presentation.html" data-deck>Presentation</a>
+                            <a class="textlink" href="ai-builder-evaluation.html#eval-jobsearch"
+                                >How I evaluate it &rarr;</a
+                            >
+                        </div>
+                        <div class="build__panel" data-panel="charts">
+                            <p>
+                                These charts are redrawn after every pipeline run. They query a PostgreSQL copy of the
+                                results, never the working database, so they never wait on a run in progress. I show
+                                industries, not company names.
+                            </p>
+                            <figure class="fig">
+                                <div class="fig__frame fig__frame--fit">
+                                    <img
+                                        src="img/jobdata-fit-by-industry.svg"
+                                        width="760"
+                                        height="442"
+                                        loading="lazy"
+                                        alt="Bar chart: the share of graded open roles rated bullseye or adjacent, by industry."
+                                    />
+                                </div>
+                                <figcaption>
+                                    <b>Where my experience fits best.</b> Of the roles the judge graded, the share it
+                                    rated bullseye or adjacent, by industry. As of October 23, healthcare and life
+                                    sciences and consulting led. Financial services trailed, even though it posts some
+                                    of the most roles. That tells me where to look first, not where to stop looking.
+                                </figcaption>
+                            </figure>
+                            <figure class="fig">
+                                <div class="fig__frame fig__frame--fit">
+                                    <img
+                                        src="img/jobdata-volume-vs-fit.svg"
+                                        width="760"
+                                        height="486"
+                                        loading="lazy"
+                                        alt="Scatter plot: each industry's share of open postings against its good-fit rate."
+                                    />
+                                </div>
+                                <figcaption>
+                                    <b>More postings doesn&rsquo;t mean a better fit.</b> Healthcare and financial
+                                    services each make up about a third of my pipeline. Healthcare is well above the
+                                    average fit rate and financial services is below it. Volume tells me where the
+                                    openings are. Fit tells me where to spend my time.
+                                </figcaption>
+                            </figure>
+                            <figure class="fig">
+                                <div class="fig__frame fig__frame--fit">
+                                    <img
+                                        src="img/jobdata-lens-by-industry.svg"
+                                        width="760"
+                                        height="482"
+                                        loading="lazy"
+                                        alt="Heatmap: the good-fit rate on the process, technical and AI lenses for each industry."
+                                    />
+                                </div>
+                                <figcaption>
+                                    <b>Which lens drives each industry.</b> The same industries, split by lens. Process
+                                    leads almost every row, led by consulting and government. The AI lens stays light in
+                                    every industry. Insurance is the most balanced, with a third of its roles fitting on
+                                    both process and technical.
+                                </figcaption>
+                            </figure>
+                            <figure class="fig">
+                                <div class="fig__frame fig__frame--fit">
+                                    <img
+                                        src="img/jobdata-lens-grades.svg"
+                                        width="760"
+                                        height="314"
+                                        loading="lazy"
+                                        alt="Stacked bar chart: the grade mix on the process, technical and AI lenses."
+                                    />
+                                </div>
+                                <figcaption>
+                                    <b>How roles grade on each lens.</b> Every role is graded three ways. Process is my
+                                    strongest lens by far. Most roles grade off-target on the technical and AI lenses,
+                                    so a role that fits on those is rare and worth a close look.
+                                </figcaption>
+                            </figure>
+                            <figure class="fig">
+                                <div class="fig__frame fig__frame--fit">
+                                    <img
+                                        src="img/jobdata-workplace.svg"
+                                        width="760"
+                                        height="306"
+                                        loading="lazy"
+                                        alt="Bar chart: the workplace type of good-fit open roles."
+                                    />
+                                </div>
+                                <figcaption>
+                                    <b>Where the good-fit roles sit.</b> Remote roles are the largest share of my good
+                                    fits, and onsite roles barely register. Many postings don&rsquo;t say, so I read
+                                    each one before ruling it out.
+                                </figcaption>
+                            </figure>
+                            <p class="fig__hint">
+                                Fit rates are shares of the shortlist the AI judge graded, not of every posting. Cheap
+                                screens narrow the pipeline first, and only that shortlist is graded.
+                            </p>
+                            <div class="callout">
+                                <p>
+                                    <strong>How it&rsquo;s built:</strong> SQL views in PostgreSQL do the math. A short
+                                    Python script draws all five charts as SVGs with the site&rsquo;s colors, and the
+                                    pipeline starts it 45 seconds after each snapshot finishes. Excel uses the same
+                                    views, so every report shows the same numbers.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="auto">
+                            <p>
+                                Three triggers: a clock, a launch button, and a conversation. The judgment about where
+                                to apply stays with me.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Scheduled: daily sweep</dt>
+                                    <dd>
+                                        Every morning a cron job sweeps the faith-based job boards and refreshes one
+                                        report, archiving a dated copy only on days something changed.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Started by hand, then hands-off</dt>
+                                    <dd>
+                                        I start the full pipeline from a menu, now or at a set time (the laptop wakes
+                                        itself). From there it runs unattended: it retrains the ranking models on my new
+                                        labels and promotes one only if it passes its gate, sweeps more than 150 company
+                                        job boards, fetches each job description, splits it into requirements, screens
+                                        and scores my fit, has a second model review the shortlist and demote weak
+                                        matches, scores both models against a human-graded gold set when the rules
+                                        change, and writes a ranked Top Jobs page. Boards that fail three runs in a row
+                                        are flagged at the top of that page.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Triggered: the package build</dt>
+                                    <dd>
+                                        When Claude and I have talked through my fit and picked among several roles, the
+                                        build decision starts a tailored resume and cover letter from my resume database
+                                        and voice guides. Nothing is sent without my review.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Triggered: tracker</dt>
+                                    <dd>
+                                        Every write to the application tracker refreshes a Google Sheet copy. The
+                                        database is backed up nightly, with an hourly standby copy.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Why not fully scheduled:</strong> a full run with a retrain and gold scoring
+                                    takes hours of laptop time, so I start it when the machine is free.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <ol class="feature__parts">
+                        <li>Sweep employer hiring systems, 13 platforms</li>
+                        <li>Rule screen: title, location, pay, level</li>
+                        <li>Trained fit models on three lenses</li>
+                        <li>Embeddings match requirements to my record</li>
+                        <li>Jev typed review of the shortlist</li>
+                        <li>I decide; every decision retrains the models</li>
+                    </ol>
+                    <div class="build__panel" data-panel="how">
+                        <div class="beat">
+                            <p class="beat__n">01 &middot; The problem</p>
+                            <h3>The job boards were showing me jobs that had already closed.</h3>
+                            <p>
+                                My first attempt, in March 2026, pulled from job aggregator APIs. The matches were
+                                mostly postings that had closed weeks earlier, and on one run every aggregator link I
+                                followed returned an error. The employer&rsquo;s own hiring system is the only source
+                                that is always current.
+                            </p>
+                            <p>
+                                Collection was only half of it. Tens of thousands of live postings is too many to read,
+                                and keyword search can&rsquo;t tell a role that matches the work from one that only
+                                shares its vocabulary.
+                            </p>
+                        </div>
+                        <div class="beat">
+                            <p class="beat__n">02 &middot; The approach</p>
+                            <h3>Read the source, then narrow it in stages.</h3>
+                            <p>
+                                On September 15, 2026 I started over. The new pipeline pulls the same data each
+                                employer&rsquo;s careers page uses, across 13 hiring-system platforms, into a single
+                                DuckDB file. A full sweep covers 180 employer boards and about 86,000 postings in 16
+                                minutes. Nothing is ever deleted; a posting is closed only when a clean, complete pull
+                                no longer lists it.
+                            </p>
+                            <p>
+                                Then a funnel. A rule engine screens on title, location, pay, clearance and level.
+                                Trained models score fit on three lenses: process, technical and applied AI. Embeddings
+                                match each requirement line to my record and name the one most likely to be unmet. At
+                                the end, TypeSafe AI&rsquo;s Jev, a model built for fast typed decisions, reviews the
+                                shortlist and can demote a row. The result is one page: every score visible, one rank,
+                                one reason. I read it and decide.
+                            </p>
+                            <p>
+                                The build used AI the same way. Claude Fable designed and audited, Claude Opus built
+                                from a binding spec, and for the Jev work, Opus builder agents each built one work
+                                package in its own git branch, audited and merged before the next one depended on it.
+                                301 commits in 36 days.
+                            </p>
+                        </div>
+                        <div class="beat">
+                            <p class="beat__n">03 &middot; Key decisions</p>
+                            <h3>Treat every AI model like a gauge that has to earn trust.</h3>
+                            <p>
+                                <strong>Deterministic first, AI last.</strong> The free steps do the volume work. Paid
+                                model calls touch only a small gated subset, under token caps, and every live call needs
+                                explicit approval after a dry run that shows the exact request.
+                            </p>
+                            <p>
+                                <strong>Distill, don&rsquo;t prompt-tune.</strong> I had 362 good matches and only 7
+                                audited near misses, and nothing can be tuned reliably against 7 examples. Instead,
+                                Claude Sonnet graded 3,634 postings, and those grades trained small models that score
+                                the whole corpus for free, at AUCs of 0.92, 0.89 and 0.93. Sonnet won the grader job by
+                                measurement: on the same 25 postings, Opus graded systematically more generously.
+                            </p>
+                            <p>
+                                <strong>An AI judge is an appraiser.</strong> Before Jev could demote anything, it went
+                                through a measurement-system study against my blind grades: it caught 91% of what I
+                                caught, agreed 93% of the time, and flipped an answer on a repeat question 1.6% of the
+                                time against a 2% bar. It&rsquo;s also tested for prompt injection and pinned to one
+                                model version. My calls outrank every model, and a grade only counts toward evaluation
+                                if I gave it before seeing any machine score.
+                            </p>
+                        </div>
+                        <div class="beat">
+                            <p class="beat__n">04 &middot; What went wrong</p>
+                            <h3>Some of the smartest-looking parts failed their own tests.</h3>
+                            <p>
+                                Matching requirements with embeddings looked like the obvious ranker. It wasn&rsquo;t:
+                                similarity scores bunched so tightly that it reached an AUC of 0.669 against the fit
+                                model&rsquo;s 0.955. It now explains a ranking instead of making one.
+                            </p>
+                            <p>
+                                A Gemma second judge failed its accuracy bar eight rounds running and was retired from
+                                the nightly run; it now only appears as evidence beside Jev&rsquo;s demotions. And for
+                                ten days in October the demotion pass was silently off while the page said it was
+                                active, because edits created prompt versions that had never been measured. The gate now
+                                re-measures itself, and the page warns when it can&rsquo;t.
+                            </p>
+                        </div>
+                        <div class="beat">
+                            <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                            <h3>Close the loop on every disagreement.</h3>
+                            <p>
+                                Next is turning each place Jev and I disagree into a recorded ruling, then re-measuring
+                                Jev against them. A newer Jev version gets the same gold-score test before the pipeline
+                                moves off the pinned one. And nine tests that seed a fixed date need fixing: they have
+                                failed since October 1 because the date aged out.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="build__panel" data-panel="docs">
+                        <p>
+                            A requirements fit analyzer, first applied to my own career search: it collects postings
+                            from employers&rsquo; own hiring systems, keeps their full history, and ranks open roles
+                            against my record for my review.
+                        </p>
+                        <p>
+                            The code is public to read at
+                            <a
+                                href="https://github.com/BensonJT/requirements-fit-analyzer"
+                                target="_blank"
+                                rel="noopener"
+                                >github.com/BensonJT/requirements-fit-analyzer</a
+                            >
+                            (MIT license), but it isn&rsquo;t packaged for anyone else to run. It depends on my own
+                            background, evidence record and settings, which live in my private notes system and never go
+                            into the repo.
+                        </p>
+                        <dl class="spec">
+                            <div>
+                                <dt>How it runs</dt>
+                                <dd>
+                                    <code>sweep_ats.py</code> is the daily engine. <code>launch.sh</code> schedules an
+                                    overnight run from ten presets, wakes the laptop to start it, and compacts the
+                                    database at the end.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Decisions</dt>
+                                <dd>
+                                    I review the ranked page and record each call, for example
+                                    <code>finder.py mark &lt;id&gt; build</code>, which also overrules a model. Calls
+                                    feed the next gated retrain.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Inputs</dt>
+                                <dd>
+                                    A registry of employer boards, the postings themselves, my evidence record (resume
+                                    bullets in PostgreSQL), and my past decisions.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Outputs</dt>
+                                <dd>
+                                    A DuckDB history of every posting (schema v23: 31 tables, 35 views), and a ranked
+                                    markdown page in my notes vault with every score shown.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Stack</dt>
+                                <dd>
+                                    Python, DuckDB, PostgreSQL, scikit-learn (TF-IDF and logistic regression),
+                                    sentence-transformers (bge embeddings and a cross-encoder), Claude Sonnet as grader,
+                                    TypeSafe Jev, Gemma 4, and an MCP server so Claude can look up postings (read-only)
+                                    and update the tracker only through its validated command.
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Quality gates</dt>
+                                <dd>
+                                    793 tests with saved fixtures and no network calls. A retrained model is promoted
+                                    only if it holds employer-grouped held-out AUC within 0.02 of the last one and
+                                    passes a shuffled-label leak check.
+                                </dd>
+                            </div>
+                        </dl>
+                        <div class="callout">
+                            <p>
+                                <strong>Known limits:</strong> Jev is in early access, so the pipeline stays pinned to
+                                version 1.13.0 until a newer one passes the same test. Rankings are advisory by design:
+                                the tool never writes my application tracker or applies for anything.
+                            </p>
+                            <p>Nine date-seeded tests have failed since October 1 and are on the fix list.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="on-ink section band band--projects" aria-label="More projects">
+            <div class="wrap">
+                <div class="tiles tiles--3">
+                    <article class="tile" id="data-migration">
+                        <span class="tile__tag">Work sample</span>
+                        <h3 class="tile__label">Data migration assessment</h3>
+                        <p class="tile__body">
+                            A public take-home for a government data engineering role, run as a quality problem rather
+                            than a row-count check: sigma levels and yield field by field, rolled into a go/no-go
+                            scorecard. Runs end to end on CMS public data.
+                        </p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                            <a class="textlink" href="systems.html#work-sample">What it does for a client &rarr;</a>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>A row count says the migration worked.</h3>
+                                <p>
+                                    The exercise: compare a legacy claims system&rsquo;s output with a new
+                                    system&rsquo;s before cutting over, find the discrepancies, and size their impact.
+                                    Matching row counts would have passed a migration that was missing thousands of
+                                    claims.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>A pipeline that treats every field as a quality opportunity.</h3>
+                                <p>
+                                    I built it with Claude Code from February 9 to 12, 2026: Python and DuckDB,
+                                    ingesting ten CMS synthetic claims files in 10,000-row chunks, checking the loaded
+                                    totals against the source files, transforming in SQL, and comparing the two systems
+                                    field by field across 4.7 million claim records and 343,803 beneficiary records. It
+                                    writes 17 analysis files, a report, and a presentation deck. In March I added a
+                                    nine-tab Streamlit dashboard.
+                                </p>
+                                <p>
+                                    Mostly I directed: what each query had to answer, and how the data should be scored
+                                    for the Lean Six Sigma calculations. Some of it was hands-on: I started several
+                                    queries myself and had Claude finish them by following my pattern across about a
+                                    hundred columns.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>Measure it like a process, report it like a decision.</h3>
+                                <p>
+                                    Each field compared is an opportunity for a defect, so data quality comes out as
+                                    defects per million, yield, and sigma level, field by field and rolled up: 4.58σ for
+                                    claims and 4.68σ for beneficiaries. Ingestion is validated before anything is
+                                    compared, so a load error can&rsquo;t pose as a migration defect.
+                                </p>
+                                <p>
+                                    The scorecard puts the sigma levels beside the counts that matter for go/no-go:
+                                    4,777 missing claims, 159 missing beneficiaries, and 82,699 payment discrepancies. A
+                                    4.6σ migration still isn&rsquo;t ready to cut over with claims missing.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>The deck needed corrected figures.</h3>
+                                <p>
+                                    Figures in the presentation deck were wrong and were corrected in June, after the
+                                    original submission. Numbers in a summary deck need the same check against the
+                                    pipeline&rsquo;s output as the pipeline itself.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Lead with what blocks the cutover.</h3>
+                                <p>
+                                    A sigma level near 4.6 looks good. The missing claims are what actually decide
+                                    go/no-go, so they belong first on the page, with the sigma levels as context.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                A data comparison and validation tool for a claims system migration, run on CMS
+                                synthetic public data. Code at
+                                <a href="https://github.com/BensonJT/data_eng_exercise" target="_blank" rel="noopener"
+                                    >github.com/BensonJT/data_eng_exercise</a
+                                >.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>How to run</dt>
+                                    <dd>
+                                        <code>main.py</code> runs each stage by flag (<code>--init-db</code>,
+                                        <code>--ingest</code>, <code>--validate</code>, <code>--transform</code>,
+                                        <code>--compare</code>, <code>--report</code>, or <code>--all</code>);
+                                        <code>run_dashboard.sh</code> opens the dashboard.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Inputs</dt>
+                                    <dd>Ten CMS DE-SynPUF sample files, five from each system.</dd>
+                                </div>
+                                <div>
+                                    <dt>Outputs</dt>
+                                    <dd>
+                                        A DuckDB database, 17 analysis CSVs, Markdown and HTML reports, a presentation
+                                        deck, and a nine-tab dashboard.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Stack</dt>
+                                    <dd>Python, DuckDB, SQLAlchemy, pandas, SciPy, Streamlit, Plotly.</dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Known limit:</strong> it runs on synthetic public data, and a full run needs
+                                    about 5&nbsp;GB of disk and 8&nbsp;GB of memory.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tile" id="benson-academy">
+                        <span class="tile__tag">Multi-modal learning content &middot; In production</span>
+                        <h3 class="tile__label">Benson Academy</h3>
+                        <p class="tile__body">
+                            A learning-content pipeline, built solo and live: one audited lesson feeds a 13-phase AI
+                            production process, written as Claude skills, that publishes more than 40 assets per lesson
+                            (article, narration, podcast, video, slides, facilitator and learner guides), with every
+                            quotation verified against its source and a human review gate before anything goes live.
+                            Built for a free Bible-study course; roughly 80% less research-to-publish time.
+                        </p>
+                        <p class="eval__card">
+                            Evaluated: Gemini&rsquo;s spoken audio transcribed by a local Whisper model and checked
+                            against the script by code.
+                        </p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                            <button class="textlink" type="button" data-open="auto">What is automated</button>
+                            <a class="textlink" href="ai-builder-evaluation.html#eval-abide"
+                                >How I evaluate it &rarr;</a
+                            >
+                            <a class="textlink" href="systems.html#benson-academy">What it does for a client &rarr;</a>
+                        </div>
+                        <div class="build__panel" data-panel="auto">
+                            <p>
+                                Each phase of the 13-phase production process is a written Claude skill, so a lesson
+                                asset is built by asking for it, not by redoing the steps by hand.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Triggered, phase by phase</dt>
+                                    <dd>
+                                        I start each major section when I&rsquo;m ready: the refined article, slides,
+                                        podcast, read-aloud narration, video, and the facilitator and learner guides.
+                                        Each skill has its own checks.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Automated checks</dt>
+                                    <dd>
+                                        Every quotation is verified against its source. Generated narration is
+                                        transcribed by a local Whisper model and checked against the script by code.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Human gate</dt>
+                                    <dd>Nothing goes live until I review it.</dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Time saved:</strong> many hours per asset, across more than 40 assets per
+                                    lesson.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>People want to read the Bible. Most were never taught how.</h3>
+                                <p>
+                                    Abide is a free online discipleship program that teaches inductive Bible study:
+                                    observe what the text says, interpret it, and apply it. Each lesson has to reach
+                                    people the way they actually learn, reading, listening, watching, and working
+                                    through it in a group, and producing all of that by hand would take months per
+                                    lesson.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>One lesson, more than 40 assets, one source of truth.</h3>
+                                <p>
+                                    Each lesson is one truth taught through many formats, and the finished, audited
+                                    article is the source everything else is built from. A documented 13-phase
+                                    production process, written as a set of skills Claude follows, turns it into the
+                                    rest: the web lesson; a study guide with a quiz, answer key, essay questions, and
+                                    glossary; a teacher packet with a lecture keyed to the slides; a class handout; a
+                                    full slide deck and a short teaching deck; our own two-host podcast; an explainer
+                                    video of about ten minutes; and a LinkedIn article.
+                                </p>
+                                <p>
+                                    Then, for every section of the lesson, seven to ten of them: an illustration that
+                                    becomes the section&rsquo;s slide image, the article read aloud in two AI voices,
+                                    one female and one male, and a section video, so the full lesson plays on YouTube in
+                                    sections, 31 to 55 minutes end to end. At about eight sections, that is more than 40
+                                    published assets per lesson.
+                                </p>
+                                <p>
+                                    The tools split the work. Claude Code writes and checks: the article&rsquo;s
+                                    refinement passes, the slide decks, the podcast and narration scripts, the web
+                                    pages, and the uploads. Gemini draws the illustrations and voices the narration and
+                                    the podcast. Gemini Notebook narrates the explainer video and drafts the study
+                                    guide&rsquo;s quiz and glossary. Every step that touches Scripture pulls it from a
+                                    translation tool, never from memory, and a script checks every quotation in every
+                                    written asset before it counts as done. I run the tools Claude can&rsquo;t, review
+                                    each step, and audit every page.
+                                </p>
+                                <p>
+                                    The site at bensonacademy.com is Next.js with MDX lessons on Vercel, audio and PDFs
+                                    on Cloudflare R2, and video on YouTube: 467 commits from March 27 to October 20,
+                                    2026. It is now in its Gamma release, after the Beta, with five lessons rebuilt to
+                                    this standard, including the first lesson of Abide 102. The whole site was
+                                    redesigned overnight by Claude Opus 5.5, working toward a goal I set before I went
+                                    to sleep.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>A grounded source, a human gate, one config file.</h3>
+                                <p>
+                                    <strong>Grounded and reviewed.</strong> Generation works from a curated knowledge
+                                    base, not open-ended prompting, and a mandatory human review gate comes before
+                                    anything goes live. For teaching Scripture, accuracy isn&rsquo;t optional.
+                                </p>
+                                <p>
+                                    <strong>One source of truth for courses.</strong> A single config file defines every
+                                    course, and a course switches on by itself when its first lesson file appears, with
+                                    no other code changes.
+                                </p>
+                                <p>
+                                    <strong>Built to be found.</strong> The site invites AI search crawlers and checks
+                                    its search data against a saved baseline in automated tests, so a change can&rsquo;t
+                                    silently break how lessons appear in search.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>Silent failures, made visible.</h3>
+                                <p>
+                                    The first version was a static site; it was rebuilt in Next.js with all media moved
+                                    to R2. The audio player used to skip a file that wouldn&rsquo;t load without saying
+                                    anything; now it pauses and says the file isn&rsquo;t available. And one lesson
+                                    shipped with its search data describing the wrong video, caught and fixed in the
+                                    next release.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>An AI coach for practice between meetings.</h3>
+                                <p>
+                                    Next is finishing the Gamma release and more lessons in the second course, and
+                                    further out an AI Socratic coach grounded only in the Abide library, so practice can
+                                    happen between group meetings, not only during them.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                A free discipleship program teaching inductive Bible study, live at
+                                <a href="https://bensonacademy.com" target="_blank" rel="noopener">bensonacademy.com</a
+                                >.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Content</dt>
+                                    <dd>
+                                        A Gamma release with five lessons rebuilt to the new standard, including the
+                                        first of Abide 102; lessons come with study guides, student handouts, and
+                                        teacher packets, plus a Bible study series and free study tools.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Formats</dt>
+                                    <dd>
+                                        Per lesson: the web lesson, study guide, teacher packet, class handout, full and
+                                        teaching slide decks, a two-host podcast, an explainer video, and a LinkedIn
+                                        article. Per section: an illustration, narration in two voices, and a section
+                                        video. More than 40 published assets in all, plus print-ready versions of every
+                                        page.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Publishing</dt>
+                                    <dd>
+                                        A new lesson is an MDX file plus its media uploaded to R2; pushing to the main
+                                        branch deploys it.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Stack</dt>
+                                    <dd>
+                                        Next.js 16, React 19, MDX, GSAP, Vercel, Cloudflare R2, YouTube, Gemini
+                                        Notebook, and Playwright for 43 automated tests.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Known limit:</strong> every piece passes my review before it publishes, so
+                                    my review time, not generation, sets the pace of new lessons.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tile" id="sheets-decomposer">
+                        <span class="tile__tag">Open-source tool</span>
+                        <h3 class="tile__label">Sheets Decomposer</h3>
+                        <p class="tile__body">
+                            For anyone who inherits someone else&rsquo;s large spreadsheet. It turns the workbook into
+                            facts, every formula, dependency, pattern, and defect, and those facts feed a Gemini Gem or
+                            a Claude skill: living documentation you can ask how the spreadsheet works.
+                        </p>
+                        <p class="eval__card">
+                            Evaluated: planted defects and a 24-question test with traps; the model corrected the answer
+                            key twice.
+                        </p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                            <button class="textlink" type="button" data-open="auto">What is automated</button>
+                            <a class="textlink" href="ai-builder-evaluation.html#eval-sheets"
+                                >How I evaluate it &rarr;</a
+                            >
+                            <a class="textlink" href="systems.html#sheets-decomposer"
+                                >What it does for a client &rarr;</a
+                            >
+                        </div>
+                        <div class="build__panel" data-panel="auto">
+                            <p>Point it at a workbook and the first analysis runs on its own.</p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Triggered</dt>
+                                    <dd>
+                                        Hand it any spreadsheet. It extracts every formula, dependency, pattern and
+                                        defect, maps how the tabs connect, and writes the results as reports.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Then ask questions</dt>
+                                    <dd>
+                                        The reports load into a Gemini Gem or a Claude skill, so you can ask how the
+                                        workbook works in plain language and get answers grounded in its own facts.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Time saved:</strong> hours on every complex multi-tab workbook, compared
+                                    with tracing it by hand.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>Everyone inherits a spreadsheet nobody documented.</h3>
+                                <p>
+                                    It started with an interview take-home: work out how an existing workforce analytics
+                                    workbook actually worked. But the problem is universal. Anyone who inherits a large
+                                    spreadsheet has the same questions, and pasting it into an AI chat gets confident
+                                    answers about formulas and dependencies the AI never really traced. I wanted the
+                                    answers to start from facts.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>Scripts pull the facts, and the model explains them.</h3>
+                                <p>
+                                    A Python tool opens the workbook from a Google Sheets link or an .xlsx file and
+                                    parses every formula into its references, functions, and hard-coded numbers. From
+                                    that it builds the dependency graph between tabs and cells, collapses repeated
+                                    formulas into patterns, marks each tab as input, calculation, or output, and flags
+                                    defects in 17 categories, from typed-over formulas to hidden sheets.
+                                </p>
+                                <p>
+                                    It writes four things: a report for a person, a structure-only context file for a
+                                    Gemini Gem, a DuckDB database, and one JSON file with everything. I built it in one
+                                    evening: 15 commits on September 11, 2026.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>The model sees only structured output.</h3>
+                                <p>
+                                    The working rule is in the README: scripts do the extraction and the deterministic
+                                    checks, the model only sees structured output, and a person reviews anything that
+                                    becomes a source of truth. The Gem has to cite a sheet and cell for every claim, and
+                                    label each answer as found, inferred, or &ldquo;confirm with the owner.&rdquo;
+                                </p>
+                                <p>
+                                    Every table and column in the database has a comment, and one view,
+                                    <code>vw_schema</code>, returns the full data dictionary. An AI assistant is told to
+                                    query it first, so it orients from the database instead of a pasted summary.
+                                </p>
+                                <p>
+                                    Documentation that answers questions. The structured output becomes the knowledge
+                                    behind a Gemini Gem or a Claude skill, so anyone can ask what a tab does, what feeds
+                                    a number, or how a particular formula works, and get an answer with the cell it came
+                                    from. Unlike a written spec, it&rsquo;s rebuilt from the workbook on every run.
+                                </p>
+                                <p>
+                                    Practice before real data. The tool generates a deliberately broken workbook with an
+                                    answer key of 15 planted defects. On its first run the Gem found a sixteenth that
+                                    nobody planted: the workbook&rsquo;s own README pointed to the wrong cell. Its
+                                    24-question acceptance test includes four trick questions; it answers all 24 with
+                                    citations and refuses the four traps.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>Even the answer key had a defect.</h3>
+                                <p>
+                                    One entry in the practice workbook&rsquo;s answer key pointed at the wrong month, so
+                                    a correct finding would have been scored wrong. It took a commit to fix the key
+                                    itself.
+                                </p>
+                                <p>
+                                    And Gemini Gems don&rsquo;t re-read a linked Google Doc when it changes, whatever
+                                    the help text says. After every refresh the Docs have to be removed and attached
+                                    again, a step now written into the instructions.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Catch the formula that is consistent and wrong.</h3>
+                                <p>
+                                    The biggest known gap: a formula block that is internally consistent but computes
+                                    the wrong thing looks clean, so the row labels still need a human review. References
+                                    that run down a column while reading across a row aren&rsquo;t grouped into patterns
+                                    yet, and charts only come through from Google Sheets, not .xlsx files.
+                                </p>
+                                <p>
+                                    It already runs as the structural QA check on AdoptiScope&rsquo;s generated
+                                    workbooks. The next step is turning that same output into living documentation
+                                    shipped alongside each AdoptiScope build.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                Turns any Google Sheet or Excel workbook into living documentation: a report, a
+                                self-describing DuckDB database, a JSON file, and a context file an AI assistant can
+                                answer questions from. Public code at
+                                <a href="https://github.com/BensonJT/sheets_decomposer" target="_blank" rel="noopener"
+                                    >github.com/BensonJT/sheets_decomposer</a
+                                >
+                                (MIT license).
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>How to use</dt>
+                                    <dd>
+                                        <code>./sd ingest &lt;file or Sheets URL&gt;</code> runs the extraction.
+                                        <code>./sd query</code> runs SQL against the result, and
+                                        <code>./sd sample</code> builds the practice workbook and its answer key.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Inputs</dt>
+                                    <dd>
+                                        A Google Sheets link (OAuth, service account, or a link-shared export with no
+                                        credentials) or an .xlsx file.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Outputs</dt>
+                                    <dd>
+                                        <code>report.md</code>, <code>gem_context.md</code>,
+                                        <code>model.duckdb</code> (18 commented tables and 13 views), and
+                                        <code>model.json</code>.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Stack</dt>
+                                    <dd>
+                                        Python 3.11, DuckDB, openpyxl, networkx, the Google Sheets and Docs APIs, and a
+                                        Gemini Gem for questions.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Privacy</dt>
+                                    <dd>
+                                        The Gem&rsquo;s context file contains structure, labels, and formulas, not data
+                                        rows, unless sample values are explicitly requested.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Known limit:</strong> a formula that is consistent but computes the wrong
+                                    thing looks clean. The report is where a human review starts, not where it ends.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tile">
+                        <span class="tile__tag">Live site</span>
+                        <h3 class="tile__label">This profile site</h3>
+                        <p class="tile__body">
+                            My main site, built with Claude across 187 commits since May 2026, and fact-checked line by
+                            line: where an AI draft overstated a result, the commit history shows it being corrected to
+                            what I actually did.
+                        </p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>A r&eacute;sum&eacute; lists results. It doesn&rsquo;t show the work.</h3>
+                                <p>
+                                    I wanted a site that shows how I work, not just what I achieved, and I wanted to
+                                    build it with AI without it reading like AI wrote it.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>A hand-built static site, written with Claude.</h3>
+                                <p>
+                                    HTML on GitHub Pages: one stylesheet, one script, self-hosted fonts, no framework.
+                                    Thirty pages, including 23 articles. The repo starts from a clean baseline on May
+                                    16, 2026; since then there have been 187 commits, written with Claude across the
+                                    Fable, Opus, and Sonnet models, with the heaviest work in July.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>Every number traced to what I actually did.</h3>
+                                <p>
+                                    The site&rsquo;s value is that it&rsquo;s true. When a figure didn&rsquo;t match the
+                                    record, it changed to the record, and an honesty callout in my own voice is on the
+                                    about and r&eacute;sum&eacute; pages.
+                                </p>
+                                <p>
+                                    One stylesheet governs every page, with named color and type values and text colors
+                                    checked for contrast, and nothing styled inline. Formatting and lint checks live in
+                                    the repo, and a pre-commit hook keeps the article count on the home page current.
+                                </p>
+                                <p>
+                                    Real diagrams over decoration. AI-made images and an AI infographic were retired in
+                                    favor of a domain map and process diagrams, and em dashes came out of the prose.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>The drafts claimed more than I did.</h3>
+                                <p>
+                                    A $2.8B figure became the $455M portfolio I actually governed. A 450% claim was
+                                    removed. A 10% year-over-year claim was replaced with the actual ranges. Each one is
+                                    a commit, so the corrections are on the record.
+                                </p>
+                                <p>
+                                    Fixes broke things too. One edit silently dropped a section on the 200 forms of
+                                    waste, restored the same day, and a contrast fix introduced a contrast bug that took
+                                    another commit to catch.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Check each figure as it&rsquo;s written.</h3>
+                                <p>
+                                    The corrections came in a concentrated pass after pages were already live. Checking
+                                    every number against the record as it&rsquo;s drafted would have kept the wrong ones
+                                    from ever publishing.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                My public profile at
+                                <a href="index.html" target="_blank" rel="noopener">bensonjt.github.io/profile</a>: work
+                                history, method, systems, r&eacute;sum&eacute;, and the Operator&rsquo;s Notebook
+                                articles.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Structure</dt>
+                                    <dd>
+                                        30 HTML pages, one site-wide stylesheet plus one for articles, one script for
+                                        the mobile menu, diagram lightbox, and interactive figures.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Quality checks</dt>
+                                    <dd>
+                                        Prettier, Stylelint, and HTMLHint configs, and a pre-commit hook that updates
+                                        the article count.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Supporting tools</dt>
+                                    <dd>
+                                        Scripts to convert images to WebP, and renderers for a LinkedIn banner and card
+                                        built from the site&rsquo;s own type and palette.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Hosting</dt>
+                                    <dd>GitHub Pages, deployed on push.</dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Next:</strong> this AI Builder page merges into the profile site when the
+                                    program ends, built on the same stylesheet so it drops in unchanged.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tile" id="adoptiscope">
+                        <span class="tile__tag">Product &middot; In testing</span>
+                        <h3 class="tile__label">AdoptiScope: Adoption Barrier Diagnostic</h3>
+                        <p class="tile__body">
+                            My FIRST change-management method as a product built from code. One program builds the
+                            workbook as both a native Excel file and a native Google Sheet, verifies both, and writes
+                            its own user guide, so every improvement reaches every future build.
+                        </p>
+                        <p class="eval__card">
+                            Evaluated: no AI at runtime; rules checked three ways, 134 of 134 values in both spreadsheet
+                            engines.
+                        </p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                            <button class="textlink" type="button" data-open="auto">What is automated</button>
+                            <a class="textlink" href="ai-builder-evaluation.html#eval-adoptiscope"
+                                >How I evaluate it &rarr;</a
+                            >
+                        </div>
+                        <div class="build__panel" data-panel="auto">
+                            <p>
+                                The code is the source of truth. One command builds the current workbook from the latest
+                                code, checks it, and keeps the user guide in step with it.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Triggered: the build</dt>
+                                    <dd>
+                                        On demand, the generator builds the workbook as an Excel file and as a native
+                                        Google Sheet. The Excel build is recalculated in real Excel and scanned for
+                                        error values, and both are checked against a worked example&rsquo;s 134-value
+                                        answer key. A new Google Sheet build moves the previous one to Drive trash, so
+                                        only the current version is live.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Triggered: the user guide</dt>
+                                    <dd>
+                                        With one flag, a build that passes its checks also regenerates the user guide:
+                                        tab purposes, columns, dropdowns, conditions, blueprints and commands come from
+                                        the same model as the workbook, and every tab&rsquo;s screenshot is retaken from
+                                        the verified example. Only the explanatory prose is hand-written, and the build
+                                        stops if a new tab has no place in the guide.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Publishing</dt>
+                                    <dd>
+                                        One more command mirrors the guide into my profile site, removing pages that no
+                                        longer exist; I commit and push it.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Releases</dt>
+                                    <dd>
+                                        Only a verified build is copied into the release folder, and it is the copy
+                                        Excel saved, so it opens with its values already calculated.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Why it matters:</strong> the documentation can&rsquo;t drift from the
+                                    product, because both are built from the same code in the same run.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>Change programs prescribe before they diagnose.</h3>
+                                <p>
+                                    Most change programs reach for training before finding where adoption is actually
+                                    breaking down. I wanted a tool I could bring into any job to apply my ADKAR-aligned
+                                    approach, the one in my ADKAR article series: find each group&rsquo;s barrier,
+                                    confirm it with evidence, find the failing condition, and only then choose an
+                                    intervention.
+                                </p>
+                                <p>
+                                    Spreadsheet tools also decay. Every engagement modifies its own copy, and the
+                                    improvements stay stranded in that one file.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>The program is the product.</h3>
+                                <p>
+                                    The method&rsquo;s content lives in one source file. A Python generator turns it
+                                    into a platform-neutral workbook model, and two renderers write that model natively
+                                    as an Excel file and as a Google Sheet: 21 tabs organized by the five FIRST steps,
+                                    Frame, Isolate, Root, Select, and Track. The same program writes a ten-page user
+                                    guide, with its screenshots taken from the verified build.
+                                </p>
+                                <p>
+                                    I designed the method and the product beforehand; Claude Code built the generator
+                                    with me reviewing, in 18 commits over about 14 hours on September 22 and 23, 2026.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>Product management, applied to a spreadsheet.</h3>
+                                <p>
+                                    <strong>Formulas and design live in the program.</strong> Nobody edits a generated
+                                    workbook by hand. Improve the program once and every future build, in both formats,
+                                    gets the improvement.
+                                </p>
+                                <p>
+                                    <strong>Verified in the real engines.</strong> The build opens the Excel file in
+                                    real Excel, recalculates, and checks for repairs, errors, and circular references;
+                                    Google computes the Sheet. Both are checked against a 134-item answer key built on a
+                                    fictional company seeded so every rule fires, and both pass 134 of 134.
+                                </p>
+                                <p>
+                                    <strong>The documentation is generated too,</strong> so the guide&rsquo;s content
+                                    and images stay in sync with the product instead of drifting behind it. And the
+                                    method&rsquo;s rule is built in: interventions only appear next to a confirmed
+                                    failing condition.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>Two spreadsheet engines, two sets of traps.</h3>
+                                <p>
+                                    One extra parenthesis made Excel refuse the entire file, so the build now checks
+                                    every formula before writing it. Google Sheets charts created before their data
+                                    calculated lost their colors, so charts now go in a second pass. And nine names in
+                                    the content file silently split apart over unquoted commas, which the content check
+                                    now catches.
+                                </p>
+                                <p>
+                                    The product was also renamed the day after the build began, when preliminary
+                                    trademark research flagged the first name. Because the brand is a single setting,
+                                    the rename was one rebuild of everything.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Test it on a real case next.</h3>
+                                <p>
+                                    The method content is still in my wording review, and the next step is a real-case
+                                    test drive instead of the fictional example. The AdoptiScope name is a working brand
+                                    until it&rsquo;s cleared.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                An adoption-barrier diagnostic for change practitioners, built on my FIRST method and
+                                generated from code. In testing; not yet public.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Outputs</dt>
+                                    <dd>
+                                        A native Excel workbook and a native Google Sheet (21 tabs, 10 charts), plus a
+                                        generated user guide.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>The method</dt>
+                                    <dd>
+                                        Five steps: Frame, Isolate, Root, Select, Track. Diagnose first, prescribe
+                                        second; there is deliberately no single organization-wide score.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>How it&rsquo;s built</dt>
+                                    <dd>
+                                        A command-line tool checks the content, builds both formats, verifies them in
+                                        Excel and Google Sheets, and regenerates the guide.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Stack</dt>
+                                    <dd>
+                                        Python, openpyxl, the Google Sheets API, YAML content, pytest, and Excel
+                                        automation for verification, with Sheets Decomposer as a structural QA check.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Status:</strong> in testing. The method content is under review, a real-case
+                                    test is next, and the AdoptiScope name is a working brand.
+                                </p>
+                                <p>ADKAR is a change-management model from Prosci.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tile" id="keystone">
+                        <span class="tile__tag">Context engineering &middot; In daily use</span>
+                        <h3 class="tile__label">Keystone: standard work for AI agents</h3>
+                        <p class="tile__body">
+                            The operating manual every AI tool I use reads before it works. It holds what&rsquo;s true
+                            about me, how each kind of job gets done, and what the tools have learned, across 106 skill
+                            files, 100+ purpose-built scripts, and an inventory of every tool the agents can reach. Each
+                            task loads a short router and only the pages it needs, about 3% of the whole. Synced every
+                            ten minutes between a Windows laptop and a Linux desktop, so work starts on either machine
+                            with the same context. Built for one person; designed so a team could copy it.
+                        </p>
+                        <p class="eval__card">
+                            A peer researcher: an expert method written into AI skills from its textbook, which also
+                            found errors in my own lessons.
+                        </p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                            <button class="textlink" type="button" data-open="auto">What is automated</button>
+                            <a class="textlink" href="ai-builder-evaluation.html#eval-keystone"
+                                >How I evaluate it &rarr;</a
+                            >
+                        </div>
+                        <div class="build__panel" data-panel="auto">
+                            <p>Keystone keeps itself in sync, and its skills make other automation one request away.</p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Scheduled: vault sync</dt>
+                                    <dd>
+                                        Every ten minutes, each machine pulls, commits and pushes the vault. Every
+                                        change is in Git, so any file can roll back, and both machines start from the
+                                        same context. Config files that live outside any repo ride along.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>On demand</dt>
+                                    <dd>
+                                        The skill and context system lets one request start a wide range of work: a job
+                                        package, a lesson asset, an email cleanup. An audit script checks the skills
+                                        against the standard, and a fact guard confirms a rewording pass dropped no
+                                        facts.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Why it matters:</strong> the automations in the other projects depend on
+                                    this. Every skill they run lives here.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>Capable tools that start every session from zero.</h3>
+                                <p>
+                                    AI tools are good at the work and forget everything between sessions. Each one knew
+                                    different things, facts I gave in a chat drifted from the facts I gave in the next,
+                                    and I kept making the same corrections. It is the tribal-knowledge problem every
+                                    operation has: the know-how lives in someone&rsquo;s head, so the work comes out
+                                    differently every time.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>Standard work, written where the work happens.</h3>
+                                <p>
+                                    I solved it the way process work always has: document the work at the point of use,
+                                    keep one source of truth, check it, and improve it continuously. Keystone is a
+                                    private git repository of Markdown files, organized by projects, areas, resources
+                                    and archive, and every AI tool I use reads it first: Claude Code, Claude Desktop,
+                                    Gemini and Copilot.
+                                </p>
+                                <p>
+                                    Each layer is small and points to the next. One short instruction file is read every
+                                    session. An index gives one line per skill, saying when to load it. A router for
+                                    each domain (job search, Bible study, course production, the machines and tools)
+                                    sends each kind of request to one reference page. A typical task reads the router
+                                    and two pages, about 5,400 words of roughly 158,000, instead of everything at once.
+                                </p>
+                                <p>
+                                    Standard work also means the tools are at the station. The environment pages list
+                                    everything within an agent&rsquo;s reach (command-line tools, databases, local MCP
+                                    servers, and each domain&rsquo;s scripts), so it uses what exists instead of
+                                    improvising. A scheduled job keeps the vault identical on a Windows laptop and a
+                                    Linux desktop, so I can start work on either machine and the AI has the same context
+                                    and instructions.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>Facts kept apart, and checked by code.</h3>
+                                <p>
+                                    <strong>Ground truth is separate from what the tools learn.</strong> Facts about my
+                                    record live in one place that every procedure points to, never copied into each
+                                    step, so a correction is made once.
+                                </p>
+                                <p>
+                                    <strong>Every file says what AI may do to it:</strong> edit freely, only add, or
+                                    only read. The architecture file and the instruction file are read-only; changes are
+                                    proposed to me.
+                                </p>
+                                <p>
+                                    <strong>Code does the mechanical work; the model does the judgment.</strong> The
+                                    repository holds 100+ deterministic scripts, each built for one job: pulling and
+                                    verifying Scripture, rendering slides and video, narrating audio, uploading media,
+                                    exporting resumes. A skill gives the script and how to run it, so the same input
+                                    gives the same output every time and no tokens are spent on steps code can do.
+                                </p>
+                                <p>
+                                    <strong>Scripts also check what Claude writes.</strong> An audit script holds every
+                                    skill to Anthropic&rsquo;s authoring guidance, and a fact guard fails any rewording
+                                    pass that drops a number, date or path.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>The manual drifted, the way manuals do.</h3>
+                                <p>
+                                    Facts piled up in Claude&rsquo;s own memory, close to 200 notes, and some disagreed
+                                    with the vault. The instruction files for three AI tools had been copied by hand and
+                                    no longer matched, and the architecture document still described the design from six
+                                    months earlier. An audit found all of it. The fix was structural: one instruction
+                                    file every tool points to, durable facts moved into the vault with memory reduced to
+                                    pointers and live state, and an index skill with a check that flags long or orphaned
+                                    entries.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>The same pattern, for a team.</h3>
+                                <p>
+                                    I would start with one router per domain and a single instruction file on day one,
+                                    instead of growing into them. In a new group I would copy the pattern into a shared
+                                    repository: playbooks by role and workflow, a named owner for every file, the audit
+                                    and fact checks running on every change, and new hires and their AI tools reading
+                                    the same source of truth from their first day.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                A private knowledge vault that works as standard work for AI agents. The repository is
+                                private, so this page describes the structure only.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Structure</dt>
+                                    <dd>
+                                        Markdown in git, organized by projects, areas, resources and archive, with a
+                                        system folder for personas, skills, lessons learned and the index.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Load path</dt>
+                                    <dd>
+                                        Instruction file, then index, then one of five domain routers, then only the
+                                        reference pages a task needs. 106 skill files, about 158,000 words; a typical
+                                        task reads about 3%.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Scripts and tools</dt>
+                                    <dd>
+                                        100+ purpose-built scripts (Python, shell, PowerShell, Node) that live with the
+                                        domain they serve, and an itemized inventory of the command-line tools,
+                                        databases and MCP servers the agents can use.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>AI tools served</dt>
+                                    <dd>
+                                        Claude Code (short pointer skills), Claude Desktop and Cowork (local MCP
+                                        servers), Gemini and Copilot (one shared instruction file).
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Guardrails</dt>
+                                    <dd>
+                                        An edit policy on every file, a skill audit script, a fact guard for rewording
+                                        passes, and data-ownership rules for tables another system owns.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Sync</dt>
+                                    <dd>
+                                        A scheduled job on each machine (a Windows laptop running Linux through WSL, and
+                                        a Linux desktop) pulls, commits and pushes every ten minutes, so either one
+                                        starts with the same context: more than 4,400 commits since the April 2026
+                                        rebuild.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Known limit:</strong> it is built for one person. A team version needs
+                                    owners for each file and reviews on every change, which the checks support but do
+                                    not replace.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <a class="link-more" href="systems.html">The full systems &rarr;</a>
+            </div>
+        </section>
+
+        <!-- leland:content-end -->
+
+        <!-- leland:drop-start (the bundle has one contact section, on the hub) -->
+
+        <!-- ══════════ 7. CLOSE ══════════ -->
+        <section class="on-olive section" id="contact">
+            <div class="wrap">
+                <div class="s-head">
+                    <h2>Want to see how any of this was built?</h2>
+                    <p>
+                        Ask me. I&rsquo;m glad to walk through the decisions, the dead ends, and what I&rsquo;d do
+                        differently next time.
+                    </p>
+                    <p>Open to full-time and contract roles in process excellence, analytics, and applied AI.</p>
+                </div>
+                <div class="hero__actions">
+                    <a
+                        class="btn btn--primary"
+                        href="https://www.linkedin.com/in/jeffreytbenson/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Start a conversation</a
+                    >
+                    <a class="btn btn--ghost" href="index.html">Main profile</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- leland:drop-end -->
+
+        <!-- ══════════ FOOTER ══════════ -->
+        <footer class="on-ink foot">
+            <div class="wrap">
+                <div class="foot__grid">
+                    <div>
+                        <h3>Jeffrey Benson</h3>
+                        <p class="card__body">
+                            Lean Six Sigma Black Belt. Thirty-one years of Fortune 20 business transformation. Principal
+                            at Cornerstone Solutions.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>AI Builder</h3>
+                        <ul>
+                            <li><a href="ai-builder.html">Overview</a></li>
+                            <li><a href="ai-builder-projects.html">Projects</a></li>
+                            <li><a href="ai-builder-evaluation.html">Evaluation</a></li>
+                            <li>
+                                <a href="ai-builder-level1.html">Level 1<span class="subnav__more"> builds</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Elsewhere</h3>
+                        <ul>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com/in/jeffreytbenson/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >LinkedIn</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://github.com/BensonJT" target="_blank" rel="noopener noreferrer"
+                                    >GitHub</a
+                                >
+                            </li>
+                            <li><a href="index.html">Profile site</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="foot__fine">Northern Virginia. Contact through LinkedIn.</p>
+            </div>
+        </footer>
+
+        <!-- Shared popup for every build's "How I built this" / "Documentation" -->
+        <dialog class="sheet" data-sheet aria-labelledby="sheet-title">
+            <div class="sheet__head">
+                <div>
+                    <p class="eyebrow" data-sheet-kind></p>
+                    <h2 class="sheet__title" id="sheet-title" data-sheet-title></h2>
+                </div>
+                <button class="sheet__close" type="button" data-sheet-close>Close</button>
+            </div>
+            <div class="sheet__body" data-sheet-body></div>
+        </dialog>
+
+        <!-- Full-screen window for the Build 06 deck. The Presentation links work as plain links with JS off;
+             build_single.py inlines the deck here (data-deck-b64) for single-file hosts. The frame is
+             created by builder.js on first open: Leland's sanitizer strips frame tags from the markup. -->
+        <dialog class="sheet sheet--deck" data-deck-sheet aria-labelledby="deck-title">
+            <div class="sheet__head">
+                <div>
+                    <p class="eyebrow">Presentation</p>
+                    <h2 class="sheet__title" id="deck-title">Where my experience fits</h2>
+                </div>
+                <button class="sheet__close" type="button" data-deck-close>Close</button>
+            </div>
+            <div class="deck__slot" data-deck-slot></div>
+            <p class="deck__hint">
+                Click the slides, then use the arrow keys. N shows my speaker notes, F goes full screen.
+            </p>
+        </dialog>
+
+        <script src="js/site.js" defer></script>
+
+        <script src="js/builder.js" defer></script>
+    </body>
+</html>

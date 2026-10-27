@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>AI Builder Portfolio — Jeffrey Benson</title>
+        <meta
+            name="description"
+            content="Jeffrey Benson's AI Builder Portfolio: the projects built with AI since December 2025, how each model's output was evaluated, and every build from the Leland AI Builder program."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="AI Builder Portfolio — Jeffrey Benson" />
+        <meta
+            property="og:description"
+            content="Learning to build with AI the way I learned everything else: one build at a time, documented."
+        />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="css/site.css" />
+        <link rel="stylesheet" href="css/builder.css" />
+    </head>
+
+    <body>
+        <!-- ══════════ NAV ══════════ -->
+        <nav class="nav">
+            <div class="wrap">
+                <div class="nav__inner">
+                    <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+                    <div class="nav__links">
+                        <a href="ai-builder.html" class="is-current" aria-current="page">AI Builder</a>
+                        <a href="work.html">Work</a>
+                        <a href="method.html">Method</a>
+                        <a href="systems.html">Systems</a>
+                        <a href="articles.html">Notebook</a>
+                        <a href="about.html">About</a>
+                    </div>
+                    <a class="btn btn--primary nav__cta" href="resume.html">Résumé</a>
+                    <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">
+                        Menu
+                    </button>
+                </div>
+                <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+                    <a href="ai-builder.html" class="is-current" aria-current="page">AI Builder</a>
+                    <a href="work.html">Work</a>
+                    <a href="method.html">Method</a>
+                    <a href="systems.html">Systems</a>
+                    <a href="articles.html">Notebook</a>
+                    <a href="about.html">About</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- leland:drop-start (the bundle is one page; it has no sub-nav) -->
+        <nav class="subnav" aria-label="AI Builder pages">
+            <div class="wrap subnav__inner">
+                <span class="subnav__label">AI Builder</span>
+                <a href="ai-builder.html" aria-current="page">Overview</a>
+                <a href="ai-builder-projects.html">Projects</a>
+                <a href="ai-builder-evaluation.html">Evaluation</a>
+                <a href="ai-builder-level1.html">Level 1<span class="subnav__more"> builds</span></a>
+            </div>
+        </nav>
+        <!-- leland:drop-end -->
+
+        <!-- ══════════ 1. HERO ══════════ -->
+        <header class="on-ink" id="top">
+            <div class="wrap hero">
+                <div class="hero__grid">
+                    <div>
+                        <p class="eyebrow">Leland AI Builder &middot; Level 1</p>
+                        <h1>AI Builder Portfolio</h1>
+                        <div class="byline">
+                            <span class="byline__name">Jeffrey Benson</span>
+                            <span class="byline__title">Data Engineer &amp; Process Excellence Leader</span>
+                        </div>
+                        <div class="hero__actions">
+                            <a class="btn btn--primary" href="ai-builder-projects.html">See the projects</a>
+                            <a class="btn btn--ghost" href="ai-builder-evaluation.html">How I evaluate AI</a>
+                            <a class="btn btn--ghost" href="ai-builder-level1.html">Course builds</a>
+                        </div>
+                    </div>
+                    <!-- Same file and path as the profile site's hero, so it resolves unchanged after the merge -->
+                    <img class="portrait" src="img/headshot_jb.webp" width="800" height="800" alt="Jeffrey Benson" />
+                </div>
+            </div>
+        </header>
+
+        <!-- ══════════ 2. PROOF BAR ══════════ -->
+        <section class="on-ink section--tight" aria-label="At a glance">
+            <div class="wrap">
+                <div class="proof">
+                    <div class="metric">
+                        <span class="metric__value">9</span>
+                        <p class="metric__note">
+                            Builds in Level 1 of the Leland AI Builder program, each documented here as it ships.
+                        </p>
+                    </div>
+                    <div class="metric">
+                        <span class="metric__value">9</span>
+                        <p class="metric__note">
+                            Projects built since December 2025: five running live, two products in build or testing, an
+                            open-source tool, and an interview work sample.
+                        </p>
+                    </div>
+                    <div class="metric">
+                        <span class="metric__value">10 of 973</span>
+                        <p class="metric__note">
+                            Source modules across six systems that call a language model. The rest is deterministic code
+                            (measured October 27, 2026).
+                        </p>
+                    </div>
+                    <div class="metric">
+                        <span class="metric__value">~80%</span>
+                        <p class="metric__note">
+                            Less research-to-publish time on Benson Academy&rsquo;s AI content pipeline, with a human
+                            review gate before anything goes live.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ 2b. LATEST ANALYSIS ══════════
+             The deck is built by Industry_Research/scripts/build_ai_value_deck.py (public version, no
+             employer named). The button opens it in the Presentation window; with JS off it is a plain link. -->
+        <section class="on-paper section--tight" id="latest" aria-label="Latest analysis">
+            <div class="wrap latest">
+                <div>
+                    <p class="eyebrow">Latest analysis &middot; October 2026</p>
+                    <h2 class="latest__title">
+                        Four in five banks now mention AI in their annual reports. Almost none quantify its value.
+                    </h2>
+                    <p class="lede">
+                        Every US bank 10-K since 2015, sentence-level analysis of the five largest, and the 2025 and
+                        2026 research on AI value, checked figure by figure.
+                    </p>
+                </div>
+                <div class="latest__actions">
+                    <a
+                        class="btn btn--primary"
+                        href="ai-value-presentation.html"
+                        data-deck
+                        data-deck-title="AI value reporting at financial institutions"
+                        >Analysis of AI value reporting at financial institutions</a
+                    >
+                    <!-- data-site-only: build_single.py drops this link, because Leland's sandbox blocks downloads -->
+                    <a class="btn btn--ghost" href="ai-value-presentation.pdf" download data-site-only
+                        >Download the slides (PDF)</a
+                    >
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ 3. ABOUT ══════════ -->
+        <section class="section" id="about">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Why this page</p>
+                    <h2>Learning to build the way I learned everything else.</h2>
+                    <p>
+                        I spent thirty-one years at Verizon getting pulled into problems nobody owned, and every fix
+                        ended the same way: get what the experts know out of their heads and into something the team can
+                        run without them. AI changes the form that takes, so I&rsquo;m learning it the only way I know
+                        how, hands-on, one build at a time. I came into the program already building; what it gives me
+                        is the discipline of documenting each build so someone else could run it, and a few things that
+                        are new to me. This page is where I keep track.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ 4. FOCUS ══════════ -->
+        <section class="on-ink section" id="focus">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Where my time goes</p>
+                    <h2>Four things I&rsquo;m working on right now.</h2>
+                </div>
+
+                <div class="cards">
+                    <div class="card">
+                        <h3 class="card__q">Cornerstone Solutions</h3>
+                        <p class="card__body">
+                            My fractional consulting practice. Operations, capacity planning, and process excellence,
+                            with Lean Six Sigma rigor, for teams that need it now.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card__q">Abide Discipleship Program</h3>
+                        <p class="card__body">
+                            A free online discipleship ministry at
+                            <a href="https://bensonacademy.com" target="_blank" rel="noopener">bensonacademy.com</a>. I
+                            built it and I run it.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card__q">Data and analytics</h3>
+                        <p class="card__body">
+                            SQL, Python, and dashboards in Grafana and Streamlit that turn operations into numbers
+                            people can act on: a client analytics system in daily use, and a data-quality scorecard on
+                            public CMS data. Code on
+                            <a href="https://github.com/BensonJT" target="_blank" rel="noopener">GitHub</a>.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card__q">Leland AI Builder program</h3>
+                        <p class="card__body">
+                            Working through Level 1 and shipping a build at every step. Each one goes into the
+                            <a class="textlink" href="ai-builder-level1.html">Level 1 ledger</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- leland:drop-start (the bundle shows these sections in full instead of linking to them) -->
+        <!-- ══════════ IN THIS PORTFOLIO ══════════ -->
+        <section class="on-paper section" id="portfolio" aria-label="In this portfolio">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">In this portfolio</p>
+                    <h2>Three ways in.</h2>
+                </div>
+                <div class="cards">
+                    <article class="card">
+                        <h3 class="card__q"><a href="ai-builder-projects.html">Projects</a></h3>
+                        <p class="card__body">
+                            What I have built with AI since December 2025, project by project: what each one does, where
+                            the AI is and where it is not, and what it took.
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3 class="card__q"><a href="ai-builder-evaluation.html">Evaluation</a></h3>
+                        <p class="card__body">
+                            How I measure a model's output before I trust it, with one evaluation story for each
+                            project, in date order.
+                        </p>
+                    </article>
+                    <article class="card">
+                        <h3 class="card__q">
+                            <a href="ai-builder-level1.html">Level 1<span class="subnav__more"> builds</span></a>
+                        </h3>
+                        <p class="card__body">
+                            The nine builds from Level 1 of the Leland AI Builder program, documented as they shipped.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- leland:drop-end -->
+
+        <!-- leland:insert (the bundle puts the Projects, Evaluation and Level 1 sections here) -->
+
+        <!-- ══════════ 7. CLOSE ══════════ -->
+        <section class="on-olive section" id="contact">
+            <div class="wrap">
+                <div class="s-head">
+                    <h2>Want to see how any of this was built?</h2>
+                    <p>
+                        Ask me. I&rsquo;m glad to walk through the decisions, the dead ends, and what I&rsquo;d do
+                        differently next time.
+                    </p>
+                    <p>Open to full-time and contract roles in process excellence, analytics, and applied AI.</p>
+                </div>
+                <div class="hero__actions">
+                    <a
+                        class="btn btn--primary"
+                        href="https://www.linkedin.com/in/jeffreytbenson/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Start a conversation</a
+                    >
+                    <a class="btn btn--ghost" href="index.html">Main profile</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ FOOTER ══════════ -->
+        <footer class="on-ink foot">
+            <div class="wrap">
+                <div class="foot__grid">
+                    <div>
+                        <h3>Jeffrey Benson</h3>
+                        <p class="card__body">
+                            Lean Six Sigma Black Belt. Thirty-one years of Fortune 20 business transformation. Principal
+                            at Cornerstone Solutions.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>AI Builder</h3>
+                        <ul>
+                            <li><a href="ai-builder.html">Overview</a></li>
+                            <li><a href="ai-builder-projects.html">Projects</a></li>
+                            <li><a href="ai-builder-evaluation.html">Evaluation</a></li>
+                            <li>
+                                <a href="ai-builder-level1.html">Level 1<span class="subnav__more"> builds</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Elsewhere</h3>
+                        <ul>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com/in/jeffreytbenson/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >LinkedIn</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://github.com/BensonJT" target="_blank" rel="noopener noreferrer"
+                                    >GitHub</a
+                                >
+                            </li>
+                            <li><a href="index.html">Profile site</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="foot__fine">Northern Virginia. Contact through LinkedIn.</p>
+            </div>
+        </footer>
+
+        <!-- Shared popup for every build's "How I built this" / "Documentation" -->
+        <dialog class="sheet" data-sheet aria-labelledby="sheet-title">
+            <div class="sheet__head">
+                <div>
+                    <p class="eyebrow" data-sheet-kind></p>
+                    <h2 class="sheet__title" id="sheet-title" data-sheet-title></h2>
+                </div>
+                <button class="sheet__close" type="button" data-sheet-close>Close</button>
+            </div>
+            <div class="sheet__body" data-sheet-body></div>
+        </dialog>
+
+        <!-- Full-screen window for the Build 06 deck. The Presentation links work as plain links with JS off;
+             build_single.py inlines the deck here (data-deck-b64) for single-file hosts. The frame is
+             created by builder.js on first open: Leland's sanitizer strips frame tags from the markup. -->
+        <dialog class="sheet sheet--deck" data-deck-sheet aria-labelledby="deck-title">
+            <div class="sheet__head">
+                <div>
+                    <p class="eyebrow">Presentation</p>
+                    <h2 class="sheet__title" id="deck-title">Where my experience fits</h2>
+                </div>
+                <button class="sheet__close" type="button" data-deck-close>Close</button>
+            </div>
+            <div class="deck__slot" data-deck-slot></div>
+            <p class="deck__hint">
+                Click the slides, then use the arrow keys. N shows my speaker notes, F goes full screen.
+            </p>
+        </dialog>
+
+        <script src="js/site.js" defer></script>
+
+        <script src="js/builder.js" defer></script>
+    </body>
+</html>

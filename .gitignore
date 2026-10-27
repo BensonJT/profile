@@ -20,3 +20,9 @@ __pycache__/
 
 # Word master stays local; only the PDF publishes
 Jeffrey_Benson_Resume.docx
+
+# Node test tooling (package.json); the deck test drives the system Chrome, so no browser download
+node_modules/
+
+# Leland single-file bundle when built outside the vault (tools/leland/build_single.py)
+dist/

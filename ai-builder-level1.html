@@ -1,0 +1,1666 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>AI Builder: Level 1 Builds — Jeffrey Benson</title>
+        <meta
+            name="description"
+            content="The nine builds from Level 1 of the Leland AI Builder program, documented as they shipped."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="AI Builder: Level 1 Builds — Jeffrey Benson" />
+        <meta
+            property="og:description"
+            content="Learning to build with AI the way I learned everything else: one build at a time, documented."
+        />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="css/site.css" />
+        <link rel="stylesheet" href="css/builder.css" />
+    </head>
+
+    <body>
+        <!-- ══════════ NAV ══════════ -->
+        <nav class="nav">
+            <div class="wrap">
+                <div class="nav__inner">
+                    <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+                    <div class="nav__links">
+                        <a href="ai-builder.html" class="is-current" aria-current="page">AI Builder</a>
+                        <a href="work.html">Work</a>
+                        <a href="method.html">Method</a>
+                        <a href="systems.html">Systems</a>
+                        <a href="articles.html">Notebook</a>
+                        <a href="about.html">About</a>
+                    </div>
+                    <a class="btn btn--primary nav__cta" href="resume.html">Résumé</a>
+                    <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">
+                        Menu
+                    </button>
+                </div>
+                <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+                    <a href="ai-builder.html" class="is-current" aria-current="page">AI Builder</a>
+                    <a href="work.html">Work</a>
+                    <a href="method.html">Method</a>
+                    <a href="systems.html">Systems</a>
+                    <a href="articles.html">Notebook</a>
+                    <a href="about.html">About</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- leland:drop-start (the bundle is one page; it has no sub-nav) -->
+        <nav class="subnav" aria-label="AI Builder pages">
+            <div class="wrap subnav__inner">
+                <span class="subnav__label">AI Builder</span>
+                <a href="ai-builder.html">Overview</a>
+                <a href="ai-builder-projects.html">Projects</a>
+                <a href="ai-builder-evaluation.html">Evaluation</a>
+                <a href="ai-builder-level1.html" aria-current="page"
+                    >Level 1<span class="subnav__more"> builds</span></a
+                >
+            </div>
+        </nav>
+        <!-- leland:drop-end -->
+
+        <!-- leland:drop-start (page heads are not part of the one-page bundle) -->
+        <header class="on-ink" id="top">
+            <div class="wrap page-head">
+                <p class="eyebrow">Leland AI Builder &middot; Level 1</p>
+                <h1>Level 1 builds</h1>
+                <p class="lede">
+                    The nine Level 1 builds, documented as they shipped, then what I'm automating next and how my use of
+                    AI changed across the sessions.
+                </p>
+            </div>
+        </header>
+        <!-- leland:drop-end -->
+
+        <!-- leland:content-start -->
+
+        <!-- ══════════ 6. BUILDS ══════════
+             To update a build:
+               1. Change data-status to "soon", "progress", or "shipped"
+               2. Change the .build__status text to match
+               3. Write the popup content inside its two .build__panel blocks (plain HTML: <p>, <ul>, <img>...)
+        -->
+        <section class="on-paper section" id="builds">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Leland AI Builder &middot; Level 1</p>
+                    <h2>Nine builds, documented as they ship.</h2>
+                    <p>
+                        Some of these are new to me; others formalize what I was already doing in my
+                        <a class="textlink" href="ai-builder-projects.html">projects</a>. Each card says which. Every
+                        build gets two write-ups: how I built it, and the documentation someone else would need to use
+                        it.
+                    </p>
+                </div>
+
+                <div class="ledger">
+                    <article class="build" data-status="shipped">
+                        <div class="build__meta">
+                            <span class="build__n">Build 01</span><span class="build__status">Shipped</span>
+                        </div>
+                        <h3 class="build__title">Design System Skill</h3>
+                        <p class="build__body">
+                            A skill that applies my profile site&rsquo;s exact colors, type, and layout rules to
+                            anything I build.
+                        </p>
+                        <p class="build__on">Builds on: my profile site&rsquo;s design</p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>A look described in words drifts.</h3>
+                                <p>
+                                    I wanted everything I build in this program to feel like my profile site. Telling an
+                                    AI &ldquo;warm, editorial, gold accents&rdquo; gets you something close, and close
+                                    is the problem: every page comes back a slightly different shade of the same idea.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>I pulled the values from the site&rsquo;s code.</h3>
+                                <p>
+                                    Instead of describing the site from screenshots, I gave Claude access to the
+                                    site&rsquo;s source and had it read the one stylesheet that governs every page. Out
+                                    came a design guide with exact hex codes, the type scale, the layout rules, and five
+                                    words for the feel: editorial, grounded, confident, understated, crafted.
+                                </p>
+                                <p>
+                                    I turned that guide into a reusable skill, <code>/personal-profile-design</code>, so
+                                    any future build can load the whole visual system with one command.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>One source of truth, referenced everywhere.</h3>
+                                <p>
+                                    Reading the code mattered because the site already had decisions a screenshot
+                                    can&rsquo;t show, like separate gold tones for text on light and dark backgrounds,
+                                    each checked for contrast. An eyeballed palette would have lost that.
+                                </p>
+                                <p>
+                                    I also kept every copy pointing back to the original. This portfolio uses an exact
+                                    copy of the profile site&rsquo;s stylesheet rather than a rewrite, and the write-up
+                                    skill I built next loads this skill instead of repeating its colors. Same principle
+                                    as any process standard: copies drift, references don&rsquo;t.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>My first portfolio looked like someone else&rsquo;s.</h3>
+                                <p>
+                                    Before this skill existed, the first version of this portfolio was a dark theme with
+                                    neon accents and an animated network background. Side by side with my profile site,
+                                    it read as a different person, and a more junior one. I scrapped it and rebuilt the
+                                    portfolio on the profile site&rsquo;s system.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Put the skill under version control.</h3>
+                                <p>
+                                    The skill lives in my Claude account, where it works in both the Claude app and
+                                    Claude Code. Next I&rsquo;ll keep a copy in my own git-tracked workspace, so changes
+                                    to it have a history like everything else I build.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                Applies my profile site&rsquo;s visual identity to any page, portfolio, artifact, or
+                                mockup, using the site&rsquo;s exact values.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>How to use</dt>
+                                    <dd>
+                                        Type <code>/personal-profile-design</code> in Claude or Claude Code, then
+                                        describe what to build. It can also load on its own when a request asks for
+                                        something in this style.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Inputs</dt>
+                                    <dd>A request for a page or design. Optionally, existing content to restyle.</dd>
+                                </div>
+                                <div>
+                                    <dt>What it provides</dt>
+                                    <dd>
+                                        A token block of colors, type sizes, and spacing to paste first; color and
+                                        typography rules; the alternating-band page layout; specs for cards, tiles,
+                                        buttons, and links; a pre-finish checklist; and a one-paragraph style prompt for
+                                        handing the look to another tool.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Outputs</dt>
+                                    <dd>Markup and CSS that match the profile site.</dd>
+                                </div>
+                                <div>
+                                    <dt>Works with</dt>
+                                    <dd>
+                                        <code>/personal-profile-writeup</code>, which loads this skill before writing
+                                        build write-ups for this portfolio.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Known limit:</strong> the skill holds a snapshot of the site&rsquo;s values.
+                                    If the profile site&rsquo;s stylesheet changes, the skill has to be updated by hand,
+                                    or the two will quietly drift apart.
+                                </p>
+                                <p>
+                                    Standalone pages load the fonts from Google Fonts. This portfolio and the profile
+                                    site host their own copies instead.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="build" data-status="shipped">
+                        <div class="build__meta">
+                            <span class="build__n">Build 02</span><span class="build__status">Shipped</span>
+                        </div>
+                        <h3 class="build__title">Portfolio Website</h3>
+                        <p class="build__body">
+                            This portfolio: a living record of the program, built to match my main profile site and
+                            merged into it in October 2026.
+                        </p>
+                        <p class="build__on">Builds on: my profile site</p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>The course wanted one page. I needed something that would last.</h3>
+                                <p>
+                                    The program asks for a portfolio as a single self-contained HTML file. That works
+                                    for a class, but I already have a profile site, and a second site that looks and
+                                    works differently splits my story in two. I wanted one page that could grow through
+                                    the course and then move into the profile site without being rebuilt.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>Version two mirrors the profile site, file for file.</h3>
+                                <p>
+                                    Version one followed the course prompt: a single dark-themed file with an animated
+                                    background. Once I compared it with my profile site, I rebuilt it on the profile
+                                    site&rsquo;s own system instead.
+                                </p>
+                                <p>
+                                    The page now uses the same folder layout as the profile repo, an exact copy of its
+                                    stylesheet and script, the same self-hosted fonts, and the same headshot at the same
+                                    path. The handful of new pieces, like the build cards and the popups, live in their
+                                    own small stylesheet and script, written to be appended to the shared ones at merge
+                                    time.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>Design for the merge from the start.</h3>
+                                <p>
+                                    Every choice was made against one test: will this drop into the profile site
+                                    unchanged? That&rsquo;s why the page is named <code>ai-builder.html</code> rather
+                                    than <code>index.html</code>, which the profile site already uses. Write-ups live in
+                                    the page next to their card, not inside a script, so they can become detail pages
+                                    later.
+                                </p>
+                                <p>
+                                    The course still needs a single file, so that became a build step, not the source. A
+                                    short Python script packs the page, styles, scripts, fonts, and images into one file
+                                    for upload, and the multi-file version stays the one I edit.
+                                </p>
+                                <p>
+                                    My workspace commits and pushes to git every ten minutes, so the API key for
+                                    publishing lives in a file git is told to ignore, checked before the key went in.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>A fix that never landed.</h3>
+                                <p>
+                                    I tightened the popup spacing, saw it work in testing, and moved on. Two steps
+                                    later, the popups still looked loose. The save to my folder had run at the same
+                                    moment as the edit and copied the old stylesheet. It was caught by opening the
+                                    popups again and checking the built file for the rule, not by assuming the save had
+                                    worked.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Decide where it ends up before building the first version.</h3>
+                                <p>
+                                    Knowing from the start that this page would merge into my profile site would have
+                                    skipped a full rebuild. The single-file version is now live on the course site;
+                                    still to do is merging the page into the profile site when the program ends.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                A portfolio page for the Leland AI Builder program: every course build, documented as it
+                                ships, alongside the systems I&rsquo;ve built since December 2025. Built to merge into
+                                my profile site.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Files</dt>
+                                    <dd>
+                                        <code>ai-builder.html</code> (the page), <code>css/site.css</code> and
+                                        <code>js/site.js</code> (exact copies from the profile site),
+                                        <code>css/builder.css</code> and <code>js/builder.js</code> (page-only pieces),
+                                        <code>fonts/</code>, <code>img/</code>.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Update a build</dt>
+                                    <dd>
+                                        Run <code>/personal-profile-writeup</code> and name the build. It writes both
+                                        popups, sets the card&rsquo;s status, and updates the project notes.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Preview</dt>
+                                    <dd>
+                                        Open <code>ai-builder.html</code> through a local server, such as VS Code Live
+                                        Server or <code>python3 -m http.server</code>.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Single-file export</dt>
+                                    <dd>
+                                        <code>python3 scripts/build_single.py</code> writes
+                                        <code>dist/ai-builder-single.html</code>, one file with no outside files needed.
+                                        Re-run it after every change, before uploading.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Secrets</dt>
+                                    <dd>
+                                        <code>.env</code> holds the publishing key and is git-ignored.
+                                        <code>.env.example</code> shows which keys are expected, with no values.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Status</dt>
+                                    <dd>
+                                        Restyled and published as a single file on the Leland course site. Merging into
+                                        the profile site is next.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Known limit:</strong> opened by double-clicking, the multi-file page shows
+                                    fallback fonts, because browsers block local font files. Use a local server to
+                                    preview. The single-file export doesn&rsquo;t have this problem.
+                                </p>
+                                <p>
+                                    Links to the profile site are full web addresses until the merge, when they switch
+                                    to relative paths.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="build" data-status="shipped">
+                        <div class="build__meta">
+                            <span class="build__n">Build 03</span><span class="build__status">Shipped</span>
+                        </div>
+                        <h3 class="build__title">Voice Guide Skill</h3>
+                        <p class="build__body">
+                            Two guides to how I write, built from nearly 30 years of my writing from before AI, tested
+                            blind, and loaded by every writing skill in my AI workspace.
+                        </p>
+                        <p class="build__on">Builds on: Keystone&rsquo;s voice and persona files</p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>My recent email would have taught Claude to sound like Claude.</h3>
+                                <p>
+                                    The course builds a voice guide from your 20 most recent sent emails. I have written
+                                    with AI every day since December 2025, and no email from before that survives. I
+                                    also noticed I had started picking up some of Claude&rsquo;s words myself. A guide
+                                    built from my inbox would have described the AI, not me.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>I built the guide from what I wrote before AI.</h3>
+                                <p>
+                                    I gathered my own writing from 1995 to 2023: personal journals (about 231,000
+                                    words), letters to friends, a 2011 email to a director, career and accomplishment
+                                    notes, and study notes. I added 71,000 words of my own typed messages to Claude for
+                                    my current habits. Claude analyzed it into the course&rsquo;s nine sections, and
+                                    every example in the guide is a verbatim quote checked against the source.
+                                </p>
+                                <p>
+                                    I split it into two guides, professional and personal. The same person writes a
+                                    status update and a condolence letter, but not at the same speed. Then I tested the
+                                    guides blind and wired them into my AI workspace.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>The older writing wins, and a blind test decides.</h3>
+                                <p>
+                                    When my recent writing and my pre-AI writing disagree, the guide trusts the pre-AI
+                                    writing. My 1995 to 2011 letters and journals show how I use a word. My 2026 chats
+                                    can hand Claude&rsquo;s habits back to it.
+                                </p>
+                                <p>
+                                    I didn&rsquo;t trust the guide until it beat no guide. Fresh Claude agents drafted
+                                    the same reply to a message I had received, two with the guide and two without, and
+                                    I rated the shuffled drafts before learning which was which. A small script checks
+                                    the countable rules (em dashes, banned phrases, ending on a question). I judge the
+                                    rest.
+                                </p>
+                                <p>
+                                    I didn&rsquo;t make it a standalone skill. The guides live in Keystone&rsquo;s
+                                    persona files, the master index lists them, and each writing router (job
+                                    applications, cover letters, professional posts, Bible study posts) tells Claude to
+                                    load them. Any writing task picks them up without my asking. Most rules ask Claude
+                                    to vary its words, not ban them: I like how Claude puts things, and the goal is
+                                    drafts that sound more like me with each document.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>The first version lost to no guide at all.</h3>
+                                <p>
+                                    In round 1, drafts written with the guide scored 2.5 out of 5 on average. Drafts
+                                    without it scored 4.0. The guide&rsquo;s own descriptive words leaked into the
+                                    drafts (&ldquo;plainly&rdquo;, a word I almost never use). The task instructions
+                                    leaked too: &ldquo;honest&rdquo; showed up in all four drafts. And numbered lists
+                                    came from my chats with Claude, where I write instructions, not from how I write to
+                                    people.
+                                </p>
+                                <p>
+                                    I added a &ldquo;how to use this guide&rdquo; section: my own words come first and
+                                    the guide only adjusts them, never copy the guide&rsquo;s words, and tell a story in
+                                    paragraphs. In round 2, the guide plus my own words scored 5.0, the guide alone 4.0,
+                                    and no guide 3.0. In round 3 the context already held my words and every fact, and
+                                    every arm scored 4.5 to 5. A guide matters most when the context is thin.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Test it where it should matter most.</h3>
+                                <p>
+                                    The next tests use thin-context tasks, like a cold email or a resume summary, where
+                                    Claude has little of my wording to borrow. The guide also keeps learning. When I
+                                    send a document, the version I sent is compared with Claude&rsquo;s draft and every
+                                    sentence I changed is saved. After about five documents, I&rsquo;ll rewrite the
+                                    guide&rsquo;s sentence rules from those edits.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                Two guides to how I write, professional and personal, that Claude loads before drafting
+                                anything in my voice. A checker and a growing file of my edits keep them improving.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>How to use</dt>
+                                    <dd>
+                                        Ask for any draft in my voice. Claude finds the right guide through the index
+                                        and the writing router for the task. Give it my notes or a rough draft first. It
+                                        builds from my words and uses the guide to adjust. Then run
+                                        <code>python3 voice_check.py draft.txt</code>.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Sections</dt>
+                                    <dd>
+                                        The course&rsquo;s nine (core identity, registers, sentence patterns, rhetorical
+                                        moves, emotional register, do&rsquo;s and don&rsquo;ts, quick reference,
+                                        calibration tests, AI tics to avoid) plus three of mine: how to use the guide,
+                                        cover letters and resume summaries, and growing the guide from my edits.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Inputs</dt>
+                                    <dd>My notes, rough draft or facts, and the kind of message.</dd>
+                                </div>
+                                <div>
+                                    <dt>Outputs</dt>
+                                    <dd>
+                                        A draft in the right register, and a checker report with FAIL and WARN lines (em
+                                        dashes, banned phrases, overused words, no closing question).
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Feedback loop</dt>
+                                    <dd>
+                                        After I send a resume or letter, the .docx I sent is compared with
+                                        Claude&rsquo;s markdown draft, and each sentence I changed is saved as a
+                                        before-and-after pair.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Build your own</dt>
+                                    <dd>
+                                        Collect writing from before you used AI and run the course&rsquo;s nine-section
+                                        prompt on it instead of your recent sent email. Then have two drafts written
+                                        with the guide and two without, and rate them blind.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Known limit:</strong> the corpus holds one pre-AI work email and no cover
+                                    letter I wrote myself, so the email and cover-letter rules are a starting set,
+                                    corrected from my edits. And my own words still beat the guide. When Claude has my
+                                    notes, it should use them.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="build" data-status="shipped">
+                        <div class="build__meta">
+                            <span class="build__n">Build 04</span><span class="build__status">Shipped</span>
+                        </div>
+                        <h3 class="build__title">Email Manager Scheduled Task</h3>
+                        <p class="build__body">
+                            A daily system that labels, sweeps, and summarizes my Gmail: rules run as code, and Claude
+                            handles only what the rules can&rsquo;t.
+                        </p>
+                        <p class="build__on">New to me: scheduled AI tasks</p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>An inbox I never check still fills up.</h3>
+                                <p>
+                                    Outlook is my main email, and I spent weeks cleaning it up with sweep rules,
+                                    folders, and unsubscribes. My Gmail got none of that. When I connected Claude to it,
+                                    the inbox held 1,144 threads, 885 of them unread. A few account and billing notices
+                                    that needed me were buried under job alerts, store promotions, and newsletters.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>Plan first, then act.</h3>
+                                <p>
+                                    I didn&rsquo;t let Claude change anything at first. It read the whole inbox and
+                                    wrote a plan: every recurring sender, what it is, and a proposed action. I marked up
+                                    the plan with my decisions, and only then did it build.
+                                </p>
+                                <p>
+                                    The result is 14 labels. Eight are kept for good (finance, receipts, security,
+                                    people, employers, AI services, AI news, lawsuit notices). Six are swept: anything
+                                    in them is trashed after 10 days, or after 3 for marketing I&rsquo;ve unsubscribed
+                                    from.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>Code for the rules, Claude for the judgment.</h3>
+                                <p>
+                                    Labeling a known sender or trashing a 10-day-old job alert never needs judgment, so
+                                    a Google Apps Script does it: 49 sender rules become Gmail filters, and a daily
+                                    sweep trashes by label and age. It runs free, every day, with my computer off.
+                                </p>
+                                <p>
+                                    A scheduled Claude routine runs each morning in the cloud. It finds senders no rule
+                                    covers and proposes new rules I can paste in, reads the job-scan emails, flags
+                                    anything that needs me, and lists my meetings for today and the week. It never
+                                    deletes or sends. It leaves one draft for me to read.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>The job reports had no jobs in them.</h3>
+                                <p>
+                                    A daily AI job scan had sent 251 reports. When Claude read one, it held a three-line
+                                    summary and a link; the roles themselves were on another site. The top match that
+                                    day was a company that had already turned me down a month earlier, so the scan
+                                    didn&rsquo;t know my history either.
+                                </p>
+                                <p>
+                                    Two smaller ones: the Gmail connector can&rsquo;t see the spam folder, so the script
+                                    reports on spam instead; and Claude&rsquo;s first delete was blocked until I granted
+                                    that permission myself.
+                                </p>
+                                <p>
+                                    The spam report turned up 156 threads. 155 were scams, each from a throwaway domain,
+                                    so blocking senders would do nothing. One was a real class-action settlement notice
+                                    I could claim. Claude had also flagged an older settlement email in my inbox as
+                                    phishing; it was real too. Now both go to their own label.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Make the scan send the jobs themselves.</h3>
+                                <p>
+                                    Next I&rsquo;ll change the job-scan prompt so each email lists the roles, and have
+                                    the morning routine check them against my application tracker. Then I&rsquo;ll run
+                                    the same setup on my other Gmail accounts.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                Keeps a Gmail inbox near zero: known senders are labeled on arrival, swept labels are
+                                emptied by age, and a morning summary covers what the rules missed.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Deterministic part</dt>
+                                    <dd>
+                                        A Google Apps Script with two tables: labels with a keep-or-sweep period, and
+                                        sender rules. One-time functions create the labels and filters, label existing
+                                        mail, move old receipts, and unsubscribe through each sender&rsquo;s one-click
+                                        link. A daily trigger runs the sweep. Starred mail is never touched.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Claude part</dt>
+                                    <dd>
+                                        A scheduled Claude Code routine (cloud, daily at 7am) with the Gmail and Google
+                                        Calendar connectors. It reads the script&rsquo;s rules from my workspace so it
+                                        knows what&rsquo;s already handled.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Outputs</dt>
+                                    <dd>
+                                        One draft each morning: what needs me, proposed new sender rules, job-scan
+                                        roles, today&rsquo;s meetings, and this week&rsquo;s.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Guardrails</dt>
+                                    <dd>
+                                        The routine is read-only except for that draft. Email text is treated as data,
+                                        never as instructions. Deletes go to Trash, which keeps them 30 days.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Results on day one</dt>
+                                    <dd>
+                                        The first sweep trashed 894 threads in four minutes: 438 job scans, 255 hobby
+                                        newsletters, 182 from marketing I&rsquo;d unsubscribed from, and 19 more. 13 of
+                                        19 marketing senders unsubscribed by one-click link; 6 need a manual opt-out.
+                                        The first morning draft found no sender the rules missed.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Known limit:</strong> Gmail filters act only when mail arrives, so age-based
+                                    rules need the script. Unsubscribes without a one-click link still need a person.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="build" data-status="shipped">
+                        <div class="build__meta">
+                            <span class="build__n">Build 05</span><span class="build__status">Shipped</span>
+                        </div>
+                        <h3 class="build__title">Spreadsheet Analysis</h3>
+                        <p class="build__body">
+                            My job-search data turned into answers: SQL views, a formula-driven Excel workbook, and
+                            charts that redraw after every pipeline run.
+                        </p>
+                        <p class="build__on">
+                            Builds on: Sheets Decomposer, AdoptiScope, Requirements Fit Analyzer, and Forester
+                        </p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                            <a class="textlink" href="ai-builder-projects.html#jobsearch">See the charts &uarr;</a>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>Thousands of graded roles, and no way to see the pattern.</h3>
+                                <p>
+                                    My Requirements Fit Analyzer scores thousands of job postings against my record. The
+                                    answers I needed were in there: which industries fit me, which lens drives the fit,
+                                    and which good fits I had never applied to. But the data sat in a database the
+                                    pipeline locks for hours at a time, and nothing rolled it up.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>Ask the question first, then pick the chart.</h3>
+                                <p>
+                                    I told Claude what I wanted to learn, not which chart to draw. It proposed the
+                                    measures and the forms: a bar chart for fit by industry, a scatter for posting
+                                    volume against fit, a heatmap for industry by lens, and a stacked bar for the grade
+                                    mix. I picked the ones that answered my question and cut the rest.
+                                </p>
+                                <p>
+                                    Then I split the work by audience. A public version shows industries and percentages
+                                    only. A private Excel workbook shows each employer and drives my next applications.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>The database does the math, and formulas keep the workbook checkable.</h3>
+                                <p>
+                                    Everything queries a PostgreSQL copy of the pipeline&rsquo;s results, never the
+                                    working database, so a report never waits on a run. SQL views hold every calculation
+                                    once. Excel and the charts use the same views, so they always agree.
+                                </p>
+                                <p>
+                                    The workbook&rsquo;s summary tabs are formulas over a data tab, not typed numbers. A
+                                    filter or a fix in the data recalculates every total. The charts are drawn by a
+                                    short script in the site&rsquo;s colors, and the pipeline starts it 45 seconds after
+                                    each snapshot finishes.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>The first answer was too good to be true.</h3>
+                                <p>
+                                    The first count said I had never applied to most of my good fits. Some of those I
+                                    had applied to. Older tracker rows were missing the posting ID that links an
+                                    application to a posting, so applied roles looked untouched. The fix is in the data,
+                                    not the chart.
+                                </p>
+                                <p>
+                                    The second surprise held up. Fit on paper is not the same as interest from
+                                    employers. Most of my screens so far came from the industry where I fit worst on
+                                    paper. The workbook now tracks responses next to fit, so I can see both.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Keep history, and close the gaps in the old records.</h3>
+                                <p>
+                                    Each run replaces the snapshot, so I can&rsquo;t chart change over time yet. Next
+                                    I&rsquo;ll keep a small daily history table for trend lines. I&rsquo;ll also map the
+                                    company names in my older application records, so response rates cover every
+                                    application, not just the newer ones.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                Rolls my job-search pipeline&rsquo;s graded postings and application history into views,
+                                a workbook, and charts, and refreshes them all after every run.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Inputs</dt>
+                                    <dd>
+                                        The pipeline&rsquo;s nightly PostgreSQL snapshot of active postings and grades,
+                                        my application tracker, and a map from employer to industry.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Deterministic part</dt>
+                                    <dd>
+                                        Nine SQL views compute fit by industry, employer, and lens, the workplace mix,
+                                        the untapped good fits, and the application funnel. A standard-library Python
+                                        script draws five SVG charts. A second script writes the Excel workbook with
+                                        native charts.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Outputs</dt>
+                                    <dd>
+                                        Five public charts (industries and percentages only) and a private workbook with
+                                        seven tabs: Industry, Employer, Lens, Untapped, Applications, Data, and a
+                                        README.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Trigger</dt>
+                                    <dd>
+                                        The pipeline&rsquo;s launcher starts the refresh 45 seconds after each snapshot.
+                                        It skips the work when nothing changed, and a chart file is rewritten only when
+                                        its numbers change.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Checks</dt>
+                                    <dd>
+                                        I had Excel itself open the workbook and recalculate it: about 49,900 formulas,
+                                        no errors, and totals that match the database. Every chart was rendered and
+                                        checked by eye before it went on the page.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Sheets Decomposer</dt>
+                                    <dd>Turns a large inherited workbook into living documentation.</dd>
+                                </div>
+                                <div>
+                                    <dt>AdoptiScope</dt>
+                                    <dd>
+                                        Generates an Excel workbook, a Google Sheets version, and a docs site in sync.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Requirements Fit Analyzer</dt>
+                                    <dd>Supplies the graded data, and refreshes a Google Sheet copy of my tracker.</dd>
+                                </div>
+                                <div>
+                                    <dt>Forester</dt>
+                                    <dd>Imports and exports Excel models and BI insights.</dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Known limit:</strong> fit rates are shares of the shortlist the AI judge
+                                    graded, not of every posting. Every chart says so in a footnote.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="build" data-status="shipped">
+                        <div class="build__meta">
+                            <span class="build__n">Build 06</span><span class="build__status">Shipped</span>
+                        </div>
+                        <h3 class="build__title">Data Analysis Presentation</h3>
+                        <p class="build__body">
+                            Six slides from my job-search data, designed in Claude Design and rebuilt after every
+                            pipeline run.
+                        </p>
+                        <p class="build__on">Builds on: Requirements Fit Analyzer and the data migration assessment</p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                            <a class="textlink" href="my-presentation.html" data-deck>Presentation</a>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>A typed deck would be out of date after the next run.</h3>
+                                <p>
+                                    The course asked for a data presentation: six slides or fewer, one point per slide,
+                                    and a title on each slide that states the finding. I already had the dataset. My
+                                    Requirements Fit Analyzer grades thousands of open roles against my record every
+                                    night, so any number I typed into slides would be wrong by the next morning.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>Design it once in Claude Design, then let the data fill it in.</h3>
+                                <p>
+                                    I gave Claude Design my site&rsquo;s style guide (the colors, fonts, and spacing
+                                    pulled from this site&rsquo;s stylesheet) and a six-slide outline I had approved,
+                                    and asked for a deck that looks like this site. The first draft matched well enough
+                                    that I kept it as the design.
+                                </p>
+                                <p>
+                                    Then Claude Code rebuilt that design as a Python script. The script reads the same
+                                    PostgreSQL views as my Build 05 charts, fills in every number, and writes the deck
+                                    as one HTML file you can page through with the arrow keys. Press N for my speaker
+                                    notes.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>Every headline is a claim the script checks first.</h3>
+                                <p>
+                                    A slide title like &ldquo;Healthcare and consulting fit me best&rdquo; has to stay
+                                    true after the next run. The script tests each headline against the data before it
+                                    writes it. If a pattern changes, the slide switches to a neutral title instead of
+                                    printing something false.
+                                </p>
+                                <p>
+                                    The same refresh feeds two audiences. The public deck shows industries and
+                                    percentages only, and a small workbook lists each figure next to the view it came
+                                    from. A private report goes one level deeper, to each employer: which ones have
+                                    good-fit roles I haven&rsquo;t applied to, which ones answered me before, and which
+                                    ones haven&rsquo;t answered after several applications. I keep it open next to my
+                                    tracker spreadsheet when I decide which job descriptions to read next.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>My own outline had a false headline.</h3>
+                                <p>
+                                    The approved outline said &ldquo;Most of my good fits are remote.&rdquo; Checking
+                                    the numbers before the build showed remote leads at 44.5%, which is not most. The
+                                    slide now says remote leads, and the script picks that headline from the data on
+                                    every run.
+                                </p>
+                                <p>
+                                    The private report hit a matching problem. My tracker and the job boards spell the
+                                    same company differently (&ldquo;Booz Allen&rdquo; and &ldquo;Booz Allen
+                                    Hamilton&rdquo;), and only about a third matched exactly. The report now normalizes
+                                    company names before it joins them.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Count every response, and keep history.</h3>
+                                <p>
+                                    About half my older applications came over from a spreadsheet without their status
+                                    history, so the report undercounts screens. I&rsquo;d backfill that history first.
+                                    I&rsquo;d also keep a daily history table so the deck can show change over time, not
+                                    just today.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                Turns my job-search pipeline&rsquo;s nightly results into a six-slide presentation and a
+                                private focus report, rebuilt after every run.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Inputs</dt>
+                                    <dd>
+                                        The pipeline&rsquo;s PostgreSQL snapshot of graded postings, my application
+                                        tracker and its status history, and the employer-to-industry map from Build 05.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Design</dt>
+                                    <dd>
+                                        A Claude Design draft, prompted with my site&rsquo;s style guide and the
+                                        approved outline, then rebuilt in code so it matches the site.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Deterministic part</dt>
+                                    <dd>
+                                        A Python script computes every figure from SQL views, tests each headline
+                                        against the data, and writes the deck as one self-contained HTML file: fonts
+                                        inside, no network calls. A second script writes the private report the same
+                                        way.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Outputs</dt>
+                                    <dd>
+                                        The deck with speaker notes, a workbook (my-data.xlsx) with each figure and its
+                                        source view, and a private employer-level report with filters, sorting, and a
+                                        link to each posting.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Trigger</dt>
+                                    <dd>
+                                        The same refresh that redraws the Build 05 charts, 45 seconds after each
+                                        pipeline snapshot. Refreshing the browser shows the new version.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Checks</dt>
+                                    <dd>
+                                        Every slide was rendered and checked against the approved design. The speaker
+                                        notes passed my voice checker. Each headline has a fallback for when its pattern
+                                        flips, and the deck&rsquo;s numbers match the charts because both read the same
+                                        views.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Requirements Fit Analyzer</dt>
+                                    <dd>Supplies the graded data and the questions the deck answers.</dd>
+                                </div>
+                                <div>
+                                    <dt>Data migration assessment</dt>
+                                    <dd>
+                                        The same move from raw data to a go/no-go decision, told to decision makers.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Known limit:</strong> fit rates are shares of the shortlist the AI judge
+                                    graded, not of every posting. Every data slide says so.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="build" data-status="shipped">
+                        <div class="build__meta">
+                            <span class="build__n">Build 07</span><span class="build__status">Shipped</span>
+                        </div>
+                        <h3 class="build__title">File Organization Process</h3>
+                        <p class="build__body">
+                            A folder system my AI tools can find their way through: four top folders, one spec, and
+                            scripts that check it.
+                        </p>
+                        <p class="build__on">Builds on: Keystone&rsquo;s folder structure</p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>Years of files, and an AI that had to search for everything.</h3>
+                                <p>
+                                    Keystone keeps my work, my faith projects, and the skills my AI tools use: about
+                                    158,000 words in the skill files alone. When files lived wherever I saved them,
+                                    every session started with a search, and the AI filled the gaps with guesses.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>One spec decides where every file goes.</h3>
+                                <p>
+                                    I wrote the rules down once, in a spec the AI reads before it creates, moves, or
+                                    deletes a file. Professional and Personal are PARA trees: Projects have an end date,
+                                    Areas are ongoing, Resources are reference, and Archive is anything inactive. System
+                                    has the AI&rsquo;s working files: personas, skills, lessons learned, and the index.
+                                </p>
+                            </div>
+                            <dl class="spec">
+                                <div>
+                                    <dt>System/</dt>
+                                    <dd>
+                                        The AI&rsquo;s working files: Context/Personas, Context/Skills, Context/Learned,
+                                        Context/Indices, plus the Backlog
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Professional/</dt>
+                                    <dd>Projects, Areas, Resources, Archive for work</dd>
+                                </div>
+                                <div>
+                                    <dt>Personal/</dt>
+                                    <dd>Projects, Areas, Resources, Archive for life and faith work</dd>
+                                </div>
+                                <div>
+                                    <dt>Root</dt>
+                                    <dd>CLAUDE.md, two pointer files, and the README. Nothing else.</dd>
+                                </div>
+                            </dl>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>Every file has one home, and the index points to it.</h3>
+                                <p>
+                                    Three principles keep it that way. One topic per file, and edit an existing file
+                                    before creating a new one. Every new file gets a line in the index in the same
+                                    change, or it will never be found. Nothing lives in the root except the instruction
+                                    file, its two pointers, and the README.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>My AI&rsquo;s memory became a second, messier vault.</h3>
+                                <p>
+                                    Claude keeps its own memory notes, and by October they had grown past a hundred
+                                    files, many repeating facts already in the vault. On October 2 and again on October
+                                    19 I moved every lasting fact into the vault and cut the memory index down to
+                                    pointers.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Schedule the audit instead of remembering it.</h3>
+                                <p>
+                                    The index check and the skill audit are scripts I still run by hand. I&rsquo;d put a
+                                    weekly folder audit on a schedule, the way my Email Manager runs.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                A written spec and two audit scripts that keep a large vault organized for both me and
+                                my AI tools.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Before</dt>
+                                    <dd>
+                                        Files saved wherever I was working, instructions copied per tool, and facts kept
+                                        in the AI&rsquo;s memory notes.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>After</dt>
+                                    <dd>
+                                        Four top folders, PARA inside Professional and Personal, one spec, and one index
+                                        line for every skill, persona, and lesson file.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Rules</dt>
+                                    <dd>
+                                        Read the spec before creating, moving, or deleting a file. Ask me before
+                                        deleting or restructuring. File names avoid special characters so the vault
+                                        opens on my iPad.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Sync</dt>
+                                    <dd>
+                                        A job on each machine pulls, commits, and pushes every 10 minutes. AI tools
+                                        commit only the paths they changed.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Checks</dt>
+                                    <dd>
+                                        skill_audit.py checks every skill file against the authoring standard, and a
+                                        one-line shell check lists any file the index never mentions.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Audit prompt:</strong> &ldquo;Audit this folder against its spec. List files
+                                    with no index line, files in the wrong PARA folder, duplicate topics, and bad file
+                                    names, as a table. Don&rsquo;t move anything. Wait for my decision.&rdquo;
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="build" data-status="shipped">
+                        <div class="build__meta">
+                            <span class="build__n">Build 08</span><span class="build__status">Shipped</span>
+                        </div>
+                        <h3 class="build__title">AI Context File</h3>
+                        <p class="build__body">
+                            One file that lets every AI session start out knowing who I am and how I work.
+                        </p>
+                        <p class="build__on">Builds on: Keystone&rsquo;s single instruction file</p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>Every tool started from zero.</h3>
+                                <p>
+                                    I use Claude Code, the Claude app, Gemini, and Copilot. Each one needed to know who
+                                    I am, how I want answers, and which rules never bend, and I was repeating it.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>One instruction file, read first by every tool.</h3>
+                                <p>
+                                    CLAUDE.md is in the vault root and runs about 230 words. Gemini reads agent.md and
+                                    Copilot reads COPILOT.md, and each of those is two lines: a sentence that says to
+                                    follow CLAUDE.md, and an @CLAUDE.md line that pulls the full file in. Claude,
+                                    Gemini, and Copilot all start from the same instructions, open the same index, and
+                                    work in Keystone the same way. It covers what to do every session (read the backlog,
+                                    find the task in the index, log what&rsquo;s left open at the end), the rules, and
+                                    how I want answers: lead with the answer, use tables, flag concerns briefly, push
+                                    back when asked.
+                                </p>
+                            </div>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Every session</dt>
+                                    <dd>
+                                        Open the backlog, find the task in the index, load only the pages it needs, then
+                                        log what&rsquo;s left open and commit.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Rules</dt>
+                                    <dd>
+                                        Read the spec before moving files, ask before deleting, commit only my own
+                                        paths, never put secrets in the vault.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Every agent</dt>
+                                    <dd>
+                                        agent.md (Gemini) and COPILOT.md (Copilot) import CLAUDE.md with an @CLAUDE.md
+                                        line, so every tool follows one set of instructions and I edit one file.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>How to answer</dt>
+                                    <dd>
+                                        Lead with the answer, use tables, flag concerns briefly, push back when asked to
+                                        red-team.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>Keep the file small and let it point.</h3>
+                                <p>
+                                    The context file doesn&rsquo;t hold my full story. It points to the index, the index
+                                    points to one router per domain, and the router points to the few pages a task
+                                    needs. A typical task reads about 3% of the documented skills. Facts about me live
+                                    in persona files, like my voice guides, so they load only when the writing calls for
+                                    them.
+                                </p>
+                                <p>
+                                    This is a little more flexible than setting everything up inside the Claude app.
+                                    Custom instructions there only reach Claude. My files are markdown in a git repo.
+                                    Any agent that can read a file can use them, the Claude app included: Cowork opens
+                                    the Keystone folder, reads the same instructions and skills, and reaches my scripts
+                                    through local MCP servers. The vault lives on my Windows drive, so Claude Code in
+                                    WSL and the Claude app on Windows open the same files. Git versions every change and
+                                    replicates the whole vault to a second computer running Linux, where it works almost
+                                    exactly the same: the same agents read the same files, with the same Python
+                                    environments and a PostgreSQL copy of my main database that is never more than an
+                                    hour behind. One design covers WSL, Windows, Linux, and every agent I use.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>Two copies of the same instructions drifted apart.</h3>
+                                <p>
+                                    Gemini had its own copy of the instructions. On September 9 I had to sync it back to
+                                    Claude&rsquo;s by hand. On October 19 I made CLAUDE.md the single source and turned
+                                    the other files into pointers, so they can&rsquo;t drift again.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Generate the app&rsquo;s settings from the same source.</h3>
+                                <p>
+                                    The Claude app has its own custom instructions and memory settings, outside the
+                                    vault. I&rsquo;d generate them from CLAUDE.md so there is still one source.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>
+                                Where each part of my context lives. The course template&rsquo;s six sections map onto
+                                files the AI loads in layers.
+                            </p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>About Me</dt>
+                                    <dd>
+                                        Persona files: a professional bio, a faith bio, and two voice guides written
+                                        from my own past writing.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Goals</dt>
+                                    <dd>
+                                        The Backlog, one dated line per open item, read at the start of every session.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>How I Like AI to Respond</dt>
+                                    <dd>
+                                        The last rule in CLAUDE.md, plus the voice guides for anything written in my
+                                        name.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Rules</dt>
+                                    <dd>
+                                        CLAUDE.md&rsquo;s rules list and the vault spec for structure and edit policies.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Tools</dt>
+                                    <dd>
+                                        The Environment Map: machines, repos, databases, MCP servers, and dev tools.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Key Files</dt>
+                                    <dd>
+                                        The Context Index: one line per router, persona, and lesson file, saying when to
+                                        load it.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Starter template:</strong> About me (role, day to day) &middot; Goals this
+                                    quarter &middot; How I like answers (tone, length, format, what annoys me) &middot;
+                                    Rules (what AI must always or never do) &middot; Tools I use daily &middot; Where my
+                                    key files live. Keep it under a page and point to longer files instead of pasting
+                                    them in.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="build" data-status="shipped">
+                        <div class="build__meta">
+                            <span class="build__n">Build 09</span><span class="build__status">Shipped</span>
+                        </div>
+                        <h3 class="build__title">Skills Library</h3>
+                        <p class="build__body">
+                            Fifteen skill families with about a hundred reference pages, plus the skills I installed,
+                            each loaded only when a task calls for it.
+                        </p>
+                        <p class="build__on">Builds on: Keystone&rsquo;s skill routers</p>
+                        <div class="build__links">
+                            <button class="textlink" type="button" data-open="how">How I built this</button>
+                            <button class="textlink" type="button" data-open="docs">Documentation</button>
+                        </div>
+                        <div class="build__panel" data-panel="how">
+                            <div class="beat">
+                                <p class="beat__n">01 &middot; The problem</p>
+                                <h3>The same instructions, pasted again every week.</h3>
+                                <p>
+                                    Resume bullets, Bible study steps, lesson production, job-search runs: I kept
+                                    explaining the same procedures, and each explanation came out a little different.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">02 &middot; The approach</p>
+                                <h3>A router per domain, with reference pages under it.</h3>
+                                <p>
+                                    Each family has one router that sets the order of work and sends each kind of
+                                    request to one reference page. Claude Code reaches them through thin skills of about
+                                    12 lines: a trigger description and the router&rsquo;s path. The course skills
+                                    joined the same library: my design system, my write-up skill, my voice guides, and
+                                    the Email Manager. Skills saved only to my claude.ai account work only in Claude.
+                                    Skills kept as files in Keystone work in Claude Code, the Claude app&rsquo;s Cowork,
+                                    Gemini, and Copilot.
+                                </p>
+                            </div>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Job Search</dt>
+                                    <dd>The pipeline, postings and scores, application packages, resume bullets.</dd>
+                                </div>
+                                <div>
+                                    <dt>Bible Study</dt>
+                                    <dd>Posts, articles, and Scripture in any translation, with Logos research.</dd>
+                                </div>
+                                <div>
+                                    <dt>Bible Study Method</dt>
+                                    <dd>Inductive study with Claude as my pair researcher.</dd>
+                                </div>
+                                <div>
+                                    <dt>Abide Production</dt>
+                                    <dd>Every lesson asset, from slides and narration to video and the website.</dd>
+                                </div>
+                                <div>
+                                    <dt>Environment Map</dt>
+                                    <dd>Machines, repos, databases, MCP servers, and dev tools.</dd>
+                                </div>
+                                <div>
+                                    <dt>Claude Code Mods</dt>
+                                    <dd>Status bars, guards, and slash commands for Claude Code.</dd>
+                                </div>
+                                <div>
+                                    <dt>Creating HTML Presentations</dt>
+                                    <dd>Decks and visual summaries as HTML.</dd>
+                                </div>
+                                <div>
+                                    <dt>HTML and CSS Tools</dt>
+                                    <dd>Linters and formatters for my sites.</dd>
+                                </div>
+                                <div>
+                                    <dt>Coding Tools</dt>
+                                    <dd>Running code in my WSL environment.</dd>
+                                </div>
+                                <div>
+                                    <dt>AI Coding Delegation</dt>
+                                    <dd>Which coding assistant gets which job.</dd>
+                                </div>
+                                <div>
+                                    <dt>Refactor Project</dt>
+                                    <dd>Standardizes a project note.</dd>
+                                </div>
+                                <div>
+                                    <dt>Generative AI Architecture</dt>
+                                    <dd>My learning path for RAG and vector databases.</dd>
+                                </div>
+                                <div>
+                                    <dt>Skill Authoring Best Practices</dt>
+                                    <dd>How to write a new skill.</dd>
+                                </div>
+                                <div>
+                                    <dt>Skill Audit and Refresh</dt>
+                                    <dd>Audits every skill with skill_audit.py.</dd>
+                                </div>
+                                <div>
+                                    <dt>Context Index Upkeep</dt>
+                                    <dd>Keeps the index short and complete.</dd>
+                                </div>
+                            </dl>
+                            <div class="beat">
+                                <p class="beat__n">03 &middot; Key decisions</p>
+                                <h3>Load only what the task needs.</h3>
+                                <p>
+                                    I chose routers because the alternative was loading every procedure into every
+                                    session. Until a request matches, a thin skill costs Claude only its trigger
+                                    description and a path. The router then sets the order of work and sends the request
+                                    to one reference page, so the detail arrives only when the task calls for it.
+                                </p>
+                                <p>
+                                    This follows Anthropic&rsquo;s guidance on context engineering, which I used as
+                                    source material when I refreshed my Keystone context files: give the model the
+                                    smallest set of high-signal information that does the job, and load the detail just
+                                    in time instead of up front.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">04 &middot; What went wrong</p>
+                                <h3>One giant skill was too big to load.</h3>
+                                <p>
+                                    The job-search instructions grew into one long file. On October 2 I split it into a
+                                    router and 23 reference files, wrote a wide-and-shallow standard for every skill
+                                    family, and added skill_audit.py to flag any file that breaks it.
+                                </p>
+                            </div>
+                            <div class="beat">
+                                <p class="beat__n">05 &middot; What I&rsquo;d change</p>
+                                <h3>Run the audit on a schedule.</h3>
+                                <p>
+                                    I&rsquo;d run skill_audit.py monthly as a scheduled task, and again whenever a new
+                                    Claude model ships.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="build__panel" data-panel="docs">
+                            <p>What&rsquo;s in the library, where it came from, and how a new skill gets proposed.</p>
+                            <dl class="spec">
+                                <div>
+                                    <dt>Built from scratch</dt>
+                                    <dd>
+                                        Fifteen Keystone skill families (about 100 files), plus the course skills:
+                                        personal-profile-design (Build 01), personal-profile-writeup (Build 02), two
+                                        voice guides with a checker (Build 03), and the Email Manager (Build 04).
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Installed</dt>
+                                    <dd>
+                                        Anthropic&rsquo;s document skills (Word, PowerPoint, Excel, PDF), skill-creator,
+                                        and deep research, plus Vercel&rsquo;s plugin skills for deployments.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>How it loads</dt>
+                                    <dd>
+                                        The index lists each family and when to load it. Claude Code&rsquo;s thin skills
+                                        point at the routers, so there is one copy of every procedure.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Checks</dt>
+                                    <dd>
+                                        skill_audit.py: routing in the first screen, a Contents list for files over 100
+                                        lines, and under 500 lines per file.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <div class="callout">
+                                <p>
+                                    <strong>Skills-proposal prompt:</strong> &ldquo;Look at my instruction file, my
+                                    existing skills, and how I&rsquo;ve worked with you this month. Propose five skills
+                                    I&rsquo;d use, ranked by weekly time saved: a short kebab-case name, one sentence on
+                                    what it does, one sentence on why it fits my work. No generic skills.&rdquo;
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ 6b. WHAT I'M AUTOMATING NEXT (certificate section) ══════════ -->
+        <section class="on-ink section" id="next">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">What I&rsquo;m automating next</p>
+                    <h2>Four automations on deck.</h2>
+                    <p>Scoped means I know the steps. Idea means I know the problem.</p>
+                </div>
+                <div class="tiles">
+                    <article class="tile">
+                        <span class="tile__tag">Scoped</span>
+                        <h3 class="tile__label">Daily history for my job-search data</h3>
+                        <p class="tile__body">
+                            Keep one small row per day so the charts and the deck can show change over time, not just
+                            today.
+                        </p>
+                    </article>
+                    <article class="tile">
+                        <span class="tile__tag">Scoped</span>
+                        <h3 class="tile__label">Backfill older application history</h3>
+                        <p class="tile__body">
+                            About half my applications came over from a spreadsheet without status history. Backfill it
+                            so response rates count every application.
+                        </p>
+                    </article>
+                    <article class="tile">
+                        <span class="tile__tag">Idea</span>
+                        <h3 class="tile__label">Monthly skill audit</h3>
+                        <p class="tile__body">Run skill_audit.py on a schedule and send me only what it flags.</p>
+                    </article>
+                    <article class="tile">
+                        <span class="tile__tag">Idea</span>
+                        <h3 class="tile__label">Weekly folder audit</h3>
+                        <p class="tile__body">
+                            Check the vault against its spec every week: files with no index line, files in the wrong
+                            folder, duplicate topics.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ 6c. HOW I'VE USED AI (certificate section) ══════════ -->
+        <section class="section" id="used-ai">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">How I&rsquo;ve used AI</p>
+                    <h2>What changed across four sessions.</h2>
+                    <p>
+                        I built nine things in four sessions: a design system skill, a portfolio site, a voice guide, a
+                        scheduled email manager, a spreadsheet analysis, a data presentation, a folder system, an AI
+                        context file, and a skills library.
+                    </p>
+                    <p>
+                        Three things changed in how I work with AI. I stopped retyping context: CLAUDE.md loads first in
+                        every tool. I check AI&rsquo;s writing with code: voice_check.py tests every draft against
+                        Voice_Guide_Professional.md before I read it. And I let the pipeline do the reporting:
+                        refresh_reporting.py rebuilds my charts, my deck, and a private focus report after every
+                        snapshot.
+                    </p>
+                    <p>
+                        My strongest build is the data presentation. One refresh now produces six slides with speaker
+                        notes, a workbook that traces every figure to its source, and an employer-level report I keep
+                        open next to my tracker when I decide which job descriptions to read. It also caught a false
+                        headline in my own outline before it went public.
+                    </p>
+                    <p>
+                        What&rsquo;s next is listed above, in
+                        <a class="textlink" href="#next">What I&rsquo;m automating next</a>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- leland:content-end -->
+
+        <!-- leland:drop-start (the bundle has one contact section, on the hub) -->
+
+        <!-- ══════════ 7. CLOSE ══════════ -->
+        <section class="on-olive section" id="contact">
+            <div class="wrap">
+                <div class="s-head">
+                    <h2>Want to see how any of this was built?</h2>
+                    <p>
+                        Ask me. I&rsquo;m glad to walk through the decisions, the dead ends, and what I&rsquo;d do
+                        differently next time.
+                    </p>
+                    <p>Open to full-time and contract roles in process excellence, analytics, and applied AI.</p>
+                </div>
+                <div class="hero__actions">
+                    <a
+                        class="btn btn--primary"
+                        href="https://www.linkedin.com/in/jeffreytbenson/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Start a conversation</a
+                    >
+                    <a class="btn btn--ghost" href="index.html">Main profile</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- leland:drop-end -->
+
+        <!-- ══════════ FOOTER ══════════ -->
+        <footer class="on-ink foot">
+            <div class="wrap">
+                <div class="foot__grid">
+                    <div>
+                        <h3>Jeffrey Benson</h3>
+                        <p class="card__body">
+                            Lean Six Sigma Black Belt. Thirty-one years of Fortune 20 business transformation. Principal
+                            at Cornerstone Solutions.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>AI Builder</h3>
+                        <ul>
+                            <li><a href="ai-builder.html">Overview</a></li>
+                            <li><a href="ai-builder-projects.html">Projects</a></li>
+                            <li><a href="ai-builder-evaluation.html">Evaluation</a></li>
+                            <li>
+                                <a href="ai-builder-level1.html">Level 1<span class="subnav__more"> builds</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Elsewhere</h3>
+                        <ul>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com/in/jeffreytbenson/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >LinkedIn</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://github.com/BensonJT" target="_blank" rel="noopener noreferrer"
+                                    >GitHub</a
+                                >
+                            </li>
+                            <li><a href="index.html">Profile site</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="foot__fine">Northern Virginia. Contact through LinkedIn.</p>
+            </div>
+        </footer>
+
+        <!-- Shared popup for every build's "How I built this" / "Documentation" -->
+        <dialog class="sheet" data-sheet aria-labelledby="sheet-title">
+            <div class="sheet__head">
+                <div>
+                    <p class="eyebrow" data-sheet-kind></p>
+                    <h2 class="sheet__title" id="sheet-title" data-sheet-title></h2>
+                </div>
+                <button class="sheet__close" type="button" data-sheet-close>Close</button>
+            </div>
+            <div class="sheet__body" data-sheet-body></div>
+        </dialog>
+
+        <!-- Full-screen window for the Build 06 deck. The Presentation links work as plain links with JS off;
+             build_single.py inlines the deck here (data-deck-b64) for single-file hosts. The frame is
+             created by builder.js on first open: Leland's sanitizer strips frame tags from the markup. -->
+        <dialog class="sheet sheet--deck" data-deck-sheet aria-labelledby="deck-title">
+            <div class="sheet__head">
+                <div>
+                    <p class="eyebrow">Presentation</p>
+                    <h2 class="sheet__title" id="deck-title">Where my experience fits</h2>
+                </div>
+                <button class="sheet__close" type="button" data-deck-close>Close</button>
+            </div>
+            <div class="deck__slot" data-deck-slot></div>
+            <p class="deck__hint">
+                Click the slides, then use the arrow keys. N shows my speaker notes, F goes full screen.
+            </p>
+        </dialog>
+
+        <script src="js/site.js" defer></script>
+
+        <script src="js/builder.js" defer></script>
+    </body>
+</html>
