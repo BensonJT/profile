@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>The Mathematics of Morale — Jeffrey Benson</title>
+        <title>The Mathematics of Morale - Jeffrey Benson</title>
         <meta
             name="description"
-            content="Moving beyond averages to find the hidden capacity in your roster — how Force-to-Load replaces guesswork with a shared language for Finance and Operations."
+            content="Moving beyond averages to find the hidden capacity in your roster: how Force-to-Load gave Finance and Operations a shared language and surfaced $18M to $22M in capacity variance."
         />
         <link rel="icon" href="favicon.svg" type="image/svg+xml" />
         <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
@@ -692,283 +692,250 @@
                 <a href="articles.html" class="article-back">&larr; All Writing</a>
                 <p class="article-eyebrow">People &middot; Operations</p>
                 <h1 class="article-title">The Mathematics of Morale: Calibrating Load to Lift</h1>
-                <p class="article-byline"><strong>Cornerstone Solutions</strong> &nbsp;&middot;&nbsp; 2024</p>
+                <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2023-2025</p>
             </div>
         </header>
-
         <div class="series-bar">
             <strong>Capacity Series</strong> &nbsp;&middot;&nbsp;
             <a href="article-automate-mess.html">Part A</a> &nbsp;|&nbsp; Part B
         </div>
-
-        <div class="linkedin-bar">
-            Originally published on LinkedIn &mdash;
-            <a
-                href="https://www.linkedin.com/pulse/mathematics-morale-calibrating-load-lift-cornerstone-solutions-io-s7mve/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >View or comment there &rarr;</a
-            >
-        </div>
-
         <!-- ── Article Body ── -->
         <article class="article-body">
             <p class="article-subtitle">Moving beyond averages to find the hidden capacity in your roster.</p>
-
             <p class="article-context">
                 This builds on the "You Can't Automate a Mess" case study: once the map is trustworthy, Force-to-Load
-                turns it into an execution-ready capacity model.
+                turns it into a capacity model leaders can act on.
             </p>
-
             <p>
-                One of the loneliest positions for a leader is standing in the gap between a Finance team asking, "Why
-                is this costing so much?" and an Operations team voicing urgent distress: "We are drowning."
+                One of the loneliest positions for a leader is standing between a Finance team asking, "Why is this
+                costing so much?" and an Operations team saying, "We are drowning."
             </p>
-
+            <p>
+                I saw that gap at Verizon in Global Network Operations (GNO). Capacity planning ran on averages, so
+                Finance and Operations argued about staffing from two different realities. Once we had fixed the work
+                area map in 2023, I volunteered to build a model that would give them one: Force-to-Load, which
+                started at the end of 2023 and went through four major iterations through 2025.
+            </p>
+            <p>
+                I built it in Python and SQL, in house, for $1.5M less than IT had asked to build it. Then we refined it
+                with the team that used it every day. Each version answered the question in front of us, and daily use
+                kept surfacing what it still couldn't see. Along the way, using Gemini to help optimize the code, I cut
+                the runtime 25% (from about four hours to three), so we could run what-if scenarios while leaders were
+                still in the room. This article walks through how the model works.
+            </p>
             <hr />
-
             <!-- ── The Friction ── -->
             <p class="friction-header">The Friction</p>
-
             <p>
-                Often, the organization lacks a shared language to reconcile these two realities. A company might rely
-                on legacy spreadsheets that average out "headcount" against "ticket volume." But averages obscure the
-                struggle.
+                Often the organization has no shared language to reconcile those two realities. A company might rely on
+                legacy spreadsheets that average "headcount" against "ticket volume," and the averages hide what the
+                team is struggling with.
             </p>
-
             <p>
-                A spreadsheet doesn't know that your technicians in one region are facing a two-hour commute between
-                sites, or that a team is bogged down by "dirty data" from tickets left open over a weekend.
+                A spreadsheet doesn't know that your technicians in one region face a two-hour commute between sites,
+                or that a team is bogged down by bad data from tickets left open over a weekend.
             </p>
-
             <p>
-                To move from operational strain to sustainable performance, we must move from broad assumptions to
-                surgical precision. We need to build a <strong>Workforce Capacity Model</strong>, the
+                To move from operational strain to sustainable performance, we have to replace broad assumptions with
+                precise measures. That means building a <strong>Workforce Capacity Model</strong>, the
                 <strong>Force-to-Load (F2L)</strong>.
             </p>
-
             <p>
-                When
-                <a
-                    href="https://www.linkedin.com/in/jeffreytbenson/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style="color: var(--olive); font-weight: 700"
-                    >Jeffrey Benson</a
-                >
-                partners with leaders to architect these systems, we focus on synthesizing three critical components:
-                <strong>The Supply</strong>, <strong>The Demand</strong>, and <strong>The Pricing</strong>.
+                When I build one of these models with a leader, I focus on bringing three components together:
+                <strong>The Supply</strong>, <strong>The Demand</strong> and <strong>The Pricing</strong>.
             </p>
-
             <hr />
-
             <!-- ── I. Supply ── -->
             <div class="pillar-block">
                 <p class="pillar-label">Pillar I</p>
                 <h2 class="pillar-title">Supply, The Human Reality</h2>
-
                 <p>
-                    Supply is often oversimplified as "FTEs." But a generic FTE cannot solve a specific problem. To
-                    measure Supply accurately, we honor the reality of the roster by replacing static lists with a
-                    <strong>Dynamic Capability Map</strong>:
+                    Supply is often reduced to a count of "FTEs." A generic FTE can't tell you who can do a specific
+                    job, in a specific place, on a specific shift. To measure supply accurately, we start from the
+                    roster as it stands and build a <strong>Dynamic Capability Map</strong> in place of a static list:
                 </p>
-
                 <ul class="supply-list">
-                    <li><strong>The People:</strong> The actual inventory of human resources.</li>
-                    <li><strong>The Skills:</strong> What are they certified to handle? (Distinct from job title.)</li>
-                    <li><strong>The Geography:</strong> Where are they dispatched vs. where do they live?</li>
-                    <li><strong>The Schedule:</strong> The reality of shifts and availability.</li>
+                    <li><strong>The People:</strong> who is on the team today.</li>
+                    <li>
+                        <strong>The Skills:</strong> what are they certified to handle? (This is different from their
+                        job title.)
+                    </li>
+                    <li><strong>The Geography:</strong> where are they dispatched, and where do they live?</li>
+                    <li><strong>The Schedule:</strong> the shifts they work and when they're available.</li>
                 </ul>
-
                 <p>
                     By mapping this backward (<em>what did we have?</em>) and forward (<em>what will we have?</em>), we
-                    transform "Supply" from a static number into a live view of capability.
+                    turn "Supply" from a static number into a live view of capability.
                 </p>
             </div>
-
             <!-- ── II. Demand ── -->
             <div class="pillar-block">
                 <p class="pillar-label">Pillar II</p>
                 <h2 class="pillar-title">Demand, The Signal</h2>
-
-                <p>Demand is the work to be done. To model this, we strip the demand signal down to its physics:</p>
-
+                <p>Demand is the work to be done. To model it, we break each request down into what it really takes:</p>
                 <ul class="demand-list">
-                    <li><strong>Skills Required:</strong> Connecting the request to the specific capability needed.</li>
-                    <li><strong>Disposition:</strong> Is the work Open, Closed, or Pending?</li>
-                    <li><strong>The Time Tax:</strong> Setup times, commute times, and execution time.</li>
+                    <li><strong>Skills Required:</strong> connecting the request to the specific capability needed.</li>
+                    <li><strong>Disposition:</strong> is the work open, closed or pending?</li>
+                    <li><strong>The Time Tax:</strong> setup time, commute time and execution time.</li>
                 </ul>
-
                 <div class="field-note">
-                    If we ignore the travel or the setup, we aren't modeling the job, we are modeling a fantasy.
+                    If we leave out the travel or the setup, the model describes a job nobody actually does.
                 </div>
             </div>
-
             <!-- ── III. Pricing ── -->
             <div class="pillar-block">
                 <p class="pillar-label">Pillar III</p>
                 <h2 class="pillar-title">Pricing, The Time-Cost</h2>
-
                 <p>
-                    This is where the model moves from "reporting" to "intelligence." In this context, Pricing does not
-                    mean dollars; it means <strong>Minutes</strong>.
+                    This is where the model moves from reporting to insight. In this model, a task's price is measured
+                    in <strong>minutes</strong>.
                 </p>
-
                 <p>
                     Standard models often fail here because they rely on simple means (averages), which get skewed by
-                    outliers, like a ticket accidentally left open for 400 hours, or one closed with 0 minutes.
+                    outliers like a ticket accidentally left open for 400 hours, or one closed with 0 minutes.
                 </p>
-
                 <p>
-                    To find the "True Price" of a task and protect the team from skew, we utilize a
-                    <strong>Modified PERT Formula</strong> (Program Evaluation Review Technique):
+                    To find the "True Price" of a task and protect the team from that skew, we use a
+                    <strong>Modified PERT Formula</strong> (Program Evaluation and Review Technique):
                 </p>
-
                 <div class="pert-block">
                     <p class="pert-label">Modified PERT Formula</p>
-                    <p class="pert-formula">Price (min) = (P₂₀ + P₈₀ + 4 &times; P₅₀) &divide; 6</p>
+                    <p class="pert-formula">Price (min) = (P₂₀ + P₈₀ + (4 &times; P₅₀)) &divide; 6</p>
                 </div>
-
                 <ul class="percentile-list">
-                    <li><strong>P₂₀ (20th Percentile):</strong> The fast, easy runs.</li>
-                    <li><strong>P₈₀ (80th Percentile):</strong> The complex, difficult runs.</li>
-                    <li><strong>P₅₀ (Median):</strong> The standard, normal run.</li>
+                    <li><strong>P₂₀ (20th Percentile):</strong> the fast, easy runs.</li>
+                    <li><strong>P₈₀ (80th Percentile):</strong> the complex, difficult runs.</li>
+                    <li><strong>P₅₀ (Median):</strong> the standard, normal run.</li>
                 </ul>
-
                 <p>
-                    <strong>Why this matters:</strong> By weighting the median (×4) and capping the extremes, we arrive
-                    at a fair, defensible standard. We don't expect teams to perform at the speed of the fastest
-                    outlier, nor do we pad the numbers with data errors.
+                    <strong>Why this matters:</strong> by weighting the median (×4) and capping the extremes at the
+                    20th and 80th percentiles, we arrive at a fair, defensible standard. We don't expect
+                    teams to work at the speed of the fastest outlier, and we don't pad the numbers with data errors.
                 </p>
             </div>
-
             <hr />
-
             <!-- ── IV. The Outcome ── -->
-            <h2 class="section-title">IV. The Outcome: Visibility vs. Blindness</h2>
-
+            <h2 class="section-title">IV. The Outcome</h2>
             <p>
-                Once the model calculates in minutes, the translation to dollars is simple algebra. In a recent
-                engagement, this surgical view surfaced significant opportunities:
+                Once the model calculates in minutes, translating it to dollars is simple algebra. At GNO, the model
+                covered a 1,000-person field force across the domestic United States, and it surfaced opportunities
+                the averages had hidden:
             </p>
-
             <ul class="outcome-list">
-                <li><strong>The Insight:</strong> The model revealed an $18M–$22M capacity variance.</li>
-                <li><strong>The Cause:</strong> This wasn't about "cutting heads", it was about Skill Mismatch.</li>
+                <li><strong>The Insight:</strong> the model revealed an $18M to $22M capacity variance.</li>
                 <li>
-                    <strong>The Reality:</strong> We were paying for capacity "on the clock" that didn't align with the
-                    incoming demand signal.
+                    <strong>The Cause:</strong> skill mismatch, and the answer was training the people we had.
+                    Leadership also used the model to justify adding heads, and when force reductions were dictated
+                    from above, to decide where to target them. It was never used to recommend a reduction.
+                </li>
+                <li>
+                    <strong>The Reality:</strong> we were paying for capacity "on the clock" that didn't line up with
+                    the incoming demand. Modeling demand by day, hour and shift let GNO align schedules to peak demand
+                    and cut $3M to $4M in avoidable overtime.
+                </li>
+                <li>
+                    <strong>The Shortfalls:</strong> pricing work in minutes showed leadership the geographies with
+                    sustained supply shortfalls, and that won approval for 50 additional Building Engineers.
                 </li>
             </ul>
-
             <p class="outcome-anchor">
-                Without the F2L model, that opportunity was invisible, hidden inside the "averages."
+                Without the F2L model, that opportunity stayed invisible inside the averages.
             </p>
-
             <!-- ── From Insight to Action ── -->
             <h3 class="section-title-sm">From Insight to Action</h3>
-
-            <p>But identifying the value is only half the job.</p>
-
+            <p>Identifying the value is only half the job.</p>
             <p>
-                We didn't just hand leadership a $22M valuation and wish them luck. We operationalized the data. We
-                showed them exactly <strong>which technicians</strong> in <strong>which geographies</strong> needed to
-                cross-train in <strong>what specific skills</strong> to close those gaps.
+                We took the $18M to $22M variance past a number on a slide. We showed leadership exactly
+                <strong>which technicians</strong> in <strong>which geographies</strong> needed to cross-train in
+                <strong>which specific skills</strong>, and turned it into a customized training plan for each tech.
             </p>
-
             <p>
-                We moved from a high-level "Eureka" moment to a granular execution plan, converting a theoretical
-                financial opportunity into a tactical roster of names and training requirements.
-                <strong>This is the standard for Actionable Business Intelligence.</strong>
+                That moved us from a high-level finding to an execution plan, a roster of names and training
+                requirements that GNO could use to add supply where skills were short.
             </p>
-
             <!-- ── The Dignity Dimension ── -->
             <h3 class="section-title-sm">Beyond Efficiency: The Dignity Dimension</h3>
-
-            <p>This is about more than just efficiency; it's about <strong>dignity</strong>.</p>
-
+            <p>This is about <strong>dignity</strong> as much as efficiency.</p>
             <p>
-                When a model is accurate, teams feel seen because their actual workload is reflected in the data. When
-                the data is accurate, executives feel confident because they can make decisions based on reality, not
-                guesswork.
+                When a model is accurate, teams feel seen because their actual workload shows up in the data. When the
+                data is accurate, executives feel confident because they're making decisions on what is really
+                happening.
             </p>
-
             <p>
-                If your current capacity planning feels like a blunt instrument, it might be time to sharpen the tools.
-                Let's look at the data together and see what the math is trying to tell us.
+                If your current capacity planning runs on averages, let's look at the data together and see what the
+                math is trying to tell us.
             </p>
-
             <hr />
-
-            <!-- ── Cornerstone Takeaway ── -->
+            <!-- ── Takeaway ── -->
             <div class="takeaway-block">
-                <p class="takeaway-eyebrow">The Cornerstone Takeaway</p>
+                <p class="takeaway-eyebrow">The Takeaway</p>
                 <p class="takeaway-headline">Averages hide friction, and they hide opportunity.</p>
                 <p>
-                    When capacity planning is built on blunt "headcount vs. volume" averages, Finance and Operations end
-                    up debating two different realities. Force-to-Load replaces guesswork with a shared language:
-                    supply, demand, and <strong style="color: var(--vellum)">pricing in minutes</strong>, so decisions
-                    are grounded in what the work actually costs the team to perform.
+                    When capacity planning is built on "headcount vs. volume" averages, Finance and Operations end up
+                    debating two different realities. Force-to-Load gives them a shared language (supply, demand and
+                    <strong style="color: var(--vellum)">pricing in minutes</strong>), so decisions are grounded in
+                    what the work actually costs the team to perform.
                 </p>
                 <p>
-                    <strong style="color: var(--vellum)">From insight to action:</strong> Cornerstone doesn't stop at
-                    identifying the variance, we operationalize it. The deliverable is an execution-ready plan that
-                    shows <strong style="color: var(--vellum)">which skills are missing where</strong>, and translates
-                    that into a tactical training plan (often down to specific geographies and, when appropriate, a
-                    roster-level plan by name/skill) so leaders can close gaps instead of just discussing them.
+                    <strong style="color: var(--vellum)">From insight to action:</strong> I don't stop at identifying
+                    the variance. The deliverable is an execution-ready plan that shows
+                    <strong style="color: var(--vellum)">which skills are missing where</strong> and turns that into a
+                    training plan (often down to specific geographies and, when appropriate, a roster-level plan by
+                    name and skill) so leaders can close the shortfalls instead of only discussing them.
                 </p>
             </div>
-
             <!-- ── Engagement details ── -->
             <div class="engage-section">
-                <p class="engage-title">How we engage</p>
+                <p class="engage-title">How I engage</p>
                 <p>
-                    Typical starting point: 2–4 weeks diagnostic/onboarding &rarr; 6–12+ weeks foundation cleanup
-                    (scope-dependent) &rarr; 8–12 weeks model build, validation, and operationalization.
+                    My typical starting point: 2 to 4 weeks of diagnostic and onboarding &rarr; 6 to 12+ weeks of
+                    foundation cleanup (depending on scope) &rarr; 8 to 12 weeks of model build, validation and
+                    operationalization.
                 </p>
             </div>
-
             <div class="engage-section">
                 <p class="engage-title">Service pillars</p>
                 <p>
-                    This work is delivered through our five service pillars: <strong>Management Consulting</strong>,
-                    <strong>Change Management</strong>, <strong>Business Analytics</strong>,
-                    <strong>Data Reporting</strong>, and <strong>Custom Software Development</strong>.
+                    I deliver this work through the five service pillars of Cornerstone Solutions:
+                    <strong>Management Consulting</strong>, <strong>Change Management</strong>,
+                    <strong>Business Analytics</strong>, <strong>Data Reporting</strong> and
+                    <strong>Custom Software Development</strong>.
                 </p>
             </div>
-
             <div class="engage-section">
                 <p class="engage-title">Where this rigor applies</p>
                 <p>
-                    Cornerstone is built for scale moments, when strategy is clear, but execution is constrained by
-                    operational friction, misaligned process, or untrusted data.
+                    I built Cornerstone for scale moments, when the strategy is clear but execution is held back by
+                    operational friction, misaligned process or data nobody trusts.
                 </p>
                 <ul class="use-case-list" style="margin-top: 12px">
-                    <li>Field operations: dispatch/routing, scheduling, overtime, touchless automation.</li>
+                    <li>Field operations: dispatch and routing, scheduling, overtime, touchless automation.</li>
                     <li>Capacity decisions: demand vs. supply, headcount justification, cross-training strategy.</li>
-                    <li>Automation that's amplifying chaos: AI/RPA built on dirty data or weak governance.</li>
+                    <li>Automation that's amplifying chaos: AI or RPA built on bad data or weak governance.</li>
                     <li>
-                        "Single source of truth" gaps: spreadsheet cycles, conflicting metrics, low dashboard trust.
+                        "Single source of truth" problems: spreadsheet cycles, conflicting metrics, dashboards nobody
+                        trusts.
                     </li>
                     <li>OpEx transformations that must stick: standard work, SOPs, control plans, KPI cadence.</li>
                 </ul>
                 <p style="margin-top: 16px; font-size: 0.97rem; color: rgba(44, 46, 47, 0.78)">
-                    If you're leading cost, capacity, or service performance, and your models feel blunt, let's talk.
-                    We'll pressure-test the math, surface the real constraints, and map a path from insight to action.
+                    If you're leading cost, capacity or service performance and your models run on averages, let's
+                    talk. I'll pressure-test the math with you, find the constraints that matter and map a path from insight
+                    to action.
                 </p>
             </div>
-
             <div class="companion-callout">
                 <p>
                     If the morale side of this story hit close to home, the first case study,
                     <a href="article-automate-mess.html">"You Can't Automate a Mess"</a>, walks through where this all
-                    started: fixing the underlying data and geometry so your people, and your metrics, can finally tell
-                    the truth.
+                    started: fixing the work area map underneath the dispatch tool so the people, and the metrics, could
+                    be trusted.
                 </p>
             </div>
-
-            <p class="closing-cta">Let's build something better, together.</p>
-
+            <p class="closing-cta">
+                Where does your capacity plan still run on averages? I'd like to hear what weight your team is carrying
+                that the spreadsheet can't see.
+            </p>
             <div id="author-card"></div>
             <script src="author-card.js"></script>
         </article>
