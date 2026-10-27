@@ -525,9 +525,12 @@
                         DuckDB database, and a structure-only context file for a language model.
                     </p>
                     <p>
-                        That last piece is the point. The model never sees the spreadsheet and never sees the data. It
-                        sees the extraction, cites the cell for every claim, and says "not in the extraction" when the
-                        answer is not there. Deterministic scripts find the problems, the model explains them, and a
+                        That last piece is the point. Loaded into a Gemini Gem or a Claude Project, the context file
+                        becomes living documentation for the workbook: anyone on the team can ask what a tab does or
+                        where a number comes from, and the answer cites the cell. One command republishes the file
+                        whenever the workbook changes, so the documentation keeps up with the sheet. The model never
+                        sees the spreadsheet and never sees the data. It sees the extraction and says "not in the
+                        extraction" when the answer is not there. Deterministic scripts find the problems, the model explains them, and a
                         person reviews anything that becomes a source of truth.
                     </p>
                 </div>
