@@ -27,6 +27,8 @@ What it does:
      data-deck-key. The site keeps the iframe window from builder.js unchanged.
   7. Links marked data-site-only (the deck's PDF download) are dropped: Leland's sandbox blocks
      downloads. The build stops if any link to a local .pdf is left.
+  8. Leland's sandbox (allow-scripts only) blocks links to other sites, so outside_links.js (bundle only)
+     catches a click on any http(s) link and shows the address in a dialog with a Copy button.
   C. Checks: every #anchor in the bundle has a target, and no relative link is left. The build stops otherwise.
 
 Usage (from anywhere):
@@ -246,6 +248,10 @@ def main() -> None:
     # Leland's publisher strips <iframe> tags (seen 2026-10-24); frames must be created by script instead
     if re.search(r"<iframe", html, re.I):
         sys.exit("An <iframe> tag is in the page; Leland removes it. Create the frame in JS (see builder.js).")
+
+    # 8: outside links do nothing in Leland's sandbox; show their address to copy instead
+    helper = (HERE / "outside_links.js").read_text(encoding="utf-8")
+    html = html.replace("</body>", f"<script>\n/* inlined from tools/leland/outside_links.js */\n{helper}\n</script>\n</body>", 1)
 
     check_links(html)                                                                 # C
 
