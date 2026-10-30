@@ -232,6 +232,31 @@
     stroke: var(--rule);
 }
 
+.fm-svg .fm-t-node--sm {
+    font-size: 13.5px;
+}
+
+.fm-svg .fm-n--role .fm-box {
+    fill: var(--paper);
+    stroke: var(--n-700);
+    stroke-width: 1.25;
+}
+
+.fm-svg .fm-gate .fm-gate__x {
+    stroke: var(--clay-text);
+}
+
+.fm-svg .fm-quad {
+    fill: rgb(240 234 214 / 45%);
+    stroke: var(--rule);
+}
+
+.fm-svg .fm-hub {
+    fill: var(--paper);
+    stroke: var(--clay);
+    stroke-width: 2;
+}
+
 /* A phase on the map is a link: it lights up gold on hover and keyboard focus. */
 .fm-link {
     cursor: pointer;
@@ -293,6 +318,11 @@
 .fm-me strong {
     color: var(--fg);
     font-weight: 600;
+}
+
+.fm-tech {
+    font-size: var(--t-xs);
+    color: var(--n-500);
 }
 
 @media (width >= 900px) {
@@ -426,6 +456,98 @@
     display: block;
     margin-top: 0;
     border-top: 0;
+}
+
+/* ---------- 6. THE SPLIT (who does what, by phase) ---------- */
+.fm-split {
+    display: grid;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    font-size: var(--t-sm);
+    line-height: 1.5;
+}
+
+.fm-split__row {
+    display: grid;
+    grid-template-columns: 9.5rem repeat(3, 1fr) 1.2fr;
+    gap: 1px;
+}
+
+.fm-split__row > span {
+    padding: var(--s-3) var(--s-4);
+    background: var(--paper);
+    color: var(--fg-muted);
+}
+
+.fm-split__row > span[role="rowheader"] {
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    color: var(--fg);
+}
+
+.fm-split__head > span {
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.fm-split__n {
+    display: inline-grid;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: var(--s-2);
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: var(--font-text);
+    font-size: var(--t-xs);
+    font-weight: 700;
+    vertical-align: 0.2em;
+}
+
+@media (width <= 899px) {
+    .fm-split__head {
+        display: none;
+    }
+
+    .fm-split__row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .fm-split__row > span[role="cell"]::before {
+        content: attr(data-h) ": ";
+        font-weight: 600;
+        color: var(--fg);
+    }
+}
+
+/* ---------- 7. HOW THIS MAP WAS MADE ---------- */
+.fm-made {
+    max-width: var(--measure);
+    color: var(--fg-muted);
+}
+
+.fm-made p + p {
+    margin-top: var(--s-4);
+}
+
+.fm-made__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3) var(--s-8);
+    font-size: var(--t-sm);
+    font-weight: 600;
+}
+
+.fm-made__links a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 @media print {
