@@ -1191,6 +1191,11 @@ h3 {
     border-radius: var(--radius);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
 }
+/* A definite track, so the image's max-height: 100% resolves; without it an image
+   taller than the screen's shape (the Level 1 certificate) ran off the bottom */
+.lb[data-fit="true"] .lb__stage {
+    grid-template: 100% / 100%;
+}
 .lb[data-fit="true"] .lb__img {
     max-width: 100%;
     max-height: 100%;

@@ -533,6 +533,22 @@ html:has(.subnav) {
     margin-top: var(--s-4);
 }
 
+/* ---------- 32b. LEVEL 1 CERTIFICATE ----------
+   Beside the Level 1 page head, in the hero grid's narrow column; click opens it full size. */
+.cert {
+    margin-block: 0;
+}
+
+.cert .fig__frame {
+    border-color: transparent;
+}
+
+/* Scale with the column at every width (site.css gives figure images a 560px floor on phones) */
+.cert .fig__frame img {
+    min-width: 0;
+    width: 100%;
+}
+
 /* ---------- AI Builder sub-nav (the four ai-builder*.html pages; the Leland bundle drops it) ---------- */
 .subnav {
     position: sticky;
