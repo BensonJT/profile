@@ -329,8 +329,75 @@
             </div>
         </section>
 
+        <!-- ══ REQUIREMENTS FIT ANALYZER ══
+             Generic language: no employer names or counts, no pay; one clause says its first job is my own
+             career search. The diagram is drawn by tools/fitmap/build_fitmap.py. -->
+        <section class="on-paper section" id="fit-analyzer">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Requirements Fit Analyzer &middot; in daily use</p>
+                    <h2>Every AI judge, measured like a gauge.</h2>
+                </div>
+                <div class="role__body" style="max-width: 64ch">
+                    <p class="friction">
+                        A system that reads requirement documents and measures how well each one fits a verified record
+                        of evidence. Its first job is my own career search: every night it reads open roles straight
+                        from employers&rsquo; own job boards, scores each one against my record, and shows me where the
+                        fit is strongest.
+                    </p>
+                    <p>
+                        <strong>Deterministic by default.</strong> Rules, trained models and a local embedding model do
+                        the volume work, the same way every night. Two AI judges read only the shortlist, and only after
+                        a measurement-system study against grades I gave blind, before seeing any machine score. One
+                        passed and may demote a clear miss. The other never passed, so it appears only as evidence. My
+                        calls outrank every model.
+                    </p>
+                    <p>
+                        <strong>Claims are selected, not written.</strong> When I apply, AI chooses statements word for
+                        word from 202 verified statements about my work, and a script checks every figure against its
+                        source before anything goes out. Another script finds every edit I make to what I send, and
+                        those edits teach the voice guide and the record.
+                    </p>
+                </div>
+
+                <dl class="outcomes" style="max-width: 64ch">
+                    <div>
+                        <dt>0.955</dt>
+                        <dd>AUC of the fit models on employers held out of training</dd>
+                    </div>
+                    <div>
+                        <dt>91%</dt>
+                        <dd>Of my own fails the AI judge caught, measured before it could demote anything</dd>
+                    </div>
+                    <div>
+                        <dt>202</dt>
+                        <dd>Verified statements, each used word for word</dd>
+                    </div>
+                </dl>
+
+                <figure class="fig">
+                    <div class="fig__frame fig__frame--fit">
+                        <a href="fit-analyzer-map.html"
+                            ><img
+                                src="img/fit-analyzer-map-mini.svg"
+                                width="1200"
+                                height="560"
+                                alt="The Requirements Fit Analyzer's seven phases in one loop: Find, Judge, Validate, Decide, Build, Learn and Publish, inside a ring of scripted checks"
+                                loading="lazy"
+                        /></a>
+                    </div>
+                    <figcaption>
+                        <b>Seven phases in one loop.</b> Scripts do everything with one right answer, AI reads where the
+                        words matter, and I make the calls. Select the map to explore each phase.
+                    </figcaption>
+                </figure>
+                <a class="link-more" href="fit-analyzer-map.html">See the full process map &rarr;</a>
+                <a class="link-more" href="ai-builder-projects.html#jobsearch">How it was built with AI &rarr;</a>
+            </div>
+        </section>
+
         <!-- ══ MERIDIAN ══ -->
-        <section class="on-paper section" id="meridian">
+        <section class="section" id="meridian">
             <div class="wrap">
                 <div class="s-head">
                     <p class="eyebrow">Meridian &middot; client engagement, in daily use</p>
@@ -399,7 +466,7 @@
         </section>
 
         <!-- ══ BENSON ACADEMY ══ -->
-        <section class="section" id="benson-academy">
+        <section class="on-paper section" id="benson-academy">
             <div class="wrap">
                 <div class="s-head">
                     <p class="eyebrow">Benson Academy &middot; in production</p>
@@ -448,7 +515,7 @@
         </section>
 
         <!-- ══ WORK SAMPLE ══ -->
-        <section class="on-paper section" id="work-sample">
+        <section class="section" id="work-sample">
             <div class="wrap">
                 <div class="s-head">
                     <p class="eyebrow">Work sample &middot; public and runnable</p>
@@ -501,7 +568,7 @@
         </section>
 
         <!-- ══ UTILITY ══ -->
-        <section class="section" id="sheets-decomposer">
+        <section class="on-paper section" id="sheets-decomposer">
             <div class="wrap">
                 <div class="s-head">
                     <p class="eyebrow">Utility &middot; open source</p>

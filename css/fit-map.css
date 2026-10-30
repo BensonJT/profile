@@ -1,0 +1,563 @@
+/* ============================================================
+   fit-map.css: the Requirements Fit Analyzer process map
+   (fit-analyzer-map.html). Built only from site.css tokens.
+   The figures are drawn by tools/fitmap/build_fitmap.py; this
+   file styles them by class, so a colour change happens here.
+   ============================================================ */
+
+/* ---------- 1. PAGE HEAD ---------- */
+.fm-head__actions {
+    margin-top: var(--s-8);
+    flex-wrap: wrap;
+}
+
+#map,
+.fm-panel {
+    scroll-margin-top: 76px;
+}
+
+/* ---------- 2. LEGEND ---------- */
+.fm-legend__title {
+    font-size: var(--t-lg);
+    margin-bottom: var(--s-4);
+}
+
+.fm-legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: var(--s-3) var(--s-8);
+    padding: 0;
+    list-style: none;
+    font-size: var(--t-sm);
+    line-height: 1.5;
+    color: var(--fg-muted);
+}
+
+.fm-legend li {
+    display: flex;
+    gap: var(--s-3);
+    align-items: center;
+}
+
+.fm-legend svg {
+    flex: none;
+    width: 2.25rem;
+    height: 1.5rem;
+}
+
+.fm-legend strong {
+    color: var(--fg);
+    font-weight: 600;
+}
+
+/* ---------- 3. FIGURES ---------- */
+.fm-fig {
+    margin-block: var(--s-12) var(--s-8);
+}
+
+.fm-fig svg {
+    width: 100%;
+    height: auto;
+}
+
+.fm-fig--tall {
+    display: none;
+    max-width: 30rem;
+    margin-inline: auto;
+}
+
+@media (width <= 719px) {
+    .fm-fig--wide {
+        display: none;
+    }
+
+    .fm-fig--tall {
+        display: block;
+    }
+}
+
+/* SVG parts. Every selector starts with .fm-svg so it outranks the base text rule. */
+.fm-svg text {
+    font-family: var(--font-text);
+    fill: var(--charcoal);
+}
+
+.fm-svg .fm-t-node {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.fm-svg .fm-t-chip {
+    font-size: 12.5px;
+    font-weight: 500;
+}
+
+.fm-svg .fm-t-num {
+    font-size: 13px;
+    font-weight: 700;
+    fill: var(--ink);
+}
+
+.fm-svg .fm-t-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+}
+
+.fm-svg .fm-t-sub {
+    font-size: 13.5px;
+    fill: var(--n-700);
+}
+
+.fm-svg .fm-t-cap,
+.fm-svg .fm-t-fb {
+    font-size: 13px;
+    font-style: italic;
+    fill: var(--n-700);
+}
+
+.fm-svg .fm-t-lane,
+.fm-svg .fm-t-ring {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    fill: var(--gold-text);
+}
+
+.fm-svg .fm-t-ring {
+    fill: var(--olive);
+}
+
+.fm-svg .fm-t-lanesub {
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0;
+    fill: var(--n-500);
+}
+
+.fm-svg .fm-t-gates {
+    font-size: 14px;
+    fill: var(--n-700);
+}
+
+.fm-svg .fm-box {
+    stroke-width: 2;
+}
+
+.fm-svg .fm-n--det .fm-box {
+    fill: var(--olive);
+    stroke: var(--olive);
+}
+
+.fm-svg .fm-n--det .fm-t-node {
+    fill: var(--vellum);
+}
+
+.fm-svg .fm-n--judg .fm-box {
+    fill: rgb(191 163 111 / 18%);
+    stroke: var(--gold);
+    stroke-width: 2.5;
+}
+
+.fm-svg .fm-n--person .fm-box {
+    fill: var(--paper);
+    stroke: var(--clay);
+}
+
+.fm-svg .fm-phase .fm-box {
+    fill: var(--vellum);
+    stroke: var(--n-500);
+    stroke-width: 1.25;
+}
+
+.fm-svg .fm-glyph {
+    fill: var(--clay);
+}
+
+.fm-svg .fm-mark--d {
+    fill: var(--olive);
+}
+
+.fm-svg .fm-mark--j {
+    fill: rgb(191 163 111 / 18%);
+    stroke: var(--gold);
+    stroke-width: 2;
+}
+
+.fm-svg .fm-num {
+    fill: var(--gold);
+}
+
+.fm-svg .fm-ar {
+    fill: none;
+    stroke: var(--charcoal);
+    stroke-width: 1.5;
+}
+
+.fm-svg .fm-ar--fb {
+    stroke: var(--n-700);
+    stroke-dasharray: 6 5;
+}
+
+.fm-svg .fm-ar--me {
+    stroke: var(--clay);
+}
+
+.fm-svg .fm-gate line {
+    stroke: var(--charcoal);
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.fm-svg .fm-gate path {
+    fill: none;
+    stroke: var(--olive);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.fm-svg .fm-ring {
+    fill: none;
+    stroke: var(--olive);
+    stroke-width: 2;
+}
+
+.fm-svg .fm-tick {
+    stroke: var(--olive);
+    stroke-width: 2;
+}
+
+.fm-svg .fm-sep {
+    stroke: var(--rule);
+}
+
+.fm-svg .fm-t-node--sm {
+    font-size: 13.5px;
+}
+
+.fm-svg .fm-n--role .fm-box {
+    fill: var(--paper);
+    stroke: var(--n-700);
+    stroke-width: 1.25;
+}
+
+.fm-svg .fm-gate .fm-gate__x {
+    stroke: var(--clay-text);
+}
+
+.fm-svg .fm-quad {
+    fill: rgb(240 234 214 / 45%);
+    stroke: var(--rule);
+}
+
+.fm-svg .fm-hub {
+    fill: var(--paper);
+    stroke: var(--clay);
+    stroke-width: 2;
+}
+
+/* A phase on the map is a link: it lights up gold on hover and keyboard focus. */
+.fm-link {
+    cursor: pointer;
+}
+
+.fm-link:focus {
+    outline: none;
+}
+
+.fm-svg .fm-link:hover .fm-box,
+.fm-svg .fm-link:focus-visible .fm-box {
+    fill: var(--paper);
+    stroke: var(--gold-text);
+    stroke-width: 3;
+}
+
+.fm-svg .fm-link:focus-visible .fm-box {
+    stroke: var(--gold);
+    stroke-width: 4;
+}
+
+/* ---------- 4. NUMBERED NOTES (after the Ten Questions handout) ---------- */
+.fm-notes {
+    padding: 0;
+    list-style: none;
+    counter-reset: fm;
+    font-size: var(--t-sm);
+    line-height: 1.65;
+    color: var(--fg-muted);
+}
+
+.fm-notes li {
+    position: relative;
+    counter-increment: fm;
+    padding-left: 2.5rem;
+    break-inside: avoid;
+    margin-bottom: var(--s-4);
+}
+
+.fm-notes li::before {
+    content: counter(fm);
+    position: absolute;
+    left: 0;
+    top: 0.05em;
+    display: grid;
+    place-items: center;
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: var(--t-xs);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.fm-notes strong,
+.fm-ring-note strong,
+.fm-me strong {
+    color: var(--fg);
+    font-weight: 600;
+}
+
+.fm-tech {
+    font-size: var(--t-xs);
+    color: var(--n-500);
+}
+
+@media (width >= 900px) {
+    .fm-notes--cols {
+        columns: 2;
+        column-gap: var(--s-12);
+    }
+}
+
+.fm-ring-note {
+    max-width: var(--measure);
+    margin-top: var(--s-8);
+    padding-left: var(--s-6);
+    border-left: 2px solid var(--olive);
+    font-size: var(--t-sm);
+    line-height: 1.65;
+    color: var(--fg-muted);
+}
+
+/* ---------- 5. DRILL-DOWNS ---------- */
+.fm-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    margin-bottom: var(--s-4);
+}
+
+.fm-tabs a {
+    display: inline-flex;
+    gap: var(--s-2);
+    align-items: center;
+    padding: var(--s-2) var(--s-4);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    font-size: var(--t-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+        background 0.18s var(--ease),
+        border-color 0.18s var(--ease);
+}
+
+.fm-tabs a:hover {
+    background: rgb(191 163 111 / 12%);
+    border-color: var(--accent);
+}
+
+.fm-tabs a[aria-current="true"] {
+    background: var(--olive);
+    border-color: var(--olive);
+    color: var(--vellum);
+}
+
+.fm-tabs__n {
+    font-size: var(--t-xs);
+    color: var(--accent);
+}
+
+.fm-tabs a[aria-current="true"] .fm-tabs__n {
+    color: var(--gold-ink);
+}
+
+.fm-keys {
+    display: none;
+    font-size: var(--t-xs);
+    color: var(--fg-muted);
+}
+
+.fm-panel {
+    padding-top: var(--s-12);
+}
+
+.fm-panel + .fm-panel {
+    margin-top: var(--s-16);
+    border-top: 1px solid var(--rule);
+}
+
+.fm-me,
+.fm-aside {
+    max-width: var(--measure);
+    font-size: var(--t-sm);
+    line-height: 1.65;
+    color: var(--fg-muted);
+}
+
+.fm-me {
+    padding-left: var(--s-6);
+    border-left: 2px solid var(--clay);
+}
+
+.fm-aside {
+    margin-top: var(--s-4);
+    font-style: italic;
+}
+
+.fm-aside a,
+.fm-pnav a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.fm-draft {
+    font-size: var(--t-sm);
+    font-style: italic;
+    color: var(--clay-text);
+}
+
+.fm-pnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-4) var(--s-8);
+    justify-content: space-between;
+    margin-top: var(--s-12);
+    padding-top: var(--s-6);
+    border-top: 1px solid var(--rule);
+    font-size: var(--t-sm);
+    font-weight: 600;
+}
+
+/* With JS on, one drill-down shows at a time (fit-map.js); with JS off they all read stacked. */
+.fm-js .fm-keys {
+    display: block;
+}
+
+.fm-js .fm-panel {
+    display: none;
+}
+
+.fm-js .fm-panel.is-open {
+    display: block;
+    margin-top: 0;
+    border-top: 0;
+}
+
+/* ---------- 6. THE SPLIT (who does what, by phase) ---------- */
+.fm-split {
+    display: grid;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    font-size: var(--t-sm);
+    line-height: 1.5;
+}
+
+.fm-split__row {
+    display: grid;
+    grid-template-columns: 9.5rem repeat(3, 1fr) 1.2fr;
+    gap: 1px;
+}
+
+.fm-split__row > span {
+    padding: var(--s-3) var(--s-4);
+    background: var(--paper);
+    color: var(--fg-muted);
+}
+
+.fm-split__row > span[role="rowheader"] {
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    color: var(--fg);
+}
+
+.fm-split__head > span {
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.fm-split__n {
+    display: inline-grid;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: var(--s-2);
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: var(--font-text);
+    font-size: var(--t-xs);
+    font-weight: 700;
+    vertical-align: 0.2em;
+}
+
+@media (width <= 899px) {
+    .fm-split__head {
+        display: none;
+    }
+
+    .fm-split__row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .fm-split__row > span[role="cell"]::before {
+        content: attr(data-h) ": ";
+        font-weight: 600;
+        color: var(--fg);
+    }
+}
+
+/* ---------- 7. HOW THIS MAP WAS MADE ---------- */
+.fm-made {
+    max-width: var(--measure);
+    color: var(--fg-muted);
+}
+
+.fm-made p + p {
+    margin-top: var(--s-4);
+}
+
+.fm-made__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3) var(--s-8);
+    font-size: var(--t-sm);
+    font-weight: 600;
+}
+
+.fm-made__links a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+@media print {
+    .fm-tabs,
+    .fm-keys,
+    .fm-pnav {
+        display: none;
+    }
+
+    .fm-js .fm-panel {
+        display: block;
+    }
+}
