@@ -32,7 +32,7 @@ PHASES = [
     dict(n=1, title="Find", sub=("job boards,", "posting text"), actors="dp", href="#nightly", lead="Find.",
          note="Every night a script pulls each employer’s own job board and fetches the full text of every new "
               "posting. I choose which employers are on the list.",
-         tech="employers’ own hiring-system feeds across 13 platforms, stored in DuckDB"),
+         tech="employers’ own hiring-system feeds across 17 platforms, stored in DuckDB"),
     dict(n=2, title="Judge", sub=("rules, models,", "AI review"), actors="dj", href="#nightly", lead="Judge.",
          note="Rules, trained models and a small embedding model score each posting. Two AI judges read the "
               "Required block of the shortlist.",
