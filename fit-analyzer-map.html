@@ -1902,12 +1902,17 @@
                             changed.
                         </li>
                         <li>
-                            <strong>Trained models.</strong> Small models trained on my own calls and grades, one per
-                            lens. They rank well on employers they never saw in training, and a retrain replaces them
-                            only if it passes the gate.
+                            <strong>Trained models.</strong> Small models, one per lens, trained on my own calls and
+                            grades and on a Claude judge&#x27;s grades, which are checked against mine. They rank well
+                            on employers they never saw in training, and a retrain replaces them only if it passes the
+                            gate.
                             <span class="fm-tech"
                                 >(TF-IDF with logistic regression; AUC measured on held-out employers; retrain gate with
                                 a shuffled-label leak check)</span
+                            >
+                            <a href="grading-presentation.html"
+                                >See an example training run, Nov 3, 2026: how it&#x27;s done, validated and what it
+                                found &rarr;</a
                             >
                         </li>
                         <li>

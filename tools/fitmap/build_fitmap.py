@@ -219,10 +219,12 @@ VALIDATE = [
      "Rules on function, level, location, clearance and discipline. Each verdict keeps its reasons, so a rule "
      "that screens out a good posting can be found and changed.", None),
     ("models", "d", ("Trained models", "AUC 0.955"), ("Sets the rank",), True, "Trained models.",
-     "Small models trained on my own calls and grades, one per lens. They rank well on employers they never saw "
-     "in training, and a retrain replaces them only if it passes the gate.",
+     "Small models, one per lens, trained on my own calls and grades and on a Claude judge's grades, which are "
+     "checked against mine. They rank well on employers they never saw in training, and a retrain replaces them "
+     "only if it passes the gate.",
      "TF-IDF with logistic regression; AUC measured on held-out employers; retrain gate with a shuffled-label "
-     "leak check"),
+     "leak check",
+     ("grading-presentation.html", "See an example training run, Nov 3, 2026: how it's done, validated and what it found")),
     ("embed", "d", ("Embedding model", "AUC 0.669"), ("Explains the rank",), False, "Embedding model.",
      "Matching requirements to my record by meaning looked like the obvious ranker. Its scores bunched too "
      "tightly to rank, so it failed that bar and kept the job of explaining the rank.",
@@ -778,9 +780,10 @@ def learn_tall():
 
 
 # ══════════ notes and page assembly ══════════
-def note_li(lead, note, tech=None):
+def note_li(lead, note, tech=None, link=None):
     t = f' <span class="fm-tech">({e(tech)})</span>' if tech else ""
-    return f"<li><strong>{e(lead)}</strong> {e(note)}{t}</li>"
+    a = f' <a href="{e(link[0])}">{e(link[1])} &rarr;</a>' if link else ""
+    return f"<li><strong>{e(lead)}</strong> {e(note)}{t}{a}</li>"
 
 
 def notes(items, cls="fm-notes fm-notes--cols"):
@@ -811,7 +814,7 @@ def blocks():
                               snake_tall("nt", NIGHTLY_LANES, NIGHTLY, NIGHTLY_TITLE, NIGHTLY_DESC)),
         "nightly-notes": notes([(NIGHTLY[n]["lead"], NIGHTLY[n]["note"], NIGHTLY[n].get("tech")) for n in n_order]),
         "validate-fig": figure("validate", validate_wide(), validate_tall()),
-        "validate-notes": notes([(v[5], v[6], v[7]) for v in VALIDATE]),
+        "validate-notes": notes([(v[5], v[6], v[7], v[8] if len(v) > 8 else None) for v in VALIDATE]),
         "decide-fig": figure("decide",
                              free("dw", DECIDE_WIDE, DECIDE_NODES, DECIDE_EDGES, DECIDE_TITLE, DECIDE_DESC),
                              free("dt", DECIDE_TALL, DECIDE_NODES, DECIDE_EDGES, DECIDE_TITLE, DECIDE_DESC, True)),
