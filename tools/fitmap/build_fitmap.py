@@ -50,7 +50,8 @@ PHASES = [
     dict(n=6, title="Learn", sub=("retrain, voice,", "record"), actors="djp", href="#learn", lead="Learn.",
          note="My calls retrain the models through a gate. A script finds every edit I make to a sent document "
               "and AI explains why, so the voice guide and the record of my work both improve.",
-         tech="gated retraining; word-level document diff"),
+         tech="gated retraining; word-level document diff",
+         link=("grading-presentation.html", "Example training run (Nov 3, 2026)")),
     dict(n=7, title="Publish", sub=("reports, charts,", "presentation"), actors="dp", href="#nightly",
          lead="Publish.",
          note="A snapshot of each night rebuilds the reports, charts and presentation. I review anything new "
@@ -224,7 +225,7 @@ VALIDATE = [
      "only if it passes the gate.",
      "TF-IDF with logistic regression; AUC measured on held-out employers; retrain gate with a shuffled-label "
      "leak check",
-     ("grading-presentation.html", "See an example training run, Nov 3, 2026: how it's done, validated and what it found")),
+     ("grading-presentation.html", "Example training run (Nov 3, 2026)")),
     ("embed", "d", ("Embedding model", "AUC 0.669"), ("Explains the rank",), False, "Embedding model.",
      "Matching requirements to my record by meaning looked like the obvious ranker. Its scores bunched too "
      "tightly to rank, so it failed that bar and kept the job of explaining the rank.",
@@ -808,7 +809,7 @@ def blocks():
     assert [s["n"] for s in d_nodes] == list(range(1, len(d_nodes) + 1))
     return {
         "top-fig": figure("top", top_wide(), top_tall()),
-        "top-notes": notes([(p["lead"], p["note"], p.get("tech")) for p in PHASES]),
+        "top-notes": notes([(p["lead"], p["note"], p.get("tech"), p.get("link")) for p in PHASES]),
         "nightly-fig": figure("nightly",
                               snake_wide("nw", NIGHTLY_LANES, NIGHTLY, NIGHTLY_TITLE, NIGHTLY_DESC),
                               snake_tall("nt", NIGHTLY_LANES, NIGHTLY, NIGHTLY_TITLE, NIGHTLY_DESC)),
