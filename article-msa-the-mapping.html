@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Mapping: Measurement System Analysis for an AI Judge | Jeffrey Benson</title>
+  <meta name="description" content="An AI judge is an appraiser. Repeatability, reproducibility, bias and stability mapped onto AI evaluation, the stacked gage under every answer key, and why the 10% and 30% rule does not transfer.">
+  <meta name="robots" content="noindex"><!-- DRAFT: remove before publishing -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    @media (min-width: 1200px) {
+      .article-image-wide {
+        width: 70vw;
+        margin-left: -35vw;
+        margin-right: -35vw;
+      }
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  
+    /* ── Measurement Series additions ── */
+    .msa-table { border-collapse: collapse; margin: 8px 0 24px; font-size: 0.95rem; }
+    .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
+    .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
+    .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
+    .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
+    .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
+    .msa-glossary dt { font-weight: 700; color: var(--olive); }
+    .msa-glossary dd { margin: 0; }
+    .msa-sources ol { padding-left: 22px; }
+    .msa-sources li { margin-bottom: 10px; line-height: 1.55; }
+    @media (max-width: 640px) {
+      .msa-glossary dl { grid-template-columns: 1fr; gap: 2px; }
+      .msa-glossary dd { margin-bottom: 10px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+        <div class="nav__links">
+          <a href="ai-builder.html">AI Builder</a>
+          <a href="work.html">Work</a>
+          <a href="method.html">Method</a>
+          <a href="systems.html">Systems</a>
+          <a href="articles.html" class="is-current">Notebook</a>
+          <a href="about.html">About</a>
+        </div>
+        <a class="btn btn--primary nav__cta" href="resume.html">R&eacute;sum&eacute;</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">Menu</button>
+      </div>
+      <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+        <a href="ai-builder.html">AI Builder</a>
+        <a href="work.html">Work</a>
+        <a href="method.html">Method</a>
+        <a href="systems.html">Systems</a>
+        <a href="articles.html">Notebook</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">R&eacute;sum&eacute;</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; Measurement Series &middot; AI Evaluation 1 of 3</p>
+      <h1 class="article-title">The Mapping: Measurement System Analysis for an AI Judge</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>Measurement Series</strong> &nbsp;&middot;&nbsp; Part 1: Your Gage Is a Person &nbsp;|&nbsp; Part 2: Running an Attribute Agreement Study &nbsp;|&nbsp; Part 3: Keeping It Under Control &nbsp;|&nbsp; Bridge: The Partly Automated Appraiser &nbsp;|&nbsp; Parts 4&ndash;6: When the Appraiser Is an AI
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p>In late September I approved a plan for a new AI judge in my job search pipeline. The judge's job is to read a posting and decide whether I meet its Required qualifications, the same call I make myself on my answer key. The first line of the plan says the judge is to be treated as a new appraiser, and that it gets the full measurement-system study: agreement with my answer key, repeatability, calibration, and stability across model versions. Nothing it said would move a posting in my rankings until it passed.</p>
+    <p>The AI judge I had tried before it had not passed. By late September it had failed the same test eight rounds in a row. On September 24 it agreed with my "meets" calls 77% of the time against a bar of 85%, and it caught 56% of the postings I fail against a bar of 70%.</p>
+    <p>Reading the plan back now, I see a Measure phase with the word "model" where the word "examiner" would go. That is the idea behind the second half of this series. Everything we learned about measuring people who make judgment calls applies, term by term, to an AI that makes the same calls.</p>
+    <p>This article will not explain how language models work, nor survey the AI evaluation tools on the market. Rather, we will map each idea from the first half of this series onto an AI judge, look at the stacked gage underneath every AI evaluation, and see why the 10% and 30% rule from the plant floor does not transfer.</p>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The mapping</p>
+      <h2 class="section-title">The judge is an appraiser</h2>
+      <p>First, what do we mean by an AI judge? It is a language model (the kind of AI behind tools like ChatGPT and Claude) given an item and a question, and asked for a call. Does this customer reply follow our refund policy? Does this ticket belong in the billing queue? Does this candidate meet the posting's Required qualifications? The call comes back as a category, the same way an examiner's does.</p>
+      <p>Here is the mapping, term by term, with a claims desk beside it and my own pipeline as the worked case:</p>
+      <table class="msa-table">
+        <thead><tr><th>MSA term</th><th>On a claims desk</th><th>For an AI judge</th><th>In my pipeline</th></tr></thead>
+        <tbody>
+          <tr><th>Gage</th><td>The examiner, with the checklist and policy</td><td>The model, plus its instructions, plus whatever background it is given</td><td>The judge, its questions and the fact sheet about me it reads</td></tr>
+          <tr><th>Part</th><td>A claim</td><td>One item to judge</td><td>One job posting</td></tr>
+          <tr><th>Answer key (reference standard)</th><td>A panel's settled calls</td><td>A set of items labeled by people</td><td>My blind calls on 149 postings</td></tr>
+          <tr><th>Repeatability</th><td>The same examiner, the same claim, weeks later</td><td>The same item sent to the same judge again</td><td>The answer key sent three times</td></tr>
+          <tr><th>Reproducibility</th><td>Two examiners, the same claim</td><td>Two models, or one model with two sets of instructions</td><td>Two different AI judges on the same postings</td></tr>
+          <tr><th>Bias</th><td>An examiner who approves too easily</td><td>A judge more lenient or harsher than the answer key</td><td>The two error rates, reported apart</td></tr>
+          <tr><th>Stability</th><td>An examiner drifting over months</td><td>A model that changes under the same name</td><td>A pinned model version and 10 frozen postings</td></tr>
+          <tr><th>Operational definition</th><td>The written rule for each category</td><td>The rubric and the instructions</td><td>My two tests under one label (Part 1)</td></tr>
+        </tbody>
+      </table>
+      <p>The first row matters most. The gage is never the model alone. Change the instructions, the background text or the model version and we have a new gage, and the study we ran on the old one no longer describes it. My pipeline puts a version label on every AI review that changes whenever any of those pieces change. We met the same rule for software appraisers in the Bridge article.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Repeatability</p>
+      <h2 class="section-title">Ask it again</h2>
+      <p>A rules engine gives the same answer to the same input every time. A language model may not. It builds each answer one word at a time, with a little built-in randomness in which word comes next, and the setting that turns that randomness down (called temperature) reduces it without always removing it. The plant-floor question comes back: if we ask the same judge about the same item twice, do we get the same call?</p>
+      <p><strong>1. The question it answers.</strong> Does the judge agree with itself?</p>
+      <p><strong>2. What goes in.</strong> The answer-key items, sent to the judge two or three times with nothing changed, and every call it made.</p>
+      <p><strong>3. What it does.</strong> Count the items whose call changed between passes, and look at how far each one moved.</p>
+      <p><strong>4. How to read it.</strong> The share that changed is the flip rate. My pipeline's bar for the judge is 2% or less. In its test, I sent all 115 answer-key postings at the time through the judge three times. Its Required call changed on 5 of the 115 postings, and every change was a single step: meets to partial, or partial to fails, never meets to fails. Counting every individual answer the judge gives along the way, the flip rate was 1.6%, inside the bar.</p>
+      <p><strong>5. Where we use it.</strong> Before trusting any AI judge, and again after any change to it.</p>
+      <p>Two more things I learned from my own judges. The earlier judge, run with its randomness turned down to zero, gave identical answers on repeat. The newer one did not: in a three-call test on the vendor's own sample, its confidence numbers moved by about 0.03 each time. And in late October, when I added a new fact to the fact sheet the judge reads about me (a fact that had nothing to do with the postings in question), 6 of 209 postings changed their verdict, in both directions. That is what noise looks like on a judge, and it is why I'd never judge a model on a single pass.</p>
+      <p>There is good news here too. In Part 1 we worried about the examiner who remembers the claim. A model keeps no memory from one call to the next, so it is the one appraiser we can re-test truly blind, as often as we like.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The stacked gage</p>
+      <h2 class="section-title">The answer key is a gage too</h2>
+      <p>On a plant floor, the master part is machined to a known size. In AI evaluation, the answer key came from people. That means there are two measurement systems stacked on top of each other: the people who made the key, and then the judge we score against it. If we skip the first, we are scoring the judge against a master nobody calibrated.</p>
+      <p>Let's see what that does to a score. Suppose my answer key has 100 postings, and on a careful re-read I would change my call on 10 of them. (My re-grade in Part 1 is the reason I think 10 is not an unfair guess: on 17 hard postings I changed 8.) Now score two judges against my key:</p>
+      <ul class="support-list">
+        <li><strong>Judge A is right on all 100.</strong> It disagrees with my key on the 10 postings where I was wrong. Its score: 90 of 100.</li>
+        <li><strong>Judge B is wrong on 10.</strong> Five of its mistakes are the same five mistakes I made, so on those it matches my key. The other five are on postings I got right, so on those it disagrees with my key. It also disagrees with my key on the other 5 postings where I was wrong, because there it is right. Its score: 100 &minus; 5 &minus; 5 = 90 of 100.</li>
+      </ul>
+      <p>A perfect judge and a judge that copies half my mistakes get the same score. The key cannot tell them apart. This is the stacked-gage problem, and it is why the first measurement in any AI evaluation should be people against people.</p>
+      <p>Here is that first measurement in five steps.</p>
+      <p><strong>1. The question it answers.</strong> Is our answer key consistent enough to grade a judge with?</p>
+      <p><strong>2. What goes in.</strong> A sample of the items, judged blind by two people (or by one person twice, weeks apart, as in my re-grade study for Part 2), plus the AI judge's call on the same items.</p>
+      <p><strong>3. What it does.</strong> Compute the agreement between the two people first. Then compute the judge's agreement with each person.</p>
+      <p><strong>4. How to read it.</strong> The people's agreement is the baseline. If two careful people agree on 90% of the items, a judge that agrees with each of them about 90% of the time is judging the way a person does. MLflow's guide to calibrating AI judges puts it directly: measure human-human agreement first, because "a judge cannot be more aligned than its labelers" (<a href="https://mlflow.org/articles/llm-judge-calibration/" target="_blank" rel="noopener">MLflow</a>). NVIDIA researchers built a benchmark on this comparison, scoring each model's agreement with each person against a person-to-person baseline (kappa 0.801 on their data) (<a href="https://arxiv.org/html/2510.09738v1" target="_blank" rel="noopener">Han et al. 2025</a>).</p>
+      <p><strong>5. Where we use it.</strong> Before any AI judge is scored, and every time the answer key grows.</p>
+      <p>Is that baseline a hard ceiling? Not quite. A simulation study found a model can score above the agreement between the people who labeled the data, as long as the model is reasonably well specified (<a href="https://aclanthology.org/2022.bionlp-1.26/" target="_blank" rel="noopener">Richie, Grover and Tsui 2022</a>). So I'd treat a judge score near or above the human baseline as a reason to look closely at the disagreements, item by item, before celebrating or dismissing it.</p>
+      <p>Two more habits from my own key. I count the items the people could not agree on, and I report the judge's score with and without them. Leaving them out is fine as long as the count is reported, because a long list of contested items is evidence that the definition needs work. And when the people disagree a lot, the fix is the definition first, the same lesson as Part 1. MLflow's guide makes the same point about rubrics: if your two best reviewers agree only 70% of the time, no judge instructions will fix it.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Acceptance</p>
+      <h2 class="section-title">Why the 10% and 30% rule does not transfer</h2>
+      <p>In Part 1 we met the plant-floor rule: if the measuring accounts for under 10% of the variation, the gage is acceptable, 10% to 30% is marginal, and over 30% means fix the gage first (<a href="https://support.minitab.com/en-us/minitab/media/pdfs/translate/Assistant_Gage_R_and_R.pdf" target="_blank" rel="noopener">Minitab</a>). Can we hold an AI judge to that rule?</p>
+      <p>Usually not. The rule splits variation in readings taken on a scale (a length, a weight, a time). Most AI judges return a category: meets or fails, billing or technical, follows policy or not. There is no variation on a scale to split. In my mapping, the rule applies only when a judge gives a score on a scale, say 1 to 10, and then the matching study asks what share of the variation in scores the judge itself causes. For category calls, we are back to the tools from Part 1:</p>
+      <ul class="support-list">
+        <li><strong>Agreement with the answer key, corrected for luck</strong> (kappa), and Gwet's AC1 beside it when one answer dominates. My answer key is 79% "fails", so I report both.</li>
+        <li><strong>A bar set by the cost of a wrong call.</strong> Practitioner bars for AI judges tend to borrow the same labels we met in Part 1. MLflow's guide, for one, suggests reworking the rubric when kappa falls below about 0.61, the bottom of the "substantial" band.</li>
+        <li><strong>The human baseline</strong> from the section above, which is the better-grounded comparison of the two.</li>
+      </ul>
+      <p>My own pipeline uses two bars, because the two kinds of error cost me different things (the miss and the false alarm from the Bridge article). The judge's verdict can only push a posting down my list. The error I most want to avoid is a wrong "fails" on a posting I meet, which could hide a job I should apply for. The agree bar (of the postings I say I meet, how many the judge also says I meet) measures that, and it is the stricter one at 85%. The catch bar (of the postings I say I fail that an earlier AI check had passed, how many this judge flags) is 70%. The current judge passed both on its last full test, at 87% and 83%.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The rest of the list</p>
+      <h2 class="section-title">Bias, linearity and stability</h2>
+      <ul class="support-list">
+        <li><strong>Bias</strong> is a judge that leans one way: more lenient or harsher than the answer key. Reporting the two error rates apart, as my two bars do, is how it shows up. A single overall score would hide it.</li>
+        <li><strong>Linearity</strong> is whether that lean stays the same across the range. A judge can be reliable on the clear fits and the clear misfits and shaky in the middle, which is where the decisions are hard. Every one of my judge's repeat-run changes involved the middle answer, "partial".</li>
+        <li><strong>Stability</strong> is drift over time, and for AI it is a bigger worry than for people. A hosted model can change under the same name. A 2023 study compared two releases of GPT-4 three months apart and found its accuracy at telling prime numbers from composite ones fell from 84% to 51% (<a href="https://arxiv.org/abs/2307.09009" target="_blank" rel="noopener">Chen, Zaharia and Zou 2023</a>). My pipeline asks for a fixed model version, checks that the version that answered is the one it asked for, and keeps 10 frozen postings the judge can be asked to re-judge at any time.</li>
+      </ul>
+      <p>Is there evidence that a strong AI judge can match people? Yes, on some tasks. The paper that launched much of this field found that strong judges like GPT-4 matched human preferences over 80% of the time, the same level at which humans agreed with each other (<a href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener">Zheng et al. 2023</a>). That was measured on their tasks, against their people. The study we just mapped is how we find out whether it is true on ours.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Your turn</p>
+      <h2 class="section-title">Who wrote your answer key?</h2>
+      <p>If your team uses an AI judge, or is about to, start with the answer key. Who labeled it? Did anyone else label the same items, blind, so you know how often the people agree? How many items were contested, and where did they go? And if the vendor changed the model under the same name next month, how would you know?</p>
+      <p>If you found this article useful, please share it with your network. I'd like to hear from you in the comments, and I'll answer any questions you have.</p>
+      <p><em>Next in the series: <strong>What Changes When the Appraiser Is a Model</strong>. An AI judge is cheap to run and expensive to trust. We will look at why a million AI verdicts do not make the answer more true, the biases a judge brings with it, and the rubric line in my own pipeline that left 0 of 3,009 postings able to reach the top fit.</em></p>
+    </div>
+
+    <!-- ── Glossary ── -->
+    <div class="section-block msa-glossary">
+      <p class="section-eyebrow">Glossary</p>
+      <h2 class="section-title">Terms used in this article</h2>
+      <dl>
+        <dt>AI judge</dt><dd>A language model given an item and a question, and asked to make a call.</dd>
+        <dt>Language model</dt><dd>The kind of AI behind tools like ChatGPT and Claude, which writes its answer one word at a time.</dd>
+        <dt>Temperature</dt><dd>The setting that controls how much randomness a model uses in choosing each word.</dd>
+        <dt>Flip rate</dt><dd>The share of items whose call changed when the same judge was asked again.</dd>
+        <dt>Answer key</dt><dd>The set of items labeled by people that the judge is scored against (reference standard).</dd>
+        <dt>Stacked gage</dt><dd>Two measurement systems on top of each other: the people who made the key, then the judge.</dd>
+        <dt>Human baseline</dt><dd>How often the people who label the items agree with each other.</dd>
+        <dt>Contested item</dt><dd>An item the people could not agree on.</dd>
+        <dt>Agree bar, catch bar</dt><dd>My pipeline's two pass marks for a judge, one for each kind of error.</dd>
+        <dt>Pinned model version</dt><dd>A fixed release of a model, asked for by its exact name, so it cannot change underneath us.</dd>
+      </dl>
+    </div>
+
+    <!-- ── Sources ── -->
+    <div class="section-block msa-sources">
+      <p class="section-eyebrow">Sources</p>
+      <h2 class="section-title">References</h2>
+      <ol>
+        <li>MLflow. <a href="https://mlflow.org/articles/llm-judge-calibration/" target="_blank" rel="noopener">LLM Judge Calibration: Measure, Correct and Report</a>. Measure human-human agreement first; rework the rubric below a kappa of about 0.61; two reviewers at 70% means the rubric is the problem.</li>
+        <li>Han, S., et al. (2025). <a href="https://arxiv.org/html/2510.09738v1" target="_blank" rel="noopener">Judge's Verdict: A Comprehensive Analysis of LLM Judge Capability Through Human Agreement</a>. arXiv:2510.09738. Each model's kappa with each human against a human-to-human baseline of 0.801.</li>
+        <li>Richie, R., Grover, S., and Tsui, F. (2022). <a href="https://aclanthology.org/2022.bionlp-1.26/" target="_blank" rel="noopener">Inter-annotator agreement is not the ceiling of machine learning performance: Evidence from a comprehensive set of simulations</a>. <em>Proceedings of the BioNLP Workshop</em>, ACL.</li>
+        <li>Minitab. <a href="https://support.minitab.com/en-us/minitab/media/pdfs/translate/Assistant_Gage_R_and_R.pdf" target="_blank" rel="noopener"><em>Gage R&amp;R Study (Crossed)</em>, Minitab Assistant white paper</a>. The 10% / 30% acceptance rule.</li>
+        <li>Chen, L., Zaharia, M., and Zou, J. (2023). <a href="https://arxiv.org/abs/2307.09009" target="_blank" rel="noopener">How is ChatGPT's behavior changing over time?</a> arXiv:2307.09009. GPT-4 prime-number accuracy, March 84% and June 51%.</li>
+        <li>Zheng, L., et al. (2023). <a href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener">Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</a>. arXiv:2306.05685 (NeurIPS 2023). Over 80% agreement with human preferences, the same level as between humans.</li>
+      </ol>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">The pipeline figures come from my own job search pipeline's records and evaluation logs (September to October 2026). The 100-posting answer-key example is a made-up illustration. Research for this series was assisted by AI research tools, and every source above was opened and checked.</p>
+
+  </article>
+
+
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>
