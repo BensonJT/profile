@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Running an Attribute Agreement Study: I Re-Graded 60 of My Own Calls | Jeffrey Benson</title>
+  <meta name="description" content="A real attribute agreement study, start to finish: drawing the sample, keeping it blind, computing agreement and kappa by hand, reading a result of 83%, and deciding what to fix.">
+  <meta name="robots" content="noindex"><!-- DRAFT: remove before publishing -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    @media (min-width: 1200px) {
+      .article-image-wide {
+        width: 70vw;
+        margin-left: -35vw;
+        margin-right: -35vw;
+      }
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  
+    /* ── Measurement Series additions ── */
+    .msa-table { border-collapse: collapse; margin: 8px 0 24px; font-size: 0.95rem; }
+    .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
+    .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
+    .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
+    .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
+    .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
+    .msa-glossary dt { font-weight: 700; color: var(--olive); }
+    .msa-glossary dd { margin: 0; }
+    .msa-sources ol { padding-left: 22px; }
+    .msa-sources li { margin-bottom: 10px; line-height: 1.55; }
+    @media (max-width: 640px) {
+      .msa-glossary dl { grid-template-columns: 1fr; gap: 2px; }
+      .msa-glossary dd { margin-bottom: 10px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+        <div class="nav__links">
+          <a href="ai-builder.html">AI Builder</a>
+          <a href="work.html">Work</a>
+          <a href="method.html">Method</a>
+          <a href="systems.html">Systems</a>
+          <a href="articles.html" class="is-current">Notebook</a>
+          <a href="about.html">About</a>
+        </div>
+        <a class="btn btn--primary nav__cta" href="resume.html">R&eacute;sum&eacute;</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">Menu</button>
+      </div>
+      <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+        <a href="ai-builder.html">AI Builder</a>
+        <a href="work.html">Work</a>
+        <a href="method.html">Method</a>
+        <a href="systems.html">Systems</a>
+        <a href="articles.html">Notebook</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">R&eacute;sum&eacute;</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; Measurement Series &middot; Part 2 of 7</p>
+      <h1 class="article-title">Running an Attribute Agreement Study: I Re-Graded 60 of My Own Calls</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>Measurement Series</strong> &nbsp;&middot;&nbsp; Part 1: Your Gage Is a Person &nbsp;|&nbsp; Part 2: Running an Attribute Agreement Study &nbsp;|&nbsp; Part 3: Keeping It Under Control &nbsp;|&nbsp; Bridge: The Partly Automated Appraiser &nbsp;|&nbsp; Parts 4&ndash;6: When the Appraiser Is an AI
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p>One afternoon in November I sat down with 60 job postings I had already graded. Weeks earlier I had made one call on each, blind: do I meet the posting's Required qualifications, or not? Now I made the same call again, without seeing my first answer, to find out how often I would agree with myself.</p>
+    <p>Before I started, I was worried the result would be a complete failure. My own sense of my consistency on calls like this was somewhere around 70% to 80%, and these 60 calls are part of the answer key I use to grade the AI judges in my job search pipeline. If I could not agree with myself, what was I grading them against?</p>
+    <p>In Part 1 we learned what an attribute agreement study is and why it is the measurement study for judgment calls. This article will not cover every statistic a software package prints, nor the theory behind them. Rather, we will run one study from start to finish on actual calls (mine): deciding what to measure, drawing the sample, keeping it blind, computing the results by hand, reading them, and deciding what to fix.</p>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Step 1</p>
+      <h2 class="section-title">Decide what the study can measure</h2>
+      <p>Part 1 described three comparisons: each appraiser against themselves (repeatability), appraisers against each other (reproducibility), and appraisers against the right answer (accuracy). Which of those can your study answer?</p>
+      <p>Mine has one appraiser, me, and no independent answer key. My first calls are the only record of the "right" answer. This study measures repeatability only. When my two calls differ, it tells me I am inconsistent on that posting. It cannot tell me which of my two calls was right. That is a limit, and I'm stating it up front.</p>
+      <p>On a claims desk, the same choice comes first. One examiner re-judging their own claims gives repeatability. Two or three examiners on the same claims add reproducibility. A panel-built answer key, like the staged design from Part 1, adds accuracy.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Step 2</p>
+      <h2 class="section-title">Draw the sample on purpose</h2>
+      <p>How many items, and which ones? Minitab's own worked example uses 50 samples (<a href="https://support.minitab.com/minitab/help-and-how-to/quality-and-process-improvement/measurement-system-analysis/how-to/attribute-agreement-analysis/attribute-agreement-analysis/before-you-start/example/" target="_blank" rel="noopener">Minitab</a>). I chose 60, a number I could finish in one sitting.</p>
+      <p>The pool was every posting in my answer key that I had graded at least three weeks earlier, so my memory of the first call would have faded. In Part 1 we saw the prevalence trap: my answer key is 79% "fails", and a random sample would have been mostly easy fails. So I split the sample by answer. I took all 29 of the eligible "meets" postings and drew 31 of the 89 eligible "fails" at random. The draw used a fixed starting number for the random generator, so the same 60 can be drawn again by anyone checking my work.</p>
+      <p>On a claims desk, this is the same move: decide how many approvals and denials you want, then draw each group separately, with plenty of borderline cases.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Step 3</p>
+      <h2 class="section-title">Keep it blind</h2>
+      <p>A repeatability study is only as good as its blinding. If I can see my first answer, I will copy it. Here is how this one was set up:</p>
+      <ul class="support-list">
+        <li><strong>One posting at a time</strong>, showing the employer, the title and the full posting text. Many of the original links had died, so the tool showed the copy of the posting saved when I first graded it. That way I judged the same text both times.</li>
+        <li><strong>Everything else hidden:</strong> my earlier call, the pipeline's scores, and the AI judges' verdicts.</li>
+        <li><strong>A shuffled order</strong>, so the meets and fails were mixed together.</li>
+        <li><strong>Two buttons, Meets or Fails</strong>, the same choice as the original call, plus an optional note.</li>
+        <li><strong>A separate record.</strong> The new answers were stored apart from the answer key, so the study could never overwrite my original calls.</li>
+        <li><strong>Time between the two calls:</strong> 22 to 50 days, and 50 days for most of the postings.</li>
+      </ul>
+      <p>On a claims desk, the equivalents are a copy of the claim file with the earlier decision removed, the claims in a shuffled order, and a gap of a few weeks so the examiner does not remember the case.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Step 4</p>
+      <h2 class="section-title">Run it, and write down what happened</h2>
+      <p>I graded all 60 in one afternoon, in about two hours. One thing happened along the way that belongs in the write-up. Halfway through, I asked for my agreement rate on the first 30 and saw it: 80%, with 4 of my changes going from meets to fails and 2 going the other way. In the second 30, the changes ran the other direction: 1 to fails and 3 to meets. I can't rule out that seeing the midpoint nudged me. In a study at work, I'd keep the results sealed until the last item is graded.</p>
+      <p>The notes turned out to matter too. On two postings I graded "meets" and wrote that the job fails on logistics: it was neither remote nor near me. We will come back to those two.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Step 5</p>
+      <h2 class="section-title">The results, worked by hand</h2>
+      <p>Here are my 60 calls, first answer against second:</p>
+      <table class="msa-table">
+        <thead><tr><th></th><th>Second call: meets</th><th>Second call: fails</th><th>Total</th></tr></thead>
+        <tbody>
+          <tr><th>First call: meets</th><td>24</td><td>5</td><td>29</td></tr>
+          <tr><th>First call: fails</th><td>5</td><td>26</td><td>31</td></tr>
+        </tbody>
+      </table>
+      <ul class="support-list">
+        <li><strong>Percent agreement:</strong> 24 + 26 = 50 of 60, or 83.3%. I kept 24 of my 29 "meets" (83%) and 26 of my 31 "fails" (84%).</li>
+        <li><strong>Agreement by luck:</strong> both times I said "meets" on 29 of 60 (48.3%). Two calls made at those rates would both say "meets" 0.483 &times; 0.483 = 23.4% of the time and both say "fails" 0.517 &times; 0.517 = 26.7% of the time, so luck alone gives about 50%.</li>
+        <li><strong>Kappa (agreement beyond luck):</strong> (0.833 &minus; 0.501) &divide; (1 &minus; 0.501) = 0.67.</li>
+        <li><strong>Gwet's AC1:</strong> also 0.67. In Part 1 we met AC1 as the statistic that stays sensible when one answer dominates (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5712640/" target="_blank" rel="noopener">Zec et al. 2017</a>). Here neither answer dominates (29 and 31), so the two agree. That is the payoff of drawing the sample on purpose.</li>
+      </ul>
+      <p>How sure can we be of those numbers? Sixty items is not many, so each result comes with a range. The range for the percentage uses the standard confidence interval for a proportion. The range for kappa and AC1 comes from the bootstrap: the computer re-draws 60 postings from my 60, with repeats allowed, 2,000 times, recomputes the statistic each time, and keeps the middle 95% of the results.</p>
+      <table class="msa-table">
+        <thead><tr><th>Measure</th><th>Result</th><th>95% range</th></tr></thead>
+        <tbody>
+          <tr><th>Percent agreement</th><td>83.3%</td><td>72% to 91%</td></tr>
+          <tr><th>Kappa</th><td>0.67</td><td>0.46 to 0.83</td></tr>
+          <tr><th>Gwet's AC1</th><td>0.67</td><td>0.47 to 0.84</td></tr>
+        </tbody>
+      </table>
+      <p>One more number. My sample was nearly half "meets", but my full answer key is 21% "meets". Weighting my two agreement rates to the answer key's actual mix (21% of 83% plus 79% of 84%) gives 83.6%, about the same. My consistency does not depend much on which answer I started with.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Step 6</p>
+      <h2 class="section-title">Read the results</h2>
+      <p>Is 0.67 good? Minitab passes on the auto industry's guidance that a kappa of at least 0.75 is good and 0.90 or higher is preferred (<a href="https://support.minitab.com/en-us/minitab/help-and-how-to/quality-and-process-improvement/measurement-system-analysis/how-to/attribute-agreement-analysis/attribute-agreement-analysis/interpret-the-results/key-results/" target="_blank" rel="noopener">Minitab</a>). On the common labels, 0.67 falls in the band called "substantial", which McHugh argues is too lenient for decisions that matter (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3900052/" target="_blank" rel="noopener">McHugh 2012</a>). And my range runs from 0.46 to 0.83, so the true value could be on either side of the 0.75 bar. My reading: I am not a complete failure, and I am not yet a gage I'd want to grade anything important against without a second opinion.</p>
+      <p>The direction of the changes tells us more than the size. Five went from meets to fails and five from fails to meets. A drift would push them one way. An even split is what noise on borderline cases looks like.</p>
+      <p>Then there is location. I have a rule for myself: if a job is neither remote nor near home, I call it "fails" no matter how well I meet its requirements. That is a third test inside the Required call. In Part 1, the same answer key turned out to hold two tests under one label (meeting the stated requirements, and whether the role was the kind of work I had done). Location is a third. Did it cause my changes? Mostly not. Six of the ten postings I changed were clearly remote, so those changes were about the requirements. But a test that depends on spotting a buried location line will flip whenever I notice it one time and miss it another. And the AI judges are asked only about the requirements, so every "fails" I give for location counts against them as a miss they never had a chance to get right.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Step 7</p>
+      <h2 class="section-title">Decide what to fix</h2>
+      <p>Part 1 gave us an order for this: check the definition first, then whether it covers the disputed cases, then the answer key, and only then the person.</p>
+      <ul class="support-list">
+        <li><strong>The definition.</strong> My two notes are the fix, made during the study itself. On those postings I answered the Required question on its own and wrote the location problem down separately. Writing that split into the definition would take location out of the Required call for good and give it a field of its own.</li>
+        <li><strong>The disputed cases.</strong> The ten postings I changed are a list of the places my definition does not reach. The next step is to read them side by side and write down the rule each one needed.</li>
+        <li><strong>The answer key.</strong> My original calls are themselves a gage, and on this sample it repeats 83% of the time. Every AI judge I score against my key inherits that wobble, which is the stacked-gage problem we will meet in the second half of this series.</li>
+        <li><strong>The appraiser.</strong> Only after the first three. A second person grading the same 60 would add reproducibility, and a small panel on the ten disputed postings would give them an answer key more trustworthy than me.</li>
+      </ul>
+      <!-- JEFF: the Part 1 teaser promises "what I changed because of them". The only change made so far is the logistics note (true, made during the study). Add here anything you decide after reading the ten changed postings. -->
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Your turn</p>
+      <h2 class="section-title">Run your own</h2>
+      <p>Could you run this study next month on your own team's calls? Pick one decision. Pull 30 to 60 items your people decided at least three weeks ago, with the rare answer well represented. Hide the old decision and shuffle the order. Then ask the same people to decide again, and count. What do you expect your number to be? And what would you do if it came back at 83%?</p>
+      <p>If you found this article useful, please share it with your network. I'd like to hear from you in the comments, and I'll answer any questions you have.</p>
+      <p><em>Next in the series: <strong>Part 3: Keeping It Under Control</strong>, where we move from a one-time study to the controls that keep a process, and the people measuring it, steady after the project team goes home.</em></p>
+    </div>
+
+    <!-- ── Glossary ── -->
+    <div class="section-block msa-glossary">
+      <p class="section-eyebrow">Glossary</p>
+      <h2 class="section-title">Terms used in this article</h2>
+      <dl>
+        <dt>Repeatability</dt><dd>Whether the same appraiser gives the same answer on the same item a second time.</dd>
+        <dt>Reproducibility</dt><dd>Whether different appraisers give the same answer on the same item.</dd>
+        <dt>Accuracy</dt><dd>Whether the appraiser's answers match the right answer.</dd>
+        <dt>Stratified sample</dt><dd>A sample drawn separately from each group (here, meets and fails) in chosen numbers.</dd>
+        <dt>Blinding</dt><dd>Hiding earlier answers, scores and other people's calls from the appraiser.</dd>
+        <dt>Kappa</dt><dd>Agreement beyond luck: 1 is perfect, 0 is no better than luck.</dd>
+        <dt>Gwet's AC1</dt><dd>An agreement-beyond-luck statistic that stays sensible when one answer dominates.</dd>
+        <dt>Confidence interval (range)</dt><dd>The span of values the true result plausibly falls in, given the sample size.</dd>
+        <dt>Bootstrap</dt><dd>Estimating a range by re-drawing the sample many times and recomputing the result.</dd>
+        <dt>Operational definition</dt><dd>The written rule that says what each category means, including its boundaries.</dd>
+      </dl>
+    </div>
+
+    <!-- ── Sources ── -->
+    <div class="section-block msa-sources">
+      <p class="section-eyebrow">Sources</p>
+      <h2 class="section-title">References</h2>
+      <ol>
+        <li>Minitab Support. <a href="https://support.minitab.com/minitab/help-and-how-to/quality-and-process-improvement/measurement-system-analysis/how-to/attribute-agreement-analysis/attribute-agreement-analysis/before-you-start/example/" target="_blank" rel="noopener">Example of Attribute Agreement Analysis</a>. 50 samples, four appraisers.</li>
+        <li>Minitab Support. <a href="https://support.minitab.com/en-us/minitab/help-and-how-to/quality-and-process-improvement/measurement-system-analysis/how-to/attribute-agreement-analysis/attribute-agreement-analysis/interpret-the-results/key-results/" target="_blank" rel="noopener">Interpret the key results for Attribute Agreement Analysis</a>. The AIAG guidance (0.75 good, 0.90 preferred).</li>
+        <li>McHugh, M. L. (2012). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3900052/" target="_blank" rel="noopener">Interrater reliability: the kappa statistic</a>. <em>Biochemia Medica</em>, 22(3), 276&ndash;282.</li>
+        <li>Zec, S., et al. (2017). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5712640/" target="_blank" rel="noopener">High Agreement and High Prevalence: The Paradox of Cohen's Kappa</a>. <em>The Open Nursing Journal</em>, 11, 211&ndash;218.</li>
+      </ol>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">The study figures come from my own re-grade of 60 job postings on November 11, 2026, stored apart from my answer key and computed by a script in my job search pipeline. Research for this series was assisted by AI research tools, and every source above was opened and checked.</p>
+
+  </article>
+
+
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>
