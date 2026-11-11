@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keeping It Under Control: Control Charts, Error-Proofing and Control Plans for Transactional Work | Jeffrey Benson</title>
+  <meta name="description" content="How to tell a real change from noise in claims, tickets and approvals, keep checking the people who make the calls, stop errors before they happen, and write a control plan the process owner can run.">
+  <meta name="robots" content="noindex"><!-- DRAFT: remove before publishing -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    @media (min-width: 1200px) {
+      .article-image-wide {
+        width: 70vw;
+        margin-left: -35vw;
+        margin-right: -35vw;
+      }
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  
+    /* ── Measurement Series additions ── */
+    .msa-table { border-collapse: collapse; margin: 8px 0 24px; font-size: 0.95rem; }
+    .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
+    .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
+    .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
+    .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
+    .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
+    .msa-glossary dt { font-weight: 700; color: var(--olive); }
+    .msa-glossary dd { margin: 0; }
+    .msa-sources ol { padding-left: 22px; }
+    .msa-sources li { margin-bottom: 10px; line-height: 1.55; }
+    @media (max-width: 640px) {
+      .msa-glossary dl { grid-template-columns: 1fr; gap: 2px; }
+      .msa-glossary dd { margin-bottom: 10px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+        <div class="nav__links">
+          <a href="ai-builder.html">AI Builder</a>
+          <a href="work.html">Work</a>
+          <a href="method.html">Method</a>
+          <a href="systems.html">Systems</a>
+          <a href="articles.html" class="is-current">Notebook</a>
+          <a href="about.html">About</a>
+        </div>
+        <a class="btn btn--primary nav__cta" href="resume.html">R&eacute;sum&eacute;</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">Menu</button>
+      </div>
+      <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+        <a href="ai-builder.html">AI Builder</a>
+        <a href="work.html">Work</a>
+        <a href="method.html">Method</a>
+        <a href="systems.html">Systems</a>
+        <a href="articles.html">Notebook</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">R&eacute;sum&eacute;</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; Measurement Series &middot; Part 3 of 7</p>
+      <h1 class="article-title">Keeping It Under Control: Control Charts, Error-Proofing and Control Plans for Transactional Work</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>Measurement Series</strong> &nbsp;&middot;&nbsp; Part 1: Your Gage Is a Person &nbsp;|&nbsp; Part 2: Running an Attribute Agreement Study &nbsp;|&nbsp; Part 3: Keeping It Under Control &nbsp;|&nbsp; Bridge: The Partly Automated Appraiser &nbsp;|&nbsp; Parts 4&ndash;6: When the Appraiser Is an AI
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p>One morning in late October I opened the log from my job search pipeline's overnight run. The run had finished with a success code. Its AI review step (the part that judges each posting against my experience) had made 300 calls during the night, and every one of them had failed, because the account that pays for those calls had run out of credit. The check before the run had passed too. It asked the AI service whether it was up, and it was.</p>
+    <p>Both of those checks were controls, and both of them measured something. The success code measured whether the program ended without crashing. The pre-flight check measured whether the service answered. Neither one measured whether the work got done. Both checks were part of a pipeline I built, and I had trusted them for weeks.</p>
+    <p>That morning was the Control phase of a Six Sigma project in miniature. In Part 1 we asked whether a measurement can be trusted before we act on it. The Control phase asks that question again every day after the project team has gone home: is the process still doing what we fixed it to do, and is the measurement still telling us the truth about it?</p>
+    <p>This article will not teach every control chart ever published, nor the history of statistical process control. Rather, we will learn how a control chart tells a change from ordinary noise in transactional data, the ways claims and ticket data can fool a chart, how to keep checking the people who make the calls, how to stop errors before they happen, and how to write a control plan someone else can run after we have moved on.</p>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Signal and noise</p>
+      <h2 class="section-title">What a control chart does</h2>
+      <p>Every process wobbles. The share of claims with an error moves up and down from day to day, and so does the time it takes to close a ticket. Most of that movement means nothing. It is the process being itself (this is called common-cause variation). Some of it means something changed: a new form, a new hire, a system update, a new policy (special-cause variation). On a spreadsheet the two kinds look the same. Have you ever watched a team spend a morning explaining a bad Tuesday that was only a Tuesday?</p>
+      <p>A control chart is the tool for telling them apart. Here it is in five steps.</p>
+      <p><strong>1. The question it answers.</strong> Has something in this process changed, or is this the ordinary up and down?</p>
+      <p><strong>2. What goes in.</strong> One measure, collected the same way every time, in time order: the share of claims with an error each day, or the average hours to resolve a ticket each day. A common rule of thumb is 20 to 25 points before the limits settle down (<a href="https://qi.elft.nhs.uk/wp-content/uploads/2025/07/Mohammed-et-al-2008-Plotting-basic-control-charts.pdf" target="_blank" rel="noopener">Mohammed, Worthington and Woodall 2008</a>).</p>
+      <p><strong>3. What it does.</strong> It draws a center line at the average and two limits, one above and one below, computed from how much the process moves from one point to the next. Points inside the limits are noise. A point outside is a signal.</p>
+      <p>Let's work one by hand. A help desk records the average hours to resolve a ticket each day for ten days:</p>
+      <table class="msa-table">
+        <thead><tr><th>Day</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr></thead>
+        <tbody>
+          <tr><th>Hours</th><td>20</td><td>24</td><td>22</td><td>19</td><td>24</td><td>21</td><td>23</td><td>20</td><td>22</td><td>25</td></tr>
+          <tr><th>Change from the day before</th><td></td><td>4</td><td>2</td><td>3</td><td>5</td><td>3</td><td>2</td><td>3</td><td>2</td><td>3</td></tr>
+        </tbody>
+      </table>
+      <ul class="support-list">
+        <li><strong>Center line:</strong> the ten days add up to 220 hours, so the average is 22 hours.</li>
+        <li><strong>Typical day-to-day change (the average moving range):</strong> the nine changes add up to 27, so the average change is 3 hours.</li>
+        <li><strong>Limits:</strong> Wheeler's recipe for this chart is the average plus or minus 2.66 times the average moving range (<a href="https://www.iise.org/uploadedfiles/iie/education/six_sigma_green_belt_transition/the%20chart%20for%20individual%20values.pdf" target="_blank" rel="noopener">Wheeler</a>). That is 22 plus or minus 8, so the limits are 14 and 30 hours.</li>
+      </ul>
+      <div class="msa-aside">
+        <p class="msa-aside-title">For the formula-minded</p>
+        <p>Upper limit = average + 2.66 &times; average moving range. Lower limit = average &minus; 2.66 &times; average moving range. The 2.66 is 3 &divide; 1.128: dividing the average moving range by 1.128 estimates the process's standard deviation, and the limits sit three of those on either side of the average (<a href="https://qi.elft.nhs.uk/wp-content/uploads/2025/07/Mohammed-et-al-2008-Plotting-basic-control-charts.pdf" target="_blank" rel="noopener">Mohammed et al.</a>). This chart is called an individuals chart, or XmR chart.</p>
+      </div>
+      <p><strong>4. What comes out, and how to read it.</strong> Day 10, at 25 hours, is the slowest day so far, and it is inside the limits. Nobody needs a meeting about it. If day 11 comes in at 33 hours, it is above the upper limit: something changed, and the time to look for it is now, while people still remember what happened that day.</p>
+      <p>Will the chart ever cry wolf? Yes, now and then. With the standard rule (signal only on a point beyond the limits), a process that has not changed will still put a point outside about once every 371 points on average (<a href="https://www.itl.nist.gov/div898/handbook/pmc/section3/pmc32.htm" target="_blank" rel="noopener">NIST/SEMATECH</a>). On a daily chart that is about one false alarm a year. Adding the extra pattern rules (runs of points on one side, and so on) makes the chart quicker to notice a trend, and NIST puts the price at a false alarm about once every 92 points.</p>
+      <p><strong>5. Where we use it.</strong> The daily error rate on a claims desk, the weekly backlog, the days to approve an invoice, the share of tickets reopened. Any number that gets a meeting every time it moves is a good place to start.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Choosing a chart</p>
+      <h2 class="section-title">Which chart for which data</h2>
+      <p>The individuals chart above fits one measured value per day. Transactional work also produces counts and percentages, and those have their own charts. The healthcare tutorial by Mohammed, Worthington and Woodall walks through four common ones with hospital data (<a href="https://qi.elft.nhs.uk/wp-content/uploads/2025/07/Mohammed-et-al-2008-Plotting-basic-control-charts.pdf" target="_blank" rel="noopener">Mohammed et al. 2008</a>). Here they are, translated to our work:</p>
+      <table class="msa-table">
+        <thead><tr><th>What we are tracking</th><th>Example</th><th>Chart</th></tr></thead>
+        <tbody>
+          <tr><th>A yes-or-no result on each item, as a share of the items</th><td>Share of claims returned for missing documents</td><td>p-chart</td></tr>
+          <tr><th>A count of errors, where one item can have several</th><td>Errors per 100 invoice lines</td><td>u-chart (c-chart when the amount checked never changes)</td></tr>
+          <tr><th>One measured value per day or per item</th><td>Average hours to resolve a ticket</td><td>Individuals (XmR) chart</td></tr>
+        </tbody>
+      </table>
+      <p>Whichever chart we pick, one rule from Wheeler applies to all of them: we cannot knowingly put apples and oranges together on the same chart (<a href="https://www.iise.org/uploadedfiles/iie/education/six_sigma_green_belt_transition/the%20chart%20for%20individual%20values.pdf" target="_blank" rel="noopener">Wheeler</a>). The first trap below is what happens in our work when we do.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The traps</p>
+      <h2 class="section-title">Five ways transactional data fools a chart</h2>
+      <p>The chart recipes came from manufacturing, where one machine makes one part over and over. Our data comes from a mix of people, case types and queues. These are the five traps I'd watch for.</p>
+      <ul class="support-list">
+        <li><strong>Mixed case types.</strong> Suppose routine claims take 2 days and complex claims take 12. A week with more complex claims than usual will look like a slowdown on a blended chart, even if nobody worked any slower. MoreSteam's founder makes this point directly about service and transactional processes: before charting, ask whether there are sub-groups in the data driving the extreme values (<a href="https://www.moresteam.com/resources/whitepapers/charting-non-normal-data" target="_blank" rel="noopener">Hathaway, MoreSteam</a>). Separate the case types first, then chart each one.</li>
+        <li><strong>Lopsided times.</strong> Most tickets close in a day, and a few take weeks. Data like that is skewed, and people worry the chart will not work on it. The healthcare tutorial calls the individuals chart versatile and hard to throw off, and for very skewed waiting times it suggests taking the square root of the square root of each value first (<a href="https://qi.elft.nhs.uk/wp-content/uploads/2025/07/Mohammed-et-al-2008-Plotting-basic-control-charts.pdf" target="_blank" rel="noopener">Mohammed et al.</a>). The MoreSteam paper argues against transforming at all: it reports that Shewhart, who invented the control chart, found a lack of normality was not a practical problem, and it cites Wheeler's warning that transformations can hide the signals in the data. I'd chart the times as they are, and check whether the long ones are a separate case type (the first trap) before reaching for a transformation.</li>
+        <li><strong>Queues that remember.</strong> Today's backlog becomes tomorrow's wait, so one day's number leans on the day before. The tutorial says independence is one thing to assess in time-ordered data before trusting the chart. In my reasoning, a queue is the most common way transactional data breaks that assumption, and the sign is a chart that keeps signaling on a process everyone agrees has not changed. When I see that, I'd chart the work that arrived each day and the work that was finished each day, separately, before I'd chart the backlog.</li>
+        <li><strong>Very high volume.</strong> The limits on a p-chart get narrower as the number of items grows. On a desk that sees 50 claims a day with a 4% error rate, the limits run from 0% to about 12.3%. At 2,000 claims a day, with the same 4%, they run from about 2.7% to 5.3%. The day-to-day differences on a busy desk (Monday's backlog, a holiday week, a batch from one large customer) are often bigger than that narrow band, so nearly every day breaks a limit. Minitab describes this as overdispersion: it makes a traditional p-chart show more points outside the limits, and the Laney p&prime; chart (say "p prime") adjusts the limits for it (<a href="https://support.minitab.com/en-us/minitab/help-and-how-to/quality-and-process-improvement/control-charts/how-to/attributes-charts/laney-p-chart/before-you-start/overview/" target="_blank" rel="noopener">Minitab</a>). Its own example is a hospital radiology department tracking retests.</li>
+        <li><strong>Slow drift.</strong> Some changes arrive a little at a time: reviewers slowly loosening a standard, or a form that confuses a few more customers each month. In JMP's example, an individuals chart takes, on average, 44 points to signal a small shift (one standard deviation), and the CUSUM and EWMA charts catch the same shift in about 10 (<a href="https://www.jmp.com/en/statistics-knowledge-portal/quality-and-reliability-methods/control-charts/cusum-and-ewma-control-charts" target="_blank" rel="noopener">JMP</a>). Those two charts keep a running memory of past points, so a small push in the same direction adds up until it crosses a limit. If slow drift is what we fear, they are the charts to learn next.</li>
+      </ul>
+      <div class="msa-aside">
+        <p class="msa-aside-title">For the formula-minded</p>
+        <p>p-chart limits = average share &plusmn; 3 &times; &radic;(average share &times; (1 &minus; average share) &divide; items that day). With a 4% average: at 50 items, 3 &times; &radic;(0.04 &times; 0.96 &divide; 50) = 0.083, or 8.3 points either side (a limit below zero is set to zero). At 2,000 items, the same arithmetic gives 1.3 points.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Checking the gage</p>
+      <h2 class="section-title">Keep testing the people who make the calls</h2>
+      <p>Everything above charts the process. Part 1 taught us that in transactional work the gage is usually a person, and a gage can drift too. Minitab defines measurement stability as the change in bias over time, and the plant-floor way to watch it is to measure the same master part again and again and put the readings on a control chart. Its example is an engineer who measures a master color sample every shift (<a href="https://support.minitab.com/en-us/minitab/help-and-how-to/quality-and-process-improvement/measurement-system-analysis/supporting-topics/other-gage-studies-and-measures/what-is-measurement-stability/" target="_blank" rel="noopener">Minitab</a>).</p>
+      <p>A claims desk has no master part. We can make one, though. The adaptation I'd use is a <strong>seeded golden set</strong>: a bank of past transactions whose right answers were settled by the kind of panel we met in Part 1, mixed a few at a time into each reviewer's normal queue without announcing which ones they are.</p>
+      <p><strong>1. The question it answers.</strong> Are our reviewers still making the call the way they did when we studied them?</p>
+      <p><strong>2. What goes in.</strong> The bank of settled items, a few planted in each reviewer's queue every week, and the call each reviewer made on them.</p>
+      <p><strong>3. What it does.</strong> Each month, count the planted items the team got right and divide by the planted items it saw. That share goes on a p-chart, one point per month.</p>
+      <p><strong>4. How to read it.</strong> Suppose the team gets 92 of 100 planted items right one month, and the share has run around 93% for a year. That is noise. A month at 81% is a signal: something changed in how the call is being made, and the first place I'd look is the definition (did a policy change that nobody wrote into it?), before the people.</p>
+      <p><strong>5. Where we use it.</strong> Any call that a study qualified: claim decisions, ticket priority, audit scores, root-cause codes.</p>
+      <p>This is my adaptation of the plant-floor method, and two cautions come with it. First, the bank has to be large enough, and refreshed often enough, that reviewers do not start recognizing the planted items, the same memory problem we met in Part 1. Second, the counts per person are small, so I'd chart the team monthly and look at each individual over a quarter.</p>
+      <p>Some changes are big enough to need a fresh attribute agreement study (Part 2): a new or edited definition, a new answer key, a new tool or form, or a wave of new reviewers. My own pipeline had one of these in late October. I changed the step that splits each posting into separate requirement lines, and afterward 45 of the 133 postings in my answer key sent different lines to the AI reviewer. The pass mark it had earned described inputs that no longer existed, so the next run re-tested the reviewer against the full answer key before trusting it again. The pipeline also keeps 10 frozen postings that the reviewer can be asked to judge again at any time. A changed verdict on any of them is a signal.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Error-proofing</p>
+      <h2 class="section-title">Stop it before it starts</h2>
+      <p>A control chart tells us something went wrong. Error-proofing (the Japanese term is poka-yoke) tries to keep it from going wrong at all. Which kind of error-proofing should we reach for first?</p>
+      <p>The best guide I found comes from healthcare. John Grout's mistake-proofing compendium for the Agency for Healthcare Research and Quality gives a clear order of preference: preventing a mistake is usually preferred to detecting it, and among devices, forced control, shutdown, warning and sensory alert are preferred in that order. The preferred devices, he writes, are the strongest and "require the least attention and the least discretionary behavior by users" (<a href="https://www.govinfo.gov/content/pkg/GOVPUB-HE20_6500-PURL-gpo3107/pdf/GOVPUB-HE20_6500-PURL-gpo3107.pdf" target="_blank" rel="noopener">Grout 2007</a>). Here is that ladder in a claims process:</p>
+      <table class="msa-table">
+        <thead><tr><th>Device</th><th>What it does</th><th>On a claims desk</th></tr></thead>
+        <tbody>
+          <tr><th>Forced control</th><td>Makes the wrong action impossible</td><td>The claim form will not submit until the policy number matches a live policy</td></tr>
+          <tr><th>Shutdown</th><td>Stops the process when a condition is wrong</td><td>The workflow keeps a claim at intake until the required documents are attached</td></tr>
+          <tr><th>Warning</th><td>Tells the person and lets them continue</td><td>A message says the amount is over the reviewer's approval limit</td></tr>
+          <tr><th>Sensory alert</th><td>Draws attention</td><td>The amount field turns red</td></tr>
+        </tbody>
+      </table>
+      <p>Where does the checklist go? Grout does not rank it on this ladder. In my view it belongs below all four, because it works only when a person remembers to use it and uses it well, which is the most attention and discretion of anything here.</p>
+      <p>Now back to my overnight run. My two old controls were detection, and weak detection at that: they told me the program ran, and nothing about whether the work was done. Here is what I changed:</p>
+      <ul class="support-list">
+        <li><strong>Before the run (a shutdown):</strong> the pre-flight check now makes one tiny paid request to the AI service. If the account cannot pay for it, the run does not start.</li>
+        <li><strong>During the run (a shutdown):</strong> the first billing or permission error now stops the review step. That October night it failed 300 times.</li>
+        <li><strong>After the run (a warning):</strong> any review step that stopped early puts a warning line at the top of the morning report.</li>
+      </ul>
+      <p>The first two need nothing from me. The third still depends on me reading the report, which is why I count it as the last line of defense.</p>
+      <p>I'd like to tell you which of these devices cuts errors the most in a claims shop. I looked, and I found no study that measured it for transactional work. The outcome studies I did find were about checklists in surgery, which is clinical work, a long way from a claims desk. So treat the ladder as a design principle backed by long practice, and measure your own results with the charts above.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The control plan</p>
+      <h2 class="section-title">A plan someone else can run</h2>
+      <p>The control plan is the document the project team leaves behind. Oliver Jones, writing for iSixSigma, sets out what goes in it: the critical inputs found in the Analyze phase, and for each one its specification limit, how it will be measured, a sampling plan, who is responsible for tracking it, and an agreed reaction plan if it goes out of specification. He also says the process owner's involvement in building it is mandatory (<a href="https://www.isixsigma.com/dmaic-methodology/how-do-organizations-sustain-improvements-control/" target="_blank" rel="noopener">Jones 2015</a>).</p>
+      <p>Two warnings from a practical control plan guide fit transactional work closely. Writing a gauge's name into the plan does not show the measurement system is suitable. And a reaction plan that says "Inform supervisor" is incomplete when someone also has to contain the problem, restore the process and decide what to do with the affected work (<a href="https://www.learnleansigma.com/guides/control-plan/" target="_blank" rel="noopener">Learn Lean Sigma</a>).</p>
+      <p>That first warning is the bridge back to Part 1. In a transactional plan, I'd put three things in the measurement-method cell: the operational definition (with its version), the data source, and the result and date of the last study on it. Here is one row of a plan for a claims intake desk:</p>
+      <table class="msa-table">
+        <tbody>
+          <tr><th>What we watch</th><td style="text-align:left">Share of claims returned for missing documents</td></tr>
+          <tr><th>Target</th><td style="text-align:left">3% or less</td></tr>
+          <tr><th>Measurement method</th><td style="text-align:left">Definition "Missing-documents return," version 2 (one page, attached). Source: the return-reason field in the claims system. Last study: four intake reviewers against a three-person answer key, March, kappa 0.86. Next study: after any change to the return-reason list, or in September.</td></tr>
+          <tr><th>Sample and frequency</th><td style="text-align:left">Every claim, charted daily on a p-chart</td></tr>
+          <tr><th>Controls</th><td style="text-align:left">Intake form will not submit without the three required documents (forced control). Seeded golden set: five planted items per reviewer per month.</td></tr>
+          <tr><th>Reaction plan</th><td style="text-align:left">A day above the upper limit: the intake lead pulls that day's returns within one business day, sorts them by reason and reviewer, and pauses any batch from a single source until it is checked. Golden-set agreement below 90% for two months running: re-run the agreement study before retraining anyone.</td></tr>
+          <tr><th>Owner</th><td style="text-align:left">Claims intake manager</td></tr>
+        </tbody>
+      </table>
+      <p>Notice that the reaction plan says who acts, how fast, and what they do first. Notice also that the measurement-method cell tells a new owner when the gage was last checked, which my old success code never told me.</p>
+      <p>The test I'd apply before handing it over: could the owner run every reaction plan in it without calling me? If the answer is no, the plan is not finished. Write it with them, in their words, and let them run it for a few weeks while the project team is still close by.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Your turn</p>
+      <h2 class="section-title">What is your success code?</h2>
+      <p>Which number in your process gets a meeting every time it moves? Has anyone drawn limits on it? Of the controls in your process, which ones make the error impossible, and which ones depend on someone remembering? And somewhere in your process there is probably a check like my success code, one that reports "fine" without measuring the thing you care about. Can you think of where it is?</p>
+      <p>If you found this article useful, please share it with your network. I'd like to hear from you in the comments, and I'll answer any questions you have.</p>
+      <p><em>Next in the series: <strong>The Partly Automated Appraiser</strong>, the bridge between the two halves of this series. Rules engines, routers, document scanners and macros already make calls in our processes, and almost nobody has studied them as appraisers. My success code was one of them.</em></p>
+    </div>
+
+    <!-- ── Glossary ── -->
+    <div class="section-block msa-glossary">
+      <p class="section-eyebrow">Glossary</p>
+      <h2 class="section-title">Terms used in this article</h2>
+      <dl>
+        <dt>Control chart</dt><dd>A time-ordered chart of one measure with a center line and two limits computed from the process's own variation.</dd>
+        <dt>Common-cause variation</dt><dd>The ordinary up and down of a process that has not changed.</dd>
+        <dt>Special-cause variation</dt><dd>Movement caused by something that changed, such as a new form, policy or system.</dd>
+        <dt>Individuals (XmR) chart</dt><dd>A control chart for one measured value per period, with limits from the average moving range.</dd>
+        <dt>Moving range</dt><dd>The size of the change from one point to the next.</dd>
+        <dt>p-chart</dt><dd>A control chart for the share of items with a yes-or-no defect.</dd>
+        <dt>u-chart, c-chart</dt><dd>Control charts for counts of errors, per unit (u) or per fixed amount checked (c).</dd>
+        <dt>Laney p&prime; chart</dt><dd>A p-chart whose limits are adjusted when day-to-day variation is larger than the basic formula expects.</dd>
+        <dt>CUSUM, EWMA</dt><dd>Control charts that keep a running memory of past points, so they catch small, steady shifts sooner.</dd>
+        <dt>Seeded golden set</dt><dd>Items with settled answers, planted unannounced in the live queue to keep checking the reviewers.</dd>
+        <dt>Re-study</dt><dd>A fresh attribute agreement study, run when the definition, answer key, tool or reviewers change.</dd>
+        <dt>Error-proofing (poka-yoke)</dt><dd>Designing a step so a mistake cannot happen, or is caught right away.</dd>
+        <dt>Forced control</dt><dd>An error-proofing device that makes the wrong action impossible.</dd>
+        <dt>Control plan</dt><dd>The document that says what is watched, how, how often, by whom, and what happens when it goes wrong.</dd>
+        <dt>Reaction plan</dt><dd>The part of a control plan that says who acts, how fast, and what they do when a check fails.</dd>
+      </dl>
+    </div>
+
+    <!-- ── Sources ── -->
+    <div class="section-block msa-sources">
+      <p class="section-eyebrow">Sources</p>
+      <h2 class="section-title">References</h2>
+      <ol>
+        <li>Mohammed, M. A., Worthington, P., and Woodall, W. H. (2008). <a href="https://qi.elft.nhs.uk/wp-content/uploads/2025/07/Mohammed-et-al-2008-Plotting-basic-control-charts.pdf" target="_blank" rel="noopener">Plotting basic control charts: tutorial notes for healthcare practitioners</a>. <em>Quality and Safety in Health Care</em>, 17, 137&ndash;145. The xmr, p, u and c charts; 20 to 25 points; the 2.66 constant; robustness and the double square root for skewed waits; assessing independence.</li>
+        <li>Wheeler, D. J. <a href="https://www.iise.org/uploadedfiles/iie/education/six_sigma_green_belt_transition/the%20chart%20for%20individual%20values.pdf" target="_blank" rel="noopener"><em>The Chart for Individual Values</em></a> (IISE course reading). Limits as the average plus or minus 2.66 times the average moving range; no apples and oranges on one chart.</li>
+        <li>NIST/SEMATECH. <a href="https://www.itl.nist.gov/div898/handbook/pmc/section3/pmc32.htm" target="_blank" rel="noopener"><em>e-Handbook of Statistical Methods</em>, section 6.3.2</a>. False alarms about every 371 points under the three-sigma rule, about every 92 with the Western Electric rules added.</li>
+        <li>Hathaway, B. <a href="https://www.moresteam.com/resources/whitepapers/charting-non-normal-data" target="_blank" rel="noopener">Charting Non-Normal Data</a>. MoreSteam white paper. Check service and transactional data for sub-populations before charting; Shewhart on non-normality; the case against transforming data.</li>
+        <li>Minitab Support. <a href="https://support.minitab.com/en-us/minitab/help-and-how-to/quality-and-process-improvement/control-charts/how-to/attributes-charts/laney-p-chart/before-you-start/overview/" target="_blank" rel="noopener">Overview for Laney P' Chart</a>. Overdispersion and the adjusted limits.</li>
+        <li>JMP Statistics Knowledge Portal. <a href="https://www.jmp.com/en/statistics-knowledge-portal/quality-and-reliability-methods/control-charts/cusum-and-ewma-control-charts" target="_blank" rel="noopener">CUSUM and EWMA Control Charts</a>. A one-standard-deviation shift: about 44 subgroups to signal on an individuals chart, about 10 on CUSUM or EWMA.</li>
+        <li>Minitab Support. <a href="https://support.minitab.com/en-us/minitab/help-and-how-to/quality-and-process-improvement/measurement-system-analysis/supporting-topics/other-gage-studies-and-measures/what-is-measurement-stability/" target="_blank" rel="noopener">What is measurement stability?</a> Stability as the change in bias over time, watched with a control chart on a master part.</li>
+        <li>Grout, J. (2007). <a href="https://www.govinfo.gov/content/pkg/GOVPUB-HE20_6500-PURL-gpo3107/pdf/GOVPUB-HE20_6500-PURL-gpo3107.pdf" target="_blank" rel="noopener"><em>Mistake-Proofing the Design of Health Care Processes</em></a>. AHRQ Publication No. 07-0020. Prevention before detection; forced control, shutdown, warning and sensory alert in order of preference.</li>
+        <li>Jones, O. (2015). <a href="https://www.isixsigma.com/dmaic-methodology/how-do-organizations-sustain-improvements-control/" target="_blank" rel="noopener">How Do Organizations Sustain Improvements? Control!</a> iSixSigma. Contents of a control plan; the process owner's part in building it.</li>
+        <li>Learn Lean Sigma. <a href="https://www.learnleansigma.com/guides/control-plan/" target="_blank" rel="noopener">Control Plan: A Practical Guide To Building And Using One</a>. A gauge name is not evidence of a suitable measurement system; "Inform supervisor" is an incomplete reaction plan.</li>
+      </ol>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">The overnight-run story and the answer-key figures come from my own job search pipeline's records (October 2026). The help-desk times, the claims volumes and the control plan row are made-up illustrations. Research for this series was assisted by AI research tools, and every source above was opened and checked.</p>
+
+  </article>
+
+
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>
