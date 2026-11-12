@@ -313,6 +313,12 @@
     .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
     .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
     .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-scroll { max-width: 100%; overflow-x: auto; margin: 8px 0 24px; }
+    .msa-scroll > .msa-table { margin: 0; }
+    .msa-wide { width: min(880px, calc(100vw - 32px)); max-width: none; position: relative; left: 50%; transform: translateX(-50%); }
+    .msa-wide > .msa-table { margin: 0 auto; font-size: 0.9rem; }
+    .msa-wide .msa-table th, .msa-wide .msa-table td { padding: 7px 10px; }
+    .msa-wide .msa-table tbody th { white-space: nowrap; }
     .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
     .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
     .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
@@ -405,6 +411,7 @@
       <p><strong>2. What goes in.</strong> A sample of transactions, the rule's call on each, and the right answer for each from an answer key built the way Part 1 describes (a panel, judging from the source documents). As in Part 1, load the sample with the rare answer and the borderline cases.</p>
       <p><strong>3. What it does.</strong> It sorts every item into four boxes and counts the two kinds of error separately. The vision-camera guide above makes the same split: a miss lets a bad item through, and a false alarm stops a good one.</p>
       <p>Let's work one. An auto-adjudication rule judges 200 claims. The answer key says 30 of them should be denied:</p>
+      <div class="msa-scroll">
       <table class="msa-table">
         <thead><tr><th></th><th>Answer key: approve</th><th>Answer key: deny</th></tr></thead>
         <tbody>
@@ -412,6 +419,7 @@
           <tr><th>Rule denies</th><td>10 (false alarms)</td><td>24</td></tr>
         </tbody>
       </table>
+      </div>
       <ul class="support-list">
         <li><strong>Overall agreement:</strong> 160 + 24 = 184 of 200, or 92%.</li>
         <li><strong>Miss rate:</strong> the rule approved 6 of the 30 claims that should have been denied, or 20%.</li>

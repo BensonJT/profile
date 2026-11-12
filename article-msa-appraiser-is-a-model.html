@@ -313,6 +313,12 @@
     .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
     .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
     .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-scroll { max-width: 100%; overflow-x: auto; margin: 8px 0 24px; }
+    .msa-scroll > .msa-table { margin: 0; }
+    .msa-wide { width: min(880px, calc(100vw - 32px)); max-width: none; position: relative; left: 50%; transform: translateX(-50%); }
+    .msa-wide > .msa-table { margin: 0 auto; font-size: 0.9rem; }
+    .msa-wide .msa-table th, .msa-wide .msa-table td { padding: 7px 10px; }
+    .msa-wide .msa-table tbody th { white-space: nowrap; }
     .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
     .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
     .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
@@ -425,6 +431,7 @@
       <p class="section-eyebrow">Bias</p>
       <h2 class="section-title">Judge biases are appraiser biases</h2>
       <p>The paper that started much of this field named three biases in AI judges: favoring the answer in a certain position, favoring longer answers, and favoring their own work (<a href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener">Zheng et al. 2023</a>). Every one of them has a cousin on a claims desk, and every one can be tested the way we test an examiner.</p>
+      <div class="msa-scroll">
       <table class="msa-table">
         <thead><tr><th>Bias</th><th>The AI version</th><th>The claims-desk cousin</th><th>The test and the fix</th></tr></thead>
         <tbody>
@@ -433,6 +440,7 @@
           <tr><th>Self-preference</th><td>The judge scores text from its own model higher than people do</td><td>A supervisor grading their own team's work</td><td>Use a judge from a different model family, and compare against people</td></tr>
         </tbody>
       </table>
+      </div>
       <p>The position bias can be large. In Zheng's tests on very similar pairs of answers, only GPT-4 gave the same verdict after the order was swapped in more than 60% of cases. Their conservative fix is the one in the table: call the judge twice with the order swapped, and declare a win only when an answer is preferred both times. On self-preference, a 2024 study found that models such as GPT-4 can tell their own writing apart from other models' and from people's, and that the better a model was at recognizing its own text, the more it favored it (<a href="https://arxiv.org/abs/2404.13076" target="_blank" rel="noopener">Panickssery, Bowman and Feng 2024</a>).</p>
       <p>None of these needs a new discipline. Each is a named appraiser bias with a test we can run before trusting the judge, and a countermeasure we can write into its instructions or its setup.</p>
     </div>
@@ -448,6 +456,7 @@
       <p><strong>2. What goes in.</strong> The judge's grades, and the categories of items we care about (case types, product lines, or in my case, the two lanes of work).</p>
       <p><strong>3. What it does.</strong> Count the grades within each category, in a small table. Look for an empty cell where there should not be one, or for averages that do not move when quality clearly improves.</p>
       <p><strong>4. How to read it.</strong> Here is my table, from the 3,009 grades:</p>
+      <div class="msa-scroll">
       <table class="msa-table">
         <thead><tr><th>Lane</th><th>Graded bullseye</th></tr></thead>
         <tbody>
@@ -455,6 +464,7 @@
           <tr><th>Data and analytics (secondary)</th><td>0</td></tr>
         </tbody>
       </table>
+      </div>
       <p>An empty cell like that can mean the category truly never reaches the grade, or it can mean the gage is blind. Here it was the gage. The cap in the rubric held 247 secondary-lane postings at "adjacent" and pushed others down to "wrong". One of them was a financial planning and analysis role that the judge called unfamiliar work, because the description of my experience it was shown never mentioned the forecasting and budget cycle I had reengineered.</p>
       <p><strong>5. Where we use it.</strong> Any time a judge's grades feed a decision: before trusting the rubric, and again whenever it is edited.</p>
       <p>The first fix removed the cap and rewrote the description of my experience from my own records. On a check of 575 postings, 79% of grades stayed the same, only 3 of 45 bullseyes moved down, and 31 postings came back from "wrong", mostly finance and hybrid process and analytics roles. But the root cause was the one we met in Part 1. That one grade was answering three questions at once: can I do this work, how do I want to position myself, and is there a risk in the hiring process (such as a timed coding test)? The second fix split the grade. Each posting is now graded twice in one pass, once for process work and once for technical work, and the overall grade is the better of the two.</p>

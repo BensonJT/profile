@@ -313,6 +313,12 @@
     .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
     .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
     .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-scroll { max-width: 100%; overflow-x: auto; margin: 8px 0 24px; }
+    .msa-scroll > .msa-table { margin: 0; }
+    .msa-wide { width: min(880px, calc(100vw - 32px)); max-width: none; position: relative; left: 50%; transform: translateX(-50%); }
+    .msa-wide > .msa-table { margin: 0 auto; font-size: 0.9rem; }
+    .msa-wide .msa-table th, .msa-wide .msa-table td { padding: 7px 10px; }
+    .msa-wide .msa-table tbody th { white-space: nowrap; }
     .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
     .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
     .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
@@ -425,6 +431,7 @@
       <p><strong>3. What it does.</strong> It counts matches three ways: each reviewer against their own second reading (repeatability), reviewers against each other (reproducibility), and each reviewer against the right answer (accuracy). Then it corrects each count for luck, with a statistic called <strong>kappa</strong>.</p>
       <p>Why correct for luck? Suppose two examiners each approve about half of the claims they see. Even if both of them flipped a coin, they would agree about half the time. That means "85% agreement" says less than it sounds. Kappa asks how far above the luck level the agreement climbed, as a share of the room there was to climb.</p>
       <p>Let's work one by hand. Two examiners each judge the same 40 claims:</p>
+      <div class="msa-scroll">
       <table class="msa-table">
         <thead><tr><th></th><th>Examiner B approves</th><th>Examiner B denies</th></tr></thead>
         <tbody>
@@ -432,6 +439,7 @@
           <tr><th>Examiner A denies</th><td>3</td><td>16</td></tr>
         </tbody>
       </table>
+      </div>
       <ul class="support-list">
         <li><strong>Observed agreement:</strong> they matched on 18 + 16 = 34 of 40 claims, or 85%.</li>
         <li><strong>Agreement by luck:</strong> each examiner approved 21 of 40 (52.5%). Two people approving at those rates would both say approve 0.525 &times; 0.525 = 27.6% of the time and both say deny 0.475 &times; 0.475 = 22.6% of the time, so about 50% agreement comes from luck alone.</li>
@@ -454,6 +462,7 @@
       <h2 class="section-title">When most of the answers are the same</h2>
       <p>Here is the part the textbook example does not prepare us for. In most transactional work, one answer dominates. Most claims are approved. Most invoices pass review. Most of the job postings I graded fail my Required test (118 of my 149 calls are "fails", or 79%).</p>
       <p>When one answer dominates, kappa can read low even though the reviewers agree on almost everything. Let's see why. Two examiners judge 100 claims, and each approves 91 of them:</p>
+      <div class="msa-scroll">
       <table class="msa-table">
         <thead><tr><th></th><th>Examiner B approves</th><th>Examiner B denies</th></tr></thead>
         <tbody>
@@ -461,6 +470,7 @@
           <tr><th>Examiner A denies</th><td>6</td><td>3</td></tr>
         </tbody>
       </table>
+      </div>
       <ul class="support-list">
         <li><strong>Observed agreement:</strong> 85 + 3 = 88 of 100, or 88%.</li>
         <li><strong>Agreement by luck:</strong> 0.91 &times; 0.91 + 0.09 &times; 0.09 = 0.836. When nearly everything is approved, two people guessing "approve" every time would agree about 84% of the time.</li>

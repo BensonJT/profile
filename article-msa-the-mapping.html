@@ -313,6 +313,12 @@
     .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
     .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
     .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-scroll { max-width: 100%; overflow-x: auto; margin: 8px 0 24px; }
+    .msa-scroll > .msa-table { margin: 0; }
+    .msa-wide { width: min(880px, calc(100vw - 32px)); max-width: none; position: relative; left: 50%; transform: translateX(-50%); }
+    .msa-wide > .msa-table { margin: 0 auto; font-size: 0.9rem; }
+    .msa-wide .msa-table th, .msa-wide .msa-table td { padding: 7px 10px; }
+    .msa-wide .msa-table tbody th { white-space: nowrap; }
     .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
     .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
     .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
@@ -384,6 +390,7 @@
       <h2 class="section-title">The judge is an appraiser</h2>
       <p>First, what do we mean by an AI judge? It is a language model (the kind of AI behind tools like ChatGPT and Claude) given an item and a question, and asked for a call. Does this customer reply follow our refund policy? Does this ticket belong in the billing queue? Does this candidate meet the posting's Required qualifications? The call comes back as a category, the same way an examiner's does.</p>
       <p>Here is the mapping, term by term, with a claims desk beside it and my own pipeline as the worked case:</p>
+      <div class="msa-scroll">
       <table class="msa-table">
         <thead><tr><th>MSA term</th><th>On a claims desk</th><th>For an AI judge</th><th>In my pipeline</th></tr></thead>
         <tbody>
@@ -397,6 +404,7 @@
           <tr><th>Operational definition</th><td>The written rule for each category</td><td>The rubric and the instructions</td><td>My two tests under one label (Part 1)</td></tr>
         </tbody>
       </table>
+      </div>
       <p>The first row matters most. The gage is never the model alone. Change the instructions, the background text or the model version and we have a new gage, and the study we ran on the old one no longer describes it. My pipeline puts a version label on every AI review that changes whenever any of those pieces change. We met the same rule for software appraisers in the Bridge article.</p>
     </div>
 

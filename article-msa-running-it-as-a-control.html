@@ -313,6 +313,12 @@
     .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
     .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
     .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-scroll { max-width: 100%; overflow-x: auto; margin: 8px 0 24px; }
+    .msa-scroll > .msa-table { margin: 0; }
+    .msa-wide { width: min(880px, calc(100vw - 32px)); max-width: none; position: relative; left: 50%; transform: translateX(-50%); }
+    .msa-wide > .msa-table { margin: 0 auto; font-size: 0.9rem; }
+    .msa-wide .msa-table th, .msa-wide .msa-table td { padding: 7px 10px; }
+    .msa-wide .msa-table tbody th { white-space: nowrap; }
     .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
     .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
     .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
@@ -383,6 +389,7 @@
       <p class="section-eyebrow">Chart the judge</p>
       <h2 class="section-title">One test is a snapshot</h2>
       <p>Here are those ten tests on the "meets" side of my answer key, from September 30 to November 2:</p>
+      <div class="msa-scroll">
       <table class="msa-table">
         <thead><tr><th>Test</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr></thead>
         <tbody>
@@ -390,6 +397,7 @@
           <tr><th>Out of</th><td>28</td><td>28</td><td>29</td><td>29</td><td>29</td><td>29</td><td>29</td><td>31</td><td>31</td><td>31</td></tr>
         </tbody>
       </table>
+      </div>
       <p>Let's put them on a p-chart, the chart from Part 3 for a yes-or-no result as a share of items.</p>
       <p><strong>1. The question it answers.</strong> Has the judge's agreement with people changed, or is this the ordinary up and down of a small test?</p>
       <p><strong>2. What goes in.</strong> Each test's count of agreements and the number of items checked, in time order.</p>
@@ -409,6 +417,7 @@
       <p class="section-eyebrow">What to watch</p>
       <h2 class="section-title">Four things to chart on a judge</h2>
       <p>Agreement with people is the most important thing to watch, and it is also the most expensive, because every point needs a person to check items. Some of the other signals need no people at all. This is the set I'd start with. It is my own synthesis, since I found no published standard for charting an AI judge in production:</p>
+      <div class="msa-scroll">
       <table class="msa-table">
         <thead><tr><th>What to chart</th><th>Needs people?</th><th>How often</th><th>What it catches</th></tr></thead>
         <tbody>
@@ -418,6 +427,7 @@
           <tr><th>The model version that answered</th><td>No</td><td>Every call</td><td>A vendor update under the same name</td></tr>
         </tbody>
       </table>
+      </div>
       <p>Two cautions from Part 3 apply here too. At thousands of verdicts a day, a basic p-chart on the share of each verdict will alarm almost every day, and the Laney p&prime; chart adjusts its limits for that (<a href="https://support.minitab.com/en-us/minitab/help-and-how-to/quality-and-process-improvement/control-charts/how-to/attributes-charts/laney-p-chart/before-you-start/overview/" target="_blank" rel="noopener">Minitab</a>). And a blend of very different items will signal on the mix alone, so chart each kind of item separately.</p>
       <p>My pipeline does the last two rows today. It asks the vendor for a fixed model version, checks the version named in every answer, and leaves any answer from a different version out of its test results. It also keeps 10 frozen postings, and any changed verdict on them is a signal.</p>
     </div>
@@ -433,6 +443,7 @@
       <p><strong>2. What goes in.</strong> A calibration set: items with a person's answer, the judge's verdict and how sure the judge was of each one. Most judges can report a confidence, or a margin between two answers.</p>
       <p><strong>3. What it does.</strong> Sort the items from most sure to least sure. Starting at the top, keep adding items to the "judge decides" group while the error rate in that group stays under the target. Everything below the cutoff goes to a person.</p>
       <p>Let's work one. A judge reviews 200 claims in a calibration set:</p>
+      <div class="msa-scroll">
       <table class="msa-table">
         <thead><tr><th>Judge's confidence</th><th>Claims</th><th>Judge wrong</th><th>Error rate if kept (running total)</th></tr></thead>
         <tbody>
@@ -442,6 +453,7 @@
           <tr><th>Below 0.70</th><td>20</td><td>8</td><td>19 of 200 = 9.5%</td></tr>
         </tbody>
       </table>
+      </div>
       <p><strong>4. How to read it.</strong> If we can live with 3% errors on the verdicts the judge keeps, the cutoff is 0.90: the judge decides 60% of claims and people review 40%. If 5% is acceptable, the cutoff drops to 0.80: the judge decides 80% and people review 20%. The error target sets the cutoff, and the cutoff sets the workload. Halving the review band in this example costs about two more errors per hundred claims the judge keeps, and the cost of a wrong claim decision is what settles whether that trade is worth making.</p>
       <p><strong>5. Where we use it.</strong> Any process where an AI judge makes calls and people can review some of them.</p>
       <p>Researchers at Thomson Reuters describe the same procedure for comparing answers: choose a target agreement level, trust the judge above the margin that meets it, and send the narrow-margin cases to human experts (<a href="https://aclanthology.org/2026.emnlp-industry.201.pdf" target="_blank" rel="noopener">Zhang et al. 2026</a>). A more formal version calibrates the cutoff on a held-out set so that the rate of wrong verdicts among the accepted ones stays below a chosen level, with a statistical guarantee (<a href="https://arxiv.org/abs/2608.17994" target="_blank" rel="noopener">Badshah, Emami and Sajjad</a>).</p>
@@ -455,6 +467,7 @@
       <p class="section-eyebrow">Reaction plans</p>
       <h2 class="section-title">What we do when the chart moves</h2>
       <p>In Part 3 we said a reaction plan says who acts, how fast and what they do first. For an AI judge, these are the tiers I'd write. They are my design, not a published standard:</p>
+      <div class="msa-scroll">
       <table class="msa-table">
         <thead><tr><th>Signal</th><th>First action</th><th>If it is confirmed</th></tr></thead>
         <tbody>
@@ -464,6 +477,7 @@
           <tr><th>Agreement with people below its lower limit, or a slow-drift signal</th><td>Send the affected kind of item to people, and re-qualify</td><td>Roll back to the last version that passed, then recalibrate before trying the new one again</td></tr>
         </tbody>
       </table>
+      </div>
       <p>My pipeline has three rules of this kind, all learned the hard way. A new version of the judge has no authority until it passes its test: until then, its verdicts are recorded but cannot push a posting down my list. A test that was cut short (by a spending cap or an account error) is never scored, and if more than 10% of the answer key went unjudged, the result is recorded as "insufficient". And a change that touches only the facts the judge reads about me inherits the last passing result, with only the postings it had pushed down re-checked, while a change to the questions, the model or the inputs runs the full test again.</p>
     </div>
 
