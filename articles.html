@@ -883,6 +883,110 @@
       </div>
     </div>
 
+    <!-- ── Measurement Series (gateway card) ── -->
+    <div class="series-card" id="series-msa">
+      <div class="series-card-header" onclick="toggleSeries('series-msa')">
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-date">2026</span>
+            <span class="card-tag">Process Excellence &middot; AI Evaluation</span>
+            <span class="series-badge">7-Part Series</span>
+          </div>
+          <h2 class="card-title">The Measurement Series: Grading the Graders</h2>
+          <p class="card-desc">Measurement system analysis for work where the gage is a person's judgment, then for an AI judge doing the same job. Each method is worked on my own job search pipeline, with the math shown.</p>
+        </div>
+        <div class="series-toggle">
+          <button class="btn-expand" onclick="event.stopPropagation(); toggleSeries('series-msa')">
+            Explore Series <span class="series-chevron">&#9660;</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="series-articles" id="series-msa-articles">
+        <div class="series-divider"></div>
+        <div class="series-article-list">
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part 1</span>
+                <span class="series-part-title">Your Gage Is a Person</span>
+              </div>
+              <span class="series-part-desc">Measurement system analysis for decisions people make by reading a transaction.</span>
+            </div>
+            <a href="article-msa-gage-is-a-person.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part 2</span>
+                <span class="series-part-title">Running an Attribute Agreement Study</span>
+              </div>
+              <span class="series-part-desc">A study run step by step on 60 of my own re-graded calls, with the math shown.</span>
+            </div>
+            <a href="article-msa-running-the-study.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Part 3</span>
+                <span class="series-part-title">Keeping It Under Control</span>
+              </div>
+              <span class="series-part-desc">Control charts, error-proofing and control plans for transactional work.</span>
+            </div>
+            <a href="article-msa-keeping-it-under-control.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">Bridge</span>
+                <span class="series-part-title">The Partly Automated Appraiser</span>
+              </div>
+              <span class="series-part-desc">Studying the rules engines, routers and scripts that already make calls in our processes.</span>
+            </div>
+            <a href="article-msa-partly-automated-appraiser.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">AI Evaluation 1</span>
+                <span class="series-part-title">The Mapping</span>
+              </div>
+              <span class="series-part-desc">Each measurement idea from the first half, applied to an AI judge.</span>
+            </div>
+            <a href="article-msa-the-mapping.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">AI Evaluation 2</span>
+                <span class="series-part-title">When the Appraiser Is a Model</span>
+              </div>
+              <span class="series-part-desc">Cost, bias and the corrected estimate when a model makes the call.</span>
+            </div>
+            <a href="article-msa-appraiser-is-a-model.html" class="btn-read-sm">Read</a>
+          </div>
+
+          <div class="series-article-row">
+            <div class="series-part-info-col">
+              <div class="series-part-label-row">
+                <span class="series-part-label">AI Evaluation 3</span>
+                <span class="series-part-title">Running It as a Control</span>
+              </div>
+              <span class="series-part-desc">Control charts, review bands and reaction plans for an AI judge.</span>
+            </div>
+            <a href="article-msa-running-it-as-a-control.html" class="btn-read-sm">Read</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <!-- ── 5. The Capacity Case Study (gateway card) ── -->
     <div class="series-card" id="series-capacity">
       <div class="series-card-header" onclick="toggleSeries('series-capacity')">
@@ -956,6 +1060,11 @@
       applyNavOffset();
       window.addEventListener('resize', applyNavOffset);
     })();
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var id = location.hash.slice(1);
+      if (id && document.getElementById(id + '-articles')) toggleSeries(id);
+    });
 
     function toggleSeries(id) {
       var card = document.getElementById(id);
