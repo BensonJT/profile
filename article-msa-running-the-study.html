@@ -446,7 +446,7 @@
         <li><strong>Kappa (agreement beyond luck):</strong> (0.833 &minus; 0.501) &divide; (1 &minus; 0.501) = 0.67.</li>
         <li><strong>Gwet's AC1:</strong> also 0.67. In Part 1 we met AC1 as the statistic that stays sensible when one answer dominates (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5712640/" target="_blank" rel="noopener">Zec et al. 2017</a>). Here neither answer dominates (29 and 31), so the two agree. That is the payoff of drawing the sample on purpose.</li>
       </ul>
-      <p>How sure can we be of those numbers? Sixty items is not many, so each result comes with a range. The range for the percentage uses the standard confidence interval for a proportion. The range for kappa and AC1 comes from the bootstrap: the computer re-draws 60 postings from my 60, with repeats allowed, 2,000 times, recomputes the statistic each time, and keeps the middle 95% of the results.</p>
+      <p>How sure can we be of those numbers? Sixty postings is a small sample. If my script had drawn a different 60 from my answer key, I would have kept a different number of my calls, and every statistic above would move a little. A 95% range, which statisticians call a confidence interval, says how far each result could reasonably move from the luck of which postings landed in the sample. Here are the ranges, and then how each one was worked out.</p>
       <table class="msa-table">
         <thead><tr><th>Measure</th><th>Result</th><th>95% range</th></tr></thead>
         <tbody>
@@ -455,6 +455,46 @@
           <tr><th>Gwet's AC1</th><td>0.67</td><td>0.47 to 0.84</td></tr>
         </tbody>
       </table>
+
+      <p><strong>The range for percent agreement.</strong> A percentage of yes-or-no results is a proportion, and a proportion has a formula for its range. It takes three steps.</p>
+      <ol>
+        <li><strong>Find the wobble.</strong> The standard error is how much a proportion measured on 60 items typically moves from one sample to the next. The formula is &radic;(p &times; (1 &minus; p) &divide; n), where p is the proportion and n is the sample size: &radic;(0.833 &times; 0.167 &divide; 60) = &radic;0.00231 = 0.048, or about 4.8 points.</li>
+        <li><strong>Widen it to 95%.</strong> Across many samples, 95% of results land within 1.96 standard errors of the true value. 1.96 &times; 4.8 = 9.4 points.</li>
+        <li><strong>Lay it around the result.</strong> 83.3% minus 9.4 points is 73.9%, and plus 9.4 points is 92.8%.</li>
+      </ol>
+      <p>That textbook version has a flaw near 0% and 100%. Had I kept 59 of 60 calls (98.3%), the same steps would give 95.1% to 101.6%, and nobody can agree with themselves 101.6% of the time. My script uses the Wilson version of the formula, which keeps the range inside 0% to 100%. It works like the textbook version with one adjustment: it adds 1.92 agreements and 1.92 disagreements (1.96 squared, split in half) before it computes. That moves the center from 83.3% to (50 + 1.92) &divide; (60 + 3.84) = 81.3%, a small step toward 50%. The width stays about 9.4 points on each side, so the range runs 72% to 91%. With 60 items, the two versions differ by a point or two. Near the ends of the scale, or with smaller samples, the difference grows.</p>
+
+      <p><strong>The range for kappa and AC1: the bootstrap.</strong> Kappa and AC1 have formulas for their ranges too, but those are long and rest on assumptions about the data. There's another way to get a range that works the same for any statistic. It's called the bootstrap, and the computer works out the range by experiment.</p>
+      <p>The question it answers is the one from the top of this section: if I had re-graded a different 60 postings, how different would kappa be? I can't repeat the study 2,000 times. The bootstrap treats my 60 postings as a stand-in for the full answer key and draws new samples from them.</p>
+      <p>The trick is in the phrase "with repeats allowed." Picture my 60 postings as 60 slips of paper in a hat, each slip holding both of my calls on one posting. Draw a slip, write down what's on it, and put it back in the hat. Then draw again. Do that 60 times. Because every slip goes back before the next draw, the same posting can come up two or three times, and other postings never come up at all. The new sample has 60 entries, but it's a different mix of my postings every time. Draw without putting the slips back and you'd get the same 60 every time, so the method depends on putting them back.</p>
+      <p>Here is my original sample and the first three re-draws from my study:</p>
+      <div style="overflow-x:auto">
+      <table class="msa-table">
+        <thead><tr><th></th><th>Different postings drawn</th><th>Never drawn</th><th>Most draws of one posting</th><th>Meets &rarr; meets</th><th>Meets &rarr; fails</th><th>Fails &rarr; meets</th><th>Fails &rarr; fails</th><th>Agreement</th><th>Kappa</th></tr></thead>
+        <tbody>
+          <tr><th>My sample</th><td>60</td><td>0</td><td>1</td><td>24</td><td>5</td><td>5</td><td>26</td><td>83.3%</td><td>0.67</td></tr>
+          <tr><th>Re-draw 1</th><td>38</td><td>22</td><td>5</td><td>22</td><td>1</td><td>7</td><td>30</td><td>86.7%</td><td>0.73</td></tr>
+          <tr><th>Re-draw 2</th><td>35</td><td>25</td><td>3</td><td>26</td><td>6</td><td>2</td><td>26</td><td>86.7%</td><td>0.73</td></tr>
+          <tr><th>Re-draw 3</th><td>42</td><td>18</td><td>4</td><td>24</td><td>1</td><td>4</td><td>31</td><td>91.7%</td><td>0.83</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Re-draw 1 used only 38 of my 60 postings. One posting came up five times, and 22 never came up. Each re-draw adds up to 60 entries, and each is a slightly different version of my study, so each gives a slightly different kappa. Across all the re-draws, a typical one used about 38 different postings, which is what the math predicts when you draw 60 times from 60 and put each one back.</p>
+      <p>The computer repeated this 2,000 times and computed kappa on each re-draw. That gives 2,000 kappas. Here is how they spread out:</p>
+      <table class="msa-table">
+        <thead><tr><th>Kappa on the re-draw</th><th>Re-draws</th><th style="text-align:left">Share</th></tr></thead>
+        <tbody>
+          <tr><th>Below 0.40</th><td>14</td><td style="text-align:left"><span style="display:inline-block;height:10px;width:3px;background:var(--olive)"></span></td></tr>
+          <tr><th>0.40 to 0.50</th><td>97</td><td style="text-align:left"><span style="display:inline-block;height:10px;width:24px;background:var(--olive)"></span></td></tr>
+          <tr><th>0.50 to 0.60</th><td>397</td><td style="text-align:left"><span style="display:inline-block;height:10px;width:97px;background:var(--olive)"></span></td></tr>
+          <tr><th>0.60 to 0.70</th><td>818</td><td style="text-align:left"><span style="display:inline-block;height:10px;width:200px;background:var(--olive)"></span></td></tr>
+          <tr><th>0.70 to 0.80</th><td>543</td><td style="text-align:left"><span style="display:inline-block;height:10px;width:133px;background:var(--olive)"></span></td></tr>
+          <tr><th>0.80 to 0.90</th><td>127</td><td style="text-align:left"><span style="display:inline-block;height:10px;width:31px;background:var(--olive)"></span></td></tr>
+          <tr><th>0.90 and up</th><td>4</td><td style="text-align:left"><span style="display:inline-block;height:10px;width:2px;background:var(--olive)"></span></td></tr>
+        </tbody>
+      </table>
+      <p>To get the 95% range, sort the 2,000 kappas from lowest to highest and trim 2.5% off each end, about 50 values at the bottom and 50 at the top. The kappa at position 50 is 0.46, and the kappa at position 1,950 is 0.83. That's the range in the first table. The middle of the sorted list, position 1,000, is 0.67, the same as my actual result. The AC1 range comes from the same 2,000 re-draws, with AC1 computed on each one instead of kappa: 0.47 to 0.84.</p>
+      <p>Why does reshuffling my own 60 postings tell me anything about other samples? Because each re-draw has about the same mix of easy and hard postings as my sample, so the spread across re-draws mimics the spread I'd see across repeat studies. The method has one limit. It can only reshuffle what's in my 60. If my sample missed a kind of posting entirely, the bootstrap can't know about it.</p>
       <p>One more number. My sample was nearly half "meets", but my full answer key is 21% "meets". Weighting my two agreement rates to the answer key's actual mix (21% of 83% plus 79% of 84%) gives 83.6%, about the same. My consistency does not depend much on which answer I started with.</p>
     </div>
 
@@ -509,7 +549,7 @@
         <dt>Kappa</dt><dd>Agreement beyond luck: 1 is perfect, 0 is no better than luck.</dd>
         <dt>Gwet's AC1</dt><dd>An agreement-beyond-luck statistic that stays sensible when one answer dominates.</dd>
         <dt>Confidence interval (range)</dt><dd>The span of values the true result plausibly falls in, given the sample size.</dd>
-        <dt>Bootstrap</dt><dd>Estimating a range by re-drawing the sample many times and recomputing the result.</dd>
+        <dt>Bootstrap</dt><dd>Estimating a range by re-drawing the sample many times, putting each item back after it's drawn so some repeat and some are left out, and recomputing the result on each re-draw.</dd>
         <dt>Operational definition</dt><dd>The written rule that says what each category means, including its boundaries.</dd>
       </dl>
     </div>
