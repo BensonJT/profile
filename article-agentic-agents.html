@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agents: The Agent Calls the Code | Jeffrey Benson</title>
+  <meta name="description" content="Part 2 of Deterministic First: Agentic Systems. An agent owns the path and calls deterministic scripts for every step with one right answer, with a script in the evaluator's seat and people reviewing where it flags.">
+  <meta name="robots" content="noindex"><!-- DRAFT: remove before publishing -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    @media (min-width: 1200px) {
+      .article-image-wide {
+        width: 70vw;
+        margin-left: -35vw;
+        margin-right: -35vw;
+      }
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  
+    /* ── Measurement Series additions ── */
+    .msa-table { border-collapse: collapse; margin: 8px 0 24px; font-size: 0.95rem; }
+    .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
+    .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
+    .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-scroll { max-width: 100%; overflow-x: auto; margin: 8px 0 24px; }
+    .msa-scroll > .msa-table { margin: 0; }
+    .msa-wide { width: min(880px, calc(100vw - 32px)); max-width: none; position: relative; left: 50%; transform: translateX(-50%); }
+    .msa-wide > .msa-table { margin: 0 auto; font-size: 0.9rem; }
+    .msa-wide .msa-table th, .msa-wide .msa-table td { padding: 7px 10px; }
+    .msa-wide .msa-table tbody th { white-space: nowrap; }
+    .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
+    .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
+    .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
+    .msa-glossary dt { font-weight: 700; color: var(--olive); }
+    .msa-glossary dd { margin: 0; }
+    .msa-sources ol { padding-left: 22px; }
+    .msa-sources li { margin-bottom: 10px; line-height: 1.55; }
+    @media (max-width: 640px) {
+      .msa-glossary dl { grid-template-columns: 1fr; gap: 2px; }
+      .msa-glossary dd { margin-bottom: 10px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+        <div class="nav__links">
+          <a href="ai-builder.html">AI Builder</a>
+          <a href="work.html">Work</a>
+          <a href="method.html">Method</a>
+          <a href="systems.html">Systems</a>
+          <a href="articles.html" class="is-current">Notebook</a>
+          <a href="about.html">About</a>
+        </div>
+        <a class="btn btn--primary nav__cta" href="resume.html">R&eacute;sum&eacute;</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">Menu</button>
+      </div>
+      <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+        <a href="ai-builder.html">AI Builder</a>
+        <a href="work.html">Work</a>
+        <a href="method.html">Method</a>
+        <a href="systems.html">Systems</a>
+        <a href="articles.html">Notebook</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">R&eacute;sum&eacute;</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">AI Builder &middot; Deterministic First: Agentic Systems &middot; Part 2 of 2</p>
+      <h1 class="article-title">Agents: The Agent Calls the Code</h1>
+      <p class="article-subtitle">Give the Agent Engineered Context and a Curated Toolbox</p>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>Deterministic First: Agentic Systems</strong> &nbsp;&middot;&nbsp; <a href="article-agentic-workflows.html">Part 1</a> &nbsp;|&nbsp; Part 2
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p>In one of my Bible study lessons, the AI narrator read "to Timothy" twice. In another, it got caught in a loop on "to the praise of His glory" and repeated about 330 words, turning out 518 seconds of audio for 1,196 words of script. Both requests came back as finished audio files, with no error.</p>
+    <p>I didn't find either one by listening to everything. A script transcribed each audio file back into text and compared it word for word with the narration script, and I listened closely only at the places it marked. We divide the work this way: when the comparison shows a clear error (a doubled phrase, a looped passage, a dropped line), the agent requests a new take of that piece on its own. Only the cases the comparison can't settle, such as a possible mispronunciation or a misread name, come to me.</p>
+    <p>For one lesson (101_005 in my <a href="systems.html#benson-academy">Abide</a> course), the agent produced 20 audio files: ten sections, each in two voices. The comparison matched between 96.1% and 100% of the words in every file, and it gave me a short list of specific spots to check by ear. My own listening then caught two things the comparison could not: a word said wrong ("exegetical") and a scholar's name said badly. The agent retook both pieces.</p>
+    <p>This article will not teach how to build an agent from scratch. Rather, we will look at how an agent that owns its own path can still be deterministic first: what it is given to read, which tools it is handed, and where a script checks its work. <a href="article-agentic-workflows.html">Part 1</a> covered workflows, where code owns the path. Here the model owns the path and calls the code.</p>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Why an agent</p>
+      <h2 class="section-title">The path lives in written instructions</h2>
+      <p>In Part 1, a workflow's steps were written in code. In Abide production, the steps are written in skills: instruction files in everyday language that Claude Code (Anthropic's coding agent, as of November 12, 2026) reads and follows. The agent decides which step comes next.</p>
+      <p>Anthropic's guide recommends an agent when it is "difficult or impossible to predict the required number of steps," and when there is "some level of trust in its decision-making" (<a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Schluntz and Zhang 2024</a>). Lesson production fits that description. One night a voice service refuses a Scripture passage, the next night a request hangs, and a name keeps coming out wrong across three takes. Nobody could write those branches in advance.</p>
+      <p>The same guide calls the building block of every agent the <strong>augmented LLM</strong>: "an LLM enhanced with augmentations such as retrieval, tools, and memory." In my setup, the skills are its instructions and memory, and the tools are below.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The toolbox</p>
+      <h2 class="section-title">54 purpose-built scripts, a few at a time</h2>
+      <p>As of November 12, Abide production has 54 purpose-built scripts, 7 of them tests. Thirty-six live in the course's working folder, 8 in the website's code, and 10 are Scripture tools shared with my FaithOnline writing. Grouped by job:</p>
+      <div class="msa-scroll">
+      <table class="msa-table">
+        <thead><tr><th>Job</th><th>Example scripts</th><th>What they do</th></tr></thead>
+        <tbody>
+          <tr><th>Requesting the narration</th><td><code>narrate.py</code>, <code>tts_budget.py</code>, <code>draft_voice.py</code>, <code>mdx_to_narration.py</code></td><td>Turn a lesson into a speakable script with <code>[CHECK]</code> markers for anything uncertain. Request one section at a time and split long or refused text. Track how many requests each key has left today. Make a free local draft voice before any paid call</td></tr>
+          <tr><th>Checking it</th><td><code>check_audio.py</code>, <code>check_audio_medium.py</code>, <code>check_blocks.py</code></td><td>Transcribe the audio and compare it with the script, word for word</td></tr>
+          <tr><th>Fixing one sentence</th><td><code>find_span.py</code>, <code>retake_line.py</code>, <code>splice_take.py</code>, <code>cut_phrase.py</code></td><td>Find a sentence in the audio, retake only that sentence, and splice the new take into the final file</td></tr>
+          <tr><th>Words and sources</th><td><code>check_quotes.py</code>, <code>check_paraphrases.py</code>, <code>check_pastes.py</code>, <code>move_paste.py</code>, <code>check_lesson.py</code></td><td>Confirm every quotation and paraphrase against its source. Move research pastes byte for byte. Run every check after each step</td></tr>
+          <tr><th>Scripture text</th><td><code>bsb.py</code>, <code>msb.py</code>, <code>esv.py</code>, <code>lockman.py</code>, <code>apibible.py</code>, <code>logos_compare.py</code>, an MCP server and its test</td><td>Pull or confirm a verse in its own translation. The MCP server offers the same tools to the agent directly</td></tr>
+          <tr><th>Producing and publishing</th><td><code>section_video.py</code>, <code>slides_to_video.py</code>, <code>lesson_slides.py</code>, <code>podcast_episode.py</code>, <code>upload_to_r2.py</code>, <code>youtube_api.py</code></td><td>Build slides, videos and the podcast episode. Upload finished files to cloud storage and YouTube</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Under these is a much larger standard toolset the agent already knows how to use: the Linux command line, Python environments for the scripts, faster-whisper for transcription (<a href="https://github.com/SYSTRAN/faster-whisper" target="_blank" rel="noopener">SYSTRAN</a>), ffmpeg for audio and video (<a href="https://ffmpeg.org/" target="_blank" rel="noopener">FFmpeg</a>), git and a cloud storage command line. The voices come from Gemini's text-to-speech models (<a href="https://ai.google.dev/gemini-api/docs/speech-generation" target="_blank" rel="noopener">Google</a>, as of November 12, 2026).</p>
+      <p><strong>Browser control extends the toolbox.</strong> With Claude in Chrome (<a href="https://claude.com/chrome" target="_blank" rel="noopener">Anthropic</a>), the agent also produces each lesson's Gemini Notebook study guide and explainer video. Those two come last, after I sign off on their inputs (the article, the teacher's session guide and the slides), so the agent builds them from approved material only.</p>
+      <p><strong>A curated toolbox.</strong> Anthropic warns that "one of the most common failure modes we see is bloated tool sets that cover too much functionality or lead to ambiguous decision points about which tool to use," and adds, "If a human engineer can't definitively say which tool should be used in a given situation, an AI agent can't be expected to do better" (<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Rajasekaran et al. 2025</a>). Fifty-four scripts can sound like the bloated set it warns about. Each one has a single job, though, and each skill step lists only the few scripts it needs. The agent loads a step's instructions when it reaches that step, which Anthropic calls progressive disclosure: skills "let Claude load information only as needed" (<a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">Zhang, Lazuka and Murag 2025</a>). The agent sees a handful of tools at a time.</p>
+      <p><strong>Tools spend less than tokens.</strong> The Agent Skills article puts it in one example: "sorting a list via token generation is far more expensive than simply running a sorting algorithm. Beyond efficiency concerns, many applications require the deterministic reliability that only code can provide." The agent spends its tokens on judgment. The tools give the same answer every time, at almost no cost.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Ground truth</p>
+      <h2 class="section-title">What the agent checks itself against</h2>
+      <p>Anthropic's guide says "it's crucial for the agents to gain 'ground truth' from the environment at each step." In Abide, the ground truth has three parts, and none of it is a model's opinion:</p>
+      <ul class="support-list">
+        <li><strong>The scripts' results:</strong> a match percentage, a count of missing quotations, a pass or fail.</li>
+        <li><strong>The research files.</strong> Every passage I copy from a commentary in Logos Bible Software is moved into the lesson's research file byte for byte, and <code>check_pastes.py</code> confirms it is still unchanged.</li>
+        <li><strong>Scripture pulled by script or API, in its own translation, never typed from memory.</strong> <code>bsb.py</code> reads a local copy of the Berean Standard Bible, which is in the public domain (<a href="https://berean.bible/terms.htm" target="_blank" rel="noopener">Berean Bible</a>). <code>lockman.py</code> fetches the LSB, NASB and AMP from The Lockman Foundation's site (<a href="https://www.lockman.org/" target="_blank" rel="noopener">Lockman</a>). <code>msb.py</code>, <code>esv.py</code> and API.Bible (<a href="https://scripture.api.bible/" target="_blank" rel="noopener">API.Bible</a>) cover the rest.</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Deterministic evaluators</p>
+      <h2 class="section-title">A script in the evaluator's seat</h2>
+      <p>Anthropic describes an evaluator-optimizer pattern, in which "one LLM call generates a response while another provides evaluation and feedback in a loop." Abide puts a script in the evaluator's seat wherever there is one right answer. Here is the audio check in five steps.</p>
+      <p><strong>1. The question it answers.</strong> Does this audio file say what the script says, word for word?</p>
+      <p><strong>2. What goes in.</strong> The audio file and the narration script it was made from.</p>
+      <p><strong>3. What it does.</strong> A speech-to-text model transcribes the audio. The script lines the transcript up against the narration script and lists every word skipped, added or changed. Names are written in the script as pronunciation spellings (for example, /spuˈdɑzoʊ/ for a Greek word), so the comparison treats them as wildcards and every name gets a targeted second listen. Let's work one. The script says "written to Timothy in Ephesus." The transcript says "written to Timothy to Timothy in Ephesus." The comparison lists two added words at that spot.</p>
+      <p><strong>4. How to read it.</strong> The result is a match percentage for the file and a list of places to listen. Most files I approved scored 98% to 100%. A file below 97% gets a closer look. One short section fell below that line mostly because it contains one scholar's name three times. Added words in a row, like the example, are a clear error, and the agent retakes that piece itself. A single changed word is often the transcriber mishearing, so it goes on my list.</p>
+      <p><strong>5. Where it is used.</strong> On every audio file before I hear it. A second pass with a larger transcription model then clears most of the listed spots as mishearing. For lesson 101_005, five spots were heard the same wrong way by both transcribers, and I listened to those first.</p>
+      <p>My attention moves from "listen to everything for anything" to "decide on the places a machine says differ," followed by one full listen while I follow along in the text.</p>
+      <p>Quotations get the same treatment. For lesson 101_006, <code>check_quotes.py</code> confirmed 443 quotations across the lesson, the slides, the handout, the teacher's packet and the study guide, with none missing from their sources. <code>check_paraphrases.py</code> confirmed that each of 87 paraphrases rests on words a source wrote. <code>check_lesson.py</code> ran 19 checks, all passing. For Scripture in particular, <code>lockman.py --check</code> and <code>bsb.py</code> compare each quotation with its translation's text and exit with an error on any difference.</p>
+      <p><strong>Where no right answer can be scripted, a person evaluates.</strong> I check every quotation in Logos Bible Software, where I keep 20 to 30 translations, because AI tools substitute words even when the text came from a tool. I also catch what a text match can't: the wrong verse quoted correctly, or a quotation that is exact but misused. The script catches drift. I catch what the script can't see.</p>
+      <p>Of everything in this series, this is the pattern I'd most like other teams to try: a deterministic evaluator inside an agent's loop, with human review moved to the places the evaluator flags.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Error-proofing</p>
+      <h2 class="section-title">Tools that refuse bad input</h2>
+      <p>Anthropic's own advice on tools borrows a term from manufacturing: "Poka-yoke your tools. Change the arguments so that it is harder to make mistakes" (<a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Schluntz and Zhang 2024</a>). Poka-yoke is the Japanese term for error-proofing. Abide's tools refuse bad input:</p>
+      <ul class="support-list">
+        <li><code>narrate.py</code> refuses a section that still has a <code>[CHECK]</code> marker, so nothing uncertain is ever voiced.</li>
+        <li><code>move_paste.py</code> refuses a research paste whose source citation is above it, so every citation stays right below the words it credits.</li>
+        <li>A step doesn't count as done until <code>check_lesson.py</code> reports zero failures.</li>
+      </ul>
+      <p>The agent owns the path, but some gates are enforced by code it can't talk its way past.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Qualifying the checkers</p>
+      <h2 class="section-title">Who checks the checker?</h2>
+      <p>A checker is an appraiser too. The five test files for the audio, narration, quotation, paraphrase and paste checkers hold 66 tests, and many come in pairs. A quotation with the right verse must pass, and the same quotation with the wrong verse must fail. The same goes for the right and wrong author. That is the Measurement Series applied to the evaluators themselves (<a href="article-msa-partly-automated-appraiser.html">Part 4</a>): before a checker is trusted, show that it catches what it should and passes what it should.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Choosing</p>
+      <h2 class="section-title">When a workflow, when an agent</h2>
+      <p>Here is the rule I use today. Treat it as a draft.</p>
+      <div class="msa-scroll">
+      <table class="msa-table">
+        <thead><tr><th></th><th>Workflow (Part 1)</th><th>Agent (Part 2)</th></tr></thead>
+        <tbody>
+          <tr><th>The path</th><td>The same every time</td><td>Varies from run to run</td></tr>
+          <tr><th>Volume</th><td>High: thousands of postings a night</td><td>Low: one lesson at a time</td></tr>
+          <tr><th>The work</th><td>Screening, ranking, alerting</td><td>Production: lessons, decks, audio</td></tr>
+          <tr><th>Who owns the path</th><td>Code, with models as gated layers</td><td>The model, with a tool for every step that has a right answer</td></tr>
+          <tr><th>Where people review</th><td>The decisions no layer passed a test for</td><td>The places a deterministic evaluator flags</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>In practice the two mix. An agent (Claude Code) built both workflows in Part 1. In both patterns, the most expensive layer is used last and least.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Your turn</p>
+      <h2 class="section-title">Where could a script tell your people where to look?</h2>
+      <p>Where in your process does a person review everything, when a script could show them where to look? Which "AI step" is really a lookup or a comparison? If an agent does work for your team, what does it check itself against, and which of its gates can it talk its way past?</p>
+      <p>If you found this series useful, please share it with your network. I'd like to hear from you in the comments, and I'll answer any questions you have.</p>
+    </div>
+
+    <!-- ── Glossary ── -->
+    <div class="section-block msa-glossary">
+      <p class="section-eyebrow">Glossary</p>
+      <h2 class="section-title">Terms used in this article</h2>
+      <dl>
+        <dt>Agent</dt><dd>An agentic system in which the model decides its own next step and which tools to use.</dd>
+        <dt>Augmented LLM</dt><dd>A language model given retrieval, tools and memory. Anthropic calls it the building block for agents.</dd>
+        <dt>Skill</dt><dd>A folder of written instructions, and often scripts, that an agent loads when a task calls for it.</dd>
+        <dt>Progressive disclosure</dt><dd>Loading a skill's detail only when the agent reaches the step that needs it.</dd>
+        <dt>Context engineering</dt><dd>Choosing and maintaining what the model has in front of it at each step.</dd>
+        <dt>Ground truth</dt><dd>A result from the environment the agent can check against, such as a script's output or a source text.</dd>
+        <dt>Evaluator-optimizer</dt><dd>A loop in which one step produces work and another evaluates it and sends feedback.</dd>
+        <dt>Deterministic evaluator</dt><dd>A script in the evaluator's seat: it gives the same verdict every time for the same input.</dd>
+        <dt>Text-to-speech (TTS)</dt><dd>A model that turns written text into spoken audio.</dd>
+        <dt>Transcription</dt><dd>Turning speech back into text with a speech-to-text model.</dd>
+        <dt>Poka-yoke</dt><dd>Error-proofing: designing a step so that a mistake is hard or impossible to make.</dd>
+        <dt>MCP server</dt><dd>A program that offers tools to an AI agent through the Model Context Protocol.</dd>
+      </dl>
+    </div>
+
+    <!-- ── Sources ── -->
+    <div class="section-block msa-sources">
+      <p class="section-eyebrow">Sources</p>
+      <h2 class="section-title">References</h2>
+      <ol>
+        <li>Schluntz, E., and Zhang, B. (December 19, 2024). <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Building effective agents</a>. Anthropic. Source of the agent, augmented LLM, ground truth, evaluator-optimizer and poka-yoke quotations.</li>
+        <li>Rajasekaran, P., Dixon, E., Ryan, C., and Hadfield, J. (September 29, 2025). <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Effective context engineering for AI agents</a>. Anthropic. Context engineering, a minimal viable set of tools, and the warning about bloated tool sets.</li>
+        <li>Zhang, B., Lazuka, K., and Murag, M. (October 16, 2025). <a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">Equipping agents for the real world with Agent Skills</a>. Anthropic. Progressive disclosure and why skills include code.</li>
+        <li>Google. <a href="https://ai.google.dev/gemini-api/docs/speech-generation" target="_blank" rel="noopener">Speech generation (text-to-speech)</a>. Gemini API documentation.</li>
+        <li>SYSTRAN. <a href="https://github.com/SYSTRAN/faster-whisper" target="_blank" rel="noopener">faster-whisper</a>. GitHub repository.</li>
+        <li>Berean Bible. <a href="https://berean.bible/terms.htm" target="_blank" rel="noopener">Terms and Conditions</a>. The Berean Standard Bible text is dedicated to the public domain as of April 30, 2023.</li>
+        <li>The Lockman Foundation. <a href="https://www.lockman.org/" target="_blank" rel="noopener">lockman.org</a>. Publisher of the LSB, NASB and AMP.</li>
+        <li>American Bible Society. <a href="https://scripture.api.bible/" target="_blank" rel="noopener">API.Bible</a>.</li>
+        <li>Anthropic. <a href="https://claude.com/chrome" target="_blank" rel="noopener">Claude in Chrome</a>.</li>
+        <li>Benson, J. (2026). <a href="article-agentic-workflows.html">Workflows: Code Owns the Path</a> (Part 1 of this series) and <a href="article-msa-partly-automated-appraiser.html">The Partly Automated Appraiser</a> (Measurement Series, Part 4).</li>
+      </ol>
+    </div>
+
+    <div class="series-nav">
+      <a href="article-agentic-workflows.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        Part 1: Workflows: Code Owns the Path
+      </a>
+      <a href="article-msa-gage-is-a-person.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Related</span>
+        The Measurement Series, Part 1 &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">The Abide figures come from my own production records: the audio check log for lesson 101_005 (November 1, 2026), the build report for lesson 101_006 (November 2, 2026) and the script folders as of November 12, 2026. Products are named as of November 12, 2026. Research for this series was assisted by AI research tools, and every source above was opened and checked.</p>
+
+  </article>
+
+
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>

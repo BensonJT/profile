@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workflows: Code Owns the Path | Jeffrey Benson</title>
+  <meta name="description" content="Part 1 of Deterministic First: Agentic Systems. In a workflow, code owns the path: rules, classical models, a cheap AI judge and a frontier model each get only the decisions they passed a test for, ordered by price.">
+  <meta name="robots" content="noindex"><!-- DRAFT: remove before publishing -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    @media (min-width: 1200px) {
+      .article-image-wide {
+        width: 70vw;
+        margin-left: -35vw;
+        margin-right: -35vw;
+      }
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  
+    /* ── Measurement Series additions ── */
+    .msa-table { border-collapse: collapse; margin: 8px 0 24px; font-size: 0.95rem; }
+    .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
+    .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
+    .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-scroll { max-width: 100%; overflow-x: auto; margin: 8px 0 24px; }
+    .msa-scroll > .msa-table { margin: 0; }
+    .msa-wide { width: min(880px, calc(100vw - 32px)); max-width: none; position: relative; left: 50%; transform: translateX(-50%); }
+    .msa-wide > .msa-table { margin: 0 auto; font-size: 0.9rem; }
+    .msa-wide .msa-table th, .msa-wide .msa-table td { padding: 7px 10px; }
+    .msa-wide .msa-table tbody th { white-space: nowrap; }
+    .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
+    .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
+    .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
+    .msa-glossary dt { font-weight: 700; color: var(--olive); }
+    .msa-glossary dd { margin: 0; }
+    .msa-sources ol { padding-left: 22px; }
+    .msa-sources li { margin-bottom: 10px; line-height: 1.55; }
+    @media (max-width: 640px) {
+      .msa-glossary dl { grid-template-columns: 1fr; gap: 2px; }
+      .msa-glossary dd { margin-bottom: 10px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+        <div class="nav__links">
+          <a href="ai-builder.html">AI Builder</a>
+          <a href="work.html">Work</a>
+          <a href="method.html">Method</a>
+          <a href="systems.html">Systems</a>
+          <a href="articles.html" class="is-current">Notebook</a>
+          <a href="about.html">About</a>
+        </div>
+        <a class="btn btn--primary nav__cta" href="resume.html">R&eacute;sum&eacute;</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">Menu</button>
+      </div>
+      <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+        <a href="ai-builder.html">AI Builder</a>
+        <a href="work.html">Work</a>
+        <a href="method.html">Method</a>
+        <a href="systems.html">Systems</a>
+        <a href="articles.html">Notebook</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">R&eacute;sum&eacute;</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">AI Builder &middot; Deterministic First: Agentic Systems &middot; Part 1 of 2</p>
+      <h1 class="article-title">Workflows: Code Owns the Path</h1>
+      <p class="article-subtitle">Free, Cheapest, Cheap, Expensive: Where Each Decision Belongs</p>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>Deterministic First: Agentic Systems</strong> &nbsp;&middot;&nbsp; Part 1 &nbsp;|&nbsp; <a href="article-agentic-agents.html">Part 2</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p>On the night of October 28, my job search pipeline ran its overnight steps and finished with a success code. Its pre-flight check had asked the AI service whether it was up, and it was. Then every one of the 300 reviews it asked the AI judge for that night failed. The account had run out of credits, and the service answered each request with a billing error. Nothing in the AI layer could report the problem, because the AI layer was what had stopped.</p>
+    <p>What gave it away was a count kept by ordinary code: reviews asked, reviews failed. On the control chart I keep for the nightly runs, that night is the only point outside the limits (<a href="ai-builder-control-charts.html">control charts</a>). The fix was ordinary code too. The run now makes one tiny paid request before it starts, and it stops at the first account error.</p>
+    <p>Meridian, a research tool I built for a private investor, writes the same rule into its architecture: the alerts that report a failure use fixed template text, so they still go out when the language models are down. The layer that watches must not depend on the layer it watches.</p>
+    <p>This article will not compare AI vendors or teach machine learning. Rather, we will look at one way to build an AI system for work that repeats every day: ordinary code does most of the work, each model gets only the decisions it has passed a test for, and the order of the layers is set by price. This is Part 1 of 2, on workflows, where code owns the path. Part 2 covers agents, where the model owns the path and calls the code.</p>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Vocabulary</p>
+      <h2 class="section-title">Two kinds of agentic system</h2>
+      <p>Anthropic's engineering guide "Building effective agents" gives the vocabulary I'll use in both parts (<a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Schluntz and Zhang 2024</a>). It calls the family <strong>agentic systems</strong> and divides it in two:</p>
+      <ul class="support-list">
+        <li><strong>Workflows</strong> are "systems where LLMs and tools are orchestrated through predefined code paths." (An LLM, or large language model, is the kind of AI model behind the chat assistants.)</li>
+        <li><strong>Agents</strong> are systems "where LLMs dynamically direct their own processes and tool usage."</li>
+      </ul>
+      <p>In a workflow, the order of the steps is written in code before the run starts. A model may make a call at one step, but it never decides which step comes next. My job search pipeline (the <a href="systems.html#fit-analyzer">Requirements Fit Analyzer</a>) and <a href="systems.html#meridian">Meridian</a> are both workflows.</p>
+      <p>The same guide recommends "finding the simplest solution possible, and only increasing complexity when needed." In a workflow, I apply that advice one decision at a time.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The cost ladder</p>
+      <h2 class="section-title">Four rungs, priced and measured</h2>
+      <p>Every decision in my two workflows runs on one of four rungs. The cash price of a call puts a layer on its rung. Its test result decides what it may do there. Prices and products are as of November 12, 2026.</p>
+      <div class="msa-scroll">
+      <table class="msa-table">
+        <thead><tr><th>Rung</th><th>What runs there</th><th>Price</th><th>How it is measured</th><th>Current result</th></tr></thead>
+        <tbody>
+          <tr><th>Free</th><td>Rules, Python and classical machine learning on my own computer: text-matching models (TF-IDF with logistic regression) and an embedding model. In Meridian: money flow, technical analysis, options math and reconciliation</td><td>$0 a call</td><td>Each trained model must pass a gate on postings it was not trained on (AUC, explained below) before it replaces the last one. Control charts on every run</td><td>Five ranking models scored 0.82 to 0.94 AUC on their November 10 retrain. The embedding model was refused twice in September, then passed</td></tr>
+          <tr><th>Cheapest</th><td>Gemma, an open Google model, on Google's free tier (job search, as a consultant only). In Meridian: free hosted models for triage, then a local model on the client's own computer</td><td>$0 in cash. Paid in rate limits (my pipeline runs against 16,000 input tokens a minute) and, for the local model, in hardware already owned</td><td>The same blind answer key as the judge</td><td>Never passed. November 4: caught 67% of the postings I fail (bar 70%), agreed with 72% of my "meets" calls (bar 85%)</td></tr>
+          <tr><th>Cheap</th><td>Jev, from TypeSafe: the AI judge in my job search, which returns typed decisions with probabilities</td><td>$0.042 per million input tokens, output free. A night of 147 reviews used 5.9 million tokens: about $0.25</td><td>A full test against my blind answer key, with bars of 85% agreement and 70% catch. A nightly chart of the share it calls "meets"</td><td>11 versions passed. Agreement 287 of 322 (89.1%), catch 226 of 257 (87.9%)</td></tr>
+          <tr><th>Expensive</th><td>Claude Code, which built and maintains both systems. In Meridian: a frontier model that writes the morning report (planned)</td><td>A flat monthly subscription for Claude Code. A price per call for the planned report</td><td>Its output is code, held to tests and review</td><td>The report writer is Meridian's one planned piece, and by design the last layer added</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>A few terms from the table. A <strong>token</strong> is a short piece of text, often part of a word, and AI services price their models by the million tokens. A <strong>frontier model</strong> is one of the largest, most capable models from the major AI labs, priced to match. Jev's price comes from TypeSafe's documentation (<a href="https://docs.typesafe.ai/models" target="_blank" rel="noopener">TypeSafe</a>). The token counts and results come from my own pipeline's logs. Prices like these change often. In my own systems, a script would keep this table current.</p>
+      <p>Look at the second and third rows. Gemma costs less than Jev, and it still has no say in what I read, because it did not pass its test. The rule I follow is to use the cheapest layer that has passed its test.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Reading a gate</p>
+      <h2 class="section-title">What AUC tells us, and why a gate uses it</h2>
+      <p>Most of the free rung's results above are AUC scores (area under the curve, a standard way to grade a model that ranks things). Here it is in five steps.</p>
+      <p><strong>1. The question it answers.</strong> Take one posting I would apply to and one I would pass on. How often does the model score the right one higher?</p>
+      <p><strong>2. What goes in.</strong> The model's score for each posting, and my own call on each one, on postings the model was not trained on.</p>
+      <p><strong>3. What it does.</strong> It pairs every posting I'd apply to with every posting I'd pass on and counts the share of pairs the model puts in the right order. Let's work a small one. Two good postings score 0.9 and 0.4, and two poor ones score 0.6 and 0.2. Of the four pairs, the model orders three correctly (0.9 over 0.6, 0.9 over 0.2, 0.4 over 0.2) and one wrongly (0.4 under 0.6). AUC = 3 &divide; 4 = 0.75.</p>
+      <p><strong>4. How to read it.</strong> 0.5 is a coin flip, and 1.0 never gets a pair wrong. The model's only job is to put the right postings at the top of a list I go through by hand, so a higher AUC means fewer good postings buried and less of my time spent on poor ones.</p>
+      <p><strong>5. Where it is used.</strong> A new model earns its place only by passing a gate. On postings it was not trained on, my embedding model must score at least 0.71 and beat the simpler TF-IDF model by 0.05. On November 10 it scored 0.765 against a bar of 0.723 (TF-IDF's 0.673 plus 0.05). Trained on shuffled labels, it must fall to about a coin flip, and it scored 0.538, evidence that it learned from the postings and did not memorize them. In September the same model missed the bar twice, at 0.707 and 0.706 against 0.71. Both times the old model stayed in place. It passed on its third retrain and on every one since.</p>
+      <p>A miss by four thousandths is still a miss. The gate was written down before the first test, so nobody (including me) had to decide in the moment whether 0.706 was close enough.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Workflow 1</p>
+      <h2 class="section-title">My job search pipeline</h2>
+      <p>Each night the pipeline visits 232 employers' job boards with ordinary code (on November 10: 105,831 live postings, 3,737 of them new). Rules screen out postings in the wrong place or at the wrong level. The free-rung models rank what is left by fit. Jev reviews only the top of the list (147 new reviews that night), and it may only demote: a posting it says I fail moves off my Apply list into a "demoted" section I can still open. Every gate is a threshold I measured, and a new version of the judge has no authority until it passes its full test. A version changes whenever its questions or its model change.</p>
+      <p>Where do the expensive layer's errors start? Often in a cheaper one. Before the judge sees a posting, ordinary code splits it into Required lines, Preferred lines and duties. Where that code found a Required section, the judge agreed with me on 77% of postings. Where it found none, the judge agreed on 57% (<a href="article-msa-partly-automated-appraiser.html">Measurement Series, Part 4</a>). The first fix belonged in the free layer.</p>
+      <p><strong>Gemma's consulting role.</strong> Gemma was tested against the same answer key and never passed its bars, so it did not earn a deciding role, even though its free tier makes it the cheapest model in the pipeline. Free has its own cost: on November 4, its test took 8 hours for 144 postings, about 205 seconds each, most of it spent waiting on the free tier's limit. Today Gemma reads only the postings Jev demoted, and its view appears beside each demotion, agreeing or disagreeing. I decide. A layer that fails its test can still consult, as long as it never moves anything.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Workflow 2</p>
+      <h2 class="section-title">Meridian, a research tool for a private investor</h2>
+      <p>Meridian follows about 50 companies for one investor. Each run gathers prices, filings, an events calendar and news from nine data services and records what changed (<a href="systems.html#meridian">Systems</a>). I wrote its architecture document before any production code, and these are the design rules in it:</p>
+      <ul class="support-list">
+        <li><strong>A zone where models never decide.</strong> Money flow, technical analysis, options math and reconciliation are code only.</li>
+        <li><strong>Use the lowest layer that can express the trigger.</strong> If a filing code or a threshold exists, the alert comes from code. A language model may describe the alert afterward, but it never decides whether the alert fires. Models get only the work that requires understanding language, such as weighing news against the reasons the investor follows a company.</li>
+        <li><strong>Numbers arrive already computed.</strong> In the document's words, "The LLM narrates vetted numbers; it cannot introduce an arithmetic error." It also saves tokens: a summary box is about 20 lines, where the raw filings run to thousands.</li>
+        <li><strong>Three model tiers by cost.</strong> Free hosted models sort the news, a local model on the client's own computer does the reasoning (so the most sensitive work never leaves that machine), and a frontier model writes only the final report, "per report, not per article."</li>
+        <li><strong>When a tier is down, fall down the ladder.</strong> If the local model is down, its work drops to the free tier and the output is marked as degraded. The document gives the reason: "an outage in a free tier silently spending frontier money is the wrong failure mode."</li>
+        <li><strong>Model output records its provenance</strong> (the model, the tier and the source text it read), and it can never suppress or downgrade an alert that came from code.</li>
+      </ul>
+      <p>The logs show how the work divides. In the 30 days to November 12, Meridian made about 53,000 calls to data services, ran about 47,000 reconciliation checks and made about 12,000 calls to free-tier models that score news. It made no paid model calls. Meridian is built except for one piece, the frontier model that writes the morning report, which is planned. The most expensive layer is the last one added.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The discipline</p>
+      <h2 class="section-title">Every layer is an appraiser</h2>
+      <p>In the Measurement Series, I treated each AI judge as an appraiser (the quality term for whoever makes the call) and measured it before trusting it (<a href="article-msa-the-mapping.html">Part 5</a>). The ladder works only when the same rules apply to every rung, the free one included:</p>
+      <ul class="support-list">
+        <li><strong>A written bar before the first test.</strong> The 85% and 70% bars on the judge were set before it ever ran.</li>
+        <li><strong>No authority until it passes.</strong> A refused model leaves the old one in place, and a model that never passes may only consult.</li>
+        <li><strong>A new test on every change.</strong> A new prompt, a new model version or a new splitting rule makes a new appraiser (<a href="article-msa-partly-automated-appraiser.html">Part 4</a>).</li>
+        <li><strong>A control chart once it runs</strong> (<a href="article-msa-keeping-it-under-control.html">Part 3</a>, <a href="article-msa-running-it-as-a-control.html">Part 7</a>, and the live <a href="ai-builder-control-charts.html">control charts</a>).</li>
+      </ul>
+      <p>Why keep watching a model that passed? Because a model we don't own can change under us. One study found that GPT-4's accuracy at telling prime numbers from composite numbers fell from 84% in March 2023 to 51% in June 2023 (<a href="https://arxiv.org/abs/2307.09009" target="_blank" rel="noopener">Chen, Zaharia and Zou 2023</a>). The free layer changes too, every time we edit it: one change to the splitting rule changed the lines the judge was handed for 25,606 of my 82,475 postings (<a href="article-msa-partly-automated-appraiser.html">Part 4</a>).</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Prior work</p>
+      <h2 class="section-title">What I have and haven't seen elsewhere</h2>
+      <p>Others have proposed parts of this, and I learned from them:</p>
+      <ul class="support-list">
+        <li><strong>An order for the layers.</strong> Pete Johnson's "model Tetris" rule: when the rules are known and stable, write code. When the options are known but the rules are fuzzy, use a System One model (a fast model that picks from fixed options, as Jev does). When the output must be written or explained, use an LLM (<a href="https://www.cio.com/article/4247450/jev-and-the-era-of-model-tetris.html" target="_blank" rel="noopener">Johnson 2026</a>, an opinion piece).</li>
+        <li><strong>Confidence gates and shadow mode.</strong> Kai Waehner proposes sending high-confidence decisions straight through, medium ones to an LLM and low ones to a person. He also proposes logging every decision with its probability and running a new model in shadow mode before it takes over (<a href="https://www.kai-waehner.de/blog/2026/09/28/how-system-one-models-like-jev-change-enterprise-ai-architecture/" target="_blank" rel="noopener">Waehner 2026</a>).</li>
+        <li><strong>The savings from cascades.</strong> FrugalGPT matched the best single model of its day (GPT-4) with up to 98% lower cost in its 2023 tests (<a href="https://arxiv.org/abs/2305.05176" target="_blank" rel="noopener">Chen, Zaharia and Zou 2023</a>). RouteLLM reports up to 85% lower cost while keeping 95% of GPT-4's performance on one benchmark (<a href="https://github.com/lm-sys/routellm" target="_blank" rel="noopener">LMSYS RouteLLM</a>).</li>
+      </ul>
+      <p>What I haven't seen, in my reading so far, is three practices used together. Every layer is qualified against a written bar before it gets authority, and re-tested on every change. The free layer is measured in the same cost-and-evaluation table as the models. And each layer has a control chart. If you have seen them together, I'd like to read it.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Your turn</p>
+      <h2 class="section-title">Which of your decisions are rules in disguise?</h2>
+      <p>Take one process you own that uses AI. Which of its decisions would a threshold or a lookup make the same way every time? Which model output in it has nobody measured against an answer key? If the model stopped answering tonight, what would notice, and does that thing depend on the model?</p>
+      <p>If you found this article useful, please share it with your network. I'd like to hear from you in the comments, and I'll answer any questions you have.</p>
+      <p><em>Next in the series: <strong>Agents: The Agent Calls the Code</strong>. We will turn the pattern around: an agent owns the path, and it reaches for a deterministic tool at every step that has one right answer.</em></p>
+    </div>
+
+    <!-- ── Glossary ── -->
+    <div class="section-block msa-glossary">
+      <p class="section-eyebrow">Glossary</p>
+      <h2 class="section-title">Terms used in this article</h2>
+      <dl>
+        <dt>Agentic system</dt><dd>Anthropic's umbrella term for systems built from language models and tools: workflows and agents.</dd>
+        <dt>Workflow</dt><dd>An agentic system whose steps follow a path written in code.</dd>
+        <dt>Agent</dt><dd>An agentic system in which the model decides its own next step and which tools to use.</dd>
+        <dt>LLM</dt><dd>Large language model: the kind of AI model behind chat assistants.</dd>
+        <dt>Deterministic</dt><dd>Always giving the same output for the same input.</dd>
+        <dt>Classical machine learning</dt><dd>Models trained on labeled examples, such as TF-IDF (a way to turn text into word-frequency numbers) with logistic regression (a model that turns those numbers into a probability).</dd>
+        <dt>Embedding model</dt><dd>A model that turns a passage into a list of numbers so that passages with similar meaning get similar numbers.</dd>
+        <dt>Token</dt><dd>A short piece of text, often part of a word. AI services price by the million tokens.</dd>
+        <dt>AUC</dt><dd>Area under the curve: the share of good-and-poor pairs a ranking model puts in the right order. 0.5 is a coin flip, and 1.0 is perfect.</dd>
+        <dt>Gate</dt><dd>A written threshold a model must pass before it may replace the last one or act.</dd>
+        <dt>Answer key</dt><dd>Postings I graded myself, blind, before seeing any machine's call.</dd>
+        <dt>Catch rate</dt><dd>The share of postings I fail that the judge also fails.</dd>
+        <dt>Frontier model</dt><dd>One of the largest, most capable models from the major AI labs.</dd>
+        <dt>Free tier</dt><dd>A provider's no-cost access to a model, limited by how much can be sent per minute or per day.</dd>
+        <dt>Appraiser</dt><dd>The quality term for whoever, or whatever, makes the call being measured.</dd>
+        <dt>Control chart</dt><dd>A chart of a process measure over time, with limits that show how far it moves by chance.</dd>
+      </dl>
+    </div>
+
+    <!-- ── Sources ── -->
+    <div class="section-block msa-sources">
+      <p class="section-eyebrow">Sources</p>
+      <h2 class="section-title">References</h2>
+      <ol>
+        <li>Schluntz, E., and Zhang, B. (December 19, 2024). <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Building effective agents</a>. Anthropic. Source of the terms agentic system, workflow and agent.</li>
+        <li>TypeSafe. <a href="https://docs.typesafe.ai/models" target="_blank" rel="noopener">Models</a>. Vendor documentation: Jev's price, $42 per billion input tokens with output free (as of November 12, 2026).</li>
+        <li>Johnson, P. (November 12, 2026). <a href="https://www.cio.com/article/4247450/jev-and-the-era-of-model-tetris.html" target="_blank" rel="noopener">Jev and the era of model Tetris</a>. CIO.com. An opinion piece.</li>
+        <li>Waehner, K. (September 28, 2026). <a href="https://www.kai-waehner.de/blog/2026/09/28/how-system-one-models-like-jev-change-enterprise-ai-architecture/" target="_blank" rel="noopener">How System One Models Like Jev Change Enterprise AI Architecture</a>. A practitioner's blog.</li>
+        <li>Chen, L., Zaharia, M., and Zou, J. (2023). <a href="https://arxiv.org/abs/2305.05176" target="_blank" rel="noopener">FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance</a>. arXiv 2305.05176. Results are for 2023 models and prices.</li>
+        <li>LMSYS. <a href="https://github.com/lm-sys/routellm" target="_blank" rel="noopener">RouteLLM</a>. GitHub repository. The 85% figure is for the MT Bench benchmark.</li>
+        <li>Chen, L., Zaharia, M., and Zou, J. (2023). <a href="https://arxiv.org/abs/2307.09009" target="_blank" rel="noopener">How is ChatGPT's behavior changing over time?</a> arXiv 2307.09009.</li>
+        <li>Benson, J. (2026). The Measurement Series, Parts <a href="article-msa-keeping-it-under-control.html">3</a>, <a href="article-msa-partly-automated-appraiser.html">4</a>, <a href="article-msa-the-mapping.html">5</a> and <a href="article-msa-running-it-as-a-control.html">7</a>, and the live <a href="ai-builder-control-charts.html">control charts</a>.</li>
+      </ol>
+    </div>
+
+    <div class="series-nav">
+      <a href="article-msa-running-it-as-a-control.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Related</span>
+        Measurement Series, Part 7: Running It as a Control
+      </a>
+      <a href="article-agentic-agents.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Next</span>
+        Part 2: Agents: The Agent Calls the Code &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">The job search figures come from my own pipeline's records and run logs (September to November 2026). Meridian is client work, described here only in general terms: its figures come from its architecture document and its own run logs (30 days to November 12, 2026), and no client information is included. Prices and products are as of November 12, 2026. Research for this series was assisted by AI research tools, and every source above was opened and checked.</p>
+
+  </article>
+
+
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>
