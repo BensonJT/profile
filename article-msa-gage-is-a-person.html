@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Gage Is a Person: Measurement System Analysis When the Work Is a Judgment Call | Jeffrey Benson</title>
+  <meta name="description" content="Measurement System Analysis for claims, tickets, approvals and audits: why the gage is often a person, how an attribute agreement study works, and the prevalence trap that makes kappa read low.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    @media (min-width: 1200px) {
+      .article-image-wide {
+        width: 70vw;
+        margin-left: -35vw;
+        margin-right: -35vw;
+      }
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  
+    /* ── Measurement Series additions ── */
+    .msa-table { border-collapse: collapse; margin: 8px 0 24px; font-size: 0.95rem; }
+    .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
+    .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
+    .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
+    .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
+    .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
+    .msa-glossary dt { font-weight: 700; color: var(--olive); }
+    .msa-glossary dd { margin: 0; }
+    .msa-sources ol { padding-left: 22px; }
+    .msa-sources li { margin-bottom: 10px; line-height: 1.55; }
+    @media (max-width: 640px) {
+      .msa-glossary dl { grid-template-columns: 1fr; gap: 2px; }
+      .msa-glossary dd { margin-bottom: 10px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+        <div class="nav__links">
+          <a href="ai-builder.html">AI Builder</a>
+          <a href="work.html">Work</a>
+          <a href="method.html">Method</a>
+          <a href="systems.html">Systems</a>
+          <a href="articles.html" class="is-current">Notebook</a>
+          <a href="about.html">About</a>
+        </div>
+        <a class="btn btn--primary nav__cta" href="resume.html">R&eacute;sum&eacute;</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">Menu</button>
+      </div>
+      <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+        <a href="ai-builder.html">AI Builder</a>
+        <a href="work.html">Work</a>
+        <a href="method.html">Method</a>
+        <a href="systems.html">Systems</a>
+        <a href="articles.html">Notebook</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">R&eacute;sum&eacute;</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; Measurement Series &middot; Part 1 of 7</p>
+      <h1 class="article-title">Your Gage Is a Person: Measurement System Analysis When the Work Is a Judgment Call</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>Measurement Series</strong> &nbsp;&middot;&nbsp; Part 1 &nbsp;|&nbsp; <a href="article-msa-running-the-study.html">Part 2</a> &nbsp;|&nbsp; <a href="article-msa-keeping-it-under-control.html">Part 3</a> &nbsp;|&nbsp; <a href="article-msa-partly-automated-appraiser.html">Bridge</a> &nbsp;|&nbsp; <a href="article-msa-the-mapping.html">AI Evaluation 1</a> &nbsp;|&nbsp; <a href="article-msa-appraiser-is-a-model.html">AI Evaluation 2</a> &nbsp;|&nbsp; <a href="article-msa-running-it-as-a-control.html">AI Evaluation 3</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p>This fall I built a pipeline that scores job postings against my experience. Before I could trust any score it produced, I needed an answer key, so I read postings myself and made one call on each: do I meet the posting's Required qualifications, or not? I made each call blind, before I looked at any score or ranking. There are 149 of those calls so far.</p>
+    <p>Then I asked an AI judge to make the same call on the same postings, and it kept disagreeing with me. I went back to 17 of the postings where we disagreed and re-graded them line by line. I changed my own answer on 8 of the 17. When I read my notes afterward, I found the reason. I had been applying two tests under one label: one asked whether I met each stated requirement, and the other asked whether the role was the kind of work I had done before. The judge had only been asked the first question.</p>
+    <p>I learned Measurement System Analysis in my Black Belt training, with Master Black Belt coaches beside us. It took my own answer key to show me the part of it that matters most for the work most of us do. Very often the gage is a person, and sometimes that person is you.</p>
+    <p>This article will not make you a statistician, nor walk through the history of MSA. Rather, we will learn what a measurement system is, why the measurement systems behind claims, tickets, approvals and audits are harder to check than the ones on a plant floor, and what an attribute agreement study (the MSA study built for judgment calls) tells us. In Part 2 we will run one, step by step.</p>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Baseline</p>
+      <h2 class="section-title">What a measurement system is</h2>
+      <p>Every number we act on came from somebody measuring something. Measurement System Analysis asks one question before we trust any of those numbers: <em>how much of the variation in our data comes from the thing we measured, and how much comes from the way we measured it?</em></p>
+      <p>MSA grew up in manufacturing, so let's start there, briefly. Picture a machined part, a caliper (the gage), and the inspectors who use it (the operators). A typical study gives about 10 parts that span the normal range to 2 or 3 operators, and each operator measures each part 2 or 3 times, in random order, without seeing anyone else's readings (<a href="https://support.minitab.com/en-us/minitab/media/pdfs/translate/Assistant_Gage_R_and_R.pdf" target="_blank" rel="noopener">Minitab, citing the AIAG manual</a>). The analysis then splits the variation in all those readings into the part's own differences and the measuring's differences. It looks at the measuring in several ways:</p>
+      <ul class="support-list">
+        <li><strong>Repeatability:</strong> the same person measures the same part again. Do they get the same reading?</li>
+        <li><strong>Reproducibility:</strong> different people measure the same part. Do they agree with each other?</li>
+        <li><strong>Bias:</strong> on average, how far are the readings from the known right answer?</li>
+        <li><strong>Linearity:</strong> is that bias the same for small parts and large ones, or does it change across the range?</li>
+        <li><strong>Stability:</strong> does the gage drift over weeks and months?</li>
+        <li><strong>Discrimination:</strong> can the gage tell apart parts that really are different?</li>
+      </ul>
+      <p>Repeatability and reproducibility together make up the Gage R&amp;R, and the usual rule reads it as a share of the total variation: under 10% is acceptable, 10% to 30% is marginal, and over 30% means we fix the measuring before we trust the data (<a href="https://support.minitab.com/en-us/minitab/media/pdfs/translate/Assistant_Gage_R_and_R.pdf" target="_blank" rel="noopener">Minitab</a>). On a plant floor that is a well-worn routine. Hold on to the six words above, because we will need every one of them in a place that looks nothing like a plant floor.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The pivot</p>
+      <h2 class="section-title">Almost none of us measure parts</h2>
+      <p>Now let's think about our own work. What is the "part" on a claims desk? What is the gage? What is the tolerance?</p>
+      <p>The part is a transaction: a claim, a ticket, an invoice, a loan file, a recorded call. The gage is a person reading it, usually with a checklist, a policy and a system screen beside them. The reading is a category: approve or deny, priority 1 to 4, root-cause code 17. The tolerance was usually never written down. Can you think of a decision in your own process that works this way? Most of us can think of several.</p>
+      <p>The routine from the plant floor needs changes before it fits our work. These are the five differences I'd plan for. The published research on them is thin for transactional work, so treat this list as my reasoning, tested on my own grading:</p>
+      <ul class="support-list">
+        <li><strong>There is no master part.</strong> A plant can machine a reference part to a known size. For a claim, the "right answer" is itself somebody's judgment.</li>
+        <li><strong>The readings are categories.</strong> The variance arithmetic behind the 10% and 30% rule needs measurements on a scale. Approve-or-deny calls need a different study and different statistics.</li>
+        <li><strong>The tolerance was never written.</strong> Nobody wrote down how complete "complete documentation" has to be, so two careful people can read the same file two ways.</li>
+        <li><strong>The timing data is shaky.</strong> A system timestamp records when someone updated the record, which is not always when the work happened.</li>
+        <li><strong>The appraiser remembers the case.</strong> A caliper has no memory. A claims examiner who sees the same file twice may remember what they decided, which breaks the blind second reading the study depends on. In my own re-grade I only used postings I had graded at least three weeks earlier for this reason.</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The study</p>
+      <h2 class="section-title">What an attribute agreement study tells us</h2>
+      <p>For category calls, the MSA study is called an <strong>attribute agreement analysis</strong> (some books call it an attribute Gage R&amp;R or a kappa study). Here is what it does, in five steps.</p>
+      <p><strong>1. The question it answers.</strong> Do our reviewers agree with themselves, with each other, and with the right answer, more often than they would by luck?</p>
+      <p><strong>2. What goes in.</strong> A set of transactions from the live process, the people who normally make the call, and the right answer for each transaction if we have it. Each reviewer judges every item at least twice, in a shuffled order, with time in between, and without seeing their own earlier answer or anyone else's. Minitab's own worked example uses 50 samples and four appraisers (<a href="https://support.minitab.com/minitab/help-and-how-to/quality-and-process-improvement/measurement-system-analysis/how-to/attribute-agreement-analysis/attribute-agreement-analysis/before-you-start/example/" target="_blank" rel="noopener">Minitab example</a>).</p>
+      <p><strong>3. What it does.</strong> It counts matches three ways: each reviewer against their own second reading (repeatability), reviewers against each other (reproducibility), and each reviewer against the right answer (accuracy). Then it corrects each count for luck, with a statistic called <strong>kappa</strong>.</p>
+      <p>Why correct for luck? Suppose two examiners each approve about half of the claims they see. Even if both of them flipped a coin, they would agree about half the time. That means "85% agreement" says less than it sounds. Kappa asks how far above the luck level the agreement climbed, as a share of the room there was to climb.</p>
+      <p>Let's work one by hand. Two examiners each judge the same 40 claims:</p>
+      <table class="msa-table">
+        <thead><tr><th></th><th>Examiner B approves</th><th>Examiner B denies</th></tr></thead>
+        <tbody>
+          <tr><th>Examiner A approves</th><td>18</td><td>3</td></tr>
+          <tr><th>Examiner A denies</th><td>3</td><td>16</td></tr>
+        </tbody>
+      </table>
+      <ul class="support-list">
+        <li><strong>Observed agreement:</strong> they matched on 18 + 16 = 34 of 40 claims, or 85%.</li>
+        <li><strong>Agreement by luck:</strong> each examiner approved 21 of 40 (52.5%). Two people approving at those rates would both say approve 0.525 &times; 0.525 = 27.6% of the time and both say deny 0.475 &times; 0.475 = 22.6% of the time, so about 50% agreement comes from luck alone.</li>
+        <li><strong>Kappa:</strong> the room above luck was 100% &minus; 50% = 50 points, and they climbed 85% &minus; 50% = 35 of them. Kappa is 35 &divide; 50 = 0.70.</li>
+      </ul>
+      <div class="msa-aside">
+        <p class="msa-aside-title">For the formula-minded</p>
+        <p>Kappa = (observed agreement &minus; luck agreement) &divide; (1 &minus; luck agreement). With the numbers above: (0.85 &minus; 0.50) &divide; (1 &minus; 0.50) = 0.70.</p>
+      </div>
+      <p><strong>4. What comes out, and how to read it.</strong> Kappa runs from &minus;1 to 1. A kappa of 1 is perfect agreement, 0 is no better than luck, and below 0 is worse than luck. Minitab passes on the auto industry's guidance: the AIAG suggests a kappa of at least 0.75 indicates good agreement, and 0.90 or higher is preferred (<a href="https://support.minitab.com/en-us/minitab/help-and-how-to/quality-and-process-improvement/measurement-system-analysis/how-to/attribute-agreement-analysis/attribute-agreement-analysis/interpret-the-results/key-results/" target="_blank" rel="noopener">Minitab</a>). Our two examiners, at 0.70, are not there yet.</p>
+      <p>You will also see a set of labels, in which 0.61 to 0.80 is called "substantial" agreement. McHugh, writing about health research, argues those labels are too lenient for decisions that matter, because they let a kappa as low as 0.41 pass as acceptable (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3900052/" target="_blank" rel="noopener">McHugh 2012</a>). I'd set the bar by the cost of a wrong call. A claims decision that pays out money deserves a higher bar than a ticket's routing queue.</p>
+      <p><strong>5. Where we use it.</strong> Any decision people make by reading a transaction: approve or deny, priority, root-cause code, audit score, complete or incomplete. And, as we will see in the second half of this series, any decision an AI makes the same way.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The trap</p>
+      <h2 class="section-title">When most of the answers are the same</h2>
+      <p>Here is the part the textbook example does not prepare us for. In most transactional work, one answer dominates. Most claims are approved. Most invoices pass review. Most of the job postings I graded fail my Required test (118 of my 149 calls are "fails", or 79%).</p>
+      <p>When one answer dominates, kappa can read low even though the reviewers agree on almost everything. Let's see why. Two examiners judge 100 claims, and each approves 91 of them:</p>
+      <table class="msa-table">
+        <thead><tr><th></th><th>Examiner B approves</th><th>Examiner B denies</th></tr></thead>
+        <tbody>
+          <tr><th>Examiner A approves</th><td>85</td><td>6</td></tr>
+          <tr><th>Examiner A denies</th><td>6</td><td>3</td></tr>
+        </tbody>
+      </table>
+      <ul class="support-list">
+        <li><strong>Observed agreement:</strong> 85 + 3 = 88 of 100, or 88%.</li>
+        <li><strong>Agreement by luck:</strong> 0.91 &times; 0.91 + 0.09 &times; 0.09 = 0.836. When nearly everything is approved, two people guessing "approve" every time would agree about 84% of the time.</li>
+        <li><strong>Kappa:</strong> (0.88 &minus; 0.836) &divide; (1 &minus; 0.836) = 0.27.</li>
+      </ul>
+      <p>The same two examiners who agree on 88 claims out of 100 now look barely better than a coin. Researchers call this the prevalence paradox. A study of it in nursing research found the effect becomes evident once the dominant answer passes about 60% of cases, and that a different statistic, Gwet's AC1, stayed in line with the observed agreement where kappa did not (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5712640/" target="_blank" rel="noopener">Zec et al. 2017</a>). AC1 asks the same question as kappa, but it estimates the luck level in a way that does not balloon when one answer dominates. For the table above, AC1 comes out at 0.86.</p>
+      <p>So what do we do? Three things:</p>
+      <ul class="support-list">
+        <li><strong>Report three numbers together:</strong> percent agreement, the mix of answers, and kappa. Anyone reading a low kappa next to a lopsided mix will know to look twice.</li>
+        <li><strong>Add AC1</strong> when one answer is more than about 60% of the cases.</li>
+        <li><strong>Build the study sample on purpose.</strong> If we pull 50 transactions at random from a desk that approves 91% of claims, about 45 of them will be easy approvals. Load the sample with the rare answer and the borderline cases. My own re-grade study uses 29 "meets" and 31 "fails", nowhere near the one-in-five mix of the full set.</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The answer key</p>
+      <h2 class="section-title">When the right answer is an opinion</h2>
+      <p>An attribute agreement study is strongest when we know the right answer for each item. On a claims desk, who decides that? If the right answer is one supervisor's opinion, we have measured our examiners against another examiner.</p>
+      <p>Clinical research has faced this problem for a long time, because many diagnoses have no lab test to settle them. A 2025 review of 318 diagnostic studies that used a panel of experts as their answer key found four designs (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12070646/" target="_blank" rel="noopener">Kellerhuis et al. 2025</a>):</p>
+      <ul class="support-list">
+        <li><strong>Independent (33% of studies):</strong> each expert judges alone, with no conferring.</li>
+        <li><strong>Consensus (27%):</strong> the panel discusses each case together.</li>
+        <li><strong>Staged (11%):</strong> each expert judges alone first, then the panel discusses only the cases where they disagreed.</li>
+        <li><strong>Tiebreaker (8%):</strong> each expert judges alone, and another expert settles the disagreements.</li>
+      </ul>
+      <p>The most common panel size was 3 or 4 experts (55% of the studies). For a transactional answer key, I'd use the staged design: three people who are not in the study judge each item alone, then meet only on the items where they split. I'd also keep a count of the items they could not settle. Those items point straight at a definition that needs work.</p>
+      <p>My own answer key has one expert in it, and it is me. My re-grade of those 17 disputed postings is the warning: on hard cases, my second reading disagreed with my first nearly half the time (8 of 17). That is the first thing I'll have to solve in the second half of this series, when the appraiser is an AI judge and the answer key is a person.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Diagnosis</p>
+      <h2 class="section-title">Fix the definition before you fix the people</h2>
+      <p>When an attribute agreement study comes back weak, I'd check the operational definition before retraining anyone: the written rule that says what each category means, with its boundaries and its exceptions.</p>
+      <p>Here is an everyday example. Is a password reset an incident (something broke) or a service request (someone asked for something)? If one help-desk team logs it as an incident and the other as a request, the incident counts from those two teams cannot be compared, and no amount of training fixes it until someone writes the rule down. The disagreement lives in the definition.</p>
+      <p>That is what my 17 postings told me. My judge and I disagreed because my label held two tests and its instructions held one. The fix was to write both tests down as separate questions and ask the judge both of them. The people (and the model) were doing what the definition told them to do.</p>
+      <p>When reviewers disagree, I'd ask three questions in this order: Is the definition written down? Does it cover the cases they disagreed on? Is our answer key more trustworthy than the reviewers we are measuring? Only after those three would I look at the reviewers themselves.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Your turn</p>
+      <h2 class="section-title">Where is the gage in your process?</h2>
+      <p>Somewhere in your process, a person reads a transaction and makes a call that decides what happens next. Which call is it? If two of your best people judged the same 40 cases next week, without seeing each other's answers, how often do you think they would agree? And if you had to write down the rule they are both supposed to follow, could you do it on one page?</p>
+      <p>If you found this article useful, please share it with your network. I'd like to hear from you in the comments, and I'll answer any questions you have.</p>
+      <p><em>Next in the series: <strong>Part 2: Running an Attribute Agreement Study</strong>, where we will run one step by step on my own 60 re-graded postings: how the sample was drawn, how the blind re-grade worked, what the numbers came out to, and what I changed because of them.</em></p>
+    </div>
+
+    <!-- ── Glossary ── -->
+    <div class="section-block msa-glossary">
+      <p class="section-eyebrow">Glossary</p>
+      <h2 class="section-title">Terms used in this article</h2>
+      <dl>
+        <dt>Measurement system</dt><dd>Everything involved in producing a reading: the person, the instructions, the tools and the conditions.</dd>
+        <dt>Gage</dt><dd>The instrument that takes the reading. In transactional work, usually a person with a checklist.</dd>
+        <dt>Appraiser</dt><dd>The person (or system) making the call in a study.</dd>
+        <dt>Repeatability</dt><dd>Whether the same appraiser gives the same answer on the same item a second time.</dd>
+        <dt>Reproducibility</dt><dd>Whether different appraisers give the same answer on the same item.</dd>
+        <dt>Bias</dt><dd>How far the readings sit from the right answer, on average.</dd>
+        <dt>Stability</dt><dd>Whether the measurement system drifts over time.</dd>
+        <dt>Discrimination</dt><dd>Whether the measurement system can tell apart items that really differ.</dd>
+        <dt>Attribute agreement analysis</dt><dd>The MSA study for category calls such as approve or deny.</dd>
+        <dt>Kappa</dt><dd>Agreement beyond luck: 1 is perfect, 0 is no better than luck.</dd>
+        <dt>Prevalence paradox</dt><dd>Kappa reading low when one answer dominates, even though agreement is high.</dd>
+        <dt>Gwet's AC1</dt><dd>An agreement-beyond-luck statistic that stays sensible when one answer dominates.</dd>
+        <dt>Reference standard</dt><dd>The answer key the appraisers are compared against.</dd>
+        <dt>Operational definition</dt><dd>The written rule that says what each category means, including its boundaries.</dd>
+      </dl>
+    </div>
+
+    <!-- ── Sources ── -->
+    <div class="section-block msa-sources">
+      <p class="section-eyebrow">Sources</p>
+      <h2 class="section-title">References</h2>
+      <ol>
+        <li>Minitab. <a href="https://support.minitab.com/en-us/minitab/media/pdfs/translate/Assistant_Gage_R_and_R.pdf" target="_blank" rel="noopener"><em>Gage R&amp;R Study (Crossed)</em>, Minitab Assistant white paper</a>. Typical study design (10 parts, 2 or 3 operators, 2 or 3 replicates, citing AIAG 2003) and the 10% / 30% acceptance rule.</li>
+        <li>Minitab Support. <a href="https://support.minitab.com/en-us/minitab/help-and-how-to/quality-and-process-improvement/measurement-system-analysis/how-to/attribute-agreement-analysis/attribute-agreement-analysis/interpret-the-results/key-results/" target="_blank" rel="noopener">Interpret the key results for Attribute Agreement Analysis</a>. Kappa range and the AIAG guidance (0.75 good, 0.90 preferred).</li>
+        <li>Minitab Support. <a href="https://support.minitab.com/minitab/help-and-how-to/quality-and-process-improvement/measurement-system-analysis/how-to/attribute-agreement-analysis/attribute-agreement-analysis/before-you-start/example/" target="_blank" rel="noopener">Example of Attribute Agreement Analysis</a>. 50 samples, four appraisers.</li>
+        <li>McHugh, M. L. (2012). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3900052/" target="_blank" rel="noopener">Interrater reliability: the kappa statistic</a>. <em>Biochemia Medica</em>, 22(3), 276&ndash;282.</li>
+        <li>Zec, S., et al. (2017). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5712640/" target="_blank" rel="noopener">High Agreement and High Prevalence: The Paradox of Cohen's Kappa</a>. <em>The Open Nursing Journal</em>, 11, 211&ndash;218.</li>
+        <li>Kellerhuis, B. E., et al. (2025). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12070646/" target="_blank" rel="noopener">Expert panel as reference standard procedure in diagnostic accuracy studies: a systematic scoping review and methodological guidance</a>. <em>Diagnostic and Prognostic Research</em>, 9, 12.</li>
+      </ol>
+    </div>
+
+    <div class="series-nav">
+      <span></span>
+      <a href="article-msa-running-the-study.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Next</span>
+        Part 2: Running an Attribute Agreement Study &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">The job-posting figures come from my own job search pipeline's records (blind Required-fit calls made September to November 2026). The worked claims examples are made-up illustrations. Research for this series was assisted by AI research tools, and every source above was opened and checked.</p>
+
+  </article>
+
+
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Partly Automated Appraiser: Measurement System Analysis When Software Makes the Call | Jeffrey Benson</title>
+  <meta name="description" content="Rules engines, scanners, routers and macros make calls in our processes and are rarely studied. How to test a software appraiser, and how to test a process where software and people share the work.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    @media (min-width: 1200px) {
+      .article-image-wide {
+        width: 70vw;
+        margin-left: -35vw;
+        margin-right: -35vw;
+      }
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  
+    /* ── Measurement Series additions ── */
+    .msa-table { border-collapse: collapse; margin: 8px 0 24px; font-size: 0.95rem; }
+    .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
+    .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
+    .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
+    .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
+    .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
+    .msa-glossary dt { font-weight: 700; color: var(--olive); }
+    .msa-glossary dd { margin: 0; }
+    .msa-sources ol { padding-left: 22px; }
+    .msa-sources li { margin-bottom: 10px; line-height: 1.55; }
+    @media (max-width: 640px) {
+      .msa-glossary dl { grid-template-columns: 1fr; gap: 2px; }
+      .msa-glossary dd { margin-bottom: 10px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+        <div class="nav__links">
+          <a href="ai-builder.html">AI Builder</a>
+          <a href="work.html">Work</a>
+          <a href="method.html">Method</a>
+          <a href="systems.html">Systems</a>
+          <a href="articles.html" class="is-current">Notebook</a>
+          <a href="about.html">About</a>
+        </div>
+        <a class="btn btn--primary nav__cta" href="resume.html">R&eacute;sum&eacute;</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">Menu</button>
+      </div>
+      <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+        <a href="ai-builder.html">AI Builder</a>
+        <a href="work.html">Work</a>
+        <a href="method.html">Method</a>
+        <a href="systems.html">Systems</a>
+        <a href="articles.html">Notebook</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">R&eacute;sum&eacute;</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; Measurement Series &middot; Bridge</p>
+      <h1 class="article-title">The Partly Automated Appraiser: Measurement System Analysis When Software Makes the Call</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>Measurement Series</strong> &nbsp;&middot;&nbsp; <a href="article-msa-gage-is-a-person.html">Part 1</a> &nbsp;|&nbsp; <a href="article-msa-running-the-study.html">Part 2</a> &nbsp;|&nbsp; <a href="article-msa-keeping-it-under-control.html">Part 3</a> &nbsp;|&nbsp; Bridge &nbsp;|&nbsp; <a href="article-msa-the-mapping.html">AI Evaluation 1</a> &nbsp;|&nbsp; <a href="article-msa-appraiser-is-a-model.html">AI Evaluation 2</a> &nbsp;|&nbsp; <a href="article-msa-running-it-as-a-control.html">AI Evaluation 3</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p>In late September I was frustrated with an AI judge. My job search pipeline asks it to decide whether I meet the Required qualifications of each posting, and on my answer key (postings I had graded myself, blind) it kept disagreeing with me. I assumed the judge was the problem. Then I split the disagreements by what had happened before the judge ever saw the posting.</p>
+    <p>Before the judge sees a posting, ordinary code I built goes through it first and decides which lines are Required, which are Preferred and which describe the job's duties. Where that code had found a Required section, the judge agreed with me on 77% of postings. Where it had found none, the judge agreed with me on 57%. A line-by-line check of the 24 postings where both of my AI judges disagreed with me found the same thing: most of the misses traced to how the lines were pulled out of the posting. One rule removed the phrase "N years of" from every line, so the judge never saw how many years a posting asked for. The same rule cut inside a word, and "4 years of directly related" reached the judge as "ly related".</p>
+    <p>That code made the same cut every time it ran. It was perfectly repeatable and perfectly wrong, and nobody had ever measured it, including me.</p>
+    <p>This article will not cover software testing as a discipline, nor the inner workings of any particular tool. Rather, we will learn to see the software steps in our processes as appraisers, what changes in a measurement study when the appraiser is a rule, and how to test a process where software makes one call and a person makes the next. It is the bridge between the two halves of this series.</p>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The appraisers nobody studied</p>
+      <h2 class="section-title">Software already makes calls in our processes</h2>
+      <p>Let's walk through a claims desk again, this time looking only at the software. A rules engine approves small, clean claims on its own (auto-adjudication). A document scanner reads the amount and the policy number off a PDF (optical character recognition, or OCR). A router decides which queue a claim lands in. A macro looks up the provider and fills in the network status. A classifier tags the claim as likely fraud or not.</p>
+      <p>Each of those steps reads a transaction and makes a call. Each call is a category: approve or send to a person, this queue or that one, in network or out. In Part 1 we said a measurement system is everything involved in producing a reading. By that definition, each of these steps is an appraiser. How many of them in your process have ever been through an attribute agreement study? Can you think of one?</p>
+      <p>The published guidance on this is thin. The clearest material I found comes from manufacturing vision systems, where cameras inspect parts. One vendor's guide treats the camera as one more appraiser in a standard attribute agreement study, whose agreement with a known standard, with human inspectors and with itself has to be proven (<a href="https://ifactoryapp.com/ai-vision-camera/attribute-agreement-analysis-vision-systems" target="_blank" rel="noopener">iFactory</a>). A 2026 conference paper ran Gage R&amp;R and attribute analysis on a production line with camera inspection, and reports that the AI-assisted camera achieved perfect repeatability and reproducibility (<a href="https://link.springer.com/chapter/10.1007/978-3-032-18878-6_38" target="_blank" rel="noopener">Moica and Stepanov 2026</a>). I found nothing on rules engines, routers or lookup macros in transactional work, so most of what follows is my own method, tested on my own pipeline.</p>
+      <p>When an AI model joins a process, it joins this line of software appraisers. In most shops the ones that came before it were never studied either.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">A rule as appraiser</p>
+      <h2 class="section-title">What changes when the appraiser is a rule</h2>
+      <p>Why would a camera score perfect repeatability? Because it does the same arithmetic on the same image every time. A rules engine is the same. Give it the same claim twice and it gives the same answer twice. In my reasoning, that changes the study in three ways.</p>
+      <ul class="support-list">
+        <li><strong>Repeat trials add nothing.</strong> For a person, the second reading is the test. For a rule, a second run on the same input proves only that the computer is working.</li>
+        <li><strong>"Same input" is the catch.</strong> A rule repeats only when its input repeats. OCR on a rescanned page can read an 8 as a 3. A router that reads a field a person edited is now reading a different claim. The variation moves upstream, into what the rule is handed.</li>
+        <li><strong>Accuracy is the question that remains.</strong> What is left to test is whether the rule's answer matches the answer key. That is where my pipeline's code failed.</li>
+      </ul>
+      <p>Here is the study for a rule, in five steps.</p>
+      <p><strong>1. The question it answers.</strong> When the rule makes a call, how often is it right, and when it is wrong, which way is it wrong?</p>
+      <p><strong>2. What goes in.</strong> A sample of transactions, the rule's call on each, and the right answer for each from an answer key built the way Part 1 describes (a panel, judging from the source documents). As in Part 1, load the sample with the rare answer and the borderline cases.</p>
+      <p><strong>3. What it does.</strong> It sorts every item into four boxes and counts the two kinds of error separately. The vision-camera guide above makes the same split: a miss lets a bad item through, and a false alarm stops a good one.</p>
+      <p>Let's work one. An auto-adjudication rule judges 200 claims. The answer key says 30 of them should be denied:</p>
+      <table class="msa-table">
+        <thead><tr><th></th><th>Answer key: approve</th><th>Answer key: deny</th></tr></thead>
+        <tbody>
+          <tr><th>Rule approves</th><td>160</td><td>6 (misses)</td></tr>
+          <tr><th>Rule denies</th><td>10 (false alarms)</td><td>24</td></tr>
+        </tbody>
+      </table>
+      <ul class="support-list">
+        <li><strong>Overall agreement:</strong> 160 + 24 = 184 of 200, or 92%.</li>
+        <li><strong>Miss rate:</strong> the rule approved 6 of the 30 claims that should have been denied, or 20%.</li>
+        <li><strong>False-alarm rate:</strong> it denied 10 of the 170 claims that should have been approved, or about 6%.</li>
+        <li><strong>Agreement beyond luck (kappa, from Part 1):</strong> about 0.70.</li>
+      </ul>
+      <p><strong>4. How to read it.</strong> Ninety-two percent sounds like a good rule. It also pays one claim in five that should have been denied. The two errors cost different things: a miss costs money that is hard to get back, and a false alarm costs a customer's time and an examiner's rework. One overall number blends them into a figure that hides both, which is why I'd always report the two rates side by side and set a bar for each from what it costs.</p>
+      <div class="msa-aside">
+        <p class="msa-aside-title">For the formula-minded</p>
+        <p>Miss rate = misses &divide; items the answer key says are bad (6 &divide; 30). False-alarm rate = false alarms &divide; items the answer key says are good (10 &divide; 170). Kappa: the rule denies 34 of 200 (17%) and the key denies 30 (15%), so luck agreement is 0.17 &times; 0.15 + 0.83 &times; 0.85 = 0.731, and kappa = (0.92 &minus; 0.731) &divide; (1 &minus; 0.731) = 0.70.</p>
+      </div>
+      <p><strong>5. Where we use it.</strong> Any rule, router, macro, scanner or classifier that makes a call a person would otherwise make.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Hybrid processes</p>
+      <h2 class="section-title">Test each stage, then the full chain</h2>
+      <p>Most of our processes are not all software or all people. Software does one step and a person does the next. When the final answer is wrong, where did it go wrong? My pipeline taught me that the place we look first (the judge, the examiner, the person at the end) is often not where the error started.</p>
+      <p>Here is the design I'd use, with an invoice process as the example. A scanner reads the amount and the purchase order number. A rule matches the invoice to the purchase order and approves it if the amounts are within 2%. A clerk reviews everything the rule sends back. For a study sample of 50 invoices:</p>
+      <ul class="support-list">
+        <li><strong>Stage 1, the scanner:</strong> compare what it read with what is printed on each invoice, checked carefully by a person.</li>
+        <li><strong>Stage 2, the rule:</strong> hand it the correct values from stage 1, and compare its call with what the policy says should happen. Feeding it correct inputs separates the rule's errors from the scanner's.</li>
+        <li><strong>Stage 3, the clerk:</strong> give the clerks the exceptions, with correct inputs, and run the attribute agreement study from Part 2.</li>
+        <li><strong>End to end:</strong> run the 50 invoices through the live chain and compare the final call with the answer key.</li>
+      </ul>
+      <p>Now compare the results. If one stage is weak on its own, we know where to work. If every stage looks fine on its own and the chain still gets it wrong, the trouble is in a handoff. A scanner that writes dates day-first, feeding a rule that expects month-first, will pass both of its own tests and still fail the invoice.</p>
+      <p>I found no published guidance on this design, so treat it as a proposal. It is what I wish I had done first with my own pipeline. My first fix to the code that splits postings into lines moved only 3 of the judge's 111 verdicts on my answer key at the time. The bigger defect (the years phrase) turned up only when someone looked at what the code had handed the judge, line by line. A stage-one test, comparing the code's lines with the posting, would likely have found it much sooner.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Change control</p>
+      <h2 class="section-title">Every change to the rule is a new gage</h2>
+      <p>A caliper changes slowly and visibly. A rule changes the day someone edits it. Every edit to a rules table, a routing map, a macro or a scanner's settings makes a new appraiser, and the study we ran on the old one no longer describes it.</p>
+      <p>For a software appraiser, I'd treat change control as the calibration. Three habits cover most of it:</p>
+      <ul class="support-list">
+        <li><strong>A version number on every rule set,</strong> recorded with every call the rule makes, so we always know which version made which call.</li>
+        <li><strong>The golden set re-run after every change,</strong> before the new version goes live (the seeded golden set from Part 3, run as a test).</li>
+        <li><strong>A chart on the mix of calls.</strong> If a router normally sends 18% of claims to the fraud queue and one day sends 4%, something changed, even if nobody announced it. A p-chart on each queue's share, from Part 3, catches it.</li>
+      </ul>
+      <p>My pipeline works this way now. The code that splits postings has a version number, and that number is part of the label on every AI review. When I changed it in late October, 45 of the 133 postings in my answer key sent different lines to the judge, so the pipeline re-tested the judge on the full answer key before trusting it again. A different change, to drop footer text such as pay ranges and equal-opportunity notices, changed the lines of 25,606 of 82,475 postings. For each of those postings, the judge was now being handed different lines.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Your turn</p>
+      <h2 class="section-title">Which software in your process makes a call?</h2>
+      <p>Take one process you own and list every step where software decides something: approves, routes, reads, matches, tags. Who owns each rule? When was it last changed, and did anyone test it against an answer key afterward? If your final results went wrong tomorrow, could you tell whether the error started in the software, in the person, or in the handoff between them?</p>
+      <p>If you found this article useful, please share it with your network. I'd like to hear from you in the comments, and I'll answer any questions you have.</p>
+      <p><em>Next in the series: <strong>The Mapping</strong>, the first of three parts on AI evaluation. We will take every idea from the first half of this series (repeatability, reproducibility, bias, stability, the answer key, the operational definition) and map it, term by term, onto an AI judge.</em></p>
+    </div>
+
+    <!-- ── Glossary ── -->
+    <div class="section-block msa-glossary">
+      <p class="section-eyebrow">Glossary</p>
+      <h2 class="section-title">Terms used in this article</h2>
+      <dl>
+        <dt>Software appraiser</dt><dd>Any rule, router, macro, scanner or classifier that makes a call in a process.</dd>
+        <dt>Auto-adjudication</dt><dd>A rules engine approving or denying claims without a person.</dd>
+        <dt>OCR</dt><dd>Optical character recognition: software that reads text off a scanned page.</dd>
+        <dt>Deterministic</dt><dd>Always giving the same output for the same input.</dd>
+        <dt>Miss</dt><dd>A bad item the appraiser let through.</dd>
+        <dt>False alarm</dt><dd>A good item the appraiser stopped.</dd>
+        <dt>Hybrid process</dt><dd>A process where software makes some calls and people make others.</dd>
+        <dt>Handoff error</dt><dd>An error that appears only when two stages that each pass their own test are joined.</dd>
+        <dt>Change control</dt><dd>Versioning, testing and monitoring every change to a software appraiser.</dd>
+        <dt>Golden set</dt><dd>Items with settled answers, used to test an appraiser.</dd>
+      </dl>
+    </div>
+
+    <!-- ── Sources ── -->
+    <div class="section-block msa-sources">
+      <p class="section-eyebrow">Sources</p>
+      <h2 class="section-title">References</h2>
+      <ol>
+        <li>iFactory. <a href="https://ifactoryapp.com/ai-vision-camera/attribute-agreement-analysis-vision-systems" target="_blank" rel="noopener">Attribute Agreement Analysis for Vision Systems</a>. A vendor guide: the camera treated as one more appraiser; miss rate and false-alarm rate reported separately.</li>
+        <li>Moica, S., and Stepanov, A. (2026). <a href="https://link.springer.com/chapter/10.1007/978-3-032-18878-6_38" target="_blank" rel="noopener">Measurement System Analysis Using Gage R&amp;R and ANOVA for Automated Camera Fail Detection in Industry 4.0</a>. In <em>Proceedings of Inter-Eng 2025</em>, Lecture Notes in Networks and Systems 1813, 484&ndash;501. Abstract: the AI-assisted camera achieved perfect repeatability and reproducibility.</li>
+      </ol>
+    </div>
+
+    <div class="series-nav">
+      <a href="article-msa-keeping-it-under-control.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        Part 3: Keeping It Under Control
+      </a>
+      <a href="article-msa-the-mapping.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Next</span>
+        AI Evaluation 1: The Mapping &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">The pipeline figures come from my own job search pipeline's records (September to October 2026). The claims and invoice examples are made-up illustrations. Research for this series was assisted by AI research tools, and every source above was opened and checked.</p>
+
+  </article>
+
+
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>

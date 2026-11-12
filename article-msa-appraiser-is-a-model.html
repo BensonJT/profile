@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Changes When the Appraiser Is a Model | Jeffrey Benson</title>
+  <meta name="description" content="An AI judge is cheap to run and expensive to trust. Why volume is not validation, how a small random human sample corrects the judge, the biases judges bring, and the rubric that could not see one category of work.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    @media (min-width: 1200px) {
+      .article-image-wide {
+        width: 70vw;
+        margin-left: -35vw;
+        margin-right: -35vw;
+      }
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  
+    /* ── Measurement Series additions ── */
+    .msa-table { border-collapse: collapse; margin: 8px 0 24px; font-size: 0.95rem; }
+    .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
+    .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
+    .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
+    .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
+    .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
+    .msa-glossary dt { font-weight: 700; color: var(--olive); }
+    .msa-glossary dd { margin: 0; }
+    .msa-sources ol { padding-left: 22px; }
+    .msa-sources li { margin-bottom: 10px; line-height: 1.55; }
+    @media (max-width: 640px) {
+      .msa-glossary dl { grid-template-columns: 1fr; gap: 2px; }
+      .msa-glossary dd { margin-bottom: 10px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+        <div class="nav__links">
+          <a href="ai-builder.html">AI Builder</a>
+          <a href="work.html">Work</a>
+          <a href="method.html">Method</a>
+          <a href="systems.html">Systems</a>
+          <a href="articles.html" class="is-current">Notebook</a>
+          <a href="about.html">About</a>
+        </div>
+        <a class="btn btn--primary nav__cta" href="resume.html">R&eacute;sum&eacute;</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">Menu</button>
+      </div>
+      <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+        <a href="ai-builder.html">AI Builder</a>
+        <a href="work.html">Work</a>
+        <a href="method.html">Method</a>
+        <a href="systems.html">Systems</a>
+        <a href="articles.html">Notebook</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">R&eacute;sum&eacute;</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; Measurement Series &middot; AI Evaluation 2 of 3</p>
+      <h1 class="article-title">What Changes When the Appraiser Is a Model</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>Measurement Series</strong> &nbsp;&middot;&nbsp; <a href="article-msa-gage-is-a-person.html">Part 1</a> &nbsp;|&nbsp; <a href="article-msa-running-the-study.html">Part 2</a> &nbsp;|&nbsp; <a href="article-msa-keeping-it-under-control.html">Part 3</a> &nbsp;|&nbsp; <a href="article-msa-partly-automated-appraiser.html">Bridge</a> &nbsp;|&nbsp; <a href="article-msa-the-mapping.html">AI Evaluation 1</a> &nbsp;|&nbsp; AI Evaluation 2 &nbsp;|&nbsp; <a href="article-msa-running-it-as-a-control.html">AI Evaluation 3</a>
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p>In mid-September I had an AI judge grade 3,009 job postings against a written description of my experience. Each posting got one of four grades: bullseye, adjacent, stretch or wrong. The job ran in batches over a few sessions and used roughly 5 million tokens (the units AI models read and are billed by), a small fraction of the time it would take one person to read that many postings. The grades were consistent, and a model trained on them got much better at finding the postings I wanted.</p>
+    <p>Then the grades were counted by lane. My rubric described two kinds of work I do: process excellence (the primary lane) and data and analytics (the secondary lane). In the primary lane, 208 postings were graded bullseye. In the secondary lane, the count was zero. Not one analytics posting out of 3,009 could ever reach the top grade, because one line in the rubric capped that lane at "adjacent".</p>
+    <p>If I had graded 30,000 postings, the answer would have been zero out of 30,000. More verdicts from the same judge would only have made me more certain of the defect.</p>
+    <p>This article will not rank AI tools or teach how to write prompts. Rather, we will look at what changes when the appraiser is a model: why it is cheap to run and expensive to trust, why a large pile of AI verdicts is not evidence that they are right, the biases an AI judge brings with it, and how to tell whether its scale can see the differences we care about.</p>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The economics</p>
+      <h2 class="section-title">Cheap to run, expensive to trust</h2>
+      <p>A study of human appraisers is limited by people's hours. That is why Part 1 and Part 2 work with 30 to 60 carefully chosen items: every one of them costs an examiner's time, twice.</p>
+      <p>An AI judge turns that upside down. In my pipeline, one full pass of the current judge over my answer key (about 130 postings) uses about 5 million tokens and costs about 21 cents. The answer key itself, the 149 calls I made by reading each posting myself, cost me far more in time than every judge run since put together.</p>
+      <p>That cost difference creates a temptation. When a judge can score thousands of items overnight, it is easy to skip the study and treat the volume as the evidence. My 3,009 grades are the warning. The judge was cheap to run and consistent, and nobody had checked whether its scale could reach every answer.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Volume and truth</p>
+      <h2 class="section-title">A million verdicts measure the judge's opinion</h2>
+      <p>Suppose an AI judge reviews 10,000 support tickets and flags 30% of them as mishandled. Is 30% the true rate? The 10,000 verdicts tell us very precisely what the judge thinks. If the judge is too strict on one kind of ticket, ten times more tickets will give us the same wrong number with more confidence.</p>
+      <p>Statisticians have a method built for this, called prediction-powered inference (PPI). Its authors describe it as a way to get valid confidence intervals when a small set of real measurements is supplemented with a machine's predictions, without assuming anything about the machine (<a href="https://arxiv.org/abs/2301.09633" target="_blank" rel="noopener">Angelopoulos et al. 2023</a>). Here it is in five steps.</p>
+      <p><strong>1. The question it answers.</strong> What is the true rate, once we correct for the judge's lean?</p>
+      <p><strong>2. What goes in.</strong> The judge's verdict on every item, and a person's verdict on a small sample of those items drawn at random.</p>
+      <p><strong>3. What it does.</strong> On the random sample, it measures how far the judge is off from the person, then shifts the judge's overall rate by that amount. Let's work it. A person checks 200 tickets drawn at random from the 10,000. The judge had flagged 60 of those 200 (30%). The person agrees that 50 of them (25%) were mishandled. On the sample, the judge runs 5 points high. That makes the corrected estimate 30% minus 5 points, or 25%.</p>
+      <div class="msa-aside">
+        <p class="msa-aside-title">For the formula-minded</p>
+        <p>Estimate = (judge's rate on all items) + (person's rate &minus; judge's rate, on the random sample) = 30% + (25% &minus; 30%) = 25%. The confidence interval comes mostly from how much the person and the judge disagree on the sample. The more closely the judge tracks the person, the narrower it gets.</p>
+      </div>
+      <p><strong>4. How to read it.</strong> The answer is the person's view of the truth, sharpened by the judge's volume. The 200 human checks set the direction, and the 10,000 verdicts narrow the interval around it. If the judge were perfect, the correction would be zero.</p>
+      <p><strong>5. Where we use it.</strong> Any time we report a rate, an average or a trend from AI verdicts to someone who will act on it.</p>
+      <p>The random part matters. PPI assumes the human sample stands for the full population, so the items have to be drawn at random. That seems to clash with Part 1, where we loaded the study sample with rare and borderline cases. It does not, because those are two different studies. A study to <em>qualify the judge</em> should be loaded with hard cases, because that is where judges fail. A sample to <em>estimate how the process is doing</em> must be random. Gage study, then process study, the same distinction the plant floor has always made.</p>
+      <p>How many human checks do we need? For a single rate, about 100 random items gives a margin of roughly plus or minus 10 points, and about 400 gives plus or minus 5 (at the usual 95% confidence). The rarest category sets the size. If the failure we care about is 6% of tickets, 100 random tickets hold only about 6 of them. In my reasoning, the human sample should be sized for the rarest thing we must measure, never as a fixed share of the machine-judged pile.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Repeatability, again</p>
+      <h2 class="section-title">The same input, a different answer</h2>
+      <p>In The Mapping we saw that an AI judge may not agree with itself. Turning the randomness setting to zero helps, but not always enough. A 2024 study ran five language models, set up to be deterministic, ten times each on eight common tasks, and found accuracy varying by up to 15% across runs, with none of the models delivering repeatable accuracy on every task (<a href="https://arxiv.org/abs/2408.04667" target="_blank" rel="noopener">Atil et al.</a>). My two judges split the same way: one gave identical answers on repeat, and the other's confidence numbers moved by about 0.03 on every call.</p>
+      <p>A person who changes their mind on a re-read is a repeatability problem we can study once and retrain. A model can also change because the vendor updated it, which is why The Mapping ended on pinned versions and frozen test items. Both belong in the control plan, which is the subject of the next article.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Bias</p>
+      <h2 class="section-title">Judge biases are appraiser biases</h2>
+      <p>The paper that started much of this field named three biases in AI judges: favoring the answer in a certain position, favoring longer answers, and favoring their own work (<a href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener">Zheng et al. 2023</a>). Every one of them has a cousin on a claims desk, and every one can be tested the way we test an examiner.</p>
+      <table class="msa-table">
+        <thead><tr><th>Bias</th><th>The AI version</th><th>The claims-desk cousin</th><th>The test and the fix</th></tr></thead>
+        <tbody>
+          <tr><th>Position</th><td>Asked to compare two answers, the judge favors the one shown first</td><td>An examiner who leans toward the first estimate in the file</td><td>Ask twice with the order swapped, and count a win only when it survives both orders</td></tr>
+          <tr><th>Length</th><td>The judge favors longer answers even when they are not better</td><td>A reviewer swayed by the thickest file</td><td>Pad a weak answer with repetition and see whether its score rises</td></tr>
+          <tr><th>Self-preference</th><td>The judge scores text from its own model higher than people do</td><td>A supervisor grading their own team's work</td><td>Use a judge from a different model family, and compare against people</td></tr>
+        </tbody>
+      </table>
+      <p>The position bias can be large. In Zheng's tests on very similar pairs of answers, only GPT-4 gave the same verdict after the order was swapped in more than 60% of cases. Their conservative fix is the one in the table: call the judge twice with the order swapped, and declare a win only when an answer is preferred both times. On self-preference, a 2024 study found that models such as GPT-4 can tell their own writing apart from other models' and from people's, and that the better a model was at recognizing its own text, the more it favored it (<a href="https://arxiv.org/abs/2404.13076" target="_blank" rel="noopener">Panickssery, Bowman and Feng 2024</a>).</p>
+      <p>None of these needs a new discipline. Each is a named appraiser bias with a test we can run before trusting the judge, and a countermeasure we can write into its instructions or its setup.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Discrimination</p>
+      <h2 class="section-title">Can the scale see the difference?</h2>
+      <p>In Part 1 the last of the six MSA words was discrimination: can the gage tell apart items that really are different? For an AI judge, the scale is its rubric, the written instructions that say what each grade means. A rubric with too few grades, or a rule that makes one grade unreachable, is a gage that cannot see the difference it is supposed to measure.</p>
+      <p><strong>1. The question it answers.</strong> Can every kind of item reach every grade the scale offers?</p>
+      <p><strong>2. What goes in.</strong> The judge's grades, and the categories of items we care about (case types, product lines, or in my case, the two lanes of work).</p>
+      <p><strong>3. What it does.</strong> Count the grades within each category, in a small table. Look for an empty cell where there should not be one, or for averages that do not move when quality clearly improves.</p>
+      <p><strong>4. How to read it.</strong> Here is my table, from the 3,009 grades:</p>
+      <table class="msa-table">
+        <thead><tr><th>Lane</th><th>Graded bullseye</th></tr></thead>
+        <tbody>
+          <tr><th>Process excellence (primary)</th><td>208</td></tr>
+          <tr><th>Data and analytics (secondary)</th><td>0</td></tr>
+        </tbody>
+      </table>
+      <p>An empty cell like that can mean the category truly never reaches the grade, or it can mean the gage is blind. Here it was the gage. The cap in the rubric held 247 secondary-lane postings at "adjacent" and pushed others down to "wrong". One of them was a financial planning and analysis role that the judge called unfamiliar work, because the description of my experience it was shown never mentioned the forecasting and budget cycle I had reengineered.</p>
+      <p><strong>5. Where we use it.</strong> Any time a judge's grades feed a decision: before trusting the rubric, and again whenever it is edited.</p>
+      <p>The first fix removed the cap and rewrote the description of my experience from my own records. On a check of 575 postings, 79% of grades stayed the same, only 3 of 45 bullseyes moved down, and 31 postings came back from "wrong", mostly finance and hybrid process and analytics roles. But the root cause was the one we met in Part 1. That one grade was answering three questions at once: can I do this work, how do I want to position myself, and is there a risk in the hiring process (such as a timed coding test)? The second fix split the grade. Each posting is now graded twice in one pass, once for process work and once for technical work, and the overall grade is the better of the two.</p>
+      <p>The published work points the same way. A 2026 paper from Amazon on writing rubrics for AI judges says a rubric should measure one quality at a time, and its example of a rubric to split is "Response is helpful, accurate, and safe" (<a href="https://aclanthology.org/2026.emnlp-main.2653.pdf" target="_blank" rel="noopener">Roy, Pujari et al. 2026</a>). Google researchers evaluating health answers broke multi-point rating scales into sets of yes-or-no questions. When they fed the models richer information and the answers improved, the averages on the old rating scales barely moved, while the yes-or-no rubrics registered the improvement (<a href="https://research.google/blog/a-scalable-framework-for-evaluating-health-language-models/" target="_blank" rel="noopener">Google Research</a>).</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Your turn</p>
+      <h2 class="section-title">What is your judge's empty cell?</h2>
+      <p>If you use an AI judge today, take its last few thousand verdicts and count them by category. Is there a category that never reaches the top grade, or never fails? When you report a rate from those verdicts, how many of them did a person check, and were those drawn at random? And have you ever swapped the order of two answers to see whether your judge changes its mind?</p>
+      <p>If you found this article useful, please share it with your network. I'd like to hear from you in the comments, and I'll answer any questions you have.</p>
+      <p><em>Next in the series: <strong>Running It as a Control</strong>, the last part. We will put control charts on the judge, size the band of uncertain cases that goes to a person, and write the reaction plan for the day the judge drifts.</em></p>
+    </div>
+
+    <!-- ── Glossary ── -->
+    <div class="section-block msa-glossary">
+      <p class="section-eyebrow">Glossary</p>
+      <h2 class="section-title">Terms used in this article</h2>
+      <dl>
+        <dt>Token</dt><dd>The unit AI models read and are billed by, roughly three or four characters of text.</dd>
+        <dt>Prediction-powered inference (PPI)</dt><dd>A method that corrects AI verdicts with a small random sample checked by people.</dd>
+        <dt>Gage study</dt><dd>A study to qualify the appraiser, loaded with hard and rare cases.</dd>
+        <dt>Process study</dt><dd>A random sample to estimate how the process is doing.</dd>
+        <dt>Position bias</dt><dd>A judge favoring an answer because of where it appears.</dd>
+        <dt>Length (verbosity) bias</dt><dd>A judge favoring longer answers.</dd>
+        <dt>Self-preference</dt><dd>A judge favoring text written by its own model.</dd>
+        <dt>Rubric</dt><dd>The written instructions that say what each grade means. It is the AI judge's operational definition.</dd>
+        <dt>Discrimination</dt><dd>Whether the scale can tell apart items that really differ.</dd>
+        <dt>Lane</dt><dd>In my pipeline, a kind of work in my experience that a posting can match.</dd>
+      </dl>
+    </div>
+
+    <!-- ── Sources ── -->
+    <div class="section-block msa-sources">
+      <p class="section-eyebrow">Sources</p>
+      <h2 class="section-title">References</h2>
+      <ol>
+        <li>Angelopoulos, A. N., Bates, S., Fannjiang, C., Jordan, M. I., and Zrnic, T. (2023). <a href="https://arxiv.org/abs/2301.09633" target="_blank" rel="noopener">Prediction-Powered Inference</a>. arXiv:2301.09633 (<em>Science</em>, 2023).</li>
+        <li>Atil, B., et al. <a href="https://arxiv.org/abs/2408.04667" target="_blank" rel="noopener">Non-Determinism of "Deterministic" LLM Settings</a>. arXiv:2408.04667. Five models, eight tasks, ten runs; accuracy varying up to 15%.</li>
+        <li>Zheng, L., et al. (2023). <a href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener">Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</a>. arXiv:2306.05685 (NeurIPS 2023). Position, verbosity and self-enhancement bias; the swap-the-order fix.</li>
+        <li>Panickssery, A., Bowman, S. R., and Feng, S. (2024). <a href="https://arxiv.org/abs/2404.13076" target="_blank" rel="noopener">LLM Evaluators Recognize and Favor Their Own Generations</a>. arXiv:2404.13076.</li>
+        <li>Roy, S., Pujari, R., et al. (2026). <a href="https://aclanthology.org/2026.emnlp-main.2653.pdf" target="_blank" rel="noopener">PReMISE: Policy Rubrics as Measurement Specifications for LLM Judges</a>. EMNLP 2026. One quality per rubric; splitting "helpful, accurate, and safe".</li>
+        <li>Google Research. <a href="https://research.google/blog/a-scalable-framework-for-evaluating-health-language-models/" target="_blank" rel="noopener">A scalable framework for evaluating health language models</a>. Precise Boolean (yes-or-no) rubrics. Rating-scale averages showed limited sensitivity to better answers.</li>
+      </ol>
+    </div>
+
+    <div class="series-nav">
+      <a href="article-msa-the-mapping.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        AI Evaluation 1: The Mapping
+      </a>
+      <a href="article-msa-running-it-as-a-control.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Next</span>
+        AI Evaluation 3: Running It as a Control &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">The pipeline figures come from my own job search pipeline's records (September to October 2026). The support-ticket example is a made-up illustration. Research for this series was assisted by AI research tools, and every source above was opened and checked.</p>
+
+  </article>
+
+
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Running It as a Control: Charts, Review Bands and Reaction Plans for an AI Judge | Jeffrey Benson</title>
+  <meta name="description" content="Running an AI judge as a control: why one pass test is a snapshot, what to chart on a judge, how to size the band of cases sent to a person, reaction plans, and the changes that call for a re-study.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    @media (min-width: 1200px) {
+      .article-image-wide {
+        width: 70vw;
+        margin-left: -35vw;
+        margin-right: -35vw;
+      }
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  
+    /* ── Measurement Series additions ── */
+    .msa-table { border-collapse: collapse; margin: 8px 0 24px; font-size: 0.95rem; }
+    .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
+    .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
+    .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
+    .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
+    .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
+    .msa-glossary dt { font-weight: 700; color: var(--olive); }
+    .msa-glossary dd { margin: 0; }
+    .msa-sources ol { padding-left: 22px; }
+    .msa-sources li { margin-bottom: 10px; line-height: 1.55; }
+    @media (max-width: 640px) {
+      .msa-glossary dl { grid-template-columns: 1fr; gap: 2px; }
+      .msa-glossary dd { margin-bottom: 10px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+        <div class="nav__links">
+          <a href="ai-builder.html">AI Builder</a>
+          <a href="work.html">Work</a>
+          <a href="method.html">Method</a>
+          <a href="systems.html">Systems</a>
+          <a href="articles.html" class="is-current">Notebook</a>
+          <a href="about.html">About</a>
+        </div>
+        <a class="btn btn--primary nav__cta" href="resume.html">R&eacute;sum&eacute;</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">Menu</button>
+      </div>
+      <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+        <a href="ai-builder.html">AI Builder</a>
+        <a href="work.html">Work</a>
+        <a href="method.html">Method</a>
+        <a href="systems.html">Systems</a>
+        <a href="articles.html">Notebook</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">R&eacute;sum&eacute;</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">Process Excellence &middot; Measurement Series &middot; AI Evaluation 3 of 3</p>
+      <h1 class="article-title">Running It as a Control: Charts, Review Bands and Reaction Plans for an AI Judge</h1>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>Measurement Series</strong> &nbsp;&middot;&nbsp; <a href="article-msa-gage-is-a-person.html">Part 1</a> &nbsp;|&nbsp; <a href="article-msa-running-the-study.html">Part 2</a> &nbsp;|&nbsp; <a href="article-msa-keeping-it-under-control.html">Part 3</a> &nbsp;|&nbsp; <a href="article-msa-partly-automated-appraiser.html">Bridge</a> &nbsp;|&nbsp; <a href="article-msa-the-mapping.html">AI Evaluation 1</a> &nbsp;|&nbsp; <a href="article-msa-appraiser-is-a-model.html">AI Evaluation 2</a> &nbsp;|&nbsp; AI Evaluation 3
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p>Since the end of September, the AI judge in my job search pipeline has passed every full qualification test it has run, re-tested each time its version changed. Over its ten most recent tests, its agreement with my "meets" calls has ranged from 86% to 93%, against a bar of 85%. I was pleased with that record until I did the arithmetic.</p>
+    <p>Each test checks the judge against the 28 to 31 postings in my answer key that I graded "meets". On a test that small, a judge that agrees with me 89% of the time over the long run will still come in below 85% about one time in five, by luck alone. A single pass does not prove the judge is good, and a single fail would not have proven it had gone bad.</p>
+    <p>That is the subject of this last article. The Mapping showed how to qualify an AI judge. What Changes When the Appraiser Is a Model showed why it needs more watching than a person does. Now we will run it as a control: charts on the judge, the band of uncertain cases that goes to a person, the reaction plan for the day something moves, and the events that call for a fresh study.</p>
+    <p>This article will not cover monitoring software or vendor dashboards. Rather, we will use the same tools from Part 3 (control charts, error-proofing and the control plan) and point them at the judge.</p>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Chart the judge</p>
+      <h2 class="section-title">One test is a snapshot</h2>
+      <p>Here are those ten tests on the "meets" side of my answer key, from September 30 to November 2:</p>
+      <table class="msa-table">
+        <thead><tr><th>Test</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr></thead>
+        <tbody>
+          <tr><th>Agreed</th><td>26</td><td>26</td><td>25</td><td>26</td><td>25</td><td>25</td><td>25</td><td>27</td><td>28</td><td>28</td></tr>
+          <tr><th>Out of</th><td>28</td><td>28</td><td>29</td><td>29</td><td>29</td><td>29</td><td>29</td><td>31</td><td>31</td><td>31</td></tr>
+        </tbody>
+      </table>
+      <p>Let's put them on a p-chart, the chart from Part 3 for a yes-or-no result as a share of items.</p>
+      <p><strong>1. The question it answers.</strong> Has the judge's agreement with people changed, or is this the ordinary up and down of a small test?</p>
+      <p><strong>2. What goes in.</strong> Each test's count of agreements and the number of items checked, in time order.</p>
+      <p><strong>3. What it does.</strong> The center line is the overall rate: 261 agreements out of 294 checks, or 88.8%. The limits come from how much a share of about 29 items can move by chance. For 29 items they run from about 71% to 100%.</p>
+      <p><strong>4. How to read it.</strong> All ten tests sit well inside the limits, so the judge looks steady. Now notice where my pass bar of 85% falls: inside the limits, close to the middle. A single test at 83% would be ordinary noise for this judge. It would take a run of low tests to show a change. The bar is a reasonable target, but a single small test cannot tell whether the judge meets it.</p>
+      <div class="msa-aside">
+        <p class="msa-aside-title">For the formula-minded</p>
+        <p>Limits = 0.888 &plusmn; 3 &times; &radic;(0.888 &times; 0.112 &divide; 29) = 0.888 &plusmn; 0.176, so about 0.71 to 1.06 (a limit above 100% is set to 100%). The chance that a judge with a true rate of 88.8% agrees on 24 or fewer of 29 items (below 85%) is about 22%, from the binomial distribution.</p>
+      </div>
+      <p><strong>5. Where we use it.</strong> On any judge we test more than once. There are three ways to make the check sharper: test on more items (with 100 items the limits narrow to about 79% to 98%), judge the chart's pattern over several tests, and use the CUSUM or EWMA charts from Part 3, which catch a slow, steady slide in about a quarter of the time a basic chart takes (<a href="https://www.jmp.com/en/statistics-knowledge-portal/quality-and-reliability-methods/control-charts/cusum-and-ewma-control-charts" target="_blank" rel="noopener">JMP</a>).</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">What to watch</p>
+      <h2 class="section-title">Four things to chart on a judge</h2>
+      <p>Agreement with people is the most important thing to watch, and it is also the most expensive, because every point needs a person to check items. Some of the other signals need no people at all. This is the set I'd start with. It is my own synthesis, since I found no published standard for charting an AI judge in production:</p>
+      <table class="msa-table">
+        <thead><tr><th>What to chart</th><th>Needs people?</th><th>How often</th><th>What it catches</th></tr></thead>
+        <tbody>
+          <tr><th>Agreement with people on a random audited sample</th><td>Yes</td><td>Weekly or monthly, or on every new version</td><td>The judge drifting away from the people it stands in for</td></tr>
+          <tr><th>Share of each verdict (pass, fail, borderline)</th><td>No</td><td>Daily</td><td>A judge turning more lenient or harsher, or a change in what is coming in</td></tr>
+          <tr><th>Verdicts on a frozen set of items</th><td>No</td><td>Weekly, and after any change</td><td>Any change at all, since the right answers never move</td></tr>
+          <tr><th>The model version that answered</th><td>No</td><td>Every call</td><td>A vendor update under the same name</td></tr>
+        </tbody>
+      </table>
+      <p>Two cautions from Part 3 apply here too. At thousands of verdicts a day, a basic p-chart on the share of each verdict will alarm almost every day, and the Laney p&prime; chart adjusts its limits for that (<a href="https://support.minitab.com/en-us/minitab/help-and-how-to/quality-and-process-improvement/control-charts/how-to/attributes-charts/laney-p-chart/before-you-start/overview/" target="_blank" rel="noopener">Minitab</a>). And a blend of very different items will signal on the mix alone, so chart each kind of item separately.</p>
+      <p>My pipeline does the last two rows today. It asks the vendor for a fixed model version, checks the version named in every answer, and leaves any answer from a different version out of its test results. It also keeps 10 frozen postings, and any changed verdict on them is a signal.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The review band</p>
+      <h2 class="section-title">Which verdicts go to a person?</h2>
+      <p>In Part 1 we learned that a marginal gage is used with care. For an AI judge, using it with care means sending the cases it is least sure of to a person. How many cases is that? The answer is a measurement decision first and a staffing decision second.</p>
+      <p><strong>1. The question it answers.</strong> Which verdicts can the judge keep on its own, so that the errors among them stay below a rate we can live with?</p>
+      <p><strong>2. What goes in.</strong> A calibration set: items with a person's answer, the judge's verdict and how sure the judge was of each one. Most judges can report a confidence, or a margin between two answers.</p>
+      <p><strong>3. What it does.</strong> Sort the items from most sure to least sure. Starting at the top, keep adding items to the "judge decides" group while the error rate in that group stays under the target. Everything below the cutoff goes to a person.</p>
+      <p>Let's work one. A judge reviews 200 claims in a calibration set:</p>
+      <table class="msa-table">
+        <thead><tr><th>Judge's confidence</th><th>Claims</th><th>Judge wrong</th><th>Error rate if kept (running total)</th></tr></thead>
+        <tbody>
+          <tr><th>0.90 and up</th><td>120</td><td>2</td><td>2 of 120 = 1.7%</td></tr>
+          <tr><th>0.80 to 0.90</th><td>40</td><td>4</td><td>6 of 160 = 3.8%</td></tr>
+          <tr><th>0.70 to 0.80</th><td>20</td><td>5</td><td>11 of 180 = 6.1%</td></tr>
+          <tr><th>Below 0.70</th><td>20</td><td>8</td><td>19 of 200 = 9.5%</td></tr>
+        </tbody>
+      </table>
+      <p><strong>4. How to read it.</strong> If we can live with 3% errors on the verdicts the judge keeps, the cutoff is 0.90: the judge decides 60% of claims and people review 40%. If 5% is acceptable, the cutoff drops to 0.80: the judge decides 80% and people review 20%. The error target sets the cutoff, and the cutoff sets the workload. Halving the review band in this example costs about two more errors per hundred claims the judge keeps, and the cost of a wrong claim decision is what settles whether that trade is worth making.</p>
+      <p><strong>5. Where we use it.</strong> Any process where an AI judge makes calls and people can review some of them.</p>
+      <p>Researchers at Thomson Reuters describe the same procedure for comparing answers: choose a target agreement level, trust the judge above the margin that meets it, and send the narrow-margin cases to human experts (<a href="https://aclanthology.org/2026.emnlp-industry.201.pdf" target="_blank" rel="noopener">Zhang et al. 2026</a>). A more formal version calibrates the cutoff on a held-out set so that the rate of wrong verdicts among the accepted ones stays below a chosen level, with a statistical guarantee (<a href="https://arxiv.org/abs/2608.17994" target="_blank" rel="noopener">Badshah, Emami and Sajjad</a>).</p>
+      <p>My own pipeline has a rough version of this band. When every requirement behind a "fails" verdict is one the judge itself rates as a grey area, the posting is not pushed down my list. It goes to a section of my report called "Check the Required block", and I read it. I set that cutoff by judgment. The calibration above is how I'd check it.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Reaction plans</p>
+      <h2 class="section-title">What we do when the chart moves</h2>
+      <p>In Part 3 we said a reaction plan says who acts, how fast and what they do first. For an AI judge, these are the tiers I'd write. They are my design, not a published standard:</p>
+      <table class="msa-table">
+        <thead><tr><th>Signal</th><th>First action</th><th>If it is confirmed</th></tr></thead>
+        <tbody>
+          <tr><th>An answer from a version we did not ask for</th><td>Set those verdicts aside</td><td>Treat it as a new judge: qualify it before it decides anything</td></tr>
+          <tr><th>A changed verdict on a frozen item</th><td>Check for a vendor update, a change in our instructions, or a logging fault, and audit more items for a while</td><td>Re-qualify the judge on a fresh set of checked items</td></tr>
+          <tr><th>Share of a verdict outside its limits</th><td>Check whether what is coming in has changed before blaming the judge</td><td>If the judge changed, send the affected kind of item to people</td></tr>
+          <tr><th>Agreement with people below its lower limit, or a slow-drift signal</th><td>Send the affected kind of item to people, and re-qualify</td><td>Roll back to the last version that passed, then recalibrate before trying the new one again</td></tr>
+        </tbody>
+      </table>
+      <p>My pipeline has three rules of this kind, all learned the hard way. A new version of the judge has no authority until it passes its test: until then, its verdicts are recorded but cannot push a posting down my list. A test that was cut short (by a spending cap or an account error) is never scored, and if more than 10% of the answer key went unjudged, the result is recorded as "insufficient". And a change that touches only the facts the judge reads about me inherits the last passing result, with only the postings it had pushed down re-checked, while a change to the questions, the model or the inputs runs the full test again.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Re-study triggers</p>
+      <h2 class="section-title">When to run the full study again</h2>
+      <p>A chart watches for change between studies. Some events are a change on their own, and they call for the full qualification study from The Mapping before the judge decides anything again:</p>
+      <ul class="support-list">
+        <li><strong>A new model version,</strong> announced or not. A study of two GPT-4 releases three months apart found accuracy on one task falling from 84% to 51% (<a href="https://arxiv.org/abs/2307.09009" target="_blank" rel="noopener">Chen, Zaharia and Zou 2023</a>).</li>
+        <li><strong>A change to the instructions or the rubric,</strong> since the rubric is the judge's operational definition.</li>
+        <li><strong>A change to what the judge is handed.</strong> When I changed how my pipeline splits postings into lines, 45 of the 133 postings in my answer key sent different lines to the judge, and the old test no longer described the new inputs.</li>
+        <li><strong>A change to the answer key.</strong> My own re-grade in Part 2 found my calls repeat 83% of the time. Every correction I make to the key changes what the judge is scored against.</li>
+        <li><strong>A chart signal that lasts</strong> after the first actions in the reaction plan.</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The full arc</p>
+      <h2 class="section-title">The same discipline, at a faster pace</h2>
+      <p>Over seven articles we have followed one arc twice. For people making judgment calls: define the call, test the appraisers against an answer key, chart the process and the appraisers, error-proof the steps that fail, and hand a control plan to an owner. For an AI judge: the same steps, with a model in the appraiser's chair, an answer key made by people, and a fresh study every time the model, the instructions or the inputs change.</p>
+      <p>Every tool in this series is decades old. An AI judge asks us to use them more often, because the gage itself can change faster. A caliper drifts over months, and an examiner's habits shift over a year. An AI judge can change overnight, under the same name, and nobody may announce it.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Your turn</p>
+      <h2 class="section-title">Who is watching your judge?</h2>
+      <p>If an AI judge makes calls in your process, how many items is its pass test based on, and where does your pass bar sit inside that test's noise? Which of its verdicts go to a person, and who chose the cutoff? And if the vendor changed the model tonight, which chart would show it first?</p>
+      <p>This is the last part of the Measurement Series. If you found it useful, please share it with your network. I'd like to hear from you in the comments, and I'll answer any questions you have about any part of the series.</p>
+    </div>
+
+    <!-- ── Glossary ── -->
+    <div class="section-block msa-glossary">
+      <p class="section-eyebrow">Glossary</p>
+      <h2 class="section-title">Terms used in this article</h2>
+      <dl>
+        <dt>Pass bar</dt><dd>The agreement level a judge must reach on its qualification test.</dd>
+        <dt>p-chart</dt><dd>A control chart for a yes-or-no result as a share of items.</dd>
+        <dt>Audited sample</dt><dd>Items drawn at random from the judge's work and checked by a person.</dd>
+        <dt>Frozen set</dt><dd>Items whose right answers never change, re-judged to detect any change in the judge.</dd>
+        <dt>Calibration set</dt><dd>Items with a person's answer and the judge's confidence, used to choose a cutoff.</dd>
+        <dt>Review band</dt><dd>The verdicts the judge is least sure of, sent to a person.</dd>
+        <dt>Margin</dt><dd>How far apart the judge rates two answers; a narrow margin means an uncertain call.</dd>
+        <dt>Reaction plan</dt><dd>Who acts, how fast and what they do first when a chart signals.</dd>
+        <dt>Roll back</dt><dd>Return to the last model version that passed its test.</dd>
+        <dt>Re-study</dt><dd>Running the full qualification study again after a change.</dd>
+      </dl>
+    </div>
+
+    <!-- ── Sources ── -->
+    <div class="section-block msa-sources">
+      <p class="section-eyebrow">Sources</p>
+      <h2 class="section-title">References</h2>
+      <ol>
+        <li>JMP Statistics Knowledge Portal. <a href="https://www.jmp.com/en/statistics-knowledge-portal/quality-and-reliability-methods/control-charts/cusum-and-ewma-control-charts" target="_blank" rel="noopener">CUSUM and EWMA Control Charts</a>. A one-standard-deviation shift: about 44 subgroups to signal on an individuals chart, about 10 on CUSUM or EWMA.</li>
+        <li>Minitab Support. <a href="https://support.minitab.com/en-us/minitab/help-and-how-to/quality-and-process-improvement/control-charts/how-to/attributes-charts/laney-p-chart/before-you-start/overview/" target="_blank" rel="noopener">Overview for Laney P' Chart</a>. Overdispersion and the adjusted limits.</li>
+        <li>Zhang, X., Nie, P., Chan, M. L., Mason, J. L., Sadati, A., and Avery, T. S. (2026). <a href="https://aclanthology.org/2026.emnlp-industry.201.pdf" target="_blank" rel="noopener">When to Trust: Margin-Calibrated Routing Between LLM-as-a-Judge and Human Experts</a>. EMNLP 2026 Industry Track. Choose a target agreement level, trust the judge above the matching margin, defer the rest to experts.</li>
+        <li>Badshah, S., Emami, A., and Sajjad, H. <a href="https://arxiv.org/abs/2608.17994" target="_blank" rel="noopener">Judge, Retrieve, or Abstain: Uncertainty-Guarded LLM Judging with Provable Risk Guarantees</a>. arXiv:2608.17994. Thresholds calibrated on a held-out set to control the rate of wrong accepted verdicts.</li>
+        <li>Chen, L., Zaharia, M., and Zou, J. (2023). <a href="https://arxiv.org/abs/2307.09009" target="_blank" rel="noopener">How is ChatGPT's behavior changing over time?</a> arXiv:2307.09009.</li>
+      </ol>
+    </div>
+
+    <div class="series-nav">
+      <a href="article-msa-appraiser-is-a-model.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        AI Evaluation 2: When the Appraiser Is a Model
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">The judge's test results come from my job search pipeline's evaluation records (September 30 to November 2, 2026). The 200-claim calibration example is a made-up illustration. Research for this series was assisted by AI research tools, and every source above was opened and checked.</p>
+
+  </article>
+
+
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>
