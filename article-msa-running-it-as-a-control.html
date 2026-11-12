@@ -408,6 +408,7 @@
         <p>Limits = 0.888 &plusmn; 3 &times; &radic;(0.888 &times; 0.112 &divide; 29) = 0.888 &plusmn; 0.176, so about 0.71 to 1.06 (a limit above 100% is set to 100%). The chance that a judge with a true rate of 88.8% agrees on 24 or fewer of 29 items (below 85%) is about 22%, from the binomial distribution.</p>
       </div>
       <p><strong>5. Where we use it.</strong> On any judge we test more than once. There are three ways to make the check sharper: test on more items (with 100 items the limits narrow to about 79% to 98%), judge the chart's pattern over several tests, and use the CUSUM or EWMA charts from Part 3, which catch a slow, steady slide in about a quarter of the time a basic chart takes (<a href="https://www.jmp.com/en/statistics-knowledge-portal/quality-and-reliability-methods/control-charts/cusum-and-ewma-control-charts" target="_blank" rel="noopener">JMP</a>).</p>
+      <p>These charts now rebuild after every run of my pipeline, so you can watch the judge for yourself: <a href="ai-builder-control-charts.html#judge-tests">AI eval control charts</a>. The live page counts every version of the judge that has passed, so its center line and limits move a little as new tests come in.</p>
     </div>
 
     <hr>
