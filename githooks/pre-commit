@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
-# Keeps the Notebook article count in index.html honest. Enabled via:
+# Keeps the article count in index.html and articles.html honest. Enabled via:
 #   git config core.hooksPath githooks
 set -euo pipefail
 
 repo_root="$(git rev-parse --show-toplevel)"
 "$repo_root/scripts/update-article-count.sh"
 
-if ! git diff --quiet -- "$repo_root/index.html"; then
-    git add "$repo_root/index.html"
-    echo "pre-commit: index.html article count updated and staged"
-fi
+for f in index.html articles.html; do
+    if ! git diff --quiet -- "$repo_root/$f"; then
+        git add "$repo_root/$f"
+        echo "pre-commit: $f article count updated and staged"
+    fi
+done
