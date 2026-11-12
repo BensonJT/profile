@@ -367,20 +367,20 @@
   <header class="article-header">
     <div class="header-text">
       <a href="articles.html" class="article-back">&larr; All Writing</a>
-      <p class="article-eyebrow">Process Excellence &middot; Measurement Series &middot; Bridge</p>
+      <p class="article-eyebrow">Process Excellence &middot; Measurement Series &middot; Part 4 of 7 &middot; Bridge</p>
       <h1 class="article-title">The Partly Automated Appraiser: Measurement System Analysis When Software Makes the Call</h1>
       <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
     </div>
   </header>
 
   <div class="series-bar">
-    <strong>Measurement Series</strong> &nbsp;&middot;&nbsp; <a href="article-msa-gage-is-a-person.html">Part 1</a> &nbsp;|&nbsp; <a href="article-msa-running-the-study.html">Part 2</a> &nbsp;|&nbsp; <a href="article-msa-keeping-it-under-control.html">Part 3</a> &nbsp;|&nbsp; Bridge &nbsp;|&nbsp; <a href="article-msa-the-mapping.html">AI Evaluation 1</a> &nbsp;|&nbsp; <a href="article-msa-appraiser-is-a-model.html">AI Evaluation 2</a> &nbsp;|&nbsp; <a href="article-msa-running-it-as-a-control.html">AI Evaluation 3</a>
+    <strong>Measurement Series</strong> &nbsp;&middot;&nbsp; <a href="article-msa-gage-is-a-person.html">Part 1</a> &nbsp;|&nbsp; <a href="article-msa-running-the-study.html">Part 2</a> &nbsp;|&nbsp; <a href="article-msa-keeping-it-under-control.html">Part 3</a> &nbsp;|&nbsp; Part 4 &nbsp;|&nbsp; <a href="article-msa-the-mapping.html">Part 5</a> &nbsp;|&nbsp; <a href="article-msa-appraiser-is-a-model.html">Part 6</a> &nbsp;|&nbsp; <a href="article-msa-running-it-as-a-control.html">Part 7</a>
   </div>
 
   <!-- ── Article Body ── -->
   <article class="article-body">
     <p>In late September I was frustrated with an AI judge. My job search pipeline asks it to decide whether I meet the Required qualifications of each posting, and on my answer key (postings I had graded myself, blind) it kept disagreeing with me. I assumed the judge was the problem. Then I split the disagreements by what had happened before the judge ever saw the posting.</p>
-    <p>Before the judge sees a posting, ordinary code I built goes through it first and decides which lines are Required, which are Preferred and which describe the job's duties. Where that code had found a Required section, the judge agreed with me on 77% of postings. Where it had found none, the judge agreed with me on 57%. A line-by-line check of the 24 postings where both of my AI judges disagreed with me found the same thing: most of the misses traced to how the lines were pulled out of the posting. One rule removed the phrase "N years of" from every line, so the judge never saw how many years a posting asked for. The same rule cut inside a word, and "4 years of directly related" reached the judge as "ly related".</p>
+    <p>Before the judge sees a posting, ordinary code I had built goes through it first and decides which lines are Required, which are Preferred and which describe the job's duties. Where that code had found a Required section, the judge agreed with me on 77% of postings. Where it had found none, the judge agreed with me on 57%. A line-by-line check of the 24 postings where both of my AI judges disagreed with me found the same thing: most of the misses traced to how the lines were pulled out of the posting. One rule removed the phrase "N years of" from every line, so the judge never saw how many years a posting asked for. The same rule cut inside a word, and "4 years of directly related" reached the judge as "ly related".</p>
     <p>That code made the same cut every time it ran. It was perfectly repeatable and perfectly wrong, and nobody had ever measured it, including me.</p>
     <p>This article will not cover software testing as a discipline, nor the inner workings of any particular tool. Rather, we will learn to see the software steps in our processes as appraisers, what changes in a measurement study when the appraiser is a rule, and how to test a process where software makes one call and a person makes the next. It is the bridge between the two halves of this series.</p>
 
