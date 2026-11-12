@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Context: Load Only What the Step Needs | Jeffrey Benson</title>
+  <meta name="description" content="Part 3 of Deterministic First: Agentic Systems. How routers, skills and notes let an agent load only the 1% to 5% of its instructions that the current step needs, with the counts as of November 12, 2026.">
+  <meta name="robots" content="noindex"><!-- DRAFT: remove before publishing -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    :root {
+      --olive: #3B4B35;
+      --vellum: #F0EAD6;
+      --gold: #BFA36F;
+      --charcoal: #2C2E2F;
+      --clay: #C27B58;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--vellum);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44,46,47,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: rgba(240,234,214,0.45);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 22px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+
+    .site-nav a:hover { color: var(--vellum); }
+    .site-nav a.nav-current { color: var(--gold); border-bottom-color: var(--gold); }
+
+    @media (max-width: 540px) {
+      .site-nav a {
+        flex: 0 0 33.33%;
+        justify-content: center;
+        height: 36px;
+        padding: 0;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    html { scroll-padding-top: 52px; }
+    body { padding-top: 52px; }
+
+    /* ── Article Header ── */
+    .article-header {
+      background: var(--olive);
+      padding: 72px 48px 80px;
+    }
+
+    .header-text {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vellum);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      margin-bottom: 32px;
+    }
+
+    .article-back:hover { opacity: 1; }
+
+    .article-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--vellum);
+      line-height: 1.18;
+      margin-bottom: 22px;
+    }
+
+    .article-byline {
+      font-size: 0.82rem;
+      color: rgba(240,234,214,0.6);
+      letter-spacing: 0.06em;
+    }
+
+    .article-byline strong {
+      color: rgba(240,234,214,0.85);
+      font-weight: 700;
+    }
+
+    /* ── Series bar ── */
+    .series-bar {
+      background: rgba(44,46,47,0.92);
+      border-top: 1px solid rgba(191,163,111,0.18);
+      border-bottom: 1px solid rgba(191,163,111,0.18);
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(240,234,214,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .series-bar strong { color: var(--gold); font-weight: 700; }
+    .series-bar a { color: rgba(240,234,214,0.7); text-decoration: none; transition: color 0.2s; }
+    .series-bar a:hover { color: var(--gold); }
+
+    /* ── Article Body ── */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(44,46,47,0.88);
+      margin-bottom: 1.4em;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body hr {
+      border: none;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      margin: 56px 0;
+    }
+
+    /* ── Section headings ── */
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .section-block { margin-bottom: 72px; }
+
+    /* ── Support architecture list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+
+    .support-list li {
+      font-size: 0.97rem;
+      color: rgba(44,46,47,0.86);
+      padding: 10px 0 10px 20px;
+      position: relative;
+      line-height: 1.65;
+      border-left: 3px solid rgba(191,163,111,0.35);
+      margin-bottom: 8px;
+      padding-left: 16px;
+    }
+
+    .support-list li strong { color: var(--charcoal); }
+
+    /* ── Series nav ── */
+    .series-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 48px 0 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(191,163,111,0.3);
+      border-bottom: 1px solid rgba(191,163,111,0.3);
+    }
+
+    .series-nav-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--olive);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-nav-link:hover { color: var(--gold); }
+
+    .series-nav-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(44,46,47,0.4);
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--charcoal);
+      color: var(--vellum);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .page-footer a { color: var(--gold); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+    .footer-div { margin: 0 12px; opacity: 0.4; }
+
+    /* ── Infographic Breakout ── */
+    .article-image-wide {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 12px;
+      max-width: none;
+    }
+
+    @media (min-width: 1200px) {
+      .article-image-wide {
+        width: 70vw;
+        margin-left: -35vw;
+        margin-right: -35vw;
+      }
+    }
+
+    .image-caption {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.48);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* ── Sources ── */
+    .sources-note {
+      font-size: 0.82rem;
+      color: rgba(44,46,47,0.45);
+      font-style: italic;
+      border-top: 1px solid rgba(191,163,111,0.2);
+      padding-top: 24px;
+      margin-top: 48px;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .article-title { font-size: 1.9rem; }
+      .article-header { padding: 52px 24px 60px; }
+      .article-body { padding: 48px 20px 72px; }
+      .section-title { font-size: 1.35rem; }
+      .article-image-wide { width: 100%; left: auto; margin-left: 0; margin-right: 0; }
+      .site-nav a { padding: 0 11px; font-size: 0.6rem; letter-spacing: 1px; }
+    }
+  
+    /* ── Measurement Series additions ── */
+    .msa-table { border-collapse: collapse; margin: 8px 0 24px; font-size: 0.95rem; }
+    .msa-table th, .msa-table td { border: 1px solid rgba(59,75,53,0.25); padding: 8px 14px; text-align: center; }
+    .msa-table thead th { background: var(--olive); color: var(--vellum); font-weight: 600; }
+    .msa-table tbody th { text-align: left; font-weight: 600; background: rgba(191,163,111,0.12); }
+    .msa-scroll { max-width: 100%; overflow-x: auto; margin: 8px 0 24px; }
+    .msa-scroll > .msa-table { margin: 0; }
+    .msa-wide { width: min(880px, calc(100vw - 32px)); max-width: none; position: relative; left: 50%; transform: translateX(-50%); }
+    .msa-wide > .msa-table { margin: 0 auto; font-size: 0.9rem; }
+    .msa-wide .msa-table th, .msa-wide .msa-table td { padding: 7px 10px; }
+    .msa-wide .msa-table tbody th { white-space: nowrap; }
+    .msa-aside { border-left: 4px solid var(--gold); background: rgba(191,163,111,0.12); padding: 14px 18px; margin: 8px 0 28px; }
+    .msa-aside-title { font-weight: 700; color: var(--olive); margin-bottom: 6px !important; }
+    .msa-glossary dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; }
+    .msa-glossary dt { font-weight: 700; color: var(--olive); }
+    .msa-glossary dd { margin: 0; }
+    .msa-sources ol { padding-left: 22px; }
+    .msa-sources li { margin-bottom: 10px; line-height: 1.55; }
+    @media (max-width: 640px) {
+      .msa-glossary dl { grid-template-columns: 1fr; gap: 2px; }
+      .msa-glossary dd { margin-bottom: 10px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/article.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+        <div class="nav__links">
+          <a href="ai-builder.html">AI Builder</a>
+          <a href="work.html">Work</a>
+          <a href="method.html">Method</a>
+          <a href="systems.html">Systems</a>
+          <a href="articles.html" class="is-current">Notebook</a>
+          <a href="about.html">About</a>
+        </div>
+        <a class="btn btn--primary nav__cta" href="resume.html">R&eacute;sum&eacute;</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">Menu</button>
+      </div>
+      <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+        <a href="ai-builder.html">AI Builder</a>
+        <a href="work.html">Work</a>
+        <a href="method.html">Method</a>
+        <a href="systems.html">Systems</a>
+        <a href="articles.html">Notebook</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">R&eacute;sum&eacute;</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ── Article Header ── -->
+  <header class="article-header">
+    <div class="header-text">
+      <a href="articles.html" class="article-back">&larr; All Writing</a>
+      <p class="article-eyebrow">AI Builder &middot; Deterministic First: Agentic Systems &middot; Part 3 of 3</p>
+      <h1 class="article-title">Context: Load Only What the Step Needs</h1>
+      <p class="article-subtitle">Routers, Skills and Notes: How My Agents Read 1% to 5% of Their Instructions</p>
+      <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+  </header>
+
+  <div class="series-bar">
+    <strong>Deterministic First: Agentic Systems</strong> &nbsp;&middot;&nbsp; <a href="article-agentic-workflows.html">Part 1</a> &nbsp;|&nbsp; <a href="article-agentic-agents.html">Part 2</a> &nbsp;|&nbsp; Part 3
+  </div>
+
+  <!-- ── Article Body ── -->
+  <article class="article-body">
+    <p>In October I tested a voice guide: a file describing how my sentences sound, written so an AI could draft in my voice. I graded the drafts blind. In the first round, both drafts written with the guide scored 2 or 3 out of 5. The draft I rated 5 had no guide at all and reused my own wording from my notes. Both guide drafts also used the word "plainly," which I don't use. It came from the guide itself, where it described how I write.</p>
+    <p>In the second round, the guide plus my own words scored 5 and 5, the guide alone 4 and 4, and no guide 3 and 3. The lesson I took from those two rounds: what we put in front of a model shows up in what it writes. Loading instructions is a design decision, and more is not automatically better.</p>
+    <p>This article will not cover how language models work inside. Rather, we will look at how my agents decide what to read: a short file loaded every time, a map, one router per role, and reference files loaded one step at a time. <a href="article-agentic-workflows.html">Part 1</a> covered workflows and <a href="article-agentic-agents.html">Part 2</a> covered agents and their tools. This part covers the other half of Part 2's subtitle, the engineered context.</p>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Vocabulary</p>
+      <h2 class="section-title">Context is a budget</h2>
+      <p>Anthropic defines the term this way: "Context engineering refers to the set of strategies for curating and maintaining the optimal set of tokens" during a model's work (<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Rajasekaran et al. 2025</a>). The context is everything the model has in front of it at that moment: instructions, files it has read, tool results and the conversation so far.</p>
+      <p>Why not load everything? The same article describes context rot: "as the number of tokens in the context window increases, the model's ability to accurately recall information from that context decreases." It concludes that context "must be treated as a finite resource with diminishing marginal returns," and that models have an "attention budget" that every new token draws on. Its guiding principle is "finding the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome."</p>
+      <p>My instruction files hold 242,670 words in 147 files (as of November 12, 2026). No step needs most of them, and my voice-guide test showed that the ones a step doesn't need can still change the result.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The layers</p>
+      <h2 class="section-title">From a short file to one reference file</h2>
+      <p>Anthropic's Agent Skills article describes three levels of progressive disclosure. First, "the agent pre-loads the name and description of every installed skill into its system prompt." Second, when a skill fits the task, the agent reads that skill's main file. Third, the skill's linked files, "which Claude can choose to navigate and discover only as needed" (<a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">Zhang, Lazuka and Murag 2025</a>). My setup follows the same idea, with a map added between the first and second levels:</p>
+      <div class="msa-scroll">
+      <table class="msa-table">
+        <thead><tr><th>Layer</th><th>What it is</th><th>Loaded</th><th>Size</th></tr></thead>
+        <tbody>
+          <tr><th>Agent instructions</th><td><code>CLAUDE.md</code>: the session routine and the standing rules. It is the one instruction file for every AI tool I use; the Gemini and Copilot instruction files only point to it</td><td>Every session, up front</td><td>253 words</td></tr>
+          <tr><th>Skill descriptions</th><td>One or two sentences per installed skill saying when to use it (Anthropic's first level)</td><td>Every session, up front</td><td>About 870 words</td></tr>
+          <tr><th>Memory index</th><td>One line per note on how I want Claude to work and on live project state</td><td>Every session, up front (Claude Code)</td><td>1,520 words</td></tr>
+          <tr><th>The map</th><td>The Context Index: one line per file, 40 words at most, saying when to load it</td><td>When a task starts</td><td>67 lines, 1,405 words</td></tr>
+          <tr><th>Router</th><td>One per role (Job Search, Abide Production, Bible Study and others): the role's rules and a list of its reference files</td><td>When the task belongs to that role</td><td>900 to 4,200 words</td></tr>
+          <tr><th>Reference file</th><td>One step's procedure, such as narration, the job tracker or a voice guide</td><td>When the agent reaches that step</td><td>A few hundred to a few thousand words</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Anthropic's article notes that Claude Code works this way by design: "CLAUDE.md files are naively dropped into context up front, while primitives like glob and grep allow it to navigate its environment and retrieve files just-in-time." That is why my <code>CLAUDE.md</code> is short. Everything in it is paid for in every session.</p>
+      <p>How does the agent know when to load a file? 123 of the 147 files open with a short "AI usage" header saying when to load it, what it covers and what to load beside it. The map repeats the "load when" part in one line, so the agent can choose without opening the file.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Roles</p>
+      <h2 class="section-title">One router per agent role</h2>
+      <p>Each role an agent plays has its own router and reference files (as of November 12, 2026):</p>
+      <div class="msa-scroll">
+      <table class="msa-table">
+        <thead><tr><th>Role</th><th>Skill files</th><th>Words (router and reference files)</th></tr></thead>
+        <tbody>
+          <tr><th>Job Search</th><td>34 reference files and a router</td><td>64,006</td></tr>
+          <tr><th>Abide Production</th><td>18 and a router</td><td>35,761</td></tr>
+          <tr><th>Bible Study</th><td>15 and a router</td><td>28,514</td></tr>
+          <tr><th>Bible Study Method</th><td>11 and a router</td><td>15,302</td></tr>
+          <tr><th>Environment (machines, paths, media)</th><td>12 and a router</td><td>12,511</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>The rest of the 242,670 words are voice guides, lessons learned and smaller standalone skills, each loaded on its own trigger.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The measure</p>
+      <h2 class="section-title">How much of the instructions one step reads</h2>
+      <p><strong>1. The question it answers.</strong> At a given step, what share of all my written instructions does the agent load?</p>
+      <p><strong>2. What goes in.</strong> The word count of every instruction file, and the list of files that one step loads.</p>
+      <p><strong>3. What it does.</strong> It adds up the words in the files the step loads and divides by the words in all the files. Let's work one: retaking a narration section for an Abide lesson loads <code>CLAUDE.md</code> (253 words), the map (1,405), the Abide Production router (4,209) and the narration file (3,420). That is 9,287 words, and 9,287 &divide; 242,670 = 3.8%.</p>
+      <p><strong>4. How to read it.</strong> A low share means the step's context is mostly about that step. It is a rough measure: it counts words, not tokens, and it leaves out the files and tool results the agent reads while it works.</p>
+      <p><strong>5. Where it is used.</strong> Here are four steps from my own work:</p>
+      <div class="msa-scroll">
+      <table class="msa-table">
+        <thead><tr><th>Step</th><th>Files loaded (besides <code>CLAUDE.md</code> and the map)</th><th>Words</th><th>Share</th></tr></thead>
+        <tbody>
+          <tr><th>Starting a Bible study post</th><td>Bible Study router</td><td>2,845</td><td>1.2%</td></tr>
+          <tr><th>Updating the job tracker</th><td>Job Search router, tracker file</td><td>4,862</td><td>2.0%</td></tr>
+          <tr><th>Retaking narration</th><td>Abide Production router, narration file</td><td>9,287</td><td>3.8%</td></tr>
+          <tr><th>Writing this series in my voice</th><td>Professional voice guide, shared voice rules, profile site notes</td><td>10,420</td><td>4.3%</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Each step loads between 1% and 5% of the instructions. The memory index and the skill descriptions add about 2,400 words to every session on top of these.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">The exception</p>
+      <h2 class="section-title">The Backlog, and the agent we're designing next</h2>
+      <p>One file breaks the pattern. My Backlog, the running list of open items across every project, is read at the start of every session, and it has grown to 20,459 words: 8.4% of the instructions by itself, more than any one step's instructions. Anthropic calls this kind of file structured note-taking: "the agent regularly writes notes persisted to memory outside of the context window," and those notes "get pulled back into the context window at later times." The pattern works. The file has grown too long to read in full at every start.</p>
+      <p>We are already designing the fix as the first build of a new agent, a Personal Assistant for email, calendars, chores and to-dos. The design moves the Backlog into a database: a command and agent tools open, update and close items, and the agent reads only the items for the task at hand. After each change, the Backlog file is rebuilt from the database as a read-only view, so tools without database access can still read it.</p>
+      <p>That design comes from an agent I already run. My job tracker moved into a PostgreSQL database on October 21. A command-line tool writes every change and rebuilds a read-only tracker page after each one. The Personal Assistant will start from that pattern, and from the routers, skills and checks that Job Search and Abide Production taught me. It is at the design stage, nothing is built yet, and I will measure it the same way once it is.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Deterministic first, again</p>
+      <h2 class="section-title">Scripts that check the instructions</h2>
+      <p>The instructions get the same treatment as the work in Parts 1 and 2: a script checks what has one right answer.</p>
+      <ul class="support-list">
+        <li><strong><code>skill_audit.py</code></strong> checks every skill file: the "AI usage" header near the top, a length limit (a warning over 300 lines, a failure over 500, which means split it into reference files) and a contents list on any file over 100 lines. On November 12: 99 files passed, 4 had warnings, none failed.</li>
+        <li><strong><code>voice_check.py</code></strong> counts the habits that aren't mine in any draft in my voice, including the words a guide can leak into a draft.</li>
+        <li><strong>A weekly memory audit</strong> proposes which notes in the agent's memory should move into the vault's skills and lessons-learned files, where the right router loads them on demand. Durable facts were moved out of memory in two passes, on October 2 and October 19.</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Continuous improvement</p>
+      <h2 class="section-title">Skills are fixed while they are used</h2>
+      <p>My rule for the agents is to finish the task, then propose the small fix to the skill that would have made it easier. Between October 24 and November 12, 2026, that produced 128 deliberate commits to skills, voice guides and lessons-learned files (not counting the automatic syncs).</p>
+      <p>Here is one from the day I wrote this. The Abide article skill told the agent to check Scripture by script and then have me check every quotation by hand in Logos Bible Software. The checkers and the tools that pull Scripture from its sources (Part 2) now do that work, so the skill now says: the checkers confirm every quotation, the tools fix any difference, and Logos is used only for a translation no tool covers. A rule that changed in how we work changed in the instructions the same day.</p>
+      <p>Each agent I build starts from what the last one taught. Job Search taught gates and measurement. Abide Production taught scripts in the evaluator's seat. Both taught routers and one-step-at-a-time loading. The Personal Assistant starts with all three.</p>
+    </div>
+
+    <hr>
+
+    <!-- ── Section ── -->
+    <div class="section-block">
+      <p class="section-eyebrow">Your turn</p>
+      <h2 class="section-title">What does your agent read before it starts?</h2>
+      <p>Open the instructions your team gives an AI tool. How much of it does every task need? Which parts belong to one role or one step and could load only then? Which notes has the tool been reading at every start that nobody has trimmed?</p>
+      <p>If you found this series useful, please share it with your network. I'd like to hear from you in the comments, and I'll answer any questions you have.</p>
+    </div>
+
+    <!-- ── Glossary ── -->
+    <div class="section-block msa-glossary">
+      <p class="section-eyebrow">Glossary</p>
+      <h2 class="section-title">Terms used in this article</h2>
+      <dl>
+        <dt>Context</dt><dd>Everything a model has in front of it at one moment: instructions, files, tool results and the conversation.</dd>
+        <dt>Context engineering</dt><dd>Choosing and maintaining what goes into the context at each step.</dd>
+        <dt>Context rot</dt><dd>A model's falling ability to recall information as its context grows.</dd>
+        <dt>Attention budget</dt><dd>Anthropic's term for the limited attention a model spreads across its context.</dd>
+        <dt>Token</dt><dd>A short piece of text, often part of a word. Context size is counted in tokens.</dd>
+        <dt>Progressive disclosure</dt><dd>Loading detail in levels: a description first, the main file when it fits the task, linked files only when needed.</dd>
+        <dt>Router</dt><dd>One role's main skill file: its rules and the list of its reference files.</dd>
+        <dt>Reference file</dt><dd>One step's procedure, loaded when the agent reaches that step.</dd>
+        <dt>Structured note-taking</dt><dd>An agent writing notes outside its context and reading them back later.</dd>
+        <dt>Read-only view</dt><dd>A file rebuilt from a database after each change, for reading only.</dd>
+      </dl>
+    </div>
+
+    <!-- ── Sources ── -->
+    <div class="section-block msa-sources">
+      <p class="section-eyebrow">Sources</p>
+      <h2 class="section-title">References</h2>
+      <ol>
+        <li>Rajasekaran, P., Dixon, E., Ryan, C., and Hadfield, J. (September 29, 2025). <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Effective context engineering for AI agents</a>. Anthropic. The definition, context rot, the attention budget, Claude Code's up-front and just-in-time loading, and structured note-taking.</li>
+        <li>Zhang, B., Lazuka, K., and Murag, M. (October 16, 2025). <a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener">Equipping agents for the real world with Agent Skills</a>. Anthropic. The three levels of progressive disclosure.</li>
+        <li>Benson, J. (2026). <a href="article-agentic-workflows.html">Workflows: Code Owns the Path</a> and <a href="article-agentic-agents.html">Agents: The Agent Calls the Code</a>, Parts 1 and 2 of this series.</li>
+      </ol>
+    </div>
+
+    <div class="series-nav">
+      <a href="article-agentic-agents.html" class="series-nav-link">
+        <span class="series-nav-label">&larr; Previous</span>
+        Part 2: Agents: The Agent Calls the Code
+      </a>
+      <a href="article-agentic-workflows.html" class="series-nav-link" style="text-align: right;">
+        <span class="series-nav-label">Start of series</span>
+        Part 1: Workflows: Code Owns the Path &rarr;
+      </a>
+    </div>
+
+    <div id="author-card"></div>
+    <script src="author-card.js"></script>
+
+    <p class="sources-note">The counts come from my own instruction files and their git history, measured on November 12, 2026 and counted in words. The voice-guide results come from my blind tests of October 22, 2026. The Personal Assistant is at the design stage. Research for this series was assisted by AI research tools, and every source above was opened and checked.</p>
+
+  </article>
+
+
+
+  <footer class="page-footer">
+    <p>
+      <a href="index.html">Profile Home</a>
+      <span class="footer-div">|</span>
+      <a href="articles.html">All Writing</a>
+      <span class="footer-div">|</span>
+      <a href="https://linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      function applyNavOffset() {
+        var h = nav.offsetHeight;
+        document.documentElement.style.scrollPaddingTop = h + 'px';
+        document.body.style.paddingTop = h + 'px';
+      }
+      applyNavOffset();
+      window.addEventListener('resize', applyNavOffset);
+    })();
+  </script>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>

@@ -368,7 +368,7 @@
   <header class="article-header">
     <div class="header-text">
       <a href="articles.html" class="article-back">&larr; All Writing</a>
-      <p class="article-eyebrow">AI Builder &middot; Deterministic First: Agentic Systems &middot; Part 1 of 2</p>
+      <p class="article-eyebrow">AI Builder &middot; Deterministic First: Agentic Systems &middot; Part 1 of 3</p>
       <h1 class="article-title">Workflows: Code Owns the Path</h1>
       <p class="article-subtitle">Free, Cheapest, Cheap, Expensive: Where Each Decision Belongs</p>
       <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
@@ -376,7 +376,7 @@
   </header>
 
   <div class="series-bar">
-    <strong>Deterministic First: Agentic Systems</strong> &nbsp;&middot;&nbsp; Part 1 &nbsp;|&nbsp; <a href="article-agentic-agents.html">Part 2</a>
+    <strong>Deterministic First: Agentic Systems</strong> &nbsp;&middot;&nbsp; Part 1 &nbsp;|&nbsp; <a href="article-agentic-agents.html">Part 2</a> &nbsp;|&nbsp; <a href="article-agentic-context.html">Part 3</a>
   </div>
 
   <!-- ── Article Body ── -->
@@ -384,7 +384,7 @@
     <p>On the night of October 28, my job search pipeline ran its overnight steps and finished with a success code. Its pre-flight check had asked the AI service whether it was up, and it was. Then every one of the 300 reviews it asked the AI judge for that night failed. The account had run out of credits, and the service answered each request with a billing error. Nothing in the AI layer could report the problem, because the AI layer was what had stopped.</p>
     <p>What gave it away was a count kept by ordinary code: reviews asked, reviews failed. On the control chart I keep for the nightly runs, that night is the only point outside the limits (<a href="ai-builder-control-charts.html">control charts</a>). The fix was ordinary code too. The run now makes one tiny paid request before it starts, and it stops at the first account error.</p>
     <p>Meridian, a research tool I built for a private investor, writes the same rule into its architecture: the alerts that report a failure use fixed template text, so they still go out when the language models are down. The layer that watches must not depend on the layer it watches.</p>
-    <p>This article will not compare AI vendors or teach machine learning. Rather, we will look at one way to build an AI system for work that repeats every day: ordinary code does most of the work, each model gets only the decisions it has passed a test for, and the order of the layers is set by price. This is Part 1 of 2, on workflows, where code owns the path. Part 2 covers agents, where the model owns the path and calls the code.</p>
+    <p>This article will not compare AI vendors or teach machine learning. Rather, we will look at one way to build an AI system for work that repeats every day: ordinary code does most of the work, each model gets only the decisions it has passed a test for, and the order of the layers is set by price. This is Part 1 of 3, on workflows, where code owns the path. Part 2 covers agents, where the model owns the path and calls the code, and Part 3 covers how an agent chooses what to read.</p>
 
     <!-- ── Section ── -->
     <div class="section-block">
