@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Send private files safely</title>
+        <meta
+            name="description"
+            content="A step-by-step guide to locking private files with a password and sharing them safely, for Windows, Mac and Linux."
+        />
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="css/site.css" />
+        <style>
+            .guide { max-width: 780px; margin: 0 auto; padding: var(--s-12) var(--gutter) var(--s-24); }
+            .guide h2 { font-family: var(--font-display); font-weight: 400; font-size: var(--t-2xl); margin: var(--s-16) 0 var(--s-4); line-height: 1.15; }
+            .guide h3 { font-family: var(--font-text); font-weight: 600; font-size: var(--t-lg); margin: var(--s-8) 0 var(--s-3); }
+            .guide p, .guide li { font-size: var(--t-base); line-height: 1.6; }
+            .guide code { background: var(--n-100); padding: 0.1em 0.35em; border-radius: var(--radius); font-size: 0.92em; }
+            .guide pre { background: var(--ink); color: var(--vellum); padding: var(--s-4); border-radius: var(--radius); overflow-x: auto; font-size: var(--t-sm); line-height: 1.5; }
+            .guide pre code { background: none; padding: 0; }
+            .box { background: var(--paper); border: 1px solid var(--rule); border-left: 4px solid var(--gold); padding: var(--s-4) var(--s-6); margin: var(--s-6) 0; border-radius: var(--radius); }
+            .box h3 { margin-top: 0; }
+            .box--warn { border-left-color: var(--clay); }
+            .stop { background: var(--clay-text); color: var(--paper); padding: var(--s-4) var(--s-6); margin: var(--s-4) 0; border-radius: var(--radius); font-size: var(--t-md); line-height: 1.5; }
+            .stop b { color: #fff; }
+            .picker { border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--s-4) var(--s-6); margin: var(--s-8) 0; background: var(--paper); position: sticky; top: 0; z-index: 5; }
+            .picker legend { font-weight: 600; padding: 0 var(--s-2); }
+            .picker label { display: inline-flex; align-items: center; gap: var(--s-2); margin-right: var(--s-6); font-size: var(--t-md); cursor: pointer; }
+            .picker input { width: 1.2rem; height: 1.2rem; accent-color: var(--olive); }
+            body:has(#os-win:checked) .os-mac, body:has(#os-win:checked) .os-linux,
+            body:has(#os-mac:checked) .os-win, body:has(#os-mac:checked) .os-linux,
+            body:has(#os-linux:checked) .os-win, body:has(#os-linux:checked) .os-mac { display: none; }
+            ol.steps { list-style: none; counter-reset: step; padding: 0; margin: var(--s-6) 0; }
+            ol.steps > li { counter-increment: step; position: relative; padding: 0 0 var(--s-8) 3.2rem; }
+            ol.steps > li::before { content: counter(step); position: absolute; left: 0; top: -0.1rem; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--olive); color: var(--vellum); display: grid; place-items: center; font-weight: 600; }
+            ol.steps > li > strong:first-child { display: block; font-size: var(--t-md); margin-bottom: var(--s-2); }
+            figure.shot { margin: var(--s-4) 0 0; }
+            figure.shot a { display: block; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; background: #111; }
+            figure.shot img { display: block; width: 100%; height: auto; }
+            figure.shot a { position: relative; }
+            .hl { position: absolute; border: 3px solid var(--clay); border-radius: 4px; box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6); pointer-events: none; }
+            figure.shot figcaption { font-size: var(--t-sm); color: var(--n-700); margin-top: var(--s-2); }
+            figure.shot--todo .todo { border: 2px dashed var(--n-300); border-radius: var(--radius); padding: var(--s-8) var(--s-4); text-align: center; color: var(--n-500); font-size: var(--t-sm); }
+            details { border-top: 1px solid var(--rule); padding: var(--s-3) 0; }
+            details:last-of-type { border-bottom: 1px solid var(--rule); }
+            summary { cursor: pointer; font-weight: 600; font-size: var(--t-md); }
+            .note { font-size: var(--t-sm); color: var(--n-700); }
+            .foot-fine { margin-top: var(--s-16); font-size: var(--t-sm); color: var(--n-500); }
+            @media print { .picker { position: static; } }
+        </style>
+    </head>
+
+    <body>
+        <header class="on-ink">
+            <div class="wrap hero">
+                <p class="eyebrow">How-to guide</p>
+                <h1>Send private files safely.</h1>
+                <p class="lede">
+                    For tax forms, bank details and other documents nobody else should see. Takes about 10 minutes the
+                    first time.
+                </p>
+            </div>
+        </header>
+
+        <main class="guide">
+            <div class="box">
+                <h3>How it works</h3>
+                <ol>
+                    <li><strong>The sender locks the files</strong> in one password-protected file.</li>
+                    <li><strong>The sender shares that file</strong> with only the receiver, through a cloud storage service.</li>
+                    <li><strong>The sender sends the password separately</strong>, by text message or phone call, <b>never in the email with the link</b>.</li>
+                    <li><strong>The receiver unlocks it</strong> with a free app called 7-Zip.</li>
+                </ol>
+                <p>
+                    Anyone who finds the link but doesn&rsquo;t have the password gets nothing readable. Do this on a
+                    computer, not a phone.
+                </p>
+            </div>
+
+            <div class="box box--warn">
+                <h3>Before you start</h3>
+                <ul>
+                    <li>
+                        <strong>This guide shows Google Drive.</strong> Dropbox, Box and OneDrive work on the same idea,
+                        so use whichever one you already have: share with <em>only that person</em>, give them
+                        <em>view-only</em> access, and <em>never</em> make a link that works for anyone.
+                    </li>
+                    <li>
+                        <strong>If you use Google Drive,</strong> the receiver needs a Google account, and you must
+                        share with the email address that account uses. It doesn&rsquo;t have to be Gmail. If they
+                        don&rsquo;t have one, they can create a free one with their current email address.
+                    </li>
+                    <li>
+                        <strong>Sending just one document?</strong> You may not need any of this. A PDF can be password
+                        protected on its own and opened without installing anything. This guide is for folders and
+                        mixed file types.
+                    </li>
+                </ul>
+            </div>
+
+            <fieldset class="picker">
+                <legend>I&rsquo;m using</legend>
+                <label><input type="radio" name="os" id="os-win" checked /> Windows 11</label>
+                <label><input type="radio" name="os" id="os-mac" /> Mac</label>
+                <label><input type="radio" name="os" id="os-linux" /> Linux</label>
+            </fieldset>
+
+            <!-- ═════════ PART 1 ═════════ -->
+            <h2>Part 1. Sender: lock the files</h2>
+
+            <!-- Windows -->
+            <div class="os-win">
+                <p class="note">You need 7-Zip installed first. If you don&rsquo;t have it, do Part 4, step 1, then come back.</p>
+                <ol class="steps">
+                    <li>
+                        <strong>Put everything you&rsquo;re sending into one folder.</strong>
+                        Copy the files (don&rsquo;t move the originals) into a new folder with a plain name.
+                    </li>
+                    <li>
+                        <strong>Right-click the folder and find 7-Zip.</strong>
+                        Windows 11 hides some menu items. Look for <b>Show more options</b> at the bottom of the menu
+                        (or <b>App extensions</b>, depending on your Windows version). You can also hold
+                        <b>Shift</b> while you right-click, or select the folder and press <b>Shift + F10</b>.
+                        <figure class="shot">
+                            <a href="img/7-zip/s01-rightclick.webp" target="_blank" rel="noopener"
+                                ><img src="img/7-zip/s01-rightclick.webp" alt="Windows 11 right-click menu on a folder, with Show more options and App extensions near the bottom" width="576" height="665"
+                            /></a>
+                            <figcaption>The short menu. Click <b>Show more options</b>.</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <strong>Choose 7-Zip, then Add to archive&hellip;</strong>
+                        <figure class="shot">
+                            <a href="img/7-zip/s02-7zip-menu.webp" target="_blank" rel="noopener"
+                                ><img src="img/7-zip/s02-7zip-menu.webp" alt="The full menu with the 7-Zip submenu open and Add to archive highlighted" width="777" height="761"
+                            /></a>
+                            <figcaption>Your menu will have different items. Look for the one named <b>7-Zip</b>.</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <strong>Fill in the box exactly like this.</strong>
+                        <ul>
+                            <li><b>Archive format:</b> 7z</li>
+                            <li><b>Enter password</b> and <b>Reenter password</b>: type your password twice. Use a passphrase of four or more random words, or at least 12 characters.</li>
+                            <li><b>Encryption method:</b> AES-256</li>
+                            <li>Tick <b>Encrypt file names</b>. Without this, people can still see what the files are called.</li>
+                        </ul>
+                        Then click <b>OK</b>.
+                        <figure class="shot">
+                            <a href="img/7-zip/s03-add-dialog.webp" target="_blank" rel="noopener"
+                                ><img src="img/7-zip/s03-add-dialog.webp" alt="The Add to Archive window with format 7z, AES-256 encryption and Encrypt file names ticked" width="623" height="569"
+                            /></a>
+                            <figcaption>Write the password down somewhere safe for now. You&rsquo;ll need to give it to the receiver.</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <strong>You now have a new file ending in <code>.7z</code>.</strong>
+                        That&rsquo;s the locked file. It&rsquo;s the only thing you&rsquo;ll share.
+                        <figure class="shot">
+                            <a href="img/7-zip/s04-result.webp" target="_blank" rel="noopener"
+                                ><img src="img/7-zip/s04-result.webp" alt="The folder next to its new .7z file" width="663" height="147"
+                            /></a>
+                        </figure>
+                    </li>
+                </ol>
+                <details>
+                    <summary>I can&rsquo;t find 7-Zip in the right-click menu</summary>
+                    <p>
+                        Open <b>7-Zip File Manager</b> from the Start menu, browse to your folder, select it, and click
+                        <b>Add</b>. You&rsquo;ll get the same box as in step 4.
+                    </p>
+                    <p>
+                        If you don&rsquo;t see <b>Show more options</b>, open <b>Settings &rarr; Personalization &rarr; Context menu</b>
+                        and turn <b>Show more options</b> on.
+                    </p>
+                    <figure class="shot">
+                        <a href="img/7-zip/a2-customize-menu.webp" target="_blank" rel="noopener"
+                            ><img src="img/7-zip/a2-customize-menu.webp" alt="Windows settings page for the right-click menu with Show more options switched on" width="881" height="1107" loading="lazy"
+                        /></a>
+                    </figure>
+                </details>
+            </div>
+
+            <!-- Mac -->
+            <div class="os-mac">
+                <p class="note">Mac steps are written from the app&rsquo;s own instructions and don&rsquo;t have pictures yet.</p>
+                <ol class="steps">
+                    <li>
+                        <strong>Put everything you&rsquo;re sending into one folder.</strong>
+                        Copy the files (don&rsquo;t move the originals) into a new folder.
+                    </li>
+                    <li>
+                        <strong>Install Keka.</strong>
+                        Go to <b>keka.io</b>, download the app, and drag it into your <b>Applications</b> folder. (The same app is
+                        sold in the Mac App Store; either one is fine.)
+                    </li>
+                    <li>
+                        <strong>Set it up and drag your folder in.</strong>
+                        Open Keka. Set the format to <b>7z</b>, type your password in the password box (use four or
+                        more random words, or at least 12 characters), and turn on <b>Encrypt filenames</b> if you see
+                        it. Then drag your folder onto the Keka window.
+                    </li>
+                    <li>
+                        <strong>Check that a file ending in <code>.7z</code> appeared</strong> next to your folder. That&rsquo;s
+                        the only thing you&rsquo;ll share.
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Linux -->
+            <div class="os-linux">
+                <p>Install 7-Zip, then run one command:</p>
+<pre><code># Debian / Ubuntu
+sudo apt install 7zip      # the command is then called 7zz (on older releases: p7zip-full and the command 7z)
+
+# Lock a folder (you'll be asked for the password; 7-Zip does not show it as you type)
+7zz a -p -mhe=on -mx=5 private.7z my-folder/</code></pre>
+                <p>
+                    <code>-mhe=on</code> also hides the file names. 7z archives use AES-256 encryption automatically. Use a
+                    passphrase of four or more random words, or at least 12 characters.
+                </p>
+            </div>
+
+            <!-- ═════════ PART 2 ═════════ -->
+            <h2>Part 2. Sender: share it with only one person</h2>
+            <p>The steps below use Google Drive. Other services have the same settings under different names.</p>
+
+            <ol class="steps">
+                <li>
+                    <strong>Ask the receiver which email address they use for Google.</strong>
+                    You&rsquo;ll share with exactly that address. A different address won&rsquo;t work.
+                </li>
+                <li>
+                    <strong>Upload the <code>.7z</code> file to Google Drive,</strong> then select it and click the
+                    <b>Share</b> icon (a person with a plus sign).
+                </li>
+                <li>
+                    <strong>Type the receiver&rsquo;s email, set the role to <b>Viewer</b>, and click <b>Share</b>.</strong>
+                    Viewers can&rsquo;t change or share the file.
+                    <figure class="shot">
+                        <a href="img/7-zip/s05-drive-share.webp" target="_blank" rel="noopener"
+                            ><img src="img/7-zip/s05-drive-share.webp" alt="The Drive Share box with one email address and the Viewer role" width="590" height="290" loading="lazy"
+                        /></a>
+                        <figcaption>This example uses a made-up email address.</figcaption>
+                    </figure>
+                </li>
+                <li>
+                    <strong>Open <b>Share</b> again and check that General access says <b>Restricted</b>.</strong>
+                    That means only the people you added can open the file, even if someone else gets the link. Never
+                    change it to &ldquo;Anyone with the link.&rdquo;
+                    <figure class="shot">
+                        <a href="img/7-zip/s06-drive-restricted.webp" target="_blank" rel="noopener"
+                            ><img src="img/7-zip/s06-drive-restricted.webp" alt="The Drive Share box showing General access set to Restricted" width="563" height="456" loading="lazy"
+                        /></a>
+                    </figure>
+                </li>
+                <li>
+                    <strong>Click <b>Copy link</b> and send it to the receiver</strong> by email. The link alone is no
+                    good without the password.
+                    <div class="stop">
+                        <b>STOP: do not put the password in this email or message.</b> Send the password separately, as a
+                        text message or a phone call. See Part 3.
+                    </div>
+                    <p class="note">Don&rsquo;t turn off downloading for viewers. The receiver has to download the file to unlock it.</p>
+                </li>
+            </ol>
+
+            <!-- ═════════ PART 3 ═════════ -->
+            <h2>Part 3. Sender: text the password separately</h2>
+            <div class="stop">
+                <b>The most important step: DO NOT put the password in the email with the link.</b> Send the password
+                in a <b>separate text message</b> or tell it to them on a <b>phone call</b>. If the link and the
+                password travel together, anyone who sees that email can open your files and the lock is worthless.
+            </div>
+            <div class="box box--warn">
+                <ul>
+                    <li>Give the password by <b>text message or phone call</b>, never in the same email or message as the link.</li>
+                    <li>Don&rsquo;t put the password in the folder or file name, and don&rsquo;t save it in a shared document.</li>
+                    <li>Use a new password each time. Never reuse one you use anywhere else.</li>
+                    <li>If you&rsquo;re not sure the number or email belongs to the right person, call them first.</li>
+                </ul>
+            </div>
+
+            <!-- ═════════ PART 4 ═════════ -->
+            <h2>Part 4. Receiver: open the files</h2>
+
+            <h3>Step 1: install the free unlock app (one time only)</h3>
+            <div class="os-win">
+                <ol class="steps">
+                    <li>
+                        <strong>Go to <b>7-zip.org/download.html</b> and download the Windows installer.</strong>
+                        Click <b>Download</b> on the row for <b>64-bit Windows x64</b> and save the file. Most computers
+                        are 64-bit. If yours is a newer ARM (Snapdragon) laptop, use the <b>arm64</b> row instead.
+                        <figure class="shot">
+                            <a href="img/7-zip/r01-download-page.webp" target="_blank" rel="noopener"
+                                ><img src="img/7-zip/r01-download-page.webp" alt="The 7-zip.org download page with the Download link on the 64-bit Windows x64 row marked" width="1047" height="704" loading="lazy" /><span class="hl" style="left: 16.6%; top: 29.3%; width: 7.6%; height: 4%"></span
+                            ></a>
+                            <figcaption>Click the first <b>Download</b> (64-bit Windows x64), inside the red box. The version number will be newer or older than this picture; that&rsquo;s fine.</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <strong>Open the downloaded file and click <b>Install</b>.</strong> If Windows asks whether to
+                        allow it, say yes, but only for a file you just downloaded from 7-zip.org.
+                        <figure class="shot">
+                            <a href="img/7-zip/r02a-installer.webp" target="_blank" rel="noopener"
+                                ><img src="img/7-zip/r02a-installer.webp" alt="The 7-Zip setup window with the Install button marked" width="538" height="277" loading="lazy" /><span class="hl" style="left: 53%; top: 75%; width: 18.5%; height: 10.5%"></span
+                            ></a>
+                            <figcaption>Leave the folder as it is and click <b>Install</b>.</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <strong>Click <b>Close</b> when it says 7-Zip is installed.</strong>
+                        <figure class="shot">
+                            <a href="img/7-zip/r02b-installer-done.webp" target="_blank" rel="noopener"
+                                ><img src="img/7-zip/r02b-installer-done.webp" alt="The 7-Zip setup window saying 7-Zip is installed, with Close marked" width="532" height="260" loading="lazy" /><span class="hl" style="left: 57.6%; top: 82.5%; width: 19%; height: 11.5%"></span
+                            ></a>
+                        </figure>
+                    </li>
+                </ol>
+            </div>
+            <div class="os-mac">
+                <p>
+                    Go to <b>keka.io</b>, download the app and drag it into your <b>Applications</b> folder. (<b>The Unarchiver</b>, free
+                    in the Mac App Store, also works.) The free 7-Zip download for Mac is command-line only, so
+                    don&rsquo;t use that one.
+                </p>
+            </div>
+            <div class="os-linux">
+<pre><code>sudo apt install 7zip      # Debian / Ubuntu; the command is 7zz (older releases: p7zip-full, command 7z)
+# or, with Homebrew:  brew install sevenzip</code></pre>
+            </div>
+
+            <h3>Step 2: download the locked file</h3>
+            <ol class="steps">
+                <li>
+                    <strong>Open the link and sign in to Google</strong> with the email address the sender used. If it says
+                    <i>You need access</i>, you&rsquo;re signed in with a different account.
+                </li>
+                <li>
+                    <strong>Click the download arrow in the top-left.</strong> Drive can&rsquo;t show a preview of this kind of
+                    file, so it will look empty. That&rsquo;s normal.
+                    <figure class="shot">
+                        <a href="img/7-zip/r03-drive-download.webp" target="_blank" rel="noopener"
+                            ><img src="img/7-zip/r03-drive-download.webp" alt="The Drive page for the file with the download arrow highlighted and an empty preview" width="1300" height="450" loading="lazy"
+                        /></a>
+                    </figure>
+                </li>
+                <li>
+                    <strong>If Drive says it can&rsquo;t scan the file for viruses, click <b>Download anyway</b>.</strong>
+                    This is normal for any password-protected file.
+                    <figure class="shot">
+                        <a href="img/7-zip/r03b-drive-warning.webp" target="_blank" rel="noopener"
+                            ><img src="img/7-zip/r03b-drive-warning.webp" alt="Google Drive warning that it can't scan an encrypted file, with a Download anyway button" width="1529" height="325" loading="lazy"
+                        /></a>
+                    </figure>
+                </li>
+            </ol>
+
+            <h3>Step 3: unlock it</h3>
+            <div class="os-win">
+                <ol class="steps">
+                    <li>
+                        <strong>Open your <b>Downloads</b> folder and right-click the <code>.7z</code> file.</strong>
+                        Choose <b>Show more options</b> if you see it, then <b>7-Zip</b> and <b>Extract Here</b>.
+                        <b>Don&rsquo;t</b> use Windows&rsquo; own <i>Extract All</i>; it can&rsquo;t open this kind of file.
+                        <figure class="shot">
+                            <a href="img/7-zip/r04-extract-menu.webp" target="_blank" rel="noopener"
+                                ><img src="img/7-zip/r04-extract-menu.webp" alt="Right-click menu on the downloaded file with 7-Zip, Extract Here highlighted" width="810" height="849" loading="lazy"
+                            /></a>
+                        </figure>
+                    </li>
+                    <li>
+                        <strong>Type the password and click <b>OK</b>.</strong> Tick <b>Show password</b> if you want to check
+                        what you typed.
+                        <figure class="shot">
+                            <a href="img/7-zip/r05-password.webp" target="_blank" rel="noopener"
+                                ><img src="img/7-zip/r05-password.webp" alt="The 7-Zip Enter password box" width="563" height="363" loading="lazy"
+                            /></a>
+                        </figure>
+                    </li>
+                    <li>
+                        <strong>Your files appear in a new folder</strong> next to the downloaded file.
+                        <figure class="shot">
+                            <a href="img/7-zip/r06-extracted.webp" target="_blank" rel="noopener"
+                                ><img src="img/7-zip/r06-extracted.webp" alt="The unlocked folder showing three PDF files" width="671" height="253" loading="lazy"
+                            /></a>
+                        </figure>
+                    </li>
+                </ol>
+            </div>
+            <div class="os-mac">
+                <ol class="steps">
+                    <li>
+                        <strong>Open Keka, then drag the downloaded <code>.7z</code> file onto the Keka window.</strong>
+                        (Or right-click the file, choose <b>Open With</b>, then <b>Keka</b>.)
+                    </li>
+                    <li><strong>Type the password when it asks</strong> and click <b>OK</b>.</li>
+                    <li><strong>Your files appear in a new folder</strong> next to the downloaded file.</li>
+                </ol>
+                <p class="note">Don&rsquo;t double-click the file and use the Mac&rsquo;s built-in opener. It often can&rsquo;t open these files.</p>
+            </div>
+            <div class="os-linux">
+<pre><code>7zz x ~/Downloads/private.7z     # asks for the password, then extracts into the current folder</code></pre>
+            </div>
+
+            <h2>If something goes wrong</h2>
+            <details>
+                <summary>&ldquo;Cannot open encrypted archive. Wrong password?&rdquo;</summary>
+                <p>
+                    The password doesn&rsquo;t match. Check capital letters and spaces. If you copied and pasted it, a hidden
+                    space at the end is the usual culprit. Tick <b>Show password</b> to see what you&rsquo;re typing.
+                    Ask the sender to read it to you over the phone if you&rsquo;re still stuck.
+                </p>
+                <figure class="shot">
+                    <a href="img/7-zip/r07-wrong-password.webp" target="_blank" rel="noopener"
+                        ><img src="img/7-zip/r07-wrong-password.webp" alt="7-Zip error: Cannot open encrypted archive. Wrong password?" width="564" height="361" loading="lazy"
+                    /></a>
+                </figure>
+            </details>
+            <details>
+                <summary>Drive says &ldquo;You need access&rdquo;</summary>
+                <p>
+                    You&rsquo;re signed in to a different Google account than the one the sender used. Sign out, or switch
+                    accounts, and open the link again. Or tell the sender which address you want them to use.
+                </p>
+            </details>
+            <details>
+                <summary>Windows or my Mac says it can&rsquo;t open the file</summary>
+                <p>
+                    The built-in openers don&rsquo;t handle password-protected 7z files. Use 7-Zip on Windows, or Keka (or
+                    The Unarchiver) on Mac, as shown above.
+                </p>
+            </details>
+            <details>
+                <summary>My antivirus warned me</summary>
+                <p>
+                    Security programs often flag any file they can&rsquo;t look inside. If you got the file and the password from
+                    the person you expected, it&rsquo;s normal. If anything about it feels wrong, call the sender before
+                    you open it.
+                </p>
+            </details>
+
+            <h2>When you&rsquo;re finished</h2>
+            <ol>
+                <li>The receiver tells the sender the files opened fine.</li>
+                <li>The sender removes the receiver&rsquo;s access and deletes the <code>.7z</code> from Google Drive. Then empty the Drive trash.</li>
+                <li>Both people delete the <code>.7z</code> and any copies they don&rsquo;t need. Keep the unlocked files only where you&rsquo;d keep any private document.</li>
+            </ol>
+
+            <p class="foot-fine">
+                A plain how-to by Jeffrey Benson. This is general guidance, not legal or tax advice, and it can&rsquo;t make a
+                careless step safe. The sample files shown are fake.
+            </p>
+        </main>
+    </body>
+</html>
