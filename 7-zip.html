@@ -45,6 +45,7 @@
             figure.shot figcaption { font-size: var(--t-sm); color: var(--n-700); margin-top: var(--s-2); }
             figure.shot--todo .todo { border: 2px dashed var(--n-300); border-radius: var(--radius); padding: var(--s-8) var(--s-4); text-align: center; color: var(--n-500); font-size: var(--t-sm); }
             details { border-top: 1px solid var(--rule); padding: var(--s-3) 0; }
+            figure.shot + details { margin-top: var(--s-4); }
             details:last-of-type { border-bottom: 1px solid var(--rule); }
             summary { cursor: pointer; font-weight: 600; font-size: var(--t-md); }
             .note { font-size: var(--t-sm); color: var(--n-700); }
@@ -130,6 +131,22 @@
                             /></a>
                             <figcaption>The short menu. Click <b>Show more options</b>.</figcaption>
                         </figure>
+                    <details>
+                        <summary>I can&rsquo;t find 7-Zip in the right-click menu</summary>
+                        <p>
+                            Open <b>7-Zip File Manager</b> from the Start menu, browse to your folder, select it, and click
+                            <b>Add</b>. You&rsquo;ll get the same box as in step 4.
+                        </p>
+                        <p>
+                            If you don&rsquo;t see <b>Show more options</b>, open <b>Settings &rarr; Personalization &rarr; Context menu</b>
+                            and turn <b>Show more options</b> on.
+                        </p>
+                        <figure class="shot">
+                            <a href="img/7-zip/a2-customize-menu.webp" target="_blank" rel="noopener"
+                                ><img src="img/7-zip/a2-customize-menu.webp" alt="Windows settings page for the right-click menu with Show more options switched on" width="881" height="1107" loading="lazy"
+                            /></a>
+                        </figure>
+                    </details>
                     </li>
                     <li>
                         <strong>Choose 7-Zip, then Add to archive&hellip;</strong>
@@ -166,22 +183,6 @@
                         </figure>
                     </li>
                 </ol>
-                <details>
-                    <summary>I can&rsquo;t find 7-Zip in the right-click menu</summary>
-                    <p>
-                        Open <b>7-Zip File Manager</b> from the Start menu, browse to your folder, select it, and click
-                        <b>Add</b>. You&rsquo;ll get the same box as in step 4.
-                    </p>
-                    <p>
-                        If you don&rsquo;t see <b>Show more options</b>, open <b>Settings &rarr; Personalization &rarr; Context menu</b>
-                        and turn <b>Show more options</b> on.
-                    </p>
-                    <figure class="shot">
-                        <a href="img/7-zip/a2-customize-menu.webp" target="_blank" rel="noopener"
-                            ><img src="img/7-zip/a2-customize-menu.webp" alt="Windows settings page for the right-click menu with Show more options switched on" width="881" height="1107" loading="lazy"
-                        /></a>
-                    </figure>
-                </details>
             </div>
 
             <!-- Mac -->
