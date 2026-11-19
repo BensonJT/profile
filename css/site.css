@@ -1989,3 +1989,62 @@ body {
     color: var(--accent);
     font-weight: 600;
 }
+/* Systems: share of code that calls an AI model */
+.share {
+    margin-top: var(--s-6);
+    max-width: 40rem;
+}
+.share__title {
+    font-size: var(--t-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: var(--s-2);
+}
+.share__bar {
+    display: flex;
+    gap: 2px;
+    height: 14px;
+    border-radius: 7px;
+    overflow: hidden;
+}
+.share__det {
+    background: var(--olive);
+}
+.share__ai {
+    background: var(--clay);
+}
+.share__legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-2);
+    margin-top: var(--s-2);
+    font-size: var(--t-sm);
+    font-weight: 600;
+}
+.share__key {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    display: inline-block;
+}
+.share__key--det {
+    background: var(--olive);
+}
+.share__key--ai {
+    background: var(--clay);
+    margin-left: var(--s-4);
+}
+.share figcaption {
+    font-size: var(--t-sm);
+    color: var(--fg-muted);
+    margin-top: var(--s-1);
+}
+.spec__list {
+    margin: var(--s-2) 0 0;
+    padding-left: 1.1em;
+}
+.spec__list li + li {
+    margin-top: var(--s-2);
+}
