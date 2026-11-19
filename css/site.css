@@ -1878,3 +1878,23 @@ body {
 .beat__list li::marker {
     color: var(--accent);
 }
+
+/* Systems selector: same stops as the Results timeline, without the rail, six across */
+@media (min-width: 1000px) {
+    .tl--cards {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        padding-top: 0;
+    }
+    .tl--cards::before,
+    .tl--cards .tl__stop::before {
+        display: none;
+    }
+}
+.sys__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-6);
+}
+.sys__links .link-more {
+    margin: 0;
+}

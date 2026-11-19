@@ -50,48 +50,104 @@
         </nav>
 
         <!-- ══ PAGE HEAD ══ -->
+        <!-- Rewritten 2026-11-19 to SOAR cards with a selector, matching Results. The long-form page is in
+             scratch/systems_long_form_20261119.html. -->
         <header class="on-ink">
             <div class="wrap page-head">
                 <p class="eyebrow">Systems</p>
-                <h1>Turning judgment into systems other people can run.</h1>
+                <h1>AI and data systems I have built.</h1>
                 <p class="lede">
-                    30+ years, one thing: listen until the work is understood, diagnose what is happening,
-                    transform the work, and leave that new understanding in a form the team can run without me. Only the
-                    form has changed: procedures, then governance models, then pipelines, now software. Forester is the
-                    sixth time, and this time the expertise being encoded is my own.
+                    Six systems built since 2025 with the same method: model the process first, let code do everything
+                    that has one right answer, and keep a person accountable for every decision. Each one gives the
+                    situation, the obstacle, what I built and the measured result.
                 </p>
             </div>
         </header>
 
-        <!-- ══ FORESTER ══ -->
-        <section class="section" id="forester">
+        <section class="section tl-sec">
             <div class="wrap">
-                <div class="s-head">
-                    <p class="eyebrow">Forester &middot; product, 18 sprints shipped, not publicly launched</p>
-                    <h2>The method, running as software.</h2>
-                    <p>
-                        I was teaching the method to an AI so it could help me finalize the rest of the Forest and Trees
-                        series, and on a fresh read of the whole series it said, unprompted, that this should be an
-                        application. I had been waiting for a practical app that only I could build, and that was the
-                        day Forester started.
-                    </p>
-                    <p>
-                        Most process tools draw a picture. This one captures the process as data, then draws every
-                        picture from it. What follows is the actual sequence, using two real models: a client engagement
-                        mid-build, and a reference model already resolved.
-                    </p>
+                <p class="tl__hint">Select a system to see its story.</p>
+                <div class="tl tl--cards" role="tablist" aria-label="Systems" data-default="forester">
+                    <button class="tl__stop" role="tab" data-period="forester">
+                        <span class="tl__when">Process modeling product</span>
+                        <span class="tl__what">Forester</span>
+                        <span class="tl__num">6 diagram languages, 1 model</span>
+                    </button>
+                    <button class="tl__stop" role="tab" data-period="fit-analyzer">
+                        <span class="tl__when">AI evaluation, daily use</span>
+                        <span class="tl__what">Fit Analyzer</span>
+                        <span class="tl__num">0.955 AUC held out</span>
+                    </button>
+                    <button class="tl__stop" role="tab" data-period="meridian">
+                        <span class="tl__when">Paid client system</span>
+                        <span class="tl__what">Meridian</span>
+                        <span class="tl__num">7h &rarr; 4h nightly</span>
+                    </button>
+                    <button class="tl__stop" role="tab" data-period="benson-academy">
+                        <span class="tl__when">GenAI content pipeline</span>
+                        <span class="tl__what">Benson Academy</span>
+                        <span class="tl__num">40+ assets per lesson</span>
+                    </button>
+                    <button class="tl__stop" role="tab" data-period="work-sample">
+                        <span class="tl__when">Work sample, public</span>
+                        <span class="tl__what">Data migration</span>
+                        <span class="tl__num">4,777 missing claims found</span>
+                    </button>
+                    <button class="tl__stop" role="tab" data-period="sheets-decomposer">
+                        <span class="tl__when">Open-source utility</span>
+                        <span class="tl__what">sheets_decomposer</span>
+                        <span class="tl__num">15 planted defects scored</span>
+                    </button>
                 </div>
+                <div class="tl__bar">
+                    <button class="tl__all" data-period="all">Show all six systems</button>
+                    <span class="tl__aside">How each one was built with AI is on the <a href="ai-builder-projects.html">AI Builder</a> pages.</span>
+                </div>
+            </div>
+        </section>
 
-                <!-- Beat 1 -->
-                <div class="beat">
-                    <p class="beat__n">01 &middot; The problem</p>
-                    <h3>Process models are usually wrong, and nobody can tell.</h3>
-                    <p>
-                        Two people describe the same handoff differently. One activity claims an input that nothing
-                        upstream produces. A diagram gets signed off because it looks right, and every number derived
-                        from it inherits the error. At scale a human reviewer cannot hold the whole graph in mind, so
-                        the contradictions survive.
-                    </p>
+        <main class="wrap cv" id="cases">
+            <article class="role" id="forester" data-period="forester">
+                <div class="role__head">
+                    <div>
+                        <h3 class="role__title">Forester</h3>
+                        <p class="role__where">Process modeling software &middot; product, not publicly launched</p>
+                    </div>
+                    <p class="role__when">2025 &ndash; present</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>Process models drive redesigns and cost cases, but most are drawn by hand as pictures.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>Hand-drawn models are usually wrong and nobody can tell: two people describe the same handoff differently, inputs appear from nowhere, and at scale no reviewer can hold the whole graph in mind.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Built software that captures a process as data, using my decomposition and ICOM method, and draws every diagram from it. A Coach finds contradictions across the model, ranks the fixes, and can complete a missing flow in one click.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>One model produces 6 diagram languages and 35 metrics across 6 stakeholder lenses. Phase 1 is feature-complete and in use on a live client engagement.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>18</dt>
+                            <dd>Sprints shipped, built solo with AI</dd>
+                        </div>
+                        <div>
+                            <dt>6</dt>
+                            <dd>Diagram languages from one model: IDEF0, BPMN 2.0, VSM, SIPOC, Context, FDPM</dd>
+                        </div>
+                        <div>
+                            <dt>35</dt>
+                            <dd>Metrics across 6 stakeholder lenses, computed rather than hand-summed</dd>
+                        </div>
+                    </dl>
                     <figure class="fig">
                         <div class="fig__frame">
                             <img
@@ -112,72 +168,6 @@
                             A tool that finds nothing proves nothing. This is what working looks like.
                         </p>
                     </figure>
-                </div>
-
-                <!-- Beat 2 -->
-                <div class="beat">
-                    <p class="beat__n">02 &middot; Resolution</p>
-                    <h3>It proposes the fix, and can complete the flow itself.</h3>
-                    <p>
-                        The third finding is the interesting one. The Coach does more than flag the missing output. It
-                        infers it:
-                        <strong
-                            >&ldquo;A6 does produce Significant Change Signals. Add that output and complete the
-                            flow.&rdquo;</strong
-                        >
-                        One click writes it into the model. That is the difference between a tool that validates and a
-                        tool that builds alongside you, and it is where the hours go.
-                    </p>
-                    <p>
-                        Findings are scoped: <strong>HERE</strong> for what is wrong at the current node,
-                        <strong>FLOW</strong> for what is wrong across the model. Nothing blocks saving. Advisory by
-                        design, because a methodology that refuses your work does not get used.
-                    </p>
-                </div>
-
-                <!-- Beat 3 -->
-                <div class="beat">
-                    <p class="beat__n">03 &middot; One model, many lenses</p>
-                    <h3>6 visual languages, every level of the tree, from one capture.</h3>
-                    <p>
-                        Every diagram is drawn from the same stored model, so a single ICOM arrow is at once a graph
-                        edge feeding the IDEF0 diagram, a labelled flow in the BPMN, and an input to the rolled-up yield
-                        calculation. Change the model and every view changes with it.
-                    </p>
-                    <figure class="fig">
-                        <div class="fig__frame">
-                            <img
-                                src="img/forester/workspace-six-languages.webp"
-                                width="1900"
-                                height="795"
-                                alt="The Forester workspace showing the six language tabs, a decomposition navigator, ICOM display toggles, export controls, and the Coach docked below"
-                                loading="lazy"
-                            />
-                        </div>
-                        <figcaption>
-                            <b>The workspace.</b> 6 languages grouped as Overview, Structure and Flow. A navigator that
-                            walks the decomposition from A0 down. Toggles that add or remove the
-                            <b>I&nbsp;&middot;&nbsp;C&nbsp;&middot;&nbsp;O&nbsp;&middot;&nbsp;M</b> layers on the same
-                            render, so the data can be seen apart from how it is drawn. Export to PNG, SVG, PDF, and
-                            standards-faithful <code>.bpmn</code>. The Coach runs against whatever is on screen.
-                        </figcaption>
-                    </figure>
-                </div>
-
-                <!-- Beat 4 -->
-                <div class="beat">
-                    <p class="beat__n">04 &middot; The output</p>
-                    <h3>Once the model is consistent, the diagrams fall out.</h3>
-                    <p>
-                        Below is one reference model, <em>Bake Brownies</em>, rendered six ways. Nothing here was drawn.
-                        A practitioner who would have spent hours on a single Visio diagram gets the whole set the
-                        moment the model exists, at every decomposition level.
-                    </p>
-                    <p>
-                        Three are recognized industry standards. One is proprietary. Two are executive one-pagers. And
-                        yes, the process is a brownie recipe.
-                    </p>
-
                     <div class="gallery mt-8">
                         <figure>
                             <a
@@ -279,361 +269,258 @@
                             </figcaption>
                         </figure>
                     </div>
+                    <p class="role__note">Not publicly launched; the product name is not final.</p>
+                    <p class="sys__links"><a class="link-more" href="forester-presentation.html">Product deck &rarr;</a> <a class="link-more" href="ai-builder-projects.html#forester">How it was built with AI &rarr;</a></p>
                 </div>
-
-                <!-- Beat 5 -->
-                <div class="beat">
-                    <p class="beat__n">05 &middot; Instrumented, not drawn</p>
-                    <h3>35 metrics across 6 stakeholder lenses.</h3>
-                    <p>
-                        This is the part that separates a diagram from a management instrument. Every metric is
-                        organized by the lens that cares about it, so a COO and a CFO read the same model in their own
-                        language rather than a shared wall of numbers.
-                    </p>
+            </article>
+            <article class="role" id="fit-analyzer" data-period="fit-analyzer">
+                <div class="role__head">
+                    <div>
+                        <h3 class="role__title">Requirements Fit Analyzer</h3>
+                        <p class="role__where">AI evaluation system &middot; in daily use</p>
+                    </div>
+                    <p class="role__when">2025 &ndash; present</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>Matching requirement documents against a verified record of evidence is slow, and the first job here was my own career search: every open role, every night.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>AI judges are unmeasured by default. A confident wrong score looks the same as a right one, and generated claims drift from the facts.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Rules, trained models and a local embedding model do the volume work. Two AI judges read only the shortlist, and only after a measurement-system study against grades I gave blind. Claims are selected word for word from 202 verified statements, and a script checks every figure.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>The fit models reach 0.955 AUC on employers held out of training. One AI judge passed its study; the other failed and is shown only as evidence. My calls outrank every model.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>0.955</dt>
+                            <dd>AUC of the fit models on employers held out of training</dd>
+                        </div>
+                        <div>
+                            <dt>91%</dt>
+                            <dd>Of my own fails the AI judge caught, measured before it could demote anything</dd>
+                        </div>
+                        <div>
+                            <dt>202</dt>
+                            <dd>Verified statements, each used word for word</dd>
+                        </div>
+                    </dl>
                     <figure class="fig">
-                        <div class="fig__frame">
-                            <img
-                                src="img/forester/bake_brownies/forester-lens-stack.webp"
-                                width="1900"
-                                height="507"
-                                alt="Forester derived metrics across Flow, Capability, Capacity, Quality, Equipment and Economic lenses"
-                                loading="lazy"
-                            />
+                        <div class="fig__frame fig__frame--fit">
+                            <a href="fit-analyzer-map.html"
+                                ><img
+                                    src="img/fit-analyzer-map-mini.svg"
+                                    width="1200"
+                                    height="560"
+                                    alt="The Requirements Fit Analyzer's seven phases in one loop: Find, Judge, Validate, Decide, Build, Learn and Publish, inside a ring of scripted checks"
+                                    loading="lazy"
+                            /></a>
                         </div>
                         <figcaption>
-                            <b>Live derived metrics from the captured data.</b> Process cycle efficiency 59.2%, rolled
-                            throughput yield 72.4%, weakest-link Cpk 0.35, worst DPMO 60,000, required FTE 3.9 against
-                            5.5 scheduled, bottleneck at A6. And a process margin of <b>&minus;$81.20</b>: this batch of
-                            brownies loses money.
+                            <b>Seven phases in one loop.</b> Scripts do everything with one right answer, AI reads where the
+                            words matter, and I make the calls. Select the map to explore each phase.
                         </figcaption>
-                        <p class="fig__hint">
-                            Note the assumptions line. Labor content is entered explicitly, never inferred.
-                        </p>
                     </figure>
-                    <div class="callout">
+                    <p class="sys__links"><a class="link-more" href="fit-analyzer-map.html">Full process map &rarr;</a> <a class="link-more" href="ai-builder-projects.html#jobsearch">How it was built with AI &rarr;</a> <a class="link-more" href="articles.html#series-msa">The Measurement Series &rarr;</a> <a class="link-more" href="ai-builder-control-charts.html">AI eval control charts &rarr;</a></p>
+                </div>
+            </article>
+            <article class="role" id="meridian" data-period="meridian">
+                <div class="role__head">
+                    <div>
+                        <h3 class="role__title">Meridian</h3>
+                        <p class="role__where">AI-assisted research system &middot; paid client engagement, in daily use</p>
+                    </div>
+                    <p class="role__when">2026 &ndash; present</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>A private investor needed an AI-assisted research system. He offered the contract after watching me build and ship Benson Academy.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>More than 20 candidate data sources to choose from, and later a nightly transform that ran 7 hours with nobody knowing where the time went.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Delivered and invoiced discovery first: requirements, source evaluation and architecture. Modeled the client&rsquo;s process in Forester, and that model became the architecture. Profiled the transform instead of guessing, then fixed the write path: narrower rows, an autovacuum gate, and a query that reads 100&times; fewer pages.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>In daily use on the client&rsquo;s machine since August 2026. The nightly window fell from 7 hours to 4. A faster-looking rewrite measured 3.3&times; slower and stayed behind a flag.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>20+ sources</dt>
+                            <dd>Evaluated in writing before any was adopted</dd>
+                        </div>
+                        <div>
+                            <dt>7h &rarr; 4h</dt>
+                            <dd>Nightly transform window, measured rather than assumed</dd>
+                        </div>
+                        <div>
+                            <dt>124</dt>
+                            <dd>Database migrations shipped to the client&rsquo;s machine, which I never touch directly</dd>
+                        </div>
+                    </dl>
+                    <div class="quote mt-8">
                         <p>
-                            <strong>Where this stands.</strong> Phase 1 is feature complete and in active hardening. The
-                            capture schema, the derived-metric algorithms, all six visual languages, full import and
-                            export round-trip, and the Coach are shipped and dogfooded on a live client engagement. The
-                            executive dashboards, the AI interview agent, and multi-tenant activation are the phases
-                            still ahead.
+                            &ldquo;&hellip;Jeff, who has detailed knowledge of both the business needs and IT technology,
+                            provided the translation between myself and the end-users.&rdquo;
                         </p>
-                        <p>It is not publicly launched, and the product name is not final.</p>
+                        <cite
+                            >Phet Boudsyvongsakd
+                            <span>Systems Developer, Verizon, on an earlier build Jeff led</span>
+                        </cite>
                     </div>
+                    <p class="sys__links"><a class="link-more" href="ai-builder-projects.html#meridian">How it was built with AI &rarr;</a> <a class="link-more" href="article-agentic-workflows.html">Deterministic First: code owns the path &rarr;</a></p>
                 </div>
-                <a class="link-more" href="forester-presentation.html" style="margin-right: var(--s-8)"
-                    >Product deck: vision, shipped, planned &rarr;</a
-                >
-                <a class="link-more" href="ai-builder-projects.html#forester">How it was built with AI &rarr;</a>
-            </div>
-        </section>
-
-        <!-- ══ REQUIREMENTS FIT ANALYZER ══
-             Generic language: no employer names or counts, no pay; one clause says its first job is my own
-             career search. The diagram is drawn by tools/fitmap/build_fitmap.py. -->
-        <section class="on-paper section" id="fit-analyzer">
-            <div class="wrap">
-                <div class="s-head">
-                    <p class="eyebrow">Requirements Fit Analyzer &middot; in daily use</p>
-                    <h2>Every AI judge, measured like a gauge.</h2>
-                </div>
-                <div class="role__body" style="max-width: 64ch">
-                    <p class="friction">
-                        A system that reads requirement documents and measures how well each one fits a verified record
-                        of evidence. Its first job is my own career search: every night it reads open roles straight
-                        from employers&rsquo; own job boards, scores each one against my record, and shows me where the
-                        fit is strongest.
-                    </p>
-                    <p>
-                        <strong>Deterministic by default.</strong> Rules, trained models and a local embedding model do
-                        the volume work, the same way every night. Two AI judges read only the shortlist, and only after
-                        a measurement-system study against grades I gave blind, before seeing any machine score. One
-                        passed and may demote a clear miss. The other never passed, so it appears only as evidence. My
-                        calls outrank every model.
-                    </p>
-                    <p>
-                        <strong>Claims are selected, not written.</strong> When I apply, AI chooses statements word for
-                        word from 202 verified statements about my work, and a script checks every figure against its
-                        source before anything goes out. Another script finds every edit I make to what I send, and
-                        those edits teach the voice guide and the record.
-                    </p>
-                </div>
-
-                <dl class="outcomes" style="max-width: 64ch">
+            </article>
+            <article class="role" id="benson-academy" data-period="benson-academy">
+                <div class="role__head">
                     <div>
-                        <dt>0.955</dt>
-                        <dd>AUC of the fit models on employers held out of training</dd>
+                        <h3 class="role__title">Benson Academy</h3>
+                        <p class="role__where">Generative AI content pipeline &middot; in production</p>
                     </div>
+                    <p class="role__when">2025 &ndash; present</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>A multi-course Bible curriculum where every lesson must be faithful to its sources, published in many formats.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>Generative AI produces fluent errors, and one wrong quotation undermines the whole lesson.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Built the full-stack Next.js and TypeScript site solo, and a 13-phase production process written as skills Claude follows. Every step that touches Scripture pulls it from a translation tool, a script checks every quotation, and a human review gate comes before publication.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>More than 40 published assets per lesson, from study guides and slide decks to a podcast and section videos. Research-to-published cycle time fell about 80%, with every source traceable.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>40+</dt>
+                            <dd>Published assets per lesson, all built from one audited article</dd>
+                        </div>
+                        <div>
+                            <dt>~80%</dt>
+                            <dd>Shorter research-to-published cycle time</dd>
+                        </div>
+                        <div>
+                            <dt>13</dt>
+                            <dd>Documented production phases, with a mandatory human review gate</dd>
+                        </div>
+                    </dl>
+                    <p class="role__note">The same shape any organization needs before it puts generative AI near customer-facing or regulated content: grounded in a source of record, with a person accountable at the gate.</p>
+                    <p class="sys__links"><a class="link-more" href="https://bensonacademy.com/" target="_blank" rel="noopener noreferrer">Visit the live site &rarr;</a> <a class="link-more" href="ai-builder-projects.html#benson-academy">How it was built with AI &rarr;</a> <a class="link-more" href="article-agentic-agents.html">Deterministic First: the agent calls the code &rarr;</a></p>
+                </div>
+            </article>
+            <article class="role" id="work-sample" data-period="work-sample">
+                <div class="role__head">
                     <div>
-                        <dt>91%</dt>
-                        <dd>Of my own fails the AI judge caught, measured before it could demote anything</dd>
+                        <h3 class="role__title">Data migration validation</h3>
+                        <p class="role__where">Work sample &middot; public and runnable</p>
                     </div>
+                    <p class="role__when">2025</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>A take-home assessment for a government data engineering role: compare a legacy healthcare claims system with its replacement and say whether the migration should proceed.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>The headline quality numbers looked good: 4.58&sigma; on carrier claims and 4.68&sigma; on beneficiary summary.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Ran it as a quality problem: defects per million, sigma levels and yield, field by field, rolled into a one-screen go/no-go scorecard. Built with Claude Code on DuckDB, SQLAlchemy, scipy and a 9-view Streamlit dashboard. The analysis and framing were mine.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>Recommended do not proceed: 4,777 claims and 159 beneficiaries were missing outright and 82,699 payments disagreed. Good average quality was hiding categorical failures.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>4,777</dt>
+                            <dd>Claims missing outright, behind a 4.58&sigma; headline</dd>
+                        </div>
+                        <div>
+                            <dt>82,699</dt>
+                            <dd>Payments that disagreed between the systems</dd>
+                        </div>
+                        <div>
+                            <dt>9</dt>
+                            <dd>Dashboard views, reproducible on public CMS synthetic data</dd>
+                        </div>
+                    </dl>
+                    <p class="sys__links"><a class="link-more" href="https://github.com/BensonJT/data_eng_exercise" target="_blank" rel="noopener noreferrer">Read the code and the report on GitHub &rarr;</a> <a class="link-more" href="ai-builder-projects.html#data-migration">How it was built with AI &rarr;</a></p>
+                </div>
+            </article>
+            <article class="role" id="sheets-decomposer" data-period="sheets-decomposer">
+                <div class="role__head">
                     <div>
-                        <dt>202</dt>
-                        <dd>Verified statements, each used word for word</dd>
+                        <h3 class="role__title">sheets_decomposer</h3>
+                        <p class="role__where">Spreadsheet analysis utility &middot; open source</p>
                     </div>
-                </dl>
-
-                <figure class="fig">
-                    <div class="fig__frame fig__frame--fit">
-                        <a href="fit-analyzer-map.html"
-                            ><img
-                                src="img/fit-analyzer-map-mini.svg"
-                                width="1200"
-                                height="560"
-                                alt="The Requirements Fit Analyzer's seven phases in one loop: Find, Judge, Validate, Decide, Build, Learn and Publish, inside a ring of scripted checks"
-                                loading="lazy"
-                        /></a>
-                    </div>
-                    <figcaption>
-                        <b>Seven phases in one loop.</b> Scripts do everything with one right answer, AI reads where the
-                        words matter, and I make the calls. Select the map to explore each phase.
-                    </figcaption>
-                </figure>
-                <a class="link-more" href="fit-analyzer-map.html">See the full process map &rarr;</a>
-                <a class="link-more" href="ai-builder-projects.html#jobsearch">How it was built with AI &rarr;</a>
-                <a class="link-more" href="articles.html#series-msa">The Measurement Series &rarr;</a>
-                <a class="link-more" href="article-agentic-workflows.html"
-                    >Deterministic First: where each layer belongs &rarr;</a
-                >
-                <a class="link-more" href="ai-builder-control-charts.html">AI eval control charts &rarr;</a>
-            </div>
-        </section>
-
-        <!-- ══ MERIDIAN ══ -->
-        <section class="section" id="meridian">
-            <div class="wrap">
-                <div class="s-head">
-                    <p class="eyebrow">Meridian &middot; client engagement, in daily use</p>
-                    <h2>The method, the tool, and a paying client.</h2>
+                    <p class="role__when">2026</p>
                 </div>
-
-                <div class="role__body" style="max-width: 64ch">
-                    <p class="friction">
-                        An AI-assisted research system for a private investor, and itself a pull: the client had watched
-                        me build and ship Benson Academy, and offered the contract on the strength of what he saw.
-                        Discovery came first: requirements, evaluation of more than 20 candidate data sources, and the
-                        system architecture, all delivered and invoiced before a line of production code was written.
-                    </p>
-                    <p>
-                        <strong>The method on a paid engagement.</strong> I modeled the client's operating process in
-                        Forester before designing anything, and that model became the architecture's top-level
-                        decomposition. It was the first time the method and the tool were tested together on a
-                        client&rsquo;s project and budget.
-                    </p>
-                    <p>
-                        In daily use since August 2026, on the client&rsquo;s own machine: scheduled ingestion into
-                        PostgreSQL, an analytics layer, and a reporting surface. The nightly transform ran 7 hours and
-                        nobody knew where the time went, so I stopped guessing and profiled it. Two rewrites I had
-                        already built, a numpy vectorization and a parallel staging path, turned out to be aimed at the
-                        same
-                        <strong>23% of the runtime</strong>. The window functions were 13.4 seconds of a 59 second
-                        recompute. The write was the other 46.
-                    </p>
-                    <p>
-                        The wins were the unglamorous ones: narrower stored rows, an autovacuum gate, and a rebuilt
-                        query that reads a hundred times fewer pages.
-                        <strong>7 hours to 4.</strong> The vectorization was validated bit-exact across 7.3 million
-                        rows, measured 3.3&times; slower end to end because the write dominated, and stayed in the
-                        codebase behind a flag as a closed question rather than a failure.
-                    </p>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>Every operation has a critical spreadsheet built by someone who left: twenty tabs, no documentation, and no time to untangle it.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>Reading it cell by cell is how people start, and why they never finish.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Built a tool that extracts the whole workbook as data: formulas, references, dependencies between tabs. It collapses repeated formulas to one line, classifies each tab, and runs the defect checks a careful analyst would.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>A defect report, a queryable database, and a context file that turns an AI assistant into living documentation that cites the cell. The model never sees the data, and the checks were scored against planted defects before they were trusted.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>15</dt>
+                            <dd>Planted defects in the test model, scored before the checks were trusted</dd>
+                        </div>
+                        <div>
+                            <dt>1 command</dt>
+                            <dd>Republishes the documentation when the workbook changes</dd>
+                        </div>
+                        <div>
+                            <dt>0</dt>
+                            <dd>Rows of data the AI model ever sees</dd>
+                        </div>
+                    </dl>
+                    <p class="sys__links"><a class="link-more" href="https://github.com/BensonJT/sheets_decomposer" target="_blank" rel="noopener noreferrer">Read the code and run it on your own workbook &rarr;</a> <a class="link-more" href="ai-builder-projects.html#sheets-decomposer">How it was built with AI &rarr;</a></p>
                 </div>
-
-                <dl class="outcomes" style="max-width: 64ch">
-                    <div>
-                        <dt>20+ sources</dt>
-                        <dd>Evaluated in writing before any was adopted</dd>
-                    </div>
-                    <div>
-                        <dt>7h &rarr; 4h</dt>
-                        <dd>Nightly transform window, measured rather than assumed</dd>
-                    </div>
-                    <div>
-                        <dt>124</dt>
-                        <dd>Database migrations shipped to the client&rsquo;s machine, which I never touch directly</dd>
-                    </div>
-                </dl>
-
-                <div class="quote mt-8" style="max-width: 64ch">
-                    <p>
-                        &ldquo;&hellip;Jeff, who has detailed knowledge of both the business needs and IT technology,
-                        provided the translation between myself and the end-users.&rdquo;
-                    </p>
-                    <cite
-                        >Phet Boudsyvongsakd
-                        <span>Systems Developer, Verizon, on an earlier build Jeff led</span>
-                    </cite>
-                </div>
-                <a class="link-more" href="ai-builder-projects.html#meridian">How it was built with AI &rarr;</a>
-                <a class="link-more" href="article-agentic-workflows.html"
-                    >Deterministic First: code owns the path &rarr;</a
-                >
-            </div>
-        </section>
-
-        <!-- ══ BENSON ACADEMY ══ -->
-        <section class="on-paper section" id="benson-academy">
-            <div class="wrap">
-                <div class="s-head">
-                    <p class="eyebrow">Benson Academy &middot; in production</p>
-                    <h2>Hallucination control, built into the process.</h2>
-                </div>
-                <div class="role__body" style="max-width: 64ch">
-                    <p class="friction">
-                        A full-stack Next.js and TypeScript application, built solo and live, serving a multi-course
-                        curriculum.
-                    </p>
-                    <p>
-                        Each lesson is one truth taught through many formats, and the finished, audited article is the
-                        source everything else is built from. A documented 13-phase production process, written as a set
-                        of skills Claude follows, turns it into the rest: the web lesson, a study guide, a teacher
-                        packet, a class handout, a full and a short teaching slide deck, our own two-host podcast, an
-                        explainer video of about ten minutes, and a LinkedIn article. Then, for each of the
-                        lesson&rsquo;s seven to ten sections, an illustration, the article read aloud in two AI voices,
-                        and a section video, so the full lesson plays on YouTube in sections. That is more than 40
-                        published assets per lesson.
-                    </p>
-                    <p>
-                        Now in its Gamma release, after the Beta: seven lessons rebuilt to this standard, including the
-                        first lesson of a second course, Abide 102. The site&rsquo;s whole look was redesigned by Claude
-                        Opus 5.5 overnight, working toward a goal I set before I went to sleep.
-                    </p>
-                    <p>
-                        The transferable part is the pipeline behind it. A grounded knowledge base is the source of
-                        truth, generation is constrained to it, and every step that touches Scripture pulls it from a
-                        translation tool, never from memory, and a script checks every quotation in every written asset
-                        before it counts as done. Custom Python handles asset automation, and a
-                        <strong>mandatory human review gate</strong> comes before publication. Research to published
-                        cycle time fell roughly 80%, with source traceability maintained and zero tolerance for
-                        unverified claims.
-                    </p>
-                    <p>
-                        That architecture is the same shape any organization needs before it puts generative AI near
-                        customer-facing or regulated content: retrieval grounded in a source of record, and a human
-                        accountable at the gate.
-                    </p>
-                </div>
-                <a class="link-more" href="https://bensonacademy.com/" target="_blank" rel="noopener noreferrer"
-                    >Visit the live site &rarr;</a
-                >
-                <a class="link-more" href="ai-builder-projects.html#benson-academy">How it was built with AI &rarr;</a>
-                <a class="link-more" href="article-agentic-agents.html"
-                    >Deterministic First: the agent calls the code &rarr;</a
-                >
-            </div>
-        </section>
-
-        <!-- ══ WORK SAMPLE ══ -->
-        <section class="section" id="work-sample">
-            <div class="wrap">
-                <div class="s-head">
-                    <p class="eyebrow">Work sample &middot; public and runnable</p>
-                    <h2>A problem somebody else set.</h2>
-                </div>
-                <div class="role__body" style="max-width: 64ch">
-                    <p class="friction">
-                        A take-home assessment for a government data engineering role: compare a legacy healthcare
-                        claims system against its replacement, find the discrepancies, and say whether the migration
-                        should proceed. Everything else on this page is work I scoped myself. This one I did not.
-                    </p>
-                    <p>
-                        Most migration validations report row counts and null rates. I ran it as a
-                        <strong>quality problem</strong> instead: defects per million opportunities, sigma levels, and
-                        yield, field by field, rolled into a go/no-go scorecard an executive can read in one screen. The
-                        headline numbers looked good, 4.58&sigma; on carrier claims and 4.68&sigma; on beneficiary
-                        summary. The scorecard still said do not proceed, because 4,777 claims and 159 beneficiaries had
-                        gone missing outright and 82,699 payments disagreed.
-                        <strong>Good average quality was hiding categorical failures</strong>, which is exactly what a
-                        sigma-level view is for.
-                    </p>
-                    <p>
-                        Built on DuckDB with chunked streaming for memory efficiency, SQLAlchemy, scipy for the
-                        inverse-normal sigma calculations, and a Streamlit dashboard with 9 views. It runs end to end on
-                        CMS public synthetic data, so anyone can reproduce it.
-                    </p>
-                </div>
-
-                <div class="callout">
-                    <p>
-                        <strong>On how it was built.</strong> The analysis was mine: which comparisons mattered, how to
-                        frame quality as a sigma problem, what the scorecard should say, and where the real risk was. I
-                        built it with Claude Code. Mostly I directed: what each query had to answer, and how the data
-                        should be scored for the Lean Six Sigma calculations. Some of it was hands-on: I started several
-                        queries myself and had the AI finish them by following my pattern across about a hundred
-                        columns. That is the same division of labor stated everywhere else on this site, and this is the
-                        one place you can go inspect it yourself.
-                    </p>
-                </div>
-
-                <a
-                    class="link-more"
-                    href="https://github.com/BensonJT/data_eng_exercise"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >Read the code and the report on GitHub &rarr;</a
-                >
-                <a class="link-more" href="ai-builder-projects.html#data-migration">How it was built with AI &rarr;</a>
-            </div>
-        </section>
-
-        <!-- ══ UTILITY ══ -->
-        <section class="on-paper section" id="sheets-decomposer">
-            <div class="wrap">
-                <div class="s-head">
-                    <p class="eyebrow">Utility &middot; open source</p>
-                    <h2>The undocumented workbook, read as data.</h2>
-                </div>
-                <div class="role__body" style="max-width: 64ch">
-                    <p class="friction">
-                        Every operation has one: a spreadsheet that runs something important, built by someone who left,
-                        with twenty tabs, no documentation, and a monthly cycle that leaves nobody time to untangle it.
-                        Opening it and reading cells is how people usually start. It is also why they never finish.
-                    </p>
-                    <p>
-                        <strong>sheets_decomposer</strong> starts somewhere else. Point it at a Google Sheet or an Excel
-                        file and it extracts the whole structure as data: every formula, every reference, the named
-                        ranges, validations, and hidden tabs. It rewrites the formulas in relative notation so that a
-                        column of two hundred cells collapses to one line of logic, builds the dependency graph between
-                        tabs, and classifies each tab as input, calculation, or output. Then it runs the checks a
-                        careful analyst would run by hand: formulas typed over with a number, cells that break the
-                        pattern of their neighbors, literals hidden inside logic, broken links, numbers stored as text,
-                        tabs nothing reads. The result is a report with the questions to ask the owner, a queryable
-                        DuckDB database, and a structure-only context file for a language model.
-                    </p>
-                    <p>
-                        That last piece is the point. Loaded into a Gemini Gem or a Claude Project, the context file
-                        becomes living documentation for the workbook: anyone on the team can ask what a tab does or
-                        where a number comes from, and the answer cites the cell. One command republishes the file
-                        whenever the workbook changes, so the documentation keeps up with the sheet. The model never
-                        sees the spreadsheet and never sees the data. It sees the extraction and says "not in the
-                        extraction" when the answer is not there. Deterministic scripts find the problems, the model
-                        explains them, and a person reviews anything that becomes a source of truth.
-                    </p>
-                </div>
-
-                <div class="callout">
-                    <p>
-                        <strong>On how it was built.</strong> The method is the one described across this site, made
-                        runnable: inventory first, patterns not cells, defects in the owner&rsquo;s vocabulary, build
-                        alongside rather than modify in place. The code was written with AI assistance in one evening,
-                        against a synthetic capacity model with fifteen planted defects, so the checks could be scored
-                        against an answer key before they were trusted.
-                    </p>
-                </div>
-
-                <a
-                    class="link-more"
-                    href="https://github.com/BensonJT/sheets_decomposer"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >Read the code and run it on your own workbook &rarr;</a
-                >
-                <a class="link-more" href="ai-builder-projects.html#sheets-decomposer"
-                    >How it was built with AI &rarr;</a
-                >
-            </div>
-        </section>
-
+            </article>
+        </main>
 
         <!-- CTA:START -->
         <section class="on-olive section">
@@ -711,6 +598,39 @@
         </footer>
         <!-- CTA:END -->
 
+        <script>
+            // Selector: show only the chosen card (shared pattern with Results). Without JS every project shows.
+            (function () {
+                var stops = document.querySelectorAll('.tl__stop, .tl__all');
+                var cases = document.querySelectorAll('#cases .role[data-period]');
+                function show(p, scroll) {
+                    stops.forEach(function (b) {
+                        var on = b.dataset.period === p;
+                        b.setAttribute('aria-selected', on ? 'true' : 'false');
+                    });
+                    cases.forEach(function (c) {
+                        c.hidden = p !== 'all' && c.dataset.period !== p;
+                    });
+                    if (scroll) document.getElementById('cases').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                stops.forEach(function (b) {
+                    b.addEventListener('click', function () {
+                        show(b.dataset.period, false);
+                        try { history.replaceState(null, '', '#' + b.dataset.period); } catch (e) {}
+                    });
+                });
+                var h = location.hash.slice(1);
+                var byId = h && document.getElementById(h);
+                if (byId && byId.dataset.period) {
+                    show(byId.dataset.period, false);
+                    byId.scrollIntoView();
+                } else if (h === 'all' || /^p\d{4}$/.test(h)) {
+                    show(h, false);
+                } else {
+                    show(document.querySelector('.tl').dataset.default || 'all', false);
+                }
+            })();
+        </script>
         <script src="js/site.js" defer></script>
     </body>
 </html>
