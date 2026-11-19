@@ -1865,3 +1865,16 @@ body {
     fill: var(--fg-muted);
     text-anchor: middle;
 }
+
+/* Approach page (method.html): scannable bullets under each of the five steps */
+.beat__list {
+    max-width: var(--measure);
+    margin: 0;
+    padding-left: 1.2em;
+    display: grid;
+    gap: var(--s-2);
+    color: var(--fg-muted);
+}
+.beat__list li::marker {
+    color: var(--accent);
+}

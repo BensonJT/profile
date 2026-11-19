@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Method — Jeffrey Benson</title>
+        <meta
+            name="description"
+            content="Functional decomposition, SIPOC and ICOM at every node, and the five-step engagement process. How a complicated process gets taken apart until each activity can be assigned, measured, and improved."
+        />
+        <meta property="og:title" content="Method — Jeffrey Benson" />
+        <meta
+            property="og:description"
+            content="Every process comes apart the same way. It works on a bakery and it works on a $2.2B spend portfolio."
+        />
+        <meta property="og:image" content="https://bensonjt.github.io/profile/img/li-cards/method.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="627" />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin />
+        <link rel="stylesheet" href="css/site.css" />
+    </head>
+
+    <body>
+        <nav class="nav">
+            <div class="wrap">
+                <div class="nav__inner">
+                    <a class="nav__brand" href="index.html">Jeffrey Benson</a>
+                    <div class="nav__links">
+                        <a href="ai-builder.html">AI Builder</a>
+                        <a href="work.html">Results</a>
+                        <a href="method.html">Method</a>
+                        <a href="systems.html">Systems</a>
+                        <a href="articles.html">Articles</a>
+                        <a href="about.html">About</a>
+                    </div>
+                    <a class="btn btn--primary nav__cta" href="resume.html">Résumé</a>
+                    <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navdrawer">
+                        Menu
+                    </button>
+                </div>
+                <div class="nav__drawer" id="navdrawer" data-nav-drawer data-open="false">
+                    <a href="ai-builder.html">AI Builder</a>
+                    <a href="work.html">Results</a>
+                    <a href="method.html">Method</a>
+                    <a href="systems.html">Systems</a>
+                    <a href="articles.html">Articles</a>
+                    <a href="about.html">About</a>
+                </div>
+            </div>
+        </nav>
+
+        <header class="on-ink">
+            <div class="wrap page-head">
+                <p class="eyebrow">The method</p>
+                <h1>Every process comes apart the same way.</h1>
+                <p class="lede">
+                    There is no framework to buy here. There is a way of looking at work that has held up across eight
+                    domains and 30+ years: take the process apart, instrument it, and use the measures to design
+                    what should replace it. It is simple enough to explain in about 4 minutes.
+                </p>
+            </div>
+        </header>
+
+        <!-- ══ PART ONE: DECOMPOSITION ══ -->
+        <section class="section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Part one &middot; Decomposition</p>
+                    <h2>Start with one box. Keep breaking it down.</h2>
+                    <p>
+                        Take the whole thing as a single activity. Break it into the 3 to 6 activities that perform it.
+                        Break those down again. Keep going until each activity is small enough to
+                        <strong>assign to someone, measure, and improve</strong>. That last test is what tells you when
+                        to stop.
+                    </p>
+                </div>
+
+                <div class="decomp" data-decomp>
+                    <div class="decomp__bar" role="tablist" aria-label="Decomposition level">
+                        <button role="tab" data-level="0" aria-selected="false">L0 &middot; Context</button>
+                        <button role="tab" data-level="1" aria-selected="true">L1 &middot; Activities</button>
+                        <button role="tab" data-level="2" aria-selected="false">L2 &middot; Sub-activities</button>
+                    </div>
+                    <div class="decomp__stage">
+                        <div class="node" data-row="0"><span>Bake Brownies</span><span class="node__id">A0</span></div>
+                        <div class="decomp__row" data-row="1">
+                            <div class="decomp__branch">
+                                <div class="node"><span>Acquire Ingredients</span><span class="node__id">A1</span></div>
+                                <div class="decomp__kids" data-row="2">
+                                    <div class="node">
+                                        <span>Check the pantry</span><span class="node__id">A1.1</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Buy what is missing</span><span class="node__id">A1.2</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Verify the receipt</span><span class="node__id">A1.3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decomp__branch">
+                                <div class="node"><span>Set-up Environment</span><span class="node__id">A2</span></div>
+                                <div class="decomp__kids" data-row="2">
+                                    <div class="node">
+                                        <span>Preheat the oven</span><span class="node__id">A2.1</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Line the baking dish</span><span class="node__id">A2.2</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Lay out the tools</span><span class="node__id">A2.3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decomp__branch">
+                                <div class="node"><span>Mix Ingredients</span><span class="node__id">A3</span></div>
+                                <div class="decomp__kids" data-row="2">
+                                    <div class="node">
+                                        <span>Combine dry ingredients</span><span class="node__id">A3.1</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Combine wet ingredients</span><span class="node__id">A3.2</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Fold into batter</span><span class="node__id">A3.3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decomp__branch">
+                                <div class="node"><span>Bake Brownies</span><span class="node__id">A4</span></div>
+                                <div class="decomp__kids" data-row="2">
+                                    <div class="node"><span>Load the oven</span><span class="node__id">A4.1</span></div>
+                                    <div class="node">
+                                        <span>Hold at temperature</span><span class="node__id">A4.2</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Test for doneness</span><span class="node__id">A4.3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decomp__branch">
+                                <div class="node"><span>Serve Brownies</span><span class="node__id">A5</span></div>
+                                <div class="decomp__kids" data-row="2">
+                                    <div class="node"><span>Cool and cut</span><span class="node__id">A5.1</span></div>
+                                    <div class="node">
+                                        <span>Plate the servings</span><span class="node__id">A5.2</span>
+                                    </div>
+                                    <div class="node">
+                                        <span>Serve the customer</span><span class="node__id">A5.3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decomp__branch">
+                                <div class="node"><span>Clean-up Kitchen</span><span class="node__id">A6</span></div>
+                                <div class="decomp__kids" data-row="2">
+                                    <div class="node">
+                                        <span>Clear the dishes</span><span class="node__id">A6.1</span>
+                                    </div>
+                                    <div class="node"><span>Wash and dry</span><span class="node__id">A6.2</span></div>
+                                    <div class="node">
+                                        <span>Reset the workspace</span><span class="node__id">A6.3</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <p>
+                        <strong>Why a brownie recipe.</strong> Because you can check it against your own kitchen. If the
+                        method holds on something trivially verifiable, the domain was never the hard part. I have run
+                        this on a bakery and on a $2.2B spend portfolio, and the only thing that changed was how many
+                        levels deep it went.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ PART TWO: THE FOUR QUESTIONS ══ -->
+        <section class="on-paper section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Part two &middot; What goes on every node</p>
+                    <h2>Four questions, asked at every level.</h2>
+                    <p>
+                        A decomposition tree on its own is just an outline. What turns it into a management instrument
+                        is answering the same four questions at every single activity.
+                    </p>
+                </div>
+
+                <dl class="spec">
+                    <div>
+                        <dt>Input</dt>
+                        <dd>
+                            What is consumed or transformed here, and <strong>who supplies it</strong>? The supplier is
+                            the half most models leave out, and it is where accountability lives.
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Control</dt>
+                        <dd>
+                            What governs <em>how</em> this is done? Policy, standard, regulation, trigger. Controls
+                            constrain the work, but the work does not consume them. A recipe is a control. Eggs are an
+                            input.
+                            Most modelers lump both onto the left arrow, and the model stops being able to answer
+                            &ldquo;what rule made this happen.&rdquo;
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Output</dt>
+                        <dd>
+                            What leaves, and <strong>who receives it</strong>? Every output has to land somewhere
+                            downstream as an input or a control. When it does not, you have found either a dead end or a
+                            missing activity.
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Mechanism</dt>
+                        <dd>
+                            What tools and systems perform the work. <strong>People do not belong here.</strong> Human
+                            accountability lives in supplier and customer, so the mechanism arrow is reserved for the
+                            infrastructure that makes the work possible. That separation is what lets you ask
+                            &ldquo;what would automation actually replace&rdquo; and get a real answer.
+                        </dd>
+                    </div>
+                </dl>
+
+                <div class="callout">
+                    <p>
+                        <strong>Then two more, and this is the part that makes it diagnostic.</strong> At each activity:
+                        what is the measurement that says this is performing well or badly, and what is broken or at
+                        risk here right now? Those two fields turn a picture of how things work into an active account
+                        of where the friction is, and they are what make a future state model comparable to the current
+                        one rather than merely different from it.
+                    </p>
+                </div>
+
+                <a class="link-more" href="article-forest-and-trees.html">The full six-part write-up &rarr;</a>
+            </div>
+        </section>
+
+        <!-- ══ PART THREE: ENGAGEMENT ══ -->
+        <section class="section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">Part three &middot; How the work runs</p>
+                    <h2>Five steps, and the first one is the one everybody skips.</h2>
+                    <p>
+                        The output is sometimes a redesigned process, sometimes a data system, and usually both. The
+                        sequence does not change either way.
+                    </p>
+                </div>
+
+                <div class="beat">
+                    <p class="beat__n">01</p>
+                    <h3>Listen, map, and align.</h3>
+                    <p>
+                        Conversations with everyone who touches the process, not just leadership looking at KPIs. Where
+                        does it hurt? What are you doing by hand that the process should be doing for you? What
+                        workarounds has the
+                        team built because the official system does not work? At the same time the decomposition gets
+                        underway, mapping what actually happens rather than what the three-year-old presentation says
+                        happens.
+                        <strong>This is where most engagements rush, and it is why most engagements fail.</strong>
+                    </p>
+                </div>
+
+                <div class="beat">
+                    <p class="beat__n">02</p>
+                    <h3>Fix the foundation before building on it.</h3>
+                    <p>
+                        You cannot model complexity on a broken base. If the underlying data is fragmented, analytics
+                        built on top amplify the problem rather than reveal it. If accountability is fragmented, a
+                        redesigned process inherits the same ambiguity. On one engagement this phase took 3 months and
+                        41,326 ZIP codes before a single line of the capacity model was written. It is scope-dependent
+                        and it is non-negotiable: every solution built on a fragile foundation inherits that fragility.
+                    </p>
+                </div>
+
+                <div class="beat">
+                    <p class="beat__n">03</p>
+                    <h3>Model what is. Then diagnose it.</h3>
+                    <p>
+                        The current state model captures what happens today, including the pain points, the
+                        defect rates, and the places where nothing is being measured at all. That last category is
+                        usually the most revealing.
+                    </p>
+                    <p>
+                        Then I use the model as an instrument. Where is the cycle time going? Which activity has no
+                        declared owner? Where does yield compound badly enough
+                        that the end-to-end number stops resembling any individual step?
+                        <strong>Diagnosis comes from the measures, not from the workshop.</strong> A room full of
+                        experienced people will confidently name the wrong bottleneck. The instrumented model will not.
+                    </p>
+                </div>
+
+                <div class="beat">
+                    <p class="beat__n">04</p>
+                    <h3>Design what should be. The delta is the roadmap.</h3>
+                    <p>
+                        The future state is a second model, not a slide. Redesign the activities that matter most.
+                        Reassign who supplies the input and who receives the output, because most waste lives in the
+                        handoff rather than inside the box. Introduce the systems that remove the manual steps. Set
+                        target values for the measures that were failing.
+                    </p>
+                    <p>
+                        <strong
+                            >Then compare the two. The difference between current and future state is the transformation
+                            roadmap</strong
+                        >, and because both sides are quantified, it arrives already costed. Not a list of
+                        recommendations to be argued over, a paired before and after where the business case is
+                        arithmetic.
+                    </p>
+                    <p>
+                        Both models are a deliverable. The client keeps them, and they remain useful long after the
+                        engagement, because the next change gets measured against a baseline that already exists.
+                    </p>
+                </div>
+
+                <div class="beat">
+                    <p class="beat__n">05</p>
+                    <h3>Build it, adapt it, hand it off.</h3>
+                    <p>
+                        Making the future state real is process work, governance work, and usually software: the
+                        procedures that remove the ambiguity, the ownership model that makes the handoffs someone's job,
+                        and the pipelines and reporting that let the team see whether any of it is working.
+                    </p>
+                    <p>
+                        The build is iterative on purpose. A first version goes back to the team, and something useful
+                        happens: because they can finally see the process and the numbers together, they start asking
+                        questions they could not have articulated before. Is this step actually parallel? Can we flag
+                        when capacity drops below the threshold? Some of those are a small change, some send you back to
+                        the model. Either way the loop continues until the thing answers the questions that matter, not
+                        the ones we guessed at in week one.
+                    </p>
+                    <p>
+                        Then it has to outlive me. Documentation, architecture, data flow, a maintenance playbook, and
+                        an AI assistant trained on all of it, so the team can ask it questions and learn the process
+                        from it. Training and support are sized to what the organization can maintain.
+                        <strong>A model nobody owns is a model that dies the quarter after I leave.</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ FOUNDATIONS ══ -->
+        <section class="on-ink section">
+            <div class="wrap">
+                <div class="s-head">
+                    <p class="eyebrow">What guides it</p>
+                    <h2>Three foundations.</h2>
+                </div>
+                <div class="tiles">
+                    <article class="tile">
+                        <h3 class="tile__label">Diagnose with empathy</h3>
+                        <p class="tile__body">
+                            Find the true root cause, not the most visible symptom. Listen to the people doing the work
+                            before building anything. Behind most broken processes is someone covering for the process,
+                            and the cause is almost always structural.
+                        </p>
+                    </article>
+                    <article class="tile">
+                        <h3 class="tile__label">Automate to elevate</h3>
+                        <p class="tile__body">
+                            Free teams from manual work so they can do what only people can do. Infrastructure that
+                            runs, not analyses that sit in a drawer. And never automate a process that is not understood
+                            first, because automating a mess only makes the friction faster.
+                        </p>
+                    </article>
+                    <article class="tile">
+                        <h3 class="tile__label">Model for reality</h3>
+                        <p class="tile__body">
+                            Surface the capacity, cost, and friction that have become too complex to see. Clean
+                            foundations before complex models. No improvement is real without a defensible baseline, and
+                            the delta is what proves the people doing the work earned the result.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="quote mt-12">
+                    <p>
+                        &ldquo;&hellip;he has demonstrated the rare ability to view a situation synoptically. This skill
+                        allows him to clearly evaluate any situation and formulate process flows which help identify
+                        inefficiencies in systems.&rdquo;
+                    </p>
+                    <cite>Jeff Admire <span>Verizon colleague</span></cite>
+                </div>
+
+                <a class="link-more" href="about.html">The six operating principles &rarr;</a>
+            </div>
+        </section>
+
+        <!-- ══ CLOSE ══ -->
+        <section class="on-olive section">
+            <div class="wrap">
+                <div class="s-head">
+                    <h2>This method is now software.</h2>
+                    <p>
+                        Forester encodes everything on this page: the decomposition, the four questions at every node,
+                        the measurement layer, paired current and future state models, and a coach that catches the
+                        contradictions a human reviewer misses. The method itself is a documented best practice,
+                        featured at Verizon&rsquo;s Lean Six Sigma conferences in 2013 and 2014, and the process map
+                        presented in 2014 is the same view Forester now draws automatically.
+                    </p>
+                </div>
+                <div class="hero__actions">
+                    <a class="btn btn--primary" href="systems.html">See it running</a>
+                    <a class="btn btn--ghost" href="work.html">See the record</a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CTA:START -->
+        <section class="on-olive section">
+            <div class="wrap">
+                <div class="s-head">
+                    <h2>Hiring for operational excellence or transformation?</h2>
+                    <p>
+                        I&rsquo;m looking for Principal, Senior Manager or Director roles in Process Improvement,
+                        Operational Excellence, Business Transformation, or AI Transformation, ideally reporting to a COO
+                        or operations leader. Remote or DC area.
+                    </p>
+                </div>
+                <p class="creds">
+                    <strong>Credentials:</strong> Lean Six Sigma Black Belt &middot; Professional Scrum Master (PSM I)
+                    &middot; ITIL v3 &middot; M.A. Organizational Management &middot; B.A. Computer Systems &amp;
+                    Psychology &middot; Leland AI Builder, Level 1
+                </p>
+                <div class="hero__actions">
+                    <a class="btn btn--primary" href="Jeffrey_Benson_Resume.pdf" target="_blank" rel="noopener"
+                        >Résumé&nbsp;(PDF)</a
+                    >
+                    <a
+                        class="btn btn--ghost"
+                        href="https://www.linkedin.com/in/jeffreytbenson/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Message me on LinkedIn</a
+                    >
+                </div>
+            </div>
+        </section>
+
+        <footer class="on-ink foot">
+            <div class="wrap">
+                <div class="foot__grid">
+                    <div>
+                        <h3>Jeffrey Benson</h3>
+                        <p class="card__body">
+                            Lean Six Sigma Black Belt. 30+ years of Fortune 20 business transformation. Principal
+                            at Cornerstone Solutions.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>Pages</h3>
+                        <ul>
+                            <li><a href="ai-builder.html">AI Builder</a></li>
+                            <li><a href="work.html">Results</a></li>
+                            <li><a href="method.html">Method</a></li>
+                            <li><a href="systems.html">Systems</a></li>
+                            <li><a href="articles.html">Articles</a></li>
+                            <li><a href="about.html">About</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Elsewhere</h3>
+                        <ul>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com/in/jeffreytbenson/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >LinkedIn</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://github.com/BensonJT" target="_blank" rel="noopener noreferrer"
+                                    >GitHub</a
+                                >
+                            </li>
+                            <li><a href="Jeffrey_Benson_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="foot__fine">Northern Virginia. Contact through LinkedIn.</p>
+            </div>
+        </footer>
+        <!-- CTA:END -->
+
+        <script src="js/site.js" defer></script>
+    </body>
+</html>
