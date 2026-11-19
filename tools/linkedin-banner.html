@@ -197,31 +197,30 @@
         </style>
     </head>
     <body>
+        <style>
+            #line { font-size: 66px; margin: 4px 0 26px; }
+            #line em { color: var(--gold-ink); }
+            .results { display: flex; gap: 0; margin-bottom: 26px; }
+            .results div { padding: 0 34px; border-left: 1px solid rgba(191,163,111,.42); }
+            .results div:first-child { padding-left: 0; border-left: 0; }
+            .results b { display: block; font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 46px; line-height: 1; color: var(--vellum); }
+            .results span { display: block; margin-top: 6px; font-size: 18px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(240,234,214,.6); }
+        </style>
         <div class="field"></div>
         <div class="grid"></div>
 
         <div class="content">
-            <div class="scale">
-                <p class="scale__label">Eight domains &middot; Thirty-one years</p>
-                <!-- Ticks are the canonical eight domain START years, matching the
-                     /work domain map exactly: release 1997, quality 1999, capital
-                     2001, ITAM 2013, security 2017, fiber 2019, field 2023, AI 2024. -->
-                <div class="scale__rule">
-                    <div class="tick"><b>1997</b></div>
-                    <div class="tick"><b>1999</b></div>
-                    <div class="tick"><b>2001</b></div>
-                    <div class="tick"><b>2013</b></div>
-                    <div class="tick"><b>2017</b></div>
-                    <div class="tick"><b>2019</b></div>
-                    <div class="tick"><b>2023</b></div>
-                    <div class="tick"><b>2024</b></div>
-                </div>
-            </div>
+            <p class="scale__label">Operational Excellence &middot; Business Transformation &middot; Applied AI</p>
 
-            <p class="line" id="line">
-                I come alongside leaders to fix<br />
-                what&rsquo;s become <em>too complex to see.</em>
-            </p>
+            <p class="line" id="line">I improve how <em>operations run.</em></p>
+
+            <!-- Results row (2026-11-20): replaces the eight-domain timeline; figures match index.html meta -->
+            <div class="results">
+                <div><b>$61M</b><span>realized savings</span></div>
+                <div><b>&minus;82%</b><span>cycle time</span></div>
+                <div><b>&minus;86%</b><span>procedural errors</span></div>
+                <div><b>50%&rarr;1%</b><span>attrition</span></div>
+            </div>
 
             <p class="url">
                 <span class="bar"></span>
