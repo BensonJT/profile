@@ -937,14 +937,14 @@
                                 <h3>Measure it like a process, report it like a decision.</h3>
                                 <p>
                                     Each field compared is an opportunity for a defect, so data quality comes out as
-                                    defects per million, yield, and sigma level, field by field and rolled up: 4.58σ for
-                                    claims and 4.68σ for beneficiaries. Ingestion is validated before anything is
+                                    defects per million, yield, and sigma level, field by field and rolled up: 4.56σ for
+                                    claims and 4.67σ for beneficiaries. Ingestion is validated before anything is
                                     compared, so a load error can&rsquo;t pose as a migration defect.
                                 </p>
                                 <p>
                                     The scorecard puts the sigma levels beside the counts that matter for go/no-go:
-                                    4,777 missing claims, 159 missing beneficiaries, and 82,699 payment discrepancies. A
-                                    4.6σ migration still isn&rsquo;t ready to cut over with claims missing.
+                                    7 of 13 claim fields below 4.0σ, 4,777 claims the source never had, 159 beneficiary IDs lost and 159
+                                    new ones, and 82,699 payment discrepancies. A 4.6σ migration still isn&rsquo;t ready to cut over.
                                 </p>
                             </div>
                             <div class="beat">

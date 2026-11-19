@@ -91,7 +91,7 @@
                     <button class="tl__stop" role="tab" data-period="work-sample">
                         <span class="tl__when">Work sample, public</span>
                         <span class="tl__what">Data migration</span>
-                        <span class="tl__num">4,777 missing claims found</span>
+                        <span class="tl__num">Do not proceed: 7 of 13 fields fail</span>
                     </button>
                     <button class="tl__stop" role="tab" data-period="sheets-decomposer">
                         <span class="tl__when">Open-source utility</span>
@@ -438,7 +438,7 @@
                         <h3 class="role__title">Data migration validation</h3>
                         <p class="role__where">Work sample &middot; public and runnable</p>
                     </div>
-                    <p class="role__when">2025</p>
+                    <p class="role__when">2026</p>
                 </div>
                 <div class="role__body">
                     <dl class="soar">
@@ -448,32 +448,32 @@
                         </div>
                         <div>
                             <dt>Obstacle</dt>
-                            <dd>The headline quality numbers looked good: 4.58&sigma; on carrier claims and 4.68&sigma; on beneficiary summary.</dd>
+                            <dd>The summary scorecard said GO: 4.56&sigma; on carrier claims and 4.67&sigma; on beneficiary summary, both above the 4.5&sigma; target.</dd>
                         </div>
                         <div>
                             <dt>Action</dt>
-                            <dd>Ran it as a quality problem: defects per million, sigma levels and yield, field by field, rolled into a one-screen go/no-go scorecard. Built with Claude Code on DuckDB, SQLAlchemy, scipy and a 9-view Streamlit dashboard. The analysis and framing were mine.</dd>
+                            <dd>Ran it as a quality problem field by field and record by record: defects per million, sigma levels and yield, payment variance, and every record added, lost or changed. Built with Claude Code on DuckDB, SQLAlchemy, scipy and a 9-view Streamlit dashboard; the executive deck is generated from the same views. The analysis and framing were mine.</dd>
                         </div>
                         <div>
                             <dt>Result</dt>
-                            <dd>Recommended do not proceed: 4,777 claims and 159 beneficiaries were missing outright and 82,699 payments disagreed. Good average quality was hiding categorical failures.</dd>
+                            <dd>Recommended do not proceed as is: 7 of 13 claim fields fell below the 4.0&sigma; minimum, 4,777 claims appeared that the source never had, 159 beneficiary IDs vanished while 159 new ones appeared, and payments varied by about $470K. Good averages were hiding categorical failures.</dd>
                         </div>
                     </dl>
                     <dl class="outcomes">
                         <div>
+                            <dt>7 of 13</dt>
+                            <dd>Claim fields below the 4.0&sigma; minimum, behind a 4.56&sigma; overall score</dd>
+                        </div>
+                        <div>
                             <dt>4,777</dt>
-                            <dd>Claims missing outright, behind a 4.58&sigma; headline</dd>
+                            <dd>Claims in the new system that the source never had</dd>
                         </div>
                         <div>
-                            <dt>82,699</dt>
-                            <dd>Payments that disagreed between the systems</dd>
-                        </div>
-                        <div>
-                            <dt>9</dt>
-                            <dd>Dashboard views, reproducible on public CMS synthetic data</dd>
+                            <dt>$470K</dt>
+                            <dd>Payment variance across 82,699 claim lines and the beneficiary table</dd>
                         </div>
                     </dl>
-                    <p class="sys__links"><a class="link-more" href="https://github.com/BensonJT/data_eng_exercise" target="_blank" rel="noopener noreferrer">Read the code and the report on GitHub &rarr;</a> <a class="link-more" href="ai-builder-projects.html#data-migration">How it was built with AI &rarr;</a></p>
+                    <p class="sys__links"><a class="link-more" href="data-migration-presentation.html">The executive deck &rarr;</a> <a class="link-more" href="Data_Migration_Analysis.pdf">PDF &rarr;</a> <a class="link-more" href="https://github.com/BensonJT/data_eng_exercise" target="_blank" rel="noopener noreferrer">Read the code and the report on GitHub &rarr;</a> <a class="link-more" href="ai-builder-projects.html#data-migration">How it was built with AI &rarr;</a></p>
                 </div>
             </article>
             <article class="role" id="sheets-decomposer" data-period="sheets-decomposer">
