@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
-# Keeps the article count in index.html and articles.html honest. Enabled via:
+# Keeps the article count in index.html and articles.html honest, and syncs the site-wide CTA. Enabled via:
 #   git config core.hooksPath githooks
 set -euo pipefail
 
 repo_root="$(git rev-parse --show-toplevel)"
 "$repo_root/scripts/update-article-count.sh"
+
+# Site-wide call to action: stamp partials/cta.html into every page, then stage what changed.
+python3 "$repo_root/scripts/sync-cta.py"
+for f in $(git -C "$repo_root" diff --name-only -- '*.html'); do
+    if grep -q "CTA:START" "$repo_root/$f"; then
+        git add "$repo_root/$f"
+    fi
+done
 
 for f in index.html articles.html; do
     if ! git diff --quiet -- "$repo_root/$f"; then
