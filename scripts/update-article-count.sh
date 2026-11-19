@@ -27,6 +27,7 @@ fi
 #   "index.html|(<h2>)([0-9]+)( articles on how operating improvement actually happens\.</h2>)"
 #   "index.html|(<a class=\"link-more\" href=\"articles\.html\">All )([0-9]+)( &rarr;</a>)"
 patterns=(
+    "index.html|(<a class=\"link-more mt-8\" href=\"articles\.html\">All )([0-9]+)( articles &rarr;</a>)"
     "articles.html|(<p class=\"deck\">)([0-9]+)( articles on how operating improvement gets done)"
 )
 
