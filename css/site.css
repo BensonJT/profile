@@ -272,8 +272,8 @@ h3 {
    it has to land before the H1 rather than after it. 1.5x the standard eyebrow,
    with the tracking eased so the longer string still reads as one label. */
 .hero .eyebrow {
-    font-size: var(--t-md);
-    letter-spacing: 0.1em;
+    font-size: 1.125rem;
+    letter-spacing: 0.06em;
     margin-bottom: var(--s-4);
 }
 .hero h1 {
@@ -343,6 +343,48 @@ h3 {
     .metric:nth-child(-n + 2) {
         border-bottom: 1px solid var(--rule);
     }
+    /* Five-card bar (home page): three rows, so the first four carry the rule. */
+    .proof--5 .metric:nth-child(-n + 4) {
+        border-bottom: 1px solid var(--rule);
+    }
+    .proof--5 .metric:nth-child(2n + 1) {
+        padding-left: 0;
+    }
+}
+@media (min-width: 1000px) {
+    .proof--5 {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .proof--5 .metric {
+        padding-inline: var(--s-4);
+    }
+    .proof--5 .metric:first-child {
+        padding-left: 0;
+    }
+    .proof--5 .metric__value,
+    .proof--ai .metric__value {
+        font-size: var(--t-xl);
+    }
+}
+.proof__label {
+    margin-bottom: var(--s-3);
+}
+.proof__label--next {
+    margin-top: var(--s-12);
+}
+
+/* "Looking for" line in the hero: the target roles, set apart from the lede. */
+.hero__seeking {
+    max-width: var(--measure);
+    margin-bottom: var(--s-8);
+    padding-left: var(--s-4);
+    border-left: 2px solid var(--accent);
+    font-size: var(--t-sm);
+    line-height: 1.6;
+}
+.hero__seeking strong {
+    color: var(--accent);
+    font-weight: 600;
 }
 
 .metric__value {
