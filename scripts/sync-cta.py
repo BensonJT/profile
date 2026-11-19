@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Stamp partials/cta.html into every page between <!-- CTA:START --> and <!-- CTA:END -->.
+"""Stamp partials/cta.html (closing call to action + footer) into every page between <!-- CTA:START --> and <!-- CTA:END -->.
 
 Edit the call to action in partials/cta.html only. This runs from githooks/pre-commit.
-A page without markers gets them inserted just above its footer; an older closing band
+A page without markers gets them inserted in place of its footer; an older closing band
 (the green section right above the footer that says "Hiring for..." or "Let's find where...")
 is replaced. Usage: python3 scripts/sync-cta.py [--check]
 """
@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SKIP = {"privacy.html", "terms.html", "resume.html", "7-zip.html", "ai-value-presentation.html",
         "forester-presentation.html", "grading-presentation.html", "my-presentation.html"}
 START, END = "<!-- CTA:START -->", "<!-- CTA:END -->"
-FOOTER = re.compile(r'\n([ \t]*)<footer class="(?:on-ink foot|page-footer)')
+FOOTER = re.compile(r'\n([ \t]*)(?:<!-- CTA:START -->|<footer class="(?:on-ink foot|page-footer))')
 OLD_CLOSE = re.compile(r'\n[ \t]*(?:<!-- [^\n]*CLOSE[^\n]*-->\s*)?<section class="on-olive section">(?:(?!<section).)*?'
                        r'(?:Hiring for|Let&rsquo;s find where)(?:(?!<section).)*?</section>\s*$', re.S)
 
@@ -33,7 +33,8 @@ def sync(text):
         return re.sub(re.escape(START) + ".*?" + re.escape(END), lambda _: block(indent).lstrip(), text, flags=re.S)
     head, tail = text[:m.start()], text[m.start():]
     head = OLD_CLOSE.sub("", head)
-    return head + "\n\n" + block(indent) + "\n" + tail
+    tail = re.sub(r"(?s)^\s*<footer\b.*?</footer>", "", tail, count=1)
+    return head + "\n\n" + block(indent) + tail
 
 
 def main():
