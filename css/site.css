@@ -1533,6 +1533,16 @@ h3 {
     font-weight: 600;
     font-variant-numeric: tabular-nums;
 }
+/* Credentials line in the home page close band */
+.creds {
+    max-width: var(--measure);
+    margin: 0 0 var(--s-8);
+    font-size: var(--t-sm);
+    line-height: 1.7;
+}
+.creds strong {
+    font-weight: 600;
+}
 .career__foot {
     margin-top: var(--s-6);
     font-size: var(--t-sm);

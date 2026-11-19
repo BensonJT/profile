@@ -22,9 +22,11 @@ if [ "$count" -ne "$files" ]; then
     echo "update-article-count: WARNING articles.html links ${count} articles but ${files} article-*.html files exist (a draft not yet on the Notebook?)" >&2
 fi
 
+# The two index.html patterns were removed 2026-11-19 when the Notebook band was parked
+# (scratch/home_parked_sections_20261119.html). Add them back if a count returns to the home page:
+#   "index.html|(<h2>)([0-9]+)( articles on how operating improvement actually happens\.</h2>)"
+#   "index.html|(<a class=\"link-more\" href=\"articles\.html\">All )([0-9]+)( &rarr;</a>)"
 patterns=(
-    "index.html|(<h2>)([0-9]+)( articles on how operating improvement actually happens\.</h2>)"
-    "index.html|(<a class=\"link-more\" href=\"articles\.html\">All )([0-9]+)( &rarr;</a>)"
     "articles.html|(<p class=\"deck\">)([0-9]+)( articles on how operating improvement gets done)"
 )
 
