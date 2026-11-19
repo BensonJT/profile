@@ -1240,6 +1240,9 @@ a.dmap__what:hover {
 #cases .role[hidden] {
     display: none;
 }
+#cases {
+    padding-bottom: var(--s-24, 6rem);
+}
 
 /* Results timeline (work.html): period stops that filter the case list */
 .tl-sec {
