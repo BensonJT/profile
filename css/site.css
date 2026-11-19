@@ -343,25 +343,29 @@ h3 {
     .metric:nth-child(-n + 2) {
         border-bottom: 1px solid var(--rule);
     }
-    /* Five-card bar (home page): three rows, so the first four carry the rule. */
-    .proof--5 .metric:nth-child(-n + 4) {
+    /* Six-card bar (home page): three rows of two, so the first four carry the rule. */
+    .proof--6 .metric:nth-child(-n + 4) {
         border-bottom: 1px solid var(--rule);
     }
-    .proof--5 .metric:nth-child(2n + 1) {
+    .proof--6 .metric:nth-child(2n + 1) {
         padding-left: 0;
     }
 }
 @media (min-width: 1000px) {
-    .proof--5 {
-        grid-template-columns: repeat(5, 1fr);
+    /* Six-card bar: two rows of three. */
+    .proof--6 {
+        grid-template-columns: repeat(3, 1fr);
     }
-    .proof--5 .metric {
-        padding-inline: var(--s-4);
+    .proof--6 .metric:nth-child(3n) {
+        border-right: none;
     }
-    .proof--5 .metric:first-child {
+    .proof--6 .metric:nth-child(3n + 1) {
         padding-left: 0;
     }
-    .proof--5 .metric__value,
+    .proof--6 .metric:nth-child(-n + 3) {
+        border-bottom: 1px solid var(--rule);
+    }
+    .proof--6 .metric__value,
     .proof--ai .metric__value {
         font-size: var(--t-xl);
     }
