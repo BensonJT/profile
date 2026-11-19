@@ -1449,6 +1449,96 @@ h3 {
     font-weight: 600;
 }
 
+/* ---------- 25b. CAREER AT A GLANCE (home) ----------
+   Same rail-and-node language as the domain map on work.html, with a functional
+   role, the title of record, and a one-line Problem / Action / Result. */
+.career {
+    list-style: none;
+    margin: var(--s-8) 0 0;
+    padding: 0;
+    border-left: 2px solid var(--rule);
+}
+.career__item {
+    position: relative;
+    display: grid;
+    gap: var(--s-1);
+    padding: var(--s-5, 1.25rem) 0 var(--s-5, 1.25rem) var(--s-8);
+    border-bottom: 1px solid var(--rule);
+}
+.career__item:last-child {
+    border-bottom: none;
+}
+.career__item::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: calc(var(--s-5, 1.25rem) + 0.45em);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+@media (min-width: 720px) {
+    .career__item {
+        grid-template-columns: 7.5rem minmax(0, 1fr);
+        gap: var(--s-6);
+        align-items: baseline;
+    }
+}
+.career__when {
+    font-size: var(--t-sm);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+}
+.career__role {
+    font-family: var(--font-display);
+    font-size: var(--t-lg);
+    line-height: 1.2;
+    margin: 0;
+}
+.career__org {
+    margin: var(--s-1) 0 var(--s-3);
+    font-size: var(--t-xs);
+    color: var(--fg-muted);
+    letter-spacing: 0.02em;
+}
+.career__par {
+    display: grid;
+    gap: var(--s-2);
+    margin: 0;
+}
+@media (min-width: 900px) {
+    .career__par {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--s-6);
+    }
+}
+.career__par dt {
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: 2px;
+}
+.career__par dd {
+    margin: 0;
+    font-size: var(--t-sm);
+    line-height: 1.5;
+}
+.career__par b {
+    color: var(--accent);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+.career__foot {
+    margin-top: var(--s-6);
+    font-size: var(--t-sm);
+    color: var(--fg-muted);
+}
+
 /* ---------- 26. OVERFLOW GUARDS ---------- */
 /* Wide diagrams are deliberately min-width:720px so they stay legible and
    scroll inside their own frame. That only works if every ancestor is allowed
