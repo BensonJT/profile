@@ -1882,7 +1882,7 @@ body {
 /* Systems selector: same stops as the Results timeline, without the rail, six across */
 @media (min-width: 1000px) {
     .tl--cards {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
+        grid-template-columns: repeat(5, minmax(0, 1fr));
         padding-top: 0;
     }
     .tl--cards::before,
@@ -1897,4 +1897,95 @@ body {
 }
 .sys__links .link-more {
     margin: 0;
+}
+
+/* Systems: grouped selector, plain link row, Builder's notes (2026-11-19 merge of the AI Builder pages) */
+.tl__group {
+    font-size: var(--t-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin: var(--s-6) 0 var(--s-2);
+}
+.tl__hint + .tl__group {
+    margin-top: 0;
+}
+.cert {
+    margin-top: var(--s-4);
+    font-size: var(--t-sm);
+}
+.cert a {
+    color: var(--gold-ink);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+}
+.sys__links {
+    margin-top: var(--s-6);
+    font-size: var(--t-sm);
+}
+.sys__links a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+.sys__links a:hover {
+    text-decoration: underline;
+}
+.notes {
+    margin-top: var(--s-8);
+}
+.notes__label {
+    font-size: var(--t-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: var(--s-2);
+}
+.note {
+    border-top: 1px solid var(--rule);
+}
+.note:last-child {
+    border-bottom: 1px solid var(--rule);
+}
+.note > summary {
+    cursor: pointer;
+    list-style: none;
+    padding: var(--s-3) 0;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+.note > summary::-webkit-details-marker {
+    display: none;
+}
+.note > summary::after {
+    content: '+';
+    color: var(--fg-muted);
+    font-weight: 400;
+}
+.note[open] > summary::after {
+    content: '\2212';
+}
+.note__body {
+    padding-bottom: var(--s-6);
+    max-width: 46rem;
+}
+.note__body > * + * {
+    margin-top: var(--s-4);
+}
+.note__when {
+    font-size: var(--t-xs);
+    color: var(--fg-muted);
+}
+.note__lead {
+    font-weight: 600;
+}
+.note__body img {
+    max-width: 100%;
+    height: auto;
+}
+
+.note__body .textlink {
+    color: var(--accent);
+    font-weight: 600;
 }

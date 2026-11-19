@@ -1,15 +1,13 @@
 {
     "name": "profile",
     "private": true,
-    "description": "bensonjt.github.io/profile: static site. Node is only for the lint, test and build tools below. The lint step covers the AI Builder files; the older pages predate it (site.css and several pages already fail the stylelint and Prettier style rules).",
+    "description": "bensonjt.github.io/profile: static site. Node is only for the lint, test and build tools below. The lint step covers the builder CSS and control-charts page; the older pages predate it (site.css and several pages already fail the stylelint and Prettier style rules).",
     "scripts": {
-        "build:leland": "python3 tools/leland/build_single.py",
-        "test": "bash scripts/update-article-count.sh --check && npm run lint && python3 tools/tests/check_links.py && python3 tools/leland/build_single.py && node tools/tests/test_decks.js && npm run test:fitmap",
+        "test": "bash scripts/update-article-count.sh --check && npm run lint && python3 tools/tests/check_links.py && npm run test:fitmap",
         "test:count": "bash scripts/update-article-count.sh --check",
         "test:links": "python3 tools/tests/check_links.py",
-        "test:decks": "node tools/tests/test_decks.js",
         "test:figures": "python3 tools/tests/recount_ai_dependence.py",
-        "lint": "htmlhint \"*.html\" && stylelint css/builder.css css/fit-map.css && prettier --check \"ai-builder*.html\" fit-analyzer-map.html css/builder.css css/fit-map.css js/builder.js js/fit-map.js tools/tests/test_decks.js tools/tests/test_fitmap.js package.json",
+        "lint": "htmlhint \"*.html\" && stylelint css/builder.css css/fit-map.css && prettier --check ai-builder-control-charts.html fit-analyzer-map.html css/builder.css css/fit-map.css js/builder.js js/fit-map.js tools/tests/test_fitmap.js package.json",
         "test:fitmap": "python3 tools/fitmap/check_fitmap.py && node tools/tests/test_fitmap.js",
         "build:fitmap": "python3 tools/fitmap/build_fitmap.py && prettier --write fit-analyzer-map.html"
     },
