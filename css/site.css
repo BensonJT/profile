@@ -852,6 +852,16 @@ h3 {
     display: grid;
     gap: var(--s-2);
 }
+.ico {
+    width: 1.1em;
+    height: 1.1em;
+    flex: none;
+}
+.foot a.with-ico {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+}
 .foot__fine {
     font-size: var(--t-xs);
     color: rgba(240, 234, 214, 0.45);
