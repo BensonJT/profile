@@ -44,8 +44,9 @@
     /* Added: mid-tones. The old palette had none, which is why
      everything read as flat alternating blocks. */
     --n-100: #e4ddc8;
+    --n-200: #c8c2b1; /* muted text on --olive, ~5.3:1 (2026-11-22) */
     --n-300: #b9b3a2;
-    --n-500: #7c7a71;
+    --n-500: #65635b; /* muted text: 5.0:1 on vellum, 5.7:1 on paper (was #7c7a71, 3.6:1, failed AA; 2026-11-22) */
     --n-700: #4a4b45;
 
     /* Text-safe accents (contrast-checked) */
@@ -57,7 +58,8 @@
     --bg: var(--vellum);
     --fg: var(--charcoal);
     --fg-muted: var(--n-500);
-    --rule: rgba(44, 46, 47, 0.14);
+    --rule: rgba(44, 46, 47, 0.11);
+    --line-strong: rgba(44, 46, 47, 0.3); /* outline buttons on light grounds */
     --accent: var(--gold-text);
 
     /* Type */
@@ -168,6 +170,7 @@ a {
     color: var(--vellum);
     --accent: var(--gold-ink);
     --rule: rgba(240, 234, 214, 0.14);
+    --line-strong: var(--rule);
     --fg-muted: var(--n-300);
 }
 .on-olive {
@@ -175,7 +178,8 @@ a {
     color: var(--vellum);
     --accent: var(--gold-ink);
     --rule: rgba(240, 234, 214, 0.16);
-    --fg-muted: var(--n-300);
+    --line-strong: var(--rule);
+    --fg-muted: var(--n-200);
 }
 .on-paper {
     background: var(--paper);
@@ -243,7 +247,7 @@ h3 {
 }
 .btn--ghost {
     color: inherit;
-    border-color: var(--rule);
+    border-color: var(--line-strong);
 }
 .btn--ghost:hover {
     background: rgba(191, 163, 111, 0.12);
@@ -609,6 +613,7 @@ h3 {
     letter-spacing: 0.02em;
     text-transform: none;
     font-weight: 400;
+    font-size: var(--t-sm);
     color: var(--fg-muted);
 }
 .corrob {
@@ -912,7 +917,7 @@ h3 {
     font-weight: 600;
 }
 .fig__hint {
-    font-size: var(--t-xs);
+    font-size: var(--t-sm);
     color: var(--fg-muted);
     margin-top: var(--s-2);
     font-style: italic;
@@ -1180,7 +1185,7 @@ h3 {
     letter-spacing: -0.015em;
 }
 .outcomes dd {
-    font-size: var(--t-xs);
+    font-size: var(--t-sm);
     line-height: 1.5;
     color: var(--fg-muted);
     margin: 0;
@@ -1220,7 +1225,7 @@ h3 {
     color: var(--accent);
 }
 .role__note {
-    font-size: var(--t-xs);
+    font-size: var(--t-sm);
     color: var(--fg-muted);
 }
 a.dmap__what {
@@ -1275,7 +1280,7 @@ a.dmap__what:hover {
     display: grid;
     grid-template-columns: 6.5rem 1fr;
     gap: 2px var(--s-3);
-    padding: var(--s-3) var(--s-4);
+    padding: var(--s-4);
     border: 1px solid var(--rule);
     border-radius: 8px;
     position: relative;
@@ -1717,7 +1722,7 @@ a.dmap__what:hover {
 }
 .career__org {
     margin: var(--s-1) 0 var(--s-3);
-    font-size: var(--t-xs);
+    font-size: var(--t-sm);
     color: var(--fg-muted);
     letter-spacing: 0.02em;
 }
@@ -1893,6 +1898,7 @@ body {
 @media (min-width: 1000px) {
     .tl--cards {
         grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: var(--s-4);
         padding-top: 0;
     }
     .tl--cards::before,
