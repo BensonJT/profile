@@ -376,6 +376,15 @@
 
   <!-- ── Article Body ── -->
   <article class="article-body">
+    <aside class="in-brief" aria-label="In brief">
+      <p class="in-brief__label">In brief</p>
+      <ul>
+        <li>On October 28 my job search pipeline finished with a success code while every one of its 300 AI reviews failed on a billing error. A count kept by ordinary code caught it, because the layer that watches must not depend on the layer it watches.</li>
+        <li>Every decision runs on one of four price rungs, from free code to a frontier model, and I use the cheapest layer that has passed its test. Gemma costs less than Jev, never passed, and may only consult.</li>
+        <li>Each layer gets a written bar before its first test and a new test on every change. My embedding model missed its gate twice in September, at 0.707 and 0.706 against 0.71, and the old model stayed in place.</li>
+      </ul>
+    </aside>
+
     <p>On the night of October 28, my job search pipeline ran its overnight steps and finished with a success code. Its pre-flight check had asked the AI service whether it was up, and it was. Then every one of the 300 reviews it asked the AI judge for that night failed. The account had run out of credits, and the service answered each request with a billing error. Nothing in the AI layer could report the problem, because the AI layer was what had stopped.</p>
     <p>What gave it away was a count kept by ordinary code: reviews asked, reviews failed. On the control chart I keep for the nightly runs, that night is the only point outside the limits (<a href="ai-builder-control-charts.html">control charts</a>). The fix was ordinary code too. The run now makes one tiny paid request before it starts, and it stops at the first account error.</p>
     <p>Meridian, a research tool I built for a private investor, writes the same rule into its architecture: the alerts that report a failure use fixed template text, so they still go out when the language models are down. The layer that watches must not depend on the layer it watches.</p>

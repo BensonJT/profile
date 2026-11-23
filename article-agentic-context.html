@@ -376,6 +376,15 @@
 
   <!-- ── Article Body ── -->
   <article class="article-body">
+    <aside class="in-brief" aria-label="In brief">
+      <p class="in-brief__label">In brief</p>
+      <ul>
+        <li>In my October voice-guide test, the word &ldquo;plainly&rdquo; came from the guide itself into the drafts written with it, and in round one a draft with no guide scored highest. What we put in front of a model turns up in what it writes.</li>
+        <li>My instruction files hold 242,670 words in 147 files. A short CLAUDE.md, a map, one router per role and one reference file per step mean each step loads between 1% and 5% of them.</li>
+        <li>The one exception is my Backlog, 20,459 words read at the start of every session, or 8.4% of the instructions. The Personal Assistant agent we are designing moves it into a database so the agent reads only the items for the task at hand.</li>
+      </ul>
+    </aside>
+
     <p>In October I tested a voice guide: a file describing how my sentences sound, written so an AI could draft in my voice. I graded the drafts blind. In the first round, both drafts written with the guide scored 2 or 3 out of 5. The draft I rated 5 had no guide at all and reused my own wording from my notes. Both guide drafts also used the word "plainly," which I don't use. It came from the guide itself, where it described how I write.</p>
     <p>In the second round, the guide plus my own words scored 5 and 5, the guide alone 4 and 4, and no guide 3 and 3. The lesson I took from those two rounds: what we put in front of a model shows up in what it writes. Loading instructions is a design decision, and more is not automatically better.</p>
     <p>This article will not cover how language models work inside. Rather, we will look at how my agents decide what to read: a short file loaded every time, a map, one router per role, and reference files loaded one step at a time. <a href="article-agentic-workflows.html">Part 1</a> covered workflows and <a href="article-agentic-agents.html">Part 2</a> covered agents and their tools. This part covers the other half of Part 2's subtitle, the engineered context.</p>

@@ -184,18 +184,18 @@ body {
     color: var(--gold-text);
     margin: 0 0 var(--s-3);
 }
-.in-brief ul {
+.article-body .in-brief ul {
     list-style: disc;
     margin: 0;
     padding-left: 1.15em;
 }
-.in-brief li {
+.article-body .in-brief li {
     font-size: var(--t-sm);
     line-height: 1.6;
     color: var(--n-700);
     margin-bottom: var(--s-3);
 }
-.in-brief li::marker {
+.article-body .in-brief li::marker {
     color: var(--gold-text);
 }
 @media (max-width: 600px) {
