@@ -375,6 +375,15 @@
 
   <!-- ── Article Body ── -->
   <article class="article-body">
+    <aside class="in-brief" aria-label="In brief">
+      <p class="in-brief__label">In brief</p>
+      <ul>
+        <li>A control chart tells a change in the process from its ordinary up and down. The article builds one by hand on help-desk times and matches each kind of data (shares, counts, times) to its chart.</li>
+        <li>Transactional data can fool a chart five ways: mixed case types, lopsided times, queues, very high volume and slow drift. Each has a check before we trust the chart.</li>
+        <li>Keep testing the reviewers with a seeded golden set, choose error-proofing that makes the mistake impossible, and hand the owner a control plan they can run without calling you. My pipeline&rsquo;s success code reported a clean run while 300 AI calls failed overnight.</li>
+      </ul>
+    </aside>
+
     <p>One morning in late October I opened the log from my job search pipeline's overnight run. The run had finished with a success code. Its AI review step (the part that judges each posting against my experience) had made 300 calls during the night, and every one of them had failed, because the account that pays for those calls had run out of credit. The check before the run had passed too. It asked the AI service whether it was up, and it was.</p>
     <p>Both of those checks were controls, and both of them measured something. The success code measured whether the program ended without crashing. The pre-flight check measured whether the service answered. Neither one measured whether the work got done. Both checks were part of a pipeline I built, and I had trusted them for weeks.</p>
     <p>That morning was the Control phase of a Six Sigma project in miniature. In Part 1 we asked whether a measurement can be trusted before we act on it. The Control phase asks that question again every day after the project team has gone home: is the process still doing what we fixed it to do, and is the measurement still telling us the truth about it?</p>

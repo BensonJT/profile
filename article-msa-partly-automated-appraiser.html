@@ -375,6 +375,15 @@
 
   <!-- ── Article Body ── -->
   <article class="article-body">
+    <aside class="in-brief" aria-label="In brief">
+      <p class="in-brief__label">In brief</p>
+      <ul>
+        <li>Rules engines, routers, scanners and macros already make calls in our processes, and almost none of them have been studied as appraisers.</li>
+        <li>A rule gives the same answer every time, so its study is about accuracy. Report the miss rate and the false-alarm rate separately: the example rule agrees with the answer key 92% of the time and still pays one bad claim in five.</li>
+        <li>Test each stage with correct inputs, then the full chain, to find handoff errors, and treat every edit to a rule as a new gage. Most of my AI judge&rsquo;s misses started in the code that prepared its input.</li>
+      </ul>
+    </aside>
+
     <p>In late September I was frustrated with an AI judge. My job search pipeline asks it to decide whether I meet the Required qualifications of each posting, and on my answer key (postings I had graded myself, blind) it kept disagreeing with me. I assumed the judge was the problem. Then I split the disagreements by what had happened before the judge ever saw the posting.</p>
     <p>Before the judge sees a posting, ordinary code I had built goes through it first and decides which lines are Required, which are Preferred and which describe the job's duties. Where that code had found a Required section, the judge agreed with me on 77% of postings. Where it had found none, the judge agreed with me on 57%. A line-by-line check of the 24 postings where both of my AI judges disagreed with me found the same thing: most of the misses traced to how the lines were pulled out of the posting. One rule removed the phrase "N years of" from every line, so the judge never saw how many years a posting asked for. The same rule cut inside a word, and "4 years of directly related" reached the judge as "ly related".</p>
     <p>That code made the same cut every time it ran. It was perfectly repeatable and perfectly wrong, and nobody had ever measured it, including me.</p>

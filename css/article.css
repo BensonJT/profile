@@ -166,6 +166,44 @@ body {
     margin: var(--s-16) 0;
 }
 
+/* ---------- In brief (summary box under the title, for skimmers) ---------- */
+.in-brief {
+    background: var(--vellum);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    padding: var(--s-6) var(--s-6) var(--s-4);
+    margin: 0 0 var(--s-12);
+}
+.in-brief .in-brief__label {
+    font-family: var(--font-text);
+    font-size: var(--t-xs);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-text);
+    margin: 0 0 var(--s-3);
+}
+.in-brief ul {
+    list-style: disc;
+    margin: 0;
+    padding-left: 1.15em;
+}
+.in-brief li {
+    font-size: var(--t-sm);
+    line-height: 1.6;
+    color: var(--n-700);
+    margin-bottom: var(--s-3);
+}
+.in-brief li::marker {
+    color: var(--gold-text);
+}
+@media (max-width: 600px) {
+    .in-brief {
+        padding: var(--s-4) var(--s-4) var(--s-2);
+    }
+}
+
 /* ---------- Headings ---------- */
 .section-eyebrow,
 .chapter-eyebrow,
