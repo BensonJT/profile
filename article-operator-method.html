@@ -6,7 +6,7 @@
         <title>The Operator Method - Jeffrey Benson</title>
         <meta
             name="description"
-            content="How we find the weight broken processes put on your people, then fix the processes and build the data systems that lift it."
+            content="How I find the weight broken processes put on the people who do the work, then fix the processes and build the data systems that lift it."
         />
         <link rel="icon" href="favicon.svg" type="image/svg+xml" />
         <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
@@ -382,6 +382,32 @@
                 color: var(--charcoal);
             }
 
+            .cs-label-quote {
+                color: var(--charcoal);
+            }
+            .cs-quote {
+                margin: 0 0 18px;
+                padding: 4px 0 4px 18px;
+                border-left: 3px solid var(--gold);
+            }
+            .cs-quote p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                color: rgba(44, 46, 47, 0.86);
+            }
+            .cs-quote cite {
+                display: block;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 0.85rem;
+                color: var(--charcoal);
+            }
+            .cs-quote cite span {
+                display: block;
+                font-weight: 400;
+                color: rgba(44, 46, 47, 0.65);
+            }
+
             .cs-close {
                 font-style: italic;
                 font-size: 0.97rem;
@@ -610,7 +636,7 @@
         <header class="article-header">
             <div class="header-text">
                 <a href="articles.html" class="article-back">&larr; All Articles</a>
-                <p class="article-eyebrow">Operations &middot; Consulting</p>
+                <p class="article-eyebrow">Operations &middot; Process Excellence</p>
                 <h1 class="article-title">The Operator Method</h1>
                 <p class="article-byline"><strong>Jeffrey Benson</strong> &nbsp;&middot;&nbsp; 2026</p>
             </div>
@@ -624,13 +650,13 @@
       <ul>
         <li>Across eight domains in 30+ years, I was never hired for domain expertise. What moved with me from one to the next was one method: take the process apart, measure it, and use the measures to redesign it.</li>
         <li>I start by listening to the operators who live with the friction, then fix the data foundation before building anything on it. In one case that meant redesigning 41,326 zip codes into 521 work areas with every field supervisor.</li>
-        <li>The measures make the case. Auto-dispatch moved from the 30–40% range to 70–80%, attrition fell from 50% to 1%, and an IT asset program realized $61M against a $40M savings case.</li>
+        <li>The measures make the case. Auto-dispatch moved from the 30–40% range to 70–80%. And in other cases attrition fell from 50% to 1%, and an IT asset program realized $61M against a $40M savings case.</li>
       </ul>
     </aside>
 
             <p class="article-subtitle">
                 <em
-                    >How we find the weight broken processes put on your people, then fix the processes and build the data systems that lift it.</em
+                    >How I find the weight broken processes put on the people who do the work, then fix the processes and build the data systems that lift it.</em
                 >
             </p>
 
@@ -694,10 +720,11 @@
                         >
                     </li>
                     <li class="dmap__item">
-                        <span class="dmap__when">2024&ndash;Present</span>
+                        <span class="dmap__when">2025&ndash;Present</span>
                         <span class="dmap__what">Applied AI</span>
                         <span class="dmap__result"
-                            >Eighteen sprints shipped solo; a nightly window cut <b>7h to 4h</b> by measurement</span
+                            ><b>Eight</b> AI systems built, curriculum cycle <b>~80%</b> faster after Lean analysis, only
+                            <b>13 of 1,089</b> code modules call a language model</span
                         >
                     </li>
                 </ol>
@@ -720,54 +747,60 @@
                 </p>
 
                 <p>
-                    You may own a piece of the business: P&amp;L accountability, an organization to lead, a budget in
-                    the multi-million to billion-dollar range.
+                    Most of my best work since then started the same way. A VP or SVP who owned a piece of the
+                    business, with a budget in the millions or billions, sent me into a problem in their operation and
+                    backed me while I worked it. A few times I volunteered, as I did with the force-to-load models, and
+                    told the leader I could solve it.
                 </p>
 
                 <p>
-                    And somewhere in your operation, there is friction that has been there long enough to feel normal.
-                    Things that should flow don't. Work gets stuck between teams. Systems don't talk to each other.
-                    Three people do the same task three different ways. Data lives in disconnected spreadsheets, and
-                    nobody can tell you with confidence what is actually happening on the ground right now.
+                    The problems looked alike. Friction had been there long enough to feel normal. Work got stuck
+                    between teams. Systems didn't talk to each other. Three people did the same task three different
+                    ways. Data lived in disconnected spreadsheets, and nobody could say with confidence what was
+                    happening on the ground.
                 </p>
 
-                <p>You know it's costing you. But the full picture has been hard to see.</p>
+                <p>
+                    The leaders knew it was costing them. What they couldn't see yet was where, or how much. In the
+                    operations I was sent into, it turned out to be:
+                </p>
 
                 <ul class="friction-list">
                     <li>
-                        <strong>Capacity you're paying for but can't use</strong>, because skills don't match where the
-                        demand is landing.
+                        <strong>Capacity the business paid for but couldn't use</strong>, because skills didn't match
+                        where the demand was landing.
                     </li>
                     <li>
-                        <strong>Millions paid for unused contract capacity</strong>, because usage was never tracked against minimum
-                        fee thresholds.
+                        <strong>Millions paid for unused contract capacity</strong>, because usage was never tracked
+                        against minimum fee thresholds.
                     </li>
                     <li>
-                        <strong>$3M–$4M in avoidable overtime</strong>, because the scheduling system can't see where
-                        people are or what they can do.
+                        <strong>$3M–$4M in avoidable overtime</strong>, because the scheduling system couldn't see
+                        where people were or what they could do.
                     </li>
                     <li>
-                        <strong>Leaders stuck firefighting</strong>, managing daily friction instead of executing the
+                        <strong>Leaders stuck firefighting</strong> daily friction, with little time left for the
                         strategy they were hired to drive.
                     </li>
                     <li>
-                        <strong>Talented teams burning out</strong> from a lack of clear process. When a high-performing team is struggling, look first at the operational strain they've been asked to carry.
+                        <strong>Talented teams burning out</strong> from a lack of clear process. When a
+                        high-performing team struggles, I look first at the process around them.
                     </li>
                 </ul>
 
                 <p>
-                    Generic solutions fail in situations like this. Most consultants can either diagnose the problem or
-                    build the fix, rarely both. And when they can't do both, you get a process map nobody uses, or a dashboard nobody trusts because it doesn't reflect operational reality.
+                    I had also seen what usually happened next. One group diagnosed the problem and another built the
+                    fix, and the business got a process map nobody used or a dashboard nobody trusted because it
+                    didn't match what was happening in the field.
                 </p>
 
                 <p>
-                    What operational leaders in this situation need is a partner who can do three things at once: listen
-                    with empathy to understand the real pain on the ground, diagnose the root cause with the rigor of a
-                    Lean Six Sigma Black Belt, and build the data system that solves it, without waiting six
-                    months for IT to deliver something already outdated.
+                    What those leaders needed was one person who could listen to the people on the ground, find the
+                    root cause with the rigor of a Lean Six Sigma Black Belt, and build the data system that fixes it,
+                    without waiting six months for IT.
                 </p>
 
-                <p>That is the work we do together.</p>
+                <p>That became my job. The rest of this article is how I do it.</p>
             </div>
 
             <hr />
@@ -795,7 +828,7 @@
                     </p>
 
                     <p>
-                        This is why every engagement starts with listening: conversations with the people carrying the weight, before we build anything.
+                        This is why every problem I take on starts with listening to the people carrying the weight, before I build anything.
                     </p>
                 </div>
 
@@ -806,7 +839,7 @@
                     </p>
 
                     <p>
-                        In one engagement, a global operations unit had spent a year adding rules to an auto-dispatch
+                        In one assignment, a global operations unit had spent a year adding rules to an auto-dispatch
                         algorithm, and the rules made it worse. The algorithm was fine. The work areas it ran on were
                         fragmented, with a single zip code in six different areas. Rather than debating the diagnosis,
                         we ran a pilot in Virginia, and when the auto-dispatch rate improved, the data made the case for
@@ -814,8 +847,8 @@
                     </p>
 
                     <p>
-                        The lesson I took from it: when you see something others don't yet see,
-                        stop arguing and build the pilot.
+                        The lesson I took from it: when I see something others don't yet see,
+                        I stop arguing and build the pilot.
                     </p>
                 </div>
 
@@ -825,7 +858,7 @@
                     </p>
 
                     <p>
-                        The tools in this work, Python, SQL, AI-assisted development, exist to solve the problem in front of us. An "inefficient" script that runs
+                        The tools in this work, Python, SQL, AI-assisted development, exist to solve the problem in front of me. An "inefficient" script that runs
                         overnight and gives a team visibility they didn't have before is more valuable than a
                         technically pristine system still in planning six months from now. The discipline is knowing
                         what's good enough to move the organization forward, and what needs more work before it
@@ -847,7 +880,7 @@
                 <h2 class="chapter-title">The Collaborative Process</h2>
 
                 <p>
-                    Here is how we move from "we have this friction problem" to "the system is running and the team owns
+                    Here is how I take a team from "we have this friction problem" to "the system is running and the team owns
                     it."
                 </p>
 
@@ -855,7 +888,7 @@
                     <p class="step-label">Step 1 &nbsp;·&nbsp; Weeks 1–4</p>
                     <h3 class="step-title">Listen, Map, and Align</h3>
 
-                    <p>This is where most engagements rush. We don't.</p>
+                    <p>Most projects rush this step. I take my time.</p>
 
                     <p>
                         The first weeks are dedicated to building shared understanding. That means conversations with
@@ -873,14 +906,14 @@
                     </p>
 
                     <p>
-                        We also identify what is being measured (if anything), what data exists, and where it lives.
-                        We secure read-only access so we can understand what the data looks like and what it
+                        I also find out what is being measured (if anything), what data exists, and where it lives,
+                        and I get read-only access so I can understand what the data looks like and what it
                         means.
                     </p>
 
                     <p>
                         By the end of this phase: the friction is mapped, the people involved trust that they were
-                        heard, and we have the data access to diagnose the root cause.
+                        heard, and I have the data access to diagnose the root cause.
                     </p>
                 </div>
 
@@ -890,12 +923,12 @@
 
                     <p>
                         You cannot model complexity on a broken foundation. If the underlying data structure is
-                        fragmented, building analytics on top of it amplifies the problem. This phase addresses what is
+                        fragmented, building analytics or automation or an AI Agent on top of it amplifies the problem. This phase addresses what is
                         broken before anything new is built.
                     </p>
 
                     <p>
-                        In the zip code engagement described in Chapter 2, this phase took two and a half months: 41,326 zip codes rationalized into 521 work areas across 50 territories. We did that work with every field supervisor, because they had local knowledge that no data model can replace. They knew
+                        In the zip code project described in Chapter 2, this phase took two and a half months: 41,326 zip codes rationalized into 521 work areas across 50 territories. We did that work with every field supervisor, because they had local knowledge that no data model can replace. They knew
                         which rivers, bridges and mountain passes split areas that looked contiguous on a map, and
                         which boundaries looked clean on paper but created chaos in the field. Their input turned a
                         technically correct map into one the teams trusted, because they helped build it.
@@ -915,7 +948,7 @@
 
                     <p>
                         This is where the actual infrastructure takes shape, data pipelines, workforce planning models,
-                        dashboards, automated reporting. Whatever the specific problem demands.
+                        dashboards, automation or AI Agents. Whatever the specific problem demands.
                     </p>
 
                     <p>
@@ -928,7 +961,7 @@
 
                     <p>
                         Some of those questions are a new query. Some require new dimensions in the pipeline. Either
-                        way, the model adapts. This feedback loop continues until the system is answering the questions that matter to how the operation is run.
+                        way, the model adapts. This feedback loop continues until the system is answering the operational questions leaders ask.
                     </p>
 
                     <p>
@@ -937,38 +970,47 @@
                 </div>
 
                 <div class="step-block">
-                    <p class="step-label">Step 4 &nbsp;·&nbsp; Customized</p>
-                    <h3 class="step-title">Stewardship and Handoff</h3>
+                    <p class="step-label">Step 4 &nbsp;·&nbsp; Planned during the build</p>
+                    <h3 class="step-title">Making It Last After I Move On</h3>
 
                     <p>
-                        The goal is your team's independence. Every path starts with the same deliverable: full
-                        documentation (architecture, data flow diagrams and a maintenance playbook) and an AI assistant
-                        trained on it. The assistant can be a Gemini Gem, a Claude Project or skill, a ChatGPT or
-                        Perplexity project, or a Gemini Notebook, whichever your team already uses. Your people can
-                        ask it how the process works or what a field in the data means, and use it to train the next
-                        person. For a spreadsheet nobody documented, I build that documentation from the workbook itself
-                        with <a href="systems.html#sheets-decomposer">Sheets Decomposer</a>, a tool I built for this and
-                        give away free on GitHub. Beyond that, the handoff is structured around your organization's capacity and culture:
+                        Sooner or later I get sent into the next problem, so the work has to keep running without me. I
+                        learned that the hard way. A Scrum team I coached delivered 500+ user stories over 10+ sprints.
+                        Then the executive sponsor left, I was moved to a new role, and the discipline fell apart
+                        because I hadn't built a successor. (The full story is in
+                        <a href="article-adkar-reinforcement.html">Reinforcement</a>.) Now I plan the handoff while I
+                        build.
                     </p>
+
+                    <p>
+                        Every handoff I plan now starts with full documentation (architecture, data flow diagrams and a
+                        maintenance playbook) and an AI assistant trained on it. The assistant can be a Gemini, Claude, Perplexity, Copilot, or ChatGPT Project or skill, a Gemini Notebook, or an equivalent, whichever frontier models the team already uses. The team can ask it how the process works or what a field in the data means,
+                        and use it to train the next person. For a spreadsheet nobody documented, I build that
+                        documentation from the workbook itself with
+                        <a href="systems.html#sheets-decomposer">Sheets Decomposer</a>, a tool I built for this and give
+                        away free on GitHub.
+                    </p>
+
+                    <p>Then I settle who owns what once I'm gone:</p>
 
                     <ul class="fit-list" style="margin-top: 12px">
                         <li>
-                            <strong>Retainer Support:</strong> Ongoing part-time stewardship for clients without
-                            internal technical capacity, or where the model is mission-critical and continuity matters.
+                            <strong>One owner with authority.</strong> After the dispatch redesign, only the Operations
+                            Command Center team could change work areas, and the map held for the three years I was
+                            there to see it.
                         </li>
                         <li>
-                            <strong>Internal Transition:</strong> Structured training so your IT or data team owns and
-                            runs the system.
+                            <strong>A successor for each role the change depends on</strong>, trained while I am still
+                            there to answer questions.
                         </li>
                         <li>
-                            <strong>Hybrid:</strong> Internal transition plus a 3–6 month support window where complex
-                            questions or updates are handled during the learning curve.
+                            <strong>The measures in the team's own reports</strong>, so the numbers that proved the
+                            change keep getting reported after I leave.
                         </li>
                     </ul>
 
                     <p style="margin-top: 16px">
-                        We choose the path early, during the build phase. The measure of a successful
-                        engagement is that the solution continues to deliver value long after the engagement closes.
+                        I count the work a success when the solution is still delivering after I've moved on.
                     </p>
                 </div>
             </div>
@@ -1004,7 +1046,7 @@
                     </div>
 
                     <div class="cs-block">
-                        <span class="cs-label cs-label-action">Our Action</span>
+                        <span class="cs-label cs-label-action">Action</span>
                         <p>
                             I rebuilt the zip code universe from US Postal Service files cross-referenced against internal systems. Then, working alongside every field supervisor, we redesigned 41,326 zip codes into 521 contiguous work areas built around rivers, bridges and mountain passes. We gave one team sole authority over work area definitions so the map stayed stable. On that foundation, I built a Python/SQL Force-to-Load workforce capacity model that
                             mapped supply (people, skills, geography, schedule) against demand, with PERT-based time
@@ -1027,7 +1069,7 @@
                                 >, from the work area redesign
                             </li>
                             <li>
-                                <strong>$1.5M saved</strong> by building the capacity model in house, $1.5M less than the alternative
+                                <strong>$1.5M avoided</strong> by building the capacity model in house, $1.5M less than the alternative
                             </li>
                         </ul>
                     </div>
@@ -1035,6 +1077,19 @@
                     <p class="cs-close">
                         Fixing the map did what a year of new rules could not: auto-dispatch went from the 30–40% range to 70–80%.
                     </p>
+
+                    <div class="cs-block">
+                        <span class="cs-label cs-label-quote">In Their Words</span>
+                        <blockquote class="cs-quote">
+                            <p>&ldquo;One of his most impactful contributions is the profile mapping tool. This solution empowers the capacity team to assist field supervisors by providing a visual, data-driven representation of their work areas. This visualization facilitates the creation of more contiguous and efficient technician profiles, which directly leads to improved tech workload balancing and a tangible reduction in drive times.&rdquo;</p>
+                            <cite>Kristine Reelfs<span>Global Network Operations, Verizon; her team used the tools every day</span></cite>
+                        </blockquote>
+                        <blockquote class="cs-quote">
+                            <p>&ldquo;Jeff is an expert at the full data lifecycle. He effectively leveraged Python, SQL, and Linux to build robust data solutions, and utilized Grafana to make that data accessible. Beyond just technical implementation, his work drove massive business value. Jeff&rsquo;s forecasting models provided the critical insights needed to optimize staffing levels and identify opportunities to save millions.&rdquo;</p>
+                            <cite>Carlos Orellana<span>Data Engineer, Verizon Global Network Operations; built the data environment with me</span></cite>
+                        </blockquote>
+                    </div>
+
                 </div>
 
                 <!-- Case Study 2 -->
@@ -1062,7 +1117,7 @@
                     </div>
 
                     <div class="cs-block">
-                        <span class="cs-label cs-label-action">Our Action</span>
+                        <span class="cs-label cs-label-action">Action</span>
                         <p>
                             Working alongside the team, we built an ISO 9000 Quality Management System from the ground
                             up. 143 standard operating procedures, developed by walking the technicians through their
@@ -1087,6 +1142,17 @@
                     <p class="cs-close">
                         Once the team knew how the work was supposed to be done, attrition fell from 50% to 1%.
                     </p>
+
+                    <div class="cs-block">
+                        <span class="cs-label cs-label-quote">In Their Words</span>
+                        <blockquote class="cs-quote">
+                            <p>&ldquo;Jeffrey Benson worked for me while I was Senior Manager and Acting Director of Distributed Operations. Jeffrey was &lsquo;my right hand man&rsquo; and I attribute much of our organization&rsquo;s success to his accomplishments during this time. These accomplishments included implementation of documentation that detailed organizational process and procedure as well as system and application technical process and procedure for 24x7 Technical Support, Computer Operations and Database Operations Teams. As this documentation was created, Jeffrey developed a website where this material was accessible to internal and external organizations and used as their main tool of operation. Jeffrey achieved this monumental task through many hours spent in a conference room walking technicians through their day-to-day jobs in order to diagram process flows, write process and procedure that detailed if-then-else statements to handle a wide array of system and application management process and procedures.</p>
+                            <p>Because of Jeffrey&rsquo;s efforts there was an 86% decrease in procedural errors which decreased the number of outages due to these errors by 80%. In addition, attrition in our organization went from 50% to 1% per year because of major improvement of team morale that resulted by having adequate training and documentation to perform their jobs. All availability targets for systems supported by this organization were met for the first time in the history of the organization.</p>
+                            <p>Jeffrey is a true leader with an extraordinary intellect and strategic outlook. When presented with a challenge his ingenuity kicks in and he always comes up with a solution. He takes the initiative when he sees something that needs to be done. He is deft at managing people of all different temperaments to get what he needs from them whether it is information, cooperation or task completion. His organizational and administrative skills are exemplary which make him one of the best project managers I&rsquo;ve ever worked with. He is always professional and his persona is guided by a genuine respect for his fellow employees. Jeffrey can always be relied on to achieve his goals.&rdquo;</p>
+                            <cite>Ellen Behrle<span>Senior Manager and Acting Director of Distributed Operations, Verizon; I reported to her</span></cite>
+                        </blockquote>
+                    </div>
+
                 </div>
 
                 <!-- Case Study 3 -->
@@ -1109,7 +1175,7 @@
                     </div>
 
                     <div class="cs-block">
-                        <span class="cs-label cs-label-action">Our Action</span>
+                        <span class="cs-label cs-label-action">Action</span>
                         <p>
                             Rather than redesigning in isolation, we co-facilitated a large-scale Work Out session
                             spanning from the data center floor to the SVP level. Every stakeholder who touched the
@@ -1135,6 +1201,9 @@
                                 weeks
                             </li>
                             <li><strong>Decommissioning cycle time cut 37%</strong>, from 46 days to 29</li>
+                            <li>
+                                <strong>Featured at Verizon&rsquo;s Lean Six Sigma Best Practice Conference in 2013 and again in 2014</strong>, after peers and an Executive Director nominated the decomposition method
+                            </li>
                         </ul>
                     </div>
 
@@ -1150,6 +1219,19 @@
                     <p class="cs-close">
                         Two weeks of decomposition found the 43% of the critical path that nobody needed.
                     </p>
+
+                    <div class="cs-block">
+                        <span class="cs-label cs-label-quote">In Their Words</span>
+                        <blockquote class="cs-quote">
+                            <p>&ldquo;Jeff was one of the IT BBs I coached for a year and half. His perseverance, dedication, willingness to work hard made him one of the best BBs in the team and in my books. He was my go-to guy. His willingness and eagerness to learn, seek knowledge and teach others around him made him an asset and a solid team player. He delivered every day. His high Say/Do ratio set an example for others to follow and emulate. I would have Jeff on my team any day and strongly recommend him. You get a great guy who is excellent at what he does.&rdquo;</p>
+                            <cite>Jai Padmanabhan<span>Master Black Belt, Verizon; coached me as a Black Belt</span></cite>
+                        </blockquote>
+                        <blockquote class="cs-quote">
+                            <p>&ldquo;Mr. Benson and I have worked on multiple programs over the past several years and he has demonstrated the rare ability to view a situation synoptically. This skill allows him to clearly evaluate any situation and formulate process flows which help identify inefficiencies in systems. His work on our team has greatly improved our team&rsquo;s productivity and streamlined procedures that formerly wasted valuable resources. I have learned a great deal from Jeff; he is a patient instructor and more importantly a devoted member of our team.&rdquo;</p>
+                            <cite>Jeff Admire<span>Verizon colleague on the team I joined next, where I used the same method</span></cite>
+                        </blockquote>
+                    </div>
+
                 </div>
 
                 <!-- Case Study 4 -->
@@ -1178,7 +1260,7 @@
                     </div>
 
                     <div class="cs-block">
-                        <span class="cs-label cs-label-action">Our Action</span>
+                        <span class="cs-label cs-label-action">Action</span>
                         <p>
                             Co-leading with the program's lead PM, I ran a DMAIC transformation to rebuild the foundation for flow. I built an automated management information system that pulled 15 disparate data sources into one master data set and scored every server nightly against 13 readiness checks. We re-engineered the workflow into a pull-based Pre-Qualify →
                             Schedule → Implement sequence so that problems were found and resolved before the change
@@ -1230,6 +1312,19 @@
                     <p class="cs-close">
                         The same two system administrators went from 15 servers a week to more than 500.
                     </p>
+
+                    <div class="cs-block">
+                        <span class="cs-label cs-label-quote">In Their Words</span>
+                        <blockquote class="cs-quote">
+                            <p>&ldquo;Most recently Jeffrey was handed the most visible &amp; challenging effort on our executive objectives list — Enterprise Asset Management (EAM). He very quickly established processes that brought much needed structure to the effort and quickly resulted in an uptick of completed conversions to meet executive deadlines. I always look forward to working with or collaborating with Jeffrey.&rdquo;</p>
+                            <cite>Sally Curran<span>Verizon colleague since 1994</span></cite>
+                        </blockquote>
+                        <blockquote class="cs-quote">
+                            <p>&ldquo;Jeff is a role model, leader, motivator, technician, and an impressive analyst sought after by executives and peers to handle complex business problems. As a leader Jeff motivated our team to go beyond what we thought was possible to achieve. He designed a streamlined new process and created the tools necessary for the team to succeed.&rdquo;</p>
+                            <cite>Carolyn DeReus<span>Team member on the server migration program, Verizon</span></cite>
+                        </blockquote>
+                    </div>
+
                 </div>
 
                 <!-- Case Study 5 -->
@@ -1259,7 +1354,7 @@
                     </div>
 
                     <div class="cs-block">
-                        <span class="cs-label cs-label-action">Our Action</span>
+                        <span class="cs-label cs-label-action">Action</span>
                         <p>
                             I reengineered the FP&amp;A cycle with DMAIC and built the tooling in Access SQL, macros and Excel. One view reconciled the fixed budget, the daily-moving "Best View" forecast and monthly actuals. An Access front end let every analyst report the budget impact of their own vendor changes. Vendors that appeared under as many as a hundred spellings in SAP and PeopleSoft were collapsed into single entities, so spend could be aggregated and negotiated.
                         </p>
@@ -1287,6 +1382,23 @@
                     <p class="cs-close">
                         The tooling did what 4.5 times the staff would have done by hand, every month for six years.
                     </p>
+
+                    <div class="cs-block">
+                        <span class="cs-label cs-label-quote">In Their Words</span>
+                        <blockquote class="cs-quote">
+                            <p>&ldquo;It is with great enthusiasm that I write a recommendation for Jeff Benson. I have had the pleasure of being Jeff&rsquo;s manager for the past several years. In that time, I have had the opportunity to view his ability to create efficient toolsets and online solutions for complex budgetary processes, work cross-collaboratively across teams to implement process improvements, and accomplish bottom-line results in a timely manner. Jeff has made a significant contribution to the budget management team and to Verizon&rsquo;s strategic initiatives.&rdquo;</p>
+                            <cite>Carrie Hughes<span>Associate Vice President; managed me directly on the budget management team</span></cite>
+                        </blockquote>
+                        <blockquote class="cs-quote">
+                            <p>&ldquo;Besides being a joy to work with, Jeff is a take-charge person who is able to present creative ideas and communicate the benefits. He has successfully developed several applications and business processes for our organization that resulted in budget planning and forecasting improvements. During his tenure, we realized millions of dollars in expense savings.&rdquo;</p>
+                            <cite>John Nicholas Georges<span>Verizon co-worker</span></cite>
+                        </blockquote>
+                        <blockquote class="cs-quote">
+                            <p>&ldquo;As the Director of IT Strategy &amp; Planning for Verizon Communications, I am writing with great pleasure to recommend Jeff Benson. I have always been impressed with Jeff&rsquo;s enthusiasm, communication skills, commitment, dedication and professional demeanor as a member of my organization. During the past six years, he consistently demonstrated all of these qualities and more, and I heartily endorse him for any corporate position. Organized and diligent, Jeff quickly learned technology systems and software that were unfamiliar to him, along with financial planning and budgeting concepts and he also continued optional professional-development classes and certifications bringing added value to his position and professional qualifications.&rdquo;</p>
+                            <cite>Lary Hershelman<span>Director of IT Strategy &amp; Planning, Verizon; my director during the budget years</span></cite>
+                        </blockquote>
+                    </div>
+
                 </div>
 
                 <!-- Case Study 6 -->
@@ -1305,7 +1417,7 @@
                     </div>
 
                     <div class="cs-block">
-                        <span class="cs-label cs-label-action">Our Action</span>
+                        <span class="cs-label cs-label-action">Action</span>
                         <p>
                             Working alongside the finance and operations teams, I built a five-year truck roll forecast that tied sales projections to the minimum fees in each vendor contract. With it I showed leadership the financial projections for 20 different scenarios. Most still came in over budget, because they left the cost structure unchanged. The few that fixed the run rate all required new cost structure actions. The cost driver was minimum fees, not truck rolls, and the root cause was an earlier decision to move markets from lower-cost vendors to the highest-cost one.
                         </p>
@@ -1333,6 +1445,15 @@
                     <p class="cs-close">
                         Half the run rate was paying for truck rolls that never happened.
                     </p>
+
+                    <div class="cs-block">
+                        <span class="cs-label cs-label-quote">In Their Words</span>
+                        <blockquote class="cs-quote">
+                            <p>&ldquo;Jeff is an architect of data-driven solutions that directly translate into significant business impact. His work on core operational projects has fundamentally transformed how the organization manages capacity, forecasts, and performance. Projects: FWA Data Model (Predictive Forecasting, Financial Budget Management, Vendor Performance Reporting); GNO F2L model rebuild (secured strategic investment, addressed critical skill gaps); End-to-End Python ETL Pipeline (stood up new server, ingested and processed data from various sources). His FWA Vendor Performance Report alone is projected to unlock significant operational savings by identifying and quantifying financial waste for targeted contract negotiation. Any team would be fortunate to have Jeff Benson&rsquo;s blend of technical expertise, intellectual curiosity, and unwavering dedication. He is a true leader and a world-class professional.&rdquo;</p>
+                            <cite>Morad Bosen<span>Senior Data Analytics Engineer, Verizon; worked alongside me</span></cite>
+                        </blockquote>
+                    </div>
+
                 </div>
             </div>
 
@@ -1360,77 +1481,6 @@
 
             <hr />
 
-            <!-- ── CHAPTER 5 ── -->
-            <div class="chapter-block">
-                <p class="chapter-eyebrow">Chapter 5</p>
-                <h2 class="chapter-title">What Working Together Looks Like</h2>
-
-                <p>
-                    Most of the leaders I have worked with already knew something was wrong. They could feel the
-                    friction costing their teams time, money, and morale, and they did not yet have the data to show
-                    where it came from. That is the starting point for this work, and it is a good one.
-                </p>
-
-                <div class="fit-section">
-                    <p class="fit-title">What you can expect from me:</p>
-                    <ul class="fit-list">
-                        <li>
-                            <strong>A clear picture you can use.</strong> I map what is happening across the process
-                            and put numbers on it, so you have something solid to bring to your own leadership and to
-                            your budget conversations.
-                        </li>
-                        <li>
-                            <strong>Your team at the center.</strong> The people who do the work every day know where it
-                            hurts. I work alongside them, and they help shape the solution, which is why it lasts.
-                        </li>
-                        <li>
-                            <strong>Credit where it belongs.</strong> What we uncover together is presented as your
-                            team's work, because it is.
-                        </li>
-                        <li>
-                            <strong>Early progress, then lasting gains.</strong> Quick wins usually show up in the first
-                            weeks. The larger gains come from fixing the foundation, and you will see the plan for both
-                            from the start. Surfacing $18M–$22M of hidden capacity took months of foundation work, and
-                            that work is what made the model possible.
-                        </li>
-                        <li>
-                            <strong>Something your team owns.</strong> Documentation, an AI assistant trained on it,
-                            and training sized to your team, so the solution keeps working after the engagement ends.
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="fit-section">
-                    <p class="fit-title">What helps us succeed together:</p>
-                    <ul class="fit-list">
-                        <li>
-                            <strong>Looking at the full picture together,</strong> including the parts that are
-                            complicated. That is usually where the biggest opportunities are.
-                        </li>
-                        <li>
-                            <strong>Time with your team.</strong> A few hours with the operators and supervisors early
-                            on saves weeks later.
-                        </li>
-                        <li>
-                            <strong>Access to the data,</strong> even when it is scattered across systems. Pulling it
-                            together is part of the work.
-                        </li>
-                        <li>
-                            <strong>A sponsor with the authority to act on what we find,</strong> at any level of your
-                            organization.
-                        </li>
-                    </ul>
-                </div>
-
-                <p>
-                    Every operation I have worked in had people who wanted it to run better and a leader willing to
-                    find out how. That is all it takes to start.
-                </p>
-
-            </div>
-
-            <hr />
-
             <!-- ── ABOUT ── -->
             <div class="about-section">
                 <p class="about-title">About Jeffrey Benson</p>
@@ -1443,27 +1493,13 @@
                         style="color: var(--olive); font-weight: 700"
                         >Jeffrey Benson</a
                     >
-                    founded
-                    <a
-                        href="https://www.linkedin.com/company/cornerstone-solutions-io/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style="color: var(--olive); font-weight: 700"
-                        >Cornerstone Solutions</a
-                    >
-                    on a straightforward belief: operational leaders deserve a partner who can both diagnose what is
-                    broken and build what fixes it, without waiting six months for IT, and who leaves the credit with
-                    the leader's team.
-                </p>
-
-                <p>
-                    With 31 years at Verizon spanning business transformation, workforce and capacity planning,
-                    operational excellence, and financial governance across Fortune 20 operations, Jeff brings the
+                    spent 31 years at Verizon in business transformation, workforce and capacity planning,
+                    operational excellence, and financial governance across Fortune 20 operations. He brings the
                     discipline of a Lean Six Sigma Black Belt with the practical fluency of someone who codes. The
                     combination, what he calls "an Operator who codes", means the person who diagnoses the business need also builds the data engineering (Python, SQL, GenAI) that meets it.
                 </p>
 
-                <p>The three foundations that guide every engagement:</p>
+                <p>The three foundations that guide his work:</p>
 
                 <ol class="about-foundations">
                     <li>
@@ -1482,9 +1518,8 @@
 
             <!-- ── NEXT STEP / CTA ── -->
             <div class="closing-quote">
-                If you recognized your own team in those outcomes, I would be glad to talk. A first conversation is
-                about what you are seeing, the visibility you need, and whether this partnership makes sense for your
-                situation. We can decide that together.
+                If you are hiring for this kind of work and recognized your own operation in those outcomes, I would be
+                glad to talk.
             </div>
 
             <p class="closing-cta">Let's build something better, together.</p>

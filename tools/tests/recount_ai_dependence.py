@@ -27,9 +27,12 @@ HOME = Path.home()
 VAULT = Path("/mnt/c/Users/Jeffrey Benson/Documents/keystone")  # the vault (Benson Academy scripts live there)
 
 # What the page says now (update these when the page is updated). "lm" = language-model modules.
-PAGE = {"Meridian": (243, 3), "Forester": (470, 0), "Job Search": (73, 4), "AdoptiScope": (42, 0),
-        "Sheets Decomposer": (13, 0), "Benson Academy": (132, 3)}
-PAGE_TOTAL = (973, 10)
+# Updated 2026-11-22 to the systems.html cards as recounted 2026-11-19 (e7868f6). The page no longer states a
+# six-system total; PAGE_TOTAL is the sum of these six cards.
+# Updated 2026-11-24: Job Search 6 of 93 (classify.py and inbox_watch.py added), Benson Academy 3 of 142.
+PAGE = {"Meridian": (244, 3), "Forester": (470, 0), "Job Search": (93, 6), "AdoptiScope": (42, 0),
+        "Sheets Decomposer": (13, 0), "Benson Academy": (142, 3)}
+PAGE_TOTAL = (1004, 12)
 
 CODE = {".py", ".sh", ".ts", ".tsx", ".js", ".mjs"}
 SKIP = re.compile(
@@ -38,14 +41,19 @@ SKIP = re.compile(
 )
 MODEL_WORDS = re.compile(
     r"openai|anthropic|genai|generativeai|generativelanguage|ollama|groq|gemini|gemma|typesafe|\bjev\b"
-    r"|sentence_transformers|CrossEncoder|fastembed|faster_whisper|whisper|kokoro|/v1/messages|chat/completions",
+    r'|"claude", "-p"' r"|sentence_transformers|CrossEncoder|fastembed|faster_whisper|whisper|kokoro|/v1/messages|chat/completions",
     re.I)
 
 # Hand-classified 2026-10-20 (briefs). Paths are relative to each source root.
 KNOWN_MODEL = {
     "Meridian": {"scripts/llm_provider.py", "scripts/score_news.py", "scripts/one_time/score_reference_set.py"},
     "Job Search": {"backend/finder/jev.py", "backend/finder/judge2.py", "backend/finder/jev_cli.py",
-                   "backend/finder/jev_gate.py"},
+                   "backend/finder/jev_gate.py",
+                   # read 2026-11-22: httpx.post to Gemini generateContent (Gemma 4) and Groq chat/completions to
+                   # bucket JD keywords (moved in from resume_ide_v2 on 2026-10-30, after the briefs were written)
+                   "backend/jd_keywords/classify.py",
+                   # read 2026-11-24: runs `claude -p` to sort job-search email (the word list had no CLI pattern)
+                   "backend/inbox_watch.py"},
     "Benson Academy": {"scripts/narrate.py", "scripts/podcast_episode.py", "scripts/podcast_trial.py"},
 }
 # Embedding models (local) and speech-to-text checkers: model code, but not a language model writing text.
@@ -67,7 +75,14 @@ NOT_A_CALL = {
                    "eightfold_worksite_backfill.py", "fact_sheet_sync.py", "gold_redo.sh", "lookup.py",
                    "mcp_lookup_server.py",
                    # read 2026-10-27: a status reader, the snapshot that imports it, and the sweep launcher's --llm-top flag
-                   "jev_status.py", "pg_snapshot.py", "sweep_ats.py"},
+                   "jev_status.py", "pg_snapshot.py", "sweep_ats.py",
+                   # read 2026-11-22. adapters.py: false hit ("PayRangeMinimum" contains "geMini"). report_gates.py,
+                   # feedback_app.py, splitter_study/collect.py: name Jev, Gemma or judge2 in prose, labels and flags.
+                   # extract.py: deterministic keyword extraction, a comment names Groq. backfill_jev_runs.py and
+                   # pg_control_snapshot.py: read Jev run logs and tables. jd_bucketize.py: the CLI; classify.py makes
+                   # the request (strict rule; by the jev_cli.py precedent above it would count as a model module).
+                   "adapters.py", "report_gates.py", "feedback_app.py", "collect.py", "extract.py",
+                   "backfill_jev_runs.py", "pg_control_snapshot.py", "jd_bucketize.py"},
     "Benson Academy": {"gen_deck.py", "mdx_to_narration.py", "lesson_slides.py", "check_lesson.py", "robots.ts",
                        "Presentation.tsx", "audio_audit_status.py", "split_bsb_tables.py",
                        "tts_budget.py"},  # 2026-10-27: builds the client and paces requests; callers make them,

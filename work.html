@@ -54,8 +54,8 @@
                 <p class="eyebrow">Results</p>
                 <h1>Measured results.</h1>
                 <p class="lede">
-                    Ten projects in process improvement, business transformation and financial governance at Verizon.
-                    Each one gives the situation, the obstacle, what I did and the measured result, with the supporting
+                    Ten projects in process improvement, business transformation and financial governance at Verizon,
+                    and nine in applied AI since 2025. Each one gives the situation, the obstacle, what I did and the measured result, with the supporting
                     numbers below it.
                 </p>
             </div>
@@ -65,6 +65,11 @@
             <div class="wrap">
                 <p class="tl__hint">Select a period to see its significant projects. The periods match the career timeline on the home page.</p>
                 <div class="tl" role="tablist" aria-label="Career periods">
+                    <button class="tl__stop" role="tab" data-period="p2025">
+                        <span class="tl__when">2025&ndash;Present</span>
+                        <span class="tl__what">Applied AI</span>
+                        <span class="tl__num">Cycle time down ~80%</span>
+                    </button>
                     <button class="tl__stop" role="tab" data-period="p2023">
                         <span class="tl__when">2023&ndash;2025</span>
                         <span class="tl__what">Workforce capacity &amp; vendor spend</span>
@@ -102,13 +107,413 @@
                     </button>
                 </div>
                 <div class="tl__bar">
-                    <button class="tl__all" data-period="all">Show all ten projects</button>
-                    <span class="tl__aside">Applied AI work since 2025 is on the <a href="systems.html">Systems</a> page.</span>
+                    <button class="tl__all" data-period="all">Show all nineteen projects</button>
+                    <span class="tl__aside">How each AI system was built and tested is on the <a href="systems.html">Systems</a> page.</span>
                 </div>
             </div>
         </section>
 
         <main class="wrap cv" id="cases">
+            <article class="role" id="genai-reporting" data-period="p2025">
+                <div class="role__head">
+                    <div>
+                        <h3 class="role__title">Executive reporting with generative AI</h3>
+                        <p class="role__where">Applied AI &middot; Verizon network operations</p>
+                    </div>
+                    <p class="role__when">2025</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>Generative AI arrived inside the company, and most people had no idea what to do with it.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>The weekly accomplishment report for the Director, VP and SVP was compiled from a shared sheet and rewritten for executives every week.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Built an AI assistant workflow for my Associate Director that classifies each item against EVP and SVP objectives, writes it in executive language and flags what merits escalation. Then taught teammates to build their own.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>About 12 hours a week saved across the team, a conservative estimate. Four teammates on the data analytics team built their own AI assistants.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>12 hrs/wk</dt>
+                            <dd>Saved on the weekly executive report, a conservative team-wide estimate</dd>
+                        </div>
+                        <div>
+                            <dt>4</dt>
+                            <dd>Teammates who built their own AI assistants after I taught them</dd>
+                        </div>
+                    </dl>
+                </div>
+            </article>
+
+            <article class="role" id="meridian-client" data-period="p2025">
+                <div class="role__head">
+                    <div>
+                        <h3 class="role__title">AI research system for a paying client</h3>
+                        <p class="role__where">Paid client &middot; a private investor</p>
+                    </div>
+                    <p class="role__when">2026</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>A private investor needed an AI-assisted research system. He offered the contract after watching me build and ship Benson Academy.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>Many candidate data sources to choose from, and later a nightly data run that took 7 hours with nobody knowing where the time went.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Delivered and invoiced discovery first: requirements, source evaluation and architecture. Then built the system, and when the nightly run slowed, measured where the time went before changing anything.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>In daily use on the client&rsquo;s machine since August 2026. The nightly window fell from 7 hours to 4.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>Paid</dt>
+                            <dd>Discovery invoiced before the build began</dd>
+                        </div>
+                        <div>
+                            <dt>7h &rarr; 4h</dt>
+                            <dd>Nightly window, measured before and after</dd>
+                        </div>
+                        <div>
+                            <dt>Daily</dt>
+                            <dd>In use on the client&rsquo;s machine since August 2026</dd>
+                        </div>
+                    </dl>
+                    <p class="mt-8"><a href="systems.html#meridian">How it was built and tested, on the Systems page &rarr;</a></p>
+                </div>
+            </article>
+
+            <article class="role" id="benson-academy-results" data-period="p2025">
+                <div class="role__head">
+                    <div>
+                        <h3 class="role__title">AI content pipeline for an education program</h3>
+                        <p class="role__where">Applied AI &middot; educational courses in production</p>
+                    </div>
+                    <p class="role__when">2025 &ndash; Present</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>An educational training program with several courses, every lesson published in many formats.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>Generative AI produces fluent errors, and one wrong quotation undermines the lesson.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Ran a Lean analysis that standardized the lesson template first. AI workflows now build every asset from it, a script checks every quotation, and a person reviews before anything is published.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>Research-to-published cycle time fell about 80%, and each lesson now ships as more than 40 published assets.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>~80%</dt>
+                            <dd>Shorter research-to-published cycle time</dd>
+                        </div>
+                        <div>
+                            <dt>40+</dt>
+                            <dd>Published assets per lesson, all from one checked article</dd>
+                        </div>
+                        <div>
+                            <dt>1</dt>
+                            <dd>Human review gate before anything is published</dd>
+                        </div>
+                    </dl>
+                    <p class="mt-8"><a href="systems.html#benson-academy">How it was built and tested, on the Systems page &rarr;</a></p>
+                </div>
+            </article>
+
+            <article class="role" id="fit-analyzer-results" data-period="p2025">
+                <div class="role__head">
+                    <div>
+                        <h3 class="role__title">Measuring AI before trusting it</h3>
+                        <p class="role__where">AI evaluation &middot; in daily use</p>
+                    </div>
+                    <p class="role__when">2025 &ndash; Present</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>Matching job requirements against a verified record of evidence is slow. The first use was my own job search: every open role, every night.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>AI judges are unmeasured by default. A confident wrong score looks the same as a right one.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Rules and trained models do the volume work. AI judges see only the shortlist, and only after a measurement study against grades I gave blind.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>More than 110,000 postings screened from 230 employer career boards. One AI judge passed its study. The other failed and is shown only as evidence, never used to decide.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>110,000+</dt>
+                            <dd>Job postings screened from 230 employer career boards</dd>
+                        </div>
+                        <div>
+                            <dt>0.955</dt>
+                            <dd>Ranking accuracy on employers held out of training (1.0 is perfect)</dd>
+                        </div>
+                        <div>
+                            <dt>91%</dt>
+                            <dd>Of the postings I failed that the AI judge also failed, measured before it could demote anything</dd>
+                        </div>
+                    </dl>
+                    <p class="mt-8"><a href="systems.html#fit-analyzer">How it was built and tested, on the Systems page &rarr;</a></p>
+                </div>
+            </article>
+
+            <article class="role" id="migration-results" data-period="p2025">
+                <div class="role__head">
+                    <div>
+                        <h3 class="role__title">Stopping a migration that looked ready</h3>
+                        <p class="role__where">Work sample &middot; healthcare claims data</p>
+                    </div>
+                    <p class="role__when">2026</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>Compare a legacy healthcare claims system with its replacement and say whether the migration should go ahead.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>The summary scorecard said go: both tables scored above the 4.5 sigma quality target.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Treated it as a quality problem, field by field and record by record, with every record added, lost or changed counted. Built with Claude Code. The analysis and the recommendation were mine.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>Recommended do not proceed as is. Good averages were hiding failures that would have gone into production.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>7 of 13</dt>
+                            <dd>Claim fields below the 4.0 sigma minimum, behind a passing overall score</dd>
+                        </div>
+                        <div>
+                            <dt>4,777</dt>
+                            <dd>Claims in the new system that the old one never had</dd>
+                        </div>
+                        <div>
+                            <dt>$470K</dt>
+                            <dd>Payment variance across 82,699 claim lines</dd>
+                        </div>
+                    </dl>
+                    <p class="mt-8"><a href="systems.html#work-sample">How it was built and tested, on the Systems page &rarr;</a></p>
+                </div>
+            </article>
+
+            <article class="role" id="forester-results" data-period="p2025">
+                <div class="role__head">
+                    <div>
+                        <h3 class="role__title">Process models that compute themselves</h3>
+                        <p class="role__where">Process modeling software &middot; not yet launched</p>
+                    </div>
+                    <p class="role__when">2025 &ndash; Present</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>Process models drive redesigns and cost cases, but most are drawn by hand, and nobody can tell when they are wrong.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>Two people describe the same handoff differently, and on a large process no reviewer can keep every connection in mind.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Built software that captures a process once, as data, and computes every diagram and metric from it. A built-in coach finds contradictions and ranks the fixes.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>One model now produces 6 diagram types and 35 metrics. On the first paid client engagement, the process model became the delivered system&rsquo;s design.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>1 &rarr; 6</dt>
+                            <dd>One captured model, six standard diagram types</dd>
+                        </div>
+                        <div>
+                            <dt>35</dt>
+                            <dd>Metrics computed, never hand-summed</dd>
+                        </div>
+                        <div>
+                            <dt>Paid</dt>
+                            <dd>Used on a live client engagement</dd>
+                        </div>
+                    </dl>
+                    <p class="mt-8"><a href="systems.html#forester">How it was built and tested, on the Systems page &rarr;</a></p>
+                </div>
+            </article>
+
+            <article class="role" id="sheets-results" data-period="p2025">
+                <div class="role__head">
+                    <div>
+                        <h3 class="role__title">Documenting the spreadsheet nobody understands</h3>
+                        <p class="role__where">Spreadsheet analysis &middot; free and open source</p>
+                    </div>
+                    <p class="role__when">2026</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>Every operation has a critical spreadsheet built by someone who left: twenty tabs and no documentation.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>Reading it cell by cell is how people start, and why they never finish.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Built a tool that extracts the workbook&rsquo;s formulas and dependencies as data and runs the defect checks a careful analyst would, then gives an AI assistant the structure, never the data, so it can answer questions and cite the cell.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>Documentation that updates with one command when the workbook changes. The checks were scored against 15 planted defects before they were trusted.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>1 command</dt>
+                            <dd>Republishes the documentation when the workbook changes</dd>
+                        </div>
+                        <div>
+                            <dt>0</dt>
+                            <dd>Rows of data the AI model ever sees</dd>
+                        </div>
+                        <div>
+                            <dt>15</dt>
+                            <dd>Planted defects used to score the checks</dd>
+                        </div>
+                    </dl>
+                    <p class="mt-8"><a href="systems.html#sheets-decomposer">How it was built and tested, on the Systems page &rarr;</a></p>
+                </div>
+            </article>
+
+            <article class="role" id="adoptiscope-results" data-period="p2025">
+                <div class="role__head">
+                    <div>
+                        <h3 class="role__title">A change diagnostic that cannot drift</h3>
+                        <p class="role__where">Change-adoption diagnostic &middot; in testing</p>
+                    </div>
+                    <p class="role__when">2026</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>Change programs prescribe training and communication before they find which barrier is holding adoption back.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>My diagnostic method lived in hand-built spreadsheets, and every copy drifted.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Turned the method into one program that builds the workbook in Excel and Google Sheets, verifies both and writes its own user guide.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>In testing: all 134 computed values match in both spreadsheet programs. Next is a paper pilot.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>134 / 134</dt>
+                            <dd>Computed values that match in Excel and Google Sheets</dd>
+                        </div>
+                        <div>
+                            <dt>2</dt>
+                            <dd>Spreadsheet formats from one build</dd>
+                        </div>
+                        <div>
+                            <dt>3</dt>
+                            <dd>Independent checks on every rule</dd>
+                        </div>
+                    </dl>
+                    <p class="mt-8"><a href="systems.html#adoptiscope">How it was built and tested, on the Systems page &rarr;</a></p>
+                </div>
+            </article>
+
+            <article class="role" id="keystone-results" data-period="p2025">
+                <div class="role__head">
+                    <div>
+                        <h3 class="role__title">Standard work for AI assistants</h3>
+                        <p class="role__where">AI operating manual &middot; in daily use</p>
+                    </div>
+                    <p class="role__when">2025 &ndash; Present</p>
+                </div>
+                <div class="role__body">
+                    <dl class="soar">
+                        <div>
+                            <dt>Situation</dt>
+                            <dd>AI tools are capable, but every session starts from zero.</dd>
+                        </div>
+                        <div>
+                            <dt>Obstacle</dt>
+                            <dd>Re-explaining context wastes time, and facts pasted into prompts drift from one session to the next.</dd>
+                        </div>
+                        <div>
+                            <dt>Action</dt>
+                            <dd>Wrote the standard work every AI tool I use reads before it starts: verified facts, a skill for each kind of job, and lessons learned. Each task loads only what it needs, and scripts check the facts.</dd>
+                        </div>
+                        <div>
+                            <dt>Result</dt>
+                            <dd>Work starts with the same context on either of two machines, and a typical task loads about 3% of the manual. It runs every other system on this page.</dd>
+                        </div>
+                    </dl>
+                    <dl class="outcomes">
+                        <div>
+                            <dt>100+</dt>
+                            <dd>Skills, one per kind of job</dd>
+                        </div>
+                        <div>
+                            <dt>~3%</dt>
+                            <dd>Of the manual loaded for a typical task</dd>
+                        </div>
+                        <div>
+                            <dt>10 min</dt>
+                            <dd>Sync between machines</dd>
+                        </div>
+                    </dl>
+                    <p class="mt-8"><a href="systems.html#keystone">How it was built and tested, on the Systems page &rarr;</a></p>
+                </div>
+            </article>
+
             <article class="role" id="workforce-capacity" data-period="p2023">
                 <div class="role__head">
                     <div>
