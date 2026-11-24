@@ -20,6 +20,104 @@
         <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
         <link rel="preload" href="fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin />
         <link rel="stylesheet" href="css/site.css" />
+        <style>
+            /* Section menu (method.html only) */
+            .pagenav {
+                position: sticky;
+                top: 61px;
+                z-index: 40;
+                background: var(--paper);
+                border-bottom: 1px solid rgba(44, 46, 47, 0.12);
+            }
+            .pagenav__title {
+                display: none;
+            }
+            .pagenav__list {
+                list-style: none;
+                margin: 0 auto;
+                padding: 8px var(--gutter);
+                max-width: var(--maxw);
+                display: flex;
+                gap: 8px;
+                overflow-x: auto;
+                scrollbar-width: none;
+            }
+            .pagenav__list::-webkit-scrollbar {
+                display: none;
+            }
+            .pagenav__list a {
+                display: block;
+                white-space: nowrap;
+                padding: 6px 12px;
+                border: 1px solid rgba(44, 46, 47, 0.18);
+                border-radius: 999px;
+                font-size: 0.85rem;
+                color: var(--ink);
+                text-decoration: none;
+            }
+            .pagenav__list a:hover {
+                border-color: var(--olive);
+            }
+            .pagenav__list a[aria-current="true"] {
+                background: var(--olive);
+                border-color: var(--olive);
+                color: var(--paper);
+            }
+            main section[id], body > section[id] {
+                scroll-margin-top: 112px;
+            }
+            @media (min-width: 1440px) {
+                .pagenav {
+                    position: fixed;
+                    top: 96px;
+                    left: 24px;
+                    width: 156px;
+                    padding: 14px 0 14px 14px;
+                    border: 1px solid rgba(44, 46, 47, 0.12);
+                    border-radius: 8px;
+                    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+                }
+                .pagenav__title {
+                    display: block;
+                    margin: 0 0 8px;
+                    font-size: 0.7rem;
+                    font-weight: 600;
+                    letter-spacing: 0.09em;
+                    text-transform: uppercase;
+                    color: rgba(44, 46, 47, 0.6);
+                }
+                .pagenav__list {
+                    display: block;
+                    padding: 0;
+                    border-left: 1px solid rgba(44, 46, 47, 0.14);
+                }
+                .pagenav__list a {
+                    padding: 6px 10px 6px 12px;
+                    margin-left: -1px;
+                    border: 0;
+                    border-left: 2px solid transparent;
+                    border-radius: 0;
+                    color: rgba(44, 46, 47, 0.75);
+                    white-space: normal;
+                }
+                .pagenav__list a:hover {
+                    color: var(--ink);
+                }
+                .pagenav__list a[aria-current="true"] {
+                    background: none;
+                    color: var(--ink);
+                    border-left-color: var(--olive);
+                }
+                main section[id], body > section[id] {
+                    scroll-margin-top: 72px;
+                }
+            }
+            @media print {
+                .pagenav {
+                    display: none;
+                }
+            }
+        </style>
     </head>
 
     <body>
@@ -60,8 +158,20 @@
             </div>
         </header>
 
+        <!-- Section menu: a sticky button row under the nav; a left rail on wide screens (Jeff, 2026-11-24) -->
+        <nav class="pagenav" aria-label="On this page">
+            <p class="pagenav__title">On this page</p>
+            <ol class="pagenav__list">
+                <li><a href="#decomposition">Decomposition</a></li>
+                <li><a href="#four-questions">What goes on every node</a></li>
+                <li><a href="#five-steps">How the work runs</a></li>
+                <li><a href="#software">Now software</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+            </ol>
+        </nav>
+
         <!-- ══ PART ONE: DECOMPOSITION ══ -->
-        <section class="section">
+        <section class="section" id="decomposition">
             <div class="wrap">
                 <div class="s-head">
                     <p class="eyebrow">Part one &middot; Decomposition</p>
@@ -177,7 +287,7 @@
         </section>
 
         <!-- ══ PART TWO: THE FOUR QUESTIONS ══ -->
-        <section class="on-paper section">
+        <section class="on-paper section" id="four-questions">
             <div class="wrap">
                 <div class="s-head">
                     <p class="eyebrow">Part two &middot; What goes on every node</p>
@@ -249,7 +359,7 @@
         </section>
 
         <!-- ══ PART THREE: FIVE STEPS ══ -->
-        <section class="section">
+        <section class="section" id="five-steps">
             <div class="wrap">
                 <div class="s-head">
                     <p class="eyebrow">Part three &middot; How the work runs</p>
@@ -314,7 +424,7 @@
         </section>
 
         <!-- ══ METHOD AS SOFTWARE ══ -->
-        <section class="on-paper section">
+        <section class="on-paper section" id="software">
             <div class="wrap">
                 <div class="s-head">
                     <h2>This method is now software.</h2>
@@ -601,6 +711,28 @@
         </footer>
         <!-- CTA:END -->
 
+        <script>
+            // Section menu: mark the section being read; keep the active button in view on narrow screens.
+            (function () {
+                var links = Array.prototype.slice.call(document.querySelectorAll('.pagenav__list a'));
+                var secs = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+                var last;
+                function onScroll() {
+                    var line = window.innerHeight * 0.3, cur = null;
+                    secs.forEach(function (s, i) { if (s && s.getBoundingClientRect().top <= line) cur = i; });
+                    if (cur === last) return;
+                    last = cur;
+                    links.forEach(function (a, i) {
+                        if (i === cur) {
+                            a.setAttribute('aria-current', 'true');
+                            if (window.innerWidth < 1440) a.parentNode.parentNode.scrollLeft = a.offsetLeft - 16;
+                        } else a.removeAttribute('aria-current');
+                    });
+                }
+                window.addEventListener('scroll', onScroll, { passive: true });
+                onScroll();
+            })();
+        </script>
         <script src="js/site.js" defer></script>
     </body>
 </html>
