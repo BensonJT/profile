@@ -1589,7 +1589,7 @@
 <div>
 <dt>Key decisions</dt>
 <dd><strong>The model sees only structured output.</strong>
-<ul class="spec__list"><li>The working rule is in the README: scripts do the extraction and the deterministic checks, the model only sees structured output, and a person reviews anything that becomes a source of truth.</li><li>Every table and column in the database has a comment, and one view, <code>vw_schema</code>, returns the full data dictionary.</li><li><strong>Documentation that answers questions.</strong> The structured output becomes the knowledge behind a Gemini Gem or a Claude skill, so anyone can ask what a tab does, what feeds a number, or how a particular formula works, and get an answer with the cell it came from.</li><li><strong>Practice before real data.</strong> The tool generates a deliberately broken workbook with an answer key of 15 planted defects.</li></ul></dd>
+<ul class="spec__list"><li>The working rule is in the README: scripts do the extraction and the deterministic checks, the model only sees structured output, and a person reviews anything that becomes a source of truth.</li><li>Every table and column in the database has a comment, and one view, <code>vw_schema</code>, returns the full data dictionary.</li><li><strong>Documentation that answers questions.</strong> The structured output becomes the knowledge behind a Gemini skill or a Claude skill, so anyone can ask what a tab does, what feeds a number, or how a particular formula works, and get an answer with the cell it came from.</li><li><strong>Practice before real data.</strong> The tool generates a deliberately broken workbook with an answer key of 15 planted defects.</li></ul></dd>
 </div>
 <div>
 <dt>What went wrong</dt>
@@ -1617,7 +1617,7 @@
                                 <div>
                                     <dt>Then ask questions</dt>
                                     <dd>
-                                        The reports load into a Gemini Gem or a Claude skill, so you can ask how the
+                                        The reports load into a Gemini skill or a Claude skill, so you can ask how the
                                         workbook works in plain language and get answers grounded in its own facts.
                                     </dd>
                                 </div>
@@ -1697,13 +1697,13 @@
                                     <dt>Stack</dt>
                                     <dd>
                                         Python 3.11, DuckDB, openpyxl, networkx, the Google Sheets and Docs APIs, and a
-                                        Gemini Gem for questions.
+                                        Gemini skill for questions.
                                     </dd>
                                 </div>
                                 <div>
                                     <dt>Privacy</dt>
                                     <dd>
-                                        The Gem&rsquo;s context file contains structure, labels, and formulas, not data
+                                        The skill&rsquo;s context file contains structure, labels, and formulas, not data
                                         rows, unless sample values are explicitly requested.
                                     </dd>
                                 </div>
