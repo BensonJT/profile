@@ -638,13 +638,24 @@ h2 {
 .voices h2 {
     margin: 1rem 0 clamp(2rem, 4vw, 3rem);
 }
-.voices__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+.voices__strip {
+    display: flex;
     gap: 1.25rem;
     margin-top: clamp(2.5rem, 5vw, 4rem);
+    padding-bottom: 1.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
+}
+.voices__strip:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
 }
 .voice {
+    flex: 0 0 calc((100% - 3 * 1.25rem) / 3.2);
+    scroll-snap-align: start;
     margin: 0;
     padding: 1.6rem 1.5rem 1.4rem;
     background: var(--ink-2);
@@ -653,6 +664,9 @@ h2 {
     flex-direction: column;
     justify-content: space-between;
     gap: 1.4rem;
+}
+.voice--wide {
+    flex-basis: calc(2 * ((100% - 3 * 1.25rem) / 3.2) + 1.25rem);
 }
 .voice blockquote {
     margin: 0;
@@ -671,20 +685,56 @@ h2 {
 .voice figcaption strong {
     display: block;
 }
-.voices__more {
-    margin-top: 2rem;
+.voices__controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.2rem;
 }
-.voices__more a {
+.voices__more {
     color: var(--accent);
 }
+.voices__btns {
+    display: none;
+    gap: 0.6rem;
+}
+.js .voices__btns {
+    display: flex;
+}
+.voices__btn {
+    width: 2.75rem;
+    height: 2.75rem;
+    font: inherit;
+    font-size: 1.1rem;
+    color: var(--vellum);
+    background: transparent;
+    border: 1px solid rgba(240, 234, 214, 0.4);
+    cursor: pointer;
+    transition:
+        color 0.2s var(--ease),
+        border-color 0.2s var(--ease);
+}
+.voices__btn:hover:not(:disabled) {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+.voices__btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
 @media (max-width: 960px) {
-    .voices__grid {
-        grid-template-columns: repeat(2, 1fr);
+    .voice__extra {
+        display: none;
+    }
+    .voice {
+        flex-basis: calc((100% - 1.25rem) / 2.2);
     }
 }
 @media (max-width: 620px) {
-    .voices__grid {
-        grid-template-columns: 1fr;
+    .voice {
+        flex-basis: 82%;
     }
 }
 

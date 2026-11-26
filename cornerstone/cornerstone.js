@@ -44,6 +44,32 @@
         hv.pause();
     }
 
+    /* ---- Recommendations strip: arrow buttons (the strip also scrolls by touch, wheel and keys) ---- */
+    var strip = document.querySelector("[data-strip]");
+    var sPrev = document.querySelector("[data-strip-prev]");
+    var sNext = document.querySelector("[data-strip-next]");
+    if (strip && sPrev && sNext) {
+        var slow = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var stripStep = function () {
+            var card = strip.querySelector(".voice");
+            var gap = parseFloat(getComputedStyle(strip).columnGap) || 0;
+            return card ? card.getBoundingClientRect().width + gap : strip.clientWidth * 0.8;
+        };
+        var stripUpdate = function () {
+            sPrev.disabled = strip.scrollLeft <= 2;
+            sNext.disabled = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 2;
+        };
+        sPrev.addEventListener("click", function () {
+            strip.scrollBy({ left: -stripStep(), behavior: slow ? "auto" : "smooth" });
+        });
+        sNext.addEventListener("click", function () {
+            strip.scrollBy({ left: stripStep(), behavior: slow ? "auto" : "smooth" });
+        });
+        strip.addEventListener("scroll", stripUpdate, { passive: true });
+        window.addEventListener("resize", stripUpdate);
+        stripUpdate();
+    }
+
     /* ---- Calendar button ---- */
     var cal = document.querySelector("[data-cal]");
     if (cal) {

@@ -140,14 +140,23 @@
                         <div class="situation">
                             <span class="situation__n">03</span>
                             <span class="situation__t"
-                                >Demand is rising, and adding headcount looks like the only way to keep up.</span
+                                >Finance asks why it costs so much. Operations says the team is drowning. The numbers
+                                don&rsquo;t settle it.</span
                             >
                             <span class="situation__a" aria-hidden="true">&rarr;</span>
                         </div>
                         <div class="situation">
                             <span class="situation__n">04</span>
                             <span class="situation__t"
-                                >The AI pilot worked. Nobody&rsquo;s sure how to fit it into the day-to-day work.</span
+                                >You&rsquo;ve added tools and rules to fix the problem, and results got worse.</span
+                            >
+                            <span class="situation__a" aria-hidden="true">&rarr;</span>
+                        </div>
+                        <div class="situation">
+                            <span class="situation__n">05</span>
+                            <span class="situation__t"
+                                >Your competitors are using AI to work faster and answer customers sooner, and you
+                                aren&rsquo;t sure where to start.</span
                             >
                             <span class="situation__a" aria-hidden="true">&rarr;</span>
                         </div>
@@ -261,7 +270,13 @@
                         </blockquote>
                         <figcaption><strong>Sally Curran</strong>, Verizon colleague since 1994</figcaption>
                     </figure>
-                    <div class="voices__grid">
+                    <div
+                        class="voices__strip"
+                        data-strip
+                        role="group"
+                        aria-label="Recommendations from colleagues"
+                        tabindex="0"
+                    >
                         <figure class="voice reveal">
                             <!-- prettier-ignore -->
                             <blockquote><span class="qm">“</span>I referred to him as ‘the tide that lifts all ships’ due to his support for teammates and investment in our organization’s internal data and processes.<span class="qm">”</span></blockquote>
@@ -291,12 +306,12 @@
                                 <strong>Collin Ice</strong>Business Operations, Optum. Verizon finance colleague
                             </figcaption>
                         </figure>
-                        <figure class="voice reveal">
+                        <figure class="voice voice--wide reveal">
                             <!-- prettier-ignore -->
-                            <blockquote><span class="qm">“</span>Crucially, this model also became the backbone for our headcount modeling and reporting…<span class="qm">”</span></blockquote>
+                            <blockquote><span class="qm">“</span>Jeff quickly recognized and embraced the complexity of our operational challenges. He immediately partnered with us to conceptualize and develop customized, innovative tools designed to significantly enhance our operational efficiencies, identify crucial data gaps and uncover opportunities for optimization.<span class="voice__extra"> … His ability to turn complex, disparate data problems into elegant, actionable solutions has made working with him on these critical projects an absolute pleasure.</span><span class="qm">”</span></blockquote>
                             <figcaption>
                                 <strong>Kristine Reelfs</strong>Global Network Operations, Verizon. Her team used the
-                                model daily
+                                tools daily
                             </figcaption>
                         </figure>
                         <figure class="voice reveal">
@@ -321,12 +336,37 @@
                             <blockquote><span class="qm">“</span>He played a vital role in my training and development as an effective IT process improvement specialist at Verizon.<span class="qm">”</span></blockquote>
                             <figcaption><strong>Samir Abrahani</strong>CPA / Finance Manager, Verizon</figcaption>
                         </figure>
+                        <figure class="voice voice--wide reveal">
+                            <!-- prettier-ignore -->
+                            <blockquote><span class="qm">“</span>Furthermore, Jeff developed a sophisticated force to load model. This model is invaluable for guiding strategic discussions with field supervisors… Crucially, this model also became the backbone for our headcount modeling and reporting…<span class="voice__extra"> providing the critical reporting to build robust, data-backed business cases for both requesting additional headcount and justifying workforce reductions or reallocations during periods of changing demand.</span><span class="qm">”</span></blockquote>
+                            <figcaption>
+                                <strong>Kristine Reelfs</strong>Global Network Operations, Verizon. Her team used the
+                                tools daily
+                            </figcaption>
+                        </figure>
                     </div>
-                    <p class="voices__more reveal">
-                        <a href="https://www.linkedin.com/in/jeffreytbenson/" target="_blank" rel="noopener noreferrer"
+                    <div class="voices__controls reveal">
+                        <a
+                            class="voices__more"
+                            href="https://www.linkedin.com/in/jeffreytbenson/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             >Read the full recommendations on LinkedIn</a
                         >
-                    </p>
+                        <div class="voices__btns">
+                            <button
+                                class="voices__btn"
+                                type="button"
+                                data-strip-prev
+                                aria-label="Previous recommendations"
+                            >
+                                &larr;
+                            </button>
+                            <button class="voices__btn" type="button" data-strip-next aria-label="Next recommendations">
+                                &rarr;
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
