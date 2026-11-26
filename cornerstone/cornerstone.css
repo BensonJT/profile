@@ -423,6 +423,15 @@ h2 {
     font-size: 1.15rem;
     color: var(--muted-light);
 }
+.statement p + p {
+    margin-top: 1rem;
+}
+.statement .statement__sig {
+    margin-top: 1.8rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    color: var(--accent-text);
+}
 .portrait {
     position: relative;
 }
@@ -499,7 +508,7 @@ h2 {
 
 /* Three principles */
 .principles__head {
-    max-width: 22ch;
+    max-width: 32ch;
     margin: 1rem 0 clamp(2.5rem, 6vw, 4.5rem);
 }
 .principles__grid {
@@ -520,6 +529,13 @@ h2 {
 .principle h3 {
     font-size: 2rem;
     margin: 0.7rem 0 0.8rem;
+}
+.principle__sub {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 1.35rem;
+    font-style: italic;
+    color: var(--accent);
 }
 .principle p {
     color: var(--muted-dark);
@@ -542,8 +558,9 @@ h2 {
 }
 .stat__v {
     font-family: var(--font-display);
-    font-size: clamp(3rem, 6.5vw, 5.5rem);
+    font-size: clamp(2.4rem, 3.6vw, 3.4rem);
     line-height: 1;
+    white-space: nowrap;
     color: var(--charcoal);
 }
 .stat__l {
@@ -552,11 +569,41 @@ h2 {
     border-top: 1px solid rgba(44, 46, 47, 0.25);
     font-size: 0.9375rem;
     color: var(--muted-light);
-    max-width: 16rem;
+    max-width: 17rem;
 }
 @media (max-width: 860px) {
     .proof__grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .stat__v {
+        font-size: clamp(1.9rem, 7vw, 3rem);
+    }
+}
+
+.proof__ai {
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+    padding-top: 2rem;
+    border-top: 1px solid rgba(44, 46, 47, 0.2);
+}
+.proof__ai-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 1.2rem;
+    max-width: 52rem;
+}
+.proof__ai .stat__l {
+    max-width: 24rem;
+}
+.proof__note {
+    margin-top: 2rem;
+    max-width: 40rem;
+    font-size: 1.05rem;
+    color: var(--muted-light);
+}
+@media (max-width: 560px) {
+    .proof__ai-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -581,6 +628,64 @@ h2 {
     margin-top: 1.4rem;
     color: var(--muted-dark);
     font-size: 0.9375rem;
+}
+
+.quote figcaption strong,
+.voice figcaption strong {
+    color: var(--vellum);
+    font-weight: 600;
+}
+.voices h2 {
+    margin: 1rem 0 clamp(2rem, 4vw, 3rem);
+}
+.voices__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.voice {
+    margin: 0;
+    padding: 1.6rem 1.5rem 1.4rem;
+    background: var(--ink-2);
+    border-top: 2px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.4rem;
+}
+.voice blockquote {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1.3;
+}
+.voice .qm {
+    color: var(--accent);
+}
+.voice figcaption {
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--muted-dark);
+}
+.voice figcaption strong {
+    display: block;
+}
+.voices__more {
+    margin-top: 2rem;
+}
+.voices__more a {
+    color: var(--accent);
+}
+@media (max-width: 960px) {
+    .voices__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 620px) {
+    .voices__grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .talk {
@@ -705,4 +810,43 @@ footer nav {
     .situation__a {
         transition: none;
     }
+}
+
+/* ---------- Privacy page and form note ---------- */
+.policy {
+    background: var(--ink);
+    padding-top: calc(4.5rem + clamp(3rem, 8vw, 6rem));
+    padding-bottom: clamp(4rem, 9vw, 7rem);
+}
+.policy__wrap {
+    max-width: 46rem;
+}
+.policy h1 {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    margin: 1rem 0 1rem;
+}
+.policy__lede {
+    font-size: 1.2rem;
+    color: var(--muted-dark);
+    margin-bottom: 2rem;
+}
+.policy h2 {
+    font-size: 1.6rem;
+    margin: 2.4rem 0 0.7rem;
+}
+.policy p {
+    color: var(--muted-dark);
+    margin-bottom: 1rem;
+}
+.policy a,
+.form__note a {
+    color: var(--accent);
+}
+.policy__updated {
+    font-size: 0.875rem;
+}
+.form__note {
+    margin-top: 1rem;
+    font-size: 0.8125rem;
+    color: var(--muted-dark);
 }
