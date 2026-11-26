@@ -472,6 +472,14 @@ h2 {
     border-top: 1px solid rgba(240, 234, 214, 0.16);
     transition: padding-left 0.4s var(--ease);
 }
+.situation {
+    color: inherit;
+    text-decoration: none;
+}
+.situation:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
 .situation:last-child {
     border-bottom: 1px solid rgba(240, 234, 214, 0.16);
 }
